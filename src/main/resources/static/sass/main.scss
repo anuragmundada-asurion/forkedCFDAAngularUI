@@ -1,0 +1,15 @@
+@import 'all';
+
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/*# sourceMappingURL=fbo_main.css.map */

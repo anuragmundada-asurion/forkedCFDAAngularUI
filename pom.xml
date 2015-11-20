@@ -169,9 +169,10 @@
         </plugins>
         <resources>
             <resource>
-                <directory>src</directory>
+                <directory>src/main</directory>
                 <excludes>
                     <exclude>**/index.html</exclude>
+                    <exclude>resources/static/sass</exclude>
                 </excludes>
             </resource>
         </resources>

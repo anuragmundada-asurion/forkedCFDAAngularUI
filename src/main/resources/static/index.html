@@ -11,14 +11,11 @@
     <!-- endinject -->
 </head>
 <body ng-app="app">
-    <header>
-        <div ng-include="'/partials/layout/header.tpl.html'"></div>
+    <header ng-include="'/partials/layout/header.tpl.html'">
     </header>
-    <div id="main">
-        <div ui-view></div>
+    <div id="main" ui-view>
     </div>
     <footer>
-
     </footer>
 </body>
 </html>
