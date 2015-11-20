@@ -1,0 +1,16 @@
+{
+  "name": "cfda-angular-ui",
+  "description": "CFDA Angular UI",
+  "version": "0.1",
+  "private": true,
+  "authors": [
+    "robert.smith@reisystems.com"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0",
+    "angular-resource": "~1.2.0",
+    "angular-touch": "~1.2.0",
+    "angular-animate": "~1.2.0",
+    "ui-router": "~0.2.0"
+  }
+}
