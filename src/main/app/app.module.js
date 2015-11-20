@@ -1,5 +1,15 @@
 (function(){
     "use strict"
 
-    angular.module('app', ['ngAnimate', 'ngResource', 'ngTouch', 'ui.router']);
+    var requiredModules = [
+        'ngAnimate',
+        'ngResource',
+        'ngTouch',
+        'ui.router'
+    ];
+
+    //Temporary until Programs service is created
+    requiredModules.push('ngMockE2E');
+
+    angular.module('app', requiredModules);
 })();

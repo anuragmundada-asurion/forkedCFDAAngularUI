@@ -3,7 +3,8 @@
 
     angular
         .module('app')
-        .config(configure);
+        .config(configure)
+        .run(runApp); // Temporary
 
     configure.$inject = ['$urlRouterProvider'];
 
@@ -13,6 +14,12 @@
 
     function configure($urlRouterProvider) {
         $urlRouterProvider.otherwise(gotoNotFound);
+    }
+
+    //Temporary Function
+    function runApp($httpBackend) {
+        $httpBackend.whenGET('/programs').respond([]);
+        $httpBackend.whenGET(/\.html$/).passThrough()
     }
 
     function gotoNotFound($injector, $location) {
