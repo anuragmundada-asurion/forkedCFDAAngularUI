@@ -8,21 +8,17 @@
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="vendor/js/lib.min.js"></script>
     <!-- endinject -->
 </head>
-<body>
-    <div class="usa-grid-full header">
-        <div class="usa-width-one-sixth logo">
-            <p>Logo here?</p>
-        </div>
-        <div class="usa-width-two-thirds">
-            <p></p>
-        </div>
-        <div class="usa-width-one-sixth login">
-            <a href="/login">Common Login</a>
-        </div>
+<body ng-app="app">
+    <header>
+        <div ng-include="'/partials/layout/header.tpl.html'"></div>
+    </header>
+    <div id="main">
+        <div ui-view></div>
     </div>
-    <div>Test</div>
+    <footer>
+
+    </footer>
 </body>
 </html>

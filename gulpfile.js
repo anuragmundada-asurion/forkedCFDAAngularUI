@@ -11,39 +11,62 @@ var clone          = require('gulp-clone');
 var rename         = require('gulp-rename');
 var series         = require('stream-series');
 
+var appFilesBase = "src/main/app";
+
 var vendorJs;
 var vendorCss;
+var appJs;
 
-gulp.task('lib-js-files', function () {
+gulp.task('vendor-js-files', function () {
     vendorJs = gulp.src(mainBowerFiles('**/*.js'),{ base: 'bower_components' })
-        .pipe(concatVendor('lib.min.js'))
+        .pipe(concat('lib.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('src/main/resources/static/vendor/js'));
+        .pipe(gulp.dest('target/classes/static/vendor/js'));
 
     vendorJs.pipe(clone())
         .pipe(gzip())
-        .pipe(gulp.dest('src/main/resources/static/vendor/js'));
+        .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
 
-gulp.task('lib-css-files', function () {
+gulp.task('vendor-css-files', function () {
     vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'bower_components'})
         .pipe(concat('lib.min.css'))
         .pipe(minify())
-        .pipe(gulp.dest('src/main/resources/static/vendor/css'));
+        .pipe(gulp.dest('target/classes/static/vendor/css'));
 
     vendorCss.pipe(clone())
         .pipe(clone())
         .pipe(gzip())
-        .pipe(gulp.dest('src/main/resources/static/vendor/css'));
+        .pipe(gulp.dest('target/classes/static/vendor/css'));
 });
 
+gulp.task('app-js-files', function () {
+    appJs = gulp.src([
+            appFilesBase + "/services/*.module.js",
+            appFilesBase + "/services/**/*.js",
+            appFilesBase + "/*.module.js",
+            appFilesBase + "/**/*.js"
+        ], {base: appFilesBase})
+        .pipe(concatVendor('app.js'))
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    appJs.pipe(clone())
+        .pipe(gzip())
+        .pipe(gulp.dest('target/classes/static/js'));
+});
+
+gulp.task('app-html-tpl-files', function() {
+    gulp.src(appFilesBase + "/**/*.tpl.html")
+        .pipe(gulp.dest('target/classes/static/partials'));
+})
+
 gulp.task('index', function () {
-    var target = gulp.src("src/main/resources/templates/_index.html");
-    var sources = gulp.src(['src/main/resources/static/*.js', 'src/main/resources/static/*.css'], {read: false});
+    var target = gulp.src("src/main/resources/static/index.html");
+    var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
     return target.pipe(rename("index.html"))
-        .pipe(gulp.dest('src/main/resources/static'))
-        .pipe(inject(series(vendorJs, vendorCss, sources), {relative: true}))
-        .pipe(gulp.dest('src/main/resources/static'));
+        .pipe(gulp.dest('target/classes/static'))
+        .pipe(inject(series(vendorJs, vendorCss, appJs, sources), {relative: true}))
+        .pipe(gulp.dest('target/classes/static'));
 });
 
 gulp.task('copyFonts', function() {
@@ -53,5 +76,5 @@ gulp.task('copyFonts', function() {
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('lib-js-files', 'lib-css-files', 'index', 'copyFonts');
+    runSequence('vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-html-tpl-files', 'index', 'copyFonts');
 });

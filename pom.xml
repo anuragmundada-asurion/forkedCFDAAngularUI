@@ -115,9 +115,6 @@
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>0.0.22</version>
-                <configuration>
-                    <installDirectory>${session.executionRootDirectory}</installDirectory>
-                </configuration>
                 <executions>
                     <execution>
                         <id>install node and npm</id>
@@ -170,6 +167,14 @@
                 </configuration>
             </plugin>-->
         </plugins>
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <excludes>
+                    <exclude>**/index.html</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
     <repositories>
