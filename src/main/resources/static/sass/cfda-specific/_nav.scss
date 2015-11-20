@@ -1,0 +1,26 @@
+.primary-nav {
+  background-color: $color-primary-alt-lightest;
+
+  .nav-bar {
+
+    @extend .usa-grid-full;
+    text-align: left;
+
+    a {
+      @extend .usa-button-big;
+      background-color: transparent;
+      color: #1d2021;
+      padding: 15px 10px;
+      margin: 0;
+      font-family: $font-sans;
+      font-weight: $font-bold;
+      display: inline-block;
+      &:hover {
+        background-color: $color-primary-alt;
+        text-decoration: none;
+
+      }
+    }
+  }
+
+}
