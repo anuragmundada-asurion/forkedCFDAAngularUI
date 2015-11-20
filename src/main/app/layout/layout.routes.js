@@ -12,8 +12,8 @@
     function configureRoutes($stateProvider) {
         $stateProvider
             .state('home', {
-                url: "/",
-                templateUrl: "/partials/layout/home.html"
+                url: "",
+                templateUrl: "partials/main/home.tpl.html"
             });
     }
 })();
