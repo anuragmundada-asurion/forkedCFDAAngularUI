@@ -17,6 +17,7 @@ var appFilesBase = "src/main/resources/app";
 var vendorJs;
 var vendorCss;
 var appJs;
+var appCss;
 var appSass;
 
 gulp.task('vendor-js-files', function () {
@@ -44,9 +45,8 @@ gulp.task('vendor-css-files', function () {
 
 gulp.task('app-js-files', function () {
     appJs = gulp.src([
-            appFilesBase + '/services/*.module.js',
-            appFilesBase + '/services/**/*.js',
             appFilesBase + '/*.module.js',
+            appFilesBase + '/services/**/*.js',
             appFilesBase + '/**/*.js'
         ], {base: appFilesBase})
         .pipe(concatVendor('app.js'))
@@ -57,32 +57,40 @@ gulp.task('app-js-files', function () {
         .pipe(gulp.dest('target/classes/static/js'));
 });
 
+gulp.task('app-css-files', function() {
+    appCss = gulp.src('src/main/resources/static/css/**/*.css')
+        .pipe(gulp.dest('target/classes/static/css'));
+})
+
 gulp.task('app-sass-files', function() {
     appSass = gulp.src('src/main/resources/static/sass/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('target/classes/static/css'));
-})
+});
 
 gulp.task('app-html-tpl-files', function() {
     gulp.src(appFilesBase + "/**/*.tpl.html")
         .pipe(gulp.dest('target/classes/static/partials'));
-})
-
+});
+gulp.task('app-img-files', function() {
+    gulp.src('src/main/resources/static/img/**/*.*')
+        .pipe(gulp.dest('target/classes/static/img'));
+});
 gulp.task('index', function () {
     var target = gulp.src("src/main/resources/static/index.html");
     var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
     return target.pipe(rename("index.html"))
         .pipe(gulp.dest('target/classes/static'))
-        .pipe(inject(series(vendorJs, vendorCss, appJs, appSass, sources), {relative: true}))
+        .pipe(inject(series(vendorJs, vendorCss, appJs, appCss, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
 
 gulp.task('copyFonts', function() {
-    gulp.src(mainBowerFiles('**/dist/fonts/*.{ttf,woff,woff2,eof,svg}'))
-        .pipe(gulp.dest('src/main/resources/static/vendor/fonts'));
+    gulp.src('src/main/resources/static/fonts/*.{ttf,woff,woff2,eof,svg}')
+        .pipe(gulp.dest('target/classes/static/fonts'));
 });
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'copyFonts');
+    runSequence('vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-css-files', 'app-sass-files', 'app-html-tpl-files', 'app-img-files', 'index', 'copyFonts');
 });

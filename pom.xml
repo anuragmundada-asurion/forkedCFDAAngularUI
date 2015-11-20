@@ -172,7 +172,11 @@
                 <directory>src/main</directory>
                 <excludes>
                     <exclude>**/index.html</exclude>
-                    <exclude>resources/static/sass</exclude>
+                    <exclude>resources/static/sass/**</exclude>
+                    <exclude>resources/app/**</exclude>
+                    <exclude>resources/static/fonts/**</exclude>
+                    <exclude>resources/static/img/**</exclude>
+                    <exclude>resources/static/css/**</exclude>
                 </excludes>
             </resource>
         </resources>
