@@ -19,6 +19,11 @@
                 resolve: {
                     program: createProgram
                 }
+            })
+            .state('programs', {
+                url: "/programs",
+                templateUrl: "partials/programs/programs-list.tpl.html",
+                controller: "ProgramsListController as vm"
             });
     }
 

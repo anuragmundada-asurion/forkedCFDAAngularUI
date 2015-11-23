@@ -1,0 +1,66 @@
+//variables section
+$horizontal-padding: .8em;
+$vertical-padding: .8em;
+$vertical-padding2: 1.3em;
+table {
+  overflow: hidden;
+  text-align: left;
+  th, td {
+    padding-left: 0;
+  }
+  thead {
+    tr {
+      background-color: $color-primary-darkest;
+      font-weight: bold;
+      text-align: left;
+      color: $color-white;
+
+      th[st-sort] {
+        &:after {
+          color: transparent;
+          content: '\25B2';
+        }
+        &.st-sort-ascent:after {
+          content: '\25B2';
+          color: $color-white;
+        }
+        &.st-sort-descent:after {
+          content: '\25BC';
+          color: $color-white;
+        }
+      }
+      .sorting_desc, .sorting_asc {
+        background-color: $color-primary-darker;
+        font-weight: bold;
+        text-align: left;
+        color: $color-white;
+      }
+    }
+
+  }
+  th {
+    padding: $vertical-padding $horizontal-padding;
+    background-position-y: 27px;
+  }
+  td {
+    padding: $vertical-padding2 $horizontal-padding;
+  }
+}
+
+
+.the-pagination {
+  overflow: hidden;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: $color-gray-lightest !important;
+  .showing-per-page {
+    select {
+      display: inline;
+      width: 4em;
+      border: 2px solid #0071bc;
+    }
+    label {
+      margin-top: 0;
+    }
+  }
+}

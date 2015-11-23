@@ -6,7 +6,8 @@
         'ngResource',
         'ngTouch',
         'ui.router',
-        'duScroll'
+        'duScroll',
+        'smart-table'
     ];
 
     //Temporary until Programs service is created

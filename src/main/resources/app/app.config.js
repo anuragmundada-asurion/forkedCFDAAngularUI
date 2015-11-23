@@ -18,7 +18,39 @@
 
     //Temporary Function
     function runApp($httpBackend) {
-        $httpBackend.whenGET('/programs').respond([]);
+        var programs = [
+            {
+                title: 'test 1',
+                agency: 'Test Agency 1',
+                office: 'Test Office 1',
+                status: 'Draft'
+            },
+            {
+                title: 'test 2',
+                agency: 'Test Agency 2',
+                office: 'Test Office 2',
+                status: 'Draft'
+            },
+            {
+                title: 'test 3',
+                agency: 'Test Agency 3',
+                office: 'Test Office 3',
+                status: 'Published'
+            },
+            {
+                title: 'test 4',
+                agency: 'Test Agency 4',
+                office: 'Test Office 4',
+                status: 'Published'
+            },
+            {
+                title: 'test 11',
+                agency: 'Test Agency 1',
+                office: 'Test Office 1',
+                status: 'Published'
+            }
+        ];
+        $httpBackend.whenGET('/_svc/programs').respond(programs);
         $httpBackend.whenGET(/\.html$/).passThrough()
     }
 
