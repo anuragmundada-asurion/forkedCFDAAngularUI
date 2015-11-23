@@ -16,8 +16,10 @@
 
         /////////////////////
 
-        function loadPrograms() {
+        function loadPrograms(tableState) {
             vm.isLoading = true;
+
+            console.log(tableState);
 
             vm.programs = Program.query();
 

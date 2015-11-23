@@ -1,4 +1,4 @@
-<section>
+<section st-pipe="vm.loadPrograms" st-table="vm.programs">
     <div class="usa-grid-full">
         <h1>Programs</h1>
         <div class="create-notice-button-div usa-width-one-fourth">
@@ -6,12 +6,12 @@
         </div>
         <div class="usa-width-one-fourth search-label">
             <label>
-                <input type="search" class="" placeholder="Search Programs" aria-controls="programs-table">
+                <input type="search" st-search placeholder="Search Programs" aria-controls="programs-table">
             </label>
         </div>
     </div>
     <div class="usa-grid-full">
-        <table st-pipe="vm.loadPrograms" st-table="vm.programs">
+        <table>
             <thead>
                 <tr>
                     <th st-sort="title">Title</th>
