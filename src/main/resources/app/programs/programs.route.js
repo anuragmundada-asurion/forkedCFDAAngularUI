@@ -15,6 +15,7 @@
             .state('addProgram', {
                 url: "/programs/add",
                 templateUrl: "partials/programs/addedit.tpl.html",
+                controller: "AddEditProgram as vm",
                 resolve: {
                     program: createProgram
                 }

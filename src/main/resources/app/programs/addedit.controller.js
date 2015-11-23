@@ -3,14 +3,17 @@
 
     angular
         .module('app')
-        .controller('addEditProgram', addEditProgramController);
+        .controller('AddEditProgram', addEditProgramController);
 
     addEditProgramController.$inject = ['program'];
 
     //////////////////////
 
     function addEditProgramController(program) {
+        var vm = this;
+
         vm.program = program;
+
     }
 
 })();

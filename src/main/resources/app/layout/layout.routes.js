@@ -5,15 +5,20 @@
         .module('app')
         .config(configureRoutes);
 
-    configureRoutes.$inject = ['$stateProvider'];
+    configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
+    goHome.$inject = ['$state'];
 
     //////////////////
 
-    function configureRoutes($stateProvider) {
+    function configureRoutes($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
-                url: "",
+                url: "/",
                 templateUrl: "partials/main/home.tpl.html"
             });
+        $urlRouterProvider.when('', goHome);
     }
+    function goHome($state) {
+        $state.go('home');
+    };
 })();
