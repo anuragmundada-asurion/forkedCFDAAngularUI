@@ -1,11 +1,12 @@
-<form name="vm.form" class="usa-grid-full" novalidate>
+<form name="vm.form" class="usa-grid-full" field-finder-form novalidate>
+    <field-finder-searchbox></field-finder-searchbox>
     <h2>Create Program - Section 1: General Information</h2>
     <button type="button>" ng-click="vm.test()">Test</button>
-    <div class="input-field">
+    <div class="input-field" field-finder-bookmark>
         <label for="agency">Agency</label>
         <span type="text" id="agency"  ng-bind="vm.program.agency" ng-readonly></span>
     </div>
-    <div class="input-field">
+    <div class="input-field" field-finder-bookmark>
         <label for="office">Office</label>
         <select id="office" name="office" ng-model="vm.program.office" ng-options="office.name for office in vm.choices.offices track by office.id" required>
             <option value='' disabled style="display:none">Please select an Office</option>
@@ -14,18 +15,19 @@
             <span ng-show="vm.form.office.$error.required">You must select an office.</span>
         </div>
     </div>
-    <div class="input-field">
+    <div class="input-field" field-finder-bookmark>
         <label for="title">010 Program Title<span class="required" >*</span></label>
         <input type="text" id="title" name="title" ng-model="vm.program.title" required>
         <div ng-show="vm.form.$submitted || vm.form.title.$dirty">
             <span ng-show="vm.form.title.$error.required">You must provide a title.</span>
         </div>
     </div>
-    <div class="input-field">
+    <div class="input-field" field-finder-bookmark>
         <label for="title">020 Popular Name</label>
         <input type="text" id="popularName" name="popularName" ng-model="vm.program.popularName" required unique-from="vm.program.title">
         <div ng-show="vm.form.$submitted || vm.form.popularName.$dirty">
             <span ng-show="vm.form.popularName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
         </div>
     </div>
+    <field-finder-searchbox></field-finder-searchbox>
 </form>

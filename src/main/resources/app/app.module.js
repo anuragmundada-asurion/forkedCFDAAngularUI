@@ -5,7 +5,8 @@
         'ngAnimate',
         'ngResource',
         'ngTouch',
-        'ui.router'
+        'ui.router',
+        'duScroll'
     ];
 
     //Temporary until Programs service is created
