@@ -38,9 +38,10 @@
 
             function goToElement() {
                 $document.scrollToElementAnimated(element);
+                var input = element.findAll('input, select, button, a');
+                input.focus();
                 highlightSection();
             }
-
             function highlightSection() {
                 element.addClass(hightlightClass);
             }

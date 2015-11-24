@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['program'];
+    addEditProgramController.$inject = ['$anchorScroll', 'program'];
 
     //////////////////////
 
-    function addEditProgramController(program) {
+    function addEditProgramController($anchorScroll, program) {
         var vm = this;
 
         vm.program = program;

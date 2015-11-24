@@ -1,6 +1,7 @@
 <form name="vm.form" class="usa-grid-full" field-finder-form novalidate>
+    <h2>New Program</h2>
     <field-finder-searchbox></field-finder-searchbox>
-    <h2>Create Program - Section 1: General Information</h2>
+    <h3>Create Program - Section 1: General Information</h3>
     <button type="button>" ng-click="vm.test()">Test</button>
     <div class="input-field" field-finder-bookmark>
         <label for="agency">Agency</label>
@@ -27,6 +28,46 @@
         <input type="text" id="popularName" name="popularName" ng-model="vm.program.popularName" required unique-from="vm.program.title">
         <div ng-show="vm.form.$submitted || vm.form.popularName.$dirty">
             <span ng-show="vm.form.popularName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
+        </div>
+    </div>
+    <div class="input-field" field-finder-bookmark>
+        <label for="title">040 Authorization</label>
+        <p>Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>
+        <usa-accordion>
+            <usa-accordion-group heading="Test 1">
+                <usa-accordion-heading>
+                    <button ng-click="alert('test')">Test</button>
+                </usa-accordion-heading>
+                <p>This is just a test</p>
+            </usa-accordion-group>
+            <usa-accordion-group heading="Test 2">
+                <p>Test test stes</p>
+            </usa-accordion-group>
+        </usa-accordion>
+    </div>
+    <div class="input-field" field-finder-bookmark>
+        <label for="title">050 Objectives<span class="required" >*</span></label>
+        <p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>
+        <textarea name="objectives" ng-model="vm.program.objectives" required/>
+        <div ng-show="vm.form.$submitted || vm.form.objectives.$dirty">
+            <span ng-show="vm.form.objectives.$error.required">You must provide Objectives.</span>
+        </div>
+    </div>
+    <div class="input-field" field-finder-bookmark>
+        <label for="title">060 Types of Assistance<span class="required" >*</span></label>
+        <p>Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
+            picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."</p>
+        <textarea name="assistanceTypes" ng-model="vm.program.assistanceTypes" required/>
+        <div ng-show="vm.form.$submitted || vm.form.assistanceTypes.$dirty">
+            <span ng-show="vm.form.assistanceTypes.$error.required">You need to select at least one Assistance Type for your Program.</span>
+        </div>
+    </div>
+    <div class="input-field" field-finder-bookmark>
+        <label for="title">070 Uses and Use Restrictions</label>
+        <p>Select all that apply to your Program. "</p>
+        <textarea name="assistanceTypes" ng-model="vm.program.assistanceTypes" required/>
+        <div ng-show="vm.form.$submitted || vm.form.assistanceTypes.$dirty">
+            <span ng-show="vm.form.assistanceTypes.$error.required">You need to select at least one Assistance Type for your Program.</span>
         </div>
     </div>
     <field-finder-searchbox></field-finder-searchbox>
