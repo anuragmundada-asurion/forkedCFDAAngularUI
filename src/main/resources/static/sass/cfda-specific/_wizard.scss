@@ -1,28 +1,45 @@
 $badge-dimensions: 30px !default;
 $badge-padding: 5px !default;
 $badge-color: $color-gray-light !default;
+$badge-font-color: $color-white !default;
+
+.steps-indicator {
+  li {
+    padding-top: ($badge-dimensions * 2) / 3;
+    &::before {
+      content: '';
+    }
+  }
+}
 
 .steps-num {
   position: absolute;
-  top: 0;
+  top: ($badge-dimensions / 2) * -1;
   left: 0;
   width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  display: table;
+  color: $badge-font-color;
 
+  &::before,
+  &::after {
+    content: '';
+    position: relative;
+    top: ($badge-dimensions / 2);
+    display: block;
+    height: 1px;
+    background-color: $badge-color;
+  }
   .steps-num-badge {
-    display: inline-block;
+    display: table-cell;
     box-sizing: border-box;
     width: $badge-dimensions;
+    height: $badge-dimensions;
     padding: $badge-padding;
     border-radius: 50%;
-    background-color: $color;
-
-    &::before,
-    &::after {
-      content: '';
-      width: 50%;
-      height: 1px;
-      display: block;
-      background-color: $badge-color;
-    }
+    vertical-align: middle;
+    text-align: center;
+    background-color: $badge-color;
   }
 }
