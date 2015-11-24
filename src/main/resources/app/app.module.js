@@ -11,9 +11,6 @@
         'mgo-angular-wizard'
     ];
 
-    //Temporary until Programs service is created
-    requiredModules.push('ngMockE2E');
-
     angular.module('app', requiredModules);
 
 
