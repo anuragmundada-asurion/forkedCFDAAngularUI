@@ -7,7 +7,8 @@
         'ngTouch',
         'ui.router',
         'duScroll',
-        'smart-table'
+        'smart-table',
+        'mgo-angular-wizard'
     ];
 
     //Temporary until Programs service is created

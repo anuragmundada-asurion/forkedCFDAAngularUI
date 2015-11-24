@@ -1,0 +1,28 @@
+$badge-dimensions: 30px !default;
+$badge-padding: 5px !default;
+$badge-color: $color-gray-light !default;
+
+.steps-num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .steps-num-badge {
+    display: inline-block;
+    box-sizing: border-box;
+    width: $badge-dimensions;
+    padding: $badge-padding;
+    border-radius: 50%;
+    background-color: $color;
+
+    &::before,
+    &::after {
+      content: '';
+      width: 50%;
+      height: 1px;
+      display: block;
+      background-color: $badge-color;
+    }
+  }
+}
