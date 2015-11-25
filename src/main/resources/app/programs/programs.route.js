@@ -7,6 +7,7 @@
 
     configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
     createProgram.$inject = ['Program'];
+    getProgram.$inject = ['$stateParams', 'Program'];
 
     //////////////////
 
@@ -18,6 +19,14 @@
                 controller: "AddEditProgram as gsavm",
                 resolve: {
                     program: createProgram
+                }
+            })
+            .state('editProgram', {
+                url: "/programs/:id/edit",
+                templateUrl: "partials/programs/addedit.tpl.html",
+                controller: "AddEditProgram as gsavm",
+                resolve: {
+                    program: getProgram
                 }
             })
             .state('home', {
@@ -35,5 +44,9 @@
         var program = new Program();
         program.agencyId = "REI Test Agency";
         return program;
+    }
+    function getProgram($stateParams, Program) {
+        var id = $stateParams.id
+        return id ? Program.get({id: id}) : createProgram(Program);
     }
 })();

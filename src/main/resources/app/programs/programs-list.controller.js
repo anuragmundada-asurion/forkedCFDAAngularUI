@@ -5,14 +5,17 @@
         .module('app')
         .controller('ProgramsListController', programsListController);
 
-    programsListController.$inject = ['Program'];
+    programsListController.$inject = ['$state', 'Program'];
 
     //////////////////////
 
-    function programsListController(Program) {
-        var vm = this;
+    function programsListController($state, Program) {
+        var vm = this,
+            previousState;
 
         vm.loadPrograms = loadPrograms;
+        vm.editProgram = editProgram;
+        vm.deleteProgram = deleteProgram;
 
         /////////////////////
 
@@ -25,6 +28,19 @@
 
             vm.programs.$promise.then(function(){
                 vm.isLoading = false;
+                previousState = tableState;
+            })
+        }
+
+        function editProgram(program) {
+            $state.go('editProgram', {
+                id: program.id
+            });
+        }
+
+        function deleteProgram(program) {
+            program.$delete().then(function() {
+                loadPrograms(previousState);
             })
         }
     }

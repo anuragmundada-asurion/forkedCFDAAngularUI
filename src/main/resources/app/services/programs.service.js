@@ -14,7 +14,15 @@
             id: '@id'
         }, {
             save: {
-                method: 'PUT'
+                method: 'PUT',
+                transformResponse: saveUpdateTransformRes
+            },
+            update: {
+                method: 'POST',
+                params: {
+                    id: '@id'
+                },
+                transformResponse: saveUpdateTransformRes
             },
             query: {
                 method: 'GET',
@@ -36,7 +44,26 @@
                     };
                     return list;
                 }
+            },
+            get: {
+                transformResponse: function(data) {
+                    data = JSON.parse(data);
+                    var returnData;
+                    angular.forEach(data, function(prop, key){
+                        prop.id = key;
+                        returnData = prop;
+                    })
+                    return returnData;
+                }
             }
         });
+    }
+
+    ///////////////
+
+    function saveUpdateTransformRes(data) {
+        return {
+            id: data
+        };
     }
 })();

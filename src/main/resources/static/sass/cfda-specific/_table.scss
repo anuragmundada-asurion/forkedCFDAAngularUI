@@ -44,6 +44,11 @@ table {
   }
   td {
     padding: $vertical-padding2 $horizontal-padding;
+    &.action-row {
+      button {
+        padding: 5px;
+      }
+    }
   }
 }
 

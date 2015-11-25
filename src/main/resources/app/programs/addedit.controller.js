@@ -5,12 +5,14 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['program'];
+    addEditProgramController.$inject = ['$state', 'program'];
 
     //////////////////////
 
-    function addEditProgramController(program) {
+    function addEditProgramController($state, program) {
         var vm = this;
+
+        vm.isEdit = $state.is('editProgram');
 
         vm.program = program;
         vm.choices = {
@@ -35,7 +37,12 @@
         ////////////////
 
         function save() {
-            vm.program.$save();
+            var copy = angular.copy(vm.program);
+            copy[copy.id ? '$update' : '$save']().then(updateId);
+        }
+
+        function updateId(res){
+            vm.program.id = res.id;
         }
     }
 

@@ -15,7 +15,8 @@
             <thead>
                 <tr>
                     <th st-sort="title">Title</th>
-                    <th st-sort="agency">Agency</th>
+                    <th style="width:145px;"></th>
+                    <th st-sort="agencyId">Agency</th>
                     <th st-sort="office">Office</th>
                     <th st-sort="status">Status</th>
                 </tr>
@@ -23,7 +24,8 @@
             <tbody ng-show="!vm.isLoading">
                 <tr ng-repeat="row in vm.programs">
                     <td>{{row.title}}</td>
-                    <td>{{row.agency}}</td>
+                    <td class="action-row"><button type="button" ng-click="vm.editProgram(row)">Edit</button><button type="button" ng-click="vm.deleteProgram(row)">Delete</button></td>
+                    <td>{{row.agencyId}}</td>
                     <td>{{row.office}}</td>
                     <td>{{row.status}}</td>
                 </tr>

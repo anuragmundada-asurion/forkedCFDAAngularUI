@@ -1,12 +1,12 @@
 <form name="gsavm.form" class="usa-grid-full layout-padding" field-finder-form novalidate>
     <section class="form-header">
-        <h1>New Listing</h1>
+        <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
         <field-finder-searchbox></field-finder-searchbox>
     </section>
     <wizard template="/partials/programs/addedit-wizard.tpl.html" edit-mode="true">
         <wz-step title="General Information">
             <div>
-                <h3>Create Program - Section 1: General Information</h3>
+                <h3>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 1: General Information</h3>
                 <div class="input-field" field-finder-bookmark>
                     <label for="agency">Agency</label>
                     <span type="text" id="agency"  ng-bind="gsavm.program.agencyId"></span>
