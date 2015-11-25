@@ -5,7 +5,7 @@
         .module('app')
         .factory('Program', programSvc);
 
-    programSvc.$inject = ['$resource', 'svc.programs'];
+    programSvc.$inject = ['$resource', 'pub.svc.programs'];
 
     ////////////////
 
