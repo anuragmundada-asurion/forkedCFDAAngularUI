@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gov.gsa</groupId>
-    <artifactId>gsa-cfda-angular-ui</artifactId>
+    <artifactId>cfda-angular-ui</artifactId>
     <version>0.1.0.${env.BUILD_NUMBER}</version>
 
     <name>cfda-angular-ui</name>
