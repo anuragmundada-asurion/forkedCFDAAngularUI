@@ -1,83 +1,109 @@
-<form name="vm.form" class="usa-grid-full layout-padding" novalidate>
+<form name="gsavm.form" class="usa-grid-full layout-padding" field-finder-form novalidate>
+    <section class="form-header">
+        <h1>New Listing</h1>
+        <field-finder-searchbox></field-finder-searchbox>
+    </section>
     <wizard template="/partials/programs/addedit-wizard.tpl.html" edit-mode="true">
         <wz-step title="General Information">
-            <div field-finder-form>
-                <h2>New Program</h2>
-                <field-finder-searchbox></field-finder-searchbox>
+            <div>
                 <h3>Create Program - Section 1: General Information</h3>
-                <button type="button>" ng-click="vm.test()">Test</button>
                 <div class="input-field" field-finder-bookmark>
                     <label for="agency">Agency</label>
-                    <span type="text" id="agency"  ng-bind="vm.program.agencyId"></span>
+                    <span type="text" id="agency"  ng-bind="gsavm.program.agencyId"></span>
                 </div>
                 <div class="input-field" field-finder-bookmark>
                     <label for="office">Office</label>
-                    <select id="office" name="office" ng-model="vm.$program.office" ng-options="office.name for office in vm.choices.offices track by office.id" required>
+                    <select id="office" name="office" ng-model="gsavm.$program.office" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
                         <option value='' disabled style="display:none">Please select an Office</option>
                     </select>
-                    <div ng-show="form.$submitted || form.office.$dirty">
-                        <span ng-show="vm.form.office.$error.required">You must select an office.</span>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
+                        <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
                     <label for="title">010 Program Title<span class="required" >*</span></label>
-                    <input type="text" id="title" name="title" ng-model="vm.program.title" required>
-                    <div ng-show="vm.form.$submitted || vm.form.title.$dirty">
-                        <span ng-show="vm.form.title.$error.required">You must provide a title.</span>
+                    <input type="text" id="title" name="title" ng-model="gsavm.program.title" required>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.title.$dirty">
+                        <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
-                    <label for="title">020 Popular Name</label>
-                    <input type="text" id="popularName" name="popularName" ng-model="vm.program.popularName" required unique-from="vm.program.title">
-                    <div ng-show="vm.form.$submitted || vm.form.popularName.$dirty">
-                        <span ng-show="vm.form.popularName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
+                    <label for="alternativeName">020 Popular Name</label>
+                    <input type="text" id="alternativeName" name="alternativeName" ng-model="gsavm.program.alternativeName" required unique-from="gsavm.program.title">
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.alternativeName.$dirty">
+                        <span ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
                     </div>
                 </div>
-                <div class="input-field" field-finder-bookmark>
+                <!--<div class="input-field" field-finder-bookmark>
                     <label for="title">040 Authorization</label>
                     <p>Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>
-                    <usa-accordion>
-                        <usa-accordion-group heading="Test 1">
-                            <usa-accordion-heading>
-                                <button ng-click="alert('test')">Test</button>
-                            </usa-accordion-heading>
-                            <p>This is just a test</p>
-                        </usa-accordion-group>
-                        <usa-accordion-group heading="Test 2">
-                            <p>Test test stes</p>
-                        </usa-accordion-group>
-                    </usa-accordion>
-                </div>
+                </div>-->
                 <div class="input-field" field-finder-bookmark>
-                    <label for="title">050 Objectives<span class="required" >*</span></label>
+                    <label for="objective">050 Objectives<span class="required" >*</span></label>
                     <p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>
-                    <textarea name="objectives" ng-model="vm.program.objectives" required></textarea>
-                    <div ng-show="vm.form.$submitted || vm.form.objectives.$dirty">
-                        <span ng-show="vm.form.objectives.$error.required">You must provide Objectives.</span>
+                    <textarea id="objective" name="objective" ng-model="gsavm.program.objective" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
+                        <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                     </div>
                 </div>
                 <!--<div class="input-field" field-finder-bookmark>
                     <label for="title">060 Types of Assistance<span class="required" >*</span></label>
                     <p>Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
                         picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."</p>
-                    <textarea name="assistanceTypes" ng-model="vm.program.assistanceTypes" required/>
-                    <div ng-show="vm.form.$submitted || vm.form.assistanceTypes.$dirty">
-                        <span ng-show="vm.form.assistanceTypes.$error.required">You need to select at least one Assistance Type for your Program.</span>
+                    <textarea id="assistanceTypes" name="assistanceTypes" ng-model="gsavm.program.assistanceTypes" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceTypes.$dirty">
+                        <span ng-show="gsavm.form.assistanceTypes.$error.required">You need to select at least one Assistance Type for your Program.</span>
                     </div>
-                </div>
+                </div>-->
                 <div class="input-field" field-finder-bookmark>
-                    <label for="title">070 Uses and Use Restrictions</label>
-                    <p>Select all that apply to your Program. "</p>
-                    <textarea name="assistanceTypes" ng-model="vm.program.assistanceTypes" required/>
-                    <div ng-show="vm.form.$submitted || vm.form.assistanceTypes.$dirty">
-                        <span ng-show="vm.form.assistanceTypes.$error.required">You need to select at least one Assistance Type for your Program.</span>
+                    <label for="usageRulesContent">070 Uses and Use Restrictions</label>
+                    <p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>
+                    <textarea id="usageRulesContent" name="usageRulesContent." ng-model="gsavm.program.usage.rules.content" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.usageRulesContent..$dirty">
+                        <span ng-show="gsavm.form.usageRulesContent.$error.required">You need to select at least one Assistance Type for your Program.</span>
+                    </div>
+                    <p>Are there specific restructions place upon the use of the assistance?</p>
+                    <div class="input-field-checkbox">
+                        <input type="checkbox" id="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag">
+                        <label for="restrictionsFlag">Yes</label>
+                    </div>
+                    <p>Are there discretionary funds available?</p>
+                    <div class="input-field-checkbox">
+                        <input type="checkbox" id="discretionaryFundFlag" ng-model="gsavm.program.usage.discretionaryFund.flag">
+                        <label for="discretionaryFundFlag">Yes</label>
+                    </div>
+                    <p>Are loans a type of assistance in this program?</p>
+                    <div class="input-field-checkbox">
+                        <input type="checkbox" id="loanTermsFlag" ng-model="gsavm.program.usage.loanTerms.flag">
+                        <label for="loanTermsFlag">Yes</label>
+                    </div>
+                    <div ng-show="gsavm.program.usage.restrictions.flag">
+                        <p>Restrictions</p>
+                        <textarea  name="restrictions" ng-model="gsavm.program.usage.restrictions.content" class="usa-grid-full" required="gsavm.program.usage.restrictions.flag"></textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
+                            <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                        </div>
+                    </div>
+                    <div ng-show="gsavm.program.usage.discretionaryFund.flag">
+                        <p>Discretionary Funds</p>
+                        <textarea  name="discretionaryFund" ng-model="gsavm.program.usage.discretionaryFund.content" class="usa-grid-full" required="gsavm.program.usage.discretionaryFund.flag"></textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
+                            <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
+                        </div>
+                    </div>
+                    <div ng-show="gsavm.program.usage.loanTerms.flag">
+                        <p>Loan Terms</p>
+                        <textarea  name="loanTerms" ng-model="gsavm.program.usage.loanTerms.content" class="usa-grid-full" required="gsavm.program.usage.loanTerms.flag"></textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.loanTermsFund.$dirty">
+                            <span ng-show="gsavm.form.loanTerms.$error.required">You must provide the loan terms.</span>
+                        </div>
                     </div>
                 </div>
-                <input type="submit" wz-next value="Continue" />
-                <field-finder-searchbox></field-finder-searchbox>-->
+                <button type="button" ng-click="gsavm.save()">Save</button>
+                <field-finder-searchbox></field-finder-searchbox>
             </div>
         </wz-step>
-        <wz-step title="Eligibility/Qualifications">
+        <wz-step title="Eligibility / Qualifications">
             <div>Placeholder</div>
             <input type="submit" wz-next value="Continue" />
         </wz-step>

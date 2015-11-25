@@ -10,9 +10,12 @@
     ////////////////
 
     function programSvc($resource, svcUrl) {
-        return $resource(svcUrl + '/program/:id', {
+        return $resource('http://gsaiae-dev02.reisys.com:89/program/:id', {
             id: '@id'
         }, {
+            save: {
+                method: 'PUT'
+            },
             query: {
                 method: 'GET',
                 isArray: true,

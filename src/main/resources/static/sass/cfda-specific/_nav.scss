@@ -10,7 +10,7 @@
       @extend .usa-button-big;
       background-color: transparent;
       color: #1d2021;
-      padding: 15px 10px;
+      padding: $nav-padding-height $nav-padding-width;
       margin: 0;
       font-family: $font-sans;
       font-weight: $font-bold;

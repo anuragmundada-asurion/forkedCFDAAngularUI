@@ -1,0 +1,14 @@
+form {
+  .form-header {
+    margin: $form-header-margin-height 0;
+    h1, h2 {
+      margin: 0;
+    }
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: $form-header-element-spacing;
+      margin-right: $form-header-element-spacing;
+    }
+  }
+}

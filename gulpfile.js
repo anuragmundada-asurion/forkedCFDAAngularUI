@@ -21,7 +21,6 @@ var vendorCss;
 var appJs;
 var appCss;
 var appSass;
-var appSettings;
 
 gulp.task('vendor-js-files', function () {
     vendorJs = gulp.src(mainBowerFiles('**/*.js'),{ base: 'bower_components' })

@@ -5,29 +5,35 @@
         .module('app')
         .config(configureRoutes);
 
-    configureRoutes.$inject = ['$stateProvider'];
+    configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
     createProgram.$inject = ['Program'];
 
     //////////////////
 
-    function configureRoutes($stateProvider) {
+    function configureRoutes($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('addProgram', {
                 url: "/programs/add",
                 templateUrl: "partials/programs/addedit.tpl.html",
-                controller: "AddEditProgram as vm",
+                controller: "AddEditProgram as gsavm",
                 resolve: {
                     program: createProgram
                 }
             })
-            .state('programs', {
-                url: "/programs",
+            .state('home', {
+                url: "/",
                 templateUrl: "partials/programs/programs-list.tpl.html",
                 controller: "ProgramsListController as vm"
             });
+        $urlRouterProvider.when('', goHome);
     }
 
+    function goHome($state) {
+        $state.go('home');
+    };
     function createProgram(Program) {
-        return new Program();
+        var program = new Program();
+        program.agencyId = "REI Test Agency";
+        return program;
     }
 })();

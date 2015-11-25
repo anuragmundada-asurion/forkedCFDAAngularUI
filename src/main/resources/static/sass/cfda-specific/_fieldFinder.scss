@@ -2,3 +2,12 @@ field-finder-bookmark.highlight,
 .highlight[field-finder-bookmark] {
   background-color: #ffea6f;
 }
+
+field-finder-searchbox {
+  > * {
+    display: inline-block;
+  }
+  > select {
+    margin-right: 10px;
+  }
+}
