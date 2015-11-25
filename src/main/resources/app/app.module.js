@@ -2,6 +2,7 @@
     "use strict"
 
     var requiredModules = [
+        'app.settings',
         'ngAnimate',
         'ngResource',
         'ngTouch',

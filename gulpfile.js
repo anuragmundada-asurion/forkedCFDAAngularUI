@@ -11,6 +11,8 @@ var gzip           = require('gulp-gzip');
 var clone          = require('gulp-clone');
 var rename         = require('gulp-rename');
 var series         = require('stream-series');
+var intercept      = require('gulp-intercept');
+var gulpNgConfig   = require('gulp-ng-config');
 
 var appFilesBase = "src/main/resources/app";
 
@@ -19,6 +21,7 @@ var vendorCss;
 var appJs;
 var appCss;
 var appSass;
+var appSettings;
 
 gulp.task('vendor-js-files', function () {
     vendorJs = gulp.src(mainBowerFiles('**/*.js'),{ base: 'bower_components' })
@@ -76,12 +79,32 @@ gulp.task('app-img-files', function() {
     gulp.src('src/main/resources/static/img/**/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
 });
+gulp.task('app-settings', function() {
+    appSettings = gulp.src('src/main/resources/application.properties')
+        .pipe(intercept(function(file){
+            console.log(file.path);
+            var jsonObj = {},
+                variables = file.contents.toString().split('\r\n'),
+                varName = 0,
+                varVal = 1;
+
+            variables.forEach(function(variable) {
+                var parts = variable.split('='),
+                    name = parts[varName];
+                jsonObj[name] = parts[varVal];
+            })
+            file.contents = new Buffer(JSON.stringify(jsonObj));
+            return file;
+        }))
+        .pipe(gulpNgConfig('app.settings'))
+        .pipe(gulp.dest('target/classes/static/js'));
+});
 gulp.task('index', function () {
     var target = gulp.src("src/main/resources/static/index.html");
     var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
     return target.pipe(rename("index.html"))
         .pipe(gulp.dest('target/classes/static'))
-        .pipe(inject(series(vendorJs, vendorCss, appJs, appCss, appSass, sources), {relative: true}))
+        .pipe(inject(series(vendorJs, vendorCss, appSettings, appJs, appCss, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -92,5 +115,5 @@ gulp.task('copyFonts', function() {
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-css-files', 'app-sass-files', 'app-html-tpl-files', 'app-img-files', 'index', 'copyFonts');
+    runSequence('vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-css-files', 'app-sass-files', 'app-html-tpl-files', 'app-img-files', 'app-settings', 'index', 'copyFonts');
 });

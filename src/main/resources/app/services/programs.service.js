@@ -5,12 +5,12 @@
         .module('app')
         .factory('Program', programSvc);
 
-    programSvc.$inject = ['$resource'];
+    programSvc.$inject = ['$resource', 'svc.programs'];
 
     ////////////////
 
-    function programSvc($resource) {
-        return $resource('http://localhost:8081/program/:id', {
+    function programSvc($resource, svcUrl) {
+        return $resource(svcUrl + '/program/:id', {
             id: '@id'
         }, {
             query: {
