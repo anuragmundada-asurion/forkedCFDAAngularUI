@@ -5,12 +5,12 @@
         .module('app')
         .factory('Program', programSvc);
 
-    programSvc.$inject = ['$resource'/*, 'pub.svc.programs'*/];
+    programSvc.$inject = ['$resource', 'env'];
 
     ////////////////
 
-    function programSvc($resource) {
-        return $resource('http://gsaiae-dev02.reisys.com:89/program/:id', {
+    function programSvc($resource, env) {
+        return $resource(env["pub.svc.programs"] + '/program/:id', {
             id: '@id'
         }, {
             save: {
@@ -56,7 +56,7 @@
                     return returnData;
                 }
             }
-        });
+        })
     }
 
     ///////////////
