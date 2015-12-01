@@ -28,11 +28,8 @@
     "gulp-inject": "1.5.0",
     "gulp-run-sequence": "0.3.2",
     "stream-series": "0.1.1",
-    "event-stream": "~3.2.0",
     "gulp-gzip": "1.2.0",
     "gulp-clone": "1.0.0",
-    "gulp-rename": "1.2.2",
-    "gulp-intercept": "0.1.0",
-    "gulp-ng-config": "1.2.1"
+    "gulp-rename": "1.2.2"
   }
 }
