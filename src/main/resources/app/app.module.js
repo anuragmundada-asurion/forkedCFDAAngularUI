@@ -6,6 +6,7 @@
         'ngAnimate',
         'ngResource',
         'ngTouch',
+        'ngSanitize',
         'ui.router',
         'duScroll',
         'smart-table',
@@ -25,6 +26,10 @@
         },
         focus: function(element) {
             element.focus();
+            return element;
+        },
+        click: function(element) {
+            element.click();
             return element;
         }
     }, applyExtensions);

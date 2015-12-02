@@ -13,18 +13,30 @@ var series         = require('stream-series');
 
 var appFilesBase = "src/main/resources/app";
 
+var ie8VendorDep = ['**/jquery.js'];
+
 var vendorJs;
+var ie8VendorJs;
 var vendorCss;
 var appJs;
 var appSass;
 
 gulp.task('vendor-js-files', function () {
-    vendorJs = gulp.src(mainBowerFiles('**/*.js'),{ base: 'bower_components' })
+    var bowerSrc = ['**/*.js'];
+    ie8VendorDep.forEach(function(src){
+        bowerSrc.push('!' + src);
+    });
+    vendorJs = gulp.src(mainBowerFiles(bowerSrc),{ base: 'bower_components' })
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
-
+gulp.task('ie8-vendor-js-files', function() {
+    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), { base: 'bower_components'})
+        .pipe(concat('ie8-lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/vendor/js'));
+})
 gulp.task('vendor-css-files', function () {
     vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'bower_components'})
         .pipe(concat('lib.min.css'))
@@ -66,6 +78,7 @@ gulp.task('index', function () {
     return target.pipe(rename("index.html"))
         .pipe(gulp.dest('target/classes/static'))
         .pipe(inject(series(vendorJs), { relative: true, starttag: '<!-- inject:vendor:{{ext}} -->'}))
+        .pipe(inject(series(ie8VendorJs), { relative: true, starttag: '<** inject:ie8-vendor:{{ext}} **>', endtag: '<** endinject **>'}))
         .pipe(inject(series(vendorCss, appJs, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
@@ -79,5 +92,5 @@ gulp.task('gzip', function() {
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('app-static-files', 'vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
+    runSequence('app-static-files', 'vendor-js-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
 });

@@ -12,9 +12,15 @@
     "angular-touch": "~1.2.0",
     "angular-animate": "~1.2.0",
     "angular-mocks": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
     "ui-router": "~0.2.0",
     "angular-smart-table": "~2.1.0",
     "angular-scroll": "~1.0.0",
-    "angular-wizard": "~0.5.0"
+    "angular-wizard": "~0.5.0",
+    "ui-select": "https://github.com/angular-ui/ui-select",
+    "jquery": "<2.0"
+  },
+  "resolutions": {
+    "angular": "~1.2.0"
   }
 }
