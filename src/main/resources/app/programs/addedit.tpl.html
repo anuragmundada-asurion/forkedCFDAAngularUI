@@ -104,7 +104,36 @@
             </div>
         </wz-step>
         <wz-step title="Eligibility / Qualifications">
-            <div>Placeholder</div>
+            <h3>080 Eligibility Requirements</h3>
+                <div>
+                    <span>
+                        <h4>081 Applicant Eligibility</h4>
+                        <span>Add Eligible Applicant</span>
+                    </span>
+                    <div class="input-field" field-finder-bookmark>
+                        <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
+                        <ui-select id="eligibleApplicants" multiple ng-model="gsavm.$program.eligibleApplicants">
+                            <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="eligibleApplicant.name as eligibleApplicant in gsavm.choices.eligibleApplicantsList | filter: $select.search">
+                                <div ng-bind-html="eligibleApplicant.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.eligibleApplicants.$dirty">
+                            <span ng-show="gsavm.form.eligibleApplicants.$error.required">You must provide at least one selection.</span>
+                        </div>
+                    </div>
+                    <div class="input-field" field-finder-bookmark>
+                        <label for="useAssistance">Use of Assistance<span class="required" >*</span></label>
+                        <input type="text" id="useAssistance" name="useAssistance" ng-model="gsavm.program.useAssistance" required>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.useAssistance.$dirty">
+                            <span ng-show="gsavm.form.useAssistance.$error.required">You must provide a title.</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>082 Beneficiary Eligibility</h4>
+                </div>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="How to Apply">

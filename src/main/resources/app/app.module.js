@@ -9,7 +9,8 @@
         'ui.router',
         'duScroll',
         'smart-table',
-        'mgo-angular-wizard'
+        'mgo-angular-wizard',
+        'ui.select'
     ];
 
     angular.module('app', requiredModules);

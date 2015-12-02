@@ -32,6 +32,38 @@
             ]
         };
 
+        vm.choices = {
+            eligibleApplicantsList: [
+                {
+                    id: 09,
+                    name: '09 - Government - General'
+                },
+                {
+                    id: 10,
+                    name: '10 - Federal'
+                },
+                {
+                    id: 11,
+                    name: '11 - Interstate'
+                },
+                {
+                    id: 12,
+                    name: '12 - Intrastate'
+                },
+                {
+                    id: 14,
+                    name: '14 - State (includes District of Columbia, public institutions of higher education and hospitals)'
+                },
+                {
+                    id: 15,
+                    name: '15 - Local (includes State-designated Indian Tribes, excludes institutions of higher education and hospitals)'
+                },
+                {
+                    id: 18,
+                    name: '18 - Sponsored organization'
+                }
+            ]
+        };
         vm.save = save;
 
         ////////////////
