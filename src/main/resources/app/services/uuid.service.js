@@ -9,11 +9,10 @@
     ////////////////
 
     function uuidSvc($window) {
-        var crypto = $window.crypto || $window.msCrypto,
-            hasCrypto = angular.isDefined(typeof(crypto)) && angular.isDefined(typeof(crypto.getRandomValues));
+        var crypto = $window.crypto || $window.msCrypto;
 
         var svc = {
-            generateUUID: hasCrypto ? generateUUID : generateUUIDPolyfill
+            generateUUID: crypto && crypto.getRandomValues ? generateUUID : generateUUIDPolyfill
         }
 
         return svc;
