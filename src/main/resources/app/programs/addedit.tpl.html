@@ -128,7 +128,7 @@
                     </span>
                     <div class="input-field" field-finder-bookmark>
                         <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
-                        <ui-select id="eligibleApplicants" multiple ng-model="gsavm.$program.eligibleApplicants">
+                        <ui-select id="eligibleApplicants" theme="select2" multiple ng-model="gsavm.$program.eligibleApplicants" style="width: 300px;">
                             <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="eligibleApplicant.name as eligibleApplicant in gsavm.choices.eligibleApplicantsList | filter: $select.search">
                                 <div ng-bind-html="eligibleApplicant.name | highlight: $select.search"></div>
