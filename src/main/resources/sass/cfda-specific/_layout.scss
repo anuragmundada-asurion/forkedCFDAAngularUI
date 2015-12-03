@@ -1,3 +1,14 @@
+hr {
+  border: 1px solid $color-gray;
+}
 .layout-padding {
-  padding: 8px;
+  padding: $layout-padding;
+}
+.sub-form {
+  @extend .layout-padding;
+  margin: $sub-form-margin 0;
+  background-color: $color-primary-alt-lightest;
+}
+.sub-form .sub-form {
+  background-color: $color-primary-alt-light;
 }

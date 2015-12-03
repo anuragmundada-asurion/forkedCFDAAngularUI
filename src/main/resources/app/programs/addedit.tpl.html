@@ -37,23 +37,71 @@
                 <div class="input-field" field-finder-bookmark>
                     <label for="title">040 Authorization</label>
                     <p>Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>
-                    <div ng-repeat="authorization in gsavm.program.authorizations track by authorization.authorizationId" ng-init="subForm='authorization'+$index">
-                        <section ng-form name="gsavm.form.authorization{{$index}}">
-                            <div class="input-field">
-                                <label for="{{ 'act-' + $index }}">Act</label>
-                                <input id="{{ 'act-' + $index }}" type="text" name="act" ng-model="authorization.act" focus-on-add="gsavm.focusAuthAdd" ng-required="!authorization.executiveOrder">
-                                <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.act.$dirty">
-                                    <span ng-show="gsavm.form.authorization{{$index}}.act.$error.required">The Act must be filled.</span>
+                    <div ng-repeat="authorization in gsavm.program.authorizations track by authorization.authorizationId">
+                        <div ng-form name="gsavm.form.authorization{{$index}}" class="sub-form">
+                            <section class="usa-grid">
+                                <h4 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled Authorization ' + ($index + 1))}}</h4>
+                            </section>
+                            <section class="usa-grid">
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'act-' + $index }}">Act</label>
+                                    <input id="{{ 'act-' + $index }}" type="text" name="act" ng-model="authorization.act" focus-on-add="gsavm.focusAuthAdd" ng-required="!authorization.executiveOrder">
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.act.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.act.$error.required">The Act must be filled.</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="input-field">
-                                <label for="{{ 'exec-order-' + $index }}">Executive Order</label>
-                                <input id="{{ 'exec-order-' + $index }}" type="text" name="executiveOrder" ng-model="authorization.executiveOrder" ng-required="!authorization.act">
-                                <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.executiveOrder.$dirty">
-                                    <span ng-show="gsavm.form.authorization{{$index}}.executiveOrder.$error.required">The Executive Order must be filled.</span>
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'exec-order-' + $index }}">Executive Order</label>
+                                    <input id="{{ 'exec-order-' + $index }}" type="text" name="executiveOrder" ng-model="authorization.executiveOrder" ng-required="!authorization.act">
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.executiveOrder.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.executiveOrder.$error.required">The Executive Order must be filled.</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'title-' + $index }}">Title</label>
+                                    <input id="{{ 'title-' + $index }}" type="text" name="title" ng-model="authorization.title" required>
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.title.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.title.$error.required">The Title must be filled.</span>
+                                    </div>
+                                </div>
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'part-' + $index }}">Part</label>
+                                    <input id="{{ 'part-' + $index }}" type="text" name="part" ng-model="authorization.part" required>
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.part.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.part.$error.required">The Part must be filled.</span>
+                                    </div>
+                                </div>
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'section-' + $index }}">Section</label>
+                                    <input id="{{ 'section-' + $index }}" type="text" name="section" ng-model="authorization.section" required>
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.section.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.section.$error.required">The Section must be filled.</span>
+                                    </div>
+                                </div>
+                            </section>
+                            <hr>
+                            <label for="publaw-{{$index}}">Public Law</label>
+                            <p>Enter the three digit congress code and the public law number below.</p>
+                            <section id="publaw-{{$index}}" class="usa-grid">
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'congress-code-' + $index }}">Congress</label>
+                                    <input id="{{ 'congress-code-' + $index }}" type="number" name="congressCode" ng-model="authorization.publicLaw.congressCode" ng-minlength="3" ng-maxlength="3" required>
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.congressCode.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.congressCode.$error.required">A Congress Code must be filled.</span>
+                                        <span ng-show="gsavm.form.authorization{{$index}}.congressCode.$error.number">The Congress Code must be a number.</span>
+                                        <span ng-show="gsavm.form.authorization{{$index}}.congressCode.$error.minlength || gsavm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
+                                    </div>
+                                </div>
+                                <div class="input-field usa-width-one-fourth">
+                                    <label for="{{ 'law-number-' + $index }}">Law Number</label>
+                                    <input id="{{ 'law-number-' + $index }}" type="number" name="lawNumber" ng-model="authorization.publicLaw.lawNumber" required>
+                                    <div ng-show="gsavm.form.$submitted || gsavm.form.authorization{{$index}}.lawNumber.$dirty">
+                                        <span ng-show="gsavm.form.authorization{{$index}}.lawNumber.$error.required">The Law Number must be filled.</span>
+                                        <span ng-show="gsavm.form.authorization{{$index}}.lawNumber.$error.number">The Law Number must be a number.</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                     <button type="button" ng-click="gsavm.addAuthorization()">Add</button>
                 </div>
@@ -113,6 +161,20 @@
                         <div ng-show="gsavm.form.$submitted || gsavm.form.loanTermsFund.$dirty">
                             <span ng-show="gsavm.form.loanTerms.$error.required">You must provide the loan terms.</span>
                         </div>
+                    </div>
+                </section>
+                <section field-finder-bookmark>
+                    <label>190 Functional Codes</label>
+                    <div class="input-field">
+                        <ui-select multiple ng-model="gsavm.program.functionalCodes" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Select code...">{{$item.parent.value}}/{{$item.code}} - {{$item.value}}</ui-select-match>
+                            <ui-select-choices group-by="'parent.value'" repeat="item.element_id as item in gsavm.choices.funcCodes | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
+                                <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                <small>
+                                    <span ng-bind-html="(item.parent.value + '\\' + item.code) | highlight: $select.search"></span>
+                                </small>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </section>
                 <button type="button" ng-click="gsavm.save()">Save</button>
@@ -230,4 +292,5 @@
         </wz-step>
     </wizard>
     <p>{{ 'Invalid: ' + gsavm.form.$invalid }}</p>
+    <p>{{ gsavm.form }}</p>
 </form>

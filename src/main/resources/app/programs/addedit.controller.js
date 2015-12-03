@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', 'uuid', 'program'];
+    addEditProgramController.$inject = ['$state', 'uuid', 'Dictionary', 'program'];
 
     //////////////////////
 
-    function addEditProgramController($state, uuid, program) {
+    function addEditProgramController($state, uuid, Dictionary, program) {
         var vm = this;
 
         vm.isEdit = $state.is('editProgram');
@@ -29,13 +29,11 @@
                     id: 1,
                     name: 'Admin Office'
                 }
-            ]
-        };
-
-        vm.choices = {
+            ],
+            funcCodes: Dictionary.toDropdown({ id: 'picklist_functional_codes' }),
             eligibleApplicantsList: [
                 {
-                    id: 09,
+                    id: 9,
                     name: '09 - Government - General'
                 },
                 {
