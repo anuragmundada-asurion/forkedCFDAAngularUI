@@ -183,11 +183,11 @@
         </wz-step>
         <wz-step title="Eligibility / Qualifications">
             <h3>080 Eligibility Requirements</h3>
-                <div>
                     <h4>081 Applicant Eligibility</h4>
+                    <div class="usa-grid">
                     <div class="input-field" field-finder-bookmark>
                         <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
-                        <ui-select id="eligibleApplicants" theme="select2" multiple ng-model="gsavm.$program.eligibleApplicants" style="width: 300px;">
+                        <ui-select id="eligibleApplicants" theme="select2" multiple ng-model="gsavm.$program.eligibleApplicants" class="usa-width-two-thirds">
                             <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="eligibleApplicant.name as eligibleApplicant in gsavm.choices.eligibleApplicantsList | filter: $select.search">
                                 <div ng-bind-html="eligibleApplicant.name | highlight: $select.search"></div>
@@ -199,10 +199,16 @@
                         </div>
                     </div>
                     <div class="input-field" field-finder-bookmark>
-                        <label for="useAssistance">Use of Assistance<span class="required" >*</span></label>
-                        <input type="text" id="useAssistance" name="useAssistance" ng-model="gsavm.$program.useAssistance" required>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.useAssistance.$dirty">
-                            <span ng-show="gsavm.form.useAssistance.$error.required">You must select at least one Use of Assistance.</span>
+                        <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
+                        <ui-select id="useOfAssistance" theme="select2" multiple ng-model="gsavm.$program.useOfAssistance" class="usa-width-two-thirds">
+                            <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="useOfAssistance.name as useOfAssistance in gsavm.choices.useOfAssistanceList | filter: $select.search">
+                                <div ng-bind-html="useOfAssistance.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.eligibleApplicants.$dirty">
+                            <span ng-show="gsavm.form.eligibleApplicants.$error.required">You must select at least one Eligible Applicant.</span>
                         </div>
                         <label for="assistanceAdditionalInfo">Additional Information<span class="required" >*</span></label>
                         <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" ng-model="gsavm.$program.assistanceAdditionalInfo" required>
@@ -212,14 +218,17 @@
                         </div>
                     </div>
                 </div>
-                <h4>082 Beneficiary Eligibility</h4>
-                <div>
 
+                <h4>082 Beneficiary Eligibility</h4>
+                <div class="usa-grid">
                     <div class="input-field" field-finder-bookmark>
                         <label for="beneficiaryEligibility">Beneficiary Eligibility</label>
-                        <select id="beneficiaryEligibility" name="beneficiaryEligibility" ng-model="gsavm.$program.beneficiaryEligibility" ng-options="beneficiaryEligibility.name for beneficiaryEligibility in gsavm.choices.offices track by beneficiaryEligibility.id" required>
-                            <option value='' disabled style="display:none">Please select an Beneficiary Eligibility</option>
-                        </select>
+                        <ui-select id="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.$program.beneficiaryEligibility" class="usa-width-two-thirds">
+                            <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="beneficiaryEligibility.name as beneficiaryEligibility in gsavm.choices.useOfAssistanceList | filter: $select.search">
+                                <div ng-bind-html="beneficiaryEligibility.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.beneficiaryEligibility.$dirty">
                             <span ng-show="gsavm.form.beneficiaryEligibility.$error.required">You must select at least one Beneficiary Eligibility.</span>
                         </div>
@@ -231,8 +240,9 @@
                         </div>
                     </div>
                 </div>
+
             <h4>083 Credentials/Documentation</h4>
-            <div>
+            <div class="usa-grid">
                 <div class="input-field" field-finder-bookmark>
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <ul class="usa-unstyled-list">
@@ -253,14 +263,12 @@
                         </div>
 
                         <fieldset class="usa-fieldset-inputs usa-sans">
-
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input name="costPrincipalAcceptable" id="costPrincipalAcceptable" type="checkbox" trigger-click-on-enter>
                                     <label for="costPrincipalAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?</label>
                                 </li>
                             </ul>
-
                         </fieldset>
                     </div>
 

@@ -66,7 +66,38 @@
                     id: 18,
                     name: '18 - Sponsored organization'
                 }
-            ]
+            ],
+            useOfAssistanceList: [
+                {
+                    id: 0,
+                    name: '00 - No Functional Application/Unlimited Application'
+                },
+                {
+                    id: 12,
+                    name: '12 - Agriculture/Forestry/Fish and Game'
+                },
+                {
+                    id: 14,
+                    name: '14 - Business/Commerce'
+                },
+                {
+                    id: 16,
+                    name: '16 - Civil Defense/Disaster Prevention and Relief/Emergency Preparedness'
+                },
+                {
+                    id: 18,
+                    name: '18 - Communications'
+                },
+                {
+                    id: 20,
+                    name: '20 - Community Development (includes Federal surplus property)'
+                },
+                {
+                    id: 22,
+                    name: '22 - Construction/Renewal/Rehabilitation'
+                }
+            ],
+
         };
         Dictionary.toDropdown({ id: dictionaries.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
