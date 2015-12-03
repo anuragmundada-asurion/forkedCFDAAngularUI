@@ -184,10 +184,7 @@
         <wz-step title="Eligibility / Qualifications">
             <h3>080 Eligibility Requirements</h3>
                 <div>
-                    <span>
-                        <h4>081 Applicant Eligibility</h4>
-                        <span>Add Eligible Applicant</span>
-                    </span>
+                    <h4>081 Applicant Eligibility</h4>
                     <div class="input-field" field-finder-bookmark>
                         <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
                         <ui-select id="eligibleApplicants" theme="select2" multiple ng-model="gsavm.$program.eligibleApplicants" style="width: 300px;">
@@ -198,20 +195,79 @@
                         </ui-select>
 
                         <div ng-show="gsavm.form.$submitted || gsavm.form.eligibleApplicants.$dirty">
-                            <span ng-show="gsavm.form.eligibleApplicants.$error.required">You must provide at least one selection.</span>
+                            <span ng-show="gsavm.form.eligibleApplicants.$error.required">You must select at least one Eligible Applicant.</span>
                         </div>
                     </div>
                     <div class="input-field" field-finder-bookmark>
                         <label for="useAssistance">Use of Assistance<span class="required" >*</span></label>
-                        <input type="text" id="useAssistance" name="useAssistance" ng-model="gsavm.program.useAssistance" required>
+                        <input type="text" id="useAssistance" name="useAssistance" ng-model="gsavm.$program.useAssistance" required>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.useAssistance.$dirty">
-                            <span ng-show="gsavm.form.useAssistance.$error.required">You must provide a title.</span>
+                            <span ng-show="gsavm.form.useAssistance.$error.required">You must select at least one Use of Assistance.</span>
+                        </div>
+                        <label for="assistanceAdditionalInfo">Additional Information<span class="required" >*</span></label>
+                        <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" ng-model="gsavm.$program.assistanceAdditionalInfo" required>
+                        </textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceAdditionalInfo.$dirty">
+                            <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
                     </div>
                 </div>
+                <h4>082 Beneficiary Eligibility</h4>
                 <div>
-                    <h4>082 Beneficiary Eligibility</h4>
+
+                    <div class="input-field" field-finder-bookmark>
+                        <label for="beneficiaryEligibility">Beneficiary Eligibility</label>
+                        <select id="beneficiaryEligibility" name="beneficiaryEligibility" ng-model="gsavm.$program.beneficiaryEligibility" ng-options="beneficiaryEligibility.name for beneficiaryEligibility in gsavm.choices.offices track by beneficiaryEligibility.id" required>
+                            <option value='' disabled style="display:none">Please select an Beneficiary Eligibility</option>
+                        </select>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.beneficiaryEligibility.$dirty">
+                            <span ng-show="gsavm.form.beneficiaryEligibility.$error.required">You must select at least one Beneficiary Eligibility.</span>
+                        </div>
+                        <label for="beneficiaryAdditionalInfo">Additional Information<span class="required" >*</span></label>
+                        <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" ng-model="gsavm.$program.beneficiaryAdditionalInfo" required>
+                        </textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceAdditionalInfo.$dirty">
+                            <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
+                        </div>
+                    </div>
                 </div>
+            <h4>083 Credentials/Documentation</h4>
+            <div>
+                <div class="input-field" field-finder-bookmark>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input name="credentialsDocumentationCheckbox" id="credentialsDocumentationCheckbox" ng-model="gsavm.$program.credentialsDocumentationCheckbox" type="checkbox" trigger-click-on-enter>
+                                <label for="credentialsDocumentationCheckbox">Are there credentials or documentation?</label>
+                            </li>
+                        </ul>
+
+                    </fieldset>
+
+                    <div ng-show="gsavm.$program.credentialsDocumentationCheckbox">
+                        <label for="credentialsAdditionalInfo">Please explain:<span class="required" >*</span></label>
+                        <textarea id="credentialsAdditionalInfo" name="credentialsAdditionalInfo" ng-model="gsavm.$program.credentialsAdditionalInfo" required>
+                        </textarea>
+                        <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceAdditionalInfo.$dirty">
+                            <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
+                        </div>
+
+                        <fieldset class="usa-fieldset-inputs usa-sans">
+
+                            <ul class="usa-unstyled-list">
+                                <li>
+                                    <input name="costPrincipalAcceptable" id="costPrincipalAcceptable" type="checkbox" trigger-click-on-enter>
+                                    <label for="costPrincipalAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?</label>
+                                </li>
+                            </ul>
+
+                        </fieldset>
+                    </div>
+
+
+
+                </div>
+            </div>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="How to Apply">
