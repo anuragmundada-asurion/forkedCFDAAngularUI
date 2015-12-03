@@ -168,7 +168,7 @@
                     <div class="input-field">
                         <ui-select multiple ng-model="gsavm.program.functionalCodes" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Select code...">{{$item.parent.value}}/{{$item.code}} - {{$item.value}}</ui-select-match>
-                            <ui-select-choices group-by="'parent.value'" repeat="item.element_id as item in gsavm.choices.funcCodes | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
+                            <ui-select-choices group-by="'parent.value'" repeat="item.element_id as item in gsavm.choices['picklist_functional_codes'] | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
                                 <div ng-bind-html="item.value | highlight: $select.search"></div>
                                 <small>
                                     <span ng-bind-html="(item.parent.value + '\\' + item.code) | highlight: $select.search"></span>

@@ -10,9 +10,16 @@
     //////////////////////
 
     function addEditProgramController($state, uuid, Dictionary, program) {
-        var vm = this;
+        var vm = this,
+            dictionaries = [
+                'picklist_functional_codes',
+                'picklist_cfda_subject_terms',
+                'picklist_assistance_types'
+            ];
 
         vm.isEdit = $state.is('editProgram');
+
+
 
         vm.program = program;
         vm.choices = {
@@ -30,7 +37,6 @@
                     name: 'Admin Office'
                 }
             ],
-            funcCodes: Dictionary.toDropdown({ id: 'picklist_functional_codes' }),
             eligibleApplicantsList: [
                 {
                     id: 9,
@@ -62,6 +68,9 @@
                 }
             ]
         };
+        Dictionary.toDropdown({ id: dictionaries.join(',') }).$promise.then(function(data){
+            angular.extend(vm.choices, data);
+        });
         vm.save = save;
         vm.addAuthorization = addAuthorization;
         vm.removeAuthorization = removeAuthorization;
