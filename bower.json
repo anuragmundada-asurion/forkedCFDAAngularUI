@@ -17,7 +17,7 @@
     "angular-smart-table": "~2.1.0",
     "angular-scroll": "~1.0.0",
     "angular-wizard": "~0.5.0",
-    "ui-select": "https://github.com/angular-ui/ui-select",
+    "ui-select": "https://github.com/angular-ui/ui-select.git",
     "jquery": "<2.0"
   },
   "resolutions": {
