@@ -6,7 +6,7 @@
         .module('app')
         .directive(directiveId, requiredLength);
 
-    requiredLength.$inject = ['$parse', '$window'];
+    requiredLength.$inject = [/*'$parse',*/ '$window'];
 
     //////////////////
 
