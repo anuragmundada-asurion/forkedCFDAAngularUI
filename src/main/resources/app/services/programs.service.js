@@ -11,7 +11,7 @@
 
     function programSvc($resource, env) {
         return $resource(env["pub.svc.programs"] + '/program/:id', {
-            id: '@id'
+            id: '@_id'
         }, {
             save: {
                 method: 'PUT',
@@ -50,7 +50,8 @@
                     data = JSON.parse(data);
                     var returnData;
                     angular.forEach(data, function(prop, key){
-                        prop.id = key;
+                        if(!prop._id)
+                            prop._id = key;
                         returnData = prop;
                     })
                     return returnData;
@@ -63,7 +64,7 @@
 
     function saveUpdateTransformRes(data) {
         return {
-            id: data
+            _id: data
         };
     }
 })();

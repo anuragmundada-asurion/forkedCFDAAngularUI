@@ -1,0 +1,99 @@
+<section class="usa-grid">
+    <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled Authorization ' + ($index + 1))}}</h3>
+</section>
+<section class="usa-grid">
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'act-' + idPath }}">Act</label>
+        <input id="{{ 'act-' + idPath }}" type="text" name="act" ng-model="authorization.act" focus-on-add="gsavm.focusAuthAdd" ng-required="!authorization.executiveOrder">
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.act.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.act.$error.required">The Act must be filled.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'exec-order-' + idPath }}">Executive Order</label>
+        <input id="{{ 'exec-order-' + idPath }}" type="text" name="executiveOrder" ng-model="authorization.executiveOrder" ng-required="!authorization.act">
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.executiveOrder.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.executiveOrder.$error.required">The Executive Order must be filled.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'title-' + idPath }}">Title</label>
+        <input id="{{ 'title-' + idPath }}" type="text" name="title" ng-model="authorization.title" unique-from="gsavm.program.title" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.title.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.title.$error.required">The Title must be filled.</span>
+            <span ng-show="gsavm.form.{{formPath}}.title.$error.uniqueFrom">The Authorization Title must be unique from the listing's Title.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'part-' + idPath }}">Part</label>
+        <input id="{{ 'part-' + idPath }}" type="text" name="part" ng-model="authorization.part" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.part.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.part.$error.required">The Part must be filled.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'section-' + idPath }}">Section</label>
+        <input id="{{ 'section-' + idPath }}" type="text" name="section" ng-model="authorization.section" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.section.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.section.$error.required">The Section must be filled.</span>
+        </div>
+    </div>
+</section>
+<hr>
+<h4>Public Law</h4>
+<p>Enter the three digit congress code and the public law number below.</p>
+<section class="usa-grid">
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'congress-code-' + idPath }}">Congress</label>
+        <input id="{{ 'congress-code-' + idPath }}" type="number" name="congressCode" ng-model="authorization.publicLaw.congressCode" ng-minlength="3" ng-maxlength="3" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.congressCode.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.required">A Congress Code must be filled.</span>
+            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.number">The Congress Code must be a number.</span>
+            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.minlength || gsavm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'law-number-' + idPath }}">Law Number</label>
+        <input id="{{ 'law-number-' + idPath }}" type="number" name="lawNumber" ng-model="authorization.publicLaw.lawNumber" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.lawNumber.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.lawNumber.$error.required">The Law Number must be filled.</span>
+            <span ng-show="gsavm.form.{{formPath}}.lawNumber.$error.number">The Law Number must be a number.</span>
+        </div>
+    </div>
+</section>
+<hr>
+<h4>Statute</h4>
+<section class="usa-grid">
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'volume-' + idPath }}">Volume</label>
+        <input id="{{ 'volume-' + idPath }}" type="text" name="volume" ng-model="authorization.statute.volume" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.volume.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.volume.$error.required">The Volume must be filled.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'page-' + idPath }}">Page</label>
+        <input id="{{ 'page-' + idPath }}" type="text" name="page" ng-model="authorization.statute.page" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.page.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.page.$error.required">The Page must be filled.</span>
+        </div>
+    </div>
+</section>
+<hr>
+<h4>U.S.C.</h4>
+<section class="usa-grid">
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'usc-title-' + idPath }}">Title</label>
+        <input id="{{ 'usc-title-' + idPath }}" type="text" name="uscTitle" ng-model="authorization.USC.title" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.uscTitle.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.uscTitle.$error.required">The U.S.C. Title must be filled.</span>
+        </div>
+    </div>
+    <div class="input-field usa-width-one-fourth">
+        <label for="{{ 'usc-section-' + idPath }}">Section</label>
+        <input id="{{ 'usc-section-' + idPath }}" type="text" name="uscSection" ng-model="authorization.USC.section" required>
+        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.uscSection.$dirty">
+            <span ng-show="gsavm.form.{{formPath}}.uscSection.$error.required">The U.S.C Section must be filled.</span>
+        </div>
+    </div>
+</section>
