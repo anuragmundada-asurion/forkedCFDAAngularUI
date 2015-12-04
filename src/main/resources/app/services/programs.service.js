@@ -10,7 +10,7 @@
     ////////////////
 
     function programSvc($resource, env) {
-        return $resource(env["pub.svc.programs"] + '/program/:id', {
+        return $resource(env["pub.api.programs"] + '/program/:id', {
             id: '@_id'
         }, {
             save: {
