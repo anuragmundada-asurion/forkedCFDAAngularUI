@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', 'uuid', 'Dictionary', 'program'];
+    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'program'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, uuid, Dictionary, program) {
+    function addEditProgramController($state, $filter, util, Dictionary, program) {
         var vm = this,
             authVersionBaseline = 1,
             dictionaries = [
@@ -127,7 +127,7 @@
         }
 
         function addAuthorization() {
-            getArray('authorizations').push(createAuthorization(uuid.generateUUID(), authVersionBaseline));
+            getArray('authorizations').push(createAuthorization(util.generateUUID(), authVersionBaseline));
             vm.focusAuthAdd = true;
         }
 

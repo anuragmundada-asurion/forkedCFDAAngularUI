@@ -3,16 +3,18 @@
 
     angular
         .module('app')
-        .factory('uuid', uuidSvc);
+        .factory('util', utilSvc);
 
-    uuidSvc.$inject = ['$window']
+    utilSvc.$inject = ['$window']
     ////////////////
 
-    function uuidSvc($window) {
-        var crypto = $window.crypto || $window.msCrypto;
+    function utilSvc($window) {
+        var crypto = $window.crypto || $window.msCrypto,
+            fiscalYearStartMonth = new Date('10/1/2015').getMonth();
 
         var svc = {
-            generateUUID: crypto && crypto.getRandomValues ? generateUUID : generateUUIDPolyfill
+            generateUUID: crypto && crypto.getRandomValues ? generateUUID : generateUUIDPolyfill,
+            getFiscalYear: getFiscalYear
         }
 
         return svc;
@@ -38,6 +40,15 @@
                 var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                 return v.toString(16);
             });
+        }
+
+        function getFiscalYear(date) {
+            date = date || new Date();
+            var year = date.getFullYear(),
+                month = date.getMonth();
+            if(month >= fiscalYearStartMonth)
+                year++;
+            return year;
         }
     }
 })();
