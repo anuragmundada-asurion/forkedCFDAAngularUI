@@ -1,5 +1,5 @@
 (function() {
-    "use strict"
+    "use strict";
 
     var directiveId = 'uniqueFrom';
     angular
@@ -30,7 +30,7 @@
                     v = value !== temp;
                 ctrl.$setValidity(directiveId, v);
                 return value;
-            }
+            };
 
             ctrl.$parsers.unshift(validator);
             ctrl.$formatters.push(validator);

@@ -1,5 +1,5 @@
 (function(){
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
@@ -97,8 +97,7 @@
                     id: 22,
                     name: '22 - Construction/Renewal/Rehabilitation'
                 }
-            ],
-
+            ]
         };
         vm.exps = {
             isAuthorization: isAuthorization,
@@ -142,7 +141,7 @@
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = authVersionBaseline;
-            authArray.push(createAuthorization(authId, (lastVersion.version + 1)))
+            authArray.push(createAuthorization(authId, (lastVersion.version + 1)));
             vm.focusAuthAdd = true;
         }
 

@@ -1,23 +1,21 @@
 (function() {
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
         .factory('util', utilSvc);
 
-    utilSvc.$inject = ['$window']
+    utilSvc.$inject = ['$window'];
     ////////////////
 
     function utilSvc($window) {
         var crypto = $window.crypto || $window.msCrypto,
             fiscalYearStartMonth = new Date('10/1/2015').getMonth();
 
-        var svc = {
+        return {
             generateUUID: crypto && crypto.getRandomValues ? generateUUID : generateUUIDPolyfill,
             getFiscalYear: getFiscalYear
-        }
-
-        return svc;
+        };
 
         ////////////////////
 

@@ -1,5 +1,5 @@
 (function(){
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
@@ -39,14 +39,14 @@
 
     function goHome($state) {
         $state.go('home');
-    };
+    }
     function createProgram(Program) {
         var program = new Program();
         program.agencyId = "REI Test Agency";
         return program;
     }
     function getProgram($stateParams, Program) {
-        var id = $stateParams.id
+        var id = $stateParams.id;
         return id ? Program.get({id: id}) : createProgram(Program);
     }
 })();

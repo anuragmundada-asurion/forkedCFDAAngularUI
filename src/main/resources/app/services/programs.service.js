@@ -1,5 +1,5 @@
 (function() {
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
@@ -48,12 +48,12 @@
             get: {
                 transformResponse: function(data) {
                     data = JSON.parse(data);
-                    var returnData;
+                    var returnData = null;
                     angular.forEach(data, function(prop, key){
                         if(!prop._id)
                             prop._id = key;
                         returnData = prop;
-                    })
+                    });
                     return returnData;
                 }
             }

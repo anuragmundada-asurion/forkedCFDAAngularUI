@@ -1,5 +1,5 @@
 (function() {
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
@@ -16,6 +16,9 @@
     //////////////////
 
     function usaAccordion() {
+
+        usaAccordionController.$inject = ['$scope', '$attrs', 'accordionConfig'];
+
         return {
             restrict:'EA',
             controller:usaAccordionController,
@@ -26,12 +29,7 @@
             templateUrl: 'partials/components/usa-accordion.tpl.html'
         };
 
-        usaAccordionController.$inject = ['$scope', '$attrs', 'accordionConfig'];
-
         ///////////////
-
-        function link(scope, element, attrs, controller) {
-        }
 
         function usaAccordionController($scope, $attrs, accordionConfig) {
             var vm = this;
@@ -62,7 +60,7 @@
             function addGroup(groupScope) {
                 vm.groups.push(groupScope);
 
-                groupScope.$on('$destroy', function (event) {
+                groupScope.$on('$destroy', function () {
                     vm.removeGroup(groupScope);
                 });
             }
@@ -117,7 +115,7 @@
 
             function setHeading(element) {
                 vm.heading = element;
-            };
+            }
         }
     }
 

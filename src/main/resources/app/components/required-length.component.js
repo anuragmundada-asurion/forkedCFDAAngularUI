@@ -1,5 +1,5 @@
 (function() {
-    "use strict"
+    "use strict";
 
     var directiveId = 'requiredLength';
     angular
@@ -10,7 +10,7 @@
 
     //////////////////
 
-    function requiredLength($parse, $window) {
+    function requiredLength(/*$parse,*/ $window) {
         return {
             require: '?ngModel',
             restrict: 'A',
@@ -42,7 +42,7 @@
                 if(angular.isDefined(attrVal.max) && !$window.isNaN(attrVal.max))
                     max = $window.parseInt(attrVal.max);
             }
-            var primaryField = $parse(attrs[directiveId])
+            //var primaryField = $parse(attrs[directiveId]);
 
             var validator = function (value) {
                 var isValid = angular.isDefined(value);
@@ -51,7 +51,7 @@
                 }
                 ctrl.$setValidity(directiveId, isValid);
                 return value;
-            }
+            };
 
             ctrl.$parsers.unshift(validator);
             ctrl.$formatters.push(validator);

@@ -1,5 +1,5 @@
 (function() {
-    "use strict"
+    "use strict";
 
     angular
         .module('app')
@@ -14,7 +14,7 @@
         };
         /////////////////
 
-        function link(scope, element, attr) {
+        function link(scope, element) {
             element.on('keypress', function(event) {
                 var keyCode = (event.keyCode ? event.keyCode : event.which);
                 if (keyCode === 13) {
