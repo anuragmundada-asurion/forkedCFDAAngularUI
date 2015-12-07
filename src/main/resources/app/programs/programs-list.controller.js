@@ -34,7 +34,7 @@
 
         function editProgram(program) {
             $state.go('editProgram', {
-                id: program.id
+                id: program._id
             });
         }
 

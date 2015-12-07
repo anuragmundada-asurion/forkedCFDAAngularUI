@@ -28,7 +28,7 @@ public class EnvironmentController {
     public String getEnvVariables() throws Exception {
         JSONObject json = new JSONObject();
         //Hardcoded value for now until env variable on dev site is modified.
-        json.put(programsApiEnvName,/*environment.getProperty(programsApiEnvName)*/ "http://gsaiae-dev02.reisys.com:89");
+        json.put(programsApiEnvName, environment.getProperty(programsApiEnvName));
         return String.format(angularTemplate, json);
     }
 }

@@ -33,7 +33,8 @@
                         list = [];
                     angular.forEach(res, function(item){
                         angular.forEach(item, function(prop, key){
-                            prop.id = key;
+                            if(!prop._id)
+                                prop._id = key;
                             list.push(prop);
                         })
                     });

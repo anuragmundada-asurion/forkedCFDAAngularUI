@@ -32,7 +32,7 @@
                 goToElement: goToElement,
                 removeHighlight: removeHighlight,
                 isDisabled: scope.isDisabled
-            })
+            });
 
             ////////////////////
 
