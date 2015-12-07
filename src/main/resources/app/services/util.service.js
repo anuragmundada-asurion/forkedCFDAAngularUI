@@ -10,11 +10,13 @@
 
     function utilSvc($window) {
         var crypto = $window.crypto || $window.msCrypto,
-            fiscalYearStartMonth = new Date('10/1/2015').getMonth();
+            fiscalYearStartMonth = new Date('10/1/2015').getMonth(),
+            currentId = 0;
 
         return {
             generateUUID: crypto && crypto.getRandomValues ? generateUUID : generateUUIDPolyfill,
-            getFiscalYear: getFiscalYear
+            getFiscalYear: getFiscalYear,
+            nextId: nextId
         };
 
         ////////////////////
@@ -47,6 +49,10 @@
             if(month >= fiscalYearStartMonth)
                 year++;
             return year;
+        }
+
+        function nextId() {
+            return ++currentId;
         }
     }
 })();
