@@ -234,8 +234,8 @@
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="costPrincipalAcceptable" id="costPrincipalAcceptable" type="checkbox" trigger-click-on-enter>
-                                    <label for="costPrincipalAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?</label>
+                                    <input name="costPrincipalsAcceptable" id="costPrincipalsAcceptable" type="checkbox" ng-model="gsavm.$program.isCostPrinipalsAcceptible" trigger-click-on-enter>
+                                    <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?</label>
                                 </li>
                             </ul>
                         </fieldset>
@@ -252,7 +252,32 @@
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="Post Award Requirements">
-            <div>Placeholder</div>
+            <h3>110 Post Assistance Requirements</h3>
+            <h4>111 Reports</h4>
+            <div class="usa-grid">
+                <div class="input-field" field-finder-bookmark>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+
+                        <legend class="usa-sr-only">Are reports required by the funding agency?<span class="required" >*</span></legend>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input name="soup" id="pea-soup" type="radio" checked="" value="pea">
+                                <label for="pea-soup">Yes</label>
+                            </li>
+                            <li>
+                                <input name="soup" id="chicken-noodle" type="radio" value="chicken-noodle">
+                                <label for="chicken-noodle">No</label>
+                            </li>
+                            <li>
+                                <input name="soup" id="tomato" type="radio" value="tomato">
+                                <label for="tomato">Not Applicable</label>
+                            </li>
+                        </ul>
+
+                    </fieldset>
+                </div>
+            </div>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="Financial Information and Accomplishments">
