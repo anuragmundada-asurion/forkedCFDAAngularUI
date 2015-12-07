@@ -20,7 +20,7 @@
             update: {
                 method: 'POST',
                 params: {
-                    id: '@id'
+                    id: '@_id'
                 },
                 transformResponse: saveUpdateTransformRes
             },
