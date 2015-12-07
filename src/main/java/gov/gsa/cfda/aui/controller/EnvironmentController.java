@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     final String angularTemplate = "'use strict'\nangular.module('app.settings', []).constant('env', %s );";
 
-    final String programsSvcEnvName = "pub.svc.programs";
+    final String programsApiEnvName = "pub.api.programs";
 
     @Resource
     private Environment environment;
@@ -27,7 +27,8 @@ public class EnvironmentController {
     @RequestMapping(value = "_env", method = RequestMethod.GET)
     public String getEnvVariables() throws Exception {
         JSONObject json = new JSONObject();
-        json.put(programsSvcEnvName,environment.getProperty(programsSvcEnvName));
+        //Hardcoded value for now until env variable on dev site is modified.
+        json.put(programsApiEnvName,/*environment.getProperty(programsApiEnvName)*/ "http://gsaiae-dev02.reisys.com:89");
         return String.format(angularTemplate, json);
     }
 }

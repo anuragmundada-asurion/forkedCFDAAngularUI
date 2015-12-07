@@ -10,7 +10,7 @@
     ////////////////
 
     function dictionarySvc($resource, env) {
-        return $resource(env["pub.svc.programs"] + '/dictionaries/:id', {
+        return $resource(env["pub.api.programs"] + '/dictionaries/:id', {
             id: '@id'
         }, {
             toDropdown: {

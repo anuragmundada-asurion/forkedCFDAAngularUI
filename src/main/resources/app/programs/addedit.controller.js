@@ -5,17 +5,27 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'program'];
+    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, util, Dictionary, program) {
+    function addEditProgramController($state, $filter, util, Dictionary, Programs, program) {
         var vm = this,
-            authVersionBaseline = 1,
-            dictionaries = [
+            CURRENT_FISCAL_YEAR = util.getFiscalYear(),
+            AUTH_VERSION_BASELINE = 1,
+            ARRAY_ACTIONS = [
+                { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization },
+                { arrayName: 'accountcodes', fnBaseName: 'AccountCode' },
+                { arrayName: 'obligations', fnBaseName: 'Obligation'},
+                { arrayName: 'tafscodes', fnBaseName: 'TAFSCode'}
+            ],
+            DICTIONARIES = [
                 'functional_codes',
                 'program_subject_terms',
-                'assistance_type'
+                'assistance_type',
+                'yes_no',
+                'yes_na',
+                'yes_no_na'
             ];
 
         vm.isEdit = $state.is('editProgram');
@@ -23,7 +33,11 @@
 
 
         vm.program = program;
+        vm.uiLogic = {
+            relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length
+        }
         vm.choices = {
+            programs: Programs.query(),
             offices: [
                 {
                     id: 1,
@@ -105,7 +119,34 @@
             isPartOfAuth: isPartOfAuth
         };
 
-        Dictionary.toDropdown({ id: dictionaries.join(',') }).$promise.then(function(data){
+        vm.fyTpls = [
+            {
+                name: "Past Fiscal Year",
+                year: CURRENT_FISCAL_YEAR - 1,
+                type: 'Actual',
+                variableName: 'past'
+            },
+            {
+                name: "Current Fiscal Year",
+                year: CURRENT_FISCAL_YEAR,
+                type: 'Projection',
+                obligType: 'Estimate',
+                variableName: 'current'
+            },
+            {
+                name: "Budget Fiscal Year",
+                year: CURRENT_FISCAL_YEAR + 1,
+                type: 'Projection',
+                obligType: 'Estimate',
+                variableName: 'budget'
+            }
+        ]
+
+        angular.forEach(vm.fyTpls, function(tpl){
+            tpl.idName = tpl.name.replace(/\s/g, '-');
+        });
+
+        Dictionary.toDropdown({ id: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
 
@@ -113,6 +154,11 @@
         vm.addAuthorization = addAuthorization;
         vm.removeAuthorization = removeAuthorization;
         vm.addAmendment = addAmendment;
+
+        angular.forEach(ARRAY_ACTIONS, function(action){
+            vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
+            vm['remove' + action.fnBaseName] = removeGenerator(action.arrayName);
+        });
 
         ////////////////
 
@@ -126,12 +172,25 @@
         }
 
         function addAuthorization() {
-            getArray('authorizations').push(createAuthorization(util.generateUUID(), authVersionBaseline));
+            getArray('authorizations').push();
             vm.focusAuthAdd = true;
         }
 
         function removeAuthorization($index) {
             getArray('authorizations').splice($index, 1);
+        }
+
+        function addGenerator(arrayName, createObjFn) {
+            return function() {
+                getArray(arrayName).push(createObjFn());
+                vm.focusAuthAdd = true;
+            }
+        }
+
+        function removeGenerator(arrayName) {
+            return function($index) {
+                getArray(arrayName).splice($index, 1);
+            }
         }
 
         function addAmendment(authId) {
@@ -140,7 +199,7 @@
                 lastVersion = $filter('orderBy')(filteredArray, "-version")[0];
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
-                lastVersion.version = authVersionBaseline;
+                lastVersion.version = AUTH_VERSION_BASELINE;
             authArray.push(createAuthorization(authId, (lastVersion.version + 1)));
             vm.focusAuthAdd = true;
         }
@@ -150,7 +209,7 @@
         }
 
         function isAuthorization(authorization) {
-            return !angular.isDefined(authorization.version) || authorization.version <= authVersionBaseline;
+            return !angular.isDefined(authorization.version) || authorization.version <= AUTH_VERSION_BASELINE;
         }
         function isPartOfAuth(auth) {
             return function(amendment) {
@@ -164,9 +223,15 @@
 
         function createAuthorization(uuid, version) {
             return {
-                authorizationId: uuid,
-                version: version,
+                authorizationId: uuid || util.generateUUID(),
+                version: version || AUTH_VERSION_BASELINE,
                 active: true
+            }
+        }
+
+        function createObj() {
+            return {
+                id: util.generateUUID()
             }
         }
     }

@@ -47,6 +47,6 @@
     }
     function getProgram($stateParams, Program) {
         var id = $stateParams.id;
-        return id ? Program.get({id: id}) : createProgram(Program);
+        return id ? Program.get({id: id}).$promise : createProgram(Program);
     }
 })();
