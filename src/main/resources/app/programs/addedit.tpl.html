@@ -172,12 +172,9 @@
                 <div class="input-field">
                     <label>190 Functional Codes</label>
                     <ui-select multiple ng-model="gsavm.program.functionalCodes" theme="select2" style="width: 800px;">
-                        <ui-select-match placeholder="Select code...">{{$item.parent.value}}/{{$item.code}} - {{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="'parent.value'" repeat="item.element_id as item in gsavm.choices['functional_codes'] | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
+                        <ui-select-match placeholder="Select code...">{{$item.value}}</ui-select-match>
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['functional_codes'] | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
-                            <small>
-                                <span ng-bind-html="(item.parent.value + '\\' + item.code) | highlight: $select.search"></span>
-                            </small>
                         </ui-select-choices>
                     </ui-select>
                 </div>
@@ -187,7 +184,7 @@
                     <label>300 Subject Terms</label>
                     <ui-select multiple ng-model="gsavm.program.subjectTerms" theme="select2" style="width: 800px;">
                         <ui-select-match placeholder="Select subject term...">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="'value'" repeat="item.element_id as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search}">
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -498,8 +495,18 @@
                     <div ng-repeat="tafscode in gsavm.program.tafscodes track by id" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
                         <div ng-form ng-init="formPath='tafscode'+$index;idPath=formPath" name="gsavm.form.{{formPath}}" class="sub-form">
                             <div class="input-field">
-
-
+                                <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code</label>
+                                <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="tafscode.deptCode" >
+                                <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.deptCode.$dirty">
+                                    <span ng-show="gsavm.form.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                                </div>
+                            </div>
+                            <div class="input-field">
+                                <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
+                                <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-model="tafscode.allocationTransferAgency" >
+                                <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.allocationTransferAgency.$dirty">
+                                    <span ng-show="gsavm.form.{{formPath}}.allocationTransferAgency.$error.required">The Allocation Transfer Agency must be filled.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
