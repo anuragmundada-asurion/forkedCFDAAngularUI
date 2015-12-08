@@ -33,9 +33,36 @@
 
 
         vm.program = program;
+
+        vm.fyTpls = [
+            {
+                name: "Past Fiscal Year",
+                year: CURRENT_FISCAL_YEAR - 1,
+                type: 'Actual'
+            },
+            {
+                name: "Current Fiscal Year",
+                year: CURRENT_FISCAL_YEAR,
+                type: 'Projection',
+                obligType: 'Estimate'
+            },
+            {
+                name: "Budget Fiscal Year",
+                year: CURRENT_FISCAL_YEAR + 1,
+                type: 'Projection',
+                obligType: 'Estimate'
+            }
+        ];
+
+        angular.forEach(vm.fyTpls, function(tpl){
+            tpl.idName = tpl.name.replace(/\s/g, '-');
+            tpl.varName = tpl.type.toLowerCase();
+        });
+
         vm.uiLogic = {
-            relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length
-        }
+            relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length,
+            fundedProjectsExampleFlag: hasFyFundedProjects()
+        };
         vm.choices = {
             programs: Programs.query(),
             offices: [
@@ -118,34 +145,11 @@
             generateAuthKey: generateAuthKey,
             isPartOfAuth: isPartOfAuth
         };
-
-        vm.fyTpls = [
-            {
-                name: "Past Fiscal Year",
-                year: CURRENT_FISCAL_YEAR - 1,
-                type: 'Actual',
-                variableName: 'past'
-            },
-            {
-                name: "Current Fiscal Year",
-                year: CURRENT_FISCAL_YEAR,
-                type: 'Projection',
-                obligType: 'Estimate',
-                variableName: 'current'
-            },
-            {
-                name: "Budget Fiscal Year",
-                year: CURRENT_FISCAL_YEAR + 1,
-                type: 'Projection',
-                obligType: 'Estimate',
-                variableName: 'budget'
+        vm.groupByFns = {
+            multiPickerGroupByFn: function(item) {
+                return item.parent.value;
             }
-        ]
-
-        angular.forEach(vm.fyTpls, function(tpl){
-            tpl.idName = tpl.name.replace(/\s/g, '-');
-        });
-
+        }
         Dictionary.toDropdown({ id: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
@@ -154,6 +158,7 @@
         vm.addAuthorization = addAuthorization;
         vm.removeAuthorization = removeAuthorization;
         vm.addAmendment = addAmendment;
+        vm.getFormFiscalYearProject = getFormFiscalYearProject;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -233,6 +238,34 @@
             return {
                 id: util.generateUUID()
             }
+        }
+
+        function getFormFiscalYearProject(year) {
+            var project = getFiscalYearProject(year);
+            if(!project) {
+                project = { year: year };
+                getArray('projects').push(project);
+            }
+            return project;
+        }
+
+        function getFiscalYearProject(year) {
+            var projects = $filter('filter')(getArray('projects'), { year: year }),
+                fyProject = null;
+            if(!!projects.length)
+                fyProject = projects[0];
+            return fyProject;
+        }
+
+        function hasFyFundedProjects() {
+            var hasFundedProjects = true;
+            angular.forEach(vm.fyTpls, function(fyTpl){
+                var project = getFiscalYearProject(fyTpl.year);
+                if(hasFundedProjects)
+                    hasFundedProjects = !!project && !!project[fyTpl.varName];
+            });
+
+            return hasFundedProjects;
         }
     }
 
