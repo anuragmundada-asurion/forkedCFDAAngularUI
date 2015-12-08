@@ -292,7 +292,188 @@
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="How to Apply">
-            <div>Placeholder</div>
+            <div>
+                <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section 3: How to Apply</h2>
+                <div class="input-field" field-finder-bookmark>
+                    <h3>090 Application and Award Process</h3>
+                </div>
+                <div class="input-field">
+                    <label for="restrictionsFlag3">091 Preapplication Coordination</label>
+                    <input type="checkbox" id="restrictionsFlag3" ng-model="gsavm.program.usage.restrictions.restrictionsFlag3" trigger-click-on-enter>
+                    <label for="restrictionsFlag3">Is any prior coordination or approval required with governmental or nongovernmental units
+                        prior to the submission of a formal application to the Federal funding agency?</label>
+                </div>
+                <div class="input-field" ng-show="gsavm.program.usage.restrictions.restrictionsFlag3">
+                    <label for="restrictions3">Please provide the restrictions:</label>
+                    <textarea id="restrictions3" name="restrictions3" ng-model="gsavm.program.usage.restrictions.restrictions3" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
+                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="discretionaryFundFlag3">092 Aplication Procedues</label>
+                    <input type="checkbox" id="discretionaryFundFlag3" ng-model="gsavm.program.usage.discretionaryFund.discretionaryFundFlag3" trigger-click-on-enter>
+                    <label for="discretionaryFundFlag3">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements
+                        for Federal Awards apply to this program?</label>
+                </div>
+                <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.discretionaryFundFlag3">
+                    <label for="discretionaryFund3">Discretionary Funds</label>
+                    <textarea id="discretionaryFund3" name="discretionaryFund3" ng-model="gsavm.program.usage.discretionaryFund.discretionaryFund3" class="usa-grid-full" ng-required="gsavm.program.usage.discretionaryFund.flag3"></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
+                        <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
+                    </div>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <label for="objective3">093 Award Procedure<span class="required" >*</span></label>
+                    <p>What are the basic procedural steps for awarding assistance?</p>
+                    <textarea id="objective3" name="objective3" ng-model="gsavm.program.objective3" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
+                        <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="deadline3">094 Deadlines</label>
+                    <p id="deadline3">Is a deadline for submission of application available? <span class="required" >*</span></p>
+                    <table style="margin:0px">
+                        <tr>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                &nbsp;&nbsp;
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.deadline3" id="yes3" value="yes"/>
+                                <label for="yes3">Yes</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.deadline3" id="no3" value="no"/>
+                                <label for="no3">No</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.deadline3" id="contactHQ3" value="contactHQ"/>
+                                <label for="contactHQ3">Contact the headquarters or regional office, as appropriate for application deadlines</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <label for="office3">095 Range of Approval/Disapproval Time</label>
+                    <select id="office3" name="office3" ng-model="gsavm.program.office3" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
+                        <option value='' disabled style="display:none">Please select an Office</option>
+                    </select>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
+                        <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
+                    </div>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <label for="appeals3">096 Appeals</label>
+                    <select id="appeals3" name="appeals3" ng-model="gsavm.program.appeals3" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
+                        <option value='' disabled style="display:none">Please select an Office</option>
+                    </select>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
+                        <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
+                    </div>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <label for="renewals3">097 Renewals</label>
+                    <select id="renewals3" name="renewals3" ng-model="gsavm.program.renewals3" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
+                        <option value='' disabled style="display:none">Please select an Office</option>
+                    </select>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
+                        <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
+                    </div>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <h3>100 Assistance Consideration</h3>
+                </div>
+                <div class="input-field">
+                    <label for="statuatoryFormula3">101 Formula and Matching Requirements</label>
+                    <p id="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></p>
+                    <table>
+                        <tr>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.statuatoryFormula3" id="statuatoryFormula3yes" value="yes"/>
+                                <label for="statuatoryFormula3yes">Yes</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.statuatoryFormula3" id="statuatoryFormula3no" value="no"/>
+                                <label for="statuatoryFormula3no">No</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.statuatoryFormula3" id="statuatoryFormula3NA" value="NA"/>
+                                <label for="statuatoryFormula3NA">Not Applicable</label>
+                            </td>
+                        </tr>
+                    </table>
+                    <p id="matchingRequirements3">Does this program have matching requirements? <span class="required" >*</span></p>
+                    <table>
+                        <tr>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.matchingRequirements3" id="matchingRequirements3yes" value="yes"/>
+                                <label for="matchingRequirements3yes">Yes</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.matchingRequirements3" id="matchingRequirements3no" value="no"/>
+                                <label for="matchingRequirements3no">No</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.matchingRequirements3" id="matchingRequirements3NA" value="NA"/>
+                                <label for="matchingRequirements3NA">Not Applicable</label>
+                            </td>
+                        </tr>
+                    </table>
+                    <p id="MOErequirements3">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></p>
+                    <table>
+                        <tr>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.MOErequirements3" id="MOErequirements3yes" value="yes"/>
+                                <label for="MOErequirements3yes">Yes</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.MOErequirements3" id="MOErequirements3no" value="no"/>
+                                <label for="MOErequirements3no">No</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.MOErequirements3" id="MOErequirements3NA" value="NA"/>
+                                <label for="MOErequirements3NA">Not Applicable</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="input-field" field-finder-bookmark>
+                    <label for="lengthOfAssistance3">102 Length and Time Phasing of Assistance<span class="required" >*</span></label>
+                    <p>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</p>
+                    <textarea id="lengthOfAssistance3" name="lengthOfAssistance3" ng-model="gsavm.program.lengthOfAssistance3" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
+                        <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="criteriaProposals3">180 Criteria for Selecting Proposals</label>
+                    <p id="criteriaProposals3">Is there criteria for selecting proposals? <span class="required" >*</span></p>
+                    <table>
+                        <tr>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.criteriaProposals3" id="criteriaProposals3yes" value="yes"/>
+                                <label for="criteriaProposals3yes">Yes</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.criteriaProposals3" id="criteriaProposals3no" value="no"/>
+                                <label for="criteriaProposals3no">No</label>
+                            </td>
+                            <td style="padding:0px;vertical-align:top;border:0px">
+                                <input type="radio" ng-model="gsavm.program.criteriaProposals3" id="criteriaProposals3NA" value="NA"/>
+                                <label for="criteriaProposals3NA">Not Applicable</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="input-field" ng-show="gsavm.program.criteriaProposals3=='yes'">
+                    <label for="xyz">Please provide the restrictions:</label>
+                    <textarea id="xyz" name="xyz" ng-model="gsavm.program.usage.restrictions.xyz" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.xyzflag"></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
+                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    </div>
+                </div>
+            </div>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step title="Post Award Requirements">
