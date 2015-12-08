@@ -6,11 +6,11 @@
         .module('app')
         .directive(directiveId, uniqueFromDirective);
 
-    uniqueFromDirective.$inject = ['$parse'];
+    uniqueFromDirective.$inject = ['$parse', '$filter'];
 
     //////////////////
 
-    function uniqueFromDirective($parse) {
+    function uniqueFromDirective($parse, $filter) {
         return {
             require: '?ngModel',
             restrict: 'A',
@@ -23,11 +23,15 @@
             if (!ctrl) return;
             if (!attrs[directiveId]) return;
 
-            var primaryField = $parse(attrs[directiveId]);
+            var primaryField = $parse(attrs[directiveId]),
+                hasNgList = angular.isDefined(attrs.ngList),
+                ngListValue = hasNgList ? generateRegex(attrs.ngList) : undefined;
 
             var validator = function (value) {
                 var temp = primaryField(scope),
-                    v = value !== temp;
+                    v = !hasNgList || !value
+                        ? value !== temp
+                        : !$filter('filter')(value.split(ngListValue), temp, true).length;
                 ctrl.$setValidity(directiveId, v);
                 return value;
             };
@@ -38,6 +42,11 @@
                 validator(ctrl.$viewValue);
             });
 
+            ////////////////
+
+            function generateRegex(value) {
+                return value ? new RegExp(value) : /[, ]+/;
+            }
         }
     }
 })();

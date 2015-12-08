@@ -8,6 +8,13 @@
     configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
     createProgram.$inject = ['Program'];
     getProgram.$inject = ['$stateParams', 'Program'];
+    getCoreDictionaries.$inject = ['Dictionary'];
+
+    var CORE_DICTIONARIES = [
+        'yes_no',
+        'yes_na',
+        'yes_no_na'
+    ];
 
     //////////////////
 
@@ -18,7 +25,8 @@
                 templateUrl: "partials/programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {
-                    program: createProgram
+                    program: createProgram,
+                    coreChoices: getCoreDictionaries
                 }
             })
             .state('editProgram', {
@@ -26,7 +34,8 @@
                 templateUrl: "partials/programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {
-                    program: getProgram
+                    program: getProgram,
+                    coreChoices: getCoreDictionaries
                 }
             })
             .state('home', {
@@ -48,5 +57,8 @@
     function getProgram($stateParams, Program) {
         var id = $stateParams.id;
         return id ? Program.get({id: id}).$promise : createProgram(Program);
+    }
+    function getCoreDictionaries(Dictionary) {
+        return Dictionary.toDropdown({ id: CORE_DICTIONARIES.join(',') }).$promise;
     }
 })();
