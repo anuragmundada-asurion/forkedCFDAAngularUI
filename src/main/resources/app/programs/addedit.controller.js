@@ -25,7 +25,10 @@
                 'assistance_type',
                 'yes_no',
                 'yes_na',
-                'yes_no_na'
+                'yes_no_na',
+                'applicant_types',
+                'applicant_usage_types',
+                'beneficiary_types'
             ];
 
         vm.isEdit = $state.is('editProgram');
@@ -77,36 +80,6 @@
                 {
                     id: 3,
                     name: 'Admin Office'
-                }
-            ],
-            eligibleApplicantsList: [
-                {
-                    id: 9,
-                    name: '09 - Government - General'
-                },
-                {
-                    id: 10,
-                    name: '10 - Federal'
-                },
-                {
-                    id: 11,
-                    name: '11 - Interstate'
-                },
-                {
-                    id: 12,
-                    name: '12 - Intrastate'
-                },
-                {
-                    id: 14,
-                    name: '14 - State (includes District of Columbia, public institutions of higher education and hospitals)'
-                },
-                {
-                    id: 15,
-                    name: '15 - Local (includes State-designated Indian Tribes, excludes institutions of higher education and hospitals)'
-                },
-                {
-                    id: 18,
-                    name: '18 - Sponsored organization'
                 }
             ],
             useOfAssistanceList: [
