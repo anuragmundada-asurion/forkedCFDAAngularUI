@@ -39,7 +39,7 @@
             </div>
             <div class="input-field" field-finder-bookmark>
                 <label for="alternativeName">020 Popular Name</label>
-                <input type="text" id="alternativeName" name="alternativeName" ng-model="gsavm.program.alternativeName" unique-from="gsavm.program.title">
+                <input type="text" id="alternativeName" name="alternativeName" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
                 <div ng-show="gsavm.form.$submitted || gsavm.form.alternativeName.$dirty">
                     <span ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
                 </div>
@@ -56,6 +56,7 @@
                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
                                 <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
                                     <div ng-include="'partials/programs/authorization.tpl.html'"></div>
+                                    <button type="button" ng-click="gsavm.removeAmendment(authorization)">Delete</button>
                                 </div>
                             </div>
                             <button type="button" ng-click="gsavm.addAmendment(authorization.authorizationId)">Add Amendment</button>
@@ -83,7 +84,7 @@
                     </p>-->
                     <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" theme="select2" style="width:800px" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | filter: {value: $select.search}">
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['assistance_type'] | filter: {value: $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -101,10 +102,10 @@
                     <span ng-show="gsavm.form.usageRulesContent.$error.required">You need to select at least one Assistance Type for your Program.</span>
                 </div>
                 <div class="input-field">
-                    <input type="checkbox" id="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag" trigger-click-on-enter>
+                    <input type="checkbox" id="restrictionsFlag" ng-model="restrictionsFlag" ng-checked="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.restrictions.flag = restrictionsFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter>
                     <label for="restrictionsFlag">Are there specific restructions place upon the use of the assistance?</label>
                 </div>
-                <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag">
+                <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="restrictions">Please provide the restrictions:</label>
                     <textarea id="restrictions" name="restrictions" ng-model="gsavm.program.usage.restrictions.content" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
@@ -112,10 +113,10 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="checkbox" id="discretionaryFundFlag" ng-model="gsavm.program.usage.discretionaryFund.flag" trigger-click-on-enter>
+                    <input type="checkbox" id="discretionaryFundFlag" ng-model="discretionaryFundFlag" ng-checked="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.discrentionaryFund.flag = discretionaryFundFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter>
                     <label for="discretionaryFundFlag">Are there discretionary funds available?</label>
                 </div>
-                <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag">
+                <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="discretionaryFund">Discretionary Funds</label>
                     <textarea id="discretionaryFund" name="discretionaryFund" ng-model="gsavm.program.usage.discretionaryFund.content" class="usa-grid-full" ng-required="gsavm.program.usage.discretionaryFund.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
@@ -123,10 +124,10 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <input type="checkbox" id="loanTermsFlag" ng-model="gsavm.program.usage.loanTerms.flag" trigger-click-on-enter>
+                    <input type="checkbox" id="loanTermsFlag" ng-model="loanTermsFlag" ng-checked="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.loanTerms.flag = discretionaryFundFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter>
                     <label for="loanTermsFlag">Are loans a type of assistance in this program?</label>
                 </div>
-                <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag">
+                <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="loanTerms">Loan Terms</label>
                     <textarea id="loanTerms"  name="loanTerms" ng-model="gsavm.program.usage.loanTerms.content" class="usa-grid-full" ng-required="gsavm.program.usage.loanTerms.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.loanTermsFund.$dirty">
@@ -138,7 +139,7 @@
                 <h3>160 Related Programs</h3>
                 <div class="input-field">
                     <input type="checkbox" id="relatedProgramsFlag" ng-model="gsavm.uiLogic.relatedProgramsFlag" trigger-click-on-enter>
-                    <label for="relatedProgramsFlag">Are there any releated programs?</label>
+                    <label for="relatedProgramsFlag">Are there any related programs?</label>
                 </div>
                 <div class="input-field" ng-show="gsavm.uiLogic.relatedProgramsFlag">
                     <label>Select any related programs below:</label>
@@ -173,7 +174,7 @@
                     <label>190 Functional Codes</label>
                     <ui-select multiple ng-model="gsavm.program.functionalCodes" theme="select2" style="width: 800px;">
                         <ui-select-match placeholder="Select code...">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['functional_codes'] | propsFilter: {code: $select.search, value: $select.search, 'element_id': $select.search}">
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['functional_codes'] | propsFilter: {code: $select.search, value: $select.search">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -184,7 +185,7 @@
                     <label>300 Subject Terms</label>
                     <ui-select multiple ng-model="gsavm.program.subjectTerms" theme="select2" style="width: 800px;">
                         <ui-select-match placeholder="Select subject term...">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search}">
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>

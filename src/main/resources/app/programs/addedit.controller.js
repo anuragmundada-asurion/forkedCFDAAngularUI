@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program'];
+    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, util, Dictionary, Programs, program) {
+    function addEditProgramController($state, $filter, util, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
@@ -23,9 +23,6 @@
                 'functional_codes',
                 'program_subject_terms',
                 'assistance_type',
-                'yes_no',
-                'yes_na',
-                'yes_no_na'
             ];
 
         vm.isEdit = $state.is('editProgram');
@@ -149,15 +146,15 @@
             multiPickerGroupByFn: function(item) {
                 return item.parent.value;
             }
-        }
+        };
+        angular.extend(vm.choices, coreChoices);
         Dictionary.toDropdown({ id: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
 
         vm.save = save;
-        vm.addAuthorization = addAuthorization;
-        vm.removeAuthorization = removeAuthorization;
         vm.addAmendment = addAmendment;
+        vm.removeAmendment = removeAmendment;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
@@ -176,15 +173,6 @@
             vm.program._id = res._id;
         }
 
-        function addAuthorization() {
-            getArray('authorizations').push();
-            vm.focusAuthAdd = true;
-        }
-
-        function removeAuthorization($index) {
-            getArray('authorizations').splice($index, 1);
-        }
-
         function addGenerator(arrayName, createObjFn) {
             return function() {
                 getArray(arrayName).push(createObjFn());
@@ -200,13 +188,33 @@
 
         function addAmendment(authId) {
             var authArray = getArray('authorizations'),
-                filteredArray = $filter('filter')(authArray, { authorizationId: authId }),
-                lastVersion = $filter('orderBy')(filteredArray, "-version")[0];
+                lastVersion = getLastAuthorizationVersion(authId);
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
             authArray.push(createAuthorization(authId, (lastVersion.version + 1)));
             vm.focusAuthAdd = true;
+        }
+
+        function removeAmendment(amendment) {
+            var authArray = getArray('authorizations');
+            for(var i = 0; i < authArray.length; i++) {
+                if(authArray[i] === amendment) {
+                    authArray.splice(i, 1);
+                    break;
+                }
+            }
+            if(amendment.active) {
+                var lastVersion = getLastAuthorizationVersion(amendment.authorizationId);
+                if(angular.isObject(lastVersion))
+                    lastVersion.active = true;
+            }
+        }
+
+        function getLastAuthorizationVersion(authId) {
+            var authArray = getArray('authorizations'),
+                filteredArray = $filter('filter')(authArray, { authorizationId: authId });
+            return $filter('orderBy')(filteredArray, "-version")[0];
         }
 
         function getArray(arrayName){
