@@ -80,12 +80,12 @@
             ]
         };
         vm.choices.programs.$promise.then(function(data){
-            var relatedTo = getArray('releatedTo');
+            var relatedTo = getArray('relatedTo');
             if(relatedTo.length > 0) {
                 var idArr = data.map(function (item) {
                     return item._id;
                 });
-                vm.programs.releatedTo = $filter('intersect')(relatedTo, idArr);
+                vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
             }
         });
         vm.exps = {
