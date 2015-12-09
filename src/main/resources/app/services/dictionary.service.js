@@ -5,11 +5,17 @@
         .module('app')
         .factory('Dictionary', dictionarySvc);
 
-    dictionarySvc.$inject = ['$resource', 'env'];
+    dictionarySvc.$inject = ['$resource', '$filter', 'env'];
 
     ////////////////
 
-    function dictionarySvc($resource, env) {
+    function dictionarySvc($resource, $filter, env) {
+        var SPECIAL_DICTIONARIES = [
+            'yes_na',
+            'yes_no',
+            'yes_no_na'
+        ];
+
         return $resource(env["pub.api.programs"] + '/dictionaries/:id', {
             id: '@id'
         }, {
@@ -33,15 +39,33 @@
 
         ///////////////////////
 
+        function isSpecialDictionary(dictionaryName) {
+            return !!$filter('filter')(SPECIAL_DICTIONARIES, dictionaryName, true).length;
+        }
+
         function formatDictionary(data) {
-            var codes = [];
+            var isUnique = isSpecialDictionary(data.id),
+                codes = isUnique ? {} : [];
             angular.forEach(data.elements, function(parentElem){
-                angular.forEach(parentElem.elements, function(childElem){
-                    childElem.parent = parentElem;
-                    codes.push(childElem);
-                })
+                if(!isUnique)
+                    pushLastItem(parentElem, codes);
+                else
+                    codes[parentElem.element_id] = parentElem;
             });
             return codes;
         }
+
+        function pushLastItem(item, itemArray) {
+            if(!angular.isArray(item.elements)) {
+                item.displayValue = item.code + " - " + item.value;
+                itemArray.push(item);
+            }
+            angular.forEach(item.elements, function(element){
+                pushLastItem(element, itemArray);
+                element.parent = item;
+            });
+            return item;
+        }
+
     }
 })();

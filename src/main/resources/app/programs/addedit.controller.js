@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program'];
+    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, util, Dictionary, Programs, program) {
+    function addEditProgramController($state, $filter, util, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
@@ -23,17 +23,12 @@
                 'functional_codes',
                 'program_subject_terms',
                 'assistance_type',
-                'yes_no',
-                'yes_na',
-                'yes_no_na',
                 'applicant_types',
                 'applicant_usage_types',
                 'beneficiary_types'
             ];
 
         vm.isEdit = $state.is('editProgram');
-
-
 
         vm.program = program;
 
@@ -60,6 +55,7 @@
         angular.forEach(vm.fyTpls, function(tpl){
             tpl.idName = tpl.name.replace(/\s/g, '-');
             tpl.varName = tpl.type.toLowerCase();
+            tpl.isRequired = tpl.type.toLowerCase() === "actual";
         });
 
         vm.uiLogic = {
@@ -83,6 +79,15 @@
                 }
             ]
         };
+        vm.choices.programs.$promise.then(function(data){
+            var relatedTo = getArray('releatedTo');
+            if(relatedTo.length > 0) {
+                var idArr = data.map(function (item) {
+                    return item._id;
+                });
+                vm.programs.releatedTo = $filter('intersect')(relatedTo, idArr);
+            }
+        });
         vm.exps = {
             isAuthorization: isAuthorization,
             generateAuthKey: generateAuthKey,
@@ -90,18 +95,21 @@
         };
         vm.groupByFns = {
             multiPickerGroupByFn: function(item) {
-                return item.parent.value;
+                return !!item.parent ? item.parent.value : item.value;
             }
-        }
+        };
+        angular.extend(vm.choices, coreChoices);
         Dictionary.toDropdown({ id: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
 
         vm.save = save;
-        vm.addAuthorization = addAuthorization;
-        vm.removeAuthorization = removeAuthorization;
         vm.addAmendment = addAmendment;
+        vm.removeAmendment = removeAmendment;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
+        vm.log = function($item, $model) {
+            console.log($item);
+        }
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -119,15 +127,6 @@
             vm.program._id = res._id;
         }
 
-        function addAuthorization() {
-            getArray('authorizations').push();
-            vm.focusAuthAdd = true;
-        }
-
-        function removeAuthorization($index) {
-            getArray('authorizations').splice($index, 1);
-        }
-
         function addGenerator(arrayName, createObjFn) {
             return function() {
                 getArray(arrayName).push(createObjFn());
@@ -143,13 +142,33 @@
 
         function addAmendment(authId) {
             var authArray = getArray('authorizations'),
-                filteredArray = $filter('filter')(authArray, { authorizationId: authId }),
-                lastVersion = $filter('orderBy')(filteredArray, "-version")[0];
+                lastVersion = getLastAuthorizationVersion(authId);
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
             authArray.push(createAuthorization(authId, (lastVersion.version + 1)));
             vm.focusAuthAdd = true;
+        }
+
+        function removeAmendment(amendment) {
+            var authArray = getArray('authorizations');
+            for(var i = 0; i < authArray.length; i++) {
+                if(authArray[i] === amendment) {
+                    authArray.splice(i, 1);
+                    break;
+                }
+            }
+            if(amendment.active) {
+                var lastVersion = getLastAuthorizationVersion(amendment.authorizationId);
+                if(angular.isObject(lastVersion))
+                    lastVersion.active = true;
+            }
+        }
+
+        function getLastAuthorizationVersion(authId) {
+            var authArray = getArray('authorizations'),
+                filteredArray = $filter('filter')(authArray, { authorizationId: authId });
+            return $filter('orderBy')(filteredArray, "-version")[0];
         }
 
         function getArray(arrayName){
