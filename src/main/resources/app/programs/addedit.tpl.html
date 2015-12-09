@@ -240,8 +240,9 @@
                     </div>
                 </section>
                 <section field-finder-bookmark="082 Beneficiary Eligibility">
+                    <h4>082 Beneficiary Eligibility</h4>
                     <div class="input-field usa-grid">
-                        <label for="beneficiaryEligibility">Beneficiary Eligibility</label>
+                        <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
                         <ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types" class="usa-width-two-thirds" required-Length='{ "min": 1 }'>
                             <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] track by item.element_id | filter: {value: $select.search }">
@@ -260,12 +261,13 @@
                     </div>
             </section>
             <section field-finder-bookmark="083 Credentials/Documentation">
+                <h4>083 Credentials/Documentation</h4>
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input name="credentialsOrDocumentation" id="credentialsOrDocumentation" ng-model="gsavm.program.eligibility.documentation.flag" type="checkbox" trigger-click-on-enter>
-                                <label for="credentialsOrDocumentation">Are there credentials or documentation?</label>
+                                <label for="credentialsOrDocumentation">Are there credentials or documentation?<span class="required" >*</span></label>
                             </li>
                         </ul>
 
@@ -649,9 +651,10 @@
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 4: Post Award Requirements</h2>
             <h3>110 Post Assistance Requirements</h3>
             <section field-finder-bookmark="111 Reports">
+                <h4>111 Reports</h4>
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label for="reports">Are reports required by the funding agency?</label>
+                        <label for="reports">Are reports required by the funding agency?<span class="required" >*</span></label>
 
                         <ul class="usa-unstyled-list">
                             <li>
@@ -792,6 +795,7 @@
             </section>
 
             <section field-finder-bookmark="112 Audits">
+                <h4>112 Audits</h4>
             <div class="input-field usa-grid">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                     <label for="audits">Are audits required for the program?<span class="required" >*</span></label>
@@ -840,6 +844,7 @@
                 </div>
             </section>
             <section field-finder-bookmark="113 Records">
+                <h4>113 Records</h4>
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <ul class="usa-unstyled-list">
@@ -856,6 +861,7 @@
                 </div>
             </section>
             <section field-finder-bookmark ="140 Regulations, Guidelines, and Literature">
+                <h4>140 Regulations, Guidelines, and Literature</h4>
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="documents">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>
