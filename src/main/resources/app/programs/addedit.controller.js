@@ -30,8 +30,6 @@
 
         vm.isEdit = $state.is('editProgram');
 
-
-
         vm.program = program;
 
         vm.fyTpls = [
@@ -57,6 +55,7 @@
         angular.forEach(vm.fyTpls, function(tpl){
             tpl.idName = tpl.name.replace(/\s/g, '-');
             tpl.varName = tpl.type.toLowerCase();
+            tpl.isRequired = tpl.type.toLowerCase() === "actual";
         });
 
         vm.uiLogic = {
@@ -110,6 +109,12 @@
                 }
             ]
         };
+        vm.choices.programs.$promise.then(function(data){
+            var idArr = data.map(function(item) {
+                return item._id;
+            });
+            vm.program.relatedTo = $filter('intersect')(vm.program.relatedTo, idArr);
+        });
         vm.exps = {
             isAuthorization: isAuthorization,
             generateAuthKey: generateAuthKey,
@@ -117,7 +122,7 @@
         };
         vm.groupByFns = {
             multiPickerGroupByFn: function(item) {
-                return item.parent.value;
+                return !!item.parent ? item.parent.value : item.value;
             }
         };
         angular.extend(vm.choices, coreChoices);
@@ -129,6 +134,9 @@
         vm.addAmendment = addAmendment;
         vm.removeAmendment = removeAmendment;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
+        vm.log = function($item, $model) {
+            console.log($item);
+        }
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
