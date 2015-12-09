@@ -278,14 +278,14 @@
                         <label for="credentialsAdditionalInfo">Please explain:<span class="required" >*</span></label>
                         <textarea id="credentialsAdditionalInfo" name="credentialsAdditionalInfo" ng-model="gsavm.program.eligibility.documentation.content" ng-required="gsavm.program.eligibility.documentation.flag">
                         </textarea>
-                        <div ng-show="gsavm.program.eligibility.documentation.flag && (gsavm.form.$submitted || gsavm.form.assistanceAdditionalInfo.$dirty)">
-                            <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
+                        <div ng-show="gsavm.program.eligibility.documentation.flag && (gsavm.form.$submitted || gsavm.form.credentialsAdditionalInfo.$dirty)">
+                            <span ng-show="gsavm.form.credentialsAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
 
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="costPrincipalsAcceptable" id="costPrincipalsAcceptable" type="checkbox" ng-model="gsavm.program.eligibility.documentation.questions" trigger-click-on-enter >
+                                    <input name="costPrincipalsAcceptable" id="costPrincipalsAcceptable" type="checkbox" ng-model="gsavm.program.eligibility.documentation.questions" trigger-click-on-enter>
                                     <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
                                 </li>
                             </ul>
