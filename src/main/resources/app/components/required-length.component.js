@@ -6,11 +6,11 @@
         .module('app')
         .directive(directiveId, requiredLength);
 
-    requiredLength.$inject = [/*'$parse',*/ '$window'];
+    requiredLength.$inject = ['$parse', '$window'];
 
     //////////////////
 
-    function requiredLength(/*$parse,*/ $window) {
+    function requiredLength($parse, $window) {
         return {
             require: '?ngModel',
             restrict: 'A',
@@ -23,6 +23,7 @@
             if (!ctrl) return;
             if (!attrs[directiveId]) return;
             var attrVal = attrs[directiveId],
+                requiredIfGetter,
                 min = -1,
                 max = -1;
 
@@ -41,17 +42,26 @@
 
                 if(angular.isDefined(attrVal.max) && !$window.isNaN(attrVal.max))
                     max = $window.parseInt(attrVal.max);
+                if(angular.isDefined(attrVal.requiredIf))
+                    requiredIfGetter = $parse(attrVal.requiredIf);
             }
             //var primaryField = $parse(attrs[directiveId]);
 
             var validator = function (value) {
-                var isValid = angular.isDefined(value);
-                if(angular.isArray(value)) {
+                var isRequired = requiredIfGetter ? requiredIfGetter(scope) : true,
+                    isValid = !isRequired || angular.isDefined(value);
+                if(isRequired && angular.isArray(value)) {
                     isValid = (min <= -1 || min <= value.length) && (max <= -1 || max >= value.length);
                 }
                 ctrl.$setValidity(directiveId, isValid);
                 return value;
             };
+
+            if(angular.isDefined(attrVal.requiredIf)) {
+                scope.$watch(attrVal.requiredIf, function (isRequired) {
+                    validator(ctrl.$viewValue);
+                });
+            }
 
             ctrl.$parsers.unshift(validator);
             ctrl.$formatters.push(validator);
