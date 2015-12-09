@@ -24,7 +24,7 @@
                 'program_subject_terms',
                 'assistance_type',
                 'applicant_types',
-                'applicant_usage_types',
+                'assistance_usage_types',
                 'beneficiary_types'
             ];
 
