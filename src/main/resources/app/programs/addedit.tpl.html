@@ -204,12 +204,11 @@
         </wz-step>
         <wz-step title="Eligibility / Qualifications">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 2: Eligibility / Qualifications</h2>
-            <section field-finder-bookmark>
-            <h3>080 Eligibility Requirements</h3>
+            <section field-finder-bookmark="080 Eligibility Requirements">
                     <h4>081 Applicant Eligibility</h4>
                     <div class="input-field usa-grid">
                         <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
-                        <ui-select id="eligibleApplicants" name="eligibleApplicants" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.types" class="usa-width-two-thirds" required-Length='{ "min": 1 }'>
+                        <ui-select id="eligibleApplicants" name="eligibleApplicants" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.types" style="width:800px;" required-Length='{ "min": 1 }'>
                             <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_types'] track by item.element_id | filter: {value: $select.search }">
                                 <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
@@ -240,8 +239,7 @@
                         </div>
                     </div>
                 </section>
-                <section field-finder-bookmark>
-                <h4>082 Beneficiary Eligibility</h4>
+                <section field-finder-bookmark="082 Beneficiary Eligibility">
                     <div class="input-field usa-grid">
                         <label for="beneficiaryEligibility">Beneficiary Eligibility</label>
                         <ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types" class="usa-width-two-thirds" required-Length='{ "min": 1 }'>
@@ -261,8 +259,7 @@
                         </div>
                     </div>
             </section>
-            <section field-finder-bookmark>
-            <h4>083 Credentials/Documentation</h4>
+            <section field-finder-bookmark="083 Credentials/Documentation">
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <ul class="usa-unstyled-list">
@@ -651,8 +648,7 @@
         <wz-step title="Post Award Requirements">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 4: Post Award Requirements</h2>
             <h3>110 Post Assistance Requirements</h3>
-            <section field-finder-bookmark>
-            <h4>111 Reports</h4>
+            <section field-finder-bookmark="111 Reports">
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="reports">Are reports required by the funding agency?</label>
@@ -775,15 +771,15 @@
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performance" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                                     <label for="performanceMonitoring-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performance" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                                     <label for="performanceMonitoring-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performance" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                                     <label for="performanceMonitoring-na">Not Applicable</label>
                                 </li>
                             </ul>
@@ -795,8 +791,7 @@
                 </div>
             </section>
 
-            <section field-finder-bookmark>
-            <h4>112 Audits</h4>
+            <section field-finder-bookmark="112 Audits">
             <div class="input-field usa-grid">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                     <label for="audits">Are audits required for the program?<span class="required" >*</span></label>
@@ -844,15 +839,23 @@
 
                 </div>
             </section>
-            <section field-finder-bookmark>
-                <h4>113 Records</h4>
+            <section field-finder-bookmark="113 Records">
                 <div class="input-field usa-grid">
-                    <label for="records">113 Records</label>
-                    <textarea id="records" name="records" ng-model="vm.program.postAward.records.content"></textarea>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input name="records" id="records" type="checkbox" ng-model="gsavm.program.eligibility.documentation.questions" trigger-click-on-enter>
+                                <label for="costPrincipalsAcceptable">Describe what records the Federal agency requires the recipient to maintain and the time periods.</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.program.eligibility.documentation.questions">
+                        <textarea id="recordContent" name="records" ng-model="vm.program.postAward.records.content"></textarea>
+                    </div>
+
                 </div>
             </section>
-            <section field-finder-bookmark>
-                <h4>140 Regulations, Guidelines, and Literature</h4>
+            <section field-finder-bookmark ="140 Regulations, Guidelines, and Literature">
                 <div class="input-field usa-grid">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="documents">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>
