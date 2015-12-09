@@ -16,7 +16,7 @@
             'yes_no_na'
         ];
 
-        return $resource(env["pub.api.programs"] + '/dictionaries/:id?callback=JSON_CALLBACK', {
+        return $resource(env["pub.api.programs"] + '/dictionaries/:id', {
             id: '@id'
         }, {
             toDropdown: {
@@ -47,16 +47,25 @@
             var isUnique = isSpecialDictionary(data.id),
                 codes = isUnique ? {} : [];
             angular.forEach(data.elements, function(parentElem){
-                if(!isUnique) {
-                    angular.forEach(parentElem.elements, function (childElem) {
-                        childElem.parent = parentElem;
-                        codes.push(childElem);
-                    });
-                }
+                if(!isUnique)
+                    pushLastItem(parentElem, codes);
                 else
                     codes[parentElem.element_id] = parentElem;
             });
             return codes;
         }
+
+        function pushLastItem(item, itemArray) {
+            if(!angular.isArray(item.elements)) {
+                item.displayValue = item.code + " - " + item.value;
+                itemArray.push(item);
+            }
+            angular.forEach(item.elements, function(element){
+                pushLastItem(element, itemArray);
+                element.parent = item;
+            });
+            return item;
+        }
+
     }
 })();

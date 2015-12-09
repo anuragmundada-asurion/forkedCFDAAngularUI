@@ -10,7 +10,7 @@
     ////////////////
 
     function programSvc($resource, env) {
-        return $resource(env["pub.api.programs"] + '/program/:id?callback=JSON_CALLBACK', {
+        return $resource(env["pub.api.programs"] + '/program/:id', {
             id: '@_id'
         }, {
             save: {
