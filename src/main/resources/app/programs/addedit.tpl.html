@@ -199,8 +199,8 @@
                     <div class="input-field usa-grid">
                         <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
                         <ui-select id="eligibleApplicants" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.types" class="usa-width-two-thirds" required-Length='{ "min": 1 }'>
-                            <ui-select-match placeholder="Search here...">{{$item.value}}</ui-select-match>
-                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_types'] | filter: {value: $select.search}">
+                            <ui-select-match placeholder="Search here">{{$item.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_types'] track by item.element_id">
                                 <div ng-bind-html="item.value | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
@@ -212,9 +212,9 @@
                     <div class="input-field usa-grid">
                         <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
                         <ui-select id="useOfAssistance" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" class="usa-width-two-thirds" required-Length='{ "min": 1 }'>
-                            <ui-select-match placeholder="Search here">{{$item.name}}</ui-select-match>
-                            <ui-select-choices repeat="useOfAssistance.name as useOfAssistance in gsavm.choices.useOfAssistanceList | filter: $select.search">
-                                <div ng-bind-html="useOfAssistance.name | highlight: $select.search"></div>
+                            <ui-select-match placeholder="Search here">{{$item.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_usage_types'] | filter: $select.search">
+                                <div ng-bind-html="item.value | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
 
@@ -316,26 +316,26 @@
                         </div>
                     </fieldset>
                 </div>
-                <div ng-show='gsavm.program.reports === "yes"'>
+                <div ng-show='gsavm.program.postAward.reports === "yes"'>
                     <div class="input-field usa-grid" >
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label for="programReports">Are program reports required?<span class="required" >*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="programReports-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-no" type="radio" value="no" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="programReports-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-na" type="radio" value="na" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="programReports" ng-model="gsavm.program.programReports" id="programReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="programReports-na">Not Applicable</label>
                                 </li>
                             </ul>
-                            <div ng-show='gsavm.program.reports === "yes" && (gsavm.form.$submitted || gsavm.form.programReports.$dirty)'>
+                            <div ng-show='gsavm.program.postAward.reports === "yes" && (gsavm.form.$submitted || gsavm.form.programReports.$dirty)'>
                                 <span ng-show="gsavm.form.programReports.$error.required">You must provide an answer.</span>
                             </div>
                         </fieldset>
@@ -346,19 +346,19 @@
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="cashReports-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-no" type="radio" value="no" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="cashReports-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-na" type="radio" value="na" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="cashReports" ng-model="gsavm.program.cashReports" id="cashReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="cashReports-na">Not Applicable</label>
                                 </li>
                             </ul>
-                            <div ng-show='gsavm.program.reports === "yes" && (gsavm.form.$submitted || gsavm.form.cashReports.$dirty)'>
+                            <div ng-show='gsavm.program.postAward.reports === "yes" && (gsavm.form.$submitted || gsavm.form.cashReports.$dirty)'>
                                 <span ng-show="gsavm.form.cashReports.$error.required">You must provide an answer.</span>
                             </div>
                         </fieldset>
@@ -369,19 +369,19 @@
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="progressReports-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-no" type="radio" value="no" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="progressReports-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-na" type="radio" value="na" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="progressReports" ng-model="gsavm.program.progressReports" id="progressReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="progressReports-na">Not Applicable</label>
                                 </li>
                             </ul>
-                            <div ng-show='gsavm.program.reports === "yes" && (gsavm.form.$submitted || gsavm.form.progressReports.$dirty)'>
+                            <div ng-show='gsavm.program.postAward.reports === "yes" && (gsavm.form.$submitted || gsavm.form.progressReports.$dirty)'>
                                 <span ng-show="gsavm.form.progressReports.$error.required">You must provide an answer.</span>
                             </div>
                         </fieldset>
@@ -392,19 +392,19 @@
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="expenditureReports-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-no" type="radio" value="no" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="expenditureReports-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-na" type="radio" value="na" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="expenditureReports" ng-model="gsavm.program.expenditureReports" id="expenditureReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="expenditureReports-na">Not Applicable</label>
                                 </li>
                             </ul>
-                            <div ng-show='gsavm.program.reports === "yes" && (gsavm.form.$submitted || gsavm.form.expenditureReports.$dirty)'>
+                            <div ng-show='gsavm.program.postAward.reports === "yes" && (gsavm.form.$submitted || gsavm.form.expenditureReports.$dirty)'>
                                 <span ng-show="gsavm.form.expenditureReports.$error.required">You must provide an answer.</span>
                             </div>
                         </fieldset>
@@ -415,19 +415,19 @@
 
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="performanceMonitoring-yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="performanceMonitoring-no">No</label>
                                 </li>
                                 <li>
-                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.reports === 'yes'">
+                                    <input name="performanceMonitoring" ng-model="gsavm.program.performanceMonitoring" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports === 'yes'">
                                     <label for="performanceMonitoring-na">Not Applicable</label>
                                 </li>
                             </ul>
-                            <div ng-show='gsavm.program.reports === "yes" && (gsavm.form.$submitted || gsavm.form.performanceMonitoring.$dirty)'>
+                            <div ng-show='gsavm.program.postAward.reports === "yes" && (gsavm.form.$submitted || gsavm.form.performanceMonitoring.$dirty)'>
                                 <span ng-show="gsavm.form.performanceMonitoring.$error.required">You must provide an answer.</span>
                             </div>
                         </fieldset>
