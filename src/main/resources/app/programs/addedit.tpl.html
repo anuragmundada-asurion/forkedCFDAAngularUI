@@ -676,7 +676,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <div ng-show='gsavm.program.postAward.reports === "yes"'>
+                <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
                     <div class="input-field usa-grid" >
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label for="programReports">Are program reports required?<span class="required" >*</span></label>
@@ -803,20 +803,45 @@
 
                     <ul class="usa-unstyled-list">
                         <li>
-                            <input name="audits" ng-model="gsavm.program.postAward.audit" id="audits-yes" type="radio" value="yes" required>
+                            <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-yes" type="radio" value="yes" required>
                             <label for="audits-yes">Yes</label>
                             </li>
                             <li>
-                                <input name="audits" ng-model="gsavm.program.postAward.audit" id="audits-no" type="radio" value="no" required>
+                                <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-no" type="radio" value="no" required>
                                 <label for="audits-no">No</label>
                             </li>
                             <li>
-                                <input name="audits" ng-model="gsavm.program.postAward.audit" id="audits-na" type="radio" value="na" required>
+                                <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-na" type="radio" value="na" required>
                                 <label for="audits-na">Not Applicable</label>
                             </li>
                         </ul>
 
                     </fieldset>
+                    <div ng-show='gsavm.form.$submitted || gsavm.form.audits.$dirty'>
+                        <span ng-show="gsavm.form.audits.$error.required">You must provide an answer.</span>
+                    </div>
+                    <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
+                        <label for="auditRequirements">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
+                        <fieldset class="usa-fieldset-inputs usa-sans">
+                            <ul class="usa-unstyled-list">
+                                <li>
+                                    <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.question.flag" id="auditRequirements-yes" type="radio" value="yes" required>
+                                    <label for="auditRequirements-yes">Yes</label>
+                                </li>
+                                <li>
+                                    <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.question.flag" id="auditRequirements-no" type="radio" value="no" required>
+                                    <label for="auditRequirements-no">No</label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <label for="auditRequirementsInfo">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'" >*</span></label>
+                        <textarea id="auditRequirementsInfo" name="auditRequirementsInfo" ng-model="gsavm.program.postAward.audit.content" class="usa-grid-full" ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
+                        <div ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no' && (gsavm.form.$submitted || gsavm.form.auditRequirementsInfo.$dirty)">
+                            <span ng-show="gsavm.form.auditRequirementsInfo.$error.required">You must describe audit procedures.</span>
+                        </div>
+
+                    </div>
+
                 </div>
             </section>
             <section field-finder-bookmark>
@@ -844,6 +869,14 @@
                         </ul>
 
                     </fieldset>
+
+                    <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
+                        <label for="documentsAdditionalInfo">Please describe regulations, guidelines, and literature.<span class="required" >*</span></label>
+                        <textarea id="documentsAdditionalInfo" name="documentsAdditionalInfo" ng-model="vm.program.postAward.documents.content" ng-required="gsavm.program.postAward.documents.flag==='yes'"></textarea>
+                        <div ng-show="gsavm.program.postAward.documents.flag ==='yes' && (gsavm.form.$submitted || gsavm.form.documentsAdditionalInfo.$dirty)">
+                            <span ng-show="gsavm.form.documentsAdditionalInfo.$error.required">You must provide an answer.</span>
+                        </div>
+                    </div>
                 </div>
             </section>
             <input type="submit" wz-next value="Continue" />
