@@ -110,10 +110,13 @@
             ]
         };
         vm.choices.programs.$promise.then(function(data){
-            var idArr = data.map(function(item) {
-                return item._id;
-            });
-            vm.program.relatedTo = $filter('intersect')(vm.program.relatedTo, idArr);
+            var relatedTo = getArray('releatedTo');
+            if(relatedTo.length > 0) {
+                var idArr = data.map(function (item) {
+                    return item._id;
+                });
+                vm.programs.releatedTo = $filter('intersect')(relatedTo, idArr);
+            }
         });
         vm.exps = {
             isAuthorization: isAuthorization,
