@@ -45,11 +45,10 @@
 <section class="usa-grid">
     <div class="input-field usa-width-one-fourth">
         <label for="{{ 'congress-code-' + idPath }}">Congress</label>
-        <input id="{{ 'congress-code-' + idPath }}" type="number" name="congressCode" ng-model="authorization.publicLaw.congressCode" ng-minlength="3" ng-maxlength="3" required>
+        <input id="{{ 'congress-code-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-model="authorization.publicLaw.congressCode" ng-minlength="3" ng-maxlength="3" required>
         <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.congressCode.$dirty">
             <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.required">A Congress Code must be filled.</span>
-            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.number">The Congress Code must be a number.</span>
-            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.minlength || gsavm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
+            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.pattern || gsavm.form.{{formPath}}.congressCode.$error.minlength || gsavm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
         </div>
     </div>
     <div class="input-field usa-width-one-fourth">
