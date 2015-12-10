@@ -52,6 +52,7 @@
     function createProgram(Program) {
         var program = new Program();
         program.agencyId = "REI Test Agency";
+        program._id = null;
         return program;
     }
     function getProgram($stateParams, Program) {
