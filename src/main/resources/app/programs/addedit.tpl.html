@@ -328,12 +328,15 @@
                         </tr>
                     </table>
                     <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.environmentalImpact.flag=='yes'">
-                        <input type="checkbox" id="preappCoord3question1statement" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.statement">
-                        <label for="preappCoord3question1statement">An environmental impact statement is required for this program.</label>
-                        <input type="checkbox" id="preappCoord3question1assessment" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.assessment">
-                        <label for="preappCoord3question1assessment">An environmental impact assessment is required for this program.</label>
+                        <div ng-repeat="reportType in gsavm.types.reportTypes track by reportType">
+                            <input type="checkbox" id="{{reportType + '-flag'}}"
+                                   ng-model="reportFlag"
+                                   ng-checked="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag === gsavm.choices['yes_no'].yes.code"
+                                   ng-change="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag = reportFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code"
+                                   trigger-click-on-enter>
+                            <label for="{{reportType + '-flag'}}">An environmental impact <span type="text" ng-bind="reportType"></span> is required for this program.</label>
+                        </div>
                     </div>
-
                     <p id="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required" >*</span></p>
                     <table style="margin:0px">
                         <tr>
@@ -364,7 +367,7 @@
                     <label for="applProc3">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements
                         for Federal Awards apply to this program?</label>
                 </div>
-                <div class="input-field" ng-show="gsavm.program.application.procedures.questions.flag">
+                <div class="input-field">
                     <label for="applProc3other">Other Application Procedures:</label>
                     <textarea id="applProc3other" name="applProc3other" ng-model="gsavm.program.application.procedures.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.application.procedures.questions.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
@@ -402,21 +405,54 @@
                         </tr>
                     </table>
                 </div>
-                <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag">
+                <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
+                    <div ng-repeat="deadline in gsavm.program.application.deadlines.submission.deadlines" style="background-color:#F1FAE6;padding:4px;margin-bottom:8px;">
                     <table style="margin: 0px;">
                         <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">Deadline Start Date:</td>
-                            <td style="padding:0px;vertical-align:top;border:0px">Deadline End Date:</td>
+                            <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
+                            <td style="padding:4px;vertical-align:top;border:0px">Deadline End Date:</td>
                         </tr>
                         <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">Enter the deadline start or fixed date</td>
-                            <td style="padding:0px;vertical-align:top;border:0px">You may leave blank if the deadline is one fixed date</td>
+                            <td style="padding:4px;vertical-align:top;border:0px">Enter the deadline start or fixed date</td>
+                            <td style="padding:4px;vertical-align:top;border:0px">You may leave blank if the deadline is one fixed date</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:4px;vertical-align:top;border:0px">
+                                <div class="col-md-6">
+                                    <p class="input-group">
+                                        <input type="date" class="form-control" uib-datepicker-popup is-open="status.opened"
+                                               data-ng-model="deadline.start"
+                                               min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
+                            </td>
+                            <td style="padding:4px;vertical-align:top;border:0px">
+                                <div class="col-md-6">
+                                    <p class="input-group">
+                                        <input type="date" class="form-control" uib-datepicker-popup is-open="status.opened"
+                                               data-ng-model="deadline.end"
+                                               min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                                               date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <br/>
                     Description:<br/>
                     Optionally provide a description for this deadline<br/>
-                    <input type="text" id="deadlineDesc" name="deadlineDesc" ng-model="gsavm.program.application.deadlines.submission.description">
+                    <input type="text" id="deadlineDesc" name="deadlineDesc" ng-model="deadline.description">
+                    <br/>
+                    <button type="button" ng-click="gsavm.removeDeadline($index)">Delete</button>
+                    </div>
+                    <button type="button" ng-click="gsavm.addDeadline()">Add New Deadline</button>
                     <br/>
                     <label for="applProc3other">Other Deadline Procedures:</label>
                     <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
@@ -493,7 +529,7 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <label for="renewalTime3other">Other Appeals Information:</label>
+                    <label for="renewalTime3other">Other Renewals Information:</label>
                     <textarea id="renewalTime3other" name="renewalTime3other" ng-model="gsavm.program.application.deadlines.renewal.otherInfo.content" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.renewal.otherInfo.content"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>

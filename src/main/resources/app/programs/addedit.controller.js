@@ -17,7 +17,9 @@
                 { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization },
                 { arrayName: 'accountcodes', fnBaseName: 'AccountCode' },
                 { arrayName: 'obligations', fnBaseName: 'Obligation'},
-                { arrayName: 'tafscodes', fnBaseName: 'TAFSCode'}
+                { arrayName: 'tafscodes', fnBaseName: 'TAFSCode'},
+                { arrayName: 'reports', fnBaseName: 'Report'},
+                { arrayName: 'deadlines', fnBaseName: 'Deadline'}
             ],
             DICTIONARIES = [
                 'functional_codes',
@@ -51,6 +53,12 @@
                 obligType: 'Estimate'
             }
         ];
+        vm.types = {
+            reportTypes: [
+                'statement',
+                'assessment'
+            ]
+        }
 
         angular.forEach(vm.fyTpls, function(tpl){
             tpl.idName = tpl.name.replace(/\s/g, '-');
@@ -137,6 +145,7 @@
         vm.addAmendment = addAmendment;
         vm.removeAmendment = removeAmendment;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
+        vm.getItemFromType = getItemFromType;
         vm.log = function($item, $model) {
             console.log($item);
         }
@@ -202,6 +211,9 @@
         }
 
         function getArray(arrayName){
+            if (arrayName.toString()=='deadlines') {
+                return  vm.program.application.deadlines.submission[arrayName] || (vm.program.application.deadlines.submission[arrayName] = []);
+            }
             return  vm.program[arrayName] || (vm.program[arrayName] = []);
         }
 
@@ -258,6 +270,23 @@
             });
 
             return hasFundedProjects;
+        }
+
+        function getItemFromType(array, type) {
+            var item;
+
+            angular.forEach(array, function(arrItem){
+                if(arrItem.type === type)
+                    item = arrItem;
+            });
+            if(!item) {
+                item = {
+                    type: type
+                };
+                array.push(item);
+            }
+
+            return item;
         }
     }
 
