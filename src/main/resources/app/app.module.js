@@ -37,7 +37,7 @@
     }, applyExtensions);
 
     function applyExtensions(fn, name){
-        var jqLite = angular.element;
+        var jqLite = window.angular.element;
         jqLite.prototype[name] = function(arg1, arg2) {
             var value;
             for(var i=0; i < this.length; i++) {
@@ -50,5 +50,8 @@
             }
             return value == undefined ? this : value;
         }
+    }
+    window.String.prototype.capitalize = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
     }
 })();

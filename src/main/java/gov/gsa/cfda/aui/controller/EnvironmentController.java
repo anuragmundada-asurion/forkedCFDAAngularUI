@@ -17,7 +17,7 @@ import java.util.UUID;
 @ComponentScan
 public class EnvironmentController {
 
-    final String angularTemplate = "'use strict'\nangular.module('app.settings', []).constant('env', %s );";
+    final String angularTemplate = "'use strict';\nangular.module('app.settings', []).constant('env', %s );";
 
     final String programsApiEnvName = "pub.api.programs";
 
@@ -28,7 +28,11 @@ public class EnvironmentController {
     public String getEnvVariables() throws Exception {
         JSONObject json = new JSONObject();
         //Hardcoded value for now until env variable on dev site is modified.
-        json.put(programsApiEnvName,/*environment.getProperty(programsApiEnvName)*/ "http://gsaiae-dev02.reisys.com:89");
+        json.put(programsApiEnvName, getProgramApiUrl());
         return String.format(angularTemplate, json);
+    }
+
+    private String getProgramApiUrl() {
+        return environment.getProperty(programsApiEnvName);
     }
 }

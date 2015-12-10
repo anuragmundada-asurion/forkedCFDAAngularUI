@@ -48,13 +48,13 @@
                 <h3>040 Authorization</h3>
                 <!--Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>-->
                 <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isAuthorization track by gsavm.exps.generateAuthKey(authorization)">
-                    <div ng-form ng-init="formPath='authorization'+$index;idPath=formPath;parentAuth=authorization" name="gsavm.form.{{formPath}}" class="sub-form">
+                    <div ng-form ng-init="formType='authorization';formPath=formType+$index;idPath=formPath;parentAuth=authorization" name="gsavm.form.{{formPath}}" class="sub-form">
                         <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                         <hr>
                         <label>Amendments</label>
                         <section class="usa-grid">
                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
-                                <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
+                                <div ng-form ng-init="formType='amendment';formPath=formPath +'.'+formType+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
                                     <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                     <button type="button" ng-click="gsavm.removeAmendment(authorization)">Delete</button>
                                 </div>
@@ -191,9 +191,9 @@
                 <div class="input-field">
                     <label>300 Subject Terms<span class="required" >*</span></label>
                     <ui-select multiple ng-model="gsavm.program.subjectTerms" name="subjectTerms" theme="select2" style="width: 800px;" required-Length='{ "min": 1 }'>
-                        <ui-select-match placeholder="Select subject term...">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search }">
-                            <div ng-bind-html="item.value | highlight: $select.search"></div>
+                        <ui-select-match placeholder="Select subject term..."><span style="text-transform: capitalize;">{{$item.value}}</span></ui-select-match>
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search } | orderBy:[gsavm.groupByFns.multiPickerGroupByFn,'value']">
+                            <div style="text-transform: capitalize;" ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.subjectTerms.$dirty">

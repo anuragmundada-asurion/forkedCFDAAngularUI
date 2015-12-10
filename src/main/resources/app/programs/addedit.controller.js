@@ -30,6 +30,8 @@
                 'beneficiary_types'
             ];
         vm.currentStep = null; //Must set to null due to a bug in angular-wizard
+        if(!vm._id) vm._id = null; //Must set to fix filtering bug of undefined properties in Angular's $filter
+
         vm.isEdit = $state.is('editProgram');
 
         vm.program = program;

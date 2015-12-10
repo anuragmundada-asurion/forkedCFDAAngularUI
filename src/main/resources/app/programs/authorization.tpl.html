@@ -1,5 +1,5 @@
 <section class="usa-grid">
-    <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled Authorization ' + ($index + 1))}}</h3>
+    <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled ' + formType.capitalize() + ' ' + ($index + 1))}}</h3>
 </section>
 <section class="usa-grid">
     <div class="input-field usa-width-one-fourth">
