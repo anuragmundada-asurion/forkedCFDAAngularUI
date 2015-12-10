@@ -33,6 +33,6 @@ public class EnvironmentController {
     }
 
     private String getProgramApiUrl() {
-        return environment.getProperty(programsApiEnvName);
+        return "http://gsaiae-dev02.reisys.com:89"; //environment.getProperty(programsApiEnvName);
     }
 }
