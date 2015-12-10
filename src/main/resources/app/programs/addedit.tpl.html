@@ -84,7 +84,7 @@
                     </p>-->
                     <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" theme="select2" style="width:800px" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.code as item in gsavm.choices['assistance_type'] | filter: {value: $select.search}">
+                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -150,7 +150,7 @@
                         </ui-select-choices>
                     </ui-select>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.relatedTo.$dirty">
-                        <span ng-show="gsavm.form.functionalCodes.$error.requiredLength">You need to select at least one related Program.</span>
+                        <span ng-show="gsavm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
                     </div>
                 </div>
             </section>
@@ -210,7 +210,7 @@
                     <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
                     <ui-select id="eligibleApplicants" name="eligibleApplicants" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.types" style="width:800px;" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_types'] track by item.element_id | filter:$select.search">
+                        <ui-select-choices repeat="item.code as item in gsavm.choices['applicant_types'] | filter:$select.search">
                             <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -223,7 +223,7 @@
                     <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
                     <ui-select id="useOfAssistance" name="useOfAssistance" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"  style="width:800px;" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_usage_types'] track by item.element_id | filter:$select.search">
+                        <ui-select-choices repeat="item.code as item in gsavm.choices['assistance_usage_types'] | filter:$select.search">
                             <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
