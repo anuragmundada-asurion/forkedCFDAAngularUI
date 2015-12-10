@@ -679,6 +679,14 @@
                     <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
                         <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                     </div>
+                    <label for="assistanceAwarded3">How is the assistance awarded and/or released?</label>
+                    <select id="assistanceAwarded3" name="assistanceAwarded3" ng-model="gsavm.program.assistance.limitation.awarded">
+                        <option value=''></option>
+                        <option value='lumpSum'>Lump Sum</option>
+                        <option value='quarterly'>Quarterly</option>
+                        <option value='letterOfCredit'>By Letter of Credit</option>
+                        <option value='other'>Other</option>
+                    </select>
                 </div>
                 <div class="input-field">
                     <label for="criteriaProposals3">180 Criteria for Selecting Proposals</label>
