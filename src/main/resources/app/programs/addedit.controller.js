@@ -29,7 +29,7 @@
                 'assistance_usage_types',
                 'beneficiary_types'
             ];
-
+        vm.currentStep = null; //Must set to null due to a bug in angular-wizard
         vm.isEdit = $state.is('editProgram');
 
         vm.program = program;
@@ -116,9 +116,7 @@
         vm.removeAmendment = removeAmendment;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
         vm.getItemFromType = getItemFromType;
-        vm.log = function($item, $model) {
-            console.log($item);
-        }
+        vm.revealValidations = revealValidations;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -240,6 +238,14 @@
             });
 
             return hasFundedProjects;
+        }
+
+        function revealValidations() {
+            var currentStep = vm.currentStep,
+                validationFlag = vm.validationFlag || (vm.validationFlag = {});
+
+            validationFlag[currentStep] = true;
+            return true;
         }
 
         function getItemFromType(array, type) {

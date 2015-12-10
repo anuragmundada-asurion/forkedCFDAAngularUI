@@ -3,8 +3,8 @@
         <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
         <field-finder-searchbox></field-finder-searchbox>
     </section>
-    <wizard template="/partials/programs/addedit-wizard.tpl.html" edit-mode="true">
-        <wz-step title="General Information">
+    <wizard template="/partials/programs/addedit-wizard.tpl.html" current-step="gsavm.currentStep" edit-mode="true">
+        <wz-step canexit="gsavm.revealValidations" title="General Information">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 1: General Information</h2>
             <section field-finder-bookmark="000 Intro" class="usa-grid">
                 <div class="input-field usa-width-one-fourth">
@@ -16,7 +16,7 @@
                     <select id="sub-tier-agency" name="subTierAgency" ng-model="gsavm.$program.subTierAgency" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
                         <option value='' disabled style="display:none">Please select a Sub-Tier Agency</option>
                     </select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.subTierAgency.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.subTierAgency.$dirty">
                         <span ng-show="gsavm.form.subTierAgency.$error.required">You must select a Sub-Tier Agency.</span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <select id="office" name="office" ng-model="gsavm.$program.office" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
                         <option value='' disabled style="display:none">Please select an Office</option>
                     </select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.office.$dirty">
                         <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
                     </div>
                 </div>
@@ -33,14 +33,14 @@
             <div class="input-field" field-finder-bookmark>
                 <label for="title">010 Program Title<span class="required" >*</span></label>
                 <input type="text" id="title" name="title" ng-model="gsavm.program.title" required>
-                <div ng-show="gsavm.form.$submitted || gsavm.form.title.$dirty">
+                <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.title.$dirty">
                     <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                 </div>
             </div>
             <div class="input-field" field-finder-bookmark>
                 <label for="alternativeName">020 Popular Name</label>
                 <input type="text" id="alternativeName" name="alternativeName" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
-                <div ng-show="gsavm.form.$submitted || gsavm.form.alternativeName.$dirty">
+                <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.alternativeName.$dirty">
                     <span ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <label for="objective">050 Objectives<span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <textarea id="objective" name="objective" ng-model="gsavm.program.objective" class="usa-grid-full" required></textarea>
-                <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
+                <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.objective.$dirty">
                     <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceTypes.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.assistanceTypes.$dirty">
                         <span ng-show="gsavm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <!--<p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>-->
                 <label for="usageRulesContent">Describe how assistance can potentially be used<span class="required" >*</span></label>
                 <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" class="usa-grid-full" required></textarea>
-                <div ng-show="gsavm.form.$submitted || gsavm.form.usageRulesContent.$dirty">
+                <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.usageRulesContent.$dirty">
                     <span ng-show="gsavm.form.usageRulesContent.$error.required">You must describe how assistance can potentially be used.</span>
                 </div>
                 <div class="input-field">
@@ -108,7 +108,7 @@
                 <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="restrictions">Please provide the restrictions:<span class="required" >*</span></label>
                     <textarea id="restrictions" name="restrictions" ng-model="gsavm.program.usage.restrictions.content" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.restrictions.$dirty">
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                 <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="discretionaryFund">Discretionary Funds<span class="required" >*</span></label>
                     <textarea id="discretionaryFund" name="discretionaryFund" ng-model="gsavm.program.usage.discretionaryFund.content" class="usa-grid-full" ng-required="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.discretionaryFund.$dirty">
                         <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                 <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="loanTerms">Loan Terms<span class="required" >*</span></label>
                     <textarea id="loanTerms"  name="loanTerms" ng-model="gsavm.program.usage.loanTerms.content" class="usa-grid-full" ng-required="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.loanTerms.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.loanTerms.$dirty">
                         <span ng-show="gsavm.form.loanTerms.$error.required">You must provide the loan terms.</span>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                             <div ng-bind-html="item.title | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.relatedTo.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.relatedTo.$dirty">
                         <span ng-show="gsavm.form.functionalCodes.$error.requiredLength">You need to select at least one related Program.</span>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                             <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
                             <label for="funded-projects-example-{{fyTpl.idName}}">{{fyTpl.type}}<span class="required" ng-show="fyTpl.isRequired">*</span></label>
                             <textarea id="funded-projects-example-{{fyTpl.idName}}" name="value" ng-model="project[fyTpl.varName]" class="usa-grid-full" ng-required="gsavm.uiLogic.fundedProjectsExampleFlag && fyTpl.isRequired"></textarea>
-                            <div ng-show="gsavm.form.$submitted || gsavm.form.projects[fyTpl.varName].value.$dirty">
+                            <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.projects[fyTpl.varName].value.$dirty">
                                 <span ng-show="gsavm.form.projects[fyTpl.varName].value.$error.required">You must provide information for '{{fyTpl.name}}'.</span>
                             </div>
                         </ng-form>
@@ -182,7 +182,7 @@
                             <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.functionalCodes.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.functionalCodes.$dirty">
                         <span ng-show="gsavm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
                     </div>
                 </div>
@@ -196,13 +196,13 @@
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.subjectTerms.$dirty">
+                    <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.subjectTerms.$dirty">
                         <span ng-show="gsavm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
                     </div>
                 </div>
             </section>
         </wz-step>
-        <wz-step title="Eligibility / Qualifications">
+        <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 2: Eligibility / Qualifications</h2>
             <section field-finder-bookmark="080 Eligibility Requirements">
                     <h4>081 Applicant Eligibility</h4>
@@ -215,7 +215,7 @@
                             </ui-select-choices>
                         </ui-select>
 
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.eligibleApplicants.$dirty">
+                        <div ng-show="gsavm.form.$submit || gsavm.form.eligibleApplicants.$dirty">
                             <span ng-show="gsavm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
                         </div>
                     </div>
@@ -228,13 +228,13 @@
                             </ui-select-choices>
                         </ui-select>
 
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.useOfAssistance.$dirty">
+                        <div ng-show="gsavm.form.$submit || gsavm.form.useOfAssistance.$dirty">
                             <span ng-show="gsavm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
                         </div>
                         <label for="assistanceAdditionalInfo">Additional Information<span class="required" >*</span></label>
                         <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
                         </textarea>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.assistanceAdditionalInfo.$dirty">
+                        <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.assistanceAdditionalInfo.$dirty">
                             <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
                     </div>
@@ -249,13 +249,13 @@
                                <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.beneficiaryEligibility.$dirty">
+                        <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryEligibility.$dirty">
                             <span ng-show="gsavm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
                         </div>
                         <label for="beneficiaryAdditionalInfo">Additional Information<span class="required" >*</span></label>
                         <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" ng-model="gsavm.program.eligibility.beneficiary.additionalInfo.content" required>
                         </textarea>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.beneficiaryAdditionalInfo.$dirty">
+                        <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryAdditionalInfo.$dirty">
                             <span ng-show="gsavm.form.beneficiaryAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
                     </div>
@@ -292,9 +292,9 @@
                     </div>
                 </div>
                 </section>
-            <input type="submit" wz-next value="Continue" />
+            <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step title="How to Apply">
+        <wz-step canexit="gsavm.revealValidations" title="How to Apply">
             <div>
                 <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section 3: How to Apply</h2>
                 <div class="input-field" field-finder-bookmark>
@@ -681,9 +681,9 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" wz-next value="Continue" />
+            <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step title="Post Award Requirements">
+        <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 4: Post Award Requirements</h2>
             <h3>110 Post Assistance Requirements</h3>
             <section field-finder-bookmark="111 Reports">
@@ -924,9 +924,9 @@
                     </div>
                 </div>
             </section>
-            <input type="submit" wz-next value="Continue" />
+            <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step title="Financial Information and Accomplishments">
+        <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments">
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Program - Section 5: Financial Information and Accomplishments</h2>
             <section field-finder-bookmark="">
                 <div class="input-field">
@@ -983,13 +983,13 @@
             </section>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
-        <wz-step title="Contact Information">
+        <wz-step canexit="gsavm.revealValidations" title="Contact Information">
             <div>Placeholder</div>
-            <input type="submit" wz-next value="Continue" />
+            <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step title="Review">
+        <wz-step canexit="gsavm.revealValidations" title="Review">
             <div>Placeholder</div>
-            <input type="submit" wz-next value="Continue" />
+            <input type="submit" value="Submit" />
         </wz-step>
     </wizard>
     <button type="button" ng-click="gsavm.save()">Save</button>
