@@ -182,7 +182,7 @@
 
         function getArray(arrayName){
             if (arrayName.toString()=='deadlines') {
-                return  vm.program.application.deadlines.submission[arrayName] || (vm.program.application.deadlines.submission[arrayName] = []);
+                return  vm.program.application.deadlines.submission.list || (vm.program.application.deadlines.submission.list = []);
             }
             return  vm.program[arrayName] || (vm.program[arrayName] = []);
         }
