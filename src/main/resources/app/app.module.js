@@ -11,7 +11,8 @@
         'duScroll',
         'smart-table',
         'mgo-angular-wizard',
-        'ui.select'
+        'ui.select',
+        'ui.bootstrap'
     ];
 
     angular.module('app', requiredModules);
