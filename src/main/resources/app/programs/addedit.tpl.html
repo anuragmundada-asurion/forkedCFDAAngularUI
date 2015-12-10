@@ -343,18 +343,18 @@
                                 &nbsp;&nbsp;
                             </td>
                             <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.flag" id="preappCoord3question2yes" value="yes"/>
+                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2yes" value="yes"/>
                                 <label for="preappCoord3question2yes">Yes</label>
                             </td>
                             <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.flag" id="preappCoord3question2no" value="no"/>
+                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2no" value="no"/>
                                 <label for="preappCoord3question2no">No</label>
                             </td>
                         </tr>
                     </table>
-                    <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.questions.flag=='yes'">
+                    <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag=='yes'">
                         <label for="preappCoord3question2info">Additional Information:</label>
-                        <textarea id="preappCoord3question2info" name="preappCoord3question2info" ng-model="gsavm.program.preApplication.coordination.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
+                        <textarea id="preappCoord3question2info" name="preappCoord3question2info" ng-model="gsavm.program.preApplication.coordination.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                             <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                         </div>
@@ -362,13 +362,13 @@
                 </div>
                 <div class="input-field">
                     <label for="applProc3">092 Application Procedures</label>
-                    <input type="checkbox" id="applProc3" ng-model="gsavm.program.application.procedures.questions.flag" trigger-click-on-enter>
+                    <input type="checkbox" id="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircular.flag" trigger-click-on-enter>
                     <label for="applProc3">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements
                         for Federal Awards apply to this program?</label>
                 </div>
                 <div class="input-field">
                     <label for="applProc3other">Other Application Procedures:</label>
-                    <textarea id="applProc3other" name="applProc3other" ng-model="gsavm.program.application.procedures.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.application.procedures.questions.flag"></textarea>
+                    <textarea id="applProc3other" name="applProc3other" ng-model="gsavm.program.application.procedures.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.application.procedures.questions.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                         <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                     </div>
@@ -405,7 +405,7 @@
                     </table>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
-                    <div ng-repeat="deadline in gsavm.program.application.deadlines.submission.deadlines" style="background-color:#F1FAE6;padding:4px;margin-bottom:8px;">
+                    <div ng-repeat="deadline in gsavm.program.application.deadlines.submission.list" style="background-color:#F1FAE6;padding:4px;margin-bottom:8px;">
                     <table style="margin: 0px;">
                         <tr>
                             <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
@@ -454,7 +454,7 @@
                     <button type="button" ng-click="gsavm.addDeadline()">Add New Deadline</button>
                     <br/>
                     <label for="applProc3other">Other Deadline Procedures:</label>
-                    <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
+                    <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                         <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                     </div>
@@ -583,7 +583,7 @@
                             </tr>
                             <tr>
                                 <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaInfo3">Additional Info:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo" class="usa-grid-full"></textarea>
+                                <td style="padding:0px;vertical-align:top;border:0px"><textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo.content" class="usa-grid-full"></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -636,7 +636,7 @@
                         </select>
                         <div class="input-field">
                             <label for="matchingOtherInfo3">Other Matching Requirements Information:</label>
-                            <textarea id="matchingOtherInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.matching.otherInfo" class="usa-grid-full" ng-required="gsavm.program.assistance.matching.otherInfo"></textarea>
+                            <textarea id="matchingOtherInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.matching.otherInfo.content" class="usa-grid-full" ng-required="gsavm.program.assistance.matching.otherInfo.content"></textarea>
                             <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                                 <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                             </div>
@@ -665,7 +665,7 @@
                     <div class="input-field" ng-show="gsavm.program.assistance.moe.flag=='yes'">
                         <div class="input-field">
                             <label for="MOEAddInfo3">Please enter any additional information below:</label>
-                            <textarea id="MOEAddInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.moe.additionalInfo" class="usa-grid-full" ng-required="gsavm.program.assistance.moe.additionalInfo"></textarea>
+                            <textarea id="MOEAddInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.moe.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.assistance.moe.additionalInfo.content"></textarea>
                             <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                                 <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                             </div>
