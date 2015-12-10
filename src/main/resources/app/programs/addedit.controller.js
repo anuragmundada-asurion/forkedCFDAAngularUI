@@ -119,6 +119,7 @@
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
         vm.getItemFromType = getItemFromType;
         vm.revealValidations = revealValidations;
+        vm.openDatepicker = openDatepicker;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -248,6 +249,17 @@
 
             validationFlag[currentStep] = true;
             return true;
+        }
+
+        function openDatepicker($event, datepickerName) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            var datepickers = vm.datepickers || (vm.datepickers = {}),
+                datepicker = datepickers[datepickerName] || (datepickers[datepickerName] = {});
+
+            datepicker.opened = true;
+
         }
 
         function getItemFromType(array, type) {

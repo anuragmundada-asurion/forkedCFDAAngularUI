@@ -43,7 +43,10 @@ gulp.task('vendor-css-files', function () {
         .pipe(minify())
         .pipe(gulp.dest('target/classes/static/vendor/css'));
 });
-
+gulp.task('vendor-font-files', function() {
+    gulp.src(mainBowerFiles('**/*.{otf,eot,svg,ttf,woff,woff2}'))
+        .pipe(gulp.dest('target/classes/static/vendor/fonts'));
+})
 gulp.task('app-js-files', function () {
     //Read App JS files and combine
     appJs = gulp.src([
@@ -92,5 +95,5 @@ gulp.task('gzip', function() {
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('app-static-files', 'vendor-js-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
+    runSequence('app-static-files', 'vendor-js-files', 'vendor-font-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
 });
