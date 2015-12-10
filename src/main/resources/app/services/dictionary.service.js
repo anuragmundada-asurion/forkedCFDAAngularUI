@@ -64,6 +64,7 @@
                 pushLastItem(element, itemArray);
                 element.parent = item;
             });
+            item.elements = undefined;
             return item;
         }
 
