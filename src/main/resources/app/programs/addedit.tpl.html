@@ -1170,30 +1170,26 @@
                     <h3>150 Information Contacts<span class="required" >*</span></h3>
                 </div>
                 <div class="input-field">
-                    <p id="office6">151 Regional or Local Office<span class="required" >*</span>:</p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.contacts.flag" id="office6regional" value="regional"/>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="office6">151 Regional or Local Office<span class="required" >*</span>:</label>
+                        <ul class="usa-unstyled-list">
+                            <li>
+
+                                <input type="radio" name="office6" ng-model="gsavm.program.contacts.flag" id="office6regional" value="regional"/>
                                 <label for="office6regional">See Regional Agency Offices</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.contacts.flag" id="office6none" value="none"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="office6" ng-model="gsavm.program.contacts.flag" id="office6none" value="none"/>
                                 <label for="office6none">None</label>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="input-field" style="padding-left:20px;">
-                        <label for="office6info">Additional Information:</label>
-                        <textarea id="office6info" name="office6info" ng-model="gsavm.program.contacts.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.contacts.additionalInfo.content"></textarea>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                            <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
-                        </div>
-                        <br/>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <label for="office6info">Additional Information:</label>
+                    <textarea id="office6info" name="office6info" ng-model="gsavm.program.contacts.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.contacts.additionalInfo.content"></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
+                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                     </div>
+                    <br/>
                 </div>
                 <div class="input-field">
                     <p id="headquarters6">152 Headquarters Office:</p>
