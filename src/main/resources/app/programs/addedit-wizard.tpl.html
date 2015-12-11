@@ -1,8 +1,8 @@
 <div>
-    <section id="" sticky sticky-class="status-indicator-fixed">
-        <ol class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
-            <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
-                <a ng-click="goTo(step);"><span class="steps-num"><span class="steps-num-badge">{{$index + 1}}</span></span>{{step.title || step.wzTitle}}</a>
+    <section id="" sticky sticky-class="status-indicator-fixed" class="steps-indicator-container">
+        <ol class="steps-indicator steps-{{getEnabledSteps().length}} usa-grid-full" ng-if="!hideIndicators">
+            <li ng-repeat="step in getEnabledSteps()">
+                <a ng-click="goTo(step);"><span class="steps-num"><span class="steps-num-badge completed" ng-class="{'in-progress': !step.completed && !step.selected, current: step.selected, done: step.completed && !step.selected, editing: step.selected && step.completed}">{{$index + 1}}</span></span><span class="steps-title">{{step.title || step.wzTitle}}</span></a>
             </li>
         </ol>
     </section>

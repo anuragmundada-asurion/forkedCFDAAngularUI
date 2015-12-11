@@ -24,7 +24,9 @@
 
             console.log(tableState);
 
-            vm.programs = Program.query();
+            vm.programs = Program.query({
+                limit: 100
+            });
 
             vm.programs.$promise.then(function(){
                 vm.isLoading = false;

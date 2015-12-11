@@ -1,6 +1,8 @@
+.steps-indicator-container{
+  background-color:$color-gray-lightest;
+}
 .steps-indicator {
   padding-top: ($badge-dimensions * 4) / 3;
-  background-color: $color-gray-lightest;
   li {
     padding-top: ($badge-dimensions * 2) / 3;
     &::before {
@@ -10,6 +12,13 @@
       .steps-num-badge {
         background-color: $color-primary-darkest;
       }
+    }
+    .steps-title {
+      display: block;
+      font-size: 16px;
+      font-weight: normal;
+      margin-top: 15px;
+      text-transform: none;
     }
   }
 }
@@ -36,15 +45,9 @@
     background-color: $badge-color;
   }
   .steps-num-badge {
+    @extend .section-circle;
     display: table-cell;
     box-sizing: border-box;
-    width: $badge-dimensions;
-    height: $badge-dimensions;
-    padding: $badge-padding;
-    border-radius: 50%;
-    vertical-align: middle;
-    text-align: center;
-    background-color: $badge-color;
-    transition: background-color 0.5s;
+    transition: all .3s cubic-bezier(.55,0,.55,.2);
   }
 }

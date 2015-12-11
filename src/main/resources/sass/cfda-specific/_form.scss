@@ -13,4 +13,47 @@ form {
       margin-right: $form-header-element-spacing;
     }
   }
+  .sub-section {
+    > .input-field {
+      > label {
+        @extend h3;
+      }
+    }
+  }
+}
+
+.section-circle {
+  /* line-height: 40px; */
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  text-align: center;
+  font-family: "Source Sans Pro","Helvetica","Arial",sans-serif;
+  font-size: 18px;
+  border-width: 1px;
+  border-style: solid;
+  outline-radus: 50%;
+  &.in-progress {
+    background-color: $color-white;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+  &.completed {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+  &.review {
+    background-color: $color-limegreen;
+    color: $color-white;
+    border-color: $color-limegreen;
+  }
+  &.current {
+    background-color: $color-primary-darkest;
+    color: $color-white;
+    border-color: $color-primary-darkest;
+  }
 }
