@@ -246,7 +246,7 @@
                     <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
                     <ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types"  style="width:800px;" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] track by item.element_id | filter:$select.search">
+                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] | filter:$select.search">
                             <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
