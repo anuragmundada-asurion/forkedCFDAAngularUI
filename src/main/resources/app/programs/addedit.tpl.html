@@ -308,7 +308,7 @@
                            ng-change="gsavm.program.preApplication.coordination.flag = preappCoord3 ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code"
                            trigger-click-on-enter>
                     <label for="preappCoord3">Is any prior coordination or approval required with governmental or nongovernmental units
-                        prior to the submission of a formal application to the Federal funding agency?</label>
+                        prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
                 </div>
                 <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.flag === gsavm.choices['yes_no'].yes.code">
                     <p id="preappCoord3question1">Does this program require submission of environmental impact information?<span class="required" >*</span></p>
@@ -457,7 +457,7 @@
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
-                    <label for="approvalTime3">095 Range of Approval/Disapproval Time</label>
+                    <label for="approvalTime3">095 Range of Approval/Disapproval Time<span class="required" >*</span></label>
                     <select id="approvalTime3" name="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" required>
                         <option value='' disabled style="display:none">Please select a time period</option>
                         <option value='1to15'>From 1 to 15 days</option>
@@ -482,7 +482,7 @@
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
-                    <label for="appeals3">096 Appeals</label>
+                    <label for="appeals3">096 Appeals<span class="required" >*</span></label>
                     <select id="appeals3" name="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" required>
                         <option value='' disabled style="display:none">Please select a time period</option>
                         <option value='1to15'>From 1 to 15 days</option>
@@ -507,7 +507,7 @@
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
-                    <label for="renewals3">097 Renewals</label>
+                    <label for="renewals3">097 Renewals<span class="required" >*</span></label>
                     <select id="renewals3" name="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" required>
                         <option value='' disabled style="display:none">Please select a time period</option>
                         <option value='1to15'>From 1 to 15 days</option>
@@ -606,7 +606,7 @@
                         </tr>
                     </table>
                     <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
-                        <label for="matchingPercent3">Select the Percentage Below:</label>
+                        <label for="matchingPercent3">Select the Percentage Below<span class="required" >*</span>:</label>
                         <select id="matchingPercent3" name="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent">
                             <option value='' disabled style="display:none">Please select a percentage</option>
                             <option value='other'>Other</option>
@@ -670,13 +670,13 @@
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
-                    <label for="assistLimit3">102 Length and Time Phasing of Assistance<span class="required" >*</span></label>
-                    <p>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</p>
+                    <label for="assistLimit3">102 Length and Time Phasing of Assistance</label>
+                    <p>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></p>
                     <textarea id="assistLimit3" name="assistLimit3" ng-model="gsavm.program.assistance.limitation.content" class="usa-grid-full" required></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
                         <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                     </div>
-                    <label for="assistanceAwarded3">How is the assistance awarded and/or released?</label>
+                    <label for="assistanceAwarded3">How is the assistance awarded and/or released?<span class="required" >*</span></label>
                     <select id="assistanceAwarded3" name="assistanceAwarded3" ng-model="gsavm.program.assistance.limitation.awarded">
                         <option value=''></option>
                         <option value='lumpSum'>Lump Sum</option>
@@ -686,8 +686,8 @@
                     </select>
                 </div>
                 <div class="input-field">
-                    <label for="criteriaProposals3">180 Criteria for Selecting Proposals</label>
-                    <p id="criteriaProposals3">Is there criteria for selecting proposals?<span class="required" >*</span></p>
+                    <label for="criteriaProposals3">180 Criteria for Selecting Proposals<span class="required" >*</span></label>
+                    <p id="criteriaProposals3">Is there criteria for selecting proposals?</p>
                     <table style="margin:0px">
                         <tr>
                             <td style="padding:0px;vertical-align:top;border:0px">
@@ -709,7 +709,7 @@
                     </table>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
-                    <label for="xyz">Please describe criteria for selecting proposals:</label>
+                    <label for="xyz">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
                     <textarea id="xyz" name="xyz" ng-model="gsavm.program.application.selectionCriteria.content" class="usa-grid-full" ng-required="gsavm.program.application.selectionCriteria.content"></textarea>
                     <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
@@ -1196,8 +1196,6 @@
                     <label for="contact6">Select an Existing or New Contact:</label>
                     <select id="contact6" name="contact6" ng-model="gsavm.program.contacts.type" required>
                         <option value='' disabled style="display:none">Please select a contact</option>
-                        <option value='headquarter'>Headquarter</option>
-                        <option value='local'>Local</option>
                     </select>
 
                     <label for="title6">Title:</label>
