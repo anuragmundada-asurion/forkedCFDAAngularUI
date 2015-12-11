@@ -9,5 +9,5 @@ $badge-padding: 5px !default;
 $badge-color: $color-gray-light !default;
 $badge-font-color: $color-white !default;
 
-$layout-padding: 8px;
+$layout-padding: $grid-margins !default;
 $sub-form-margin: 10px;

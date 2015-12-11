@@ -63,7 +63,6 @@
                         var input = inputElements[i],
                             maskPart = input.$part,
                             mVal = valueParts[i].replace(/_/g,"");
-                        console.log(mVal);
                         input.val(mVal.substring(0, maskPart.length));
 
                     }

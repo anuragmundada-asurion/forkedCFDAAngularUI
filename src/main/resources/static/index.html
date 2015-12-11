@@ -7,6 +7,16 @@
     <!-- inject:css -->
     <!-- endinject -->
 
+    <!--[if IE 9]>
+    <script src="js/xdomain.min.js"></script>
+    <script type="text/javascript">
+        /*xdomain.debug = true
+        xdomain.slaves({
+            "http://10.0.2.2:8081": "/web/IE9/proxy.html"
+        });*/
+    </script>
+    <![endif]-->
+
     <!--[if lt IE 9]>
     <** inject:ie8-vendor:js **>
     <** endinject **>
@@ -20,7 +30,7 @@
 <body ng-app="app">
     <header ng-include="'/partials/layout/header.tpl.html'" class="header" role="banner">
     </header>
-    <div id="main" ui-view class="usa-grid-full" aria-live="polite" role="main">
+    <div id="main" ui-view aria-live="polite" role="main">
     </div>
     <footer ng-include="'/partials/layout/footer.tpl.html'" class="footer">
     </footer>
