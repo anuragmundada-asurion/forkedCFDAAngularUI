@@ -310,23 +310,23 @@
                     <label for="preappCoord3">Is any prior coordination or approval required with governmental or nongovernmental units
                         prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
                 </div>
-                <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.flag === gsavm.choices['yes_no'].yes.code">
-                    <p id="preappCoord3question1">Does this program require submission of environmental impact information?<span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.flag" id="preappCoord3question1yes" value="yes"/>
+                <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.flag === 'yes'">
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="environmentalImpact">Does this program require submission of environmental impact information?<span class="required" >*</span></label>
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="environmentalImpact" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.flag" id="preappCoord3question1yes" value="yes" ng-required="gsavm.program.preApplication.coordination.flag === 'yes'"/>
                                 <label for="preappCoord3question1yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.flag" id="preappCoord3question1no" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="environmentalImpact" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.flag" id="preappCoord3question1no" value="no" ng-required="gsavm.program.preApplication.coordination.flag === 'yes'"/>
                                 <label for="preappCoord3question1no">No</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.program.preApplication.coordination.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.environmentalImpact.$dirty)">
+                        <span ng-show="gsavm.form.environmentalImpact.$error.required">You must provide restrictions.</span>
+                    </div>
                     <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.environmentalImpact.flag=='yes'">
                         <div ng-repeat="reportType in gsavm.types.reportTypes track by reportType">
                             <input type="checkbox" id="{{reportType + '-flag'}}"
@@ -337,22 +337,22 @@
                             <label for="{{reportType + '-flag'}}">An environmental impact <span type="text" ng-bind="reportType"></span> is required for this program.</label>
                         </div>
                     </div>
-                    <p id="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2yes" value="yes"/>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required" >*</span></label>
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="preappCoord3question2" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2yes" value="yes" required/>
                                 <label for="preappCoord3question2yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2no" value="no"/>
+                            </li>
+                            <li >
+                                <input type="radio" name="preappCoord3question2" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2no" value="no" required/>
                                 <label for="preappCoord3question2no">No</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.preappCoord3question2.$dirty">
+                        <span ng-show="gsavm.form.preappCoord3question2.$error.required">You must provide restrictions.</span>
+                    </div>
                     <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag=='yes'">
                         <label for="preappCoord3question2info">Additional Information:</label>
                         <textarea id="preappCoord3question2info" name="preappCoord3question2info" ng-model="gsavm.program.preApplication.coordination.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
@@ -383,27 +383,28 @@
                     </div>
                 </div>
                 <div class="input-field">
-                    <label for="deadline3">094 Deadlines</label>
-                    <p id="deadline3">Is a deadline for submission of application available? <span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.deadlines.submission.flag" id="yes3" value="yes"/>
+                    <label>094 Deadlines</label>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="deadline3">Is a deadline for submission of application available? <span class="required" >*</span></label>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="deadline3" ng-model="gsavm.program.application.deadlines.submission.flag" id="yes3" value="yes" required/>
                                 <label for="yes3">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.deadlines.submission.flag" id="no3" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="deadline3" ng-model="gsavm.program.application.deadlines.submission.flag" id="no3" value="no" required/>
                                 <label for="no3">No</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.deadlines.submission.flag" id="contactHQ3" value="contactHQ"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="deadline3" ng-model="gsavm.program.application.deadlines.submission.flag" id="contactHQ3" value="contactHQ" required/>
                                 <label for="contactHQ3">Contact the headquarters or regional office, as appropriate for application deadlines</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.deadline3.$dirty">
+                        <span ng-show="gsavm.form.deadline3.$error.required">You must provide input.</span>
+                    </div>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
                     <div ng-repeat="deadline in gsavm.program.application.deadlines.submission.list" style="background-color:#F1FAE6;padding:4px;margin-bottom:8px;">
@@ -502,8 +503,8 @@
                 <div class="input-field">
                     <label for="appealsTime3other">Other Appeals Information:</label>
                     <textarea id="appealsTime3other" name="appealsTime3other" ng-model="gsavm.program.application.deadlines.appeal.otherInfo.content" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.appeal.otherInfo.content"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.appealsTime3other.$dirty">
+                        <span ng-show="gsavm.form.appealsTime3other.$error.required">You must provide input.</span>
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
@@ -527,87 +528,74 @@
                 <div class="input-field">
                     <label for="renewalTime3other">Other Renewals Information:</label>
                     <textarea id="renewalTime3other" name="renewalTime3other" ng-model="gsavm.program.application.deadlines.renewal.otherInfo.content" class="usa-grid-full" ng-required="gsavm.program.application.deadlines.renewal.otherInfo.content"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.renewalTime3other.$dirty">
+                        <span ng-show="gsavm.form.renewalTime3other.$error.required">You must provide input.</span>
                     </div>
                 </div>
                 <div class="input-field" field-finder-bookmark>
                     <h3>100 Assistance Consideration</h3>
                 </div>
                 <div class="input-field">
-                    <label for="statuatoryFormula3">101 Formula and Matching Requirements</label>
-                    <p id="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3yes" value="yes"/>
+                    <label>101 Formula and Matching Requirements</label>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></label>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="statuatoryFormula3" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3yes" value="yes" required/>
                                 <label for="statuatoryFormula3yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3no" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="statuatoryFormula3" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3no" value="no" required/>
                                 <label for="statuatoryFormula3no">No</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3NA" value="na"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="statuatoryFormula3" ng-model="gsavm.program.assistance.formula.flag" id="statuatoryFormula3NA" value="na" required/>
                                 <label for="statuatoryFormula3NA">Not Applicable</label>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="input-field" ng-show="gsavm.program.assistance.formula.flag=='yes'">
-                        <table style="margin:0px">
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaTitle3">Title:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><input type="text" id="formulaTitle3" name="formulaTitle3" ng-model="gsavm.program.assistance.formula.title"></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaChapter3">Chapter:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><input type="text" id="formulaChapter3" name="formulaChapter3" ng-model="gsavm.program.assistance.formula.chapter"></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaPart3">Part:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><input type="text" id="formulaPart3" name="formulaPart3" ng-model="gsavm.program.assistance.formula.part"></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaSubpart3">Subpart:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><input type="text" id="formulaSubpart3" name="formulaSubpart3" ng-model="gsavm.program.assistance.formula.subPart"></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaPublicLaw3">Public Law:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><input type="text" id="formulaPublicLaw3" name="formulaPublicLaw3" ng-model="gsavm.program.assistance.formula.publicLaw"></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:0px;vertical-align:top;border:0px"><label for="formulaInfo3">Additional Info:</label></td>
-                                <td style="padding:0px;vertical-align:top;border:0px"><textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo.content" class="usa-grid-full"></textarea>
-                                </td>
-                            </tr>
-                        </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.statuatoryFormula3.$dirty">
+                        <span ng-show="gsavm.form.statuatoryFormula3.$error.required">You must provide an answer.</span>
                     </div>
-                    <p id="matchingRequirements3">Does this program have matching requirements? <span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3yes" value="yes"/>
+                    <div class="input-field usa-grid" ng-show="gsavm.program.assistance.formula.flag=='yes'">
+                        <label for="formulaTitle3">Title:</label></td>
+                        <input type="text" id="formulaTitle3" name="formulaTitle3" ng-model="gsavm.program.assistance.formula.title"></td>
+                        <label for="formulaChapter3">Chapter:</label></td>
+                        <input type="text" id="formulaChapter3" name="formulaChapter3" ng-model="gsavm.program.assistance.formula.chapter"></td>
+                        <label for="formulaPart3">Part:</label></td>
+                        <input type="text" id="formulaPart3" name="formulaPart3" ng-model="gsavm.program.assistance.formula.part"></td>
+                        <label for="formulaSubpart3">Subpart:</label></td>
+                        <input type="text" id="formulaSubpart3" name="formulaSubpart3" ng-model="gsavm.program.assistance.formula.subPart"></td>
+                        <label for="formulaPublicLaw3">Public Law:</label></td>
+                        <input type="text" id="formulaPublicLaw3" name="formulaPublicLaw3" ng-model="gsavm.program.assistance.formula.publicLaw"></td>
+                        <label for="formulaInfo3">Additional Info:</label></td>
+                        <textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo.content" class="usa-grid-full"></textarea>
+                    </div>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="matchingRequirements3">Does this program have matching requirements? <span class="required" >*</span></label>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="matchingRequirements3" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3yes" value="yes" required/>
                                 <label for="matchingRequirements3yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3no" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="matchingRequirements3" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3no" value="no" required/>
                                 <label for="matchingRequirements3no">No</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3NA" value="na"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="matchingRequirements3" ng-model="gsavm.program.assistance.matching.flag" id="matchingRequirements3NA" value="na" required/>
                                 <label for="matchingRequirements3NA">Not Applicable</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.matchingRequirements3.$dirty">
+                        <span ng-show="gsavm.form.matchingRequirements3.$error.required">You must provide an answer.</span>
+                    </div>
                     <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
                         <label for="matchingPercent3">Select the Percentage Below<span class="required" >*</span>:</label>
-                        <select id="matchingPercent3" name="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent">
+                        <select id="matchingPercent3" name="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent" ng-required="gsavm.program.assistance.matching.flag ==='yes'">
                             <option value='' disabled style="display:none">Please select a percentage</option>
                             <option value='other'>Other</option>
                             <option value='5'>5</option>
@@ -639,26 +627,27 @@
                             </div>
                         </div>
                     </div>
-                    <p id="MOErequirements3">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3yes" value="yes"/>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="MOErequirements3">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></label>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="MOErequirements3" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3yes" value="yes" required/>
                                 <label for="MOErequirements3yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3no" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="MOErequirements3" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3no" value="no" required/>
                                 <label for="MOErequirements3no">No</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3NA" value="na"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="MOErequirements3" ng-model="gsavm.program.assistance.moe.flag" id="MOErequirements3NA" value="na" required/>
                                 <label for="MOErequirements3NA">Not Applicable</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.MOErequirements3.$dirty">
+                        <span ng-show="gsavm.form.MOErequirements3.$error.required">You must provide an answer.</span>
+                    </div>
                     <div class="input-field" ng-show="gsavm.program.assistance.moe.flag=='yes'">
                         <div class="input-field">
                             <label for="MOEAddInfo3">Please enter any additional information below:</label>
@@ -686,33 +675,35 @@
                     </select>
                 </div>
                 <div class="input-field">
-                    <label for="criteriaProposals3">180 Criteria for Selecting Proposals<span class="required" >*</span></label>
-                    <p id="criteriaProposals3">Is there criteria for selecting proposals?</p>
-                    <table style="margin:0px">
-                        <tr>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                &nbsp;&nbsp;
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3yes" value="yes"/>
+                    <label>180 Criteria for Selecting Proposals<span class="required" >*</span></label>
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="criteriaProposals3">Is there criteria for selecting proposals?</label>
+
+                        <ul class="usa-unstyled-list">
+                            <li>
+                                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3yes" value="yes" required/>
                                 <label for="criteriaProposals3yes">Yes</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3no" value="no"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3no" value="no" required/>
                                 <label for="criteriaProposals3no">No</label>
-                            </td>
-                            <td style="padding:0px;vertical-align:top;border:0px">
-                                <input type="radio" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3NA" value="na"/>
+                            </li>
+                            <li>
+                                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3NA" value="na" required/>
                                 <label for="criteriaProposals3NA">Not Applicable</label>
-                            </td>
-                        </tr>
-                    </table>
+                            </li>
+                        </ul>
+                    </fieldset>
+
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.criteriaProposals3.$dirty">
+                        <span ng-show="gsavm.form.criteriaProposals3.$error.required">You must provide an answer.</span>
+                    </div>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
-                    <label for="xyz">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
-                    <textarea id="xyz" name="xyz" ng-model="gsavm.program.application.selectionCriteria.content" class="usa-grid-full" ng-required="gsavm.program.application.selectionCriteria.content"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    <label for="criteriaProposals3Info">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
+                    <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content" class="usa-grid-full" ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
+                    <div ng-show="gsavm.program.application.selectionCriteria.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.criteriaProposals3Info.$dirty)">
+                        <span ng-show="gsavm.form.criteriaProposals3Info.$error.required">You must provide restrictions.</span>
                     </div>
                 </div>
             </div>
