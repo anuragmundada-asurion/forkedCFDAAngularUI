@@ -4,6 +4,11 @@
     &::before {
       content: '';
     }
+    &.editing {
+      .steps-num-badge {
+        background-color: $color-primary-darkest;
+      }
+    }
   }
 }
 
@@ -36,5 +41,6 @@
     vertical-align: middle;
     text-align: center;
     background-color: $badge-color;
+    transition: background-color 0.5s;
   }
 }
