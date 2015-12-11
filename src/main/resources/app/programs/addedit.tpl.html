@@ -1184,11 +1184,11 @@
                             </li>
                         </ul>
                     </fieldset>
-                    <label for="office6info">Additional Information:</label>
-                    <textarea id="office6info" name="office6info" ng-model="gsavm.program.contacts.additionalInfo.content" class="usa-grid-full" ng-required="gsavm.program.contacts.additionalInfo.content"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    <div ng-show="gsavm.form.office6.$dirty">
+                        <span ng-show="gsavm.form.office6.$error.required">You must provide an answer.</span>
                     </div>
+                    <label for="office6info">Additional Information:</label>
+                    <textarea id="office6info" name="office6info" ng-model="gsavm.program.contacts.additionalInfo.content" class="usa-grid-full" required></textarea>
                     <br/>
                 </div>
                 <div class="input-field">
@@ -1204,28 +1204,34 @@
                     <input type="text" id="title6" name="title6" ng-model="gsavm.program.contacts.title">
 
                     <label for="fullname6">Full Name<span class="required" >*</span>:</label>
-                    <input type="text" id="fullname6" name="fullname6" ng-model="gsavm.program.contacts.fullName">
+                    <input type="text" id="fullname6" name="fullname6" ng-model="gsavm.program.contacts.fullName" required>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.fullname6.$dirty">
+                        <span ng-show="gsavm.form.fullname6.$error.required">You must provide a full name.</span>
+                    </div>
 
                     <label for="email6">Email:</label>
                     <input type="text" id="email6" name="email6" ng-model="gsavm.program.contacts.email">
 
                     <label for="phone6">Phone<span class="required" >*</span>:</label>
-                    <input type="text" id="phone6" name="phone6" ng-model="gsavm.program.contacts.phone">
+                    <input type="text" id="phone6" name="phone6" ng-model="gsavm.program.contacts.phone" required>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.phone6.$dirty">
+                        <span ng-show="gsavm.form.phone6.$error.required">You must provide a phone number.</span>
+                    </div>
 
                     <label for="fax6">Fax:</label>
                     <input type="text" id="fax6" name="fax6" ng-model="gsavm.program.contacts.fax">
                     <br/>
                     Address:
                     <label for="address6">Street<span class="required" >*</span>:</label>
-                    <textarea id="address6" name="address6" ng-model="gsavm.program.contacts.address" class="usa-grid-full" ng-required="gsavm.program.contacts.address"></textarea>
-                    <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
-                        <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
+                    <textarea id="address6" name="address6" ng-model="gsavm.program.contacts.address" class="usa-grid-full" required></textarea>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.address6.$dirty">
+                        <span ng-show="gsavm.form.address6.$error.required">You must provide an address.</span>
                     </div>
                     <table style="margin:0px">
                         <tr>
                             <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
                                 <label for="city6">City<span class="required" >*</span>:</label>
-                                <input type="text" id="city6" name="city6" ng-model="gsavm.program.contacts.city">
+                                <input type="text" id="city6" name="city6" ng-model="gsavm.program.contacts.city" required>
                             </td>
                             <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
                                 <label for="state6">State<span class="required" >*</span>:</label>
@@ -1290,10 +1296,19 @@
                             </td>
                             <td style="padding:0px;vertical-align:top;border:0px">
                                 <label for="zip6">Zip<span class="required" >*</span>:</label>
-                                <input type="text" id="zip6" name="zip6" ng-model="gsavm.program.contacts.zip">
+                                <input type="text" id="zip6" name="zip6" ng-model="gsavm.program.contacts.zip" required>
                             </td>
                         </tr>
                     </table>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.city6.$dirty">
+                        <span ng-show="gsavm.form.city6.$error.required">You must provide a city.</span>
+                    </div>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.state6.$dirty">
+                        <span ng-show="gsavm.form.state6.$error.required || gsavm.form.state6 ===''">You must provide a state.</span>
+                    </div>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.zip6.$dirty">
+                        <span ng-show="gsavm.form.zip6.$error.required">You must provide a zip code.</span>
+                    </div>
 
                     <label for="country6">Country:</label>
                     <select id="country6" name="country6" ng-model="gsavm.program.contacts.country" required>
@@ -1454,6 +1469,9 @@
                         <option value='ZMB'>Zambia</option>
                         <option value='ZWE'>Zimbabwe</option>
                     </select>
+                    <div ng-show="gsavm.form.$submitted || gsavm.form.country6.$dirty">
+                        <span ng-show="gsavm.form.country6.$error.required">You must provide a country.</span>
+                    </div>
                     <br/>
                 </div>
                 <div class="input-field">
