@@ -12,7 +12,8 @@
         'smart-table',
         'mgo-angular-wizard',
         'ui.select',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'sticky'
     ];
 
     angular.module('app', requiredModules);

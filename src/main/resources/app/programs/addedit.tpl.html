@@ -1,5 +1,5 @@
-<form name="gsavm.form" class="usa-grid-full layout-padding" field-finder-form novalidate>
-    <section class="form-header">
+<form name="gsavm.form" field-finder-form novalidate>
+    <section class="usa-grid-full form-header">
         <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
         <field-finder-searchbox></field-finder-searchbox>
     </section>
@@ -246,7 +246,7 @@
                     <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
                     <ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types"  style="width:800px;" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] track by item.element_id | filter:$select.search">
+                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] | filter:$select.search">
                             <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
@@ -1025,9 +1025,9 @@
                                 <input type="checkbox" id="{{ 'salary-or-expense-' + idPath }}" ng-model="gsavm.uiLogic.salaryOrExpenseFlag[formPath]" ng-checked="obligation.questions.salary_or_expense.flag === gsavm.choices['yes_no'].yes.code" ng-change="obligation.questions.salary_or_expense.flag = gsavm.uiLogic.salaryOrExpenseFlag[formPath] ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter>
                                 <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?</label>
                             </div>
-                            <div class="input-field" ng-show="gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
+                            <div class="input-field" ng-show="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
                                 <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
-                                <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" style="width:800px" ng-required="gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
+                                <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" style="width:800px" ng-required="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
                                     <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
                                     <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
                                         <div ng-bind-html="item.value | highlight: $select.search"></div>
@@ -1145,15 +1145,15 @@
             <section field-finder-bookmark>
                 <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
                 <div class="input-field">
-                    <input type="checkbox" id="postawards-accomplishments-flag" ng-model="gsavm.uiLogic.postAwardsAccomplishmentsFlag" ng-checked="gsavm.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code" ng-change="gsavm.postAward.accomplishments.flag = gsavm.uiLogic.postAwardsAccomplishmentsFlag ? gsavm.choices['yes_na'].yes.code : gsavm.choices['yes_na'].na.code" trigger-click-on-enter>
+                    <input type="checkbox" id="postawards-accomplishments-flag" ng-model="gsavm.uiLogic.postAwardsAccomplishmentsFlag" ng-checked="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code" ng-change="gsavm.program.postAward.accomplishments.flag = gsavm.uiLogic.postAwardsAccomplishmentsFlag ? gsavm.choices['yes_na'].yes.code : gsavm.choices['yes_na'].na.code" trigger-click-on-enter>
                     <label for="postawards-accomplishments-flag">Are there program accomplishments?</label>
                 </div>
-                <div ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag">
+                <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
                     <div class="input-field" ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                         <ng-form name="gsavm.form.postAward.accomplishments.list.{{fyTpl.year}}">
                             <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
                             <label for="postawards-accomplishments-{{fyTpl.idName}}">{{fyTpl.type}}<span class="required" ng-show="fyTpl.isRequired">*</span></label>
-                            <textarea id="postawards-accomplishments-{{fyTpl.idName}}" name="value" ng-model="gsavm.postAward.accomplishments.list[fyTpl.year].content[fyTpl.varName]" class="usa-grid-full" ng-required="gsavm.uiLogic.postAwardsAccomplishmentsFlag && fyTpl.isRequired"></textarea>
+                            <textarea id="postawards-accomplishments-{{fyTpl.idName}}" name="value" ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content[fyTpl.varName]" class="usa-grid-full" ng-required="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code && fyTpl.isRequired"></textarea>
                             <div ng-show="gsavm.validationFlag['Financial Information and Accomplishments'] || gsavm.form.postAward.accomplishments.list.{{fyTpl.year}}.value.$dirty">
                                 <span ng-show="gsavm.form.postAward.accomplishments.list.{{fyTpl.year}}.value.$error.required">You must provide information for '{{fyTpl.name}}'.</span>
                             </div>
@@ -1472,6 +1472,8 @@
             <input type="submit" value="Submit" />
         </wz-step>
     </wizard>
-    <button type="button" ng-click="gsavm.save()">Save</button>
-    <field-finder-searchbox></field-finder-searchbox>
+    <section class="usa-grid">
+        <button type="button" ng-click="gsavm.save()">Save</button>
+        <field-finder-searchbox></field-finder-searchbox>
+    </section>
 </form>

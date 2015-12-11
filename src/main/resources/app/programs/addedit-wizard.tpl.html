@@ -1,12 +1,10 @@
 <div>
-    <script type="text/ng-template" id="/wizard-steps.tpl.html">
+    <section id="" sticky sticky-class="status-indicator-fixed">
         <ol class="steps-indicator steps-{{getEnabledSteps().length}}" ng-if="!hideIndicators">
             <li ng-class="{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}" ng-repeat="step in getEnabledSteps()">
                 <a ng-click="goTo(step);"><span class="steps-num"><span class="steps-num-badge">{{$index + 1}}</span></span>{{step.title || step.wzTitle}}</a>
             </li>
         </ol>
-    </script>
-    <section ng-include="'/wizard-steps.tpl.html'"></section>
-    <div class="steps" ng-transclude></div>
-    <section ng-include="'/wizard-steps.tpl.html'"></section>
+    </section>
+    <div class="steps usa-grid-full" ng-transclude></div>
 </div>

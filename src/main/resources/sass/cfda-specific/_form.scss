@@ -1,6 +1,8 @@
 form {
+  max-width: none;
   .form-header {
-    margin: $form-header-margin-height 0;
+    padding-top: $form-header-margin-height;
+    padding-bottom: $form-header-margin-height;
     h1, h2 {
       margin: 0;
     }
