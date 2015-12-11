@@ -406,7 +406,8 @@
                     </table>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
-                    <div ng-repeat="deadline in gsavm.program.application.deadlines.submission.list" style="background-color:#F1FAE6;padding:4px;margin-bottom:8px;">
+                    <div class="sub-form" style="padding:4px;margin-bottom:8px;"
+                         ng-repeat="deadline in gsavm.program.application.deadlines.submission.list">
                         <table style="margin: 0px;">
                             <tr>
                                 <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
