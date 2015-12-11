@@ -5,21 +5,21 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, util, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, util, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             ARRAY_ACTIONS = [
                 { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization },
-                { arrayName: 'accountcodes', fnBaseName: 'AccountCode' },
-                { arrayName: 'obligations', fnBaseName: 'Obligation'},
-                { arrayName: 'tafscodes', fnBaseName: 'TAFSCode'},
+                { arrayName: 'financial.accounts', fnBaseName: 'Account' },
+                { arrayName: 'financial.obligations', fnBaseName: 'Obligation'},
+                { arrayName: 'financial.treasury.tafs', fnBaseName: 'TAFSCode'},
                 { arrayName: 'reports', fnBaseName: 'Report'},
-                { arrayName: 'deadlines', fnBaseName: 'Deadline'}
+                { arrayName: 'application.deadlines.submission.list', fnBaseName: 'Deadline'}
             ],
             DICTIONARIES = [
                 'functional_codes',
@@ -65,6 +65,7 @@
         angular.forEach(vm.fyTpls, function(tpl){
             tpl.idName = tpl.name.replace(/\s/g, '-');
             tpl.varName = tpl.type.toLowerCase();
+            tpl.obligVarName = (tpl.obligType || tpl.type).toLowerCase();
             tpl.isRequired = tpl.type.toLowerCase() === "actual";
         });
 
@@ -120,6 +121,7 @@
         vm.getItemFromType = getItemFromType;
         vm.revealValidations = revealValidations;
         vm.openDatepicker = openDatepicker;
+        vm.nextId = util.nextId;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -182,10 +184,8 @@
         }
 
         function getArray(arrayName){
-            if (arrayName.toString()=='deadlines') {
-                return  vm.program.application.deadlines.submission.list || (vm.program.application.deadlines.submission.list = []);
-            }
-            return  vm.program[arrayName] || (vm.program[arrayName] = []);
+            var getter = $parse(arrayName);
+            return getter(vm.program) || getter.assign(vm.program, []);
         }
 
         function isAuthorization(authorization) {

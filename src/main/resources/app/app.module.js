@@ -33,6 +33,10 @@
         click: function(element) {
             element.click();
             return element;
+        },
+        select: function(element) {
+            element.select();
+            return element;
         }
     }, applyExtensions);
 

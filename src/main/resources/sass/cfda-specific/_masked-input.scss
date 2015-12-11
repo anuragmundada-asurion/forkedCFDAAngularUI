@@ -1,0 +1,29 @@
+masked-input {
+  > * {
+    display: inline-block !important;
+  }
+  >span {
+    margin: 0 5px;
+  }
+  > input[type="text"] {
+    width: 35px;
+    &.masked-input-length-2 {
+      width: 45px;
+    }
+    &.masked-input-length-3 {
+      width: 55px;
+    }
+    &.masked-input-length-4 {
+      width: 65px
+    }
+    &.masked-input-length-5 {
+      width: 75px;
+    }
+    &.masked-input-length-6 {
+      width: 85px;
+    }
+    &.masked-input-length-7 {
+      width: 95px;
+    }
+  }
+}
