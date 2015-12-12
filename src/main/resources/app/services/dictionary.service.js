@@ -15,8 +15,9 @@
             'yes_no',
             'yes_no_na'
         ];
+        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-dev02.reisys.com:89';
 
-        return $resource(env["pub.api.programs"] + '/dictionaries/:id', {
+        return $resource(domainUrl + '/dictionaries/:id', {
             id: '@id'
         }, {
             toDropdown: {

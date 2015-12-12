@@ -1091,7 +1091,7 @@
                                             <label for="{{fyTpl.idName}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
                                             <input id="{{fyTpl.idName}}-input-{{idPath}}" type="text" name="value" ng-model="obligation.values[fyTpl.year][fyTpl.obligVarName]">
                                         </div>
-                                        <div class="input-field usa-width-one-fourth">
+                                        <div class="input-field usa-width-one-fourth" ng-show="obligation.values[fyTpl.year].flag !== gsavm.choices['yes_no_na'].yes.code">
                                             <label for="{{ 'optional-exp-' + idPath }}">Optional Information</label>
                                             <input type="text" id="{{ 'optional-exp-' + idPath }}" name="explanation" ng-model="obligation.values[fyTpl.year].explanation">
                                         </div>
