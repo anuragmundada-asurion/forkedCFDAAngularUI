@@ -10,7 +10,8 @@
     ////////////////
 
     function programSvc($resource, env) {
-        return $resource(env["pub.api.programs"] + '/program/:id', {
+        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-dev02.reisys.com:89';
+        return $resource(domainUrl + '/program/:id', {
             id: '@_id'
         }, {
             save: {

@@ -12,3 +12,14 @@ hr {
 .sub-form .sub-form {
   background-color: $color-primary-alt-light;
 }
+
+#branding {
+  .logo img {
+    padding: $nav-padding-height $nav-padding-width;
+  }
+}
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

@@ -25,7 +25,7 @@
         ///////////////
 
         function link(scope, element, attrs, controller) {
-            var text = scope.text || element.attr('title') || angular.element(element.findAll('h1, h2, h3, label')[0]).text();
+            var text = scope.text || element.attr('title') || angular.element(element.findAll('h1, h2, h3, h4, label')[0]).text();
 
             controller.addBookmark({
                 text: text,

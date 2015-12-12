@@ -5,12 +5,13 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$timeout', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, util, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $timeout, util, Dictionary, Programs, program, coreChoices) {
         var vm = this,
+            scrollPromise,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             ARRAY_ACTIONS = [
@@ -248,7 +249,16 @@
                 validationFlag = vm.validationFlag || (vm.validationFlag = {});
 
             validationFlag[currentStep] = true;
+            scrollToTop();
             return true;
+        }
+
+        function scrollToTop() {
+            if(!scrollPromise) {
+                $document.scrollToElementAnimated($document.findAll('#status-indicator-bar-anchor')).then(function(){
+                    scrollPromise = null;
+                });
+            }
         }
 
         function openDatepicker($event, datepickerName) {

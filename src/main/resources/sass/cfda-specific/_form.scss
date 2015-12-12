@@ -13,17 +13,26 @@ form {
       margin-right: $form-header-element-spacing;
     }
   }
-  .sub-section {
-    > .input-field {
-      > label {
+  textarea {
+    &.usa-grid-full {
+      padding: 10px;
+    }
+  }
+}
+.input-field {
+  &:first-child {
+    > label:first-child {
+      form .sub-section > & {
         @extend h3;
+      }
+      form .sub-minor-section > & {
+        @extend h4;
       }
     }
   }
 }
 
 .section-circle {
-  /* line-height: 40px; */
   border-radius: 50%;
   width: 45px;
   height: 45px;
