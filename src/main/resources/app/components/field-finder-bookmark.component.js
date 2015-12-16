@@ -7,11 +7,11 @@
         .module('app')
         .directive('fieldFinderBookmark', fieldFinderBookmark);
 
-    fieldFinderBookmark.$inject = ['$document'];
+    fieldFinderBookmark.$inject = ['$document', 'util'];
 
     //////////////////
 
-    function fieldFinderBookmark($document) {
+    function fieldFinderBookmark($document, util) {
         return {
             restrict: 'AE',
             require: '^fieldFinderForm',
@@ -26,6 +26,9 @@
 
         function link(scope, element, attrs, controller) {
             var text = scope.text || element.attr('title') || angular.element(element.findAll('h1, h2, h3, h4, label')[0]).text();
+
+            if(!element.attr('id'))
+                element.attr('id', "field-finder-bookmark-" + util.nextId());
 
             controller.addBookmark({
                 text: text,
