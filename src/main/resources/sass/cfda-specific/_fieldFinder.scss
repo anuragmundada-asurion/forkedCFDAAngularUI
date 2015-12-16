@@ -4,10 +4,15 @@ field-finder-bookmark.highlight,
 }
 
 field-finder-searchbox {
-  > * {
+  [type="button"],
+  button,
+  select {
     display: inline-block;
-  }
-  > select {
-    margin-right: 10px;
+    vertical-align: middle;
+    height: 55px;
+    margin: 0;
+    .form-header & {
+      width: 100%;
+    }
   }
 }

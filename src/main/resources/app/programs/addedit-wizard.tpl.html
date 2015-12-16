@@ -1,11 +1,17 @@
 <div>
     <div id="status-indicator-bar-anchor"></div>
-    <section sticky sticky-class="status-indicator-fixed" class="steps-indicator-container">
-        <ol class="steps-indicator steps-{{getEnabledSteps().length}} usa-grid-full" ng-if="!hideIndicators">
-            <li ng-repeat="step in getEnabledSteps()">
-                <a ng-click="goTo(step);"><span class="steps-num"><span class="steps-num-badge completed" ng-class="{'in-progress': !step.completed && !step.selected, current: step.selected, done: step.completed && !step.selected, editing: step.selected && step.completed}">{{$index + 1}}</span></span><span class="steps-title">{{step.title || step.wzTitle}}</span></a>
-            </li>
-        </ol>
+    <section sticky sticky-class="fixed" class="steps-dashboard">
+        <ul class="steps  usa-grid-full" ng-if="!hideIndicators"><!--
+         --><li class="step steps-{{getEnabledSteps().length}}" ng-repeat-start="step in getEnabledSteps()">
+                <a ng-click="goTo(step);">
+                    <span class="step-num completed" ng-class="{ current: step.selected }">{{$index + 1}}</span>
+                    <span class="step-title">{{step.title || step.wzTitle}}</span>
+                </a>
+            </li><!--
+         --><li class="step-progress" ng-repeat-end>
+                <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            </li><!--
+     --></ul>
     </section>
     <div class="steps usa-grid-full" ng-transclude></div>
 </div>

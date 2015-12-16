@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git://github.com/REI-Systems/REISystems-GSA-CFDA-Angular-UI.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "prebuild": "npm install",

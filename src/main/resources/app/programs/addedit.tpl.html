@@ -1,11 +1,15 @@
 <form name="gsavm.form" field-finder-form novalidate>
     <section class="usa-grid-full form-header">
-        <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
-        <field-finder-searchbox></field-finder-searchbox>
+        <div class="usa-width-one-half">
+            <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
+        </div>
+        <div class="usa-width-one-half">
+            <field-finder-searchbox></field-finder-searchbox>
+        </div>
     </section>
     <wizard template="/partials/programs/addedit-wizard.tpl.html" current-step="gsavm.currentStep" edit-mode="true">
         <wz-step canexit="gsavm.revealValidations" title="General Information">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle current">1</span> General Information</h2>
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark="000 Intro" style="display:none" class="sub-section">
                 <h3>Intro</h3>
                 <div class="input-field usa-width-one-fourth">
@@ -213,7 +217,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle current">2</span> Eligibility / Qualifications</h2>
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">2</span> Eligibility / Qualifications</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>080 Eligibility Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -308,7 +312,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="How to Apply">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle current">3</span> How to Apply</h2>
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">3</span> How to Apply</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>090 Application and Award Process</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -739,7 +743,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle current">4</span> Post Award Requirements</h2>
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">4</span> Post Award Requirements</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>110 Post Assistance Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -1008,7 +1012,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle current">5</span> Financial Information and Accomplishments</h2>
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">5</span> Financial Information and Accomplishments</h2>
             <section class="sub-section" field-finder-bookmark="">
                 <h3>120 Financial Information</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -1188,7 +1192,7 @@
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Contact Information">
-                <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing <span class="section-circle current">6</span> Contact Information</h2>
+                <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing <span class="section-circle">6</span> Contact Information</h2>
                 <section class="sub-section" field-finder-bookmark>
                     <h3>150 Information Contacts<span class="required" >*</span></h3>
                     <section class="sub-minor-section" field-finder-bookmark>

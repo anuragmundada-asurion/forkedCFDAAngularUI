@@ -9,8 +9,6 @@ form {
     > * {
       display: inline-block;
       vertical-align: middle;
-      margin-left: $form-header-element-spacing;
-      margin-right: $form-header-element-spacing;
     }
   }
   textarea {
@@ -34,35 +32,41 @@ form {
 
 .section-circle {
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: $section-circle-dimensions;
+  height: $section-circle-dimensions;
   display: inline-block;
   vertical-align: middle;
   padding: 10px;
   text-align: center;
   font-family: "Source Sans Pro","Helvetica","Arial",sans-serif;
-  font-size: 18px;
+  font-size: 15.3px;
+  font-weight: $font-normal;
   border-width: 1px;
   border-style: solid;
   outline-radus: 50%;
-  &.in-progress {
-    background-color: $color-white;
-    color: $color-primary;
-    border-color: $color-primary;
-  }
-  &.completed {
-    background-color: $color-primary;
-    color: $color-white;
-    border-color: $color-primary;
+  background-color: $color-white;
+  color: $color-primary;
+  border-color: $color-primary;
+  h2 &{
+    @extend .completed;
   }
   &.review {
     background-color: $color-limegreen;
     color: $color-white;
     border-color: $color-limegreen;
   }
-  &.current {
+  &.completed {
     background-color: $color-primary-darkest;
     color: $color-white;
     border-color: $color-primary-darkest;
   }
+  &.current {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+}
+
+select {
+  border: 2px solid $color-primary;
 }

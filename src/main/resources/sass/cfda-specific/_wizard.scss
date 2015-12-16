@@ -1,53 +1,53 @@
-.steps-indicator-container{
+.steps-dashboard{
   background-color:$color-gray-lightest;
-}
-.steps-indicator {
-  padding-top: ($badge-dimensions * 4) / 3;
-  li {
-    padding-top: ($badge-dimensions * 2) / 3;
-    &::before {
-      content: '';
-    }
-    &.editing {
-      .steps-num-badge {
-        background-color: $color-primary-darkest;
+  padding: $steps-dashboard-padding;
+  &.fixed {
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+  }
+  .steps {
+    @include unstyled-list;
+    margin: 0 auto;
+    li {
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      &.step {
+        &.steps-6 {
+          width: calc(100%/6);
+        }
+        .step-title {
+          display: block;
+          font-size: 12px;
+          font-family: "Merriweather", "Georgia", "Times New Roman", serif;
+          font-weight: $font-bold;
+          padding: $step-text-dimensions;
+        }
+      }
+      &.step-progress {
+        position: absolute;
+        @include transform(translateX(-50%));
+        .steps-progress-bar {
+          cursor: default;
+          display: table-cell;
+          height: $section-circle-dimensions;
+          line-height: 0;
+          vertical-align: middle;
+          > .dot {
+            display: block;
+            float: left;
+            background-color: $color-gray-lighter;
+            width: 6px;
+            height: 6px;
+            margin: 0 4px;
+            border-radius: 50%;
+          }
+        }
       }
     }
-    .steps-title {
-      display: block;
-      font-size: 16px;
-      font-weight: normal;
-      margin-top: 15px;
-      text-transform: none;
-    }
   }
-}
-.status-indicator-fixed {
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
-}
-.steps-num {
-  position: absolute;
-  top: ($badge-dimensions / 2) * -1;
-  left: 0;
-  width: 100%;
-  vertical-align: middle;
-  text-align: center;
-  display: table;
-  color: $badge-font-color;
-
-  &::before,
-  &::after {
-    content: '';
-    position: relative;
-    top: ($badge-dimensions / 2);
-    display: block;
-    height: 1px;
-    background-color: $badge-color;
-  }
-  .steps-num-badge {
+  .step-num {
     @extend .section-circle;
-    display: table-cell;
     box-sizing: border-box;
-    transition: all .3s cubic-bezier(.55,0,.55,.2);
+    transition: all .3s cubic-bezier(.55, 0, .55, .2);
   }
 }

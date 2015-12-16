@@ -15,7 +15,16 @@
             require: '^fieldFinderForm',
             scope: false,
             link: link,
-            template: '<label class="sr-only">Field Finder Dropdown</label><select ng-model="fieldFinder.selected" ng-options="bookmark.text for bookmark in fieldFinder.bookmarks" ng-click="fieldFinder.selected.removeHighlight()" ng-keypress="fieldFinder.selected.removeHighlight()"><option value="" disabled style="display:none">Select a field</option></select><button type="button" class="usa-button-big" ng-click="fieldFinder.go()">Go</button>'
+            template:
+            '<div class="usa-width-one-half">' +
+                '<label class="sr-only">Field Finder Dropdown</label>' +
+                '<select ng-model="fieldFinder.selected" ng-options="bookmark.text for bookmark in fieldFinder.bookmarks" ng-click="fieldFinder.selected.removeHighlight()" ng-keypress="fieldFinder.selected.removeHighlight()">' +
+                    '<option value="" disabled style="display:none">Select a field</option>' +
+                '</select>' +
+            '</div>' +
+            '<div class="usa-width-one-half">' +
+                '<button type="button" class="usa-button-big" ng-click="fieldFinder.go()">Jump to field</button>' +
+            '</div>'
         };
 
         ///////////////////
