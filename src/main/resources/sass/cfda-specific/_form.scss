@@ -53,15 +53,15 @@ form {
   h2 &{
     @extend .completed;
   }
-  &.review {
-    background-color: $color-limegreen;
-    color: $color-white;
-    border-color: $color-limegreen;
-  }
   &.completed {
     background-color: $color-primary-darkest;
     color: $color-white;
     border-color: $color-primary-darkest;
+  }
+  &.review {
+    background-color: $color-limegreen;
+    color: $color-base;
+    border-color: $color-limegreen;
   }
   &.current {
     background-color: $color-primary;

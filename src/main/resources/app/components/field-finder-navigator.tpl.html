@@ -1,0 +1,9 @@
+<ul class="navigator-list usa-grid-full">
+    <li ng-repeat="bookmark in fieldFinder.bookmarks track by bookmark.text" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
+        <span>{{bookmark.text}}</span>
+    </li>
+</ul>
+<div class="button-group" style="display:none">
+    <button class="usa-button-unstyled" aria-label="Move to the previous field."><span class="fa fa-arrow-left"></span></button>
+    <button class="usa-button-unstyled" aria-label="Move to the next field">right</button>
+</div>

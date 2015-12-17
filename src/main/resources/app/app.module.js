@@ -38,6 +38,9 @@
         select: function(element) {
             element.select();
             return element;
+        },
+        height: function(element) {
+            return element.offsetHeight;
         }
     }, applyExtensions);
 
@@ -48,7 +51,7 @@
             for(var i=0; i < this.length; i++) {
                 if (value == undefined) {
                     value = fn(this[i], arg1, arg2);
-                    if (value !== undefined) {
+                    if (value !== undefined && value.prototype === jqLite.prototype) {
                         value = jqLite(value);
                     }
                 }
