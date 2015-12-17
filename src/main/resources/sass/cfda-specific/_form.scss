@@ -26,6 +26,9 @@ form {
       form .sub-minor-section > & {
         @extend h4;
       }
+      &+* {
+        margin-top: 22px;
+      }
     }
   }
 }
