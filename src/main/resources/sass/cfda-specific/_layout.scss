@@ -13,10 +13,39 @@ hr {
   background-color: $color-primary-alt-light;
 }
 
+.sub-section {
+  font-family:$font-sans;
+  border-style: solid;
+  border-color:#D7D7D7;
+  border-width: 2px 0px 0px 0px;
+  padding-bottom:30px;
+  h3 {
+    font-family:$font-serif;
+  }
+}
+
+.sub-minor-section {
+  font-family:$font-sans;
+  padding-bottom:6px;
+}
+
 #branding {
   .logo img {
     padding: $nav-padding-height $nav-padding-width;
   }
+  margin-top:25px;
+  margin-bottom:20px;
+  a {
+    font-weight:bold;
+    color:#000000;
+  }
+}
+
+.login2 {
+  float:right;
+  text-align:right;
+  padding-top:14px;
+  height: 75px;
 }
 
 footer {
