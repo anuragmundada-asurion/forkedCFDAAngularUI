@@ -1,17 +1,20 @@
 <div>
     <div id="status-indicator-bar-anchor"></div>
-    <section sticky sticky-class="fixed" class="steps-dashboard">
-        <ul class="steps  usa-grid-full" ng-if="!hideIndicators"><!--
-         --><li class="step steps-{{getEnabledSteps().length}}" ng-repeat-start="step in getEnabledSteps()">
-                <a ng-click="goTo(step);">
-                    <span class="step-num completed" ng-class="{ current: step.selected }">{{$index + 1}}</span>
-                    <span class="step-title">{{step.title || step.wzTitle}}</span>
-                </a>
-            </li><!--
-         --><li class="step-progress" ng-repeat-end>
-                <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-            </li><!--
-     --></ul>
+    <section sticky sticky-class="fixed" class="section-navigator">
+        <div class="steps-dashboard">
+            <ul class="steps  usa-grid-full" ng-if="!hideIndicators"><!--
+             --><li class="step steps-{{getEnabledSteps().length}}" ng-repeat-start="step in getEnabledSteps()">
+                    <a ng-click="goTo(step);" tabindex="0" trigger-click-on-enter>
+                        <span class="step-num completed" ng-class="{ current: step.selected, review: $last }">{{$index + 1}}</span>
+                        <span class="step-title">{{step.title || step.wzTitle}}</span>
+                    </a>
+                </li><!--
+             --><li class="step-progress" ng-repeat-end>
+                    <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                </li><!--
+         --></ul>
+        </div>
+        <field-finder-navigator selector=".section-navigator"></field-finder-navigator>
     </section>
     <div class="steps usa-grid-full" ng-transclude></div>
 </div>

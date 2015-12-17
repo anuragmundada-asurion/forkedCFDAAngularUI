@@ -1,9 +1,6 @@
 .steps-dashboard{
   background-color:$color-gray-lightest;
   padding: $steps-dashboard-padding;
-  &.fixed {
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
-  }
   .steps {
     @include unstyled-list;
     margin: 0 auto;
@@ -14,6 +11,9 @@
       &.step {
         &.steps-6 {
           width: calc(100%/6);
+        }
+        &.steps-7 {
+          width: calc(100%/7);
         }
         .step-title {
           display: block;
@@ -45,9 +45,14 @@
       }
     }
   }
-  .step-num {
-    @extend .section-circle;
-    box-sizing: border-box;
-    transition: all .3s cubic-bezier(.55, 0, .55, .2);
+  a {
+    > .step-num {
+      @extend .section-circle;
+      box-sizing: border-box;
+      @include transition(all .3s cubic-bezier(.55, 0, .55, .2));
+    }
+    &:focus > .step-num {
+      box-shadow: $focus-shadow;
+    }
   }
 }

@@ -7,7 +7,7 @@ $form-header-element-spacing: 15px !default;
 $steps-dashboard-padding: 15px 0 !default;
 
 $step-dimensions: 75px !default;
-$step-text-dimensions: 5px 10px 0 !default;
+$step-text-dimensions: 5px 5px 0 !default;
 
 $section-circle-dimensions: 44px !default;
 
@@ -18,4 +18,6 @@ $badge-font-color: $color-white !default;
 $layout-padding: $grid-margins !default;
 $sub-form-margin: 10px;
 
+$field-finder-navigator-height: 55px !default;
+$field-finder-navigator-padding: ($field-finder-navigator-height / (11/3)) !default;
 $color-limegreen: #8bd12f !default;

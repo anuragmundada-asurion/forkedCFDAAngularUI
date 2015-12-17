@@ -10,7 +10,8 @@
     function triggerClickOnEnter() {
         return {
             restrict: 'A',
-            link: link
+            link: link,
+            scope: false
         };
         /////////////////
 

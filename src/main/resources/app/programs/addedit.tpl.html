@@ -8,7 +8,7 @@
         </div>
     </section>
     <wizard template="/partials/programs/addedit-wizard.tpl.html" current-step="gsavm.currentStep" edit-mode="true">
-        <wz-step canexit="gsavm.revealValidations" title="General Information">
+        <wz-step canexit="gsavm.revealValidations" title="General Information" field-finder-section>
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark="000 Intro" style="display:none" class="sub-section">
                 <h3>Intro</h3>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmar>
+            <section class="sub-section" field-finder-bookmark>
                 <h3>160 Related Programs</h3>
                 <div class="input-field">
                     <input type="checkbox" id="relatedProgramsFlag" ng-model="gsavm.uiLogic.relatedProgramsFlag" trigger-click-on-enter>
@@ -216,7 +216,7 @@
             </section>
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications">
+        <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications" field-finder-section>
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">2</span> Eligibility / Qualifications</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>080 Eligibility Requirements</h3>
@@ -311,7 +311,7 @@
             </section>
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="How to Apply">
+        <wz-step canexit="gsavm.revealValidations" title="How to Apply" field-finder-section>
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">3</span> How to Apply</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>090 Application and Award Process</h3>
@@ -742,7 +742,7 @@
             </section>
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements">
+        <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements" field-finder-section>
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">4</span> Post Award Requirements</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>110 Post Assistance Requirements</h3>
@@ -1011,7 +1011,7 @@
             </section>
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments">
+        <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments" field-finder-section>
             <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">5</span> Financial Information and Accomplishments</h2>
             <section class="sub-section" field-finder-bookmark="">
                 <h3>120 Financial Information</h3>
@@ -1191,7 +1191,7 @@
             </section>
             <input type="submit" wz-next value="Continue" />
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="Contact Information">
+        <wz-step canexit="gsavm.revealValidations" title="Contact Information" field-finder-section>
                 <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing <span class="section-circle">6</span> Contact Information</h2>
                 <section class="sub-section" field-finder-bookmark>
                     <h3>150 Information Contacts<span class="required" >*</span></h3>
@@ -1506,10 +1506,10 @@
                 </section>
             <!--<input type="submit" wz-next  value="Continue" />-->
         </wz-step>
-        <!--<wz-step canexit="gsavm.revealValidations" title="Review">
+        <wz-step canexit="gsavm.revealValidations" title="Review" field-finder-section>
             <div>Placeholder</div>
             <input type="submit" value="Submit" />
-        </wz-step>-->
+        </wz-step>
     </wizard>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.save()">Save</button>
