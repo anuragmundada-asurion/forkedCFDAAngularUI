@@ -1508,6 +1508,21 @@
                 </section>
             <!--<input type="submit" wz-next  value="Continue" />-->
         </wz-step>
+        <wz-step canexit="gsavm.revealValidations" title="How to Apply">
+            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">3</span> How to Apply</h2>
+            <!--section class="sub-section" field-finder-bookmark>
+                <h3>090 Application and Award Process</h3>
+                <section class="sub-minor-section" field-finder-bookmark>
+                    <div class="input-field">
+                        <label for="preappCoord3">091 Preapplication Coordination</label>
+                        <input type="checkbox" id="preappCoord3" ng-model="preappCoord3"
+                               ng-checked="gsavm.program.preApplication.coordination.flag === gsavm.choices['yes_no'].yes.code"
+                               ng-change="gsavm.program.preApplication.coordination.flag = preappCoord3 ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code"
+                               trigger-click-on-enter>
+                        <label for="preappCoord3">Is any prior coordination or approval required with governmental or nongovernmental units
+                            prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
+                    </div-->
+        </wz-step>
         <!--<wz-step canexit="gsavm.revealValidations" title="Review">
             <div>Placeholder</div>
             <input type="submit" value="Submit" />
