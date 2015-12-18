@@ -2,7 +2,7 @@ var gulp           = require('gulp');
 var concat         = require('gulp-concat');
 var sass           = require('gulp-sass');
 var uglify         = require('gulp-uglify');
-var minify         = require('gulp-minify-css')
+var minify         = require('gulp-minify-css');
 var mainBowerFiles = require('main-bower-files');
 var inject         = require('gulp-inject');
 var runSequence    = require('gulp-run-sequence');
@@ -14,16 +14,19 @@ var series         = require('stream-series');
 var appFilesBase = "src/main/resources/app";
 
 var ie8VendorDep = ['**/jquery.js'];
+var ie9VendorDep = ['**/xdomain.js'];
+var unneededDepForMondernBrowsers = ie8VendorDep.concat(ie9VendorDep);
 
 var vendorJs;
 var ie8VendorJs;
+var ie9VendorJs;
 var vendorCss;
 var appJs;
 var appSass;
 
 gulp.task('vendor-js-files', function () {
     var bowerSrc = ['**/*.js'];
-    ie8VendorDep.forEach(function(src){
+    unneededDepForMondernBrowsers.forEach(function(src){
         bowerSrc.push('!' + src);
     });
     vendorJs = gulp.src(mainBowerFiles(bowerSrc),{ base: 'bower_components' })
@@ -36,7 +39,13 @@ gulp.task('ie8-vendor-js-files', function() {
         .pipe(concat('ie8-lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
-})
+});
+gulp.task('ie9-vendor-js-files', function() {
+    ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), { base: 'bower_components'})
+        .pipe(concat('ie9-lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/vendor/js'));
+});
 gulp.task('vendor-css-files', function () {
     vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'bower_components'})
         .pipe(concat('lib.min.css'))
@@ -46,7 +55,7 @@ gulp.task('vendor-css-files', function () {
 gulp.task('vendor-font-files', function() {
     gulp.src(mainBowerFiles('**/*.{otf,eot,svg,ttf,woff,woff2}'))
         .pipe(gulp.dest('target/classes/static/vendor/fonts'));
-})
+});
 gulp.task('app-js-files', function () {
     //Read App JS files and combine
     appJs = gulp.src([
@@ -63,7 +72,7 @@ gulp.task('app-static-files', function() {
         .pipe(gulp.dest('target/classes/static'));
     gulp.src('src/main/resources/*.*')
         .pipe(gulp.dest('target/classes'));
-})
+});
 
 gulp.task('app-sass-files', function() {
     appSass = gulp.src('src/main/resources/sass/**/*.scss')
@@ -82,6 +91,7 @@ gulp.task('index', function () {
         .pipe(gulp.dest('target/classes/static'))
         .pipe(inject(series(vendorJs), { relative: true, starttag: '<!-- inject:vendor:{{ext}} -->'}))
         .pipe(inject(series(ie8VendorJs), { relative: true, starttag: '<** inject:ie8-vendor:{{ext}} **>', endtag: '<** endinject **>'}))
+        .pipe(inject(series(ie9VendorJs), { relative: true, starttag: '<** inject:ie9-vendor:{{ext}} **>', endtag: '<** endinject **>'}))
         .pipe(inject(series(vendorCss, appJs, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
@@ -91,7 +101,7 @@ gulp.task('gzip', function() {
         .pipe(clone())
         .pipe(gzip())
         .pipe(gulp.dest('target/classes/static'));
-})
+});
 
 // Default Task
 gulp.task('default', function () {
