@@ -12,10 +12,19 @@ form {
     }
   }
   textarea {
-    &.usa-grid-full {
+    &.usa-width-two-thirds {
       padding: 10px;
     }
   }
+  fieldset {
+    display: block;
+    margin-top: 3rem;
+    max-width: 46rem;
+    }
+
+    fieldset > label {
+        margin-bottom: .8em;
+    }
 }
 
 .radio-button-group {
