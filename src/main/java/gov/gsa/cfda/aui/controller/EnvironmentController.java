@@ -43,7 +43,7 @@ public class EnvironmentController {
 
     private String getProgramApiUrl() {
         String apiUrl = environment.getProperty(programsApiEnvName);
-        if(apiUrl.equals(null) || apiUrl.equals(""))
+        if(apiUrl == null)
             apiUrl = "http://gsaiae-dev02.reisys.com:89";
         return apiUrl;
     }
