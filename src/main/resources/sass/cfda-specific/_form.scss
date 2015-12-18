@@ -23,7 +23,12 @@ form {
     }
 
     fieldset > label {
-        margin-bottom: .8em;
+        margin-bottom: .7em;
+    }
+
+    label, textarea, input[type=text], select {
+        width:56rem;
+        max-width:56rem;
     }
 }
 
