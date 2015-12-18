@@ -26,8 +26,11 @@ form {
       form .sub-minor-section > & {
         @extend h4;
       }
-      &+* {
-        margin-top: 22px;
+      form .sub-section > &,
+      form .sub-minor-section > & {
+        &+* {
+          margin-top: 22px;
+        }
       }
     }
   }
@@ -70,6 +73,6 @@ form {
   }
 }
 
-select {
-  border: 2px solid $color-primary;
+.required {
+  color: $color-secondary-dark;
 }

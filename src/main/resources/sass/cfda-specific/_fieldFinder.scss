@@ -15,6 +15,9 @@ field-finder-searchbox {
       width: 100%;
     }
   }
+  select {
+    border: 2px solid $color-primary;
+  }
 }
 
 field-finder-navigator {
@@ -27,11 +30,20 @@ field-finder-navigator {
     height: $field-finder-navigator-height;
     padding: $field-finder-navigator-padding 0;
   }
+  .navigator-button-group {
+    float: right;
+  }
   .navigator-item {
     display: table;
+    position: absolute;
     font-family: $font-serif;
+    transition: $transition-default;
+    @include transform(translateY(-5px));
     &:not(.active) {
-      display: none;
+      opacity: 0;
+    }
+    &.active {
+      @include transform(none);
     }
   }
 }

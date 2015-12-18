@@ -1,0 +1,26 @@
+button {
+  &.button-circle {
+    width: $button-circle-dimensions;
+    height: $button-circle-dimensions;
+    padding: $button-circle-padding;
+    color: $color-primary-darkest;
+    background-color: $color-white;
+    border-radius: 50%;
+    text-align: center;
+    @include transition(all 0.1s $transition-default-duration);
+    &,
+    &:hover,
+    &:focus {
+      box-shadow: $button-circle-shadow;
+    }
+    &:hover,
+    &:focus {
+      background-color: $color-gray-lightest;
+    }
+    &.active,
+    &:active {
+      background-color: $color-gray-lighter;
+      box-shadow: $button-circle-shadow-active;
+    }
+  }
+}

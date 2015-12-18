@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$timeout', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $timeout, util, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $window, util, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             scrollPromise,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -138,6 +138,7 @@
 
         function updateId(res){
             vm.program._id = res._id;
+            $window.alert("Your changes have been saved.")
         }
 
         function addGenerator(arrayName, createObjFn) {
