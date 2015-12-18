@@ -105,5 +105,5 @@ gulp.task('gzip', function() {
 
 // Default Task
 gulp.task('default', function () {
-    runSequence('app-static-files', 'vendor-js-files', 'vendor-font-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
+    runSequence('app-static-files', 'vendor-js-files', 'vendor-font-files', 'ie9-vendor-js-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip');
 });
