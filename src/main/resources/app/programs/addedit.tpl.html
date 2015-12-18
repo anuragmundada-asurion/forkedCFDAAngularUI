@@ -9,7 +9,7 @@
     </section>
     <wizard template="/partials/programs/addedit-wizard.tpl.html" current-step="gsavm.currentStep" edit-mode="true">
         <wz-step canexit="gsavm.revealValidations" title="General Information" field-finder-section>
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">1</span> General Information</h2>
+            <h2><span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark="000 Intro" style="display:none" class="sub-section">
                 <h3>Intro</h3>
                 <div class="input-field usa-width-one-fourth">
@@ -47,7 +47,7 @@
             <section class="sub-section" field-finder-bookmark>
                 <div class="input-field">
                     <label for="alternativeName">020 Popular Name</label>
-                    <input type="text" id="alternativeName" name="alternativeName" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
+                    <input type="text" id="alternativeName" name="alternativeName"z ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.alternativeName.$dirty">
                         <span ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
                     </div>
@@ -82,7 +82,7 @@
                 <div class="input-field">
                     <label for="objective">050 Objectives<span class="required" >*</span></label>
                     <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                    <textarea id="objective" name="objective" ng-model="gsavm.program.objective" class="usa-grid-full" required></textarea>
+                    <textarea id="objective" name="objective" ng-model="gsavm.program.objective" required></textarea>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.objective.$dirty">
                         <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                     </div>
@@ -110,7 +110,7 @@
                 <h3>070 Uses and Use Restrictions</h3>
                 <!--<p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>-->
                 <label for="usageRulesContent">Describe how assistance can potentially be used<span class="required" >*</span></label>
-                <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" class="usa-grid-full" required></textarea>
+                <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" required></textarea>
                 <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.usageRulesContent.$dirty">
                     <span ng-show="gsavm.form.usageRulesContent.$error.required">You must describe how assistance can potentially be used.</span>
                 </div>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="restrictions">Please provide the restrictions:<span class="required" >*</span></label>
-                    <textarea id="restrictions" name="restrictions" ng-model="gsavm.program.usage.restrictions.content" class="usa-grid-full" ng-required="gsavm.program.usage.restrictions.flag"></textarea>
+                    <textarea id="restrictions" name="restrictions" ng-model="gsavm.program.usage.restrictions.content"  ng-required="gsavm.program.usage.restrictions.flag"></textarea>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.restrictions.$dirty">
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                     </div>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="discretionaryFund">Discretionary Funds<span class="required" >*</span></label>
-                    <textarea id="discretionaryFund" name="discretionaryFund" ng-model="gsavm.program.usage.discretionaryFund.content" class="usa-grid-full" ng-required="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+                    <textarea id="discretionaryFund" name="discretionaryFund" ng-model="gsavm.program.usage.discretionaryFund.content"  ng-required="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code"></textarea>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.discretionaryFund.$dirty">
                         <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                     </div>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="loanTerms">Loan Terms<span class="required" >*</span></label>
-                    <textarea id="loanTerms"  name="loanTerms" ng-model="gsavm.program.usage.loanTerms.content" class="usa-grid-full" ng-required="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+                    <textarea id="loanTerms"  name="loanTerms" ng-model="gsavm.program.usage.loanTerms.content"  ng-required="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code"></textarea>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.loanTerms.$dirty">
                         <span ng-show="gsavm.form.loanTerms.$error.required">You must provide the loan terms.</span>
                     </div>
@@ -217,7 +217,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications" field-finder-section>
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">2</span> Eligibility / Qualifications</h2>
+            <h2>Section <span class="section-circle">2</span> Eligibility / Qualifications</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>080 Eligibility Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -312,7 +312,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="How to Apply" field-finder-section>
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">3</span> How to Apply</h2>
+            <h2><span class="section-circle">3</span> How to Apply</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>090 Application and Award Process</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -745,7 +745,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements" field-finder-section>
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">4</span> Post Award Requirements</h2>
+            <h2><span class="section-circle">4</span> Post Award Requirements</h2>
             <section class="sub-section" field-finder-bookmark>
                 <h3>110 Post Assistance Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -1014,7 +1014,7 @@
             <input type="submit" wz-next  value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments" field-finder-section>
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">5</span> Financial Information and Accomplishments</h2>
+            <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
             <section class="sub-section" field-finder-bookmark="">
                 <h3>120 Financial Information</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
@@ -1194,7 +1194,7 @@
             <input type="submit" wz-next value="Continue" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Contact Information" field-finder-section>
-                <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing <span class="section-circle">6</span> Contact Information</h2>
+                <h2><span class="section-circle">6</span> Contact Information</h2>
                 <section class="sub-section" field-finder-bookmark>
                     <h3>150 Information Contacts<span class="required" >*</span></h3>
                     <section class="sub-minor-section" field-finder-bookmark>
