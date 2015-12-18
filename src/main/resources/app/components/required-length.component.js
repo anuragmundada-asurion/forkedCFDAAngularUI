@@ -63,6 +63,14 @@
                 });
             }
 
+            if(elem.attr('type') === 'hidden') {
+                scope.$watchCollection(function() {
+                    return ctrl.$modelValue;
+                }, function() {
+                    validator(ctrl.$modelValue);
+                })
+            }
+
             ctrl.$parsers.unshift(validator);
             ctrl.$formatters.push(validator);
             /*scope.$watch(attrs[directiveId], function () {
