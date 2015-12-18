@@ -5,30 +5,51 @@ hr {
   padding: $layout-padding;
 }
 .sub-form {
-  @extend .layout-padding;
-  margin: $sub-form-margin 0;
+  padding: $form-section-indent;
   background-color: $color-primary-alt-lightest;
+  & &{
+    background-color: $color-primary-alt-light;
+  }
 }
-.sub-form .sub-form {
-  background-color: $color-primary-alt-light;
+.indented {
+  padding-left: $form-section-indent;
 }
-
-.sub-section {
+.sub-section,
+.sub-minor-section{
   font-family:$font-sans;
-  border-style: solid;
-  border-color:#D7D7D7;
-  border-width: 2px 0px 0px 0px;
+  border-top: 2px solid $color-gray-light;
   padding-bottom:30px;
   h3 {
     font-family:$font-serif;
   }
+  > .input-field {
+    @extend .indented;
+  }
 }
-
-.sub-minor-section {
-  font-family:$font-sans;
-  padding-bottom:6px;
+.sub-section {
+  > .sub-minor-section {
+    @extend .indented;
+  }
 }
-
+.input-field {
+  &:first-child {
+    > label:first-child {
+      form .sub-section > & {
+        @extend h3;
+      }
+      form .sub-minor-section > & {
+        @extend h4;
+      }
+      form .sub-section > &,
+      form .sub-minor-section > & {
+        margin-left: -$form-section-indent;
+        &+* {
+          margin-top: 22px;
+        }
+      }
+    }
+  }
+}
 #branding {
   .logo img {
     padding: $nav-padding-height $nav-padding-width;

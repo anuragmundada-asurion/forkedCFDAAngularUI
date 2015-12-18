@@ -24,6 +24,10 @@ a:focus {
   text-decoration: underline;
 }
 
+button:disabled {
+  @extend .usa-button-disabled;
+}
+
 .sr-only {
   position: absolute !important;
   width: 1px !important;
