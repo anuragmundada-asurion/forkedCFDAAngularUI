@@ -17,22 +17,11 @@ form {
     }
   }
 }
-.input-field {
-  &:first-child {
-    > label:first-child {
-      form .sub-section > & {
-        @extend h3;
-      }
-      form .sub-minor-section > & {
-        @extend h4;
-      }
-      form .sub-section > &,
-      form .sub-minor-section > & {
-        &+* {
-          margin-top: 22px;
-        }
-      }
-    }
+
+.radio-button-group {
+  > li {
+    display: inline-block;
+    margin-right: 15px;
   }
 }
 

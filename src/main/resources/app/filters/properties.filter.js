@@ -5,7 +5,7 @@
         .module('app')
         .filter('propsFilter', propertiesFilter);
 
-    propertiesFilter.$inject = ['$parse']
+    propertiesFilter.$inject = ['$parse'];
 
     ////////////////
 
