@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'authTypeConstants', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             scrollPromise,
             AMENDMENT_SELECTED_NAME = 'amendments',
@@ -75,6 +75,7 @@
             relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length,
             fundedProjectsExampleFlag: hasFyFundedProjects()
         };
+        vm.constants = authTypeConstants;
         vm.choices = {
             programs: Programs.query(),
             offices: [
@@ -90,13 +91,6 @@
                     id: 3,
                     name: 'Admin Office'
                 }
-            ],
-            authTypes: [
-                "Act",
-                "Executive Order",
-                "Public Law",
-                "Statute",
-                "U.S.C."
             ]
         };
         vm.choices.programs.$promise.then(function(data){
@@ -190,7 +184,7 @@
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
-            var newAmendment = createAuthorization(authId, lastVersion.type, (lastVersion.version + 1));
+            var newAmendment = createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
             authArray.push(newAmendment);
             addSelectedEntry(newAmendment, AMENDMENT_SELECTED_NAME, authId);
             vm.focusAuthAdd = true;
@@ -242,7 +236,7 @@
             var amendments = getAuthorizationAmendments(authorization.authorizationId);
             angular.forEach(amendments, function(amendment){
                 if(amendment !== authorization)
-                    amendment.type = authorization.type;
+                    amendment.authorizationType = authorization.authorizationType;
             });
         }
 
@@ -272,7 +266,7 @@
             return {
                 authorizationId: uuid || util.generateUUID(),
                 version: version || AUTH_VERSION_BASELINE,
-                type: type,
+                authorizationType: type,
                 active: true
             }
         }

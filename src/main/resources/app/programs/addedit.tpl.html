@@ -81,14 +81,14 @@
                                     </section>
                                     <section class="usa-grid">
                                         <ul class="usa-unstyled-list radio-button-group">
-                                            <li ng-repeat="btn in gsavm.choices.authTypes track by $index">
-                                                <input type="radio" name="{{formPath}}_type" ng-model="authorization.type"  ng-value="btn" id="{{ idPath + '-' + btn }}" ng-change="gsavm.updateAmendments(authorization)"/>
-                                                <label for="{{ idPath + '-' + btn }}">{{btn}}</label>
+                                            <li ng-repeat="btn in gsavm.choices['authorization_type'] track by btn.element_id">
+                                                <input type="radio" name="{{formPath}}_type" ng-model="authorization.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}" ng-change="gsavm.updateAmendments(authorization)"/>
+                                                <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
                                             </li>
                                         </ul>
                                     </section>
                                     <div ng-include="'partials/programs/authorization.tpl.html'"></div>
-                                    <div ng-if="authorization.type">
+                                    <div ng-if="authorization.authorizationType">
                                         <hr>
                                         <label>Amendments</label>
                                         <section class="usa-grid">
@@ -96,7 +96,7 @@
                                                 <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
                                                     <div>
                                                         <button type="button" class="button-circle" ng-click="gsavm.removeAmendment(authorization, authorization.authorizationId)" trigger-click-on-enter><span class="fa fa-times"></span></button>
-                                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || 'New Item'}}</a>
+                                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || ('Untitled Amendment ' + ($index + 1))}}</a>
                                                     </div>
                                                 </li>
                                             </ul>
