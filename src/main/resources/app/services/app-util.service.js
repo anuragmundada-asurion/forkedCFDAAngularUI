@@ -10,7 +10,11 @@
 
     function appUtilSvc($parse) {
         var congressCodeGetter = $parse('publicLaw.congressCode'),
-            volumeGetter = $parse('statute.volume');
+            lawNumberGetter = $parse('publicLaw.lawNumber'),
+            volumeGetter = $parse('statute.volume'),
+            pageGetter = $parse('statute.page'),
+            uscTitleGetter = $parse('USC.title'),
+            undefinedTextValue = "___";
 
         return {
             getAuthorizationTitle: getAuthorizationTitle
@@ -24,10 +28,13 @@
 
             switch (type) {
                 case "Public Law":
-                    title = "Congress " + congressCodeGetter(authorization);
+                    title = "Public Law " + (congressCodeGetter(authorization) || undefinedTextValue) + "-" + (lawNumberGetter(authorization) || undefinedTextValue);
                     break;
                 case "Statute":
-                    title = "Statute " + volumeGetter(authorization);
+                    title = (volumeGetter(authorization) || undefinedTextValue) + " Stat. " + (pageGetter(authorization) || undefinedTextValue);
+                    break;
+                case "U.S.C.":
+                    title = uscTitleGetter(authorization);
                     break;
                 default:
                     title = authorization.title;

@@ -59,26 +59,30 @@
                     <!--Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>-->
                     <div class="usa-grid-full">
                         <div class="usa-width-one-fourth">
+                            <input type="hidden" name="authorizationLength" ng-model="gsavm.program.authorizations" required-Length='{ "min": 1 }'>
                             <ul class="usa-unstyled-list">
                                 <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isAuthorization track by gsavm.exps.generateAuthKey(authorization)">
                                     <div>
                                         <button type="button" class="button-circle" ng-click="gsavm.removeAuthorization($index)" aria-label="Delete Authorization" trigger-click-on-enter><span class="fa fa-times"></span></button>
-                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'authorizations')" ng-disabled="gsavm.getSelectedEntry('authorizations')">{{gsavm.getAuthorizationTitle(authorization) || 'New Item'}}</a>
+                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'authorizations')" ng-disabled="gsavm.getSelectedEntry('authorizations')">{{gsavm.getAuthorizationTitle(authorization) || ('Untitled Authorization ' + ($index + 1))}}</a>
                                     </div>
                                 </li>
                             </ul>
+                            <div ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length <= 0">
+                                <span ng-show="gsavm.form.authorizationLength.$error.requiredLength">You need to have at least one Authorization.</span>
+                            </div>
                         </div>
                         <div class="usa-width-one-half">
                             <button type="button" ng-click="gsavm.addAuthorization()" ng-disabled="gsavm.getSelectedEntry('authorizations')">+ Add Authorization</button>
                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isAuthorization track by gsavm.exps.generateAuthKey(authorization)">
                                 <div ng-form ng-init="formPath='authorization'+gsavm.nextId();idPath=formPath;parentAuth=authorization" name="gsavm.form.{{formPath}}" ng-show="gsavm.getSelectedEntry('authorizations') === authorization" class="sub-form">
                                     <section class="usa-grid">
-                                        <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled Authorization ' + ($index + 1))}}</h3>
+                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Untitled Authorization ' + ($index + 1))}}</h3>
                                     </section>
                                     <section class="usa-grid">
                                         <ul class="usa-unstyled-list radio-button-group">
                                             <li ng-repeat="btn in gsavm.choices.authTypes track by $index">
-                                                <input type="radio" name="type" ng-model="authorization.type" ng-value="btn" id="{{ idPath + '-' + btn }}" ng-change="gsavm.updateAmendments(authorization)"/>
+                                                <input type="radio" name="{{formPath}}_type" ng-model="authorization.type"  ng-value="btn" id="{{ idPath + '-' + btn }}" ng-change="gsavm.updateAmendments(authorization)"/>
                                                 <label for="{{ idPath + '-' + btn }}">{{btn}}</label>
                                             </li>
                                         </ul>
@@ -100,7 +104,7 @@
                                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)" ng-show="gsavm.getSelectedEntry('amendments', authorization.authorizationId) === authorization">
                                                 <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
                                                     <section class="usa-grid">
-                                                        <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled Amendment ' + ($index + 1))}}</h3>
+                                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Untitled Amendment ' + ($index + 1))}}</h3>
                                                     </section>
                                                     <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                                     <button type="button" ng-click="gsavm.removeSelectedEntry('amendments', authorization.authorizationId)">Close</button>

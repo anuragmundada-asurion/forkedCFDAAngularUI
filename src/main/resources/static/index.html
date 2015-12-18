@@ -6,7 +6,14 @@
 
     <!-- inject:css -->
     <!-- endinject -->
-
+    <!--[if lte IE 9]>
+    <script type="text/javascript">
+        'use strict';
+        // IE9 Console Bug Fix
+        window.console = window.console || {};
+        window.console.log = window.console.log || function() {};
+    </script>
+    <![endif]-->
     <!-- ie9-inject --><!--[if lte IE 9]>
     <![endif]-->
     <!--[if lte IE 9]>
