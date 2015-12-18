@@ -91,7 +91,7 @@ gulp.task('index', function () {
         .pipe(gulp.dest('target/classes/static'))
         .pipe(inject(series(vendorJs), { relative: true, starttag: '<!-- inject:vendor:{{ext}} -->'}))
         .pipe(inject(series(ie8VendorJs), { relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
-        .pipe(inject(series(ie9VendorJs), { relative: true, starttag: '<!-- ie9-inject -><!--[if lte IE 9]>', endtag: '<![endif]-->'}))
+        .pipe(inject(series(ie9VendorJs), { relative: true, starttag: '<!-- ie9-inject --><!--[if lte IE 9]>', endtag: '<![endif]-->'}))
         .pipe(inject(series(vendorCss, appJs, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
