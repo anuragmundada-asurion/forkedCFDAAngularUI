@@ -11,7 +11,9 @@ hr {
     background-color: $color-primary-alt-light;
   }
 }
-
+.indented {
+  padding-left: $form-section-indent;
+}
 .sub-section,
 .sub-minor-section{
   font-family:$font-sans;
