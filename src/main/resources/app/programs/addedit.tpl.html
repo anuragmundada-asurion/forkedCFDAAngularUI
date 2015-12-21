@@ -1508,8 +1508,23 @@
                 </section>
             <!--<input type="submit" wz-next  value="Continue" />-->
         </wz-step>
-        <wz-step canexit="gsavm.revealValidations" title="How to Apply">
-            <h2>{{ gsavm.isEdit ? 'Edit' : 'Create' }} Listing - Section <span class="section-circle">3</span> How to Apply</h2>
+        <wz-step canexit="gsavm.revealValidations" title="Review">
+            <!--div style="background-color:#FFF1D0;">
+                <h3 id="validate1" ng-if="!(gsavm.program.title && gsavm.program.objective)">General Information</h3>
+                <div ng-show="!gsavm.program.title">010 Program Title is required</div>
+                <div ng-show="!gsavm.program.objective">050 Objectives is required</div>
+            </div-->
+            <div ng-include="'partials/programs/view-section1.tpl.html'"></div>
+            <hr/>
+            <div ng-include="'partials/programs/view-section2.tpl.html'"></div>
+            <hr/>
+            <div ng-include="'partials/programs/view-section3.tpl.html'"></div>
+            <hr/>
+            <div ng-include="'partials/programs/view-section4.tpl.html'"></div>
+            <hr/>
+            <div ng-include="'partials/programs/view-section5.tpl.html'"></div>
+            <hr/>
+            <div ng-include="'partials/programs/view-section6.tpl.html'"></div>
             <!--section class="sub-section" field-finder-bookmark>
                 <h3>090 Application and Award Process</h3>
                 <section class="sub-minor-section" field-finder-bookmark>
