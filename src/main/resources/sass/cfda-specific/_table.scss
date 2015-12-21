@@ -52,20 +52,16 @@ table {
   }
 }
 
-
-.the-pagination {
-  overflow: hidden;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  background-color: $color-gray-lightest !important;
-  .showing-per-page {
-    select {
-      display: inline;
-      width: 4em;
-      border: 2px solid #0071bc;
-    }
-    label {
-      margin-top: 0;
+/** Temporary Pagination Styling **/
+.pagination {
+  @extend .usa-unstyled-list;
+  padding: 10px;
+  border: 1px solid $color-gray;
+  > li {
+    display: inline-block;
+    padding: 5px 10px;
+    &.active {
+      background-color: $color-gray-lighter;
     }
   }
 }

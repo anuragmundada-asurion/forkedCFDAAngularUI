@@ -5,17 +5,18 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'authTypeConstants', 'Dictionary', 'Program', 'program', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $window, util, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, coreChoices) {
         var vm = this,
             scrollPromise,
+            AMENDMENT_SELECTED_NAME = 'amendments',
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             ARRAY_ACTIONS = [
-                { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization },
+                { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization, onRemoved: onAuthorizationRemoved },
                 { arrayName: 'financial.accounts', fnBaseName: 'Account' },
                 { arrayName: 'financial.obligations', fnBaseName: 'Obligation'},
                 { arrayName: 'financial.treasury.tafs', fnBaseName: 'TAFSCode'},
@@ -61,7 +62,7 @@
                 'statement',
                 'assessment'
             ]
-        }
+        };
 
         angular.forEach(vm.fyTpls, function(tpl){
             tpl.idName = tpl.name.replace(/\s/g, '-');
@@ -74,6 +75,7 @@
             relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length,
             fundedProjectsExampleFlag: hasFyFundedProjects()
         };
+        vm.constants = authTypeConstants;
         vm.choices = {
             programs: Programs.query(),
             offices: [
@@ -118,15 +120,20 @@
         vm.save = save;
         vm.addAmendment = addAmendment;
         vm.removeAmendment = removeAmendment;
+        vm.updateAmendments = updateAmendments;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
         vm.getItemFromType = getItemFromType;
         vm.revealValidations = revealValidations;
         vm.openDatepicker = openDatepicker;
+        vm.addSelectedEntry = addSelectedEntry;
+        vm.getSelectedEntry = getSelectedEntry;
+        vm.removeSelectedEntry = removeSelectedEntry;
+        vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
         vm.nextId = util.nextId;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
-            vm['remove' + action.fnBaseName] = removeGenerator(action.arrayName);
+            vm['remove' + action.fnBaseName] = removeGenerator(action.arrayName, action.onRemoved || angular.noop);
         });
 
         ////////////////
@@ -143,14 +150,31 @@
 
         function addGenerator(arrayName, createObjFn) {
             return function() {
-                getArray(arrayName).push(createObjFn());
+                var newEntry = createObjFn();
+                getArray(arrayName).push(newEntry);
+                addSelectedEntry(newEntry, arrayName);
                 vm.focusAuthAdd = true;
             }
         }
 
-        function removeGenerator(arrayName) {
+        function removeGenerator(arrayName, onRemoved) {
             return function($index) {
-                getArray(arrayName).splice($index, 1);
+                var removedItem = getArray(arrayName).splice($index, 1)[0];
+                if(getSelectedEntry(arrayName) === removedItem)
+                    removeSelectedEntry(arrayName);
+                onRemoved(removedItem);
+            }
+        }
+
+        function onAuthorizationRemoved(authorization) {
+            var amendments = getAuthorizationAmendments(authorization.authorizationId),
+                authArray = getArray('authorizations');
+            for(var i = 0; i < authArray.length; i++) {
+                var authorization = authArray[i];
+                if(amendments.indexOf(authorization) > - 1) {
+                    authArray.splice(i, 1);
+                    i--;
+                }
             }
         }
 
@@ -160,7 +184,9 @@
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
-            authArray.push(createAuthorization(authId, (lastVersion.version + 1)));
+            var newAmendment = createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
+            authArray.push(newAmendment);
+            addSelectedEntry(newAmendment, AMENDMENT_SELECTED_NAME, authId);
             vm.focusAuthAdd = true;
         }
 
@@ -168,7 +194,10 @@
             var authArray = getArray('authorizations');
             for(var i = 0; i < authArray.length; i++) {
                 if(authArray[i] === amendment) {
-                    authArray.splice(i, 1);
+                    var removedAmendment = authArray.splice(i, 1)[0];
+                    var authId = removedAmendment.authorizationId;
+                    if(getSelectedEntry(AMENDMENT_SELECTED_NAME, authId) === removedAmendment)
+                        removeSelectedEntry(AMENDMENT_SELECTED_NAME, authId);
                     break;
                 }
             }
@@ -179,12 +208,42 @@
             }
         }
 
+        function addSelectedEntry(entry, path, id) {
+            generateSelectedEntryParse(path, id).assign(vm, entry);
+        }
+
+        function getSelectedEntry(path, id) {
+            return generateSelectedEntryParse(path, id)(vm);
+        }
+
+        function removeSelectedEntry(path, id) {
+            generateSelectedEntryParse(path, id).assign(vm, null);
+        }
+
+        function generateSelectedEntryParse(path, id) {
+            if(id)
+                path = path + "_" + id;
+            path = "entries['" + path + "'].selected";
+            return $parse(path);
+        }
+
         function getLastAuthorizationVersion(authId) {
-            var authArray = getArray('authorizations'),
-                filteredArray = $filter('filter')(authArray, { authorizationId: authId });
+            var filteredArray = getAuthorizationAmendments(authId);
             return $filter('orderBy')(filteredArray, "-version")[0];
         }
 
+        function updateAmendments(authorization) {
+            var amendments = getAuthorizationAmendments(authorization.authorizationId);
+            angular.forEach(amendments, function(amendment){
+                if(amendment !== authorization)
+                    amendment.authorizationType = authorization.authorizationType;
+            });
+        }
+
+        function getAuthorizationAmendments(authId) {
+            var authArray = getArray('authorizations');
+            return $filter('filter')(authArray, { authorizationId: authId });
+        }
         function getArray(arrayName){
             var getter = $parse(arrayName);
             return getter(vm.program) || getter.assign(vm.program, []);
@@ -203,10 +262,11 @@
             return authorization.authorizationId + authorization.version;
         }
 
-        function createAuthorization(uuid, version) {
+        function createAuthorization(uuid, type, version) {
             return {
                 authorizationId: uuid || util.generateUUID(),
                 version: version || AUTH_VERSION_BASELINE,
+                authorizationType: type,
                 active: true
             }
         }

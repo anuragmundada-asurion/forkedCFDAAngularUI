@@ -45,6 +45,12 @@
                         limit: data.limit
                     };
                     return list;
+                },
+                interceptor: {
+                    response: function (response) {
+                        response.resource.$metadata = response.data.$metadata;
+                        return response.resource;
+                    }
                 }
             },
             get: {

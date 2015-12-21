@@ -13,7 +13,8 @@
         var SPECIAL_DICTIONARIES = [
             'yes_na',
             'yes_no',
-            'yes_no_na'
+            'yes_no_na',
+            'authorization_type'
         ];
         var domainUrl = env["pub.api.programs"] || 'http://gsaiae-dev02.reisys.com:89';
 

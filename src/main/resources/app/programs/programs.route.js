@@ -13,7 +13,8 @@
     var CORE_DICTIONARIES = [
         'yes_no',
         'yes_na',
-        'yes_no_na'
+        'yes_no_na',
+        'authorization_type'
     ];
 
     //////////////////

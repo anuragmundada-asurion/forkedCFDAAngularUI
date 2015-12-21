@@ -18,6 +18,8 @@ import java.util.UUID;
 public class EnvironmentController {
 
     final String angularTemplate = "'use strict';\nangular.module('app.settings', []).constant('env', %s );";
+    final String xdomainTemplate = "'use strict';\nxdomain.slaves(%s);";
+    final String xdomainProxyLocation = "/web/IE9/proxy.html";
 
     final String programsApiEnvName = "pub.api.programs";
 
@@ -32,7 +34,17 @@ public class EnvironmentController {
         return String.format(angularTemplate, json);
     }
 
+    @RequestMapping(value = "_xdomainVariables", method = RequestMethod.GET)
+    public String getXdomain() throws Exception {
+        JSONObject json = new JSONObject();
+        json.put(getProgramApiUrl(), xdomainProxyLocation);
+        return String.format(xdomainTemplate, json);
+    }
+
     private String getProgramApiUrl() {
-        return /*"http://gsaiae-dev02.reisys.com:89";*/ environment.getProperty(programsApiEnvName);
+        String apiUrl = environment.getProperty(programsApiEnvName);
+        if(apiUrl == null)
+            apiUrl = "http://gsaiae-dev02.reisys.com:89";
+        return apiUrl;
     }
 }
