@@ -2,24 +2,18 @@
 <section class="sub-section" field-finder-bookmark>
     <h3>120 Financial Information</h3>
     <section class="sub-minor-section" field-finder-bookmark>
-        <div class="input-field">
-            <h4>121 Account Identification</h4>
-            <!--<p>Agency aupplied 11-digit budget accound codes</p>-->
-            <div ng-repeat="account in gsavm.program.financial.accounts track by $index">
-                <div ng-form ng-init="formPath='account'+gsavm.nextId();idPath=formPath;" name="gsavm.form.financial.{{formPath}}" class="sub-form">
-                    <div class="input-field">
-                        <label for="{{ idPath + '-code-' + $index }}">Code<span class="required">*</span></label>
-                        <span type="text" id="{{ 'ac-code-' + idPath }}" ng-bind="account.code" mask="xx-xxxx-x-x-xxx"></span>
-                        <!--masked-input id="{{ 'ac-code-' + idPath }}" name="code" ng-model="account.code" mask="xx-xxxx-x-x-xxx"></masked-input>
-                        <div ng-show="gsavm.validationFlag['Financial Information and Accomplishments'] || gsavm.form.financial.{{formPath}}.code.$dirty">
-                            <span ng-show="gsavm.form.financial.{{formPath}}.code.$error.filled">The Code must be filled entirely.</span>
-                        </div-->
-                    </div>
-                    <div class="input-field ">
-                        <label for="{{ 'ac-description-' + idPath }}">Description</label>
-                        <!--<p>Optionally add a description for this account number</p>-->
-                        <span type="text" id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="account.description"></span>
-                    </div>
+        <h4>121 Account Identification</h4>
+        <!--<p>Agency aupplied 11-digit budget accound codes</p>-->
+        <div ng-repeat="account in gsavm.program.financial.accounts track by $index">
+            <div ng-form ng-init="formPath='account'+gsavm.nextId();idPath=formPath;" name="gsavm.form.financial.{{formPath}}" class="sub-form">
+                <div class="input-field">
+                    <label for="{{ idPath + '-code-' + $index }}">Code<span class="required">*</span></label>
+                    <span type="text" id="{{ 'ac-code-' + idPath }}" ng-bind="account.code" mask="xx-xxxx-x-x-xxx"></span>
+                </div>
+                <div class="input-field ">
+                    <label for="{{ 'ac-description-' + idPath }}">Description</label>
+                    <!--<p>Optionally add a description for this account number</p>-->
+                    <span type="text" id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="account.description"></span>
                 </div>
             </div>
         </div>
@@ -42,15 +36,6 @@
                         <div ng-repeat="item in gsavm.choices['assistance_type'] | selectedChoiceFilter:obligation.questions.salary_or_expense.assistanceType:'element_id' track by item.element_id">
                             <p type="text" ng-bind="item.displayValue"></p>
                         </div>
-                        <!--ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" style="width:800px" ng-required="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
-                            <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
-                            <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
-                                <div ng-bind-html="item.value | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
-                        <div ng-show="gsavm.validationFlag['Financial Information and Accomplishments'] || gsavm.form.financial.{{formPath}}.assistanceTypes.$dirty">
-                            <span ng-show="gsavm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
-                        </div-->
                     </div>
                 </section>
                 <hr>
@@ -103,43 +88,41 @@
         </div>
     </section>
     <section class="sub-minor-section" field-finder-bookmark>
-        <div class="input-field">
-            <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
-            <div ng-repeat="tafscode in gsavm.program.financial.treasury.tafs track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
-                <div ng-form ng-init="formPath='tafscode'+$index;idPath=formPath" name="gsavm.form.financial.treasury.{{formPath}}" class="sub-form">
-                    <section class="usa-grid">
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
-                            <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="tafscode.departmentCode"></span>
-                        </div>
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
-                            <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="tafscode.allocationTransferAgency"></span>
-                        </div>
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'fy1-' + idPath }}">FY 1</label>
-                            <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="tafscode.fy1"></span>
-                        </div>
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'fy2-' + idPath }}">FY 2</label>
-                            <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="tafscode.fy2"></span>
-                        </div>
-                    </section>
-                    <section class="usa-grid">
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
-                            <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="tafscode.accountCode"></span>
-                        </div>
-                        <div class="input-field usa-width-one-fourth">
-                            <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
-                            <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="tafscode.subAccountCode"></span>
-                        </div>
-                    </section>
-                </div>
+        <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
+        <div ng-repeat="tafscode in gsavm.program.financial.treasury.tafs track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
+            <div ng-form ng-init="formPath='tafscode'+$index;idPath=formPath" name="gsavm.form.financial.treasury.{{formPath}}" class="sub-form">
+                <section class="usa-grid">
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
+                        <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="tafscode.departmentCode"></span>
+                    </div>
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
+                        <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="tafscode.allocationTransferAgency"></span>
+                    </div>
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'fy1-' + idPath }}">FY 1</label>
+                        <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="tafscode.fy1"></span>
+                    </div>
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'fy2-' + idPath }}">FY 2</label>
+                        <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="tafscode.fy2"></span>
+                    </div>
+                </section>
+                <section class="usa-grid">
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
+                        <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="tafscode.accountCode"></span>
+                    </div>
+                    <div class="input-field usa-width-one-fourth">
+                        <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
+                        <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="tafscode.subAccountCode"></span>
+                    </div>
+                </section>
             </div>
-            <div ng-show="gsavm.form.tafscodes.$dirty">
-                <span ng-show="gsavm.form.tafscodes.$error.requiredLength">You must provide at least one TAFS Code.</span>
-            </div>
+        </div>
+        <div ng-show="gsavm.form.tafscodes.$dirty">
+            <span ng-show="gsavm.form.tafscodes.$error.requiredLength">You must provide at least one TAFS Code.</span>
         </div>
     </section>
 </section>

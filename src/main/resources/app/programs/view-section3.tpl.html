@@ -3,8 +3,11 @@
     <h3>090 Application and Award Process</h3>
     <section class="sub-minor-section" field-finder-bookmark>
         <div class="input-field">
-            <label for="preappCoord7">091 Preapplication Coordination</label>
-            <span type="text" id="preappCoord7" ng-bind="gsavm.program.preApplication.coordination.flag"></span>
+            <label>091 Preapplication Coordination</label>
+            <label>Is any prior coordination or approval required with governmental or nongovernmental units
+                prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
+            <span type="text" id="preappCoord7yes" ng-if="gsavm.program.preApplication.coordination.flag=='yes'">Yes</span>
+            <span type="text" id="preappCoord7no"  ng-if="gsavm.program.preApplication.coordination.flag=='no'">No</span>
         </div>
         <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.flag === 'yes'">
             <br/>
@@ -14,11 +17,6 @@
             </fieldset>
             <div class="input-field" style="padding-left:20px;" ng-show="gsavm.program.preApplication.coordination.environmentalImpact.flag=='yes'">
                 <div ng-repeat="reportType in gsavm.types.reportTypes track by reportType">
-                    <!--input type="checkbox" id="{{reportType + '-flag'}}"
-                           ng-model="reportFlag"
-                           ng-checked="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag === gsavm.choices['yes_no'].yes.code"
-                           ng-change="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag = reportFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code"
-                           trigger-click-on-enter-->
                     <label for="{{reportType + '-flag'}}">An environmental impact <span type="text" ng-bind="reportType"></span> is required for this program.</label>
                     <span type="text" id="{{reportType + '-flag'}}" ng-bind="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag"></span>
                 </div>
@@ -105,21 +103,6 @@
         <div class="input-field">
             <label for="approvalTime7">095 Range of Approval/Disapproval Time<span class="required" >*</span></label>
             <span type="text" id="approvalTime7" ng-bind="gsavm.program.application.deadlines.approval.interval"></span>
-            <!--select id="approvalTime3" name="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" required>
-                <option value='' disabled style="display:none">Please select a time period</option>
-                <option value='1to15'>From 1 to 15 days</option>
-                <option value='15to30'>From 15 to 30 days</option>
-                <option value='30to60'>From 30 to 60 days</option>
-                <option value='60to90'>From 60 to 90 days</option>
-                <option value='90to120'>From 90 to 120 days</option>
-                <option value='120to180'>From 120 to 180 days</option>
-                <option value='180more'>More than 180 days</option>
-                <option value='na'>Not Applicable</option>
-                <option value='other'>Other</option>
-            </select>
-            <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
-                <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
-            </div-->
         </div>
         <div class="input-field">
             <label for="approvalTime7other">Other Approval Information:</label>
