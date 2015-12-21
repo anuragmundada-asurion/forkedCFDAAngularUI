@@ -1,0 +1,69 @@
+<h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
+<section class="sub-section" field-finder-bookmark>
+    <h3>080 Eligibility Requirements</h3>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>081 Applicant Eligibility</h4>
+        <div class="input-field">
+            <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
+            <div ng-repeat="item in gsavm.choices['applicant_types'] | selectedChoiceFilter:gsavm.program.eligibility.applicant.types:'element_id' track by item.element_id">
+                <p type="text" ng-bind="item.displayValue"></p>
+            </div>
+        </div>
+        <div class="input-field">
+            <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
+            <div ng-repeat="item in gsavm.choices['assistance_usage_types'] | selectedChoiceFilter:gsavm.program.eligibility.applicant.assistanceUsageTypes:'element_id' track by item.element_id">
+                <p type="text" ng-bind="item.displayValue"></p>
+            </div>
+
+            <label for="assistanceAdditionalInfo7">Additional Information<span class="required" >*</span></label>
+            <span type="text" id="assistanceAdditionalInfo7" ng-bind="gsavm.program.eligibility.applicant.additionalInfo.content"></span>
+        </div>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>082 Beneficiary Eligibility</h4>
+        <div class="input-field">
+            <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
+            <div ng-repeat="item in gsavm.choices['beneficiary_types'] | selectedChoiceFilter:gsavm.program.eligibility.beneficiary.types:'element_id' track by item.element_id">
+                <p type="text" ng-bind="item.displayValue"></p>
+            </div>
+            <!--ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types"  style="width:800px;" required-Length='{ "min": 1 }'>
+                <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
+                <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] | filter:$select.search">
+                    <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryEligibility.$dirty">
+                <span ng-show="gsavm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
+            </div-->
+            <label for="beneficiaryAdditionalInfo7">Additional Information<span class="required" >*</span></label>
+            <span type="text" id="beneficiaryAdditionalInfo7" ng-bind="gsavm.program.eligibility.beneficiary.additionalInfo.content"></span>
+        </div>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>083 Credentials/Documentation</h4>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <ul class="usa-unstyled-list">
+                    <li>
+                        <label for="credentialsOrDocumentation7">Are there credentials or documentation?<span class="required" >*</span></label>
+                        <span type="text" id="credentialsOrDocumentation7" ng-bind="gsavm.program.eligibility.documentation.flag"></span>
+                    </li>
+                </ul>
+            </fieldset>
+
+            <div ng-show="gsavm.program.eligibility.documentation.flag">
+                <label for="credentialsAdditionalInfo7">Please explain:<span class="required" >*</span></label>
+                <span type="text" id="credentialsAdditionalInfo7" ng-bind="gsavm.program.eligibility.documentation.content"></span>
+                <br/>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <ul class="usa-unstyled-list">
+                        <li>
+                            <label for="costPrincipalsAcceptable7">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
+                            <span type="text" id="costPrincipalsAcceptable7" ng-bind="gsavm.program.eligibility.documentation.questions"></span>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+        </div>
+    </section>
+</section>

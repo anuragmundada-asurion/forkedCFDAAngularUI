@@ -1,0 +1,106 @@
+<h2><span class="section-circle">4</span> Post Award Requirements</h2>
+<section class="sub-section" field-finder-bookmark>
+    <h3>110 Post Assistance Requirements</h3>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>111 Reports</h4>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="reports7">Are reports required by the funding agency?<span class="required" >*</span></label>
+                <span type="text" id="reports7" ng-bind="gsavm.program.postAward.reports.flag"></span>
+            </fieldset>
+        </div>
+        <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
+            <br/>
+            <div class="input-field" >
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="programReports7">Are program reports required?<span class="required" >*</span></label>
+                    <span type="text" id="programReports7" ng-bind="gsavm.program.postAward.reports.list.program.flag"></span>
+                 </fieldset>
+                <div ng-show="gsavm.program.postAward.reports.list.program.flag === 'yes'">
+                    <label for="programReportsInfo7">Please describe the program reports required.<span class="required" >*</span></label>
+                    <span type="text" id="programReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.program.content"></span>
+                </div>
+            </div>
+            <br/>
+            <div class="input-field">
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="cashReports7">Are cash reports required?<span class="required" >*</span></label>
+                    <span type="text" id="cashReports7" ng-bind="gsavm.program.postAward.reports.list.cash.flag"></span>
+                </fieldset>
+                <div ng-show="gsavm.program.postAward.reports.list.cash.flag === 'yes'">
+                    <label for="cashReportsInfo7">Please describe the cash reports required.<span class="required" >*</span></label>
+                    <span type="text" id="cashReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.cash.content"></span>
+                </div>
+            </div>
+            <br/>
+            <div class="input-field">
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="progressReports7">Are progress reports required?<span class="required" >*</span></label>
+                    <span type="text" id="progressReports7" ng-bind="gsavm.program.postAward.reports.list.progress.flag"></span>
+                </fieldset>
+                <div ng-show="gsavm.program.postAward.reports.list.progress.flag === 'yes'">
+                    <label for="progressReportsInfo7">Please describe the progress reports required.<span class="required" >*</span></label>
+                    <span type="text" id="progressReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.progress.content"></span>
+                </div>
+            </div>
+            <br/>
+            <div class="input-field">
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="expenditureReports7">Are expenditure reports required?<span class="required" >*</span></label>
+                    <span type="text" id="expenditureReports7" ng-bind="gsavm.program.postAward.reports.list.expenditure.flag"></span>
+                </fieldset>
+                <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag === 'yes'">
+                    <label for="expenditureReportsInfo7">Please describe the expenditure reports required.<span class="required" >*</span></label>
+                    <span type="text" id="expenditureReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.expenditure.content"></span>
+                </div>
+            </div>
+            <br/>
+            <div class="input-field">
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="performanceMonitoring7">Is performance monitoring required?<span class="required" >*</span></label>
+                    <span type="text" id="performanceMonitoring7" ng-bind="gsavm.program.postAward.reports.list.performanceMonitoring.flag"></span>
+                </fieldset>
+                <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag === 'yes'">
+                    <label for="performanceMonitoringInfo7">Please describe the performance monitoring required.<span class="required" >*</span></label>
+                    <span type="text" id="performanceMonitoringInfo7" ng-bind="gsavm.program.postAward.reports.list.performanceMonitoring.content"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>112 Audits</h4>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="audits7">Are audits required for the program?<span class="required" >*</span></label>
+                <span type="text" id="audits7" ng-bind="gsavm.program.postAward.audit.flag"></span>
+            </fieldset>
+            <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
+                <label for="auditRequirements7">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
+                <span type="text" id="auditRequirements7" ng-bind="gsavm.program.postAward.audit.question.flag"></span>
+                <label for="auditRequirementsInfo7">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'" >*</span></label>
+                <span type="text" id="auditRequirementsInfo7" ng-bind="gsavm.program.postAward.audit.content"></span>
+            </div>
+        </div>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>113 Records</h4>
+        <div class="input-field">
+            <label class="usa-grid-full" for="recordContent7">Describe what records the Federal agency requires the recipient to maintain and the time periods.</label>
+            <span type="text" id="recordContent7" ng-bind="gsavm.program.postAward.records.content"></span>
+        </div>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>140 Regulations, Guidelines, and Literature</h4>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="documents7">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>
+                <span type="text" id="documents7" ng-bind="gsavm.program.postAward.documents.flag"></span>
+            </fieldset>
+
+            <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
+                <label for="documentsAdditionalInfo7">Please describe regulations, guidelines, and literature.<span class="required" >*</span></label>
+                <span type="text" id="documentsAdditionalInfo7" ng-bind="gsavm.program.postAward.documents.content"></span>
+            </div>
+        </div>
+    </section>
+</section>

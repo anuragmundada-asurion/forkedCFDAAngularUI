@@ -1,0 +1,64 @@
+<h2><span class="section-circle">6</span> Contact Information</h2>
+<section class="sub-section" field-finder-bookmark>
+    <h3>150 Information Contacts<span class="required" >*</span></h3>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <fieldset class="usa-fieldset-inputs usa-sans">
+            <h4>151 Regional or Local Office<span class="required" >*</span></h4>
+            <div ng-show="gsavm.program.contacts.flag=='regional'">See Regional Agency Offices</div>
+            <div ng-show="gsavm.program.contacts.flag=='none'">None</div>
+        </fieldset>
+        <label for="office7info">Additional Information:</label>
+        <span type="text" id="office7info" name="office7info" ng-bind="gsavm.program.contacts.additionalInfo.content"></span>
+        <br/>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <h4>152 Headquarters Office</h4>
+        <label for="contact7">Select an Existing or New Contact:</label>
+        <span type="text" id="contact7" name="contact7" ng-bind="gsavm.program.contacts.type"></span>
+
+        <label for="title7">Title:</label>
+        <span type="text" id="title7" name="title7" ng-bind="gsavm.program.contacts.title"></span>
+
+        <label for="fullname7">Full Name<span class="required" >*</span>:</label>
+        <span type="text" id="fullname7" name="fullname7" ng-bind="gsavm.program.contacts.fullName"></span>
+
+        <label for="email7">Email:</label>
+        <span type="text" id="email7" name="email7" ng-bind="gsavm.program.contacts.email"></span>
+
+        <label for="phone7">Phone<span class="required" >*</span>:</label>
+        <span type="text" id="phone7" name="phone7" ng-bind="gsavm.program.contacts.phone"></span>
+
+        <label for="fax7">Fax:</label>
+        <span type="text" id="fax7" name="fax7" ng-bind="gsavm.program.contacts.fax"></span>
+        <br/><br/>
+        Address:
+        <label for="address7">Street<span class="required" >*</span>:</label>
+        <span type="text" id="address7" name="address7" ng-bind="gsavm.program.contacts.address"></span>
+        <table style="margin:0px">
+            <tr>
+                <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
+                    <label for="city7">City<span class="required" >*</span>:</label>
+                    <span type="text" id="city7" name="city7" ng-bind="gsavm.program.contacts.city"></span>
+                </td>
+                <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
+                    <label for="state7">State<span class="required" >*</span>:</label>
+                    <span type="text" id="state7" name="state7" ng-bind="gsavm.program.contacts.state"></span>
+                </td>
+                <td style="padding:0px;vertical-align:top;border:0px">
+                    <label for="zip7">Zip<span class="required" >*</span>:</label>
+                    <span type="text" id="zip7" name="zip7" ng-bind="gsavm.program.contacts.zip"></span>
+                </td>
+            </tr>
+        </table>
+
+        <label for="country7">Country:</label>
+        <span type="text" id="country7" name="country7" ng-bind="gsavm.program.contacts.country"></span>
+        <br/>
+    </section>
+    <section class="sub-minor-section" field-finder-bookmark>
+        <div class="input-field">
+            <label for="website7">153 Website:</label>
+            <span type="text" id="website7" name="website7" ng-bind="gsavm.program.contacts.website"></span>
+        </div>
+    </section>
+</section>
