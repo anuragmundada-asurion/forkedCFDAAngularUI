@@ -19,17 +19,16 @@ form {
   fieldset {
     display: block;
     margin-top: 3rem;
-    max-width: 46rem;
-    }
+  }
 
-    fieldset > label {
+  fieldset > label {
         margin-bottom: .7em;
-    }
+  }
 
-    label, textarea, input[type=text], select {
-        width:56rem;
-        max-width:56rem;
-    }
+  .usa-input-large {
+      max-width: 56rem;
+      width: 56rem;
+  }
 }
 
 .radio-button-group {
