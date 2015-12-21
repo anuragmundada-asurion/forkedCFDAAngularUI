@@ -17,39 +17,19 @@ hr {
 .sub-section,
 .sub-minor-section{
   font-family:$font-sans;
-  border-top: 2px solid $color-gray-light;
+
   padding-bottom:30px;
   h3 {
     font-family:$font-serif;
-  }
-  > .input-field {
-    @extend .indented;
   }
 }
 .sub-section {
   > .sub-minor-section {
     @extend .indented;
   }
+  border-top: 2px solid $color-gray-light;
 }
-.input-field {
-  &:first-child {
-    > label:first-child {
-      form .sub-section > & {
-        @extend h3;
-      }
-      form .sub-minor-section > & {
-        @extend h4;
-      }
-      form .sub-section > &,
-      form .sub-minor-section > & {
-        margin-left: -$form-section-indent;
-        &+* {
-          margin-top: 22px;
-        }
-      }
-    }
-  }
-}
+
 #branding {
   .logo img {
     padding: $nav-padding-height $nav-padding-width;
