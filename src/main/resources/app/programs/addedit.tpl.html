@@ -398,11 +398,11 @@
                             <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions.OMBCircularA87.flag" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
                                     <label for="costPrincipalsAcceptableYes">Yes</label>
                                 </li>
                                 <li >
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions" id="costPrincipalsAcceptableNo" value="no" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions.OMBCircularA87.flag" id="costPrincipalsAcceptableNo" value="no" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
                                     <label for="costPrincipalsAcceptableNo">No</label>
                                 </li>
                             </ul>
@@ -606,15 +606,15 @@
                         <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
                         <select id="approvalTime3" name="approvalTime3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.approval.interval" required>
                             <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='From 1 to 15 days'>From 1 to 15 days</option>
-                            <option value='From 15 to 30 days'>From 15 to 30 days</option>
-                            <option value='From 30 to 60 days'>From 30 to 60 days</option>
-                            <option value='From 60 to 90 days'>From 60 to 90 days</option>
-                            <option value='From 90 to 120 days'>From 90 to 120 days</option>
-                            <option value='From 120 to 180 days'>From 120 to 180 days</option>
-                            <option value='More than 180 days'>More than 180 days</option>
-                            <option value='Not Applicable'>Not Applicable</option>
-                            <option value='Other'>Other</option>
+                            <option value='1'>From 1 to 15 days</option>
+                            <option value='2'>From 15 to 30 days</option>
+                            <option value='3'>From 30 to 60 days</option>
+                            <option value='4'>From 60 to 90 days</option>
+                            <option value='5'>From 90 to 120 days</option>
+                            <option value='6'>From 120 to 180 days</option>
+                            <option value='7'>More than 180 days</option>
+                            <option value='8'>Not Applicable</option>
+                            <option value='9'>Other</option>
                         </select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
@@ -633,15 +633,15 @@
                         <h4>096 Appeals<span class="required" >*</span></h4>
                         <select id="appeals3" name="appeals3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.appeal.interval" required>
                             <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='From 1 to 15 days'>From 1 to 15 days</option>
-                            <option value='From 15 to 30 days'>From 15 to 30 days</option>
-                            <option value='From 30 to 60 days'>From 30 to 60 days</option>
-                            <option value='From 60 to 90 days'>From 60 to 90 days</option>
-                            <option value='From 90 to 120 days'>From 90 to 120 days</option>
-                            <option value='From 120 to 180 days'>From 120 to 180 days</option>
-                            <option value='More than 180 days'>More than 180 days</option>
-                            <option value='Not Applicable'>Not Applicable</option>
-                            <option value='Other'>Other</option>
+                            <option value='1'>From 1 to 15 days</option>
+                            <option value='2'>From 15 to 30 days</option>
+                            <option value='3'>From 30 to 60 days</option>
+                            <option value='4'>From 60 to 90 days</option>
+                            <option value='5'>From 90 to 120 days</option>
+                            <option value='6'>From 120 to 180 days</option>
+                            <option value='7'>More than 180 days</option>
+                            <option value='8'>Not Applicable</option>
+                            <option value='9'>Other</option>
                         </select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
@@ -660,15 +660,15 @@
                         <h4>097 Renewals<span class="required" >*</span></h4>
                         <select id="renewals3" name="renewals3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.renewal.interval" required>
                             <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='From 1 to 15 days'>From 1 to 15 days</option>
-                            <option value='From 15 to 30 days'>From 15 to 30 days</option>
-                            <option value='From 30 to 60 days'>From 30 to 60 days</option>
-                            <option value='From 60 to 90 days'>From 60 to 90 days</option>
-                            <option value='From 90 to 120 days'>From 90 to 120 days</option>
-                            <option value='From 120 to 180 days'>From 120 to 180 days</option>
-                            <option value='More than 180 days'>More than 180 days</option>
-                            <option value='Not Applicable'>Not Applicable</option>
-                            <option value='Other'>Other</option>
+                            <option value='1'>From 1 to 15 days</option>
+                            <option value='2'>From 15 to 30 days</option>
+                            <option value='3'>From 30 to 60 days</option>
+                            <option value='4'>From 60 to 90 days</option>
+                            <option value='5'>From 90 to 120 days</option>
+                            <option value='6'>From 120 to 180 days</option>
+                            <option value='7'>More than 180 days</option>
+                            <option value='8'>Not Applicable</option>
+                            <option value='9'>Other</option>
                         </select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
@@ -1073,11 +1073,11 @@
                             <fieldset class="usa-fieldset-inputs usa-sans">
                                 <ul class="usa-unstyled-list">
                                     <li>
-                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.question.flag" id="auditRequirements-yes" type="radio" value="yes" required>
+                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions.OMBCircular.flag" id="auditRequirements-yes" type="radio" value="yes" required>
                                         <label for="auditRequirements-yes">Yes</label>
                                     </li>
                                     <li>
-                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.question.flag" id="auditRequirements-no" type="radio" value="no" required>
+                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions.OMBCircular.flag" id="auditRequirements-no" type="radio" value="no" required>
                                         <label for="auditRequirements-no">No</label>
                                     </li>
                                 </ul>
