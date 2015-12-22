@@ -64,7 +64,7 @@
                                 <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isAuthorization track by gsavm.exps.generateAuthKey(authorization)">
                                     <div>
                                         <button type="button" class="button-circle" ng-click="gsavm.removeAuthorization($index)" aria-label="Delete Authorization" trigger-click-on-enter><span class="fa fa-times"></span></button>
-                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'authorizations')" ng-disabled="gsavm.getSelectedEntry('authorizations')">{{gsavm.getAuthorizationTitle(authorization) || ('Untitled Authorization ' + ($index + 1))}}</a>
+                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'authorizations')" ng-disabled="gsavm.getSelectedEntry('authorizations')">{{gsavm.getAuthorizationTitle(authorization) || ('Authorization ' + ($index + 1))}}</a>
                                     </div>
                                 </li>
                             </ul>
@@ -77,7 +77,7 @@
                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isAuthorization track by gsavm.exps.generateAuthKey(authorization)">
                                 <div ng-form ng-init="formPath='authorization'+gsavm.nextId();idPath=formPath;parentAuth=authorization" name="gsavm.form.{{formPath}}" ng-show="gsavm.getSelectedEntry('authorizations') === authorization" class="sub-form">
                                     <section class="usa-grid">
-                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Untitled Authorization ' + ($index + 1))}}</h3>
+                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Authorization ' + ($index + 1))}}</h3>
                                     </section>
                                     <section class="usa-grid">
                                         <ul class="usa-unstyled-list radio-button-group">
@@ -96,7 +96,7 @@
                                                 <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
                                                     <div>
                                                         <button type="button" class="button-circle" ng-click="gsavm.removeAmendment(authorization, authorization.authorizationId)" trigger-click-on-enter><span class="fa fa-times"></span></button>
-                                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || ('Untitled Amendment ' + ($index + 1))}}</a>
+                                                        <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || ('Amendment ' + ($index + 1))}}</a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -104,7 +104,7 @@
                                             <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)" ng-show="gsavm.getSelectedEntry('amendments', authorization.authorizationId) === authorization">
                                                 <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
                                                     <section class="usa-grid">
-                                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Untitled Amendment ' + ($index + 1))}}</h3>
+                                                        <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Amendment ' + ($index + 1))}}</h3>
                                                     </section>
                                                     <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                                     <button type="button" ng-click="gsavm.removeSelectedEntry('amendments', authorization.authorizationId)">Close</button>
@@ -227,19 +227,19 @@
                         <label for="relatedProgramsFlag">Are there any related programs?</label>
                         <ul class="usa-unstyled-list">
                             <li>
-                                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.uiLogic.relatedProgramsFlag" id="relatedProgramsFlagYes" value="yes" required/>
+                                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagYes" value="yes" required/>
                                 <label for="relatedProgramsFlagYes">Yes</label>
                             </li>
                             <li >
-                                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.uiLogic.relatedProgramsFlag" id="relatedProgramsFlagNA" value="na" required/>
+                                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagNA" value="na" required/>
                                 <label for="relatedProgramsFlagNA">Not Applicable</label>
                             </li>
                         </ul>
                     </fieldset>
                 </div>
-                <div class="input-field" ng-show="gsavm.uiLogic.relatedProgramsFlag === 'yes'">
+                <div class="input-field" ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
                     <label>Select any related programs below:<span class="required" >*</span></label>
-                    <ui-select multiple ng-model="gsavm.program.relatedTo" name="relatedTo" on-select="gsavm.log($item, $model)" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
+                    <ui-select multiple ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" on-select="gsavm.log($item, $model)" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
                         <ui-select-match placeholder="Select a program...">{{$item.title}}</ui-select-match>
                         <ui-select-choices repeat="item._id as item in gsavm.choices['programs'] | filter: {title: $select.search, _id: '!' + gsavm.program._id}">
                             <div ng-bind-html="item.title | highlight: $select.search"></div>
