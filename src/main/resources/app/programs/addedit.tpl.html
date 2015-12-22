@@ -616,9 +616,15 @@
                             <option value='8'>Not Applicable</option>
                             <option value='9'>Other</option>
                         </select>
+                        <!--ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2">
+                            <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
+                                <div ng-bind-html="item.value | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
-                        </div>
+                        </div-->
                     </div>
                     <div class="input-field">
                         <label for="approvalTime3other">Other Approval Information:</label>
@@ -1073,11 +1079,11 @@
                             <fieldset class="usa-fieldset-inputs usa-sans">
                                 <ul class="usa-unstyled-list">
                                     <li>
-                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions.OMBCircular.flag" id="auditRequirements-yes" type="radio" value="yes" required>
+                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-yes" type="radio" value="yes" required>
                                         <label for="auditRequirements-yes">Yes</label>
                                     </li>
                                     <li>
-                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions.OMBCircular.flag" id="auditRequirements-no" type="radio" value="no" required>
+                                        <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-no" type="radio" value="no" required>
                                         <label for="auditRequirements-no">No</label>
                                     </li>
                                 </ul>
@@ -1649,7 +1655,7 @@
                     <section class="sub-minor-section" field-finder-bookmark>
                         <div class="input-field">
                             <h4>153 Website:</h4>
-                            <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.contacts.website">
+                            <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
                         </div>
                     </section>
                 </section>
