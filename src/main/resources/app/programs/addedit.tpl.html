@@ -398,11 +398,11 @@
                             <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions.OMBCircularA87.flag" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
                                     <label for="costPrincipalsAcceptableYes">Yes</label>
                                 </li>
                                 <li >
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions.OMBCircularA87.flag" id="costPrincipalsAcceptableNo" value="no" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableNo" value="no" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
                                     <label for="costPrincipalsAcceptableNo">No</label>
                                 </li>
                             </ul>
@@ -495,11 +495,11 @@
                                 for Federal Awards apply to this program?</label>
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircular.flag" id="applProc3yes" value="yes" required />
+                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3yes" value="yes" required />
                                     <label for="applProc3yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircular.flag" id="applProc3na" value="na" required />
+                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3na" value="na" required />
                                     <label for="applProc3na">No</label>
                                 </li>
                             </ul>
