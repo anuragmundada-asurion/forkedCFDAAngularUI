@@ -251,32 +251,44 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
+                <h3>170 Examples of Funded Projects<span class="required" >*</span></h3>
                 <div class="input-field">
-                    <h3>170 Examples of Funded Projects<span class="required" >*</span></h3>
-                    <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
+                    <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="fundedProjectsExampleFlag">Are there examples of funded projects?</label>
+
                         <ul class="usa-unstyled-list">
                             <li>
-                                <input type="radio" name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlagYes" value="yes" required/>
-                                <label for="fundedProjectsExampleFlagYes">Yes</label>
+                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
+                                <label for="fundedProjectsExampleFlag-yes">Yes</label>
                             </li>
-                            <li >
-                                <input type="radio" name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlagNA" value="na" required/>
-                                <label for="fundedProjectsExampleFlagNA">Not Applicable</label>
+                            <li>
+                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
+                                <label for="fundedProjectsExampleFlag-na">Not Applicable</label>
                             </li>
                         </ul>
+
                     </fieldset>
-                </div>
-                <div ng-show="gsavm.projects.flag === gsavm.choices['yes_no'].yes.code">
-                    <div class="input-field" ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.name">
-                        <ng-form name="gsavm.form.projects.{{fyTpl.varName}}">
-                            <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
-                            <label for="funded-projects-example-{{fyTpl.idName}}">{{fyTpl.type}}<span class="required" ng-show="fyTpl.isRequired">*</span></label>
-                            <textarea id="funded-projects-example-{{fyTpl.idName}}" name="value" ng-model="gsavm.projects.list[fyTpl.year].content[fyTpl.varName]" ng-required="gsavm.uiLogic.fundedProjectsExampleFlag && fyTpl.isRequired"></textarea>
-                            <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.projects[fyTpl.varName].value.$dirty">
-                                <span ng-show="gsavm.form.projects[fyTpl.varName].value.$error.required">You must provide information for '{{fyTpl.name}}'.</span>
+                    <div ng-show="gsavm.projects.flag === gsavm.choices['yes_na'].yes.code">
+                        <fieldset class="usa-fieldset-inputs usa-sans">
+                            <label for="fundedProjectsExampleYear">Please select all that apply:</label>
+                            <ul class="usa-unstyled-list">
+                                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                                    <li>
+                                        <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
+                                               ng-model="gsavm.projects.list[fyTpl.year].flag" ng-checked="gsavm.projects.list[fyTpl.year].content.projection || gsavm.projects.flag.list[fyTpl.year].content.actual" >
+                                        <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </fieldset>
+
+                        <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                            <div ng-show='gsavm.projects.list[fyTpl.year].flag'>
+                                <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
+                                <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.projects.list[fyTpl.year].content.actual"></textarea>
                             </div>
-                        </ng-form>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -1291,18 +1303,20 @@
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.flag" ng-required="gsavm.program.postAward.accomplishments.flag ==='yes'">
+                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" ng-checked="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.projection || gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual" >
                                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
                             </ul>
                         </fieldset>
+
                         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                            <div ng-show='gsavm.form.programAccomplishmentYear-{{fyTpl.year}}'>
+                            <div ng-show='gsavm.program.postAward.accomplishments.list[fyTpl.year].flag'>
                                 <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                                <textarea id="programAccomplishmentContent-{{fyTpl.year}}" ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content[fyTpl.varName]"></textarea>
+                                <textarea id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></textarea>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
