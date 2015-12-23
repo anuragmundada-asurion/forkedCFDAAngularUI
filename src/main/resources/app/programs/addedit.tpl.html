@@ -1335,7 +1335,7 @@
                             <ul class="usa-unstyled-list">
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
-                                        <input name="programAccomplishmentYear" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
+                                        <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
                                                ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.flag" ng-required="gsavm.program.postAward.accomplishments.flag ==='yes'">
                                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
@@ -1343,7 +1343,7 @@
                             </ul>
                         </fieldset>
                         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                            <div ng-show='programAccomplishmentYear-gsavm.fyTpls[[year]]'>
+                            <div ng-show='gsavm.form.programAccomplishmentYear-{{fyTpl.year}}'>
                                 <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
                                 <textarea id="programAccomplishmentContent-{{fyTpl.year}}" ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content[fyTpl.varName]"></textarea>
                             </div>
