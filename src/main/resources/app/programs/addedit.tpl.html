@@ -1173,11 +1173,11 @@
 
                                         <ul class="usa-unstyled-list">
                                             <li>
-                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="recoveryFlag[formPath]" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
+                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
                                                 <label for="{{ 'recovery-flag-' + idPath }}-yes">Yes</label>
                                             </li>
                                             <li>
-                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="recoveryFlag[formPath]" id="{{ 'recovery-flag-' + idPath }}-na" type="radio" value="na" required>
+                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-na" type="radio" value="na" required>
                                                 <label for="{{ 'recovery-flag-' + idPath }}-na">Not Applicable</label>
                                             </li>
                                         </ul>
@@ -1189,17 +1189,17 @@
 
                                         <ul class="usa-unstyled-list">
                                             <li>
-                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="gsavm.uiLogic.salaryOrExpenseFlag[formPath]" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
+                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
                                                 <label for="{{ 'salary-or-expense-' + idPath }}-yes">Yes</label>
                                             </li>
                                             <li>
-                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="gsavm.uiLogic.salaryOrExpenseFlag[formPath]" id="{{ 'salary-or-expense-' + idPath }}-na" type="radio" value="na" required>
+                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-na" type="radio" value="na" required>
                                                 <label for="{{ 'salary-or-expense-' + idPath }}-na">Not Applicable</label>
                                             </li>
                                         </ul>
                                     </fieldset>
                                 </div>
-                                <div class="input-field" ng-show="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
+                                <div class="input-field" ng-show="obligation.questions.salary_or_expense.flag=='yes'">
                                     <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
                                     <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
                                         <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
@@ -1335,7 +1335,8 @@
                             <ul class="usa-unstyled-list">
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
-                                        <input name="programAccomplishmentYear" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}" ng-required="gsavm.program.postAward.accomplishments.flag ==='yes'">
+                                        <input name="programAccomplishmentYear" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
+                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.flag" ng-required="gsavm.program.postAward.accomplishments.flag ==='yes'">
                                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
