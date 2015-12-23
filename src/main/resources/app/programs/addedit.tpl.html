@@ -604,27 +604,12 @@
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
                         <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
-                        <select id="approvalTime3" name="approvalTime3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.approval.interval" required>
-                            <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='1'>From 1 to 15 days</option>
-                            <option value='2'>From 15 to 30 days</option>
-                            <option value='3'>From 30 to 60 days</option>
-                            <option value='4'>From 60 to 90 days</option>
-                            <option value='5'>From 90 to 120 days</option>
-                            <option value='6'>From 120 to 180 days</option>
-                            <option value='7'>More than 180 days</option>
-                            <option value='8'>Not Applicable</option>
-                            <option value='9'>Other</option>
-                        </select>
-                        <!--ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2">
+                        <ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2" style="width:250px" required>
                             <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
                                 <div ng-bind-html="item.value | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>
-                        <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
-                            <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
-                        </div-->
                     </div>
                     <div class="input-field">
                         <label for="approvalTime3other">Other Approval Information:</label>
@@ -637,18 +622,12 @@
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
                         <h4>096 Appeals<span class="required" >*</span></h4>
-                        <select id="appeals3" name="appeals3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.appeal.interval" required>
-                            <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='1'>From 1 to 15 days</option>
-                            <option value='2'>From 15 to 30 days</option>
-                            <option value='3'>From 30 to 60 days</option>
-                            <option value='4'>From 60 to 90 days</option>
-                            <option value='5'>From 90 to 120 days</option>
-                            <option value='6'>From 120 to 180 days</option>
-                            <option value='7'>More than 180 days</option>
-                            <option value='8'>Not Applicable</option>
-                            <option value='9'>Other</option>
-                        </select>
+                        <ui-select id="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" name="appeals3" theme="select2" style="width:250px" required>
+                            <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
+                                <div ng-bind-html="item.value | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
                         </div>
@@ -664,18 +643,12 @@
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
                         <h4>097 Renewals<span class="required" >*</span></h4>
-                        <select id="renewals3" name="renewals3" class="usa-input-large" ng-model="gsavm.program.application.deadlines.renewal.interval" required>
-                            <option value='' disabled style="display:none">Please select a time period</option>
-                            <option value='1'>From 1 to 15 days</option>
-                            <option value='2'>From 15 to 30 days</option>
-                            <option value='3'>From 30 to 60 days</option>
-                            <option value='4'>From 60 to 90 days</option>
-                            <option value='5'>From 90 to 120 days</option>
-                            <option value='6'>From 120 to 180 days</option>
-                            <option value='7'>More than 180 days</option>
-                            <option value='8'>Not Applicable</option>
-                            <option value='9'>Other</option>
-                        </select>
+                        <ui-select id="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" name="renewals3" theme="select2" style="width:250px" required>
+                            <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
+                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
+                                <div ng-bind-html="item.value | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
                             <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
                         </div>
@@ -752,30 +725,12 @@
                         </div>
                         <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
                             <label for="matchingPercent3">Select the Percentage Below<span class="required" >*</span>:</label>
-                            <select id="matchingPercent3" name="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent" ng-required="gsavm.program.assistance.matching.flag ==='yes'">
-                                <option value='' disabled style="display:none">Please select a percentage</option>
-                                <option value='Other'>Other</option>
-                                <option value='5'>5</option>
-                                <option value='10'>10</option>
-                                <option value='15'>15</option>
-                                <option value='20'>20</option>
-                                <option value='25'>25</option>
-                                <option value='30'>30</option>
-                                <option value='35'>35</option>
-                                <option value='40'>40</option>
-                                <option value='45'>45</option>
-                                <option value='50'>50</option>
-                                <option value='55'>55</option>
-                                <option value='60'>60</option>
-                                <option value='65'>65</option>
-                                <option value='70'>70</option>
-                                <option value='75'>75</option>
-                                <option value='80'>80</option>
-                                <option value='85'>85</option>
-                                <option value='90'>90</option>
-                                <option value='95'>95</option>
-                                <option value='100'>100</option>
-                            </select>
+                            <ui-select id="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent" name="matchingPercent3" theme="select2" required>
+                                <ui-select-match placeholder="Please select a percentage">{{$select.selected.value}}</ui-select-match>
+                                <ui-select-choices repeat="item.element_id as item in gsavm.choices['match_percent'] | propsFilter: {value: $select.search}">
+                                    <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                             <div class="input-field">
                                 <label for="matchingOtherInfo3">Other Matching Requirements Information:</label>
                                 <textarea id="matchingOtherInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.matching.otherInfo.content" ng-required="gsavm.program.assistance.matching.otherInfo.content"></textarea>

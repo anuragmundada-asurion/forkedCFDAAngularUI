@@ -29,7 +29,9 @@
                 'assistance_type',
                 'applicant_types',
                 'assistance_usage_types',
-                'beneficiary_types'
+                'beneficiary_types',
+                'date_range',
+                'match_percent'
             ];
         vm.currentStep = null; //Must set to null due to a bug in angular-wizard
         if(!vm._id) vm._id = null; //Must set to fix filtering bug of undefined properties in Angular's $filter
