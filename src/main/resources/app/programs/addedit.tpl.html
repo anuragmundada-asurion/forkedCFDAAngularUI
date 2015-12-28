@@ -258,24 +258,24 @@
 
                         <ul class="usa-unstyled-list">
                             <li>
-                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
+                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
                                 <label for="fundedProjectsExampleFlag-yes">Yes</label>
                             </li>
                             <li>
-                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
+                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
                                 <label for="fundedProjectsExampleFlag-na">Not Applicable</label>
                             </li>
                         </ul>
 
                     </fieldset>
-                    <div ng-show="gsavm.projects.flag === gsavm.choices['yes_na'].yes.code">
+                    <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label for="fundedProjectsExampleYear">Please select all that apply:</label>
                             <ul class="usa-unstyled-list">
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.projects.list[fyTpl.year].flag" ng-checked="gsavm.projects.list[fyTpl.year].content.projection || gsavm.projects.flag.list[fyTpl.year].content.actual" >
+                                               ng-model="gsavm.program.projects.list[fyTpl.year].flag" ng-checked="gsavm.program.projects.list[fyTpl.year].content.projection || gsavm.program.projects.flag.list[fyTpl.year].content.actual" >
                                         <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>

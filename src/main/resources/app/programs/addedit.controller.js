@@ -283,16 +283,16 @@
             var project = getFiscalYearProject(year);
             if(!project) {
                 project = { year: year };
-                getArray('projects').push(project);
+                getArray('projectsArray').push(project);
             }
             return project;
         }
 
         function getFiscalYearProject(year) {
-            var projects = $filter('filter')(getArray('projects'), { year: year }),
+            var projectsArray = $filter('filter')(getArray('projectsArray'), { year: year }),
                 fyProject = null;
-            if(!!projects.length)
-                fyProject = projects[0];
+            if(!!projectsArray.length)
+                fyProject = projectsArray[0];
             return fyProject;
         }
 
