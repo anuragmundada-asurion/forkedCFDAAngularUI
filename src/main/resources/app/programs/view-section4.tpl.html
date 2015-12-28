@@ -76,7 +76,7 @@
             </fieldset>
             <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
                 <label for="auditRequirements7">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
-                <span type="text" id="auditRequirements7" ng-bind="gsavm.program.postAward.audit.question.flag"></span>
+                <span type="text" id="auditRequirements7" ng-bind="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag"></span>
                 <label for="auditRequirementsInfo7">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'" >*</span></label>
                 <span type="text" id="auditRequirementsInfo7" ng-bind="gsavm.program.postAward.audit.content"></span>
             </div>
@@ -89,8 +89,8 @@
             <span type="text" id="recordContent7" ng-bind="gsavm.program.postAward.records.content"></span>
         </div>
     </section>
-    <section class="sub-minor-section" field-finder-bookmark>
-        <h4>140 Regulations, Guidelines, and Literature</h4>
+    <section class="sub-section" field-finder-bookmark>
+        <h3>140 Regulations, Guidelines, and Literature</h3>
         <div class="input-field">
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="documents7">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>

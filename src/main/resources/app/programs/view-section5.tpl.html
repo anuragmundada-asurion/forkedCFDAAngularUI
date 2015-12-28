@@ -25,11 +25,11 @@
                 <section>
                     <div class="input-field">
                         <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?</label>
-                        <span type="text" id="{{ 'recovery-flag-' + idPath }}" ng-bind="recoveryFlag[formPath]"></span>
+                        <span type="text" id="{{ 'recovery-flag-' + idPath }}" ng-bind="obligation.questions.recovery.flag"></span>
                     </div>
                     <div class="input-field">
                         <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?</label>
-                        <span type="text" id="{{ 'salary-or-expense-' + idPath }}" ng-bind="gsavm.uiLogic.salaryOrExpenseFlag[formPath]"></span>
+                        <span type="text" id="{{ 'salary-or-expense-' + idPath }}" ng-bind="obligation.questions.salary_or_expense.flag"></span>
                     </div>
                     <div class="input-field" ng-show="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
                         <label for="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
@@ -83,7 +83,7 @@
     </section>
     <section class="sub-minor-section" field-finder-bookmark>
         <div class="input-field">
-            <label for="financialAdditionalInfo7">123 Range and Average of Financial Assistance</label>
+            <h4 for="financialAdditionalInfo7">123 Range and Average of Financial Assistance</h4>
             <span type="text" id="financialAdditionalInfo7" name="financialAdditionalInfo" ng-bind="gsavm.program.financial.additionalInfo.content"></span>
         </div>
     </section>
@@ -137,7 +137,7 @@
             <ng-form name="gsavm.form.postAward.accomplishments.list.{{fyTpl.year}}">
                 <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
                 <label for="postawards-accomplishments-{{fyTpl.idName}}">{{fyTpl.type}}<span class="required" ng-show="fyTpl.isRequired">*</span></label>
-                <span type="text" id="postawards-accomplishments-{{fyTpl.idName}}" name="value" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content[fyTpl.varName]"></span>
+                <span type="text" id="postawards-accomplishments-{{fyTpl.idName}}" name="value" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
             </ng-form>
         </div>
     </div>
