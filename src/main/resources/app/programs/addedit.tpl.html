@@ -283,9 +283,9 @@
                         </fieldset>
 
                         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                            <div ng-show='gsavm.projects.list[fyTpl.year].flag'>
+                            <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
                                 <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                                <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.projects.list[fyTpl.year].content.actual"></textarea>
+                                <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.program.projects.list[fyTpl.year].content.actual"></textarea>
                             </div>
                         </div>
 
@@ -1187,27 +1187,27 @@
                                             <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
                                             <ul class="usa-unstyled-list" ng-init="obligation.values[fyTpl.year].flag = obligation.values[fyTpl.year].flag || gsavm.choices['yes_no_na'].yes.code">
                                                 <li>
-                                                    <input id="{{fyTpl.obligType}}-yes-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].yes.code" ng-model="obligation.values[fyTpl.year].flag" >
-                                                    <label for="{{fyTpl.obligType}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
+                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].yes.code" ng-model="obligation.values[fyTpl.year].flag" >
+                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
                                                 </li>
                                                 <li>
-                                                    <input id="{{fyTpl.obligType}}-no-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].no.code" ng-model="obligation.values[fyTpl.year].flag">
-                                                    <label for="{{fyTpl.obligType}}-no-{{idPath}}">Not Seperately Identifiable</label>
+                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].no.code" ng-model="obligation.values[fyTpl.year].flag">
+                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}">Not Seperately Identifiable</label>
                                                 </li>
                                                 <li>
-                                                    <input id="{{fyTpl.obligType}}-na-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].na.code" ng-model="obligation.values[fyTpl.year].flag">
-                                                    <label for="{{fyTpl.obligType}}-na-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Not Available</label>
+                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].na.code" ng-model="obligation.values[fyTpl.year].flag">
+                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Not Available</label>
                                                 </li>
                                             </ul>
                                         </fieldset>
 
                                         <div class="input-field" ng-show="obligation.values[fyTpl.year].flag === gsavm.choices['yes_no_na'].yes.code">
-                                            <label for="{{fyTpl.idName}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                            <input id="{{fyTpl.idName}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="obligation.values[fyTpl.year][fyTpl.obligVarName]">
+                                            <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
+                                            <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="obligation.values[fyTpl.year][fyTpl.obligVarName]">
                                         </div>
                                         <div class="input-field" ng-show="obligation.values[fyTpl.year].flag !== gsavm.choices['yes_no_na'].yes.code">
-                                            <label for="{{ 'optional-exp-' + idPath }}">Optional Information</label>
-                                            <input type="text" id="{{ 'optional-exp-' + idPath }}" class="usa-input-small" name="explanation" ng-model="obligation.values[fyTpl.year].explanation">
+                                            <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
+                                            <input type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-model="obligation.values[fyTpl.year].explanation">
                                         </div>
 
                                 </section>
@@ -1282,8 +1282,7 @@
                 <h3>130 Program Accomplishments<span class="required" >*</span></h3>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label for="programAccomplishment">Are there program accomplishments?</label>
-
+                        <label>Are there program accomplishments?</label>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input name="programAccomplishment" ng-model="gsavm.program.postAward.accomplishments.flag" id="programAccomplishment-yes" type="radio" value="yes" required>
@@ -1294,7 +1293,6 @@
                                 <label for="programAccomplishment-na">Not Applicable</label>
                             </li>
                         </ul>
-
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1309,14 +1307,12 @@
                                 </div>
                             </ul>
                         </fieldset>
-
                         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                             <div ng-show='gsavm.program.postAward.accomplishments.list[fyTpl.year].flag'>
                                 <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
                                 <textarea id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></textarea>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>

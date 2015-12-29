@@ -42,7 +42,7 @@
                 </ul>
             </fieldset>
 
-            <div ng-show="gsavm.program.eligibility.documentation.flag">
+            <div ng-show="gsavm.program.eligibility.documentation.flag === 'yes'">
                 <label for="credentialsAdditionalInfo7">Please explain:<span class="required" >*</span></label>
                 <span type="text" id="credentialsAdditionalInfo7" ng-bind="gsavm.program.eligibility.documentation.content"></span>
                 <br/>

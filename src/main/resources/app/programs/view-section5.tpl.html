@@ -129,16 +129,29 @@
 <section class="sub-section" field-finder-bookmark>
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
-        <label for="postawards-accomplishments-flag">Are there program accomplishments?</label>
-        <span type="text" id="postawards-accomplishments-flag" ng-bind="gsavm.uiLogic.postAwardsAccomplishmentsFlag"></span>
+        <label>Are there program accomplishments?</label>
+        <span type="text" id="programAccomplishmentFlag7yes" ng-if="gsavm.program.postAward.accomplishments.flag=='yes'">Yes</span>
+        <span type="text" id="programAccomplishmentFlag7na" ng-if="gsavm.program.postAward.accomplishments.flag=='na'">Not Applicable</span>
+        <span type="text" id="programAccomplishmentFlag7false" ng-if="gsavm.program.postAward.accomplishments.flag=='false'"></span>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
-        <div class="input-field" ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-            <ng-form name="gsavm.form.postAward.accomplishments.list.{{fyTpl.year}}">
-                <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
-                <label for="postawards-accomplishments-{{fyTpl.idName}}">{{fyTpl.type}}<span class="required" ng-show="fyTpl.isRequired">*</span></label>
-                <span type="text" id="postawards-accomplishments-{{fyTpl.idName}}" name="value" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
-            </ng-form>
+        <fieldset class="usa-fieldset-inputs usa-sans">
+            <label>Please select all that apply:</label>
+            <ul class="usa-unstyled-list">
+                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                    <li>
+                        <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" ng-readonly="true" value="{{fyTpl.year}}"
+                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" ng-checked="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.projection || gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual" >
+                        <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
+                    </li>
+                </div>
+            </ul>
+        </fieldset>
+        <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+            <div ng-show='gsavm.program.postAward.accomplishments.list[fyTpl.year].flag'>
+                <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
+                <span id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
+            </div>
         </div>
     </div>
 </section>

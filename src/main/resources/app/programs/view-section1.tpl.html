@@ -162,9 +162,9 @@
             </ul>
         </fieldset>
         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-            <div ng-show='gsavm.projects.list[fyTpl.year].flag'>
+            <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
                 <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.projects.list[fyTpl.year].content.actual"></textarea>
+                <span id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-bind=" gsavm.program.projects.list[fyTpl.year].content.actual"></span>
             </div>
         </div>
     </div>
