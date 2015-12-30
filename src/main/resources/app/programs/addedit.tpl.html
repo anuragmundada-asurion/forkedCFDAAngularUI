@@ -36,7 +36,7 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark class="usa-grid-full">
-                <h3 for="title">010 Program Title<span class="required" >*</span></h3>
+                <h3><label for="title">010 Program Title<span class="required" >*</span></label></h3>
                 <div class="input-field" >
                     <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.title.$dirty">
@@ -45,7 +45,7 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
-                <h3 for="alternativeName">020 Popular Name</h3>
+                <h3><label for="alternativeName">020 Popular Name</label></h3>
                 <div class="input-field">
                     <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.alternativeName.$dirty">
@@ -120,7 +120,7 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
-                <h3 for="objective">050 Objectives<span class="required" >*</span></h3>
+                <h3><label for="objective">050 Objectives<span class="required" >*</span></label></h3>
                 <div class="input-field">
                     <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                     <textarea id="objective" name="objective" class="usa-input-large" ng-model="gsavm.program.objective" required></textarea>
@@ -150,12 +150,12 @@
             <section class="sub-section" field-finder-bookmark>
                 <h3>070 Uses and Use Restrictions</h3>
                 <div class="input-field">
-                    <label>Select "Not Applicable" if the requested information does not apply to your program. If "Yes" is selected, users are required to provide more details in text fields.</label>
+                    <label for="usageRulesContent">Select "Not Applicable" if the requested information does not apply to your program. If "Yes" is selected, users are required to provide more details in text fields.</label>
                     <textarea id="usageRulesContent" name="usageRulesContent" class="usa-input-large" ng-model="gsavm.program.usage.rules.content" required></textarea>
                 </div>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label for="restrictionsFlag">Are there specific restrictions place upon the use of the assistance?<span class="required" >*</span></label>
+                        <label>Are there specific restrictions place upon the use of the assistance?<span class="required" >*</span></label>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input type="radio" name="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag" id="restrictionsFlagYes" value="yes" required/>
@@ -254,23 +254,21 @@
                 <h3>170 Examples of Funded Projects<span class="required" >*</span></h3>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label for="fundedProjectsExampleFlag">Are there examples of funded projects?</label>
-
+                        <label>Are there examples of funded projects?</label>
                         <ul class="usa-unstyled-list">
                             <li>
-                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
+                                <input name="fundedProjectsExampleFlag-yes" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
                                 <label for="fundedProjectsExampleFlag-yes">Yes</label>
                             </li>
                             <li>
-                                <input name="fundedProjectsExampleFlag" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
+                                <input name="fundedProjectsExampleFlag-na" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
                                 <label for="fundedProjectsExampleFlag-na">Not Applicable</label>
                             </li>
                         </ul>
-
                     </fieldset>
                     <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="fundedProjectsExampleYear">Please select all that apply:</label>
+                            <label>Please select all that apply:</label>
                             <ul class="usa-unstyled-list">
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
@@ -433,7 +431,7 @@
                     <div class="input-field">
                         <h4>091 Preapplication Coordination<span class="required">*</span></h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="preappCoord3Yes">Is any prior coordination or approval required with governmental or nongovernmental units
+                            <label>Is any prior coordination or approval required with governmental or nongovernmental units
                                 prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -527,7 +525,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
-                        <h4>093 Award Procedure<span class="required" >*</span></h4>
+                        <h4><label for="awardProc3">093 Award Procedure<span class="required" >*</span></label></h4>
                         <p>What are the basic procedural steps for awarding assistance?</p>
                         <textarea id="awardProc3" name="awardProc3" class="usa-input-large" ng-model="gsavm.program.award.procedures.content" required></textarea>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
@@ -606,7 +604,7 @@
                         </div>
                         <button type="button" ng-click="gsavm.addDeadline()">Add New Deadline</button>
                         <br/>
-                        <label for="applProc3other">Other Deadline Information:</label>
+                        <label for="deadlineAdditionalInfo">Other Deadline Information:</label>
                         <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo.content" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                             <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
@@ -786,7 +784,7 @@
                 <section class="sub-minor-section" field-finder-bookmark="">
                     <div class="input-field" >
                         <h4>102 Length and Time Phasing of Assistance</h4>
-                        <label>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></label>
+                        <label for="assistLimit3">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></label>
                         <textarea id="assistLimit3" name="assistLimit3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.content"  required></textarea>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
                             <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
@@ -1227,7 +1225,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
-                        <h4>123 Range and Average of Financial Assistance</h4>
+                        <h4><label for="financialAdditionalInfo">123 Range and Average of Financial Assistance</label></h4>
                         <textarea id="financialAdditionalInfo" name="financialAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.financial.additionalInfo.content"></textarea>
                     </div>
                 </section>
@@ -1620,7 +1618,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
-                        <h4>153 Website:</h4>
+                        <h4><label for="website6">153 Website:</label></h4>
                         <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
                     </div>
                 </section>
