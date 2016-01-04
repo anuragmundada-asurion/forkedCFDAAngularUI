@@ -1,17 +1,17 @@
 <h2><span class="section-circle">1</span> General Information</h2>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field" >
         <h3 for="title7">010 Program Title<span class="required" >*</span></h3>
         <span type="text" id="title7"  ng-bind="gsavm.program.title"></span>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field">
         <h3 for="alternativeName7">020 Popular Name</h3>
         <span type="text" id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <h3>040 Authorization<span class="required" >*</span></h3>
     <div class="input-field">
         <!--Field Details: For all authorizations/amendments, you must supply either the Act or the Executive Order to continue.</p>-->
@@ -71,14 +71,14 @@
         </div>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field">
         <h3 for="objective7">050 Objectives<span class="required" >*</span></h3>
         <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
         <span type="text" id="objective7" ng-bind="gsavm.program.objective"></span>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field">
         <h3>060 Types of Assistance<span class="required" >*</span></h3>
         <!--<p>
@@ -90,7 +90,7 @@
         </div>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <h3>070 Uses and Use Restrictions</h3>
     <!--<p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>-->
     <label for="usageRulesContent7">Describe how assistance can potentially be used<span class="required" >*</span></label>
@@ -140,7 +140,7 @@
         </div>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <h3>170 Examples of Funded Projects</h3>
     <div class="input-field">
         <label>Are there examples of funded projects?</label>
@@ -169,7 +169,7 @@
         </div>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field">
         <h3>190 Functional Codes<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.choices['functional_codes'] | selectedChoiceFilter:gsavm.program.functionalCodes:'element_id' track by item.element_id">
@@ -177,7 +177,7 @@
         </div>
     </div>
 </section>
-<section class="sub-section" field-finder-bookmark>
+<section class="sub-section" >
     <div class="input-field">
         <h3>300 Subject Terms<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.choices['program_subject_terms'] | selectedChoiceFilter:gsavm.program.subjectTerms:'element_id' track by item.element_id">
