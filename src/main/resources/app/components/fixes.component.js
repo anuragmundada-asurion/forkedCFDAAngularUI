@@ -4,7 +4,8 @@
     angular
         .module('app')
         .directive('input', jdFixInvalidValueFormatting)
-        .directive('input', jdFixParsingInconsistencies);
+        .directive('input', jdFixParsingInconsistencies)
+        .directive('input', noAutoCompleteDefault);
 
     //////////////////
 
@@ -70,6 +71,20 @@
                 }
                 return value;
             }
+        }
+    }
+    function noAutoCompleteDefault() {
+        return {
+            priority: (angular.version.full.indexOf('1.2.') === 0) ? 1 : 0,
+            restrict: 'E',
+            link: link
+        };
+
+        ///////////////////
+
+        function link(scope, element) {
+            if(!element.attr('autocomplete'))
+                element.attr('autocomplete', 'off');
         }
     }
 })();
