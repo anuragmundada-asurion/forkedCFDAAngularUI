@@ -14,6 +14,8 @@
             volumeGetter = $parse('statute.volume'),
             pageGetter = $parse('statute.page'),
             uscTitleGetter = $parse('USC.title'),
+            actTitleGetter = $parse('act.title'),
+            eoTitleGetter = $parse('executiveOrder.title'),
             undefinedTextValue = "___";
 
         return {
@@ -23,21 +25,25 @@
         ////////////////////
 
         function getAuthorizationTitle(authorization) {
-            var type = authorization.type,
+            var type = authorization.authorizationType,
                 title;
 
             switch (type) {
-                case "Public Law":
+                case "publiclaw":
                     title = "Public Law " + (congressCodeGetter(authorization) || undefinedTextValue) + "-" + (lawNumberGetter(authorization) || undefinedTextValue);
                     break;
-                case "Statute":
+                case "statute":
                     title = (volumeGetter(authorization) || undefinedTextValue) + " Stat. " + (pageGetter(authorization) || undefinedTextValue);
                     break;
-                case "U.S.C.":
+                case "usc":
                     title = uscTitleGetter(authorization);
                     break;
-                default:
-                    title = authorization.title;
+                case "act":
+                    title = actTitleGetter(authorization);
+                    break;
+                case "eo":
+                    title = eoTitleGetter(authorization);
+                    break;
             }
             return title;
         }
