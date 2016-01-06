@@ -1,0 +1,8 @@
+<ul class="usa-unstyled-list">
+    <li>
+        <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry($index)' aria-label="{{deleteLabelName}}" ng-disabled='!$ctrl.allowModifications' trigger-click-on-enter>
+            <span class="fa fa-times"></span>
+        </button>
+        <a ng-click='$ctrl.openEntryDialog(item)'>{{$ctrl.formatTitle(item)}}</a>
+    </li>
+</ul>

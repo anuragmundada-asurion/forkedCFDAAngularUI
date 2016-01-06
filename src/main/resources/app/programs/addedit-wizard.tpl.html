@@ -5,7 +5,7 @@
             <ul class="steps  usa-grid-full" ng-if="!hideIndicators"><!--
              --><li class="step steps-{{getEnabledSteps().length}}" ng-repeat-start="step in getEnabledSteps()">
                     <a ng-click="goTo(step);" tabindex="0" trigger-click-on-enter>
-                        <span class="step-num completed" ng-class="{ current: step.selected, review: $last }">{{$index + 1}}</span>
+                        <span class="step-num completed" ng-class="{ current: step.selected, review: $last && step.selected }">{{$index + 1}}</span>
                         <span class="step-title">{{step.title || step.wzTitle}}</span>
                     </a>
                 </li><!--

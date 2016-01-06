@@ -5,6 +5,7 @@ hr {
   padding: $layout-padding;
 }
 .sub-form {
+  display: block;
   padding: $form-section-indent;
   background-color: $color-primary-alt-lightest;
   & &{

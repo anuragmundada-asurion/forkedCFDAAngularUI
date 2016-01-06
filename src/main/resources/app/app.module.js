@@ -13,7 +13,8 @@
         'mgo-angular-wizard',
         'ui.select',
         'ui.bootstrap',
-        'sticky'
+        'sticky',
+        'vs-repeat'
     ];
 
     angular.module('app', requiredModules);

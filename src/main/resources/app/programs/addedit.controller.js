@@ -33,6 +33,8 @@
                 'date_range',
                 'match_percent'
             ];
+        vm.createAuthorization = createAuthorization;
+        vm.onAuthorizationRemoved = onAuthorizationRemoved;
         vm.currentStep = null; //Must set to null due to a bug in angular-wizard
         if(!vm._id) vm._id = null; //Must set to fix filtering bug of undefined properties in Angular's $filter
 
@@ -193,16 +195,6 @@
         }
 
         function removeAmendment(amendment) {
-            var authArray = getArray('authorizations');
-            for(var i = 0; i < authArray.length; i++) {
-                if(authArray[i] === amendment) {
-                    var removedAmendment = authArray.splice(i, 1)[0];
-                    var authId = removedAmendment.authorizationId;
-                    if(getSelectedEntry(AMENDMENT_SELECTED_NAME, authId) === removedAmendment)
-                        removeSelectedEntry(AMENDMENT_SELECTED_NAME, authId);
-                    break;
-                }
-            }
             if(amendment.active) {
                 var lastVersion = getLastAuthorizationVersion(amendment.authorizationId);
                 if(angular.isObject(lastVersion))

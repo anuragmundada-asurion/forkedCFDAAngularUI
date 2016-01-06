@@ -1,55 +1,55 @@
 <section class="usa-grid">
-    <div class="input-field" ng-if="authorization.authorizationType === 'eo' || authorization.authorizationType === 'act' || authorization.authorizationType === 'usc'">
-        <label for="{{ 'title-' + authorization.authorizationType + '-' + idPath }}">Title</label>
-        <input id="{{ 'title-' + authorization.authorizationType + '-' + idPath }}" type="text" name="title" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].title" unique-from="gsavm.program.title" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.title.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.title.$error.required">The Title must be filled.</span>
-            <span ng-show="gsavm.form.{{formPath}}.title.$error.uniqueFrom">This title must be unique from the listing's Title.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'eo' || current.authorizationType === 'act' || current.authorizationType === 'usc'">
+        <label for="{{ 'title-' + current.authorizationType + '-' + idPath }}">Title</label>
+        <input id="{{ 'title-' + current.authorizationType + '-' + idPath }}" type="text" name="title" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].title" unique-from="$ctrl.parentVm.program.title" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.title.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.title.$error.required">The Title must be filled.</span>
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.title.$error.uniqueFrom">This title must be unique from the listing's Title.</span>
         </div>
     </div>
-    <div class="input-field" ng-if="authorization.authorizationType === 'eo' || authorization.authorizationType === 'act'">
-        <label for="{{ 'part-' + authorization.authorizationType + '-' + idPath }}">Part</label>
-        <input id="{{ 'part-' + authorization.authorizationType + '-' + idPath }}" type="text" name="part" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].part" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.part.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.part.$error.required">The Part must be filled.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'eo' || current.authorizationType === 'act'">
+        <label for="{{ 'part-' + current.authorizationType + '-' + idPath }}">Part</label>
+        <input id="{{ 'part-' + current.authorizationType + '-' + idPath }}" type="text" name="part" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].part" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.part.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.part.$error.required">The Part must be filled.</span>
         </div>
     </div>
-    <div class="input-field" ng-if="authorization.authorizationType === 'eo' || authorization.authorizationType === 'act' || authorization.authorizationType === 'usc'">
-        <label for="{{ 'section-' + authorization.authorizationType + '-' + idPath }}">Section</label>
-        <input id="{{ 'section-' + authorization.authorizationType + '-' + idPath }}" type="text" name="section" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].section" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.section.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.section.$error.required">The Section must be filled.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'eo' || current.authorizationType === 'act' || current.authorizationType === 'usc'">
+        <label for="{{ 'section-' + current.authorizationType + '-' + idPath }}">Section</label>
+        <input id="{{ 'section-' + current.authorizationType + '-' + idPath }}" type="text" name="section" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].section" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.section.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.section.$error.required">The Section must be filled.</span>
         </div>
     </div>
     <!-- Public Law -->
-    <div class="input-field" ng-if="authorization.authorizationType === 'publiclaw'">
-        <label for="{{ 'congress-code-' + authorization.authorizationType + '-' + idPath }}">Congress</label>
-        <input id="{{ 'congress-code-' + authorization.authorizationType + '-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].congressCode" ng-minlength="3" ng-maxlength="3" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.congressCode.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.required">A Congress Code must be filled.</span>
-            <span ng-show="gsavm.form.{{formPath}}.congressCode.$error.pattern || gsavm.form.{{formPath}}.congressCode.$error.minlength || gsavm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'publiclaw'">
+        <label for="{{ 'congress-code-' + current.authorizationType + '-' + idPath }}">Congress</label>
+        <input id="{{ 'congress-code-' + current.authorizationType + '-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].congressCode" ng-minlength="3" ng-maxlength="3" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.congressCode.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.congressCode.$error.required">A Congress Code must be filled.</span>
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.congressCode.$error.pattern || $ctrl.parentVm.form.{{formPath}}.congressCode.$error.minlength || $ctrl.parentVm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
         </div>
     </div>
-    <div class="input-field" ng-if="authorization.authorizationType === 'publiclaw'">
-        <label for="{{ 'law-number-' + authorization.authorizationType + '-' + idPath }}">Law Number</label>
-        <input id="{{ 'law-number-' + authorization.authorizationType + '-' + idPath }}" type="number" name="lawNumber" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].lawNumber" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.lawNumber.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.lawNumber.$error.required">The Law Number must be filled.</span>
-            <span ng-show="gsavm.form.{{formPath}}.lawNumber.$error.number">The Law Number must be a number.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'publiclaw'">
+        <label for="{{ 'law-number-' + current.authorizationType + '-' + idPath }}">Law Number</label>
+        <input id="{{ 'law-number-' + current.authorizationType + '-' + idPath }}" type="number" name="lawNumber" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].lawNumber" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.lawNumber.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.lawNumber.$error.required">The Law Number must be filled.</span>
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.lawNumber.$error.number">The Law Number must be a number.</span>
         </div>
     </div>
-    <div class="input-field" ng-if="authorization.authorizationType === 'statute'">
-        <label for="{{ 'volume-' + authorization.authorizationType + '-' + idPath }}">Volume</label>
-        <input id="{{ 'volume-' + authorization.authorizationType + '-' + idPath }}" type="text" name="volume" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].volume" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.volume.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.volume.$error.required">The Volume must be filled.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'statute'">
+        <label for="{{ 'volume-' + current.authorizationType + '-' + idPath }}">Volume</label>
+        <input id="{{ 'volume-' + current.authorizationType + '-' + idPath }}" type="text" name="volume" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].volume" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.volume.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.volume.$error.required">The Volume must be filled.</span>
         </div>
     </div>
-    <div class="input-field" ng-if="authorization.authorizationType === 'statute'">
-        <label for="{{ 'page-' + authorization.authorizationType + '-' + idPath }}">Page</label>
-        <input id="{{ 'page-' + authorization.authorizationType + '-' + idPath }}" type="text" name="page" ng-model="authorization[gsavm.constants.AUTH_TYPE_KEYS[authorization.authorizationType]].page" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.page.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.page.$error.required">The Page must be filled.</span>
+    <div class="input-field" ng-if="current.authorizationType === 'statute'">
+        <label for="{{ 'page-' + current.authorizationType + '-' + idPath }}">Page</label>
+        <input id="{{ 'page-' + current.authorizationType + '-' + idPath }}" type="text" name="page" ng-model="current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[current.authorizationType]].page" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.page.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.page.$error.required">The Page must be filled.</span>
         </div>
     </div>
 </section>
