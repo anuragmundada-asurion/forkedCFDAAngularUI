@@ -76,26 +76,17 @@
                                 </section>
                                 <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                 <div ng-if="current.authorizationType">
-                                    <multi-entry ng-model="gsavm.program.authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="gsavm.removeAmendment(removed)" parent-vm="gsavm">
                                     <hr>
-                                    <label>Amendments</label>
-                                    <section class="usa-grid">
-                                        <ul class="usa-unstyled-list">
-                                            <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
-                                                <div>
-                                                    <button type="button" class="button-circle" ng-click="gsavm.removeAmendment(authorization, authorization.authorizationId)" trigger-click-on-enter><span class="fa fa-times"></span></button>
-                                                    <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || ('Amendment ' + ($index + 1))}}</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <button type="button" ng-click="gsavm.addAmendment(authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">+ Add Amendment</button>
-                                        <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)" ng-show="gsavm.getSelectedEntry('amendments', authorization.authorizationId) === authorization">
-                                            <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
+                                    <multi-entry ng-model="gsavm.program.authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="gsavm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey($item)" list-filter="filter:$ctrl.parentVm.exps.isPartOfAuth($item)">
+                                        <multi-entry-header>
+                                            <label>Amendments</label>
+                                        </multi-entry-header>
+                                        <multi-entry-sub-form class="input-field" create-function="">
+                                            <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="sub-form">
                                                 <div ng-include="'partials/programs/authorization.tpl.html'"></div>
-                                                <button type="button" ng-click="gsavm.removeSelectedEntry('amendments', authorization.authorizationId)">Close</button>
                                             </div>
-                                        </div>
-                                    </section>
+                                        </multi-entry-sub-form>
+                                    </multi-entry>
                                 </div>
                             </div>
                         </multi-entry-sub-form>

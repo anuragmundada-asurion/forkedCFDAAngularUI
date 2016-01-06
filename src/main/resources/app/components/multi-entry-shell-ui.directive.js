@@ -46,11 +46,11 @@
                 ctrl.parentVm = newVal;
             });
             if (element.find('multi-entry-list').length <= 0) {
-                var listElement = angular.element("<multi-entry-list></multi-entry-list>")
-                    .attr('editable', scope.editableItems)
-                    .attr('listTrackBy', scope.listTrackBy)
-                    .attr('listFilter', scope.listFilter);
-                element.find('multi-entry-header').after(listElement)
+                var listElement = angular.element("<multi-entry-list></multi-entry-list>");
+                listElement.attr('editable', scope.editableItems);
+                listElement.attr('listTrackBy', scope.listTrackBy);
+                listElement.attr('listFilter', scope.listFilter);
+                element.find('multi-entry-header').after(listElement);
                 $compile(listElement)(scope);
             }
 
@@ -65,7 +65,7 @@
             scope.$ctrl.formatTitle = function(item) {
                 var strFormatter = scope.itemTitle;
                 return angular.isString(strFormatter) ? $parse(strFormatter)(item) : strFormatter(item);
-            }
+            };
             scope.$ctrl.onDelete = scope.onEntryDelete || angular.noop;
         }
 
@@ -117,7 +117,7 @@
     }
 
     function multiEntryListDirective() {
-        var defaultTrackBy = "track by $index";
+        var defaultTrackBy = "$index";
 
         return {
             restrict: 'E',
@@ -134,9 +134,9 @@
         function compile(element, attr) {
             var listitem = element.find('li'),
                 repeatExp = "item in $ctrl.model.$modelValue",
-                trackBy = attr.listTrackBy || defaultTrackBy;
-            if(attr.listFilter)
-                repeatExp += " | " + attr.listFilter;
+                trackBy = "track by " + (attr.listtrackby || defaultTrackBy);
+            if(attr.listfilter)
+                repeatExp += " | " + attr.listfilter;
 
             repeatExp += " " + trackBy;
 
