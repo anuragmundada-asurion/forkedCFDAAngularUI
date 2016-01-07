@@ -26,13 +26,16 @@
             obligationAddInfoGetter = $parse('additionalInfo.content'),
             tafsDeptGetter = $parse('departmentCode'),
             tafsMainAcctGetter = $parse('accountCode'),
+            contactTitleGetter = $parse('title'),
+            contactFullNameGetter = $parse('fullName'),
             undefinedTextValue = "";
 
         return {
             getAuthorizationTitle: getAuthorizationTitle,
             getAccountTitle: getAccountTitle,
             getObligationTitle: getObligationTitle,
-            getTafsTitle: getTafsTitle
+            getTafsTitle: getTafsTitle,
+            getContactTitle: getContactTitle
         };
 
         ////////////////////
@@ -123,6 +126,11 @@
 
         function getTafsTitle(taf) {
             var title = (tafsDeptGetter(taf) || undefinedTextValue) + "-" + (tafsMainAcctGetter(taf) || undefinedTextValue);
+            return title;
+        }
+
+        function getContactTitle(contact) {
+            var title = (contactTitleGetter(contact) + " " || undefinedTextValue) + (contactFullNameGetter(contact) || undefinedTextValue);
             return title;
         }
     }
