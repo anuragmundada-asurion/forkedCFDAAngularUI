@@ -29,7 +29,8 @@
                 deleteLabelName: "@",
                 parentVm: "=",
                 listTrackBy: "@",
-                listFilter: "@"
+                listFilter: "=",
+                onAfterDialogOpen: "="
             },
             link: link
         };
@@ -47,33 +48,37 @@
                 ctrl.parentVm = newVal;
             });
             if (element.find('multi-entry-list').length <= 0) {
-                var listElement = angular.element("<multi-entry-list></multi-entry-list>");
+                var listElement = angular.element("<multi-entry-list></multi-entry-list>"),
+                    filterFunc;
                 listElement.attr('editable', scope.editableItems);
                 listElement.attr('listTrackBy', scope.listTrackBy);
-                listElement.attr('listFilter', scope.listFilter);
+                var filterExp = filterFunc = scope.listFilter;
+                if(angular.isFunction(filterFunc)) {
+                    ctrl.listFilter = filterFunc;
+                    filterExp = "filter:$ctrl.listFilter";
+                }
+                listElement.attr('listFilter', filterExp);
                 element.find('multi-entry-header').after(listElement);
                 $compile(listElement)(scope);
             }
-
-            scope.$watchCollection(function() {
-                return model.$modelValue;
-            }, function(newValue, oldValue) {
-                if (oldValue !== newValue) {
-                    model.$modelValue = null;
-                }
-            });
 
             scope.$ctrl.formatTitle = function(item) {
                 var strFormatter = scope.itemTitle;
                 return angular.isString(strFormatter) ? $parse(strFormatter)(item) : strFormatter(item);
             };
             scope.$ctrl.onDelete = scope.onEntryDelete || angular.noop;
+
+            if(scope.onAfterDialogOpen)
+                ctrl.initAfterDialogOpen(scope.onAfterDialogOpen);
         }
 
         function multiEntryController() {
             var ctrl = this,
-                onOpenAddEntryDialog,
-                onOpenEditEntryDialog;
+                onOpenAddEntryDialog = angular.noop,
+                onOpenEditEntryDialog = angular.noop,
+                onAfterDialogOpen = angular.noop;
+
+            ctrl.locals = {};
 
             ctrl.deleteEntry = deleteEntry;
             ctrl.allowModifications = true;
@@ -81,6 +86,7 @@
             ctrl.closeEntryDialog = closeEntryDialog;
             ctrl.initOpenAddEntryDialog = initOpenAddEntryDialog;
             ctrl.initOpenEditEntryDialog = initOpenEditEntryDialog;
+            ctrl.initAfterDialogOpen = initAfterDialogOpen;
 
             ////////////
 
@@ -98,6 +104,7 @@
                         onOpenAddEntryDialog();
                     else
                         onOpenEditEntryDialog(item);
+                    onAfterDialogOpen(item, ctrl.locals);
                 }
             }
 
@@ -106,13 +113,18 @@
             }
 
             function initOpenAddEntryDialog(func) {
-                if (angular.isUndefined(onOpenAddEntryDialog))
+                if (onOpenAddEntryDialog  === angular.noop)
                     onOpenAddEntryDialog = func;
             }
 
             function initOpenEditEntryDialog(func) {
-                if (angular.isUndefined(onOpenEditEntryDialog))
+                if (onOpenEditEntryDialog === angular.noop)
                     onOpenEditEntryDialog = func;
+            }
+
+            function initAfterDialogOpen(func) {
+                if (onAfterDialogOpen === angular.noop)
+                    onAfterDialogOpen = func;
             }
         }
     }

@@ -9,7 +9,9 @@
     clear: both;
   }
 }
-
+.pull-right {
+  float: right;
+}
 [ui-sref],
 [ng-click] {
   cursor: pointer;

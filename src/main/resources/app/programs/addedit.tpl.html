@@ -55,16 +55,16 @@
             </section>
             <section class="sub-section" field-finder-bookmark>
                 <div class="input-field">
-                    <multi-entry ng-model="gsavm.program.authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm">
+                    <multi-entry ng-model="gsavm.program.authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'">
                         <multi-entry-header>
                             <h3>040 Authorization<span class="required" >*</span></h3>
                         </multi-entry-header>
-                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization">
+                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave">
                             <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
                                 <section class="usa-grid">
                                     <ul class="usa-unstyled-list radio-button-group">
                                         <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
-                                            <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}" ng-change="$ctrl.parentVm.updateAmendments($subForm.current)"/>
+                                            <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
                                             <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
                                         </li>
                                     </ul>
@@ -72,11 +72,12 @@
                                 <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                 <div ng-if="$subForm.current.authorizationType">
                                     <hr>
-                                    <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey($item)" list-filter="filter:$ctrl.parentVm.exps.isPartOfAuth($subForm.current)">
+                                    <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
+                                        <button type="button" ng-click="$ctrl.isPartOfAuth('h')">test</button>
                                         <multi-entry-header>
                                             <label>Amendments</label>
                                         </multi-entry-header>
-                                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
+                                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
                                             <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="sub-form">
                                                 <div ng-include="'partials/programs/authorization.tpl.html'"></div>
                                             </div>

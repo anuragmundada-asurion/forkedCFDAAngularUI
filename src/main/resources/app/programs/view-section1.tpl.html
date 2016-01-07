@@ -49,13 +49,13 @@
                             <label>Amendments</label>
                             <section class="usa-grid">
                                 <ul class="usa-unstyled-list">
-                                    <li ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)">
+                                    <li ng-repeat="authorization in gsavm.program.authorizations track by gsavm.exps.generateAuthKey(authorization)">
                                         <div>
                                             <a ng-click="gsavm.addSelectedEntry(authorization, 'amendments', authorization.authorizationId)" ng-disabled="gsavm.getSelectedEntry('amendments', authorization.authorizationId)">{{gsavm.getAuthorizationTitle(authorization) || ('Amendment ' + ($index + 1))}}</a>
                                         </div>
                                     </li>
                                 </ul>
-                                <div ng-repeat="authorization in gsavm.program.authorizations | filter:gsavm.exps.isPartOfAuth(parentAuth) track by gsavm.exps.generateAuthKey(authorization)" ng-show="gsavm.getSelectedEntry('amendments', authorization.authorizationId) === authorization">
+                                <div ng-repeat="authorization in gsavm.program.authorizations  track by gsavm.exps.generateAuthKey(authorization)" ng-show="gsavm.getSelectedEntry('amendments', authorization.authorizationId) === authorization">
                                     <div ng-form ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="gsavm.form.{{formPath}}" class="sub-form">
                                         <section class="usa-grid">
                                             <h3 ng-class="{untitled: !authorization.title}">{{ gsavm.getAuthorizationTitle(authorization) || ('Amendment ' + ($index + 1))}}</h3>
