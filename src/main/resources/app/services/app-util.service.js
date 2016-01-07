@@ -54,7 +54,7 @@
         }
 
         function getAccountTitle(account) {
-            var title = "test-this-account-title";
+            var title = "test-this-account";
 
             return title;
         }

@@ -145,7 +145,7 @@
             vm['remove' + action.fnBaseName] = removeGenerator(action.arrayName, action.onRemoved || angular.noop);
         });
 
-        //////////////////
+        ////////////////////
 
         function save() {
             var copy = angular.copy(vm.program);
