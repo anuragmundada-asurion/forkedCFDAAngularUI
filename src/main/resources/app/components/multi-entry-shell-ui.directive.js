@@ -70,6 +70,11 @@
 
             if(scope.onAfterDialogOpen)
                 ctrl.initAfterDialogOpen(scope.onAfterDialogOpen);
+            scope.$watchCollection(function(){ return model.$modelValue; }, function(newValue, oldValue) {
+                if (oldValue !== newValue) {
+                    model.$modelValue = null;
+                }
+            });
         }
 
         function multiEntryController() {
@@ -90,10 +95,12 @@
 
             ////////////
 
-            function deleteEntry($index) {
+            function deleteEntry(item) {
                 if (ctrl.allowModifications) {
-                    var removed = ctrl.model.$modelValue.splice($index, 1)[0];
-                    ctrl.onDelete({ removed: removed });
+                    var list = ctrl.model.$modelValue,
+                        index = list.indexOf(item);
+                    list.splice(index, 1);
+                    ctrl.onDelete({ removed: item });
                 }
             }
 

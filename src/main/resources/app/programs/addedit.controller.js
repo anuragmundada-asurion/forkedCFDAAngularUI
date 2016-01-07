@@ -125,6 +125,7 @@
         vm.createAmendment = createAmendment;
         vm.removeAmendment = removeAmendment;
         vm.updateAmendments = updateAmendments;
+        vm.getAuthAmendments = getAuthAmendments;
         vm.onAuthorizationSave = onAuthorizationSave;
         vm.onAmendmentBeforeSave = onAmendmentBeforeSave;
         vm.onAuthDialogOpen = onAuthDialogOpen;
@@ -136,7 +137,8 @@
         vm.addSelectedEntry = addSelectedEntry;
         vm.getSelectedEntry = getSelectedEntry;
         vm.removeSelectedEntry = removeSelectedEntry;
-        vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
+        vm.getAuthorizationTitle = getAuthorizationTitle;
+        vm.getAmendmentTitle = appUtil.getAuthorizationTitle;
         vm.getAccountTitle = appUtil.getAccountTitle;
         vm.getObligationTitle = appUtil.getObligationTitle;
         vm.getTafsTitle = appUtil.getTafsTitle;
@@ -183,7 +185,9 @@
                 onAuthorizationTypeUpdate(authorization, amendment);
             });
         }
-
+        function onAuthorizationCancel(authorization) {
+            //if()
+        }
         function onAuthorizationRemoved(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId),
                 authArray = getArray('authorizations');
@@ -204,9 +208,9 @@
             return createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
         }
 
-        function onAmendmentBeforeSave(amendment) {
+        function onAmendmentBeforeSave(amendment, authorization) {
             var authId = amendment.authorizationId,
-                lastVersion = getLastAuthorizationVersion(authId);
+                lastVersion = getLastAuthorizationVersion(authId) || authorization;
             if(!amendment.$original) {
                 lastVersion.active = false;
                 amendment.active = true;
@@ -221,6 +225,11 @@
             }
         }
 
+        function getAuthAmendments(authorization) {
+            var authArray = getArray('authorizations'),
+                filterFunc = isPartOfAuth(authorization);
+            return $filter('filter')(authArray, filterFunc);
+        }
         function addSelectedEntry(entry, path, id) {
             generateSelectedEntryParse(path, id).assign(vm, entry);
         }
@@ -243,6 +252,10 @@
         function getLastAuthorizationVersion(authId) {
             var filteredArray = getAuthorizationAmendments(authId);
             return $filter('orderBy')(filteredArray, "-version")[0];
+        }
+
+        function getAuthorizationTitle(auth) {
+            return "{0} ({1})".format(appUtil.getAuthorizationTitle(auth), getAuthAmendments(auth).length);
         }
 
         function updateAmendments(authorization) {

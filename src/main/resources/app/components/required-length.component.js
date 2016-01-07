@@ -14,6 +14,7 @@
         return {
             require: '?ngModel',
             restrict: 'A',
+            priority: 5,
             link: link
         };
 

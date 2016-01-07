@@ -1,6 +1,6 @@
 <ul class="usa-unstyled-list">
     <li>
-        <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry($index)' ng-disabled='!$ctrl.allowModifications'>delete</button>
+        <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry(item)' ng-disabled='!$ctrl.allowModifications'>delete</button>
         <span>{{$ctrl.formatTitle(item)}}</span>
     </li>
 </ul>
