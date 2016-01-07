@@ -20,6 +20,7 @@
             actSectionGetter = $parse('act.section'),
             eoTitleGetter = $parse('executiveOrder.title'),
             accountGetter = $parse('code'),
+            descriptionGetter = $parse('description'),
             undefinedTextValue = "";
 
         return {
@@ -54,7 +55,7 @@
         }
 
         function getAccountTitle(account) {
-            var title = "test-this-account";
+            var title = (accountGetter(account) || undefinedTextValue) + "-" + (descriptionGetter(account) || undefinedTextValue);
 
             return title;
         }
