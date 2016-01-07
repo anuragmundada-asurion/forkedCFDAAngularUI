@@ -85,8 +85,12 @@
             }
 
             function save() {
-                var list = multiEntryCtrl.model.$modelValue || (multiEntryCtrl.model.$modelValue = []),
+                var list = multiEntryCtrl.model.$modelValue,
                     original = $subForm.current.$original;
+                if(angular.isUndefined(list)) {
+                    list = [];
+                    multiEntryCtrl.model.$setViewValue(list);
+                }
                 (scope.beforeSave || angular.noop)($subForm.current);
 
                 delete $subForm.current.$original;
