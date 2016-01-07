@@ -12,11 +12,15 @@
     function multiEntryFormDirective(util) {
         return {
             restrict: 'E',
+            priority: 0,
             transclude: true,
+            controller: multiEntryFormController,
+            controllerAs: '$subForm',
             templateUrl:'partials/components/multi-entry-sub-form.tpl.html',
-            require: '^multiEntry',
+            require: ['^multiEntry', 'multiEntrySubForm'],
             scope: {
-                createFunction: "="
+                createFunction: "=",
+                onParentUpdate: "="
             },
             compile: compile
         };
@@ -29,11 +33,37 @@
 
         ///////////////////
 
-        function link(scope, element, attrs, multiEntryCtrl) {
-            scope.save = save;
-            scope.cancel = clearCurrent;
+        function multiEntryFormController() {
+            var $subForm = this;
+
+        }
+
+        function link(scope, element, attrs, ctrls) {
+            var multiEntryCtrl = ctrls[0],
+                $subForm = ctrls[1],
+                $currentParentPoint = scope.$parent,
+                $parentSubForm;
 
             scope.$ctrl = scope.$ctrl || multiEntryCtrl;
+
+            while($currentParentPoint && !$parentSubForm) {
+                if($currentParentPoint.$subForm)
+                    $parentSubForm = $currentParentPoint.$subForm;
+                else
+                    $currentParentPoint = $currentParentPoint.$parent;
+            }
+            if($parentSubForm) {
+                scope.$watch(function(){
+                    return $parentSubForm.current;
+                }, function(newVal){
+                    scope.onParentUpdate(newVal, $subForm.current);
+                }, true);
+            }
+
+            scope.$subForm = $subForm;
+
+            scope.save = save;
+            scope.cancel = clearCurrent;
 
             multiEntryCtrl.initOpenAddEntryDialog(add);
             multiEntryCtrl.initOpenEditEntryDialog(edit);
@@ -41,29 +71,30 @@
             ///////////////////
 
             function add() {
-                scope.current = scope.createFunction ? scope.createFunction() : {};
+                var parentItem = $parentSubForm ? $parentSubForm.current : undefined;
+                $subForm.current = scope.createFunction ? scope.createFunction(parentItem) : {};
             }
 
             function edit(item) {
                 var copy = angular.copy(item);
                 copy.$original = item;
-                scope.current = copy;
+                $subForm.current = copy;
             }
 
             function save() {
-                var list = multiEntryCtrl.model.$modelValue,
-                    original = scope.current.$original;
-                delete scope.current.$original;
+                var list = multiEntryCtrl.model.$modelValue || (multiEntryCtrl.model.$modelValue = []),
+                    original = $subForm.current.$original;
+                delete $subForm.current.$original;
                 if (original) {
                     var index = list.indexOf(original);
-                    list[index] = scope.current;
+                    list[index] = $subForm.current;
                 } else
-                    list.push(scope.current);
+                    list.push($subForm.current);
                 clearCurrent();
             }
 
             function clearCurrent() {
-                scope.current = null;
+                $subForm.current = null;
                 multiEntryCtrl.closeEntryDialog();
             }
         }

@@ -122,9 +122,10 @@
         });
 
         vm.save = save;
-        vm.addAmendment = addAmendment;
+        vm.createAmendment = createAmendment;
         vm.removeAmendment = removeAmendment;
         vm.updateAmendments = updateAmendments;
+        vm.onAuthorizationTypeUpdate = onAuthorizationTypeUpdate;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
         vm.getItemFromType = getItemFromType;
         vm.revealValidations = revealValidations;
@@ -182,16 +183,13 @@
             }
         }
 
-        function addAmendment(authId) {
-            var authArray = getArray('authorizations'),
+        function createAmendment(authorization) {
+            var authId = authorization.authorizationId,
                 lastVersion = getLastAuthorizationVersion(authId);
             lastVersion.active = false;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
-            var newAmendment = createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
-            authArray.push(newAmendment);
-            addSelectedEntry(newAmendment, AMENDMENT_SELECTED_NAME, authId);
-            vm.focusAuthAdd = true;
+            return createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
         }
 
         function removeAmendment(amendment) {
@@ -229,9 +227,13 @@
         function updateAmendments(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId);
             angular.forEach(amendments, function(amendment){
-                if(amendment !== authorization)
-                    amendment.authorizationType = authorization.authorizationType;
+                onAuthorizationTypeUpdate(authorization, amendment);
             });
+        }
+
+        function onAuthorizationTypeUpdate(authorization, amendment) {
+            if(amendment !== authorization)
+                amendment.authorizationType = authorization.authorizationType;
         }
 
         function getAuthorizationAmendments(authId) {
@@ -248,7 +250,7 @@
         }
         function isPartOfAuth(auth) {
             return function(amendment) {
-                return amendment.authorizationId === auth.authorizationId
+                return auth && amendment.authorizationId === auth.authorizationId
                     && amendment !== auth
             }
         }
