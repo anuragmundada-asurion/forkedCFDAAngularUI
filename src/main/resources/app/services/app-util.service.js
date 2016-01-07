@@ -14,9 +14,12 @@
             volumeGetter = $parse('statute.volume'),
             pageGetter = $parse('statute.page'),
             uscTitleGetter = $parse('USC.title'),
+            uscSectionGetter = $parse('USC.section'),
             actTitleGetter = $parse('act.title'),
+            actPartGetter = $parse('act.part'),
+            actSectionGetter = $parse('act.section'),
             eoTitleGetter = $parse('executiveOrder.title'),
-            undefinedTextValue = "___";
+            undefinedTextValue = "";
 
         return {
             getAuthorizationTitle: getAuthorizationTitle
@@ -33,16 +36,16 @@
                     title = "Public Law " + (congressCodeGetter(authorization) || undefinedTextValue) + "-" + (lawNumberGetter(authorization) || undefinedTextValue);
                     break;
                 case "statute":
-                    title = (volumeGetter(authorization) || undefinedTextValue) + " Stat. " + (pageGetter(authorization) || undefinedTextValue);
+                    title = "Statute " + (volumeGetter(authorization) || undefinedTextValue) + "-" + (pageGetter(authorization) || undefinedTextValue);
                     break;
                 case "usc":
-                    title = uscTitleGetter(authorization);
+                    title = (uscTitleGetter(authorization) || undefinedTextValue) + " US Code " + (uscSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "act":
-                    title = actTitleGetter(authorization);
+                    title = (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "eo":
-                    title = eoTitleGetter(authorization);
+                    title = "Executive Order - " + (eoTitleGetter(authorization) || undefinedTextValue);
                     break;
             }
             return title;
