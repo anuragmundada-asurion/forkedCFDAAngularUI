@@ -1117,113 +1117,102 @@
                     </div>
                     <button type="button" ng-click="gsavm.addAccount()">Add</button-->
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
-                    <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm">
-                            <multi-entry-header>
-                                <h4>122 Obligations<span class="required" >*</span></h4>
-                            </multi-entry-header>
-                            <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createObligation">
+            <section class="sub-minor-section" field-finder-bookmark>
+                <h4>122 Obligations</h4>
+                <div ng-repeat="obligation in gsavm.program.financial.obligations track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
+                    <div ng-form ng-init="formPath='obligations'+gsavm.nextId();idPath=formPath" name="gsavm.form.financial.{{formPath}}" class="sub-form usa-grid">
+                        <section>
+                            <div class="input-field">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
 
-                            </multi-entry-sub-form>
-                        </multi-entry>
-                    </div>
-
-                    <h4>---122 Obligations</h4>
-                    <div ng-repeat="obligation in gsavm.program.financial.obligations track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
-                        <div ng-form ng-init="formPath='obligations'+gsavm.nextId();idPath=formPath" name="gsavm.form.financial.{{formPath}}" class="sub-form usa-grid">
-                            <section>
-                                <div class="input-field">
-                                    <fieldset class="usa-fieldset-inputs usa-sans">
-                                        <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
-
-                                        <ul class="usa-unstyled-list">
-                                            <li>
-                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
-                                                <label for="{{ 'recovery-flag-' + idPath }}-yes">Yes</label>
-                                            </li>
-                                            <li>
-                                                <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-na" type="radio" value="na" required>
-                                                <label for="{{ 'recovery-flag-' + idPath }}-na">Not Applicable</label>
-                                            </li>
-                                        </ul>
-                                    </fieldset>
-                                </div>
-                                <div class="input-field">
-                                    <fieldset class="usa-fieldset-inputs usa-sans">
-                                        <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?<span class="required" >*</span></label>
-
-                                        <ul class="usa-unstyled-list">
-                                            <li>
-                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
-                                                <label for="{{ 'salary-or-expense-' + idPath }}-yes">Yes</label>
-                                            </li>
-                                            <li>
-                                                <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-na" type="radio" value="na" required>
-                                                <label for="{{ 'salary-or-expense-' + idPath }}-na">Not Applicable</label>
-                                            </li>
-                                        </ul>
-                                    </fieldset>
-                                </div>
-                                <div class="input-field" ng-show="obligation.questions.salary_or_expense.flag=='yes'">
-                                    <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
-                                    <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
-                                        <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
-                                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
-                                            <div ng-bind-html="item.value | highlight: $select.search"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
-                                    <div ng-show="gsavm.validationFlag['Financial Information and Accomplishments'] || gsavm.form.financial.{{formPath}}.assistanceTypes.$dirty">
-                                        <span ng-show="gsavm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
-                                    </div>
-                                </div>
-                            </section>
-                            <hr>
-                            <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                                <section ng-form name="gsavm.form.financial.{{formPath}}.{{fyTpl.idName}}">
-                                        <fieldset class="usa-fieldset-inputs usa-sans">
-                                            <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
-                                            <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
-                                            <ul class="usa-unstyled-list" ng-init="obligation.values[fyTpl.year].flag = obligation.values[fyTpl.year].flag || gsavm.choices['yes_no_na'].yes.code">
-                                                <li>
-                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].yes.code" ng-model="obligation.values[fyTpl.year].flag" >
-                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
-                                                </li>
-                                                <li>
-                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].no.code" ng-model="obligation.values[fyTpl.year].flag">
-                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}">Not Seperately Identifiable</label>
-                                                </li>
-                                                <li>
-                                                    <input id="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].na.code" ng-model="obligation.values[fyTpl.year].flag">
-                                                    <label for="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Not Available</label>
-                                                </li>
-                                            </ul>
-                                        </fieldset>
-
-                                        <div class="input-field" ng-show="obligation.values[fyTpl.year].flag === gsavm.choices['yes_no_na'].yes.code">
-                                            <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                            <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="obligation.values[fyTpl.year][fyTpl.obligVarName]">
-                                        </div>
-                                        <div class="input-field" ng-show="obligation.values[fyTpl.year].flag !== gsavm.choices['yes_no_na'].yes.code">
-                                            <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
-                                            <input type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-model="obligation.values[fyTpl.year].explanation">
-                                        </div>
-
-                                </section>
-                                <hr style="margin-top:1em;">
+                                    <ul class="usa-unstyled-list">
+                                        <li>
+                                            <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
+                                            <label for="{{ 'recovery-flag-' + idPath }}-yes">Yes</label>
+                                        </li>
+                                        <li>
+                                            <input name="{{ 'recovery-flag-' + idPath }}" ng-model="obligation.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-na" type="radio" value="na" required>
+                                            <label for="{{ 'recovery-flag-' + idPath }}-na">Not Applicable</label>
+                                        </li>
+                                    </ul>
+                                </fieldset>
                             </div>
-                            <section>
-                                <div class="input-field">
-                                    <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
-                                    <!--<p>Optionally add a description for this account number</p>-->
-                                    <textarea id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-model="obligation.additionalInfo.content"></textarea>
+                            <div class="input-field">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?<span class="required" >*</span></label>
+
+                                    <ul class="usa-unstyled-list">
+                                        <li>
+                                            <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
+                                            <label for="{{ 'salary-or-expense-' + idPath }}-yes">Yes</label>
+                                        </li>
+                                        <li>
+                                            <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="obligation.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-na" type="radio" value="na" required>
+                                            <label for="{{ 'salary-or-expense-' + idPath }}-na">Not Applicable</label>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="input-field" ng-show="obligation.questions.salary_or_expense.flag=='yes'">
+                                <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
+                                <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="obligation.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
+                                    <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
+                                    <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
+                                        <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <div ng-show="gsavm.validationFlag['Financial Information and Accomplishments'] || gsavm.form.financial.{{formPath}}.assistanceTypes.$dirty">
+                                    <span ng-show="gsavm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
                                 </div>
+                            </div>
+                        </section>
+                        <hr>
+                        <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                            <section ng-form name="gsavm.form.financial.{{formPath}}.{{fyTpl.idName}}">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
+                                    <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
+                                    <ul class="usa-unstyled-list" ng-init="obligation.values[fyTpl.year].flag = obligation.values[fyTpl.year].flag || gsavm.choices['yes_no_na'].yes.code">
+                                        <li>
+                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].yes.code" ng-model="obligation.values[fyTpl.year].flag" >
+                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
+                                        </li>
+                                        <li>
+                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].no.code" ng-model="obligation.values[fyTpl.year].flag">
+                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}">Not Seperately Identifiable</label>
+                                        </li>
+                                        <li>
+                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}" type="radio" ng-value="gsavm.choices['yes_no_na'].na.code" ng-model="obligation.values[fyTpl.year].flag">
+                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Not Available</label>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+
+                                <div class="input-field" ng-show="obligation.values[fyTpl.year].flag === gsavm.choices['yes_no_na'].yes.code">
+                                    <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
+                                    <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="obligation.values[fyTpl.year][fyTpl.obligVarName]">
+                                </div>
+                                <div class="input-field" ng-show="obligation.values[fyTpl.year].flag !== gsavm.choices['yes_no_na'].yes.code">
+                                    <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
+                                    <input type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-model="obligation.values[fyTpl.year].explanation">
+                                </div>
+
                             </section>
-                            <button type="button" ng-click="gsavm.removeObligation($index)">Delete</button>
+                            <hr style="margin-top:1em;">
                         </div>
+                        <section>
+                            <div class="input-field">
+                                <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
+                                <!--<p>Optionally add a description for this account number</p>-->
+                                <textarea id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-model="obligation.additionalInfo.content"></textarea>
+                            </div>
+                        </section>
+                        <button type="button" ng-click="gsavm.removeObligation($index)">Delete</button>
                     </div>
-                    <button type="button" ng-click="gsavm.addObligation()">Add</button>
-                </section>
+                </div>
+                <button type="button" ng-click="gsavm.addObligation()">Add</button>
+            </section>
                 <section class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
                         <h4><label for="financialAdditionalInfo">123 Range and Average of Financial Assistance</label></h4>
