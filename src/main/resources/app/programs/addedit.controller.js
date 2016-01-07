@@ -138,6 +138,8 @@
         vm.removeSelectedEntry = removeSelectedEntry;
         vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
         vm.getAccountTitle = appUtil.getAccountTitle;
+        vm.getObligationTitle = appUtil.getObligationTitle;
+        vm.getTafsTitle = appUtil.getTafsTitle;
         vm.nextId = util.nextId;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
