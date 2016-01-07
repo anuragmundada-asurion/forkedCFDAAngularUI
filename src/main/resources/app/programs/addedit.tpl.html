@@ -1316,6 +1316,27 @@
                     <br/>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
+                    <multi-entry ng-model="gsavm.program.contacts.list" item-title="gsavm.getContactTitle" editable-items="true" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+                        <multi-entry-header>
+                            <h4>152 Headquarters Office</h4>
+                        </multi-entry-header>
+                        <multi-entry-sub-form class="input-field">
+                            <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
+                                <label for="{{ 'contact-fullname-' + idPath }}">Full Name<span class="required" >*</span>:</label>
+                                <input type="text" id="{{ 'contact-fullname-' + idPath }}" name="fullname" ng-model="$subForm.current.fullName" required>
+                                <!--div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.fullname6.$dirty">
+                                    <span ng-show="$ctrl.parentVm.form.fullname6.$error.required">You must provide a full name.</span>
+                                </div>
+
+                                <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
+                                <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="$subForm.current.departmentCode" required>
+                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
+                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                                </div-->
+                            </div>
+                        </multi-entry-sub-form>
+                    </multi-entry>
+
                     <h4>152 Headquarters Office</h4>
                     <label for="contact6">Select an Existing or New Contact:</label>
                     <select id="contact6" name="contact6" class="usa-input-large" required>

@@ -21,6 +21,9 @@
             eoTitleGetter = $parse('executiveOrder.title'),
             accountGetter = $parse('code'),
             descriptionGetter = $parse('description'),
+            obligationQuestionRecoveryGetter = $parse('questions.recovery.flag'),
+            obligationQuestionSalaryGetter = $parse('questions.salary_or_expense.flag'),
+            obligationAddInfoGetter = $parse('additionalInfo.content'),
             tafsDeptGetter = $parse('departmentCode'),
             tafsMainAcctGetter = $parse('accountCode'),
             undefinedTextValue = "";
@@ -64,7 +67,57 @@
         }
 
         function getObligationTitle(obligation) {
-            var title = "test getObligationTitle"
+            var title = "";
+            var year = 2000;
+            for (year=2000; year < 2100; year++) {
+                var param = 'values.' + year;
+                var obligationGetter = $parse(param);
+                var data = (obligationGetter(obligation) || undefinedTextValue);
+
+                if (data) {
+                    title = title + "FY" + year.toString().substr(2,2);
+
+                    var flagGetter = $parse('flag');
+                    var flagGetterData = (flagGetter(data));
+                    if (flagGetterData && flagGetterData=='yes') {
+                        var getter1 = $parse('actual');
+                        var getter1data = (getter1(data));
+                        if (getter1data) {
+                            title = title + " (actual): " + getter1data;
+                        }
+
+                        var getter2 = $parse('estimate');
+                        var getter2data = (getter2(data));
+                        if (getter2data) {
+                            title = title + " (est): " + getter2data;
+                        }
+
+                        title = title + ". ";
+                    }
+                    else if (flagGetterData && flagGetterData=='no') {
+                        title = title + ": Not separately identifiable. ";
+                    }
+                    else if (flagGetterData && flagGetterData=='na') {
+                        title = title + ": Not available. ";
+                    }
+                }
+            }
+
+            var recovery = (obligationQuestionRecoveryGetter(obligation) || undefinedTextValue);
+            if (recovery=='yes') {
+                title = title + "This is a Recovery and Reinvestment Act obligation. ";
+            }
+
+            var salary = (obligationQuestionSalaryGetter(obligation) || undefinedTextValue);
+            if (salary=='yes') {
+                title = title + "This obligation is for salaries and expenses. ";
+            }
+
+            var additionalInfo = (obligationAddInfoGetter(obligation) || undefinedTextValue);
+            if (additionalInfo) {
+                title = title + additionalInfo + " ";
+            }
+
             return title;
         }
 
