@@ -1,5 +1,5 @@
 <ul class="usa-unstyled-list">
-    <li ng-repeat='item in $ctrl.model.$modelValue track by $index'>
+    <li>
         <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry($index)' ng-disabled='!$ctrl.allowModifications'>delete</button>
         <span>{{$ctrl.formatTitle(item)}}</span>
     </li>

@@ -125,6 +125,9 @@
         vm.createAmendment = createAmendment;
         vm.removeAmendment = removeAmendment;
         vm.updateAmendments = updateAmendments;
+        vm.onAuthorizationSave = onAuthorizationSave;
+        vm.onAmendmentBeforeSave = onAmendmentBeforeSave;
+        vm.onAuthDialogOpen = onAuthDialogOpen;
         vm.onAuthorizationTypeUpdate = onAuthorizationTypeUpdate;
         vm.getFormFiscalYearProject = getFormFiscalYearProject;
         vm.getItemFromType = getItemFromType;
@@ -171,6 +174,13 @@
             }
         }
 
+        function onAuthorizationSave(authorization) {
+            var amendments = getAuthorizationAmendments(authorization.authorizationId);
+            angular.forEach(amendments, function(amendment){
+                onAuthorizationTypeUpdate(authorization, amendment);
+            });
+        }
+
         function onAuthorizationRemoved(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId),
                 authArray = getArray('authorizations');
@@ -185,11 +195,19 @@
 
         function createAmendment(authorization) {
             var authId = authorization.authorizationId,
-                lastVersion = getLastAuthorizationVersion(authId);
-            lastVersion.active = false;
+                lastVersion = getLastAuthorizationVersion(authId) || authorization;
             if(!angular.isDefined(lastVersion.version))
                 lastVersion.version = AUTH_VERSION_BASELINE;
             return createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
+        }
+
+        function onAmendmentBeforeSave(amendment) {
+            var authId = amendment.authorizationId,
+                lastVersion = getLastAuthorizationVersion(authId);
+            if(!amendment.$original) {
+                lastVersion.active = false;
+                amendment.active = true;
+            }
         }
 
         function removeAmendment(amendment) {
@@ -225,14 +243,18 @@
         }
 
         function updateAmendments(authorization) {
-            var amendments = getAuthorizationAmendments(authorization.authorizationId);
+            /*var amendments = getAuthorizationAmendments(authorization.authorizationId);
             angular.forEach(amendments, function(amendment){
                 onAuthorizationTypeUpdate(authorization, amendment);
-            });
+            });*/
+        }
+
+        function onAuthDialogOpen(authorization, ctrlLocals) {
+            ctrlLocals.amendmentFilter = isPartOfAuth(authorization);
         }
 
         function onAuthorizationTypeUpdate(authorization, amendment) {
-            if(amendment !== authorization)
+            if(angular.isDefined(authorization) && angular.isDefined(amendment) && amendment !== authorization)
                 amendment.authorizationType = authorization.authorizationType;
         }
 
@@ -246,7 +268,7 @@
         }
 
         function isAuthorization(authorization) {
-            return !angular.isDefined(authorization.version) || authorization.version <= AUTH_VERSION_BASELINE;
+            return authorization && (!angular.isDefined(authorization.version) || authorization.version <= AUTH_VERSION_BASELINE);
         }
         function isPartOfAuth(auth) {
             return function(amendment) {

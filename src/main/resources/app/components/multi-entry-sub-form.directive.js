@@ -20,7 +20,9 @@
             require: ['^multiEntry', 'multiEntrySubForm'],
             scope: {
                 createFunction: "=",
-                onParentUpdate: "="
+                onParentUpdate: "=",
+                beforeSave: "=",
+                onSave: "="
             },
             compile: compile
         };
@@ -53,6 +55,7 @@
                     $currentParentPoint = $currentParentPoint.$parent;
             }
             if($parentSubForm) {
+                scope.$parentSubForm = $parentSubForm;
                 scope.$watch(function(){
                     return $parentSubForm.current;
                 }, function(newVal){
@@ -84,12 +87,16 @@
             function save() {
                 var list = multiEntryCtrl.model.$modelValue || (multiEntryCtrl.model.$modelValue = []),
                     original = $subForm.current.$original;
+                (scope.beforeSave || angular.noop)($subForm.current);
+
                 delete $subForm.current.$original;
                 if (original) {
                     var index = list.indexOf(original);
                     list[index] = $subForm.current;
                 } else
                     list.push($subForm.current);
+
+                (scope.onSave || angular.noop)($subForm.current);
                 clearCurrent();
             }
 
