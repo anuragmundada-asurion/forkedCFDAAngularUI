@@ -16,6 +16,7 @@
             restrict: 'E',
             controller: multiEntryController,
             controllerAs: '$ctrl',
+            priority: 1,
             template: "<div transclude-append></div>",
             require: ['multiEntry', '^ngModel'],
             transclude: true,
