@@ -73,7 +73,6 @@
                                 <div ng-if="$subForm.current.authorizationType">
                                     <hr>
                                     <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
-                                        <button type="button" ng-click="$ctrl.isPartOfAuth('h')">test</button>
                                         <multi-entry-header>
                                             <label>Amendments</label>
                                         </multi-entry-header>
