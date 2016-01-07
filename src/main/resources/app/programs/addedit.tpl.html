@@ -1077,20 +1077,20 @@
                 <h3>120 Financial Information</h3>
                 <div class="sub-minor-section" field-finder-bookmark>
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm">
+                        <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
                             <multi-entry-header>
                                 <h4>121 Account Identification<span class="required" >*</span></h4>
                             </multi-entry-header>
-                            <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAccount">
-                                <div ng-init="formPath='account'+gsavm.nextId();idPath=formPath;" name="gsavm.form.financial.{{formPath}}">
+                            <multi-entry-sub-form class="input-field">
+                                <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                                     <div class="input-field">
                                         <label for="{{ 'ac-code-' + idPath }}">Code<span class="required">*</span></label>
-                                        <masked-input id="{{ 'ac-code-' + idPath }}" name="code" ng-model="account.code" mask="xx-xxxx-x-x-xxx"></masked-input>
+                                        <masked-input id="{{ 'ac-code-' + idPath }}" name="code" ng-model="$subForm.current.code" mask="xx-xxxx-x-x-xxx"></masked-input>
                                     </div>
                                     <div class="input-field ">
                                         <label for="{{ 'ac-description-' + idPath }}">Description</label>
                                         <!--<p>Optionally add a description for this account number</p>-->
-                                        <textarea id="{{ 'ac-description-' + idPath }}" name="description" ng-model="account.description"></textarea>
+                                        <textarea id="{{ 'ac-description-' + idPath }}" name="description" ng-model="$subForm.current.description"></textarea>
                                     </div>
                                 </div>
                             </multi-entry-sub-form>
