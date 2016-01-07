@@ -20,11 +20,16 @@
             actSectionGetter = $parse('act.section'),
             eoTitleGetter = $parse('executiveOrder.title'),
             accountGetter = $parse('code'),
+            descriptionGetter = $parse('description'),
+            tafsDeptGetter = $parse('departmentCode'),
+            tafsMainAcctGetter = $parse('accountCode'),
             undefinedTextValue = "";
 
         return {
             getAuthorizationTitle: getAuthorizationTitle,
-            getAccountTitle: getAccountTitle
+            getAccountTitle: getAccountTitle,
+            getObligationTitle: getObligationTitle,
+            getTafsTitle: getTafsTitle
         };
 
         ////////////////////
@@ -54,8 +59,17 @@
         }
 
         function getAccountTitle(account) {
-            var title = "test-this-account";
+            var title = (accountGetter(account) || undefinedTextValue) + "-" + (descriptionGetter(account) || undefinedTextValue);
+            return title;
+        }
 
+        function getObligationTitle(obligation) {
+            var title = "test getObligationTitle"
+            return title;
+        }
+
+        function getTafsTitle(taf) {
+            var title = (tafsDeptGetter(taf) || undefinedTextValue) + "-" + (tafsMainAcctGetter(taf) || undefinedTextValue);
             return title;
         }
     }
