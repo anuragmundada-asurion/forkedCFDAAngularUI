@@ -16,10 +16,12 @@
             uscTitleGetter = $parse('USC.title'),
             actTitleGetter = $parse('act.title'),
             eoTitleGetter = $parse('executiveOrder.title'),
+            accountGetter = $parse('code'),
             undefinedTextValue = "___";
 
         return {
-            getAuthorizationTitle: getAuthorizationTitle
+            getAuthorizationTitle: getAuthorizationTitle,
+            getAccountTitle: getAccountTitle
         };
 
         ////////////////////
@@ -45,6 +47,12 @@
                     title = eoTitleGetter(authorization);
                     break;
             }
+            return title;
+        }
+
+        function getAccountTitle(account) {
+            var title = "test-this";
+
             return title;
         }
     }
