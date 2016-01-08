@@ -6,17 +6,17 @@
         <div class="input-field">
             <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.choices['applicant_types'] | selectedChoiceFilter:gsavm.program.eligibility.applicant.types:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text" class="italic" ng-bind="item.displayValue"></p>
             </div>
         </div>
         <div class="input-field">
             <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.choices['assistance_usage_types'] | selectedChoiceFilter:gsavm.program.eligibility.applicant.assistanceUsageTypes:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text" class="italic" ng-bind="item.displayValue"></p>
             </div>
 
             <label for="assistanceAdditionalInfo7">Additional Information<span class="required" >*</span></label>
-            <span type="text" id="assistanceAdditionalInfo7" ng-bind="gsavm.program.eligibility.applicant.additionalInfo.content"></span>
+            <span type="text" class="italic" id="assistanceAdditionalInfo7" ng-bind="gsavm.program.eligibility.applicant.additionalInfo.content"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
@@ -24,7 +24,7 @@
         <div class="input-field">
             <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.choices['beneficiary_types'] | selectedChoiceFilter:gsavm.program.eligibility.beneficiary.types:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text" class="italic" ng-bind="item.displayValue"></p>
             </div>
             <label for="beneficiaryAdditionalInfo7">Additional Information<span class="required" >*</span></label>
             <span type="text" id="beneficiaryAdditionalInfo7" ng-bind="gsavm.program.eligibility.beneficiary.additionalInfo.content"></span>
@@ -37,20 +37,20 @@
                 <ul class="usa-unstyled-list">
                     <li>
                         <label for="credentialsOrDocumentation7">Are there credentials or documentation?<span class="required" >*</span></label>
-                        <span type="text" id="credentialsOrDocumentation7" ng-bind="gsavm.program.eligibility.documentation.flag"></span>
+                        <span type="text" class="italic" id="credentialsOrDocumentation7" ng-bind="gsavm.choices['yes_na'][gsavm.program.eligibility.documentation.flag].value"></span>
                     </li>
                 </ul>
             </fieldset>
 
             <div ng-show="gsavm.program.eligibility.documentation.flag === 'yes'">
                 <label for="credentialsAdditionalInfo7">Please explain:<span class="required" >*</span></label>
-                <span type="text" id="credentialsAdditionalInfo7" ng-bind="gsavm.program.eligibility.documentation.content"></span>
+                <span type="text" class="italic" id="credentialsAdditionalInfo7" ng-bind="gsavm.program.eligibility.documentation.content"></span>
                 <br/>
                 <fieldset class="usa-fieldset-inputs usa-sans">
                     <ul class="usa-unstyled-list">
                         <li>
                             <label for="costPrincipalsAcceptable7">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
-                            <span type="text" id="costPrincipalsAcceptable7" ng-bind="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag"></span>
+                            <span type="text" class="italic" id="costPrincipalsAcceptable7" ng-bind="gsavm.choices['yes_no'][gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag].value"></span>
                         </li>
                     </ul>
                 </fieldset>

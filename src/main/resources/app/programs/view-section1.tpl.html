@@ -2,13 +2,13 @@
 <section class="sub-section" >
     <div class="input-field" >
         <h3 for="title7">010 Program Title<span class="required" >*</span></h3>
-        <span type="text" id="title7"  ng-bind="gsavm.program.title"></span>
+        <span type="text" class="italic" id="title7"  ng-bind="gsavm.program.title"></span>
     </div>
 </section>
 <section class="sub-section" >
     <div class="input-field">
         <h3 for="alternativeName7">020 Popular Name</h3>
-        <span type="text" id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
+        <span type="text"class="italic"  id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
     </div>
 </section>
 <section class="sub-section" >
@@ -26,7 +26,7 @@
                     </li>
                 </ul>
                 <div ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length <= 0">
-                    <span ng-show="gsavm.form.authorizationLength.$error.requiredLength">You need to have at least one Authorization.</span>
+                    <span class="italic" ng-show="gsavm.form.authorizationLength.$error.requiredLength">You need to have at least one Authorization.</span>
                 </div>
             </div>
             <div class="usa-width-one-half">
@@ -75,7 +75,7 @@
     <div class="input-field">
         <h3 for="objective7">050 Objectives<span class="required" >*</span></h3>
         <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-        <span type="text" id="objective7" ng-bind="gsavm.program.objective"></span>
+        <span type="text" class="italic" id="objective7" ng-bind="gsavm.program.objective"></span>
     </div>
 </section>
 <section class="sub-section" >
@@ -86,7 +86,7 @@
             picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
         </p>-->
         <div ng-repeat="item in gsavm.choices['assistance_type'] | selectedChoiceFilter:gsavm.program.assistanceTypes:'element_id' track by item.element_id">
-            <p type="text" ng-bind="item.displayValue"></p>
+            <p type="text" class="italic" ng-bind="item.displayValue"></p>
         </div>
     </div>
 </section>
@@ -94,49 +94,45 @@
     <h3>070 Uses and Use Restrictions</h3>
     <!--<p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>-->
     <label for="usageRulesContent7">Describe how assistance can potentially be used<span class="required" >*</span></label>
-    <span type="text" id="usageRulesContent7" ng-bind="gsavm.program.usage.rules.content"></span>
+    <span type="text" class="italic" id="usageRulesContent7" ng-bind="gsavm.program.usage.rules.content"></span>
     <div class="input-field">
         <!--input type="checkbox" id="restrictionsFlag" ng-model="restrictionsFlag" ng-checked="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.restrictions.flag = restrictionsFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
-        <label for="restrictionsFlag7">Are there specific restructions place upon the use of the assistance?</label>
-        <span type="text" id="restrictionsFlag7" ng-bind="gsavm.program.usage.restrictions.flag"></span>
+        <label for="restrictionsFlag7">Are there specific restrictions place upon the use of the assistance?</label>
+        <span type="text" class="italic" id="restrictionsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.restrictions.flag].value"></span>
     </div>
-    <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
+    <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_na'].yes.code">
         <label for="restrictions7">Please provide the restrictions:<span class="required" >*</span></label>
-        <span type="text" id="restrictions7" ng-bind="gsavm.program.usage.restrictions.content"></span>
+        <span type="text" class="italic" id="restrictions7" ng-bind="gsavm.program.usage.restrictions.content"></span>
     </div>
     <div class="input-field">
         <!--input type="checkbox" id="discretionaryFundFlag" ng-model="discretionaryFundFlag" ng-checked="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.discretionaryFund.flag = discretionaryFundFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
         <label for="discretionaryFundFlag7">Are there discretionary funds available?</label>
-        <span type="text" id="discretionaryFundFlag7" ng-bind="gsavm.program.usage.discretionaryFund.flag"></span>
+        <span type="text" class="italic" id="discretionaryFundFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.discretionaryFund.flag].value"></span>
     </div>
-    <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code">
+    <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_na'].yes.code">
         <label for="discretionaryFund7">Discretionary Funds<span class="required" >*</span></label>
-        <span type="text" id="discretionaryFund7" ng-bind="gsavm.program.usage.discretionaryFund.content"></span>
+        <span type="text" class="italic" id="discretionaryFund7" ng-bind="gsavm.program.usage.discretionaryFund.content"></span>
     </div>
     <div class="input-field">
         <!--input type="checkbox" id="loanTermsFlag" ng-model="loanTermsFlag" ng-checked="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.loanTerms.flag = loanTermsFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
         <label for="loanTermsFlag7">Are loans a type of assistance in this program?</label>
-        <span type="text" id="loanTermsFlag7" ng-bind="gsavm.program.usage.loanTerms.flag"></span>
+        <span type="text" class="italic" id="loanTermsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.loanTerms.flag].value"></span>
     </div>
-    <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code">
+    <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_na'].yes.code">
         <label for="loanTerms7">Loan Terms<span class="required" >*</span></label>
-        <span type="text" id="loanTerms7" ng-bind="gsavm.program.usage.loanTerms.content"></span>
+        <span type="text" class="italic" id="loanTerms7" ng-bind="gsavm.program.usage.loanTerms.content"></span>
     </div>
 </section>
 <section class="sub-section" field-finder-bookmar>
     <h3>160 Related Programs<span class="required" >*</span></h3>
     <div class="input-field">
-        <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
             <label>Are there any related programs?</label>
-            <span type="text" id="relatedProgramsFlag7yes" ng-if="gsavm.program.relatedPrograms.flag=='yes'">Yes</span>
-            <span type="text" id="relatedProgramsFlag7na" ng-if="gsavm.program.relatedPrograms.flag=='na'">Not Applicable</span>
-            <span type="text" id="relatedProgramsFlag7false" ng-if="gsavm.program.relatedPrograms.flag=='false'"></span>
-        </fieldset>
+            <span type="text" class="italic" id="relatedProgramsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.relatedPrograms.flag].value"></span>
     </div>
     <div class="input-field" ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
         <label>Select any related programs below:<span class="required" >*</span></label>
         <div ng-repeat="item in gsavm.choices['programs'] | selectedChoiceFilter:gsavm.program.relatedPrograms.relatedTo:'_id' track by item._id">
-            <p type="text" ng-bind="item.title"></p>
+            <p type="text" class="italic" ng-bind="item.title"></p>
         </div>
     </div>
 </section>
@@ -144,9 +140,7 @@
     <h3>170 Examples of Funded Projects</h3>
     <div class="input-field">
         <label>Are there examples of funded projects?</label>
-        <span type="text" id="fundedProjectsExampleFlag7yes" ng-if="gsavm.program.projects.flag=='yes'">Yes</span>
-        <span type="text" id="fundedProjectsExampleFlag7na" ng-if="gsavm.program.projects.flag=='na'">Not Applicable</span>
-        <span type="text" id="fundedProjectsExampleFlag7false" ng-if="gsavm.program.projects.flag=='false'"></span>
+        <span type="text" class="italic" id="fundedProjectsExampleFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.projects.flag].value"></span>
     </div>
     <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -164,7 +158,7 @@
         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
             <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
                 <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                <span id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-bind=" gsavm.program.projects.list[fyTpl.year].content.actual"></span>
+                <span class="italic" id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-bind=" gsavm.program.projects.list[fyTpl.year].content.actual"></span>
             </div>
         </div>
     </div>
@@ -173,7 +167,7 @@
     <div class="input-field">
         <h3>190 Functional Codes<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.choices['functional_codes'] | selectedChoiceFilter:gsavm.program.functionalCodes:'element_id' track by item.element_id">
-            <p type="text" ng-bind="item.displayValue"></p>
+            <p type="text" class="italic" ng-bind="item.displayValue"></p>
         </div>
     </div>
 </section>
@@ -181,7 +175,7 @@
     <div class="input-field">
         <h3>300 Subject Terms<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.choices['program_subject_terms'] | selectedChoiceFilter:gsavm.program.subjectTerms:'element_id' track by item.element_id">
-            <p type="text" ng-bind="item.displayValue"></p>
+            <p type="text" class="italic" ng-bind="item.displayValue"></p>
         </div>
     </div>
 </section>

@@ -29,6 +29,10 @@ form {
       max-width: 56rem;
       width: 56rem;
   }
+
+  span.italic, p.italic {
+      font-style: italic;
+  }
 }
 
 .radio-button-group {
