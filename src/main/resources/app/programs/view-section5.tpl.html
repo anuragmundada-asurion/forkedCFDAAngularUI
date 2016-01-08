@@ -11,12 +11,12 @@
                     <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                         <div class="input-field">
                             <label for="{{ 'ac-code-' + idPath }}">Code<span class="required">*</span></label>
-                            <masked-input id="{{ 'ac-code-' + idPath }}" name="code" ng-model="$subForm.current.code" mask="xx-xxxx-x-x-xxx"></masked-input>
+                            <span id="{{ 'ac-code-' + idPath }}" name="code" ng-bind="$subForm.current.code"></span>
                         </div>
                         <div class="input-field ">
                             <label for="{{ 'ac-description-' + idPath }}">Description</label>
                             <!--<p>Optionally add a description for this account number</p>-->
-                            <textarea id="{{ 'ac-description-' + idPath }}" name="description" ng-model="$subForm.current.description"></textarea>
+                            <span id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="$subForm.current.description"></span>
                         </div>
                     </div>
                 </multi-entry-sub-form>
@@ -35,32 +35,13 @@
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
-                                    <ul class="usa-unstyled-list">
-                                        <li>
-                                            <input name="{{ 'recovery-flag-' + idPath }}" ng-model="$subForm.current.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
-                                            <label for="{{ 'recovery-flag-' + idPath }}-yes">Yes</label>
-                                        </li>
-                                        <li>
-                                            <input name="{{ 'recovery-flag-' + idPath }}" ng-model="$subForm.current.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-na" type="radio" value="na" required>
-                                            <label for="{{ 'recovery-flag-' + idPath }}-na">Not Applicable</label>
-                                        </li>
-                                    </ul>
+                                    <span ng-bind="$subForm.current.questions.recovery.flag"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?<span class="required" >*</span></label>
-
-                                    <ul class="usa-unstyled-list">
-                                        <li>
-                                            <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
-                                            <label for="{{ 'salary-or-expense-' + idPath }}-yes">Yes</label>
-                                        </li>
-                                        <li>
-                                            <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-na" type="radio" value="na" required>
-                                            <label for="{{ 'salary-or-expense-' + idPath }}-na">Not Applicable</label>
-                                        </li>
-                                    </ul>
+                                    <span ng-bind="$subForm.current.questions.salary_or_expense.flag"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
@@ -81,30 +62,16 @@
                             <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
-                                    <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
-                                    <ul class="usa-unstyled-list" ng-init="$subForm.current.values[fyTpl.year].flag = $subForm.current.values[fyTpl.year].flag || $ctrl.parentVm.choices['yes_no_na'].yes.code">
-                                        <li>
-                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].yes.code" ng-model="$subForm.current.values[fyTpl.year].flag" >
-                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
-                                        </li>
-                                        <li>
-                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].no.code" ng-model="$subForm.current.values[fyTpl.year].flag">
-                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-no-{{idPath}}">Not Seperately Identifiable</label>
-                                        </li>
-                                        <li>
-                                            <input id="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].na.code" ng-model="$subForm.current.values[fyTpl.year].flag">
-                                            <label for="{{fyTpl.obligType}}{{fyTpl.year}}-na-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Not Available</label>
-                                        </li>
-                                    </ul>
+                                    <span ng-bind="$subForm.current.values[fyTpl.year].flag"></span>
                                 </fieldset>
 
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                     <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                    <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]">
+                                    <span id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-bind="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
                                 </div>
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag !== $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                     <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
-                                    <input type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-model="$subForm.current.values[fyTpl.year].explanation">
+                                    <span type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-bind="$subForm.current.values[fyTpl.year].explanation"/>
                                 </div>
 
                             </section>
@@ -114,7 +81,7 @@
                             <div class="input-field">
                                 <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
                                 <!--<p>Optionally add a description for this account number</p>-->
-                                <textarea id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-model="$subForm.current.additionalInfo.content"></textarea>
+                                <span id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-bind="$subForm.current.additionalInfo.content"></span>
                             </div>
                         </section>
                     </div>
@@ -139,35 +106,35 @@
                         <section class="usa-grid">
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
-                                <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="$subForm.current.departmentCode" required>
+                                <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="$subForm.current.departmentCode" required/>
                                 <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
                                 </div>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
-                                <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-model="$subForm.current.allocationTransferAgency" >
+                                <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="$subForm.current.allocationTransferAgency"/>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'fy1-' + idPath }}">FY 1</label>
-                                <input type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-model="$subForm.current.fy1" >
+                                <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="$subForm.current.fy1"/>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'fy2-' + idPath }}">FY 2</label>
-                                <input type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-model="$subForm.current.fy2" >
+                                <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="$subForm.current.fy2"/>
                             </div>
                         </section>
                         <section class="usa-grid">
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
-                                <input type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-model="$subForm.current.accountCode" required>
+                                <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="$subForm.current.accountCode" required/>
                                 <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
                                 </div>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
-                                <input type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-model="$subForm.current.subAccountCode" >
+                                <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="$subForm.current.subAccountCode"/>
                             </div>
                         </section>
                     </div>
