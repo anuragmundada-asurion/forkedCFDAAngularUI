@@ -3,6 +3,6 @@
         <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry(item)' aria-label="{{deleteLabelName}}" ng-disabled='!$ctrl.allowModifications' trigger-click-on-enter>
             <span class="fa fa-times"></span>
         </button>
-        <a ng-click='$ctrl.openEntryDialog(item)'>{{$ctrl.formatTitle(item)}}</a>
+        <a ng-click='$ctrl.openEntryDialog(item)' transclude-append></a>
     </li>
 </ul>
