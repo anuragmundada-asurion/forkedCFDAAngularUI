@@ -48,7 +48,7 @@
                 ctrl.parentVm = newVal;
             });
             if (element.find('multi-entry-list').length <= 0) {
-                var listElement = angular.element("<multi-entry-list><span>{{$ctrl.formatTitle(item)}}</span></multi-entry-list>"),
+                var listElement = angular.element("<multi-entry-list><span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span></multi-entry-list>"),
                     filterFunc;
                 listElement.attr('editable', scope.editableItems);
                 listElement.attr('listTrackBy', scope.listTrackBy);
