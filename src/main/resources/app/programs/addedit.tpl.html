@@ -1319,11 +1319,14 @@
                     <br/>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
-                    <multi-entry ng-model="gsavm.program.contacts.list" item-title="gsavm.getContactTitle" editable-items="true" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+                    <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
                         <multi-entry-header>
                             <h4>152 Headquarters Office</h4>
                         </multi-entry-header>
-                        <multi-entry-sub-form class="input-field">
+                        <multi-entry-list editable="true">
+                            <span>{{item.title}}</span> <span>{{item.fullName}}</span>
+                        </multi-entry-list>
+                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createContact">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                                 <label for="title6">Title:</label>
                                 <input type="text" id="title6" name="title6" ng-model="$subForm.current.title">

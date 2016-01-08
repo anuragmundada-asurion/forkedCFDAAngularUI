@@ -137,6 +137,7 @@
         vm.addSelectedEntry = addSelectedEntry;
         vm.getSelectedEntry = getSelectedEntry;
         vm.removeSelectedEntry = removeSelectedEntry;
+        vm.createContact = createContact;
         vm.getAuthorizationTitle = getAuthorizationTitle;
         vm.getAmendmentTitle = appUtil.getAuthorizationTitle;
         vm.getAccountTitle = appUtil.getAccountTitle;
@@ -303,6 +304,12 @@
                 version: version || AUTH_VERSION_BASELINE,
                 authorizationType: type,
                 active: true
+            }
+        }
+
+        function createContact() {
+            return {
+                type: 'headquarter'
             }
         }
 
