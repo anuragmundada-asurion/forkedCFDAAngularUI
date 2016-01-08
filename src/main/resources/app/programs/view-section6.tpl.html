@@ -29,7 +29,7 @@
                     <label for="email6">Email:</label>
                     <span type="text" id="email6" name="email6" ng-bind="$subForm.current.email"></span>
 
-                    <label for="phone6">Phone:<span class="required" >*</span>:</label>
+                    <label for="phone6">Phone<span class="required" >*</span>:</label>
                     <span type="text" id="phone6" name="phone6" ng-bind="$subForm.current.phone" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.phone6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.phone6.$error.required">You must provide a phone number.</span>
@@ -39,19 +39,19 @@
                     <span type="text" id="fax6" name="fax6" ng-bind="$subForm.current.fax"></span>
                     <br/>
                     Address:
-                    <label for="address6">Street:<span class="required" >*</span>:</label>
+                    <label for="address6">Street<span class="required" >*</span>:</label>
                     <span id="address6" name="address6" ng-bind="$subForm.current.address" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.address6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.address6.$error.required">You must provide an address.</span>
                     </div>
 
-                    <label for="city6">City:<span class="required" >*</span>:</label>
+                    <label for="city6">City<span class="required" >*</span>:</label>
                     <span type="text" id="city6" name="city6" ng-bind="$subForm.current.city" required></span>
 
-                    <label for="state6">State:<span class="required" >*</span>:</label>
+                    <label for="state6">State<span class="required" >*</span>:</label>
                     <span id="state6" name="state6" ng-bind="$subForm.current.state" required></span>
 
-                    <label for="zip6">Zip:<span class="required" >*</span>:</label>
+                    <label for="zip6">Zip<span class="required" >*</span>:</label>
                     <span type="text" id="zip6" name="zip6" class="usa-input-medium" ng-bind="$subForm.current.zip" required></span>
 
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.city6.$dirty">
