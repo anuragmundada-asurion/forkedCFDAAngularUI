@@ -25,7 +25,7 @@
                     <section class="usa-grid">
                         <ul class="usa-unstyled-list radio-button-group">
                             <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
-                                <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
+                                <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}" readonly="readonly"/>
                                 <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
                             </li>
                         </ul>
