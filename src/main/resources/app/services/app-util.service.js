@@ -15,6 +15,7 @@
             pageGetter = $parse('statute.page'),
             uscTitleGetter = $parse('USC.title'),
             uscSectionGetter = $parse('USC.section'),
+            actDescGetter = $parse('act.description'),
             actTitleGetter = $parse('act.title'),
             actPartGetter = $parse('act.part'),
             actSectionGetter = $parse('act.section'),
@@ -55,7 +56,7 @@
                     title = (uscTitleGetter(authorization) || undefinedTextValue) + " US Code " + (uscSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "act":
-                    title = (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
+                    title = (actDescGetter(authorization) || undefinedTextValue) +",Title " + (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "eo":
                     title = "Executive Order - " + (eoTitleGetter(authorization) || undefinedTextValue);

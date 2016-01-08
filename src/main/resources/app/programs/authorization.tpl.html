@@ -1,4 +1,12 @@
 <section class="usa-grid">
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'act'">
+        <label for="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}">Description</label>
+        <input id="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="description" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].description" unique-from="$ctrl.parentVm.program.title" required>
+        <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.description.$dirty">
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.description.$error.required">The Description must be filled.</span>
+            <span ng-show="$ctrl.parentVm.form.{{formPath}}.description.$error.uniqueFrom">This Description must be unique from the listing's Title.</span>
+        </div>
+    </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act' || $subForm.current.authorizationType === 'usc'">
         <label for="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}">Title</label>
         <input id="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="title" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].title" unique-from="$ctrl.parentVm.program.title" required>
