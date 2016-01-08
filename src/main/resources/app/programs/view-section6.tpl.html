@@ -11,48 +11,68 @@
         <br/>
     </section>
     <section class="sub-minor-section" >
-        <h4>152 Headquarters Office</h4>
-        <label for="contact7">Select an Existing or New Contact:</label>
-        <span type="text" id="contact7" name="contact7" ng-bind="gsavm.program.contacts.type"></span>
+        <multi-entry ng-model="gsavm.program.contacts.list" item-title="gsavm.getContactTitle" editable-items="true" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+            <multi-entry-header>
+                <h4>152 Headquarters Office</h4>
+            </multi-entry-header>
+            <multi-entry-sub-form class="input-field">
+                <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
+                    <label for="title6">Title:</label>
+                    <span type="text" id="title6" name="title6" ng-bind="$subForm.current.title"></span>
 
-        <label for="title7">Title:</label>
-        <span type="text" id="title7" name="title7" ng-bind="gsavm.program.contacts['headquarter'].title"></span>
+                    <label for="{{ 'contact-fullname-' + idPath }}">Full Name<span class="required" >*</span>:</label>
+                    <span type="text" id="{{ 'contact-fullname-' + idPath }}" name="fullname" ng-bind="$subForm.current.fullName" required></span>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.fullname.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
+                    </div>
 
-        <label for="fullname7">Full Name<span class="required" >*</span>:</label>
-        <span type="text" id="fullname7" name="fullname7" ng-bind="gsavm.program.contacts['headquarter'].fullName"></span>
+                    <label for="email6">Email:</label>
+                    <span type="text" id="email6" name="email6" ng-bind="$subForm.current.email"></span>
 
-        <label for="email7">Email:</label>
-        <span type="text" id="email7" name="email7" ng-bind="gsavm.program.contacts['headquarter'].email"></span>
+                    <label for="phone6">Phone<span class="required" >*</span>:</label>
+                    <span type="text" id="phone6" name="phone6" ng-bind="$subForm.current.phone" required></span>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.phone6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.phone6.$error.required">You must provide a phone number.</span>
+                    </div>
 
-        <label for="phone7">Phone<span class="required" >*</span>:</label>
-        <span type="text" id="phone7" name="phone7" ng-bind="gsavm.program.contacts['headquarter'].phone"></span>
+                    <label for="fax6">Fax:</label>
+                    <span type="text" id="fax6" name="fax6" ng-bind="$subForm.current.fax"></span>
+                    <br/>
+                    Address:
+                    <label for="address6">Street<span class="required" >*</span>:</label>
+                    <span id="address6" name="address6" ng-bind="$subForm.current.address" required></span>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.address6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.address6.$error.required">You must provide an address.</span>
+                    </div>
 
-        <label for="fax7">Fax:</label>
-        <span type="text" id="fax7" name="fax7" ng-bind="gsavm.program.contacts['headquarter'].fax"></span>
-        <br/><br/>
-        Address:
-        <label for="address7">Street<span class="required" >*</span>:</label>
-        <span type="text" id="address7" name="address7" ng-bind="gsavm.program.contacts['headquarter'].address"></span>
-        <table style="margin:0px">
-            <tr>
-                <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
-                    <label for="city7">City<span class="required" >*</span>:</label>
-                    <span type="text" id="city7" name="city7" ng-bind="gsavm.program.contacts['headquarter'].city"></span>
-                </td>
-                <td style="padding:0px;padding-right:8px;vertical-align:top;border:0px">
-                    <label for="state7">State<span class="required" >*</span>:</label>
-                    <span type="text" id="state7" name="state7" ng-bind="gsavm.program.contacts['headquarter'].state"></span>
-                </td>
-                <td style="padding:0px;vertical-align:top;border:0px">
-                    <label for="zip7">Zip<span class="required" >*</span>:</label>
-                    <span type="text" id="zip7" name="zip7" ng-bind="gsavm.program.contacts['headquarter'].zip"></span>
-                </td>
-            </tr>
-        </table>
+                    <label for="city6">City<span class="required" >*</span>:</label>
+                    <span type="text" id="city6" name="city6" ng-bind="$subForm.current.city" required></span>
 
-        <label for="country7">Country:</label>
-        <span type="text" id="country7" name="country7" ng-bind="gsavm.program.contacts['headquarter'].country"></span>
-        <br/>
+                    <label for="state6">State<span class="required" >*</span>:</label>
+                    <span id="state6" name="state6" ng-bind="$subForm.current.state" required></span>
+
+                    <label for="zip6">Zip<span class="required" >*</span>:</label>
+                    <span type="text" id="zip6" name="zip6" class="usa-input-medium" ng-bind="$subForm.current.zip" required></span>
+
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.city6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.city6.$error.required">You must provide a city.</span>
+                    </div>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.state6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.state6.$error.required || $ctrl.parentVm.form.state6 ===''">You must provide a state.</span>
+                    </div>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.zip6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.zip6.$error.required">You must provide a zip code.</span>
+                    </div>
+
+                    <label for="country6">Country:</label>
+                    <span id="country6" name="country6" ng-bind="$subForm.current.country" required></span>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.country6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.country6.$error.required">You must provide a country.</span>
+                    </div>
+                    <br/>
+                </div>
+            </multi-entry-sub-form>
+        </multi-entry>
     </section>
     <section class="sub-minor-section" >
         <div class="input-field">

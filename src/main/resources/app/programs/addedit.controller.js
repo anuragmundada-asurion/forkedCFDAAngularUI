@@ -142,6 +142,7 @@
         vm.getAccountTitle = appUtil.getAccountTitle;
         vm.getObligationTitle = appUtil.getObligationTitle;
         vm.getTafsTitle = appUtil.getTafsTitle;
+        vm.getContactTitle = appUtil.getContactTitle;
         vm.nextId = util.nextId;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
