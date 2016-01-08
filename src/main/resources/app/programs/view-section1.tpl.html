@@ -30,7 +30,7 @@
                             </li>
                         </ul>
                     </section>
-                    <div ng-include="'partials/programs/authorization.tpl.html'"></div>
+                    <div ng-include="'partials/programs/authorizationView.tpl.html'"></div>
                     <div ng-if="$subForm.current.authorizationType">
                         <hr>
                         <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
@@ -39,7 +39,7 @@
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
                                 <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="sub-form">
-                                    <div ng-include="'partials/programs/authorization.tpl.html'"></div>
+                                    <div ng-include="'partials/programs/authorizationView.tpl.html'"></div>
                                 </div>
                             </multi-entry-sub-form>
                         </multi-entry>
