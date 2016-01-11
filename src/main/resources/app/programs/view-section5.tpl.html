@@ -11,12 +11,12 @@
                     <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                         <div class="input-field">
                             <label for="{{ 'ac-code-' + idPath }}">Code<span class="required">*</span></label>
-                            <span id="{{ 'ac-code-' + idPath }}" name="code" ng-bind="$subForm.current.code"></span>
+                            <span id="{{ 'ac-code-' + idPath }}" name="code" class="italic" ng-bind="$subForm.current.code"></span>
                         </div>
                         <div class="input-field ">
                             <label for="{{ 'ac-description-' + idPath }}">Description</label>
                             <!--<p>Optionally add a description for this account number</p>-->
-                            <span id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="$subForm.current.description"></span>
+                            <span id="{{ 'ac-description-' + idPath }}" name="description" class="italic" ng-bind="$subForm.current.description"></span>
                         </div>
                     </div>
                 </multi-entry-sub-form>
@@ -35,13 +35,13 @@
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
-                                    <span ng-bind="$subForm.current.questions.recovery.flag"></span>
+                                    <span class="italic" ng-bind="$subForm.current.questions.recovery.flag"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'salary-or-expense-' + idPath }}">Is this for Federal salaries and expenses?<span class="required" >*</span></label>
-                                    <span ng-bind="$subForm.current.questions.salary_or_expense.flag"></span>
+                                    <span class="italic" ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.salary_or_expense.flag].value"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
@@ -53,7 +53,7 @@
                                     </ui-select-choices>
                                 </ui-select>
                                 <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$dirty">
-                                    <span ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
+                                    <span class="italic" ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
                                 </div>
                             </div>
                         </section>
@@ -62,16 +62,16 @@
                             <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
-                                    <span ng-bind="$subForm.current.values[fyTpl.year].flag"></span>
+                                    <span class="italic" ng-bind="$subForm.current.values[fyTpl.year].flag"></span>
                                 </fieldset>
 
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                     <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                    <span id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-bind="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
+                                    <span class="italic" id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-bind="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
                                 </div>
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag !== $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                     <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
-                                    <span type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-bind="$subForm.current.values[fyTpl.year].explanation"/>
+                                    <span class="italic" type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-bind="$subForm.current.values[fyTpl.year].explanation"/>
                                 </div>
 
                             </section>
@@ -81,7 +81,7 @@
                             <div class="input-field">
                                 <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
                                 <!--<p>Optionally add a description for this account number</p>-->
-                                <span id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-bind="$subForm.current.additionalInfo.content"></span>
+                                <span class="italic" id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-bind="$subForm.current.additionalInfo.content"></span>
                             </div>
                         </section>
                     </div>
@@ -92,7 +92,7 @@
     <section class="sub-minor-section" >
         <div class="input-field">
             <h4 for="financialAdditionalInfo7">123 Range and Average of Financial Assistance</h4>
-            <span type="text" id="financialAdditionalInfo7" name="financialAdditionalInfo" ng-bind="gsavm.program.financial.additionalInfo.content"></span>
+            <span type="text" class="italic" id="financialAdditionalInfo7" name="financialAdditionalInfo" ng-bind="gsavm.program.financial.additionalInfo.content"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
@@ -106,35 +106,35 @@
                         <section class="usa-grid">
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
-                                <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="$subForm.current.departmentCode" required/>
+                                <span class="italic" type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="$subForm.current.departmentCode" required/>
                                 <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
-                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                                    <span class="italic" ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
                                 </div>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
-                                <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="$subForm.current.allocationTransferAgency"/>
+                                <span class="italic" type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="$subForm.current.allocationTransferAgency"/>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'fy1-' + idPath }}">FY 1</label>
-                                <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="$subForm.current.fy1"/>
+                                <span class="italic" type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="$subForm.current.fy1"/>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'fy2-' + idPath }}">FY 2</label>
-                                <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="$subForm.current.fy2"/>
+                                <span class="italic" type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="$subForm.current.fy2"/>
                             </div>
                         </section>
                         <section class="usa-grid">
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
-                                <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="$subForm.current.accountCode" required/>
+                                <span class="italic" type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="$subForm.current.accountCode" required/>
                                 <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
-                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
+                                    <span class="italic" ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
                                 </div>
                             </div>
                             <div class="input-field usa-width-one-fourth">
                                 <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
-                                <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="$subForm.current.subAccountCode"/>
+                                <span class="italic" type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="$subForm.current.subAccountCode"/>
                             </div>
                         </section>
                     </div>
@@ -148,9 +148,7 @@
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
         <label>Are there program accomplishments?</label>
-        <span type="text" id="programAccomplishmentFlag7yes" ng-if="gsavm.program.postAward.accomplishments.flag=='yes'">Yes</span>
-        <span type="text" id="programAccomplishmentFlag7na" ng-if="gsavm.program.postAward.accomplishments.flag=='na'">Not Applicable</span>
-        <span type="text" id="programAccomplishmentFlag7false" ng-if="gsavm.program.postAward.accomplishments.flag=='false'"></span>
+        <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag=='yes'].value"></span>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -158,7 +156,7 @@
             <ul class="usa-unstyled-list">
                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                     <li>
-                        <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" ng-readonly="true" value="{{fyTpl.year}}"
+                        <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" class="italic" type="checkbox" ng-readonly="true" value="{{fyTpl.year}}"
                                ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" ng-checked="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.projection || gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual" >
                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                     </li>
@@ -172,5 +170,4 @@
             </div>
         </div>
     </div>
-</section>
 </section>

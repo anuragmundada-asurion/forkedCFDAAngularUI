@@ -4,10 +4,11 @@
     <section class="sub-minor-section" >
         <fieldset class="usa-fieldset-inputs usa-sans">
             <h4>151 Regional or Local Office<span class="required" >*</span></h4>
-            <span type="text" name="office7info" ng-bind="gsavm.program.contacts['local'].flag"></span>
+            <span type="text" class="italic" name="office7infoRegional" ng-if="gsavm.program.contacts['local'].flag == 'regional'">See Regional Agency Offices</span>
+            <span type="text" class="italic" name="office7infoNone" ng-if="gsavm.program.contacts['local'].flag == 'none'">None</span>
         </fieldset>
         <label for="office7info">Additional Information:</label>
-        <span type="text" id="office7info" name="office7info" ng-bind="gsavm.program.contacts['local'].additionalInfo.content"></span>
+        <span type="text" id="office7info" class="italic" name="office7info" ng-bind="gsavm.program.contacts['local'].additionalInfo.content"></span>
         <br/>
     </section>
     <section class="sub-minor-section" >
@@ -18,41 +19,41 @@
             <multi-entry-sub-form class="input-field">
                 <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                     <label for="title6">Title:</label>
-                    <span type="text" id="title6" name="title6" ng-bind="$subForm.current.title"></span>
+                    <span type="text" id="title6" class="italic" name="title6" ng-bind="$subForm.current.title"></span>
 
                     <label for="{{ 'contact-fullname-' + idPath }}">Full Name<span class="required" >*</span>:</label>
-                    <span type="text" id="{{ 'contact-fullname-' + idPath }}" name="fullname" ng-bind="$subForm.current.fullName" required></span>
+                    <span type="text" id="{{ 'contact-fullname-' + idPath }}" class="italic" name="fullname" ng-bind="$subForm.current.fullName" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.fullname.$dirty">
                         <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
                     </div>
 
                     <label for="email6">Email:</label>
-                    <span type="text" id="email6" name="email6" ng-bind="$subForm.current.email"></span>
+                    <span type="text" id="email6" class="italic" name="email6" ng-bind="$subForm.current.email"></span>
 
                     <label for="phone6">Phone<span class="required" >*</span>:</label>
-                    <span type="text" id="phone6" name="phone6" ng-bind="$subForm.current.phone" required></span>
+                    <span type="text" id="phone6" class="italic" name="phone6" ng-bind="$subForm.current.phone" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.phone6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.phone6.$error.required">You must provide a phone number.</span>
                     </div>
 
                     <label for="fax6">Fax:</label>
-                    <span type="text" id="fax6" name="fax6" ng-bind="$subForm.current.fax"></span>
+                    <span type="text" id="fax6" class="italic" name="fax6" ng-bind="$subForm.current.fax"></span>
                     <br/>
                     Address:
                     <label for="address6">Street<span class="required" >*</span>:</label>
-                    <span id="address6" name="address6" ng-bind="$subForm.current.address" required></span>
+                    <span id="address6" name="address6"  class="italic" ng-bind="$subForm.current.address" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.address6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.address6.$error.required">You must provide an address.</span>
                     </div>
 
                     <label for="city6">City<span class="required" >*</span>:</label>
-                    <span type="text" id="city6" name="city6" ng-bind="$subForm.current.city" required></span>
+                    <span type="text" id="city6" name="city6" class="italic" ng-bind="$subForm.current.city" required></span>
 
                     <label for="state6">State<span class="required" >*</span>:</label>
-                    <span id="state6" name="state6" ng-bind="$subForm.current.state" required></span>
+                    <span id="state6" name="state6" class="italic" ng-bind="$subForm.current.state" required></span>
 
                     <label for="zip6">Zip<span class="required" >*</span>:</label>
-                    <span type="text" id="zip6" name="zip6" class="usa-input-medium" ng-bind="$subForm.current.zip" required></span>
+                    <span type="text" id="zip6" name="zip6"  class="italic" class="usa-input-medium" ng-bind="$subForm.current.zip" required></span>
 
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.city6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.city6.$error.required">You must provide a city.</span>
@@ -65,7 +66,7 @@
                     </div>
 
                     <label for="country6">Country:</label>
-                    <span id="country6" name="country6" ng-bind="$subForm.current.country" required></span>
+                    <span id="country6" name="country6" class="italic" ng-bind="$subForm.current.country" required></span>
                     <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.country6.$dirty">
                         <span ng-show="$ctrl.parentVm.form.country6.$error.required">You must provide a country.</span>
                     </div>
@@ -77,7 +78,7 @@
     <section class="sub-minor-section" >
         <div class="input-field">
             <h4 for="website7">153 Website:</h4>
-            <span type="text" id="website7" name="website7" ng-bind="gsavm.program.website"></span>
+            <span type="text" id="website7" name="website7" class="italic" ng-bind="gsavm.program.website"></span>
         </div>
     </section>
 </section>
