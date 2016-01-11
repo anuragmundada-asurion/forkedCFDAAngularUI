@@ -2,83 +2,91 @@
 <section class="sub-section" >
     <h3>120 Financial Information</h3>
     <section class="sub-minor-section" >
-        <h4>121 Account Identification</h4>
-        <!--<p>Agency aupplied 11-digit budget accound codes</p>-->
-        <div ng-repeat="account in gsavm.program.financial.accounts track by $index">
-            <div ng-form ng-init="formPath='account'+gsavm.nextId();idPath=formPath;" name="gsavm.form.financial.{{formPath}}" class="sub-form">
-                <div class="input-field">
-                    <label for="{{ idPath + '-code-' + $index }}">Code<span class="required">*</span></label>
-                    <span type="text" id="{{ 'ac-code-' + idPath }}" ng-bind="account.code" mask="xx-xxxx-x-x-xxx"></span>
-                </div>
-                <div class="input-field ">
-                    <label for="{{ 'ac-description-' + idPath }}">Description</label>
-                    <!--<p>Optionally add a description for this account number</p>-->
-                    <span type="text" id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="account.description"></span>
-                </div>
-            </div>
+        <div class="input-field">
+            <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
+                <multi-entry-header>
+                    <h4>121 Account Identification</h4>
+                </multi-entry-header>
+                <multi-entry-sub-form class="input-field">
+                    <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
+                        <div class="input-field">
+                            <label for="{{ 'ac-code-' + idPath }}">Code<span class="required">*</span></label>
+                            <span id="{{ 'ac-code-' + idPath }}" name="code" ng-bind="$subForm.current.code"></span>
+                        </div>
+                        <div class="input-field ">
+                            <label for="{{ 'ac-description-' + idPath }}">Description</label>
+                            <!--<p>Optionally add a description for this account number</p>-->
+                            <span id="{{ 'ac-description-' + idPath }}" name="description" ng-bind="$subForm.current.description"></span>
+                        </div>
+                    </div>
+                </multi-entry-sub-form>
+            </multi-entry>
         </div>
     </section>
     <section class="sub-minor-section" >
-        <h4>122 Obligations</h4>
-        <div ng-repeat="obligation in gsavm.program.financial.obligations track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
-            <div ng-form ng-init="formPath='obligations'+gsavm.nextId();idPath=formPath" name="gsavm.form.financial.{{formPath}}" class="sub-form">
-                <section>
-                    <div class="input-field">
-                        <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?</label>
-                        <span type="text" id="{{ 'recovery-flag-' + idPath }}" ng-bind="obligation.questions.recovery.flag"></span>
-                    </div>
-                    <div class="input-field">
-                        <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?</label>
-                        <span type="text" id="{{ 'salary-or-expense-' + idPath }}" ng-bind="obligation.questions.salary_or_expense.flag"></span>
-                    </div>
-                    <div class="input-field" ng-show="!gsavm.uiLogic.salaryOrExpenseFlag[formPath]">
-                        <label for="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
-                        <div ng-repeat="item in gsavm.choices['assistance_type'] | selectedChoiceFilter:obligation.questions.salary_or_expense.assistanceType:'element_id' track by item.element_id">
-                            <p type="text" ng-bind="item.displayValue"></p>
-                        </div>
-                    </div>
-                </section>
-                <hr>
-                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                    <section ng-form name="gsavm.form.financial.{{formPath}}.{{fyTpl.idName}}">
-                        <div class="usa-grid">
-                            <p>{{fyTpl.name}}: {{fyTpl.year}}</p>
-                        </div>
-                        <div class="usa-grid">
-                            <fieldset class="usa-fieldset-inputs usa-sans">
-                                <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
-                                <div ng-show="obligation.values[fyTpl.year].flag=='yes'">
-                                    {{fyTpl.obligType || fyTpl.type}} Available
-                                </div>
-                                <div ng-show="obligation.values[fyTpl.year].flag=='no'">
-                                    Not Seperately Identifiable
-                                </div>
-                                <div ng-show="obligation.values[fyTpl.year].flag=='na'">
-                                    {{fyTpl.obligType || fyTpl.type}} Not Available
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div class="usa-grid">
-                            <div class="input-field usa-width-one-fourth" ng-show="obligation.values[fyTpl.year].flag === gsavm.choices['yes_no_na'].yes.code">
-                                <label for="{{fyTpl.idName}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                <span type="text" id="{{fyTpl.idName}}-input-{{idPath}}" name="value" ng-bind="obligation.values[fyTpl.year][fyTpl.obligVarName]"></span>
+        <div class="input-field">
+            <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
+                <multi-entry-header>
+                    <h4>122 Obligations</h4>
+                </multi-entry-header>
+                <multi-entry-sub-form class="input-field">
+                    <div ng-init="formPath='obligations'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
+                        <section>
+                            <div class="input-field">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
+                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.recovery.flag].value"></span>
+                                </fieldset>
                             </div>
-                            <div class="input-field usa-width-one-fourth" ng-show="obligation.values[fyTpl.year].flag !== gsavm.choices['yes_no_na'].yes.code">
-                                <label for="{{ 'optional-exp-' + idPath }}">Optional Information</label>
-                                <span type="text" id="{{ 'optional-exp-' + idPath }}" name="explanation" ng-bind="obligation.values[fyTpl.year].explanation"></span>
+                            <div class="input-field">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?<span class="required" >*</span></label>
+                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.salary_or_expense.flag].value"></span>
+                                </fieldset>
                             </div>
+                            <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
+                                <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
+                                <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!$ctrl.parentVm.uiLogic.salaryOrExpenseFlag[formPath]">
+                                    <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
+                                    <ui-select-choices group-by="$ctrl.parentVm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in $ctrl.parentVm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
+                                        <div ng-bind-html="item.value | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$dirty">
+                                    <span ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
+                                </div>
+                            </div>
+                        </section>
+                        <hr>
+                        <div ng-repeat="fyTpl in $ctrl.parentVm.fyTpls track by fyTpl.year">
+                            <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
+                                <fieldset class="usa-fieldset-inputs usa-sans">
+                                    <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
+                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.values[fyTpl.year].flag].value"></span>
+                                </fieldset>
+
+                                <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
+                                    <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
+                                    <span id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-bind="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
+                                </div>
+                                <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag !== $ctrl.parentVm.choices['yes_no_na'].yes.code">
+                                    <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
+                                    <span type="text" id="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}" class="usa-input-small" name="explanation" ng-bind="$subForm.current.values[fyTpl.year].explanation"/>
+                                </div>
+
+                            </section>
+                            <hr style="margin-top:1em;">
                         </div>
-                    </section>
-                    <hr>
-                </div>
-                <section class="usa-grid">
-                    <div class="input-field">
-                        <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
-                        <!--<p>Optionally add a description for this account number</p>-->
-                        <span type="text" id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-bind="obligation.additionalInfo.content"></span>
+                        <section>
+                            <div class="input-field">
+                                <label for="{{ 'additional-info-' + idPath }}">Additional Information</label>
+                                <!--<p>Optionally add a description for this account number</p>-->
+                                <span id="{{ 'additional-info-' + idPath }}" name="additionalInfo" ng-bind="$subForm.current.additionalInfo.content"></span>
+                            </div>
+                        </section>
                     </div>
-                </section>
-            </div>
+                </multi-entry-sub-form>
+            </multi-entry>
         </div>
     </section>
     <section class="sub-minor-section" >
@@ -88,41 +96,51 @@
         </div>
     </section>
     <section class="sub-minor-section" >
-        <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
-        <div ng-repeat="tafscode in gsavm.program.financial.treasury.tafs track by $index" ng-model="gsavm.program.tafscodes" name="tafscodes" required-Length='{ "min": 1 }'>
-            <div ng-form ng-init="formPath='tafscode'+$index;idPath=formPath" name="gsavm.form.financial.treasury.{{formPath}}" class="sub-form">
-                <section class="usa-grid">
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
-                        <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="tafscode.departmentCode"></span>
+        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
+            <multi-entry-header>
+                <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
+            </multi-entry-header>
+            <multi-entry-sub-form class="input-field">
+                <div ng-init="formPath='tafscode'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.treasury.{{formPath}}">
+                    <div class="input-field ">
+                        <section class="usa-grid">
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
+                                <span type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-bind="$subForm.current.departmentCode" required/>
+                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
+                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                                </div>
+                            </div>
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
+                                <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="$subForm.current.allocationTransferAgency"/>
+                            </div>
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'fy1-' + idPath }}">FY 1</label>
+                                <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="$subForm.current.fy1"/>
+                            </div>
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'fy2-' + idPath }}">FY 2</label>
+                                <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="$subForm.current.fy2"/>
+                            </div>
+                        </section>
+                        <section class="usa-grid">
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
+                                <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="$subForm.current.accountCode" required/>
+                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
+                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
+                                </div>
+                            </div>
+                            <div class="input-field usa-width-one-fourth">
+                                <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
+                                <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="$subForm.current.subAccountCode"/>
+                            </div>
+                        </section>
                     </div>
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
-                        <span type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-bind="tafscode.allocationTransferAgency"></span>
-                    </div>
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'fy1-' + idPath }}">FY 1</label>
-                        <span type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-bind="tafscode.fy1"></span>
-                    </div>
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'fy2-' + idPath }}">FY 2</label>
-                        <span type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-bind="tafscode.fy2"></span>
-                    </div>
-                </section>
-                <section class="usa-grid">
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
-                        <span type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-bind="tafscode.accountCode"></span>
-                    </div>
-                    <div class="input-field usa-width-one-fourth">
-                        <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
-                        <span type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-bind="tafscode.subAccountCode"></span>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div ng-show="gsavm.form.tafscodes.$dirty">
-            <span ng-show="gsavm.form.tafscodes.$error.requiredLength">You must provide at least one TAFS Code.</span>
+                </div>
+            </multi-entry-sub-form>
+        </multi-entry>
         </div>
     </section>
 </section>
@@ -130,7 +148,7 @@
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
         <label>Are there program accomplishments?</label>
-        <span type="text" id="programAccomplishmentFlag7yes" ng-if="gsavm.program.postAward.accomplishments.flag=='yes'">Yes</span>
+        <span type="text" id="programAccomplishmentFlag7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.accomplishments.flag=='yes'].value">Yes</span>
         <span type="text" id="programAccomplishmentFlag7na" ng-if="gsavm.program.postAward.accomplishments.flag=='na'">Not Applicable</span>
         <span type="text" id="programAccomplishmentFlag7false" ng-if="gsavm.program.postAward.accomplishments.flag=='false'"></span>
     </div>

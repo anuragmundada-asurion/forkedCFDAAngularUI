@@ -70,14 +70,14 @@
                         <td style="padding:4px;vertical-align:top;border:0px">
                             <div class="col-md-6">
                                 <p class="input-group">
-                                    <span type="text" ng-bind="deadline.start"></span>
+                                    <span type="text" class="italic" ng-bind="deadline.start"></span>
                                 </p>
                             </div>
                         </td>
                         <td style="padding:4px;vertical-align:top;border:0px">
                             <div class="col-md-6">
                                 <p class="input-group">
-                                    <span type="text" ng-bind="deadline.end"></span>
+                                    <span type="text" class="italic" ng-bind="deadline.end"></span>
                                 </p>
                             </div>
                         </td>
@@ -85,48 +85,48 @@
                 </table>
                 <br/>
                 Description:<br/>
-                <span type="text" id="deadlineDesc7" ng-bind="deadline.description"></span>
+                <span type="text" class="italic" id="deadlineDesc7" ng-bind="deadline.description"></span>
                 <br/>
             </div>
             <br/>
             <label for="deadlineAdditionalInfo7">Other Deadline Information:</label>
-            <span type="text" id="deadlineAdditionalInfo7" ng-bind="gsavm.program.application.deadlines.submission.additionalInfo.content"></span>
+            <span type="text" class="italic" id="deadlineAdditionalInfo7" ng-bind="gsavm.program.application.deadlines.submission.additionalInfo.content"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
         <div class="input-field">
             <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
             <div ng-repeat="item in gsavm.choices['date_range'] | selectedChoiceFilter:gsavm.program.application.deadlines.approval.interval:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text" class="italic" ng-bind="item.displayValue"></p>
             </div>
         </div>
         <div class="input-field">
             <label for="approvalTime7other">Other Approval Information:</label>
-            <span type="text" id="approvalTime7other" ng-bind="gsavm.program.application.deadlines.approval.otherInfo.content"></span>
+            <span type="text" class="italic" id="approvalTime7other" ng-bind="gsavm.program.application.deadlines.approval.otherInfo.content"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
         <div class="input-field">
             <h4>096 Appeals<span class="required" >*</span></h4>
             <div ng-repeat="item in gsavm.choices['date_range'] | selectedChoiceFilter:gsavm.program.application.deadlines.appeal.interval:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text"class="italic"  ng-bind="item.displayValue"></p>
             </div>
         </div>
         <div class="input-field">
             <label for="appealsTime7other">Other Appeals Information:</label>
-            <span type="text" id="appealsTime7other" ng-bind="gsavm.program.application.deadlines.appeal.otherInfo.content"></span>
+            <span type="text" class="italic" id="appealsTime7other" ng-bind="gsavm.program.application.deadlines.appeal.otherInfo.content"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
         <div class="input-field">
             <h4>097 Renewals<span class="required" >*</span></h4>
             <div ng-repeat="item in gsavm.choices['date_range'] | selectedChoiceFilter:gsavm.program.application.deadlines.renewal.interval:'element_id' track by item.element_id">
-                <p type="text" ng-bind="item.displayValue"></p>
+                <p type="text" class="italic" ng-bind="item.displayValue"></p>
             </div>
         </div>
         <div class="input-field">
             <label for="renewalTime7other">Other Renewals Information:</label>
-            <span type="text" id="renewalTime7other" ng-bind="gsavm.program.application.deadlines.renewal.otherInfo.content"></span>
+            <span type="text" class="italic" id="renewalTime7other" ng-bind="gsavm.program.application.deadlines.renewal.otherInfo.content"></span>
         </div>
     </section>
 </section>
@@ -137,44 +137,44 @@
             <h4>101 Formula and Matching Requirements</h4>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="statuatoryFormula7">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></label>
-                <span type="text" id="statuatoryFormula7" ng-bind="gsavm.program.assistance.formula.flag"></span>
+                <span type="text" class="italic" id="statuatoryFormula7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.formula.flag].value"></span>
             </fieldset>
             <div class="input-field usa-grid" ng-show="gsavm.program.assistance.formula.flag=='yes'">
                 <label for="formulaTitle7">Title:</label></td>
-                <span type="text" id="formulaTitle7" ng-bind="gsavm.program.assistance.formula.title"></span>
+                <span type="text" class="italic" id="formulaTitle7" ng-bind="gsavm.program.assistance.formula.title"></span>
                 <label for="formulaChapter7">Chapter:</label></td>
-                <span type="text" id="formulaChapter7" ng-bind="gsavm.program.assistance.formula.chapter"></span>
+                <span type="text" class="italic" id="formulaChapter7" ng-bind="gsavm.program.assistance.formula.chapter"></span>
                 <label for="formulaPart7">Part:</label></td>
-                <span type="text" id="formulaPart7" ng-bind="gsavm.program.assistance.formula.part"></span>
+                <span type="text" class="italic" id="formulaPart7" ng-bind="gsavm.program.assistance.formula.part"></span>
                 <label for="formulaSubpart7">Subpart:</label></td>
-                <span type="text" id="formulaSubpart7" ng-bind="gsavm.program.assistance.formula.subPart"></span>
+                <span type="text" class="italic" id="formulaSubpart7" ng-bind="gsavm.program.assistance.formula.subPart"></span>
                 <label for="formulaPublicLaw7">Public Law:</label></td>
-                <span type="text" id="formulaPublicLaw7" ng-bind="gsavm.program.assistance.formula.publicLaw"></span>
+                <span type="text" class="italic" id="formulaPublicLaw7" ng-bind="gsavm.program.assistance.formula.publicLaw"></span>
                 <label for="formulaInfo7">Additional Info:</label></td>
-                <span type="text" id="formulaInfo7" ng-bind="gsavm.program.assistance.formula.additionalInfo.content"></span>
+                <span type="text" class="italic" id="formulaInfo7" ng-bind="gsavm.program.assistance.formula.additionalInfo.content"></span>
             </div>
             <br/>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="matchingRequirements7">Does this program have matching requirements? <span class="required" >*</span></label>
-                <span type="text" id="matchingRequirements7" ng-bind="gsavm.program.assistance.matching.flag"></span>
+                <span type="text" class="italic" id="matchingRequirements7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.matching.flag].value"></span>
             </fieldset>
             <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
                 <label for="matchingPercent7">Select the Percentage Below<span class="required" >*</span>:</label>
-                <span type="text" id="matchingPercent7" ng-bind="gsavm.program.assistance.matching.percent"></span>
+                <span type="text" class="italic" id="matchingPercent7" ng-bind="gsavm.program.assistance.matching.percent"></span>
                 <div class="input-field">
                     <label for="matchingOtherInfo7">Other Matching Requirements Information:</label>
-                    <span type="text" id="matchingOtherInfo7" ng-bind="gsavm.program.assistance.matching.otherInfo.content"></span>
+                    <span type="text" class="italic" id="matchingOtherInfo7" ng-bind="gsavm.program.assistance.matching.otherInfo.content"></span>
                 </div>
             </div>
             <br/>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="MOErequirements7">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></label>
-                <span type="text" id="MOErequirements7" ng-bind="gsavm.program.assistance.moe.flag"></span>
+                <span type="text" class="italic" id="MOErequirements7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.moe.flag].value"></span>
             </fieldset>
             <div class="input-field" ng-show="gsavm.program.assistance.moe.flag=='yes'">
                 <div class="input-field">
                     <label for="MOEAddInfo7">Please enter any additional information below:</label>
-                    <span type="text" id="MOEAddInfo7" ng-bind="gsavm.program.assistance.moe.additionalInfo.content"></span>
+                    <span type="text" class="italic" id="MOEAddInfo7" ng-bind="gsavm.program.assistance.moe.additionalInfo.content"></span>
                 </div>
             </div>
         </div>
@@ -183,9 +183,9 @@
         <div class="input-field" >
             <h4 for="assistLimit7">102 Length and Time Phasing of Assistance</h4>
             <p>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></p>
-            <span type="text" id="assistLimit7" ng-bind="gsavm.program.assistance.limitation.content"></span>
+            <span type="text" class="italic" id="assistLimit7" ng-bind="gsavm.program.assistance.limitation.content"></span>
             <label for="assistanceAwarded7">How is the assistance awarded and/or released?<span class="required" >*</span></label>
-            <span type="text" id="assistanceAwarded7" ng-bind="gsavm.program.assistance.limitation.awarded"></span>
+            <span type="text" class="italic" id="assistanceAwarded7" ng-bind="gsavm.program.assistance.limitation.awarded"></span>
         </div>
     </section>
     <section class="sub-minor-section" >
@@ -193,12 +193,12 @@
             <h3>180 Criteria for Selecting Proposals<span class="required" >*</span></h3>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="criteriaProposals7">Is there criteria for selecting proposals?</label>
-                <span type="text" id="criteriaProposals7" ng-bind="gsavm.program.application.selectionCriteria.flag"></span>
+                <span type="text" class="italic" id="criteriaProposals7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.application.selectionCriteria.flag].value"></span>
             </fieldset>
         </div>
         <div class="input-field" ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
             <label for="criteriaProposals7Info">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
-            <span type="text" id="criteriaProposals7Info" ng-bind="gsavm.program.application.selectionCriteria.content"></span>
+            <span type="text" class="italic" id="criteriaProposals7Info" ng-bind="gsavm.program.application.selectionCriteria.content"></span>
         </div>
     </section>
 </section>

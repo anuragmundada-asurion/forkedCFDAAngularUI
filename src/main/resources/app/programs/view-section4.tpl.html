@@ -6,62 +6,62 @@
         <div class="input-field">
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="reports7">Are reports required by the funding agency?<span class="required" >*</span></label>
-                <span type="text" id="reports7" ng-bind="gsavm.program.postAward.reports.flag"></span>
+                <span type="text" class="italic" id="reports7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.flag].value"></span>
             </fieldset>
             <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
                 <br/>
                 <div class="input-field" >
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="programReports7">Are program reports required?<span class="required" >*</span></label>
-                        <span type="text" id="programReports7" ng-bind="gsavm.program.postAward.reports.list.program.flag"></span>
+                        <span type="text" class="italic" id="programReports7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.list.program.flag].value"></span>
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.reports.list.program.flag === 'yes'">
                         <label for="programReportsInfo7">Please describe the program reports required.<span class="required" >*</span></label>
-                        <span type="text" id="programReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.program.content"></span>
+                        <span type="text" class="italic" id="programReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.program.content"></span>
                     </div>
                 </div>
                 <br/>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="cashReports7">Are cash reports required?<span class="required" >*</span></label>
-                        <span type="text" id="cashReports7" ng-bind="gsavm.program.postAward.reports.list.cash.flag"></span>
+                        <span type="text" class="italic" id="cashReports7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.list.cash.flag].value"></span>
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.reports.list.cash.flag === 'yes'">
                         <label for="cashReportsInfo7">Please describe the cash reports required.<span class="required" >*</span></label>
-                        <span type="text" id="cashReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.cash.content"></span>
+                        <span type="text" class="italic" id="cashReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.cash.content"></span>
                     </div>
                 </div>
                 <br/>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="progressReports7">Are progress reports required?<span class="required" >*</span></label>
-                        <span type="text" id="progressReports7" ng-bind="gsavm.program.postAward.reports.list.progress.flag"></span>
+                        <span type="text" class="italic" id="progressReports7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.list.progress.flag].value"></span>
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.reports.list.progress.flag === 'yes'">
                         <label for="progressReportsInfo7">Please describe the progress reports required.<span class="required" >*</span></label>
-                        <span type="text" id="progressReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.progress.content"></span>
+                        <span type="text" class="italic" id="progressReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.progress.content"></span>
                     </div>
                 </div>
                 <br/>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="expenditureReports7">Are expenditure reports required?<span class="required" >*</span></label>
-                        <span type="text" id="expenditureReports7" ng-bind="gsavm.program.postAward.reports.list.expenditure.flag"></span>
+                        <span type="text"  class="italic" id="expenditureReports7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.list.expenditure.flag].value"></span>
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag === 'yes'">
                         <label for="expenditureReportsInfo7">Please describe the expenditure reports required.<span class="required" >*</span></label>
-                        <span type="text" id="expenditureReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.expenditure.content"></span>
+                        <span type="text" class="italic" id="expenditureReportsInfo7" ng-bind="gsavm.program.postAward.reports.list.expenditure.content"></span>
                     </div>
                 </div>
                 <br/>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="performanceMonitoring7">Is performance monitoring required?<span class="required" >*</span></label>
-                        <span type="text" id="performanceMonitoring7" ng-bind="gsavm.program.postAward.reports.list.performanceMonitoring.flag"></span>
+                        <span  class="italic"type="text" id="performanceMonitoring7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.reports.list.performanceMonitoring.flag].value"></span>
                     </fieldset>
                     <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag === 'yes'">
                         <label for="performanceMonitoringInfo7">Please describe the performance monitoring required.<span class="required" >*</span></label>
-                        <span type="text" id="performanceMonitoringInfo7" ng-bind="gsavm.program.postAward.reports.list.performanceMonitoring.content"></span>
+                        <span type="text" class="italic" id="performanceMonitoringInfo7" ng-bind="gsavm.program.postAward.reports.list.performanceMonitoring.content"></span>
                     </div>
                 </div>
             </div>
@@ -72,13 +72,13 @@
         <div class="input-field">
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="audits7">Are audits required for the program?<span class="required" >*</span></label>
-                <span type="text" id="audits7" ng-bind="gsavm.program.postAward.audit.flag"></span>
+                <span type="text" class="italic" id="audits7" ng-bind="gsavm.program.postAward.audit.flag"></span>
             </fieldset>
             <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
                 <label for="auditRequirements7">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
-                <span type="text" id="auditRequirements7" ng-bind="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag"></span>
+                <span type= class="italic""text" id="auditRequirements7" ng-bind="gsavm.choices['yes_no'][gsavm.program.postAward.audit.questions['OMBCircularA133'].flag].value"></span>
                 <label for="auditRequirementsInfo7">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'" >*</span></label>
-                <span type="text" id="auditRequirementsInfo7" ng-bind="gsavm.program.postAward.audit.content"></span>
+                <span type="text" class="italic" id="auditRequirementsInfo7" ng-bind="gsavm.program.postAward.audit.content"></span>
             </div>
         </div>
     </section>
@@ -86,7 +86,7 @@
         <h4>113 Records</h4>
         <div class="input-field">
             <label class="usa-grid-full" for="recordContent7">Describe what records the Federal agency requires the recipient to maintain and the time periods.</label>
-            <span type="text" id="recordContent7" ng-bind="gsavm.program.postAward.records.content"></span>
+            <span type="text" class="italic" id="recordContent7" ng-bind="gsavm.program.postAward.records.content"></span>
         </div>
     </section>
     <section class="sub-section" >
@@ -94,12 +94,12 @@
         <div class="input-field">
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="documents7">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>
-                <span type="text" id="documents7" ng-bind="gsavm.program.postAward.documents.flag"></span>
+                <span type="text" class="italic" id="documents7" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.documents.flag].value"></span>
             </fieldset>
 
             <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
                 <label for="documentsAdditionalInfo7">Please describe regulations, guidelines, and literature.<span class="required" >*</span></label>
-                <span type="text" id="documentsAdditionalInfo7" ng-bind="gsavm.program.postAward.documents.content"></span>
+                <span type="text" class="italic" id="documentsAdditionalInfo7" ng-bind="gsavm.program.postAward.documents.content"></span>
             </div>
         </div>
     </section>
