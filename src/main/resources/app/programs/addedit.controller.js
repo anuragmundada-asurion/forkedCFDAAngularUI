@@ -138,7 +138,7 @@
         vm.getSelectedEntry = getSelectedEntry;
         vm.removeSelectedEntry = removeSelectedEntry;
         vm.createContact = createContact;
-        vm.getAuthorizationTitle = getAuthorizationTitle;
+        vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
         vm.getAmendmentTitle = appUtil.getAuthorizationTitle;
         vm.getAccountTitle = appUtil.getAccountTitle;
         vm.getObligationTitle = appUtil.getObligationTitle;
@@ -254,10 +254,6 @@
         function getLastAuthorizationVersion(authId) {
             var filteredArray = getAuthorizationAmendments(authId);
             return $filter('orderBy')(filteredArray, "-version")[0];
-        }
-
-        function getAuthorizationTitle(auth) {
-            return "{0} ({1})".format(appUtil.getAuthorizationTitle(auth), getAuthAmendments(auth).length);
         }
 
         function updateAmendments(authorization) {
