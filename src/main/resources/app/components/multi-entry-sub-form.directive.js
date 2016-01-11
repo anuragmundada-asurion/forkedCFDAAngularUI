@@ -85,13 +85,10 @@
             }
 
             function save() {
-                var list = multiEntryCtrl.model.$modelValue,
-                    original = $subForm.current.$original;
-                if(angular.isUndefined(list)) {
-                    list = [];
-                    multiEntryCtrl.model.$setViewValue(list);
-                }
-                (scope.beforeSave || angular.noop)($subForm.current);
+                var list = multiEntryCtrl.model.$modelValue || [],
+                    original = $subForm.current.$original,
+                    parentItem = $parentSubForm ? $parentSubForm.current : undefined;
+                (scope.beforeSave || angular.noop)($subForm.current, parentItem);
 
                 delete $subForm.current.$original;
                 if (original) {
@@ -99,8 +96,9 @@
                     list[index] = $subForm.current;
                 } else
                     list.push($subForm.current);
-
-                (scope.onSave || angular.noop)($subForm.current);
+                multiEntryCtrl.model.$setViewValue(list);
+                multiEntryCtrl.model.$render();
+                (scope.onSave || angular.noop)($subForm.current, parentItem);
                 clearCurrent();
             }
 

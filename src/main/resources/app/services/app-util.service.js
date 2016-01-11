@@ -15,21 +15,28 @@
             pageGetter = $parse('statute.page'),
             uscTitleGetter = $parse('USC.title'),
             uscSectionGetter = $parse('USC.section'),
+            actDescGetter = $parse('act.description'),
             actTitleGetter = $parse('act.title'),
             actPartGetter = $parse('act.part'),
             actSectionGetter = $parse('act.section'),
             eoTitleGetter = $parse('executiveOrder.title'),
             accountGetter = $parse('code'),
             descriptionGetter = $parse('description'),
+            obligationQuestionRecoveryGetter = $parse('questions.recovery.flag'),
+            obligationQuestionSalaryGetter = $parse('questions.salary_or_expense.flag'),
+            obligationAddInfoGetter = $parse('additionalInfo.content'),
             tafsDeptGetter = $parse('departmentCode'),
             tafsMainAcctGetter = $parse('accountCode'),
+            contactTitleGetter = $parse('title'),
+            contactFullNameGetter = $parse('fullName'),
             undefinedTextValue = "";
 
         return {
             getAuthorizationTitle: getAuthorizationTitle,
             getAccountTitle: getAccountTitle,
             getObligationTitle: getObligationTitle,
-            getTafsTitle: getTafsTitle
+            getTafsTitle: getTafsTitle,
+            getContactTitle: getContactTitle
         };
 
         ////////////////////
@@ -49,7 +56,7 @@
                     title = (uscTitleGetter(authorization) || undefinedTextValue) + " US Code " + (uscSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "act":
-                    title = (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
+                    title = (actDescGetter(authorization) || undefinedTextValue) +",Title " + (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "eo":
                     title = "Executive Order - " + (eoTitleGetter(authorization) || undefinedTextValue);
@@ -64,12 +71,67 @@
         }
 
         function getObligationTitle(obligation) {
-            var title = "test getObligationTitle"
+            var title = "";
+            var year = 2000;
+            for (year=2000; year < 2100; year++) {
+                var param = 'values.' + year;
+                var obligationGetter = $parse(param);
+                var data = (obligationGetter(obligation) || undefinedTextValue);
+
+                if (data) {
+                    title = title + "FY" + year.toString().substr(2,2);
+
+                    var flagGetter = $parse('flag');
+                    var flagGetterData = (flagGetter(data));
+                    if (flagGetterData && flagGetterData=='yes') {
+                        var getter1 = $parse('actual');
+                        var getter1data = (getter1(data));
+                        if (getter1data) {
+                            title = title + " (actual): " + getter1data;
+                        }
+
+                        var getter2 = $parse('estimate');
+                        var getter2data = (getter2(data));
+                        if (getter2data) {
+                            title = title + " (est): " + getter2data;
+                        }
+
+                        title = title + ". ";
+                    }
+                    else if (flagGetterData && flagGetterData=='no') {
+                        title = title + ": Not separately identifiable. ";
+                    }
+                    else if (flagGetterData && flagGetterData=='na') {
+                        title = title + ": Not available. ";
+                    }
+                }
+            }
+
+            var recovery = (obligationQuestionRecoveryGetter(obligation) || undefinedTextValue);
+            if (recovery=='yes') {
+                title = title + "This is a Recovery and Reinvestment Act obligation. ";
+            }
+
+            var salary = (obligationQuestionSalaryGetter(obligation) || undefinedTextValue);
+            if (salary=='yes') {
+                title = title + "This obligation is for salaries and expenses. ";
+            }
+
+            var additionalInfo = (obligationAddInfoGetter(obligation) || undefinedTextValue);
+            if (additionalInfo) {
+                title = title + additionalInfo + " ";
+            }
+
             return title;
         }
 
         function getTafsTitle(taf) {
             var title = (tafsDeptGetter(taf) || undefinedTextValue) + "-" + (tafsMainAcctGetter(taf) || undefinedTextValue);
+            return title;
+        }
+
+        function getContactTitle(contact) {
+            var title = (contactTitleGetter(contact) + " " || undefinedTextValue) + (contactFullNameGetter(contact) || undefinedTextValue);
             return title;
         }
     }

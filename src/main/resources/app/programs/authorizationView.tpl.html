@@ -1,74 +1,35 @@
 <section class="usa-grid">
-    <h3 ng-class="{untitled: !authorization.title}">{{ authorization.title || ('Untitled ' + formType.capitalize() + ' ' + ($index + 1))}}</h3>
-</section>
-<section class="usa-grid">
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'act-' + idPath }}">Act</label>
-        <span type="text" id="{{ 'act-' + idPath }}"  ng-bind="authorization.act"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'act'">
+        <label for="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}">Description</label>
+        <span id="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}"  name="description" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].description"/>
     </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'exec-order-' + idPath }}">Executive Order</label>
-        <span type="text" id="{{ 'exec-order-' + idPath }}"  ng-bind="authorization.executiveOrder"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act' || $subForm.current.authorizationType === 'usc'">
+        <label for="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}">Title</label>
+        <span id="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="title" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].title"/>
     </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'title-' + idPath }}">Title</label>
-        <span type="text" id="{{ 'title-' + idPath }}"  ng-bind="authorization.title"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act'">
+        <label for="{{ 'part-' + $subForm.current.authorizationType + '-' + idPath }}">Part</label>
+        <span id="{{ 'part-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="part" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].part"/>
     </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'part-' + idPath }}">Part</label>
-        <span type="text" id="{{ 'part-' + idPath }}"  ng-bind="authorization.part"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act' || $subForm.current.authorizationType === 'usc'">
+        <label for="{{ 'section-' + $subForm.current.authorizationType + '-' + idPath }}">Section</label>
+        <span id="{{ 'section-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="section" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].section"/>
     </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'section-' + idPath }}">Section</label>
-        <span type="text" id="{{ 'section-' + idPath }}"  ng-bind="authorization.section"></span>
+    <!-- Public Law -->
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'publiclaw'">
+        <label for="{{ 'congress-code-' + $subForm.current.authorizationType + '-' + idPath }}">Congress</label>
+        <span id="{{ 'congress-code-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].congressCode"/>
     </div>
-</section>
-<hr>
-<h4>Public Law</h4>
-<p>Enter the three digit congress code and the public law number below.</p>
-<section class="usa-grid">
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'congress-code-' + idPath }}">Congress</label>
-        <span type="text" id="{{ 'congress-code-' + idPath }}"  ng-bind="authorization.publicLaw.congressCode"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'publiclaw'">
+        <label for="{{ 'law-number-' + $subForm.current.authorizationType + '-' + idPath }}">Law Number</label>
+        <span id="{{ 'law-number-' + $subForm.current.authorizationType + '-' + idPath }}" type="number" name="lawNumber" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].lawNumber"/>
     </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'law-number-' + idPath }}">Law Number</label>
-        <span type="text" id="{{ 'law-number-' + idPath }}"  ng-bind="authorization.publicLaw.lawNumber"></span>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'statute'">
+        <label for="{{ 'volume-' + $subForm.current.authorizationType + '-' + idPath }}">Volume</label>
+        <span id="{{ 'volume-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="volume" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].volume"/>
     </div>
-</section>
-<hr>
-<h4>Statute</h4>
-<section class="usa-grid">
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'volume-' + idPath }}">Volume</label>
-        <input id="{{ 'volume-' + idPath }}" type="text" name="volume" ng-model="authorization.statute.volume" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.volume.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.volume.$error.required">The Volume must be filled.</span>
-        </div>
-    </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'page-' + idPath }}">Page</label>
-        <input id="{{ 'page-' + idPath }}" type="text" name="page" ng-model="authorization.statute.page" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.page.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.page.$error.required">The Page must be filled.</span>
-        </div>
-    </div>
-</section>
-<hr>
-<h4>U.S.C.</h4>
-<section class="usa-grid">
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'usc-title-' + idPath }}">Title</label>
-        <input id="{{ 'usc-title-' + idPath }}" type="text" name="uscTitle" ng-model="authorization.USC.title" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.uscTitle.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.uscTitle.$error.required">The U.S.C. Title must be filled.</span>
-        </div>
-    </div>
-    <div class="input-field usa-width-one-fourth">
-        <label for="{{ 'usc-section-' + idPath }}">Section</label>
-        <input id="{{ 'usc-section-' + idPath }}" type="text" name="uscSection" ng-model="authorization.USC.section" required>
-        <div ng-show="gsavm.form.$submitted || gsavm.form.{{formPath}}.uscSection.$dirty">
-            <span ng-show="gsavm.form.{{formPath}}.uscSection.$error.required">The U.S.C Section must be filled.</span>
-        </div>
+    <div class="input-field" ng-if="$subForm.current.authorizationType === 'statute'">
+        <label for="{{ 'page-' + $subForm.current.authorizationType + '-' + idPath }}">Page</label>
+        <span id="{{ 'page-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="page" ng-bind="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].page"/>
     </div>
 </section>

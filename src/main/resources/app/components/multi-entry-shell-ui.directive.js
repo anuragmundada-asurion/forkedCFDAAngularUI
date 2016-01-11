@@ -48,7 +48,7 @@
                 ctrl.parentVm = newVal;
             });
             if (element.find('multi-entry-list').length <= 0) {
-                var listElement = angular.element("<multi-entry-list></multi-entry-list>"),
+                var listElement = angular.element("<multi-entry-list><span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span></multi-entry-list>"),
                     filterFunc;
                 listElement.attr('editable', scope.editableItems);
                 listElement.attr('listTrackBy', scope.listTrackBy);
@@ -70,6 +70,11 @@
 
             if(scope.onAfterDialogOpen)
                 ctrl.initAfterDialogOpen(scope.onAfterDialogOpen);
+            scope.$watchCollection(function(){ return model.$modelValue; }, function(newValue, oldValue) {
+                if (oldValue !== newValue) {
+                    model.$modelValue = null;
+                }
+            });
         }
 
         function multiEntryController() {
@@ -90,10 +95,12 @@
 
             ////////////
 
-            function deleteEntry($index) {
+            function deleteEntry(item) {
                 if (ctrl.allowModifications) {
-                    var removed = ctrl.model.$modelValue.splice($index, 1)[0];
-                    ctrl.onDelete({ removed: removed });
+                    var list = ctrl.model.$modelValue,
+                        index = list.indexOf(item);
+                    list.splice(index, 1);
+                    ctrl.onDelete({ removed: item });
                 }
             }
 
@@ -134,6 +141,7 @@
 
         return {
             restrict: 'E',
+            transclude: true,
             templateUrl: function(element, attr) {
                 return attr.editable === "true"
                     ? 'partials/components/multi-entry-list-editable.tpl.html'

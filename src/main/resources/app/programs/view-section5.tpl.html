@@ -35,13 +35,13 @@
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
-                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.recovery.flag].value"></span>
+                                    <span ng-bind="$subForm.current.questions.recovery.flag"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="{{ 'salary-or-expense-' + idPath }}">Is this obligation for salaries and expenses?<span class="required" >*</span></label>
-                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.salary_or_expense.flag].value"></span>
+                                    <label for="{{ 'salary-or-expense-' + idPath }}">Is this for Federal salaries and expenses?<span class="required" >*</span></label>
+                                    <span ng-bind="$subForm.current.questions.salary_or_expense.flag"></span>
                                 </fieldset>
                             </div>
                             <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
@@ -62,7 +62,7 @@
                             <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
-                                    <span ng-bind="gsavm.choices['yes_na'][$subForm.current.values[fyTpl.year].flag].value"></span>
+                                    <span ng-bind="$subForm.current.values[fyTpl.year].flag"></span>
                                 </fieldset>
 
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
@@ -148,7 +148,7 @@
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
         <label>Are there program accomplishments?</label>
-        <span type="text" id="programAccomplishmentFlag7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.accomplishments.flag=='yes'].value">Yes</span>
+        <span type="text" id="programAccomplishmentFlag7yes" ng-if="gsavm.program.postAward.accomplishments.flag=='yes'">Yes</span>
         <span type="text" id="programAccomplishmentFlag7na" ng-if="gsavm.program.postAward.accomplishments.flag=='na'">Not Applicable</span>
         <span type="text" id="programAccomplishmentFlag7false" ng-if="gsavm.program.postAward.accomplishments.flag=='false'"></span>
     </div>

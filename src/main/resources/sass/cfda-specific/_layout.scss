@@ -54,3 +54,20 @@ footer {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.action-list {
+  .action-list-item {
+    > * {
+      display: inline-block;
+      vertical-align: top;
+    }
+    > .item-btn-group {
+    }
+    > .item-title-group {
+      margin: 15px 0 0 5px;
+      > a {
+        display: block;
+      }
+    }
+  }
+}

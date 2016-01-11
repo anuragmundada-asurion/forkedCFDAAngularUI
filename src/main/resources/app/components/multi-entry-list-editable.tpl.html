@@ -1,8 +1,12 @@
-<ul class="usa-unstyled-list">
-    <li>
-        <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry($index)' aria-label="{{deleteLabelName}}" ng-disabled='!$ctrl.allowModifications' trigger-click-on-enter>
-            <span class="fa fa-times"></span>
-        </button>
-        <a ng-click='$ctrl.openEntryDialog(item)'>{{$ctrl.formatTitle(item)}}</a>
+<ul class="usa-unstyled-list action-list">
+    <li class="action-list-item">
+        <div class="item-btn-group">
+            <button type='button' class="button-circle" ng-click='$ctrl.deleteEntry(item)' ng-disabled='!$ctrl.allowModifications'>
+                <span class="fa fa-times"></span>
+            </button>
+        </div>
+        <div class="item-title-group">
+            <a ng-click='$ctrl.openEntryDialog(item)' transclude-append></a>
+        </div>
     </li>
 </ul>

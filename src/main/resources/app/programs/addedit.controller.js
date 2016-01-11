@@ -125,6 +125,7 @@
         vm.createAmendment = createAmendment;
         vm.removeAmendment = removeAmendment;
         vm.updateAmendments = updateAmendments;
+        vm.getAuthAmendments = getAuthAmendments;
         vm.onAuthorizationSave = onAuthorizationSave;
         vm.onAmendmentBeforeSave = onAmendmentBeforeSave;
         vm.onAuthDialogOpen = onAuthDialogOpen;
@@ -136,10 +137,13 @@
         vm.addSelectedEntry = addSelectedEntry;
         vm.getSelectedEntry = getSelectedEntry;
         vm.removeSelectedEntry = removeSelectedEntry;
+        vm.createContact = createContact;
         vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
+        vm.getAmendmentTitle = appUtil.getAuthorizationTitle;
         vm.getAccountTitle = appUtil.getAccountTitle;
         vm.getObligationTitle = appUtil.getObligationTitle;
         vm.getTafsTitle = appUtil.getTafsTitle;
+        vm.getContactTitle = appUtil.getContactTitle;
         vm.nextId = util.nextId;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
@@ -183,7 +187,9 @@
                 onAuthorizationTypeUpdate(authorization, amendment);
             });
         }
-
+        function onAuthorizationCancel(authorization) {
+            //if()
+        }
         function onAuthorizationRemoved(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId),
                 authArray = getArray('authorizations');
@@ -204,9 +210,9 @@
             return createAuthorization(authId, lastVersion.authorizationType, (lastVersion.version + 1));
         }
 
-        function onAmendmentBeforeSave(amendment) {
+        function onAmendmentBeforeSave(amendment, authorization) {
             var authId = amendment.authorizationId,
-                lastVersion = getLastAuthorizationVersion(authId);
+                lastVersion = getLastAuthorizationVersion(authId) || authorization;
             if(!amendment.$original) {
                 lastVersion.active = false;
                 amendment.active = true;
@@ -221,6 +227,11 @@
             }
         }
 
+        function getAuthAmendments(authorization) {
+            var authArray = getArray('authorizations'),
+                filterFunc = isPartOfAuth(authorization);
+            return $filter('filter')(authArray, filterFunc);
+        }
         function addSelectedEntry(entry, path, id) {
             generateSelectedEntryParse(path, id).assign(vm, entry);
         }
@@ -289,6 +300,12 @@
                 version: version || AUTH_VERSION_BASELINE,
                 authorizationType: type,
                 active: true
+            }
+        }
+
+        function createContact() {
+            return {
+                type: 'headquarter'
             }
         }
 
