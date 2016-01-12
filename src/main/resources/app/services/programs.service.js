@@ -10,7 +10,7 @@
     ////////////////
 
     function programSvc($resource, env) {
-        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-ui-angular-uat01.reisys.com:89';
+        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-program-uat01.reisys.com';
         return $resource(domainUrl + '/program/:id', {
             id: '@_id'
         }, {
