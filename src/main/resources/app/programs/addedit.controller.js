@@ -80,8 +80,12 @@
             fundedProjectsExampleFlag: hasFyFundedProjects()
         };
         vm.constants = authTypeConstants;
+
+        var queryObj = {
+            limit: 1000
+        };
         vm.choices = {
-            programs: Programs.query(),
+            programs: Programs.query(queryObj),
             offices: [
                 {
                     id: 1,
