@@ -16,6 +16,16 @@
             <multi-entry-header>
                 <h4>152 Headquarters Office</h4>
             </multi-entry-header>
+            <multi-entry-list editable="true">
+                <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
+                <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
+                <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
+                <span ng-show="item.city">{{item.city}}<span ng-show="item.state || item.zip">, </span></span>
+                <span ng-show="item.state">{{item.state}}<span ng-show="item.zip">, </span></span>
+                <span>{{item.zip}}</span><span ng-show="item.address || item.city || item.state || item.zip"><br/></span>
+                <span ng-show="item.email">Email: {{item.email}}<br/></span>
+                <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
+            </multi-entry-list>
             <multi-entry-sub-form class="input-field">
                 <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                     <label for="title6">Title:</label>

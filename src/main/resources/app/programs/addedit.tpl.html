@@ -111,13 +111,13 @@
                         Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
                         picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
                     </p>-->
-                    <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
+                    <!--ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
                         <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsParentFilter: {value: $select.search, 'parent.value': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>
-                    <!--ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
+                    </ui-select-->
+                    <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
                         <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
@@ -125,7 +125,7 @@
                     </ui-select>
                     <div ng-show="gsavm.validationFlag['General Information'] || gsavm.form.assistanceTypes.$dirty">
                         <span ng-show="gsavm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
-                    </div-->
+                    </div>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
@@ -1333,7 +1333,14 @@
                             <h4>152 Headquarters Office</h4>
                         </multi-entry-header>
                         <multi-entry-list editable="true">
-                            <span>{{item.title}}</span> <span>{{item.fullName}}</span>
+                            <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
+                            <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
+                            <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
+                            <span ng-show="item.city">{{item.city}}<span ng-show="item.state || item.zip">, </span></span>
+                            <span ng-show="item.state">{{item.state}}<span ng-show="item.zip">, </span></span>
+                            <span>{{item.zip}}</span><span ng-show="item.address || item.city || item.state || item.zip"><br/></span>
+                            <span ng-show="item.email">Email: {{item.email}}<br/></span>
+                            <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
                         </multi-entry-list>
                         <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createContact">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
