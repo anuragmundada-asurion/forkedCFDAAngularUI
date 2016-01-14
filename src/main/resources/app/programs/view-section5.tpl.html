@@ -147,8 +147,10 @@
 <section class="sub-section" >
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
-        <label>Are there program accomplishments?</label>
-        <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag].value"></span>
+        <fieldset class="usa-fieldset-inputs usa-sans">
+            <label>Are there program accomplishments?</label>
+            <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag].value"></span>
+        </fieldset>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
         <fieldset class="usa-fieldset-inputs usa-sans">
