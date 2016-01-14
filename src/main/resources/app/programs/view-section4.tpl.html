@@ -72,7 +72,7 @@
         <div class="input-field">
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="audits7">Are audits required for the program?<span class="required" >*</span></label>
-                <span type="text" class="italic" id="audits7" ng-bind="gsavm.program.postAward.audit.flag"></span>
+                <span type="text" class="italic" id="audits7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.postAward.audit.flag].value"></span>
             </fieldset>
             <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
                 <label for="auditRequirements7">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
