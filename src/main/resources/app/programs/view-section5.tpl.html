@@ -148,7 +148,7 @@
     <h3>130 Program Accomplishments<span ng-show="gsavm.uiLogic.postAwardsAccomplishmentsFlag" class="required" >*</span></h3>
     <div class="input-field">
         <label>Are there program accomplishments?</label>
-        <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag=='yes'].value"></span>
+        <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag].value"></span>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -156,9 +156,8 @@
             <ul class="usa-unstyled-list">
                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                     <li>
-                        <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" class="italic" type="checkbox" ng-readonly="true" value="{{fyTpl.year}}"
-                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" ng-checked="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.projection || gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual" >
-                        <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
+                        <span class="italic" ng-if="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
+                        {{fyTpl.name}}: {{fyTpl.year}}</span>
                     </li>
                 </div>
             </ul>
@@ -166,7 +165,7 @@
         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
             <div ng-show='gsavm.program.postAward.accomplishments.list[fyTpl.year].flag'>
                 <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                <span id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
+                <span id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" class="italic" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
             </div>
         </div>
     </div>
