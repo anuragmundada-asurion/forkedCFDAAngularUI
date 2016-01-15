@@ -35,13 +35,15 @@ form {
   }
 
   span.icon {
-    display:block;
-    float:left;
+     display: block;
   }
   span.checkmark-checked-icon {
   	 background-image: url('../img/checkbox-checked.png');
-     background-position: 50%;
      background-repeat: no-repeat;
+     background-position: left center;
+     height: 30px;
+     padding-top:3px;
+     padding-left: 33px;
   }
 
 }

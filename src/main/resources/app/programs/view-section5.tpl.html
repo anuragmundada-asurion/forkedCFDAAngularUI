@@ -149,7 +149,7 @@
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
             <label>Are there program accomplishments?</label>
-            <span type="text" id="programAccomplishmentFlag7" class="italic" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag].value"></span>
+            <span type="text" id="programAccomplishmentFlag7" class="italic" ng-bind="gsavm.choices['yes_na'][gsavm.program.postAward.accomplishments.flag].value"></span>
         </fieldset>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
@@ -158,7 +158,7 @@
             <ul class="usa-unstyled-list">
                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                     <li>
-                        <span class="italic" ng-if="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
+                        <span class="italic icon checkmark-checked-icon" ng-if="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
                         {{fyTpl.name}}: {{fyTpl.year}}</span>
                     </li>
                 </div>

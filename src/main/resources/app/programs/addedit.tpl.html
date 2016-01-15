@@ -254,7 +254,7 @@
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.program.projects.list[fyTpl.year].flag" ng-checked="gsavm.program.projects.list[fyTpl.year].content.projection || gsavm.program.projects.flag.list[fyTpl.year].content.actual" >
+                                               ng-model="gsavm.program.projects.list[fyTpl.year].flag" >
                                         <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
@@ -1285,7 +1285,7 @@
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" ng-checked="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.projection || gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual" >
+                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
                                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
