@@ -144,22 +144,19 @@
         </fieldset>
     </div>
     <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
-        <fieldset class="usa-fieldset-inputs usa-sans">
-            <label>Please select all that apply:</label>
-            <ul class="usa-unstyled-list">
-                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                    <li>
-                        <span class="italic icon checkmark-checked-icon" ng-if="gsavm.program.projects.list[fyTpl.year].flag" >
-                            {{fyTpl.name}}: {{fyTpl.year}}
-                        </span>
-                    </li>
-                </div>
-            </ul>
-        </fieldset>
+       <!-- <fieldset class="usa-fieldset-inputs usa-sans">
+            <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                <span class="italic icon checkmark-checked-icon" ng-if="gsavm.program.projects.list[fyTpl.year].flag" >
+                    {{fyTpl.name}}: {{fyTpl.year}}
+                </span>
+            </div>
+        </fieldset> -->
         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
             <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
-                <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                <span class="italic" id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-bind=" gsavm.program.projects.list[fyTpl.year].content.actual"></span>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
+                    <span class="italic" id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-bind=" gsavm.program.projects.list[fyTpl.year].content.actual"></span>
+                </fieldset>
             </div>
         </div>
     </div>

@@ -153,21 +153,18 @@
         </fieldset>
     </div>
     <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
-        <fieldset class="usa-fieldset-inputs usa-sans">
-            <label>Please select all that apply:</label>
-            <ul class="usa-unstyled-list">
-                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-                    <li>
-                        <span class="italic icon checkmark-checked-icon" ng-if="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
-                        {{fyTpl.name}}: {{fyTpl.year}}</span>
-                    </li>
-                </div>
-            </ul>
-        </fieldset>
+       <!-- <fieldset class="usa-fieldset-inputs usa-sans">
+            <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                <span class="italic icon checkmark-checked-icon" ng-if="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
+                {{fyTpl.name}}: {{fyTpl.year}}</span>
+            </div>
+        </fieldset> -->
         <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
             <div ng-show='gsavm.program.postAward.accomplishments.list[fyTpl.year].flag'>
-                <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
-                <span id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" class="italic" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="programAccomplishmentContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
+                    <span id="programAccomplishmentContent-{{fyTpl.year}}" name="programAccomplishmentContent-{{fyTpl.year}}" class="italic" ng-bind="gsavm.program.postAward.accomplishments.list[fyTpl.year].content.actual"></span>
+                </fieldset>
             </div>
         </div>
     </div>
