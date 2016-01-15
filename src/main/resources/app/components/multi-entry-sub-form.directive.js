@@ -27,6 +27,12 @@
             compile: compile
         };
 
+        /*function change() {
+            console.log("ng-change3 inside multi");
+            vm.program.titlezzz = vm.program.relatedPrograms.relatedTo;
+            vm.program.current.title = vm.program.relatedPrograms.relatedTo;
+        }*/
+
         function compile(element) {
             element.find('ng-form').attr('name', 'sub-form-' + util.nextId());
 
@@ -67,11 +73,18 @@
 
             scope.save = save;
             scope.cancel = clearCurrent;
+            scope.change = change;
 
             multiEntryCtrl.initOpenAddEntryDialog(add);
             multiEntryCtrl.initOpenEditEntryDialog(edit);
 
             ///////////////////
+
+             function change() {
+                console.log("ng-change4 inside multi");
+                console.log("fullName = " + $subForm.current.fullName);
+                $subForm.current.fullName = $subForm.current.contactId;
+            }
 
             function add() {
                 var parentItem = $parentSubForm ? $parentSubForm.current : undefined;

@@ -5,11 +5,13 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'authTypeConstants', 'Dictionary', 'Program', 'program', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'authTypeConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+
+
         var vm = this,
             scrollPromise,
             AMENDMENT_SELECTED_NAME = 'amendments',
@@ -86,6 +88,7 @@
         };
         vm.choices = {
             programs: Programs.query(queryObj),
+            contacts: Contacts.query(),
             offices: [
                 {
                     id: 1,
