@@ -33,6 +33,19 @@ form {
   span.italic, p.italic, label.italic {
       font-style: italic;
   }
+
+  span.icon {
+     display: block;
+  }
+  span.checkmark-checked-icon {
+  	 background-image: url('../img/checkbox-checked.png');
+     background-repeat: no-repeat;
+     background-position: left center;
+     height: 30px;
+     padding-top:3px;
+     padding-left: 33px;
+  }
+
 }
 
 .radio-button-group {
