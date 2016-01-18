@@ -10,7 +10,7 @@ var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
 
-var appFilesBase = "src/main/resources/app";
+var appFilesBase = "src/main/webapp/scripts/app";
 
 var ie8VendorDep = ['**/jquery.js'];
 var ie9VendorDep = ['**/xdomain.js'];
@@ -23,7 +23,12 @@ var vendorCss;
 var appJs;
 var appSass;
 
-gulp.task('vendor-js-files', function () {
+gulp.task('app-static-files', function () {
+    gulp.src('src/main/webapp/assets/**/*.*')
+        .pipe(gulp.dest('target/classes/static'));
+});
+
+gulp.task('vendor-js-files', ['app-static-files'], function () {
     var bowerSrc = ['**/*.js'];
     unneededDepForMondernBrowsers.forEach(function (src) {
         bowerSrc.push('!' + src);
@@ -33,29 +38,34 @@ gulp.task('vendor-js-files', function () {
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
-gulp.task('ie8-vendor-js-files', function () {
-    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), {base: 'src/main/webapp/bower_components'})
-        .pipe(concat('ie8-lib.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('target/classes/static/vendor/js'));
+
+gulp.task('vendor-font-files', ['vendor-js-files'], function () {
+    gulp.src(mainBowerFiles('**/*.{otf,eot,svg,ttf,woff,woff2}'))
+        .pipe(gulp.dest('target/classes/static/vendor/fonts'));
 });
-gulp.task('ie9-vendor-js-files', function () {
+
+gulp.task('ie9-vendor-js-files', ['vendor-font-files'], function () {
     ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('ie9-lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
-gulp.task('vendor-css-files', function () {
+
+gulp.task('ie8-vendor-js-files', ['ie9-vendor-js-files'], function () {
+    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), {base: 'src/main/webapp/bower_components'})
+        .pipe(concat('ie8-lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/vendor/js'));
+});
+
+gulp.task('vendor-css-files', ['ie8-vendor-js-files'], function () {
     vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('lib.min.css'))
         .pipe(minify())
         .pipe(gulp.dest('target/classes/static/vendor/css'));
 });
-gulp.task('vendor-font-files', function () {
-    gulp.src(mainBowerFiles('**/*.{otf,eot,svg,ttf,woff,woff2}'))
-        .pipe(gulp.dest('target/classes/static/vendor/fonts'));
-});
-gulp.task('app-js-files', function () {
+
+gulp.task('app-js-files', ['vendor-css-files'], function () {
     //Read App JS files and combine
     appJs = gulp.src([
             appFilesBase + '/*.module.js',
@@ -66,25 +76,19 @@ gulp.task('app-js-files', function () {
         .pipe(gulp.dest('target/classes/static/js'));
 });
 
-gulp.task('app-static-files', function () {
-    gulp.src('src/main/webapp/assets/**/*.*')
-        .pipe(gulp.dest('target/classes/static'));
-    gulp.src('src/main/webapp/*.*')
-        .pipe(gulp.dest('target/classes'));
-});
-
-gulp.task('app-sass-files', function () {
+gulp.task('app-sass-files', ['app-js-files'], function () {
     appSass = gulp.src('src/main/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('target/classes/static/css'));
 });
 
-gulp.task('app-html-tpl-files', function () {
+gulp.task('app-html-tpl-files', ['app-sass-files'], function () {
     gulp.src(appFilesBase + "/**/*.tpl.html")
         .pipe(gulp.dest('target/classes/static/partials'));
 });
-gulp.task('index', function () {
-    var target = gulp.src("src/main/resources/static/index.html");
+
+gulp.task('index', ['app-html-tpl-files'], function () {
+    var target = gulp.src("src/main/webapp/assets/index.html");
     var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
     return target.pipe(rename("index.html"))
         .pipe(gulp.dest('target/classes/static'))
@@ -99,7 +103,7 @@ gulp.task('index', function () {
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('gzip', function () {
+gulp.task('gzip', ['index'], function () {
     gulp.src('target/classes/static/**/*.{js,css}')
         .pipe(clone())
         .pipe(gzip())
@@ -107,5 +111,5 @@ gulp.task('gzip', function () {
 });
 
 // Default Task
-gulp.task('default', ['app-static-files', 'vendor-js-files', 'vendor-font-files', 'ie9-vendor-js-files', 'ie8-vendor-js-files', 'vendor-css-files', 'app-js-files', 'app-sass-files', 'app-html-tpl-files', 'index', 'gzip'], function () {
+gulp.task('default', ['gzip'], function () {
 });
