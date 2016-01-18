@@ -67,9 +67,9 @@ gulp.task('app-js-files', function () {
 });
 
 gulp.task('app-static-files', function () {
-    gulp.src('src/main/resources/static/**/*.*')
+    gulp.src('src/main/webapp/assets/**/*.*')
         .pipe(gulp.dest('target/classes/static'));
-    gulp.src('src/main/resources/*.*')
+    gulp.src('src/main/webapp/*.*')
         .pipe(gulp.dest('target/classes'));
 });
 
