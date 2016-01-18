@@ -74,7 +74,7 @@ gulp.task('app-static-files', function () {
 });
 
 gulp.task('app-sass-files', function () {
-    appSass = gulp.src('src/main/resources/sass/**/*.scss')
+    appSass = gulp.src('src/main/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('target/classes/static/css'));
 });
