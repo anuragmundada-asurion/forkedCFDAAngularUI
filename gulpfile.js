@@ -29,25 +29,25 @@ gulp.task('vendor-js-files', function () {
     unneededDepForMondernBrowsers.forEach(function(src){
         bowerSrc.push('!' + src);
     });
-    vendorJs = gulp.src(mainBowerFiles(bowerSrc),{ base: 'bower_components' })
+    vendorJs = gulp.src(mainBowerFiles(bowerSrc),{ base: 'src/main/webapp/bower_components' })
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
 gulp.task('ie8-vendor-js-files', function() {
-    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), { base: 'bower_components'})
+    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), { base: 'src/main/webapp/bower_components'})
         .pipe(concat('ie8-lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
 gulp.task('ie9-vendor-js-files', function() {
-    ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), { base: 'bower_components'})
+    ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), { base: 'src/main/webapp/bower_components'})
         .pipe(concat('ie9-lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/vendor/js'));
 });
 gulp.task('vendor-css-files', function () {
-    vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'bower_components'})
+    vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('lib.min.css'))
         .pipe(minify())
         .pipe(gulp.dest('target/classes/static/vendor/css'));
