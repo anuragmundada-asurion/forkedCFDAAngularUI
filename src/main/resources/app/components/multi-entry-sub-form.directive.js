@@ -27,12 +27,6 @@
             compile: compile
         };
 
-        /*function change() {
-            console.log("ng-change3 inside multi");
-            vm.program.titlezzz = vm.program.relatedPrograms.relatedTo;
-            vm.program.current.title = vm.program.relatedPrograms.relatedTo;
-        }*/
-
         function compile(element) {
             element.find('ng-form').attr('name', 'sub-form-' + util.nextId());
 
@@ -80,10 +74,21 @@
 
             ///////////////////
 
-             function change() {
+            function change() {
                 console.log("ng-change4 inside multi");
+                console.log("agencyId = ");
                 console.log("fullName = " + $subForm.current.fullName);
-                $subForm.current.fullName = $subForm.current.contactId;
+                var contactResult = $subForm.current.contactId.split(",x,");
+
+                $subForm.current.title = contactResult[0];
+                $subForm.current.fullName = contactResult[1];
+                $subForm.current.email = contactResult[2];
+                $subForm.current.phone = contactResult[3];
+                $subForm.current.fax = contactResult[4];
+                $subForm.current.address = contactResult[5];
+                $subForm.current.city = contactResult[6];
+                $subForm.current.state = contactResult[7];
+                $subForm.current.zip = contactResult[8];
             }
 
             function add() {

@@ -1355,16 +1355,15 @@
                         </multi-entry-list>
                         <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createContact">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
+                                <input type="text" id="titleaaa" name="titleaaa" class="usa-input-large" ng-model="gsavm.program.agencyId">
                                 <hr/>
-                                <ui-select multiple ng-model="$subForm.current.contactId" name="relatedTozzz2"
+                                <ui-select ng-model="$subForm.current.contactId" name="relatedTozzz2"
                                            on-select="change()" class="usa-input-large" theme="select2">
                                     <ui-select-match placeholder="Select a contact...">{{$item.title}}</ui-select-match>
                                     <ui-select-choices repeat="item._id as item in $ctrl.parentVm.choices['contacts'] | filter: {title: $select.search, _id: '!' + $ctrl.parentVm.program._id}">
                                         <div ng-bind-html="item.title | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
-                                <!--br>
-                                <input type="text" id="titlezzz2" name="titlezzz2" class="usa-input-large" ng-model="gsavm.program.titlezzz" required-->
                                 <hr/>
 
                                 <label for="title6">Title:</label>
