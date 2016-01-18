@@ -23,8 +23,5 @@
     "xdomain": "~0.7.0",
     "ngSticky": "~1.8.0",
     "angular-vs-repeat": "1.0.1-beta"
-  },
-  "resolutions": {
-    "angular": "~1.2.0"
   }
 }

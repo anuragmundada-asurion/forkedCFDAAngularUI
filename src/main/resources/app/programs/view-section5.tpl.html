@@ -35,13 +35,15 @@
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
-                                    <span class="italic" ng-bind="$subForm.current.questions.recovery.flag"></span>
+                                    <span class="italic" ng-if="$subForm.current.questions.recovery.flag=='yes'">Yes</span>
+                                    <span class="italic" ng-if="$subForm.current.questions.recovery.flag=='na'">Not Applicable</span>
                                 </fieldset>
                             </div>
                             <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label for="{{ 'salary-or-expense-' + idPath }}">Is this for Federal salaries and expenses?<span class="required" >*</span></label>
-                                    <span class="italic" ng-bind="gsavm.choices['yes_na'][$subForm.current.questions.salary_or_expense.flag].value"></span>
+                                    <span class="italic" ng-if="$subForm.current.questions.salary_or_expense.flag=='yes'">Yes</span>
+                                    <span class="italic" ng-if="$subForm.current.questions.salary_or_expense.flag=='na'">Not Applicable</span>
                                 </fieldset>
                             </div>
                             <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
@@ -62,12 +64,14 @@
                             <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
                                     <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
-                                    <span class="italic" ng-bind="$subForm.current.values[fyTpl.year].flag"></span>
+                                    <span class="italic" ng-if="$subForm.current.values[fyTpl.year].flag =='yes'">{{fyTpl.obligType || fyTpl.type}} Available</span>
+                                    <span class="italic" ng-if="$subForm.current.values[fyTpl.year].flag=='no'">Not Seperately Identifiable</span>
+                                    <span class="italic" ng-if="$subForm.current.values[fyTpl.year].flag=='na'">{{fyTpl.obligType || fyTpl.type}} Not Available</span>
                                 </fieldset>
 
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
-                                    <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                                    <span class="italic" id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-bind="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
+                                    <label>{{fyTpl.obligType || fyTpl.type}}</label>
+                                    <span class="italic" id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}_yes" type="text" class="usa-input-small" ng-if="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]"/>
                                 </div>
                                 <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag !== $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                     <label for="{{ 'optional-exp-' + idPath }}{{fyTpl.year}}">Optional Information</label>
