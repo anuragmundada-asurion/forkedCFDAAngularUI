@@ -60,7 +60,7 @@
                             <h3>040 Authorization<span class="required" >*</span></h3>
                         </multi-entry-header>
                         <div>
-                            <span ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">You need to create at least one Authorization.</span>
+                            <span ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">None. You must add at least one authorization.</span>
                         </div>
                         <multi-entry-list editable="true">
                             <span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span><span> ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
