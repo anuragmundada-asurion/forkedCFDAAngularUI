@@ -11,7 +11,7 @@
     "prebuild": "npm install",
     "build": "gulp",
     "postinstall": "bower install",
-    "test": "node node_modules/karma/bin/karma start src/test/angular/karma.conf.js"
+    "test": "node node_modules/karma/bin/karma start src/test/javascript/karma.conf.js"
   },
   "author": [
     "robert.smith@reisystems.com"
@@ -30,6 +30,20 @@
     "stream-series": "0.1.1",
     "gulp-gzip": "1.2.0",
     "gulp-clone": "1.0.0",
-    "gulp-rename": "1.2.2"
+    "gulp-rename": "1.2.2",
+    "karma-script-launcher": "0.1.0",
+    "karma-chrome-launcher": "0.2.1",
+    "karma-html2js-preprocessor": "0.1.0",
+    "karma-jasmine": "0.3.6",
+    "karma-requirejs": "0.2.2",
+    "karma-phantomjs-launcher": "0.2.1",
+    "phantomjs": "1.9.18",
+    "karma": "0.13.19",
+    "karma-coverage": "0.5.3",
+    "karma-jenkins-reporter": "0.0.2",
+    "xml2js": "0.4.15",
+    "requirejs": "2.1",
+    "jasmine-core": "2.3.4",
+    "wiredep": "2.2.2"
   }
 }
