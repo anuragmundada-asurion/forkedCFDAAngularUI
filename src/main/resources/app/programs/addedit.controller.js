@@ -86,9 +86,13 @@
         var queryObj = {
             limit: 1000
         };
+        var agencyIdObj = {
+            agencyId: '4dd6e77a280ee2eb8bca5cf0c4183958'
+            //agencyId: program.agencyId.toString()
+        };
         vm.choices = {
             programs: Programs.query(queryObj),
-            contacts: Contacts.query(),
+            contacts: Contacts.query(agencyIdObj),
             offices: [
                 {
                     id: 1,
