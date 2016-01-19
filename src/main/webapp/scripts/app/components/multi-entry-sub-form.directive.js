@@ -75,9 +75,6 @@
             ///////////////////
 
             function change() {
-                console.log("ng-change4 inside multi");
-                console.log("agencyId = ");
-                console.log("fullName = " + $subForm.current.fullName);
                 var contactResult = $subForm.current.contactId.split(",x,");
 
                 $subForm.current.title = contactResult[0];

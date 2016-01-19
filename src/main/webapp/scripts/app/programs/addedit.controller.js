@@ -11,7 +11,6 @@
 
     function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
-
         var vm = this,
             scrollPromise,
             AMENDMENT_SELECTED_NAME = 'amendments',
@@ -87,8 +86,10 @@
             limit: 1000
         };
         var agencyIdObj = {
-            agencyId: '4dd6e77a280ee2eb8bca5cf0c4183958'
-            //agencyId: program.agencyId.toString()
+            agencyId: getAgencyId()
+        };
+        function getAgencyId() {
+            return vm.program.agencyId;
         };
         vm.choices = {
             programs: Programs.query(queryObj),
