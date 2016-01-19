@@ -9,6 +9,8 @@ var gzip = require('gulp-gzip');
 var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
+var wiredep = require('wiredep').stream;
+var karmaServer = require('karma').Server;
 
 var appFilesBase = "src/main/webapp/scripts/app";
 
@@ -110,6 +112,34 @@ gulp.task('gzip', ['index'], function () {
         .pipe(gulp.dest('target/classes/static'));
 });
 
+gulp.task('wiredeptest', function () {
+    return gulp.src('src/test/javascript/karma.conf.js')
+        .pipe(wiredep({
+            exclude: [],
+            ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
+            devDependencies: true,
+            fileTypes: {
+                js: {
+                    block: /(([\s\t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
+                    detect: {
+                        js: /'(.*\.js)'/gi
+                    },
+                    replace: {
+                        js: '\'{{filePath}}\','
+                    }
+                }
+            }
+        }))
+        .pipe(gulp.dest('src/test/javascript'));
+});
+
+gulp.task('test', ['gzip', 'wiredeptest'], function(done) {
+    new karmaServer({
+        configFile: __dirname + '/src/test/javascript/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
 // Default Task
-gulp.task('default', ['gzip'], function () {
+gulp.task('default', ['test'], function () {
 });
