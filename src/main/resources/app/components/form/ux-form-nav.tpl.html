@@ -1,0 +1,16 @@
+<section class="section-navigator">
+    <div class="steps-dashboard">
+        <ul class="steps usa-grid-full"><!--
+		 --><li class="step steps-{{uxForm.sections.length}}" ng-repeat-start="step in uxForm.sections">
+            <a ng-click="step.go();" tabindex="0" trigger-click-on-enter>
+                <span class="step-num completed" ng-class="{ current: step.selected, review: $last && step.selected }">{{$index + 1}}</span>
+                <span class="step-title">{{step.sectionTitle}}</span>
+            </a>
+        </li><!--
+		 --><li class="step-progress" ng-repeat-end>
+            <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </li><!--
+	 --></ul>
+    </div>
+    <field-finder-navigator selector=".section-navigator"></field-finder-navigator>
+</section>

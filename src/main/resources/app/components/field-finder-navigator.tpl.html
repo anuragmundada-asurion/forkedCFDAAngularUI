@@ -1,6 +1,6 @@
 <div class="usa-grid-full">
     <ul class="navigator-list usa-width-one-half">
-        <li ng-repeat="bookmark in fieldFinder.bookmarks track by bookmark.text" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
+        <li ng-repeat="bookmark in fieldFinder.bookmarks track by bookmark.id" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
             <span>{{bookmark.text}}</span>
         </li>
     </ul>
