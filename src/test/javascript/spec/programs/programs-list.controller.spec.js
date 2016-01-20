@@ -1,17 +1,23 @@
 'use strict';
 
 describe("Unit Tests for Programs List Controller", function () {
-    var programsListController;
+    var $controller;
 
     beforeEach(function() {
         module('app');
-        inject(function(_ProgramsListController_){
-            programsListController = _ProgramsListController_;
+        inject(function(_$controller_){
+            $controller = _$controller_;
         });
     });
 
-    it('generate uuid in the correct format', function(){
-        var uuid = utilSvc.generateUUID();
-        expect(uuid).toMatch(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i);
-    });
+    describe("Default Programs List Controller", function() {
+        var $scope, controller;
+
+        beforeEach(function(){
+            $scope = {};
+            controller = $controller('ProgramsListController', {
+                $scope: $scope
+            });
+        });
+    })
 });
