@@ -1,17 +1,13 @@
 (function(){
     "use strict";
 
-    angular
-        .module('app')
-        .run(runApp);
+    angular.module('app').run(['$rootScope', '$document', '$http', 'env', function($rootScope, $document, $http, env) {
+        $http.get("/environment/api").then(function(response) {
+            env.setApi(response.data);
+        });
 
-    runApp.$inject = ['$rootScope', '$document'];
-
-    //////////////////
-
-    function runApp($rootScope, $document) {
         $rootScope.$on('$stateChangeSuccess', function() {
             $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
         });
-    }
+    }]);
 })();

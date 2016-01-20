@@ -24,5 +24,9 @@
     "xdomain": "~0.7.0",
     "ngSticky": "~1.8.0",
     "angular-vs-repeat": "1.0.1-beta"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.0",
+    "angular-scenario": "~1.2.0"
   }
 }

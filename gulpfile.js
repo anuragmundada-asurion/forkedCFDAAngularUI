@@ -112,10 +112,12 @@ gulp.task('gzip', ['index'], function () {
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('wiredeptest', function () {
+gulp.task('wiredep', ['wiredep:test']);
+
+gulp.task('wiredep:test', function () {
     return gulp.src('src/test/javascript/karma.conf.js')
         .pipe(wiredep({
-            exclude: [],
+            exclude: [/angular-scenario/],
             ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
             devDependencies: true,
             fileTypes: {
@@ -133,7 +135,7 @@ gulp.task('wiredeptest', function () {
         .pipe(gulp.dest('src/test/javascript'));
 });
 
-gulp.task('test', ['gzip', 'wiredeptest'], function(done) {
+gulp.task('test', ['wiredep', 'gzip'], function(done) {
     new karmaServer({
         configFile: __dirname + '/src/test/javascript/karma.conf.js',
         singleRun: true
