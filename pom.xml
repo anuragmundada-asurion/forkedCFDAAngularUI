@@ -23,10 +23,6 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -40,11 +36,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.security.oauth</groupId>-->
-        <!--<artifactId>spring-security-oauth2</artifactId>-->
-        <!--<version>2.0.8.RELEASE</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -52,32 +43,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- Dandelion-DataTables -->
-        <!--<dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>dandelion-thymeleaf</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>datatables-thymeleaf</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.dandelion</groupId>
-            <artifactId>datatables-spring3</artifactId>
-            <version>1.1.0</version>
-        </dependency>-->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId>
@@ -88,16 +57,6 @@
             <artifactId>clamav-client</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.lowagie</groupId>
-            <artifactId>itext</artifactId>
-            <version>4.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.xhtmlrenderer</groupId>
-            <artifactId>flying-saucer-pdf</artifactId>
-            <version>9.0.6</version>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -107,6 +66,11 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20140107</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -153,32 +117,12 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
-                <groupId>com.github.warmuuh</groupId>
-                <artifactId>libsass-maven-plugin</artifactId>
-                <version>0.1.6-libsass_3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <inputPath>${basedir}/src/main/resources/static/_scss/</inputPath>
-                    <outputPath>${basedir}/target/classes/static/css</outputPath>
-                    <includePath>${basedir}/src/main/resources/static/_scss/</includePath>
-                </configuration>
-            </plugin>-->
         </plugins>
         <resources>
             <resource>
                 <directory>src/main</directory>
                 <excludes>
-                    <exclude>**/index.html</exclude>
-                    <exclude>resources/app/**</exclude>
-                    <exclude>resources/static/**</exclude>
+                    <exclude>webapp/**</exclude>
                 </excludes>
             </resource>
         </resources>

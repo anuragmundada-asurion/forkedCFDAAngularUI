@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!--[if lte IE 9]>
+    <script type="text/javascript">
+        'use strict';
+        // IE9 Console Bug Fix
+        window.console = window.console || {};
+        window.console.log = window.console.log || function() {};
+    </script>
+    <![endif]-->
+    <!-- ie9-inject --><!--[if lte IE 9]>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/_xdomainVariables"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <!-- inject:vendor:js -->
+    <!-- endinject -->
+    <!-- inject:js -->
+    <!-- endinject -->
+</head>
+<body ng-app="app">
+    <header ng-include="'/partials/layout/header.tpl.html'" class="header" role="banner">
+    </header>
+    <div id="main" ui-view aria-live="polite" role="main">
+    </div>
+    <footer ng-include="'/partials/layout/footer.tpl.html'" class="footer">
+    </footer>
+</body>
+</html>
