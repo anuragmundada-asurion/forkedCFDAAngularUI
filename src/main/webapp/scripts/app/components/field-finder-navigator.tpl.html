@@ -1,13 +1,13 @@
 <div class="usa-grid-full">
-    <ul class="navigator-list usa-width-one-half">
+    <ul class="navigator-list usa-width-one-whole">
         <li ng-repeat="bookmark in fieldFinder.bookmarks track by bookmark.text" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
             <span>{{bookmark.text}}</span>
         </li>
     </ul>
-    <div class="usa-width-one-half">
+    <!-- <div class="usa-width-one-half">
         <div class="navigator-button-group">
             <button type="button" class="usa-button-unstyled button-circle action-button" aria-label="Move to the previous field." trigger-click-on-enter><span class="fa fa-arrow-left"></span><span style="visibility:hidden">Prev</span></button>
             <button type="button" class="usa-button-unstyled button-circle action-button" aria-label="Move to the next field" trigger-click-on-enter><span class="fa fa-arrow-right"></span><span style="visibility:hidden">Next</span></button>
         </div>
-    </div>
+    </div> -->
 </div>
