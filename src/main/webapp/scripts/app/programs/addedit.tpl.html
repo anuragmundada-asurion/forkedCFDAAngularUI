@@ -310,7 +310,9 @@
                     </div>
                 </div>
             </section>
-            <input type="submit" wz-next  value="Continue" />
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Eligibility / Qualifications" field-finder-section>
             <h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
@@ -413,7 +415,10 @@
                 </div>
                 </section>
             </section>
-            <input type="submit" wz-next  value="Continue" />
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-previous="gsavm.save()" class="navigation-button"  value="Previous" />
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="How to Apply" field-finder-section>
             <h2><span class="section-circle">3</span> How to Apply</h2>
@@ -827,7 +832,10 @@
                     </div>
                 </section>
             </section>
-            <input type="submit" wz-next  value="Continue" />
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-previous="gsavm.save()" class="navigation-button"  value="Previous" />
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Post Award Requirements" field-finder-section>
             <h2><span class="section-circle">4</span> Post Award Requirements</h2>
@@ -1091,7 +1099,10 @@
                     </div>
                 </section>
             </section>
-            <input type="submit" wz-next  value="Continue" />
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-previous="gsavm.save()" class="navigation-button"  value="Previous" />
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Financial Information and Accomplishments" field-finder-section>
             <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
@@ -1311,7 +1322,10 @@
                     </div>
                 </div>
             </section>
-        <input type="submit" wz-next value="Continue" />
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-previous="gsavm.save()" class="navigation-button"  value="Previous" />
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Contact Information" field-finder-section>
             <h2><span class="section-circle">6</span> Contact Information</h2>
@@ -1643,7 +1657,10 @@
                     </div>
                 </section>
             </section>
-            <!--<input type="submit" wz-next  value="Continue" />-->
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" wz-cancel class="navigation-button" value="Cancel" /> <span class="divider"></span>
+            <input type="submit" wz-previous="gsavm.save()" class="navigation-button"  value="Previous" />
+            <input type="submit" wz-next="gsavm.save()"  class="navigation-button" value="Next" />
         </wz-step>
         <wz-step canexit="gsavm.revealValidations" title="Review">
             <div ng-include="'partials/programs/view-section1.tpl.html'"></div>
@@ -1657,10 +1674,9 @@
             <div ng-include="'partials/programs/view-section5.tpl.html'"></div>
             <hr/>
             <div ng-include="'partials/programs/view-section6.tpl.html'"></div>
+
+            <input type="submit" class="navigation-button" ng-click="gsavm.save()" value="Save & Finish Later" />
+            <input type="submit" class="navigation-button" wz-finish="submitAndPublish" value="Submit / Publish" />
         </wz-step>
     </wizard>
-    <section class="usa-grid-full">
-        <button type="button" ng-click="gsavm.save()">Save</button>
-        <!--field-finder-searchbox></field-finder-searchbox-->
-    </section>
 </form>

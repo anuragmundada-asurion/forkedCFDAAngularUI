@@ -46,6 +46,19 @@ form {
      padding-left: 33px;
   }
 
+  input.navigation-button {
+     display:inline;
+     width:auto;
+     padding-left: 2rem;
+     padding-right: 2rem;
+  }
+
+}
+
+.divider{
+    width: 1.5rem;
+    height:auto;
+    display:inline-block;
 }
 
 .radio-button-group {

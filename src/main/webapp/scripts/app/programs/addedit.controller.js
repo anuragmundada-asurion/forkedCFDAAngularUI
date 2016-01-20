@@ -172,7 +172,7 @@
 
         function updateId(res){
             vm.program._id = res._id;
-            $window.alert("Your changes have been saved.")
+           // $window.alert("Your changes have been saved.")
         }
 
         function addGenerator(arrayName, createObjFn) {
