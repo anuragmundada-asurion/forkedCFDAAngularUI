@@ -1,15 +1,7 @@
-(function() {
+(function () {
     "use strict";
 
-    angular
-        .module('app')
-        .factory('Dictionary', dictionarySvc);
-
-    dictionarySvc.$inject = ['$resource', '$filter', 'env'];
-
-    ////////////////
-
-    function dictionarySvc($resource, $filter, env) {
+    angular.module('app').factory('Dictionary', ['$resource', '$filter', 'env', function ($resource, $filter, env) {
         var SPECIAL_DICTIONARIES = [
             'yes_na',
             'yes_no',
@@ -23,14 +15,14 @@
         }, {
             toDropdown: {
                 method: 'GET',
-                transformResponse: function(data) {
+                transformResponse: function (data) {
                     data = JSON.parse(data);
                     var dictionary = {};
 
-                    if(data.length === 1)
+                    if (data.length === 1) {
                         dictionary = formatDictionary(data[0]);
-                    else if(data.length > 1) {
-                        angular.forEach(data, function(dictionaryJSON){
+                    } else if (data.length > 1) {
+                        angular.forEach(data, function (dictionaryJSON) {
                             dictionary[dictionaryJSON.id] = formatDictionary(dictionaryJSON)
                         });
                     }
@@ -39,36 +31,35 @@
             }
         });
 
-        ///////////////////////
-
         function isSpecialDictionary(dictionaryName) {
             return !!$filter('filter')(SPECIAL_DICTIONARIES, dictionaryName, true).length;
         }
 
+        //  TODO Review implementation
         function formatDictionary(data) {
             var isUnique = isSpecialDictionary(data.id),
                 codes = isUnique ? {} : [];
-            angular.forEach(data.elements, function(parentElem){
-                if(!isUnique)
+            angular.forEach(data.elements, function (parentElem) {
+                if (!isUnique) {
                     pushLastItem(parentElem, codes);
-                else
-                    codes[parentElem.element_id] = parentElem;
+                } else {
+                    codes[parentElem['element_id']] = parentElem;
+                }
             });
             return codes;
         }
 
         function pushLastItem(item, itemArray) {
-            if(!angular.isArray(item.elements)) {
+            if (!angular.isArray(item.elements)) {
                 item.displayValue = item.code + " - " + item.value;
                 itemArray.push(item);
             }
-            angular.forEach(item.elements, function(element){
+            angular.forEach(item.elements, function (element) {
                 pushLastItem(element, itemArray);
                 element.parent = item;
             });
             item.elements = undefined;
             return item;
         }
-
-    }
+    }]);
 })();
