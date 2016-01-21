@@ -76,7 +76,6 @@ describe("Unit Tests for UUID Polyfill Utility", function() {
 
     it('should use polyfill function when crypto is not available', function(){
         var uuid = utilSvc.generateUUID();
-        console.log(uuid);
         expect(uuid).toBeDefined();
         expect(uuid).toMatch(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i);
     });
