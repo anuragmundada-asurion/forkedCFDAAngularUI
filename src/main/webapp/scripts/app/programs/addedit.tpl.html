@@ -308,7 +308,6 @@
                     </div>
                 </div>
             </section>
-            <input type="submit"   value="Continue" />
         </ux-form-section>
         <ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
             <h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
@@ -411,7 +410,6 @@
                 </div>
                 </section>
             </section>
-            <input type="submit"   value="Continue" />
         </ux-form-section>
         <ux-form-section state-key="apply" section-title="How to Apply" field-finder-section>
             <h2><span class="section-circle">3</span> How to Apply</h2>
@@ -825,7 +823,6 @@
                     </div>
                 </section>
             </section>
-            <input type="submit"   value="Continue" />
         </ux-form-section>
         <ux-form-section state-key="awards" section-title="Post Award Requirements" field-finder-section>
             <h2><span class="section-circle">4</span> Post Award Requirements</h2>
@@ -1089,7 +1086,6 @@
                     </div>
                 </section>
             </section>
-            <input type="submit"   value="Continue" />
         </ux-form-section>
         <ux-form-section state-key="financial" section-title="Financial Information and Accomplishments" field-finder-section>
             <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
@@ -1309,7 +1305,6 @@
                     </div>
                 </div>
             </section>
-        <input type="submit"  value="Continue" />
         </ux-form-section>
         <ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
             <h2><span class="section-circle">6</span> Contact Information</h2>
@@ -1641,7 +1636,6 @@
                     </div>
                 </section>
             </section>
-            <!--<input type="submit"   value="Continue" />-->
         </ux-form-section>
         <ux-form-section state-key="review" section-title="Review">
             <div ng-include="'partials/programs/view-section1.tpl.html'"></div>
@@ -1658,7 +1652,11 @@
         </ux-form-section>
     </section>
     <section class="usa-grid-full">
-        <button type="button" ng-click="gsavm.save()">Save</button>
+        <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
+        <button type="button" ng-show="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Save / Publish</button>
+        <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>
+        <button type="button" ng-hide="uxForm.isSection('info') || uxForm.isSection('review')" ng-click="uxForm.goToPreviousSection()">Previous</button>
+        <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
         <!--field-finder-searchbox></field-finder-searchbox-->
     </section>
 </form>

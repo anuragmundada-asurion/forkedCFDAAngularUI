@@ -135,6 +135,8 @@
 
         angular.extend(vm, {
             save: save,
+            saveAndFinishLater: saveAndFinishLater,
+            cancelForm: cancelForm,
             createAmendment: createAmendment,
             removeAmendment: removeAmendment,
             updateAmendments: updateAmendments,
@@ -171,6 +173,18 @@
         function save() {
             var copy = angular.copy(vm.program);
             copy[copy._id ? '$update' : '$save']().then(updateId);
+        }
+
+        function saveAndFinishLater(){
+            save();
+            $state.go('home');
+        }
+
+        function cancelForm(){
+            if(vm.form.$dirty) {
+         //       alert("Are you sure you want to leave?");
+            }
+            $state.go('home');
         }
 
         function updateId(res){
