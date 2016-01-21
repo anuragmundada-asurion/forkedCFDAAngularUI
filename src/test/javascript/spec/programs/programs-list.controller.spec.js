@@ -15,9 +15,17 @@ describe("Unit Tests for Programs List Controller", function () {
 
         beforeEach(function(){
             $scope = {};
-            controller = $controller('ProgramsListController', {
+            controller = $controller('ProgramsListController as vm', {
                 $scope: $scope
             });
         });
+
+
+        it('should have global methods', inject(function() {
+            expect($scope.vm).toBeDefined();
+            expect($scope.vm.loadPrograms).toBeDefined();
+            expect($scope.vm.editProgram).toBeDefined();
+            expect($scope.vm.deleteProgram).toBeDefined();
+        }));
     })
 });
