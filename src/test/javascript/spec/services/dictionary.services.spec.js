@@ -64,5 +64,14 @@ describe("Unit Tests for Dictionary Service", function () {
             expect(response).toBeDefined();
             expect(response['invalid_dictionary']).not.toBeDefined();
         });
+
+        it('should return an empty object for no dictionaries', function() {
+            $httpBackend
+                .whenGET('http://gsaiae-cfda-program-uat01.reisys.com/dictionaries/no_dictionary')
+                .respond('[]');
+            var response = dictionarySvc.toDropdown({ id: 'no_dictionary' });
+            $httpBackend.flush();
+            expect(response).toBeDefined();
+        });
     });
 });
