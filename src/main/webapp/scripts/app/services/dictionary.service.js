@@ -8,7 +8,7 @@
             'yes_no_na',
             'authorization_type'
         ];
-        var domainUrl = env["pub.api.programs"];
+        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-program-uat01.reisys.com';
 
         return $resource(domainUrl + '/dictionaries/:id', {
             id: '@id'
