@@ -80,6 +80,7 @@
 
             function change() {
                 var contactResult = $subForm.current.contactId.split(",x,");
+                originalEmail = contactResult[2];
 
                 $subForm.current.title = contactResult[0];
                 $subForm.current.fullName = contactResult[1];
@@ -90,8 +91,6 @@
                 $subForm.current.city = contactResult[6];
                 $subForm.current.state = contactResult[7];
                 $subForm.current.zip = contactResult[8];
-
-                originalEmail = $subForm.current.email;
             }
 
             function add() {

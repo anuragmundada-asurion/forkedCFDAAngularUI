@@ -415,6 +415,7 @@
         var emailObj = {
             agencyId: 'emailOnly'
         };
+
         function getEmailList() {
             return Contacts.getEmails(emailObj);
         }

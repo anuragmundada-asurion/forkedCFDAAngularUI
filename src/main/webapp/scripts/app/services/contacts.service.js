@@ -40,8 +40,8 @@
                 method: 'GET',
                 isArray: false,
                 transformResponse: function(data){
-                    var data2 = JSON.parse(data);
-                    return data2;
+                    var output = JSON.parse(data);
+                    return output;
                 }
             },
             get: {
