@@ -1,2 +1,2 @@
-.repository
-node_modules
+*
+!app.jar
