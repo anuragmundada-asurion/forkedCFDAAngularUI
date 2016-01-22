@@ -157,6 +157,7 @@
         vm.getTafsTitle = appUtil.getTafsTitle;
         vm.getContactTitle = appUtil.getContactTitle;
         vm.nextId = util.nextId;
+        vm.getEmailList = getEmailList;
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -398,6 +399,13 @@
             }
 
             return item;
+        }
+
+        var emailObj = {
+            agencyId: 'emailOnly'
+        };
+        function getEmailList() {
+            return Contacts.getEmails(emailObj);
         }
     }
 

@@ -54,6 +54,14 @@
                     }
                 }
             },
+            getEmails: {
+                method: 'GET',
+                isArray: false,
+                transformResponse: function(data){
+                    var data2 = JSON.parse(data);
+                    return data2;
+                }
+            },
             get: {
                 transformResponse: function(data) {
                     data = JSON.parse(data);
