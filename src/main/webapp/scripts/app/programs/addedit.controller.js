@@ -412,12 +412,12 @@
             return item;
         }
 
-        var emailObj = {
+        var emailSearchObj = {
             agencyId: 'emailOnly'
         };
 
         function getEmailList() {
-            return Contacts.getEmails(emailObj);
+            return Contacts.getEmails(emailSearchObj);
         }
     }
 

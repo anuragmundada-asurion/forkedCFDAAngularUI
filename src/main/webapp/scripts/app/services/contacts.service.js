@@ -40,6 +40,7 @@
                 method: 'GET',
                 isArray: false,
                 transformResponse: function(data){
+                    // Get all distinct email addresses.
                     var output = JSON.parse(data);
                     return output;
                 }

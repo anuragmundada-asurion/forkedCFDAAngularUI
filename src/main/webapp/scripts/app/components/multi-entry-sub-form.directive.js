@@ -68,7 +68,7 @@
 
             scope.save = save;
             scope.cancel = clearCurrent;
-            scope.change = change;
+            scope.selectItem = selectItem;
 
             multiEntryCtrl.initOpenAddEntryDialog(add);
             multiEntryCtrl.initOpenEditEntryDialog(edit);
@@ -78,7 +78,7 @@
             var emailList = {};
             var originalEmail = "";
 
-            function change() {
+            function selectItem() {
                 var contactResult = $subForm.current.contactId.split(",x,");
                 originalEmail = contactResult[2];
 
@@ -145,7 +145,7 @@
             function validateDuplicateEmail() {
                 var emailJSON = JSON.parse(JSON.stringify(emailList));
                 var emailRawList = emailJSON['results'];
-                if (originalEmail != $subForm.current.email) {
+                if ((originalEmail != $subForm.current.email) || originalEmail == "") {
                     var duplicateEmailExists = false;
                     for (var i = 0; i < emailRawList.length; i++) {
                         if (emailRawList[i].em == $subForm.current.email) {
