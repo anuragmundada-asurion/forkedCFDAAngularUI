@@ -133,31 +133,36 @@
             angular.extend(vm.choices, data);
         });
 
-        vm.save = save;
-        vm.createAmendment = createAmendment;
-        vm.removeAmendment = removeAmendment;
-        vm.updateAmendments = updateAmendments;
-        vm.getAuthAmendments = getAuthAmendments;
-        vm.onAuthorizationSave = onAuthorizationSave;
-        vm.onAmendmentBeforeSave = onAmendmentBeforeSave;
-        vm.onAuthDialogOpen = onAuthDialogOpen;
-        vm.onAuthorizationTypeUpdate = onAuthorizationTypeUpdate;
-        vm.getFormFiscalYearProject = getFormFiscalYearProject;
-        vm.getItemFromType = getItemFromType;
-        vm.revealValidations = revealValidations;
-        vm.openDatepicker = openDatepicker;
-        vm.addSelectedEntry = addSelectedEntry;
-        vm.getSelectedEntry = getSelectedEntry;
-        vm.removeSelectedEntry = removeSelectedEntry;
-        vm.createContact = createContact;
-        vm.getAuthorizationTitle = appUtil.getAuthorizationTitle;
-        vm.getAmendmentTitle = appUtil.getAuthorizationTitle;
-        vm.getAccountTitle = appUtil.getAccountTitle;
-        vm.getObligationTitle = appUtil.getObligationTitle;
-        vm.getTafsTitle = appUtil.getTafsTitle;
-        vm.getContactTitle = appUtil.getContactTitle;
-        vm.nextId = util.nextId;
-        vm.getEmailList = getEmailList;
+        angular.extend(vm, {
+            save: save,
+            saveAndFinishLater: saveAndFinishLater,
+            cancelForm: cancelForm,
+            createAmendment: createAmendment,
+            removeAmendment: removeAmendment,
+            updateAmendments: updateAmendments,
+            getAuthAmendments: getAuthAmendments,
+            onAuthorizationSave: onAuthorizationSave,
+            onAmendmentBeforeSave: onAmendmentBeforeSave,
+            onAuthDialogOpen: onAuthDialogOpen,
+            onAuthorizationTypeUpdate: onAuthorizationTypeUpdate,
+            getFormFiscalYearProject: getFormFiscalYearProject,
+            getItemFromType: getItemFromType,
+            revealValidations: revealValidations,
+            onSectionChange: onSectionChange,
+            openDatepicker: openDatepicker,
+            addSelectedEntry: addSelectedEntry,
+            getSelectedEntry: getSelectedEntry,
+            removeSelectedEntry: removeSelectedEntry,
+            createContact: createContact,
+            getAuthorizationTitle: appUtil.getAuthorizationTitle,
+            getAmendmentTitle: appUtil.getAuthorizationTitle,
+            getAccountTitle: appUtil.getAccountTitle,
+            getObligationTitle: appUtil.getObligationTitle,
+            getTafsTitle: appUtil.getTafsTitle,
+            getContactTitle: appUtil.getContactTitle,
+            nextId: util.nextId,
+            getEmailList: getEmailList
+        });
 
         angular.forEach(ARRAY_ACTIONS, function(action){
             vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
@@ -169,6 +174,18 @@
         function save() {
             var copy = angular.copy(vm.program);
             copy[copy._id ? '$update' : '$save']().then(updateId);
+        }
+
+        function saveAndFinishLater(){
+            save();
+            $state.go('home');
+        }
+
+        function cancelForm(){
+            if(vm.form.$dirty) {
+         //       alert("Are you sure you want to leave?");
+            }
+            $state.go('home');
         }
 
         function updateId(res){
@@ -356,21 +373,15 @@
             return hasFundedProjects;
         }
 
-        function revealValidations() {
-            var currentStep = vm.currentStep,
-                validationFlag = vm.validationFlag || (vm.validationFlag = {});
-
-            validationFlag[currentStep] = true;
-            scrollToTop();
-            return true;
+        function onSectionChange(prevSectionKey) {
+            save();
+            revealValidations(prevSectionKey);
         }
 
-        function scrollToTop() {
-            if(!scrollPromise) {
-                $document.scrollToElementAnimated($document.findAll('#status-indicator-bar-anchor')).then(function(){
-                    scrollPromise = null;
-                });
-            }
+        function revealValidations(prevSectionKey) {
+            var validationFlag = vm.validationFlag || (vm.validationFlag = {});
+
+            validationFlag[prevSectionKey] = true;
         }
 
         function openDatepicker($event, datepickerName) {

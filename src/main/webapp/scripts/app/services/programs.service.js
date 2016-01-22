@@ -1,15 +1,7 @@
-(function() {
+(function () {
     "use strict";
 
-    angular
-        .module('app')
-        .factory('Program', programSvc);
-
-    programSvc.$inject = ['$resource', 'env'];
-
-    ////////////////
-
-    function programSvc($resource, env) {
+    angular.module('app').factory('Program', ['$resource', 'env', function ($resource, env) {
         var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-program-uat01.reisys.com';
         return $resource(domainUrl + '/program/:id', {
             id: '@_id'
@@ -28,13 +20,13 @@
             query: {
                 method: 'GET',
                 isArray: true,
-                transformResponse: function(data){
+                transformResponse: function (data) {
                     data = JSON.parse(data);
                     var res = data.results,
                         list = [];
-                    angular.forEach(res, function(item){
-                        angular.forEach(item, function(prop, key){
-                            if(!prop._id)
+                    angular.forEach(res, function (item) {
+                        angular.forEach(item, function (prop, key) {
+                            if (!prop._id)
                                 prop._id = key;
                             list.push(prop);
                         })
@@ -54,11 +46,11 @@
                 }
             },
             get: {
-                transformResponse: function(data) {
+                transformResponse: function (data) {
                     data = JSON.parse(data);
                     var returnData = null;
-                    angular.forEach(data, function(prop, key){
-                        if(!prop._id)
+                    angular.forEach(data, function (prop, key) {
+                        if (!prop._id)
                             prop._id = key;
                         returnData = prop;
                     });
@@ -66,9 +58,7 @@
                 }
             }
         })
-    }
-
-    ///////////////
+    }]);
 
     function saveUpdateTransformRes(data) {
         return {
