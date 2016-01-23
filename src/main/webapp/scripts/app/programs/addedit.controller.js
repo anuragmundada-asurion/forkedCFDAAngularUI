@@ -160,7 +160,8 @@
             getObligationTitle: appUtil.getObligationTitle,
             getTafsTitle: appUtil.getTafsTitle,
             getContactTitle: appUtil.getContactTitle,
-            nextId: util.nextId
+            nextId: util.nextId,
+            getEmailList: getEmailList
         });
 
         angular.forEach(ARRAY_ACTIONS, function(action){
@@ -409,6 +410,14 @@
             }
 
             return item;
+        }
+
+        var emailSearchObj = {
+            agencyId: 'emailOnly'
+        };
+
+        function getEmailList() {
+            return Contacts.getEmails(emailSearchObj);
         }
     }
 

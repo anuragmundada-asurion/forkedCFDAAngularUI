@@ -22,7 +22,8 @@
                 createFunction: "=",
                 onParentUpdate: "=",
                 beforeSave: "=",
-                onSave: "="
+                onSave: "=",
+                onOpen: "="
             },
             compile: compile
         };
@@ -67,15 +68,19 @@
 
             scope.save = save;
             scope.cancel = clearCurrent;
-            scope.change = change;
+            scope.selectItem = selectItem;
 
             multiEntryCtrl.initOpenAddEntryDialog(add);
             multiEntryCtrl.initOpenEditEntryDialog(edit);
 
             ///////////////////
 
-            function change() {
+            var emailList = {};
+            var originalEmail = "";
+
+            function selectItem() {
                 var contactResult = $subForm.current.contactId.split(",x,");
+                originalEmail = contactResult[2];
 
                 $subForm.current.title = contactResult[0];
                 $subForm.current.fullName = contactResult[1];
@@ -89,17 +94,32 @@
             }
 
             function add() {
+                emailList = scope.onOpen ? scope.onOpen() : {};
+
                 var parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 $subForm.current = scope.createFunction ? scope.createFunction(parentItem) : {};
             }
 
             function edit(item) {
+                emailList = scope.onOpen ? scope.onOpen() : {};
+
                 var copy = angular.copy(item);
                 copy.$original = item;
                 $subForm.current = copy;
+
+                originalEmail = $subForm.current.email;
             }
 
             function save() {
+                if (scope.onOpen) {
+                    if (scope.onOpen.toString().indexOf('getEmailList') > -1) {
+                        if (!validateDuplicateEmail()) {
+                            this.emailDuplicateError = "true";
+                            return;
+                        }
+                    }
+                }
+
                 var list = multiEntryCtrl.model.$modelValue || [],
                     original = $subForm.current.$original,
                     parentItem = $parentSubForm ? $parentSubForm.current : undefined;
@@ -120,6 +140,24 @@
             function clearCurrent() {
                 $subForm.current = null;
                 multiEntryCtrl.closeEntryDialog();
+            }
+
+            function validateDuplicateEmail() {
+                var emailJSON = JSON.parse(JSON.stringify(emailList));
+                var emailRawList = emailJSON['results'];
+                if ((originalEmail != $subForm.current.email) || originalEmail == "") {
+                    var duplicateEmailExists = false;
+                    for (var i = 0; i < emailRawList.length; i++) {
+                        if (emailRawList[i].em == $subForm.current.email) {
+                            duplicateEmailExists = true;
+                            break;
+                        }
+                    }
+                    if (duplicateEmailExists) {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
     }

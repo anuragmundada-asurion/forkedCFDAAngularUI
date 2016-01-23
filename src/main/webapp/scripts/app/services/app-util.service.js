@@ -1,14 +1,7 @@
 (function() {
     "use strict";
 
-    angular
-        .module('app')
-        .factory('appUtil', appUtilSvc);
-
-    appUtilSvc.$inject = ['$parse'];
-    ////////////////
-
-    function appUtilSvc($parse) {
+    angular.module('app').factory('appUtil', ['$parse', function($parse) {
         var congressCodeGetter = $parse('publicLaw.congressCode'),
             lawNumberGetter = $parse('publicLaw.lawNumber'),
             volumeGetter = $parse('statute.volume'),
@@ -39,8 +32,6 @@
             getContactTitle: getContactTitle
         };
 
-        ////////////////////
-
         function getAuthorizationTitle(authorization) {
             var type = authorization.authorizationType,
                 title;
@@ -66,14 +57,12 @@
         }
 
         function getAccountTitle(account) {
-            var title = (accountGetter(account) || undefinedTextValue) + "-" + (descriptionGetter(account) || undefinedTextValue);
-            return title;
+            return (accountGetter(account) || undefinedTextValue) + "-" + (descriptionGetter(account) || undefinedTextValue);
         }
 
         function getObligationTitle(obligation) {
             var title = "";
-            var year = 2000;
-            for (year=2000; year < 2100; year++) {
+            for (var year = 2000; year < 2100; year++) {
                 var param = 'values.' + year;
                 var obligationGetter = $parse(param);
                 var data = (obligationGetter(obligation) || undefinedTextValue);
@@ -126,13 +115,11 @@
         }
 
         function getTafsTitle(taf) {
-            var title = (tafsDeptGetter(taf) || undefinedTextValue) + "-" + (tafsMainAcctGetter(taf) || undefinedTextValue);
-            return title;
+            return (tafsDeptGetter(taf) || undefinedTextValue) + "-" + (tafsMainAcctGetter(taf) || undefinedTextValue);
         }
 
         function getContactTitle(contact) {
-            var title = (contactTitleGetter(contact) + " " || undefinedTextValue) + (contactFullNameGetter(contact) || undefinedTextValue);
-            return title;
+            return (contactTitleGetter(contact) ? (contactTitleGetter(contact) + " ") : undefinedTextValue) + (contactFullNameGetter(contact) || undefinedTextValue);
         }
-    }
+    }]);
 })();
