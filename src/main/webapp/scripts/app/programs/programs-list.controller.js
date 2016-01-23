@@ -29,12 +29,16 @@
                 offset: tableState.pagination.start,
                 includeCount: true
             };
+
+            if (tableState.search.predicateObject) {
+                queryObj['keyword'] = tableState.search.predicateObject.$;
+            }
+
             if(angular.isDefined(tableState.sort.predicate)) {
                 var isDescending = tableState.sort.reverse,
                     sortingProperty = tableState.sort.predicate;
                 queryObj.sortBy = ( isDescending ? '-' : '' ) + sortingProperty;
             }
-            console.log(tableState);
 
             vm.programs = Program.query(queryObj);
 
