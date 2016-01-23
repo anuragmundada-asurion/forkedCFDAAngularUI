@@ -1346,13 +1346,13 @@
                             <span ng-show="item.email">Email: {{item.email}}<br/></span>
                             <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
                         </multi-entry-list>
-                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-open="$ctrl.parentVm.getEmailList">
+                        <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-open="$ctrl.parentVm.getEmailList">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                                 Contacts:<br/>
                                 <ui-select ng-model="$subForm.current.contactId" id="selectContact" name="selectContact"
-                                           on-select="selectItem()" class="usa-input-large" theme="select2">
-                                    <ui-select-match placeholder="Select a contact...">{{$item.title}}</ui-select-match>
-                                    <ui-select-choices repeat="item._id as item in $ctrl.parentVm.choices['contacts'] | filter: {title: $select.search, _id: '!' + $ctrl.parentVm.program._id}">
+                                           on-select="selectItem($item)" class="usa-input-large" theme="select2">
+                                    <ui-select-match placeholder="Select a contact...">{{$select.selected.title}}</ui-select-match>
+                                    <ui-select-choices repeat="item._id as item in $ctrl.parentVm.choices['contacts'] | filter: {title: $select.search, info: $select.search, _id: $select.search}">
                                         <div ng-bind-html="item.title | highlight: $select.search"></div>
                                     </ui-select-choices>
                                 </ui-select>
@@ -1629,7 +1629,7 @@
                                 </div>
                                 <br/>
                             </div>
-                        </multi-entry-sub-form>
+                        </multi-entry-contacts-sub-form>
                     </multi-entry>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark>
