@@ -115,12 +115,12 @@
                         Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
                         picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
                     </p>-->
-                    <!--ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
+                    <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
                         <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsParentFilter: {value: $select.search, 'parent.value': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select-->
+                    </ui-select>
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">
                         <span ng-show="gsavm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
                     </div>

@@ -17,7 +17,7 @@ describe("Unit Tests for Environment Service", function () {
     }));
 
     it('should set api parameter', inject(function () {
-        env.setApi("Test API 1");
+        env.setApi("pub.api.programs", "Test API 1");
         expect(env["pub.api.programs"]).toBe("Test API 1");
     }));
 });

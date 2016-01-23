@@ -111,3 +111,10 @@ form {
 .required {
   color: $color-secondary-dark;
 }
+
+input,
+select {
+  &.bold-border {
+    border: 2px solid $color-primary;
+  }
+}

@@ -10,7 +10,7 @@
     ////////////////
 
     function contactSvc($resource, env) {
-        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-dev02.reisys.com:82';
+        var domainUrl = env["pub.api.programs"];
         return $resource(domainUrl + '/contacts/:agencyId', {
             id: '@_id',
             agencyId: '@agencyId'

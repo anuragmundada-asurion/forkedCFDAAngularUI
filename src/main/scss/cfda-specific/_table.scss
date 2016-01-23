@@ -1,13 +1,12 @@
 //variables section
 $horizontal-padding: .8em;
-$vertical-padding: .8em;
-$vertical-padding2: 1.3em;
-table {
+$th-vertical-padding: .8em;
+$td-vertical-padding: .8em;
+table.listing-table {
+  table-layout: fixed;
+  width: 100%;
   overflow: hidden;
-  text-align: left;
-  th, td {
-    padding-left: 0;
-  }
+
   thead {
     tr {
       background-color: $color-primary-darkest;
@@ -15,18 +14,41 @@ table {
       text-align: left;
       color: $color-white;
 
-      th[st-sort] {
-        &:after {
-          color: transparent;
-          content: '\25B2';
-        }
-        &.st-sort-ascent:after {
-          content: '\25B2';
-          color: $color-white;
-        }
-        &.st-sort-descent:after {
-          content: '\25BC';
-          color: $color-white;
+      th {
+        position: relative;
+        padding: $th-vertical-padding $horizontal-padding;
+        border: 0;
+
+        &[st-sort] {
+          &:after {
+            color: transparent;
+            content: '\f106';
+            margin-left: 10px;
+            font-family: FontAwesome;
+          }
+          &.st-sort-ascent,
+          &.st-sort-descent {
+            background-color: $color-primary;
+          }
+          &.st-sort-ascent:after {
+            content: '\f106';
+            color: $color-white;
+          }
+          &.st-sort-descent:after {
+            content: '\f107';
+            color: $color-white;
+          }
+          &.st-sort-ascent:before,
+          &.st-sort-descent:before {
+            content: "";
+            position: absolute;
+            background-color: $color-highlight;
+            left: 0;
+            top: 0;
+            height: 10000px;
+            width: 100%;
+            z-index: -1;
+          }
         }
       }
       .sorting_desc, .sorting_asc {
@@ -38,30 +60,24 @@ table {
     }
 
   }
-  th {
-    padding: $vertical-padding $horizontal-padding;
-    background-position-y: 27px;
-  }
   td {
-    padding: $vertical-padding2 $horizontal-padding;
+    padding: $td-vertical-padding $horizontal-padding;
+    border: 0 solid transparent;
+    border-bottom: 2px solid $color-gray-lighter;
+    white-space: pre-line;
+    word-break: break-word;
+
+    input[type=checkbox] + label {
+      margin: 0 0 1em 0;
+    }
+
     &.action-row {
       button {
         padding: 5px;
+        font-size: 20px;
+        width: 28px;
+        margin-right: 18px;
       }
-    }
-  }
-}
-
-/** Temporary Pagination Styling **/
-.pagination {
-  @extend .usa-unstyled-list;
-  padding: 10px;
-  border: 1px solid $color-gray;
-  > li {
-    display: inline-block;
-    padding: 5px 10px;
-    &.active {
-      background-color: $color-gray-lighter;
     }
   }
 }

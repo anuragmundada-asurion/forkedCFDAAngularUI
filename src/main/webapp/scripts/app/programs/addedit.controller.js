@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'authTypeConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, authTypeConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
         var vm = this,
             scrollPromise,
@@ -80,7 +80,7 @@
             relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length,
             fundedProjectsExampleFlag: hasFyFundedProjects()
         };
-        vm.constants = authTypeConstants;
+        vm.constants = appConstants;
 
         var queryObj = {
             limit: 1000

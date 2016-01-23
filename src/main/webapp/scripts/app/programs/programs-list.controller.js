@@ -5,15 +5,16 @@
         .module('app')
         .controller('ProgramsListController', programsListController);
 
-    programsListController.$inject = ['$state', 'Program'];
+    programsListController.$inject = ['$state', 'appConstants', 'Program'];
 
     //////////////////////
 
-    function programsListController($state, Program) {
+    function programsListController($state, appConstants, Program) {
         var vm = this,
             previousState;
 
-        vm.itemsByPage = 10;
+        vm.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
+        vm.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
 
         vm.loadPrograms = loadPrograms;
         vm.editProgram = editProgram;

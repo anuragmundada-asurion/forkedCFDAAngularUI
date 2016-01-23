@@ -71,3 +71,33 @@ footer {
     }
   }
 }
+
+.page-heading {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+  > div {
+    display: inline-block !important;
+    vertical-align: middle;
+    input,
+    select,
+    .usa-button,
+    button {
+      margin: 0;
+      height: 55px;
+      width: 100%;
+      max-width: none;
+    }
+    .usa-button,
+    button {
+      padding: 20px 15px;
+    }
+    input[type=search] {
+      @include placeholder() {
+        font-weight: $font-bold;
+      }
+    }
+  }
+}
