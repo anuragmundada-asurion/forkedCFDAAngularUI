@@ -2,16 +2,16 @@
     "use strict";
 
     angular.module('app').factory('Program', ['$resource', 'env', function ($resource, env) {
-        var domainUrl = env["pub.api.programs"];
-        return $resource(domainUrl + '/program/:id', {
+        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-program-uat01.reisys.com';
+        return $resource(domainUrl + '/programs/:id', {
             id: '@_id'
         }, {
             save: {
-                method: 'PUT',
+                method: 'POST',
                 transformResponse: saveUpdateTransformRes
             },
             update: {
-                method: 'POST',
+                method: 'PUT',
                 params: {
                     id: '@_id'
                 },

@@ -129,7 +129,7 @@
             }
         };
         angular.extend(vm.choices, coreChoices);
-        Dictionary.toDropdown({ id: DICTIONARIES.join(',') }).$promise.then(function(data){
+        Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
 
