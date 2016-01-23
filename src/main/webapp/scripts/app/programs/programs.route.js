@@ -61,6 +61,6 @@
         return id ? Program.get({id: id}).$promise : createProgram(Program);
     }
     function getCoreDictionaries(Dictionary) {
-        return Dictionary.toDropdown({ id: CORE_DICTIONARIES.join(',') }).$promise;
+        return Dictionary.toDropdown({ ids: CORE_DICTIONARIES.join(',') }).$promise;
     }
 })();
