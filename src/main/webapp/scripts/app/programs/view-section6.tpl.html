@@ -11,12 +11,12 @@
         <span type="text" id="office7info" class="italic" name="office7info" ng-bind="gsavm.program.contacts['local'].additionalInfo.content"></span>
         <br/>
     </section>
-    <section class="sub-minor-section" >
-        <multi-entry ng-model="gsavm.program.contacts.list" item-title="gsavm.getContactTitle" editable-items="true" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+    <section class="sub-minor-section" field-finder-bookmark>
+        <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
             <multi-entry-header>
                 <h4>152 Headquarters Office</h4>
             </multi-entry-header>
-            <multi-entry-list editable="true">
+            <multi-entry-list editable="true" read-only="true">
                 <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
                 <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
                 <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
@@ -26,7 +26,7 @@
                 <span ng-show="item.email">Email: {{item.email}}<br/></span>
                 <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
             </multi-entry-list>
-            <multi-entry-sub-form class="input-field">
+            <multi-entry-contacts-sub-form class="input-field" read-only="true">
                 <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                     <label for="title6">Title:</label>
                     <span type="text" id="title6" class="italic" name="title6" ng-bind="$subForm.current.title"></span>
@@ -82,7 +82,7 @@
                     </div>
                     <br/>
                 </div>
-            </multi-entry-sub-form>
+            </multi-entry-contacts-sub-form>
         </multi-entry>
     </section>
     <section class="sub-minor-section" >

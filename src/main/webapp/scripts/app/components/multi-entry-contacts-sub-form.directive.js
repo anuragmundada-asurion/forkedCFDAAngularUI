@@ -23,7 +23,8 @@
                 onParentUpdate: "=",
                 beforeSave: "=",
                 onSave: "=",
-                onOpen: "="
+                onOpen: "=",
+                readOnly: "="
             },
             compile: compile
         };
@@ -48,6 +49,11 @@
                 $parentSubForm;
 
             scope.$ctrl = scope.$ctrl || multiEntryCtrl;
+            var test = false;
+            if (scope.readOnly) {
+                test = true;
+            }
+            console.log("scope.readOnly = " + scope.readOnly + "     test = " + test);
 
             while($currentParentPoint && !$parentSubForm) {
                 if($currentParentPoint.$subForm)
