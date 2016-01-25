@@ -23,14 +23,11 @@
                     var itemMatches = false;
 
                     var keys = Object.keys(props);
-                    for (var i = 0; i < keys.length; i++) {
+                    for (var i = 0; i < keys.length && !itemMatches; i++) {
                         var propKey = keys[i],
                             propGetter = $parse(propKey),
                             text =  props[propKey].toLowerCase();
-                        if (propGetter(item).toString().toLowerCase().indexOf(text) !== -1) {
-                            itemMatches = true;
-                            break;
-                        }
+                        itemMatches = propGetter(item).toString().toLowerCase().indexOf(text) !== -1;
                     }
                     if (itemMatches)
                         out.push(item);
