@@ -97,7 +97,8 @@
             else
                 return;
 
-            goToSection(sections[section]);
+            changeUiState(section);
+            self.onSectionChange(_previousSection.stateKey, section.stateKey);
         }
 
         function addSection(section) {
@@ -130,8 +131,6 @@
 
         function goToSection(section) {
             section.go();
-            changeUiState(section);
-            self.onSectionChange(_previousSection.stateKey, section.stateKey);
         }
 
         function changeUiState(section) {
@@ -150,13 +149,13 @@
         function goToNextSection() {
             var nextIndex = sections.indexOf(self.current) + 1;
             if(nextIndex < sections.length)
-                goToSection(sections[nextIndex]);
+                sections[nextIndex].go();
         }
 
         function goToPreviousSection() {
             var previousIndex = sections.indexOf(self.current) - 1;
             if(previousIndex >= 0)
-                goToSection(sections[previousIndex]);
+                sections[previousIndex].go();
         }
     }
 
