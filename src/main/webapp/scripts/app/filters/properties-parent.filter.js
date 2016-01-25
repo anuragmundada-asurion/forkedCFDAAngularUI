@@ -28,14 +28,7 @@
                             propGetter = $parse(propKey),
                             propGetter2 = $parse('parent'),
                             text =  props[propKey].toLowerCase();
-                        console.log("propKey = " + propKey);
-                        console.log("propGetter  = " + propGetter(item).toString());
-                        console.log("propGetter2 = " + propGetter2(item).toString());
-                        console.log("item = " + JSON.stringify(item));
-                        console.log("text = " + text);
                         if (propGetter(item).toString().toLowerCase().indexOf(text) !== -1) {
-                            console.log("1) " + propGetter(item).toString());
-                            //console.log("2) " + propKey.toString());
                             itemMatches = true;
                             break;
                         }
