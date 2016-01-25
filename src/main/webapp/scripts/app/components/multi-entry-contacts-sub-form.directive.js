@@ -107,14 +107,14 @@
             }
 
             function add() {
-                emailList = scope.onOpen ? scope.onOpen() : {};
+                //emailList = scope.onOpen ? scope.onOpen() : {};
 
                 var parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 $subForm.current = scope.createFunction ? scope.createFunction(parentItem) : {};
             }
 
             function edit(item) {
-                emailList = scope.onOpen ? scope.onOpen() : {};
+                //emailList = scope.onOpen ? scope.onOpen() : {};
 
                 var copy = angular.copy(item);
                 copy.$original = item;
@@ -130,10 +130,10 @@
                 (scope.beforeSave || angular.noop)($subForm.current, parentItem);
 
                 console.log("save - originalEmail = " + originalEmail);
-                if (!validateDuplicateEmail()) {
+                /*if (!validateDuplicateEmail()) {
                     this.emailDuplicateError = "true";
                     return;
-                }
+                }*/
                 if ($subForm.current.email != originalEmail) {
                     for (var i = 0; i < list.length; i++) {
                         console.log("   email: " + list[i].email);

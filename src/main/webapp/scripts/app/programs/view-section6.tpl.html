@@ -12,7 +12,7 @@
         <br/>
     </section>
     <section class="sub-minor-section" field-finder-bookmark>
-        <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+        <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="" delete-btn-label="Delete Contact" parent-vm="gsavm">
             <multi-entry-header>
                 <h4>152 Headquarters Office</h4>
             </multi-entry-header>
@@ -37,8 +37,11 @@
                         <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
                     </div>
 
-                    <label for="email6">Email:</label>
+                    <label for="email6">Email<span class="required" >*</span>:</label>
                     <span type="text" id="email6" class="italic" name="email6" ng-bind="$subForm.current.email"></span>
+                    <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.email6.$dirty">
+                        <span ng-show="$ctrl.parentVm.form.email6.$error.required">You must provide a phone number.</span>
+                    </div>
 
                     <label for="phone6">Phone<span class="required" >*</span>:</label>
                     <span type="text" id="phone6" class="italic" name="phone6" ng-bind="$subForm.current.phone" required></span>
