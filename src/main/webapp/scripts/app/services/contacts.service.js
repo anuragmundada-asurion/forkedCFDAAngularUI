@@ -14,6 +14,7 @@
                     data = JSON.parse(jsonEscape(data));
                     var res = data.results,
                         list = [];
+                    list.push({_id:"NewContact","title":"New Contact","info":""});
                     angular.forEach(res, function (item) {
                         angular.forEach(item, function (prop, key) {
                             if (!prop._id) {
