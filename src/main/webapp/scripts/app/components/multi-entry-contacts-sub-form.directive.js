@@ -24,7 +24,8 @@
                 beforeSave: "=",
                 onSave: "=",
                 onOpen: "=",
-                readOnly: "="
+                readOnly: "=",
+                onTest: "="
             },
             compile: compile
         };
@@ -49,11 +50,6 @@
                 $parentSubForm;
 
             scope.$ctrl = scope.$ctrl || multiEntryCtrl;
-            var test = false;
-            if (scope.readOnly) {
-                test = true;
-            }
-            console.log("scope.readOnly = " + scope.readOnly + "     test = " + test);
 
             while($currentParentPoint && !$parentSubForm) {
                 if($currentParentPoint.$subForm)
@@ -85,13 +81,13 @@
             var originalEmail = "";
 
             function selectItem(item) {
-                console.log("selectItem = " + $subForm.current.contactId);
-                console.log("item = " + JSON.stringify(item));
-                console.log("item info = " + item.info);
+                //console.log("selectItem = " + $subForm.current.contactId);
+                //console.log("item = " + JSON.stringify(item));
+                //console.log("item info = " + item.info);
 
                 //var contactResult = $subForm.current.contactId.split(",x,");
                 var contactResult = item.info.split(",x,");
-                console.log("selectItem - originalEmail = " + originalEmail);
+                //console.log("selectItem - originalEmail = " + originalEmail);
                 if (originalEmail != "") {
                     originalEmail = contactResult[2];
                 }
@@ -129,34 +125,52 @@
                     parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 (scope.beforeSave || angular.noop)($subForm.current, parentItem);
 
-                console.log("save - originalEmail = " + originalEmail);
+                //console.log("save - originalEmail = " + originalEmail);
                 /*if (!validateDuplicateEmail()) {
                     this.emailDuplicateError = "true";
                     return;
                 }*/
-                if ($subForm.current.email != originalEmail) {
+                // Validation for duplicate email within agency
+                //if ($subForm.current.email != originalEmail) {
                     for (var i = 0; i < list.length; i++) {
-                        console.log("   email: " + list[i].email);
+                        //console.log("   email: " + list[i].email);
                         if ($subForm.current.email == list[i].email) {
                             this.emailDuplicateError = "true";
                             return;
                         }
                     }
+                //}
+
+                $subForm.current.contactId = $subForm.current.email;
+                delete $subForm.current.$original;
+                var contacts = scope.onTest ? scope.onTest.choices.contacts : [];
+
+                if (original) {
+                    //console.log("save - if(original)");
+                    var index = list.indexOf(original);
+                    list[index] = $subForm.current;
+                    // Update contacts drop down list
+                    for (var i=0; i<contacts.length; i++) {
+                        if (originalEmail == contacts[i]._id) {
+                            contacts[i]._id = $subForm.current.email;
+                            contacts[i].title = "" + $subForm.current.title + " " + $subForm.current.fullName + " " + $subForm.current.email;
+                            contacts[i].info = $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
+                                $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
+                                $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip;
+                        }
+                    }
+                } else {
+                    //console.log("save - else - push to list");
+                    list.push($subForm.current);
+                    // Update contacts drop down list
+                    var newContact = '{"' + $subForm.current.email + '":{"_id":"' + $subForm.current.email + '","title":"' + $subForm.current.title
+                        + '","info":"' + $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
+                        $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
+                        $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip + '"}}';
+                    contacts.push(newContact);
                 }
                 originalEmail = "";
 
-                delete $subForm.current.$original;
-                if (original) {
-                    console.log("save - if(original)");
-                    var index = list.indexOf(original);
-                    list[index] = $subForm.current;
-                } else {
-                    console.log("save - else - push to list");
-                    for (var i=0; i<list.length; i++) {
-                        console.log("   " + list[i].email);
-                    }
-                    list.push($subForm.current);
-                }
                 multiEntryCtrl.model.$setViewValue(list);
                 multiEntryCtrl.model.$render();
                 (scope.onSave || angular.noop)($subForm.current, parentItem);
