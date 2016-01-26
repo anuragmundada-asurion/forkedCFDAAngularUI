@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    var hightlightClass = 'highlight';
+    var highlightClass = 'highlight';
 
     angular
         .module('app')
@@ -52,11 +52,11 @@
                 highlightSection();
             }
             function highlightSection() {
-                element.addClass(hightlightClass);
+                element.addClass(highlightClass);
             }
 
             function removeHighlight() {
-                element.removeClass(hightlightClass);
+                element.removeClass(highlightClass);
             }
         }
     }
