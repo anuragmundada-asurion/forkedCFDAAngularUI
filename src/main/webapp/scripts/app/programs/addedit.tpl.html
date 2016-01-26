@@ -1336,6 +1336,7 @@
                         <multi-entry-header>
                             <h4>152 Headquarters Office</h4>
                         </multi-entry-header>
+                        <!--div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one contact is required.</div-->
                         <multi-entry-list editable="true">
                             <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
                             <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
@@ -1346,7 +1347,7 @@
                             <span ng-show="item.email">Email: {{item.email}}<br/></span>
                             <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
                         </multi-entry-list>
-                        <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-open="$ctrl.parentVm.getEmailList">
+                        <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-test="$ctrl.parentVm" on-open="$ctrl.parentVm.getEmailList">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                                 Contacts:<br/>
                                 <ui-select ng-model="$subForm.current.contactId" id="selectContact" name="selectContact"
