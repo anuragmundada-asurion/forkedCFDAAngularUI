@@ -88,9 +88,9 @@
                 //var contactResult = $subForm.current.contactId.split(",x,");
                 var contactResult = item.info.split(",x,");
                 //console.log("selectItem - originalEmail = " + originalEmail);
-                if (originalEmail != "") {
-                    originalEmail = contactResult[2];
-                }
+                //if (originalEmail != "") {
+                //    originalEmail = contactResult[2];
+                //}
                 $subForm.current.title = contactResult[0];
                 $subForm.current.fullName = contactResult[1];
                 $subForm.current.email = contactResult[2];
@@ -131,7 +131,7 @@
                     return;
                 }*/
                 // Validation for duplicate email within agency
-                //if ($subForm.current.email != originalEmail) {
+                if ($subForm.current.email != originalEmail) {
                     for (var i = 0; i < list.length; i++) {
                         //console.log("   email: " + list[i].email);
                         if ($subForm.current.email == list[i].email) {
@@ -139,7 +139,7 @@
                             return;
                         }
                     }
-                //}
+                }
 
                 $subForm.current.contactId = $subForm.current.email;
                 delete $subForm.current.$original;
