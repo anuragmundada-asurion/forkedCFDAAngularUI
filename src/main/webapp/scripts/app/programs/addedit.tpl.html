@@ -1336,7 +1336,8 @@
                         <multi-entry-header>
                             <h4>152 Headquarters Office</h4>
                         </multi-entry-header>
-                        <!--div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one contact is required.</div-->
+                        <div ng-hide="$ctrl.parentVm.program.contacts.list">At least one POC is required.</div>
+                        <div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one POC is required.</div>
                         <multi-entry-list editable="true">
                             <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
                             <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
