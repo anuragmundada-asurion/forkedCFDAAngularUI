@@ -16,13 +16,6 @@ describe("Unit Tests for Programs Service", function () {
         });
     });
 
-    beforeEach(function() {
-        $httpBackend
-            .whenGET('/environment/api')
-            .respond('');
-        $httpBackend.flush();
-    });
-
     describe("Testing for individual Program retrieval", function() {
         it('should make a get call to retrieve program object', function() {
             $httpBackend

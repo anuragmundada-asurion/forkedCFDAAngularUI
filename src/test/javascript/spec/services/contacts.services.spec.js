@@ -5,7 +5,7 @@ describe("Unit Tests for Contacts Service", function () {
     beforeEach(function() {
         module('app');
 
-        var env = {'pub.api.programs': '', 'setApi': function(){}};
+        var env = {'pub.api.programs': 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1'};
         module(function($provide) {
             $provide.value('env', env);
         });
@@ -16,12 +16,6 @@ describe("Unit Tests for Contacts Service", function () {
         });
     });
 
-    beforeEach(function() {
-        $httpBackend
-            .whenGET('/environment/api')
-            .respond('');
-        $httpBackend.flush();
-    });
 
     describe("Testing for Contact retrieval", function() {
         it('should make a get call to list of contacts for test agency', function() {

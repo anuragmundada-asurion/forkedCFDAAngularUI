@@ -16,13 +16,6 @@ describe("Unit Tests for Dictionary Service", function () {
         });
     });
 
-    beforeEach(function() {
-        $httpBackend
-            .whenGET('/environment/api')
-            .respond('');
-        $httpBackend.flush();
-    });
-
     describe("Testing for Dictionary retrieval", function() {
         it('should make a get call to retrieve a single special dictionary', function() {
             $httpBackend
