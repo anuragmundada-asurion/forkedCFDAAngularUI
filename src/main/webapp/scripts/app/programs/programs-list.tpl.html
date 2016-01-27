@@ -18,7 +18,7 @@
                     <th style="width:10%" st-sort="fal" st-skip-natural="true">FAL #</th>
                     <th style="width:25%" st-sort="title" st-skip-natural="true" st-sort-default="true">Title</th>
                     <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-                    <th st-sort="submittedDate" st-skip-natural="true">Date Submitted</th>
+                    <th st-sort="dateSubmitted" st-skip-natural="true">Date Submitted</th>
                     <th>Actions</th>
                     <th st-sort="status" st-skip-natural="true">Status</th>
                 </tr>
@@ -32,7 +32,7 @@
                     <td>{{row.faNum || '-'}}</td>
                     <td>{{row.title}}</td>
                     <td>{{row.agencyId}}</td>
-                    <td>{{row.submittedDate}}</td>
+                    <td>{{row.dateSubmitted}}</td>
                     <td class="action-row"><button type="button" ng-click="vm.editProgram(row)"><span class="fa fa-pencil"></span></button><button type="button" ng-click="vm.deleteProgram(row)"><span class="fa fa-trash-o"></span></button></td>
                     <td>{{row.status}}</td>
                 </tr>

@@ -413,7 +413,7 @@
         }
 
         var emailSearchObj = {
-            agencyId: 'emailOnly'
+            agencyId: 'emailOnly' + getAgencyId()
         };
 
         function getEmailList() {

@@ -24,7 +24,8 @@
                 beforeSave: "=",
                 onSave: "=",
                 onOpen: "=",
-                readOnly: "="
+                readOnly: "=",
+                onTest: "="
             },
             compile: compile
         };
@@ -49,11 +50,6 @@
                 $parentSubForm;
 
             scope.$ctrl = scope.$ctrl || multiEntryCtrl;
-            var test = false;
-            if (scope.readOnly) {
-                test = true;
-            }
-            console.log("scope.readOnly = " + scope.readOnly + "     test = " + test);
 
             while($currentParentPoint && !$parentSubForm) {
                 if($currentParentPoint.$subForm)
@@ -85,16 +81,16 @@
             var originalEmail = "";
 
             function selectItem(item) {
-                console.log("selectItem = " + $subForm.current.contactId);
-                console.log("item = " + JSON.stringify(item));
-                console.log("item info = " + item.info);
+                //console.log("selectItem = " + $subForm.current.contactId);
+                //console.log("item = " + JSON.stringify(item));
+                //console.log("item info = " + item.info);
 
                 //var contactResult = $subForm.current.contactId.split(",x,");
                 var contactResult = item.info.split(",x,");
-                console.log("selectItem - originalEmail = " + originalEmail);
-                if (originalEmail != "") {
-                    originalEmail = contactResult[2];
-                }
+                //console.log("selectItem - originalEmail = " + originalEmail);
+                //if (originalEmail != "") {
+                //    originalEmail = contactResult[2];
+                //}
                 $subForm.current.title = contactResult[0];
                 $subForm.current.fullName = contactResult[1];
                 $subForm.current.email = contactResult[2];
@@ -107,14 +103,14 @@
             }
 
             function add() {
-                emailList = scope.onOpen ? scope.onOpen() : {};
+                //emailList = scope.onOpen ? scope.onOpen() : {};
 
                 var parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 $subForm.current = scope.createFunction ? scope.createFunction(parentItem) : {};
             }
 
             function edit(item) {
-                emailList = scope.onOpen ? scope.onOpen() : {};
+                //emailList = scope.onOpen ? scope.onOpen() : {};
 
                 var copy = angular.copy(item);
                 copy.$original = item;
@@ -129,34 +125,52 @@
                     parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 (scope.beforeSave || angular.noop)($subForm.current, parentItem);
 
-                console.log("save - originalEmail = " + originalEmail);
-                if (!validateDuplicateEmail()) {
+                //console.log("save - originalEmail = " + originalEmail);
+                /*if (!validateDuplicateEmail()) {
                     this.emailDuplicateError = "true";
                     return;
-                }
+                }*/
+                // Validation for duplicate email within agency
                 if ($subForm.current.email != originalEmail) {
                     for (var i = 0; i < list.length; i++) {
-                        console.log("   email: " + list[i].email);
+                        //console.log("   email: " + list[i].email);
                         if ($subForm.current.email == list[i].email) {
                             this.emailDuplicateError = "true";
                             return;
                         }
                     }
                 }
-                originalEmail = "";
 
+                $subForm.current.contactId = $subForm.current.email;
                 delete $subForm.current.$original;
+                var contacts = scope.onTest ? scope.onTest.choices.contacts : [];
+
                 if (original) {
-                    console.log("save - if(original)");
+                    //console.log("save - if(original)");
                     var index = list.indexOf(original);
                     list[index] = $subForm.current;
-                } else {
-                    console.log("save - else - push to list");
-                    for (var i=0; i<list.length; i++) {
-                        console.log("   " + list[i].email);
+                    // Update contacts drop down list
+                    for (var i=0; i<contacts.length; i++) {
+                        if (originalEmail == contacts[i]._id) {
+                            contacts[i]._id = $subForm.current.email;
+                            contacts[i].title = "" + $subForm.current.title + " " + $subForm.current.fullName + " " + $subForm.current.email;
+                            contacts[i].info = $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
+                                $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
+                                $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip;
+                        }
                     }
+                } else {
+                    //console.log("save - else - push to list");
                     list.push($subForm.current);
+                    // Update contacts drop down list
+                    var newContact = '{"' + $subForm.current.email + '":{"_id":"' + $subForm.current.email + '","title":"' + $subForm.current.title
+                        + '","info":"' + $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
+                        $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
+                        $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip + '"}}';
+                    contacts.push(newContact);
                 }
+                originalEmail = "";
+
                 multiEntryCtrl.model.$setViewValue(list);
                 multiEntryCtrl.model.$render();
                 (scope.onSave || angular.noop)($subForm.current, parentItem);

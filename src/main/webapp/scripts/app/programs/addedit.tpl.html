@@ -1336,6 +1336,8 @@
                         <multi-entry-header>
                             <h4>152 Headquarters Office</h4>
                         </multi-entry-header>
+                        <div ng-hide="$ctrl.parentVm.program.contacts">At least one POC is required.</div>
+                        <div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one POC is required.</div>
                         <multi-entry-list editable="true">
                             <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
                             <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
@@ -1346,7 +1348,7 @@
                             <span ng-show="item.email">Email: {{item.email}}<br/></span>
                             <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
                         </multi-entry-list>
-                        <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-open="$ctrl.parentVm.getEmailList">
+                        <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-test="$ctrl.parentVm" on-open="$ctrl.parentVm.getEmailList">
                             <div ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
                                 Contacts:<br/>
                                 <ui-select ng-model="$subForm.current.contactId" id="selectContact" name="selectContact"
@@ -1367,7 +1369,7 @@
                                     <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
                                 </div>
 
-                                <label for="email6">Email:</label>
+                                <label for="email6">Email<span class="required" >*</span>:</label>
                                 <input type="text" id="email6" name="email6" ng-model="$subForm.current.email">
                                 <div>
                                     <span ng-show="emailDuplicateError">Email address already exists. Use a different email address.</span>
