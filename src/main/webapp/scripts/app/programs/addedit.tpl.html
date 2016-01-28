@@ -1643,7 +1643,31 @@
             </section>
         </ux-form-section>
         <ux-form-section state-key="review" section-title="Review">
-            <div style="background-color:#FFF1D0;padding:0px 24px 20px 24px;">
+            <div style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
+                        || !gsavm.program.objective || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0 || !gsavm.program.usage.restrictions.flag
+                        || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag
+                        || (gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content)
+                        || !gsavm.program.usage.loanTerms.flag || (gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content)
+                        || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
+                        || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0
+                        || !gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0
+                        || !gsavm.program.eligibility.applicant.assistanceUsageTypes || gsavm.program.eligibility.applicant.assistanceUsageTypes.length==0 || !gsavm.program.eligibility.applicant.additionalInfo
+                        || !gsavm.program.eligibility.beneficiary.types || gsavm.program.eligibility.beneficiary.types.length==0 || !gsavm.program.eligibility.beneficiary.additionalInfo.content
+                        || !gsavm.program.eligibility.documentation.flag || (gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.content)
+                        || gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag
+                        || !gsavm.program.preApplication.coordination.flag || (gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.environmentalImpact.flag)
+                        || (gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag) || !gsavm.program.application.procedures.questions.OMBCircularA102.flag
+                        || !gsavm.program.award.procedures.content || !gsavm.program.application.deadlines.submission.flag || !gsavm.program.application.deadlines.approval.interval || !gsavm.program.application.deadlines.appeal.interval
+                        || !gsavm.program.application.deadlines.renewal.interval || !gsavm.program.assistance.formula.flag || !gsavm.program.assistance.matching.flag || (gsavm.program.assistance.matching.flag=='yes' && !gsavm.program.assistance.matching.percent)
+                        || !gsavm.program.assistance.moe.flag || !gsavm.program.assistance.limitation.content || !gsavm.program.assistance.limitation.awarded || !gsavm.program.application.selectionCriteria.flag
+                        || (gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content)
+                        || !gsavm.program.postAward.reports.flag || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag)
+                        || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
+                        || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)
+                        || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag
+                        || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
                 <table>
                 <tr>
                 <td style="vertical-align:top;border:none">
@@ -1726,11 +1750,22 @@
                         <a ng-click="uxForm.sections[2].go()" ng-show="!gsavm.program.application.selectionCriteria.flag" trigger-click-on-enter>180 Criteria for Selecting Proposals is required<br/></a>
                         <a ng-click="uxForm.sections[2].go()" ng-show="gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content" trigger-click-on-enter>180 Criteria for Selecting Proposals - describe criteria is required<br/></a>
                     </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag || !gsavm.program.postAward.audit.flag || !gsavm.program.postAward.documents.flag">
+                    <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag)
+                        || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
+                        || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)">
                         <h4>Post Award Requirements</h4>
                         <a ng-click="uxForm.sections[3].go()" ng-show="!gsavm.program.postAward.reports.flag" trigger-click-on-enter>111 Reports is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag" trigger-click-on-enter>111 Reports - program reports is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag" trigger-click-on-enter>111 Reports - cash reports is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag" trigger-click-on-enter>111 Reports - progress reports is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag" trigger-click-on-enter>111 Reports - expenditure reports is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag" trigger-click-on-enter>111 Reports - performance monitoring is required<br/></a>
                         <a ng-click="uxForm.sections[3].go()" ng-show="!gsavm.program.postAward.audit.flag" trigger-click-on-enter>112 Audits is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" trigger-click-on-enter>112 Audits - 2 CFR 200, Subpart F is required<br/></a>
                         <a ng-click="uxForm.sections[3].go()" ng-show="!gsavm.program.postAward.documents.flag" trigger-click-on-enter>140 Regulations, Guidelines, and Literature is required<br/></a>
+                        <a ng-click="uxForm.sections[3].go()" ng-show="gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content" trigger-click-on-enter>140 Regulations, Guidelines, and Literature - description is required<br/></a>
                     </div>
                     <div style="padding-top:15px" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag">
                         <h4>Financial Information and Accomplishments</h4>
