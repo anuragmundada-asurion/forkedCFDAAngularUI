@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app').factory('Program', ['$resource', 'env', function ($resource, env) {
-        var domainUrl = env["pub.api.programs"] || 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1';
+        var domainUrl = env["pub.api.programs"];
         return $resource(domainUrl + '/programs/:id', {
             id: '@_id'
         }, {

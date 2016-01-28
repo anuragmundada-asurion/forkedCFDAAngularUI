@@ -18,7 +18,6 @@
 
     angular.module('app', requiredModules);
 
-
     //Extending jqLite
     angular.forEach({
         findAll: function hoverFn(element, selector) {
@@ -74,5 +73,24 @@
                     ;
             });
         };
+    }
+
+    loadEnvVariables().then(bootstrapApplication);
+
+    /////////////
+
+    function loadEnvVariables() {
+        var initInjector = angular.injector(['ng']),
+            $http = initInjector.get('$http');
+
+        return $http.get("/environment/api").then(function(response) {
+            angular.module('app').constant('env', response.data);
+        });
+    }
+
+    function bootstrapApplication() {
+        angular.element(document).ready(function(){
+            angular.bootstrap(document, ['app']);
+        });
     }
 })();

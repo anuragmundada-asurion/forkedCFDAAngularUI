@@ -5,6 +5,11 @@ describe("Unit Tests for Programs List Controller", function () {
 
     beforeEach(function() {
         module('app');
+        var env = {'pub.api.programs': 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1'};
+        module(function($provide) {
+            $provide.value('env', env);
+        });
+
         inject(function(_$controller_){
             $controller = _$controller_;
         });
