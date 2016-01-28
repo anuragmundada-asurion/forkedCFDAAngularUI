@@ -568,7 +568,6 @@
                         <h4>094 Deadlines</h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label for="deadline3">Is a deadline for submission of application available? <span class="required" >*</span></label>
-
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="deadline3" ng-model="gsavm.program.application.deadlines.submission.flag" id="yes3" value="yes" required/>
@@ -588,52 +587,50 @@
                             <span ng-show="gsavm.form.deadline3.$error.required">You must provide input.</span>
                         </div>
                     </div>
-                    <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
-                        <div class="sub-form" style="padding:4px;margin-bottom:8px;"
-                             ng-repeat="deadline in gsavm.program.application.deadlines.submission.list">
-                            <table style="margin: 0px;">
-                                <tr>
-                                    <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
-                                    <td style="padding:4px;vertical-align:top;border:0px">Deadline End Date:</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:4px;vertical-align:top;border:0px">Enter the deadline start or fixed date</td>
-                                    <td style="padding:4px;vertical-align:top;border:0px">You may leave blank if the deadline is one fixed date</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:4px;vertical-align:top;border:0px">
-                                        <div class="col-md-6">
+                    <div class="input-field" ng-if="gsavm.program.application.deadlines.submission.flag=='yes'">
+                        <multi-entry ng-model="gsavm.program.application.deadlines.submission.list" name="deadlines" editable-items="true" new-entry-btn-name="+ Add Deadline" delete-btn-label="Delete Deadline" parent-vm="gsavm" required-length='{ "min": 1 }'>
+                            <multi-entry-header>
+                                <h4>Current Deadlines</h4>
+                            </multi-entry-header>
+                            <div>
+                                <span ng-show="$ctrl.parentVm.form.deadlines.$error.requiredLength">You must add at least one deadline.</span>
+                            </div>
+                            <multi-entry-list editable="true">
+                                <span class='text-nowrap'>{{item.start | date:'MM/dd/yyyy'}} - {{item.end | date:'MM/dd/yyyy'}}</span>
+                            </multi-entry-list>
+                            <multi-entry-sub-form class="input-field">
+                                <div ng-init="formPath='deadlines'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.{{formPath}}">
+                                    <p>Please enter the deadline start date or a fixed date. You may leave the end date blank if the deadline is a fixed date.</p>
+                                    <div class="usa-grid-full">
+                                        <div class="usa-width-one-half">
                                             <p class="input-group">
-                                                <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="gsavm.datepickers['deadlineStart' + $index].opened"
-                                                       ng-model="deadline.start" ng-required="true" close-text="Close" />
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default" ng-click="gsavm.openDatepicker($event, 'deadlineStart' + $index)"><i class="fa fa-calendar"></i></button>
-                                        </span>
+                                                <label for="deadline-start">Deadline Start Date</label>
+                                                <input type="text" id="deadline-start" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineStart'].opened"
+                                                       ng-model="$subForm.current.start" ng-required="true" close-text="Close" />
+                                                 <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineStart')"><i class="fa fa-calendar"></i></button>
+                                                </span>
                                             </p>
                                         </div>
-                                    </td>
-                                    <td style="padding:4px;vertical-align:top;border:0px">
-                                        <div class="col-md-6">
+                                        <div class="usa-width-one-half">
                                             <p class="input-group">
-                                                <input type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="gsavm.datepickers['deadlineEnd' + $index].opened"
-                                                       ng-model="deadline.end" ng-required="true" close-text="Close" />
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default" ng-click="gsavm.openDatepicker($event, 'deadlineEnd' + $index)"><i class="fa fa-calendar"></i></button>
-                                        </span>
+                                                <label for="deadline-end">Deadline End Date</label>
+                                                <input id="deadline-end" type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineEnd'].opened"
+                                                       ng-model="$subForm.current.end"  close-text="Close" />
+                                                 <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineEnd')"><i class="fa fa-calendar"></i></button>
+                                                </span>
                                             </p>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br/>
-                            Description:<br/>
-                            Optionally provide a description for this deadline<br/>
-                            <input type="text" id="deadlineDesc" name="deadlineDesc" ng-model="deadline.description">
-                            <br/>
-                            <button type="button" ng-click="gsavm.removeDeadline($index)">Delete</button>
-                        </div>
-                        <button type="button" ng-click="gsavm.addDeadline()">Add New Deadline</button>
-                        <br/>
+                                    </div>
+                                    <div class="usa-grid-full">
+                                        <label for="deadline-desc">Description</label>
+                                        <p>Optionally provide a description for this deadline<p>
+                                        <input type="text" id="deadline-desc" name="deadlineDesc" ng-model="$subForm.current.description">
+                                    </div>
+                                </div>
+                            </multi-entry-sub-form>
+                        </multi-entry>
                         <label for="deadlineAdditionalInfo">Other Deadline Information:</label>
                         <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo.content" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
                         <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
