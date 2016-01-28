@@ -64,7 +64,6 @@
             '</nav>';
 
             html += choicesTemplate.format(attr.uxChoices, attr.uxSearchFilter ? attr.uxSearchFilter + " | "  : "");
-            console.log(html);
             element.html(html);
 
             return postLink;
