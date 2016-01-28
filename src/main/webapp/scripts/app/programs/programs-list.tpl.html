@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
-                    <th style="width:10%" st-sort="fal" st-skip-natural="true">FAL #</th>
+                    <th style="width:10%" st-sort="programNumber" st-skip-natural="true">FAL #</th>
                     <th style="width:25%" st-sort="title" st-skip-natural="true" st-sort-default="true">Title</th>
                     <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
                     <th st-sort="dateSubmitted" st-skip-natural="true">Date Submitted</th>
@@ -29,7 +29,7 @@
                         <input type="checkbox" id="program-{{$index}}">
                         <label for="program-{{$index}}"></label>
                     </td>
-                    <td>{{row.faNum || '-'}}</td>
+                    <td>{{row.programNumber || '-'}}</td>
                     <td>{{row.title}}</td>
                     <td>{{row.agencyId}}</td>
                     <td>{{row.dateSubmitted}}</td>
