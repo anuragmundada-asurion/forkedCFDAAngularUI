@@ -16,7 +16,7 @@
             <multi-entry-header>
                 <h4>152 Headquarters Office</h4>
             </multi-entry-header>
-            <multi-entry-list editable="true" read-only="true">
+            <multi-entry-list editable="true">
                 <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
                 <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
                 <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>

@@ -3,11 +3,11 @@
     <h3>120 Financial Information</h3>
     <section class="sub-minor-section" >
         <div class="input-field">
-            <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
+            <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete Account" parent-vm="gsavm">
                 <multi-entry-header>
                     <h4>121 Account Identification</h4>
                 </multi-entry-header>
-                <multi-entry-sub-form class="input-field">
+                <multi-entry-sub-form class="input-field" read-only="true">
                     <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                         <div class="input-field">
                             <label for="{{ 'ac-code-' + idPath }}">Code<span class="required">*</span></label>
@@ -25,11 +25,11 @@
     </section>
     <section class="sub-minor-section" >
         <div class="input-field">
-            <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
+            <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete Obligation" parent-vm="gsavm">
                 <multi-entry-header>
                     <h4>122 Obligations</h4>
                 </multi-entry-header>
-                <multi-entry-sub-form class="input-field">
+                <multi-entry-sub-form class="input-field" read-only="true">
                     <div ng-init="formPath='obligations'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                         <section>
                             <div class="input-field">
@@ -100,11 +100,11 @@
         </div>
     </section>
     <section class="sub-minor-section" >
-        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
+        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete TAF" parent-vm="gsavm">
             <multi-entry-header>
                 <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
             </multi-entry-header>
-            <multi-entry-sub-form class="input-field">
+            <multi-entry-sub-form class="input-field" read-only="true">
                 <div ng-init="formPath='tafscode'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.treasury.{{formPath}}">
                     <div class="input-field ">
                         <section class="usa-grid">
