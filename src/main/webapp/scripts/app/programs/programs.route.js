@@ -22,7 +22,7 @@
     function configureRoutes($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('addProgram', {
-                url: "/programs/add",
+                url: "/programs/add/:section",
                 templateUrl: "partials/programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {
@@ -31,7 +31,7 @@
                 }
             })
             .state('editProgram', {
-                url: "/programs/:id/edit",
+                url: "/programs/:id/edit/:section",
                 templateUrl: "partials/programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {

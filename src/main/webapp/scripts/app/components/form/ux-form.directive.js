@@ -97,8 +97,8 @@
             else
                 return;
 
-            changeUiState(section);
-            self.onSectionChange(_previousSection.stateKey, section.stateKey);
+            changeUiState(_currentSection);
+            self.onSectionChange(_previousSection.stateKey, _currentSection.stateKey);
         }
 
         function addSection(section) {
