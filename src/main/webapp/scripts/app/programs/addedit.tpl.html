@@ -228,8 +228,31 @@
                     <hr/-->
                 </div>
                 <div class="input-field" ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
-                    <label>Select any related programs below:<span class="required" >*</span></label>
-                    <ui-select multiple ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" on-select="gsavm.log($item, $model)" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
+                    <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo"  new-entry-btn-name="+ Add Related Programs" delete-btn-label="Remove Related Program"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry-header>
+                            <label>Select any related programs below:<span class="required" >*</span></label>
+                        </multi-entry-header>
+                        <div>
+                            <span ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
+                        </div>
+                        <multi-entry-list editable="false">
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getChoiceModel(item, '_id', 'programs').title}}</span>
+                        </multi-entry-list>
+                        <multi-entry-select>
+                            <ux-adv-multi-select
+                                    ng-model="_multiEntrySelect.current"
+                                    ux-choices="$ctrl.parentVm.choices['programs']"
+                                    ux-choice-value="_id"
+                                    ux-choice-title="title"
+                                    ux-items-per-page="25"
+                                    ux-displayed-pages="5"
+                                    ux-search-filter="filter: {title: srchText }"
+                            >
+                            </ux-adv-multi-select>
+                        </multi-entry-select>
+                    </multi-entry>
+
+                    <!--<ui-select multiple ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" on-select="gsavm.log($item, $model)" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
                         <ui-select-match placeholder="Select a program...">{{$item.title}}</ui-select-match>
                         <ui-select-choices repeat="item._id as item in gsavm.choices['programs'] | filter: {title: $select.search, _id: '!' + gsavm.program._id}">
                             <div ng-bind-html="item.title | highlight: $select.search"></div>
@@ -237,7 +260,7 @@
                     </ui-select>
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.relatedTo.$dirty">
                         <span ng-show="gsavm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
-                    </div>
+                    </div>-->
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
@@ -295,17 +318,36 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
-                <h3>300 Subject Terms<span class="required" >*</span></h3>
                 <div class="input-field">
-                    <ui-select multiple ng-model="gsavm.program.subjectTerms" name="subjectTerms" theme="select2" class="usa-input-large" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry-header>
+                            <h3>300 Subject Terms<span class="required" >*</span></h3>
+                        </multi-entry-header>
+                        <div>
+                            <span ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
+                        </div>
+                        <multi-entry-list editable="false">
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').value}}</span>
+                        </multi-entry-list>
+                        <multi-entry-select>
+                            <ux-adv-multi-select
+                                ng-model="_multiEntrySelect.current"
+                                ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
+                                ux-choice-value="element_id"
+                                ux-choice-title="value"
+                                ux-items-per-page="25"
+                                ux-displayed-pages="5"
+                                ux-search-filter="filter: {value: srchText }"
+                            >
+                            </ux-adv-multi-select>
+                        </multi-entry-select>
+                    </multi-entry>
+                    <!--<ui-select multiple ng-model="gsavm.program.subjectTerms" name="subjectTerms" theme="select2" class="usa-input-large" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Select subject term...">{{$item.value}}</ui-select-match>
                         <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search } | orderBy:[gsavm.groupByFns.multiPickerGroupByFn,'code']">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
-                    </ui-select>
-                    <div ng-show="gsavm.validationFlag.info || gsavm.form.subjectTerms.$dirty">
-                        <span ng-show="gsavm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
-                    </div>
+                    </ui-select>-->
                 </div>
             </section>
         </ux-form-section>

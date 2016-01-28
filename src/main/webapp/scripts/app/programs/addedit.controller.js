@@ -153,6 +153,7 @@
             addSelectedEntry: addSelectedEntry,
             getSelectedEntry: getSelectedEntry,
             removeSelectedEntry: removeSelectedEntry,
+            getChoiceModel: getChoiceModel,
             createContact: createContact,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
             getAmendmentTitle: appUtil.getAuthorizationTitle,
@@ -331,6 +332,18 @@
                 authorizationType: type,
                 active: true
             }
+        }
+
+        function getChoiceModel(value, key, dictionaryName) {
+            var getter = $parse(key),
+                selectedChoice = null;
+
+            angular.forEach(vm.choices[dictionaryName], function(choice){
+                if(getter(choice) === value)
+                    selectedChoice = choice;
+            });
+
+            return selectedChoice;
         }
 
         function createContact() {
