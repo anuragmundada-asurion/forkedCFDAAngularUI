@@ -51,14 +51,32 @@
             $state = $injector.get('$state');
         }
 
-        Object.defineProperty(self, 'current', {
-            enumerable: true,
-            get: getCurrentSection,
-            set: setCurrentSection
-        });
-        Object.defineProperty(self, 'sections', {
-            enumerable: true,
-            get: getSections,
+        Object.defineProperties(self, {
+            current: {
+                enumerable: true,
+                get: getCurrentSection,
+                set: setCurrentSection
+            },
+            sections: {
+                enumerable: true,
+                get: getSections
+            },
+            isOnFirstSection: {
+                enumerable: true,
+                get: isOnFirstSection
+            },
+            isOnLastSection: {
+                enumerable: true,
+                get: isOnLastSection
+            },
+            firstSection: {
+                enumerable: true,
+                get: getFirstSection
+            },
+            lastSection: {
+                enumerable: true,
+                get: getLastSection
+            }
         });
 
         angular.extend(self, {
@@ -82,6 +100,22 @@
 
         function isSection(stateKey) {
             return _currentSection.stateKey === stateKey;
+        }
+
+        function getFirstSection() {
+            return sections[0];
+        }
+
+        function isOnFirstSection() {
+            return _currentSection === getFirstSection();
+        }
+
+        function getLastSection() {
+            return sections[sections.length - 1];
+        }
+
+        function isOnLastSection() {
+            return _currentSection === getLastSection();
         }
 
         function setCurrentSection(section) {
