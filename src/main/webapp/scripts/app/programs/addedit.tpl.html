@@ -1,4 +1,4 @@
-<form name="gsavm.form" ux-form field-finder-form on-section-change="gsavm.onSectionChange(prevSectionKey)" scroll-anchor="#status-indicator-bar-anchor" novalidate>
+<form name="gsavm.form" ux-form use-ui-router="section" field-finder-form on-section-change="gsavm.onSectionChange(prevSectionKey)" scroll-anchor="#status-indicator-bar-anchor" novalidate>
     <section class="usa-grid-full form-header">
         <div class="usa-width-one-half">
             <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
