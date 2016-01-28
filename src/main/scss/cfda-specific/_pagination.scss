@@ -1,6 +1,9 @@
 .pagination-panel {
   background-color: $color-gray-lightest;
   padding: 40px 0;
+  &.small-pagination {
+    padding: 0;
+  }
   .pagination-item-count-control {
     float: left;
     > select {

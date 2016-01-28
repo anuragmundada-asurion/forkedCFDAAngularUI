@@ -1,0 +1,26 @@
+.listbox-container {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $color-white;
+  border: 1px solid $color-gray;
+  ul, ol {
+    @extend .usa-unstyled-list;
+    width: 100%;
+
+    li {
+      padding: 5px;
+
+      &:hover,
+      &:focus,
+      .focus {
+        background-color: $color-gray-lighter;
+      }
+      &.selected {
+        background-color: $color-primary;
+        color: $color-white;
+        font-weight: $font-bold;
+      }
+    }
+  }
+}
