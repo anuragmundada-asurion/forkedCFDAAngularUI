@@ -18,6 +18,7 @@
 
         vm.loadPrograms = loadPrograms;
         vm.editProgram = editProgram;
+        vm.reviewProgram = reviewProgram;
         vm.deleteProgram = deleteProgram;
 
         /////////////////////
@@ -52,9 +53,15 @@
             })
         }
 
-        function editProgram(program) {
+        function reviewProgram(program) {
+            editProgram(program, 'review');
+        }
+
+        function editProgram(program, section) {
+            section = section || 'info';
             $state.go('editProgram', {
-                id: program._id
+                id: program._id,
+                section: section
             });
         }
 

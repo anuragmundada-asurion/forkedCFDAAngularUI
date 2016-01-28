@@ -15,8 +15,8 @@
             <thead>
                 <tr>
                     <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
-                    <th style="width:10%" st-sort="programNumber" st-skip-natural="true">FAL #</th>
-                    <th style="width:25%" st-sort="title" st-skip-natural="true" st-sort-default="true">Title</th>
+                    <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
+                    <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
                     <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
                     <th st-sort="dateSubmitted" st-skip-natural="true">Date Submitted</th>
                     <th>Actions</th>
@@ -30,7 +30,9 @@
                         <label for="program-{{$index}}"></label>
                     </td>
                     <td>{{row.programNumber || '-'}}</td>
-                    <td>{{row.title}}</td>
+                    <td>
+                        <a ng-click="vm.reviewProgram(row)">{{row.title}}</a>
+                    </td>
                     <td>{{row.agencyId}}</td>
                     <td>{{row.dateSubmitted}}</td>
                     <td class="action-row"><button type="button" ng-click="vm.editProgram(row)"><span class="fa fa-pencil"></span></button><button type="button" ng-click="vm.deleteProgram(row)"><span class="fa fa-trash-o"></span></button></td>
