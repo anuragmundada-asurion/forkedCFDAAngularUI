@@ -13,7 +13,7 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
+        <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
             <multi-entry-header>
                 <h3>040 Authorization<span class="required" >*</span></h3>
             </multi-entry-header>
@@ -23,7 +23,7 @@
             <multi-entry-list editable="true">
                 <span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span><span> ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
             </multi-entry-list>
-            <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
+            <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel" read-only="true">
                 <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
                     <section class="usa-grid">
                         <ul class="usa-unstyled-list radio-button-group">
@@ -36,7 +36,7 @@
                     <div ng-include="'partials/programs/authorizationView.tpl.html'"></div>
                     <div ng-if="$subForm.current.authorizationType">
                         <hr>
-                        <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="+ Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
+                        <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
                             <multi-entry-header>
                                 <label>Amendments</label>
                             </multi-entry-header>

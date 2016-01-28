@@ -23,7 +23,8 @@
                 onParentUpdate: "=",
                 beforeSave: "=",
                 onSave: "=",
-                onOpen: "="
+                onOpen: "=",
+                readOnly: "="
             },
             compile: compile
         };

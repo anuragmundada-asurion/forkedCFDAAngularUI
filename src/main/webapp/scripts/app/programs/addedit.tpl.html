@@ -1716,15 +1716,6 @@
                     <h3>Required Fields Missing</h3>
                     The following required fields have not been filled out on previous steps.
                     Please go back and fill out all required fields before you can submit.
-                    <!--ul>
-		                <li ng-repeat="step in uxForm.sections">
-                        <a ng-click="step.go();" tabindex="0" trigger-click-on-enter>
-                            <span>{{$index + 1}}</span>
-                            <span>{{step.sectionTitle}}</span>
-                        </a>
-                        </li>
-	                </ul>
-                    <a ng-click="uxForm.sections[0].go();" trigger-click-on-enter>Test Section</a-->
                     <div style="padding-top:15px" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
                         || !gsavm.program.objective || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0 || !gsavm.program.usage.restrictions.flag
                         || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag
