@@ -3,7 +3,8 @@ logs
 *.log
 
 # Runtime data
-/src/main/resources/application.properties
+application.properties
+karma.conf.js
 pids
 *.pid
 *.seed
