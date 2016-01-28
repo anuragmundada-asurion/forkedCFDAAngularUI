@@ -7,6 +7,18 @@ button {
     border-radius: 50%;
     text-align: center;
     @include transition(all 0.1s $transition-default-duration);
+
+    &.ng-hide-add-active,
+    &.ng-hide-remove {
+      display: inline-block !important;
+    }
+
+    &.ng-hide-add {
+      opacity: 1;
+    }
+    &.ng-hide-remove {
+      opacity: 0;
+    }
     &,
     &:hover,
     &:focus {
@@ -33,6 +45,17 @@ button {
         color: $color-primary-darkest;
         background-color: $color-gray-lighter;
       }
+      &:disabled {
+        box-shadow: $button-circle-shadow;
+        background-color: $color-gray-lighter;
+        color: $color-gray-dark;
+        cursor: default;
+      }
+    }
+    &:disabled {
+      background-color: $color-gray-lighter;
+      color: $color-gray-dark;
+      cursor: default;
     }
   }
 }
