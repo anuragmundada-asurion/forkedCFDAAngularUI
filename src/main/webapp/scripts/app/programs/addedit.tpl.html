@@ -1828,7 +1828,7 @@
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
         <button type="button" ng-show="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Save / Publish</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>
-        <button type="button" ng-hide="uxForm.isSection('info') || uxForm.isSection('review')" ng-click="uxForm.goToPreviousSection()">Previous</button>
+        <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
         <!--field-finder-searchbox></field-finder-searchbox-->
     </section>
