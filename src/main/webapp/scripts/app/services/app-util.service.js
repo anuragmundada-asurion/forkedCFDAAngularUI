@@ -10,7 +10,8 @@
     ///////////
 
     function appUtil($parse, $filter) {
-        var dateFormatter = $filter('date'),
+        var emptyTitle = "(no title)",
+            dateFormatter = $filter('date'),
             congressCodeGetter = $parse('publicLaw.congressCode'),
             lawNumberGetter = $parse('publicLaw.lawNumber'),
             volumeGetter = $parse('statute.volume'),
@@ -142,7 +143,7 @@
                     dateString += " - " + end;
                 title = dateString + title;
             }
-            return title;
+            return title || emptyTitle;
         }
 
         function getTafsTitle(taf) {
