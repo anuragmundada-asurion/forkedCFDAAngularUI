@@ -118,6 +118,7 @@
                 vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
             }
         });
+        vm.IsVisible = true;
         vm.exps = {
             isAuthorization: isAuthorization,
             generateAuthKey: generateAuthKey,

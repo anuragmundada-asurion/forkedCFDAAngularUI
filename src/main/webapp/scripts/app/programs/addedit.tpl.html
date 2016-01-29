@@ -1707,7 +1707,23 @@
                         || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)
                         || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag
                         || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
-                <table>
+                <table ng-hide="gsavm.IsVisible">
+                    <tr>
+                        <td style="vertical-align:top;border:none">
+                            <img src="/img/alerts/exclamation.png" style="position:relative;top:35px;" alt="Warning"/>
+                        </td>
+                        <td style="vertical-align:top;border:none">
+                            <h3>Required Fields Missing</h3>
+                            The following required fields have not been filled out on previous steps.
+                            Please go back and fill out all required fields before you can submit.
+                        </td>
+                        <td style="vertical-align:top;border:none">
+                            <span class="fa fa-plus-square-o" style="position:relative;top:35px;" ng-click="gsavm.IsVisible = !gsavm.IsVisible"></span>
+                        </td>
+                    </tr>
+                </table>
+
+                <table ng-show="gsavm.IsVisible">
                 <tr>
                 <td style="vertical-align:top;border:none">
                     <img src="/img/alerts/exclamation.png" style="position:relative;top:35px;" alt="Warning"/>
@@ -1807,6 +1823,9 @@
                         <a ng-click="uxForm.sections[5].go()" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>
                         <a ng-click="uxForm.sections[5].go()" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>
                     </div>
+                </td>
+                <td style="vertical-align:top;border:none">
+                    <span class="fa fa-minus-square-o" style="position:relative;top:35px;" ng-click="gsavm.IsVisible = !gsavm.IsVisible"></span>
                 </td>
                 </tr>
                 </table>
