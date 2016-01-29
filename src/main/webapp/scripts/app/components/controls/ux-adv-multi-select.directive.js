@@ -118,7 +118,7 @@
 
             function onSearchTextUpdate() {
                 scope.srchText = searchElement.val();
-
+                controller.currentPage = 1;
                 updateItemCount(getChoices());
             }
 
@@ -228,7 +228,7 @@
                 }
             }
 
-            for(var i = start; i <= end && self.itemCount > displayedPages; i++) {
+            for(var i = start; i <= end && self.itemCount > self.itemsPerPage; i++) {
                 paginationSet.push(i);
             }
 
