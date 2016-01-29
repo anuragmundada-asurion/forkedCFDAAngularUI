@@ -117,7 +117,7 @@
                     </p>-->
                     <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
                         <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsParentFilter: {value: $select.search, 'parent.value': $select.search}">
+                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
                             <div ng-bind-html="item.value | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
