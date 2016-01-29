@@ -28,7 +28,7 @@
                     '<button type="button" ng-click="_multiEntrySelect.cancel()">Cancel</button>' +
                 '</div>';
 
-            element.html(html);
+            element.append(html);
 
             element.find('ux-content').append(contents);
 
