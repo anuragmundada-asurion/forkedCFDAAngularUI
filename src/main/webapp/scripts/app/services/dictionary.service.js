@@ -1,7 +1,15 @@
 (function () {
     "use strict";
 
-    angular.module('app').factory('Dictionary', ['$resource', '$filter', 'env', function ($resource, $filter, env) {
+    angular
+        .module('app')
+        .factory('Dictionary', Dictionary);
+
+    Dictionary.$inject = ['$resource', '$filter', 'env'];
+
+    /////////////
+
+    function Dictionary($resource, $filter, env) {
         var SPECIAL_DICTIONARIES = [
             'yes_na',
             'yes_no',
@@ -59,5 +67,5 @@
             item.elements = undefined;
             return item;
         }
-    }]);
+    }
 })();

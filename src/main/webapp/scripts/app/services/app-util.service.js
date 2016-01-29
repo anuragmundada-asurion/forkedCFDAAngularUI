@@ -1,7 +1,15 @@
 (function() {
     "use strict";
 
-    angular.module('app').factory('appUtil', ['$parse', function($parse) {
+    angular
+        .module('app')
+        .factory('appUtil', appUtil);
+
+    appUtil.$inject = ['$parse'];
+
+    ///////////
+
+    function appUtil($parse) {
         var congressCodeGetter = $parse('publicLaw.congressCode'),
             lawNumberGetter = $parse('publicLaw.lawNumber'),
             volumeGetter = $parse('statute.volume'),
@@ -47,7 +55,7 @@
                     title = (uscTitleGetter(authorization) || undefinedTextValue) + " US Code " + (uscSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "act":
-                    title = (actDescGetter(authorization) || undefinedTextValue) +",Title " + (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
+                    title = (actDescGetter(authorization) || undefinedTextValue) + ",Title " + (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "eo":
                     title = "Executive Order - " + (eoTitleGetter(authorization) || undefinedTextValue);
@@ -68,11 +76,11 @@
                 var data = (obligationGetter(obligation) || undefinedTextValue);
 
                 if (data) {
-                    title = title + "FY" + year.toString().substr(2,2);
+                    title = title + "FY" + year.toString().substr(2, 2);
 
                     var flagGetter = $parse('flag');
                     var flagGetterData = (flagGetter(data));
-                    if (flagGetterData && flagGetterData=='yes') {
+                    if (flagGetterData && flagGetterData == 'yes') {
                         var getter1 = $parse('actual');
                         var getter1data = (getter1(data));
                         if (getter1data) {
@@ -87,22 +95,22 @@
 
                         title = title + ". ";
                     }
-                    else if (flagGetterData && flagGetterData=='no') {
+                    else if (flagGetterData && flagGetterData == 'no') {
                         title = title + ": Not separately identifiable. ";
                     }
-                    else if (flagGetterData && flagGetterData=='na') {
+                    else if (flagGetterData && flagGetterData == 'na') {
                         title = title + ": Not available. ";
                     }
                 }
             }
 
             var recovery = (obligationQuestionRecoveryGetter(obligation) || undefinedTextValue);
-            if (recovery=='yes') {
+            if (recovery == 'yes') {
                 title = title + "This is a Recovery and Reinvestment Act obligation. ";
             }
 
             var salary = (obligationQuestionSalaryGetter(obligation) || undefinedTextValue);
-            if (salary=='yes') {
+            if (salary == 'yes') {
                 title = title + "This obligation is for salaries and expenses. ";
             }
 
@@ -121,5 +129,5 @@
         function getContactTitle(contact) {
             return (contactTitleGetter(contact) ? (contactTitleGetter(contact) + " ") : undefinedTextValue) + (contactFullNameGetter(contact) || undefinedTextValue);
         }
-    }]);
+    }
 })();

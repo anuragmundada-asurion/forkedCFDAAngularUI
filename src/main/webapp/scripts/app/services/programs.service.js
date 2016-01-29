@@ -1,7 +1,15 @@
 (function () {
     "use strict";
 
-    angular.module('app').factory('Program', ['$resource', 'env', function ($resource, env) {
+    angular
+        .module('app')
+        .factory('Program', Program);
+
+    Program.$inject = ['$resource', 'env'];
+
+    ////////////
+
+    function Program($resource, env) {
         var domainUrl = env["pub.api.programs"];
         return $resource(domainUrl + '/programs/:id', {
             id: '@_id'
@@ -58,7 +66,7 @@
                 }
             }
         })
-    }]);
+    }
 
     function saveUpdateTransformRes(data) {
         return {

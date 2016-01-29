@@ -1,7 +1,15 @@
 (function () {
     "use strict";
 
-    angular.module('app').factory('Contact', ['$resource', 'env', function ($resource, env) {
+    angular
+        .module('app')
+        .factory('Contact', Contact);
+
+    Contact.$inject = ['$resource', 'env'];
+
+    /////////////
+
+    function Contact($resource, env) {
         var domainUrl = env["pub.api.programs"];
         return $resource(domainUrl + '/contacts/:agencyId', {
             id: '@_id',
@@ -38,8 +46,7 @@
                 }
             }
         })
-    }]);
-
+    }
     function jsonEscape(str) {
         return str.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t");
     }
