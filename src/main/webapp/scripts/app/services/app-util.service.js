@@ -5,12 +5,13 @@
         .module('app')
         .factory('appUtil', appUtil);
 
-    appUtil.$inject = ['$parse'];
+    appUtil.$inject = ['$parse', '$filter'];
 
     ///////////
 
-    function appUtil($parse) {
-        var congressCodeGetter = $parse('publicLaw.congressCode'),
+    function appUtil($parse, $filter) {
+        var dateFormatter = $filter('date'),
+            congressCodeGetter = $parse('publicLaw.congressCode'),
             lawNumberGetter = $parse('publicLaw.lawNumber'),
             volumeGetter = $parse('statute.volume'),
             pageGetter = $parse('statute.page'),
@@ -26,6 +27,9 @@
             obligationQuestionRecoveryGetter = $parse('questions.recovery.flag'),
             obligationQuestionSalaryGetter = $parse('questions.salary_or_expense.flag'),
             obligationAddInfoGetter = $parse('additionalInfo.content'),
+            deadlineStartGetter = $parse('start'),
+            deadlineEndGetter = $parse('end'),
+            deadlineDescriptionGetter = $parse('description'),
             tafsDeptGetter = $parse('departmentCode'),
             tafsMainAcctGetter = $parse('accountCode'),
             contactTitleGetter = $parse('title'),
@@ -36,6 +40,7 @@
             getAuthorizationTitle: getAuthorizationTitle,
             getAccountTitle: getAccountTitle,
             getObligationTitle: getObligationTitle,
+            getDeadlineTitle: getDeadlineTitle,
             getTafsTitle: getTafsTitle,
             getContactTitle: getContactTitle
         };
@@ -119,6 +124,24 @@
                 title = title + additionalInfo + " ";
             }
 
+            return title;
+        }
+
+        function getDeadlineTitle(deadline) {
+            var start = dateFormatter(deadlineStartGetter(deadline), 'MMM dd, yyyy'),
+                end = dateFormatter(deadlineEndGetter(deadline), 'MMM dd, yyyy'),
+                description = deadlineDescriptionGetter(deadline),
+                title = description || '';
+
+            if(start) {
+                if(description)
+                    title = ". " + title;
+
+                var dateString = start;
+                if(end)
+                    dateString += " - " + end;
+                title = dateString + title;
+            }
             return title;
         }
 

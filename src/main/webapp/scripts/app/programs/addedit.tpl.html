@@ -596,7 +596,7 @@
                                 <span ng-show="$ctrl.parentVm.form.deadlines.$error.requiredLength">You must add at least one deadline.</span>
                             </div>
                             <multi-entry-list editable="true">
-                                <span class='text-nowrap'>{{item.start | date:'MM/dd/yyyy'}} - {{item.end | date:'MM/dd/yyyy'}}</span>
+                                <span class='text-nowrap'>{{$ctrl.parentVm.getDeadlineTitle(item)}}</span>
                             </multi-entry-list>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='deadlines'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.{{formPath}}">
