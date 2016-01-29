@@ -14,9 +14,15 @@
         /////////////////
 
         function filterExp(leftArr, rightArr) {
-            return leftArr.filter(function(n) {
-                return rightArr.indexOf(n) != -1
-            });
+            var arr = [];
+
+            if(angular.isArray(leftArr) && angular.isArray(rightArr)) {
+                arr = leftArr.filter(function (n) {
+                    return rightArr.indexOf(n) != -1
+                });
+            }
+
+            return arr;
         }
     }
 })();

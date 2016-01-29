@@ -31,7 +31,7 @@
                                 '<button type="button" class="button-circle" ng-click="_ctrl.remove(item)"><span class="fa fa-times"></span></button>' +
                             '</div>' +
                             '<div class="item-title-group">' +
-                                '<span>{{_ctrl.choiceTitleGetter(item)}}</span>' +
+                                '<span>{{ _ctrl.choiceTitleGetter(item) }}</span>' +
                             '</div>' +
                         '</li>' +
                     '</ul>';
@@ -51,14 +51,14 @@
             var choicesTemplate = '' +
                 '<div class="listbox-container">' +
                 '<ul role="listbox">' +
-                '<li role="option" tabindex="0" ng-click="_ctrl.toggle(choice)" trigger-click-on-enter ng-class="{\'selected\': _ctrl.isSelected(choice)}" ng-repeat="choice in {0} | {1} limitTo:_ctrl.itemsPerPage:_ctrl.offset">{{_ctrl.choiceTitleGetter(choice)}}</li>' +
+                '<li role="option" tabindex="0" ng-click="_ctrl.toggle(choice)" trigger-click-on-enter ng-class="{\'selected\': _ctrl.isSelected(choice)}" ng-repeat="choice in {0} | {1} limitTo:_ctrl.itemsPerPage:_ctrl.offset">{{ _ctrl.choiceTitleGetter(choice) }}</li>' +
                 '</ul>' +
                 '</div>' +
                 '<p ng-if="_ctrl.itemCount <= 0">Your search did not match any items.</p>' +
                 '<nav ng-if="_ctrl.paginationSet.length > 0" class="pagination-panel small-pagination">' +
                 '<ul class="pagination ">' +
                 '<li ng-repeat="pageNum in _ctrl.paginationSet" ng-class="{ \'active\': _ctrl.currentPage === pageNum}">' +
-                    '<a tabindex="0" trigger-click-on-enter ng-click="_ctrl.currentPage = pageNum">{{pageNum}}</a>' +
+                    '<a tabindex="0" trigger-click-on-enter ng-click="_ctrl.currentPage = pageNum">{{ pageNum }}</a>' +
                 '</li>' +
             '</ul>' +
             '</nav>';
@@ -118,7 +118,7 @@
 
             function onSearchTextUpdate() {
                 scope.srchText = searchElement.val();
-
+                controller.currentPage = 1;
                 updateItemCount(getChoices());
             }
 
@@ -228,7 +228,7 @@
                 }
             }
 
-            for(var i = start; i <= end && self.itemCount > displayedPages; i++) {
+            for(var i = start; i <= end && self.itemCount > self.itemsPerPage; i++) {
                 paginationSet.push(i);
             }
 

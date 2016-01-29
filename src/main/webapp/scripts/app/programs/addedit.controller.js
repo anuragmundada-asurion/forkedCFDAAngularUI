@@ -161,6 +161,7 @@
             getAccountTitle: appUtil.getAccountTitle,
             getObligationTitle: appUtil.getObligationTitle,
             getTafsTitle: appUtil.getTafsTitle,
+            getDeadlineTitle: appUtil.getDeadlineTitle,
             getContactTitle: appUtil.getContactTitle,
             nextId: util.nextId,
             getEmailList: getEmailList
