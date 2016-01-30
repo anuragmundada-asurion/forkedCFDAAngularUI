@@ -18,9 +18,11 @@
 
     angular.module('app', requiredModules);
 
+    //TODO: Avoid extending the existing object and move these functions into the util service as helper methods instead.
+
     //Extending jqLite
     angular.forEach({
-        findAll: function hoverFn(element, selector) {
+        findAll: function (element, selector) {
             var queried = element.querySelectorAll(selector);
             if(queried.length === 1)
                 queried = queried[0];
@@ -47,33 +49,24 @@
         var jqLite = window.angular.element;
         jqLite.prototype[name] = function(arg1, arg2) {
             var value;
-            for(var i=0; i < this.length; i++) {
-                if (value == undefined) {
-                    value = fn(this[i], arg1, arg2);
-                    if (value !== undefined && value.prototype === jqLite.prototype) {
-                        value = jqLite(value);
-                    }
-                }
-            }
-            return value == undefined ? this : value;
+            for(var i=0; i < this.length && !value; i++)
+                value = fn(this[i], arg1, arg2);
+
+            return value;
         }
     }
-    if (!window.String.prototype.capitalize) {
-        window.String.prototype.capitalize = function () {
-            return this.charAt(0).toUpperCase() + this.slice(1);
-        };
-    }
-    if (!window.String.prototype.format) {
-        window.String.prototype.format = function() {
-            var args = arguments;
-            return this.replace(/{(\d+)}/g, function(match, number) {
-                return typeof args[number] != 'undefined'
-                    ? args[number]
-                    : match
-                    ;
-            });
-        };
-    }
+    window.String.prototype.capitalize = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+    window.String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
 
     angular.injector(['app.bootstrap'])
         .get('bootstrap')

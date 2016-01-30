@@ -1,3 +1,5 @@
+'use strict'
+
 describe('Unit Tests for Filter: selectedChoice', function() {
     var choices,
         selected,

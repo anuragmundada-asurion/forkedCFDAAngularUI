@@ -1,3 +1,5 @@
+'use strict'
+
 describe('Unit Tests for App Bootstrapping', function() {
 
     var envVariables = {

@@ -1,3 +1,5 @@
+'use strict'
+
 describe('Unit Tests for Filter: intersect', function() {
   var leftStringArr,
       rightStringArr,

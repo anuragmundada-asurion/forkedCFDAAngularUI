@@ -1,3 +1,5 @@
+'use strict'
+
 describe('Unit Tests for Filter: propsFilter', function() {
     var choices,
         marryChoice,

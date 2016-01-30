@@ -1,3 +1,5 @@
+'use strict'
+
 describe('Unit Tests for Filter: limitTo', function() {
   var items;
   var str;
