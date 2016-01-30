@@ -2,6 +2,7 @@
 
 describe("Unit Tests for App Utility Service", function () {
     var appUtilSvc;
+
     beforeEach(function() {
         module('app');
 
@@ -322,6 +323,66 @@ describe("Unit Tests for App Utility Service", function () {
             });
             expect(obligationTitle).toBeDefined();
             expect(obligationTitle).toBe('FY14. FY15: Not separately identifiable. FY16');
+        });
+    });
+
+    describe("Unit Tests for Get Deadline Title", function() {
+        var deadlineStartDateString = "Jan 30, 2013",
+            deadlineEndDateString = "May 10, 2013",
+            description = "A simple test description",
+            deadlineStartDate = new Date(deadlineStartDateString),
+            deadlineEndDate = new Date(deadlineEndDateString);
+
+        it('should get deadline title with defined start and end date only', function(){
+            var deadlineTitle = appUtilSvc.getDeadlineTitle({
+                start: deadlineStartDate,
+                end: deadlineEndDate
+            }),
+                expectResult = expect(deadlineTitle);
+
+            expectResult.toBeDefined();
+            expectResult.toBe(deadlineStartDateString + " - " + deadlineEndDateString);
+        });
+
+        it('should get deadline title with defined start date and description only', function(){
+            var deadlineTitle = appUtilSvc.getDeadlineTitle({
+                    start: deadlineStartDate,
+                    description: description
+                }),
+                expectResult = expect(deadlineTitle);
+
+            expectResult.toBeDefined();
+            expectResult.toBe(deadlineStartDateString + ". " + description);
+        });
+
+        it('should get deadline title with defined start date, end date, and description only', function(){
+            var deadlineTitle = appUtilSvc.getDeadlineTitle({
+                    start: deadlineStartDate,
+                    end: deadlineEndDate,
+                    description: description
+                }),
+                expectResult = expect(deadlineTitle);
+
+            expectResult.toBeDefined();
+            expectResult.toBe(deadlineStartDateString + " - " + deadlineEndDateString + ". " + description);
+        });
+
+        it('should get deadline title with defined description only', function(){
+            var deadlineTitle = appUtilSvc.getDeadlineTitle({
+                    description: description
+                }),
+                expectResult = expect(deadlineTitle);
+
+            expectResult.toBeDefined();
+            expectResult.toBe(description);
+        });
+
+        it('should get a default empty title if deadline is empty', function(){
+            var deadlineTitle = appUtilSvc.getDeadlineTitle({}),
+                expectResult = expect(deadlineTitle);
+
+            expectResult.toBeDefined();
+            expectResult.toBe('(no title)');
         });
     });
 
