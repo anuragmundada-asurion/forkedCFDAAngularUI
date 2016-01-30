@@ -75,22 +75,7 @@
         };
     }
 
-    loadEnvVariables().then(bootstrapApplication);
-
-    /////////////
-
-    function loadEnvVariables() {
-        var initInjector = angular.injector(['ng']),
-            $http = initInjector.get('$http');
-
-        return $http.get("/environment/api").then(function(response) {
-            angular.module('app').constant('env', response.data);
-        });
-    }
-
-    function bootstrapApplication() {
-        angular.element(document).ready(function(){
-            angular.bootstrap(document, ['app']);
-        });
-    }
+    angular.injector(['app.bootstrap'])
+        .get('bootstrap')
+        .run();
 })();

@@ -70,6 +70,7 @@ gulp.task('vendor-css-files', ['ie8-vendor-js-files'], function () {
 gulp.task('app-js-files', ['vendor-css-files'], function () {
     //Read App JS files and combine
     appJs = gulp.src([
+            appFilesBase + '/*.bootstrap.js',
             appFilesBase + '/*.module.js',
             appFilesBase + '/services/**/*.js',
             appFilesBase + '/**/*.js'

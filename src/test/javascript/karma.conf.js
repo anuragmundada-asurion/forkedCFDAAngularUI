@@ -35,6 +35,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/**/*.html',
+            'main/webapp/scripts/app/app.bootstrap.js',
             'main/webapp/scripts/app/app.module.js',
             'main/webapp/scripts/app/app.config.js',
             'main/webapp/scripts/app/constants.js',
