@@ -15,6 +15,12 @@
             25,
             50,
             100
+        ],
+        CORE_DICTIONARIES: [
+            'yes_no',
+            'yes_na',
+            'yes_no_na',
+            'authorization_type'
         ]
     };
 

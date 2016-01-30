@@ -8,14 +8,7 @@
     configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
     createProgram.$inject = ['Program'];
     getProgram.$inject = ['$stateParams', 'Program'];
-    getCoreDictionaries.$inject = ['Dictionary'];
-
-    var CORE_DICTIONARIES = [
-        'yes_no',
-        'yes_na',
-        'yes_no_na',
-        'authorization_type'
-    ];
+    getCoreDictionaries.$inject = ['Dictionary', 'appConstants'];
 
     //////////////////
 
@@ -60,7 +53,7 @@
         var id = $stateParams.id;
         return id ? Program.get({id: id}).$promise : createProgram(Program);
     }
-    function getCoreDictionaries(Dictionary) {
-        return Dictionary.toDropdown({ ids: CORE_DICTIONARIES.join(',') }).$promise;
+    function getCoreDictionaries(Dictionary, appConstants) {
+        return Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise;
     }
 })();

@@ -5,17 +5,11 @@
         .module('app')
         .factory('Dictionary', Dictionary);
 
-    Dictionary.$inject = ['$resource', '$filter', 'env'];
+    Dictionary.$inject = ['$resource', '$filter', 'env', 'appConstants'];
 
     /////////////
 
-    function Dictionary($resource, $filter, env) {
-        var SPECIAL_DICTIONARIES = [
-            'yes_na',
-            'yes_no',
-            'yes_no_na',
-            'authorization_type'
-        ];
+    function Dictionary($resource, $filter, env, appConstants) {
         var domainUrl = env["pub.api.programs"];
 
         return $resource(domainUrl + '/dictionaries', {}, {
@@ -38,7 +32,7 @@
         });
 
         function isSpecialDictionary(dictionaryName) {
-            return !!$filter('filter')(SPECIAL_DICTIONARIES, dictionaryName, true).length;
+            return !!$filter('filter')(appConstants.CORE_DICTIONARIES, dictionaryName, true).length;
         }
 
         //  TODO Review implementation
