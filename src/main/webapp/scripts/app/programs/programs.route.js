@@ -51,7 +51,7 @@
     }
     function getProgram($stateParams, Program) {
         var id = $stateParams.id;
-        return id ? Program.get({id: id}).$promise : createProgram(Program);
+        return Program.get({id: id}).$promise;
     }
     function getCoreDictionaries(Dictionary, appConstants) {
         return Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise;
