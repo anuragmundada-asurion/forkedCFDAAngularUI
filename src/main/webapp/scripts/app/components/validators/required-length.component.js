@@ -30,8 +30,10 @@
                     max: -1
                 };
 
-            if(angular.isNumber(attrVal))
+            if(angular.isNumber(attrVal)) {
                 validatorConfig.min = attrVal;
+                validatorConfig.max = attrVal;
+            }
             else if(angular.isObject(attrVal))
                 angular.extend(validatorConfig, attrVal);
             else
@@ -50,6 +52,12 @@
                 ctrl.$setValidity(directiveId, isValid);
                 return value;
             };
+
+            scope.$watchCollection(function(){
+                return ctrl.$modelValue;
+            }, function(array) {
+                validator(array)
+            });
 
             if(angular.isDefined(validatorConfig.requiredIf)) {
                 scope.$watch(validatorConfig.requiredIf, function () {
