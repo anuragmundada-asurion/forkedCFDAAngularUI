@@ -140,13 +140,9 @@
 
         function addSection(section) {
             sections.push(section);
-            section.go = function(canScroll) {
-                if(angular.isUndefined(canScroll))
-                    canScroll = true;
-
+            section.go = function() {
                 self.current = section;
-                if(canScroll)
-                    $document.scrollToElementAnimated($document.findAll(scrollAnchor));
+                $document.scrollToElementAnimated($document.findAll(scrollAnchor));
             };
 
             Object.defineProperty(section, 'selected', {

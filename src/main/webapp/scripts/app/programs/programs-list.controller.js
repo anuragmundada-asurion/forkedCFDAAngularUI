@@ -25,10 +25,15 @@
         /////////////////////
 
         function loadPrograms(tableState) {
+            tableState = tableState || {
+                    search: {},
+                    pagination: {},
+                    sort: {}
+                };
             vm.isLoading = true;
             var queryObj = {
                 limit: vm.itemsByPage,
-                offset: tableState.pagination.start,
+                offset: tableState.pagination.start || 0,
                 includeCount: true
             };
 
@@ -63,9 +68,9 @@
         }
 
         function deleteProgram(program) {
-            program.$delete().then(function() {
-                loadPrograms(previousState);
-            })
+            return program.$delete().then(function() {
+                vm.loadPrograms(previousState);
+            });
         }
     }
 

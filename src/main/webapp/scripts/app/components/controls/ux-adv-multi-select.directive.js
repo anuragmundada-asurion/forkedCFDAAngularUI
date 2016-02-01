@@ -75,11 +75,8 @@
 
             controller.model = model;
 
-            if(attr.uxChoiceValue)
-                controller.choiceValueGetter = $parse(attr.uxChoiceValue);
-
-            if(attr.uxChoiceTitle)
-                controller.choiceTitleGetter = $parse(attr.uxChoiceTitle);
+            controller.choiceValueGetter = $parse(attr.uxChoiceValue);
+            controller.choiceTitleGetter = $parse(attr.uxChoiceTitle);
 
             if(attr.uxSearchFilter) {
                 var searchElement = element.find("ux-search-container").find('input');

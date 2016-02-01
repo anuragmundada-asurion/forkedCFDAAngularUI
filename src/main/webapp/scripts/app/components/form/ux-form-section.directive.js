@@ -29,15 +29,15 @@
             var self = this,
                 subSections = [];
 
-            angular.extend(self, {
+            /*angular.extend(self, {
                 addSubSection: addSubSection
-            });
+            });*/
 
             //////////////////
 
-            function addSubSection(subSection) {
+            /*function addSubSection(subSection) {
                 subSections.push(subSection);
-            }
+            }*/
         }
 
         function compile(element, attrs) {

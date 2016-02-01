@@ -15,8 +15,6 @@
         ////////////////
 
         function postLink(scope, element, attrs, controller) {
-            if(!scope.uxForm)
-                scope.uxForm = controller;
             scope.$watch(getElementHeight, function(heightVal){
                 scope.offset = controller.offset = heightVal;
             });

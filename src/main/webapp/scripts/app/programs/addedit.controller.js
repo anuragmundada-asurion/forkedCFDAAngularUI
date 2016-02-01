@@ -29,6 +29,8 @@
         angular.extend(vm, {
             isEdit: $state.is('editProgram'),
             IsVisible: true,
+            validationFlag: {},
+            datepickers: {},
             fyTpls: [
                 {
                     name: "Past Fiscal Year",
@@ -92,13 +94,9 @@
             onAuthDialogOpen: onAuthDialogOpen,
             onAuthorizationTypeUpdate: onAuthorizationTypeUpdate,
             getFormFiscalYearProject: getFormFiscalYearProject,
-            getItemFromType: getItemFromType,
             revealValidations: revealValidations,
             onSectionChange: onSectionChange,
             openDatepicker: openDatepicker,
-            addSelectedEntry: addSelectedEntry,
-            getSelectedEntry: getSelectedEntry,
-            removeSelectedEntry: removeSelectedEntry,
             getChoiceModel: getChoiceModel,
             createContact: createContact,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
@@ -146,9 +144,9 @@
         }
 
         function cancelForm(){
-            if(vm.form.$dirty) {
+         //   if(vm.form.$dirty) {
          //       alert("Are you sure you want to leave?");
-            }
+         //   }
             $state.go('home');
         }
 
@@ -203,24 +201,6 @@
             var authArray = getArray('authorizations'),
                 filterFunc = isPartOfAuth(authorization);
             return $filter('filter')(authArray, filterFunc);
-        }
-        function addSelectedEntry(entry, path, id) {
-            generateSelectedEntryParse(path, id).assign(vm, entry);
-        }
-
-        function getSelectedEntry(path, id) {
-            return generateSelectedEntryParse(path, id)(vm);
-        }
-
-        function removeSelectedEntry(path, id) {
-            generateSelectedEntryParse(path, id).assign(vm, null);
-        }
-
-        function generateSelectedEntryParse(path, id) {
-            if(id)
-                path = path + "_" + id;
-            path = "entries['" + path + "'].selected";
-            return $parse(path);
         }
 
         function getLastAuthorizationVersion(authId) {
@@ -309,37 +289,16 @@
         }
 
         function revealValidations(prevSectionKey) {
-            var validationFlag = vm.validationFlag || (vm.validationFlag = {});
-
-            validationFlag[prevSectionKey] = true;
+            vm.validationFlag[prevSectionKey] = true;
         }
 
         function openDatepicker($event, datepickerName) {
             $event.preventDefault();
             $event.stopPropagation();
 
-            var datepickers = vm.datepickers || (vm.datepickers = {}),
-                datepicker = datepickers[datepickerName] || (datepickers[datepickerName] = {});
+            var datepicker = vm.datepickers[datepickerName] || (vm.datepickers[datepickerName] = {});
 
             datepicker.opened = true;
-
-        }
-
-        function getItemFromType(array, type) {
-            var item;
-
-            angular.forEach(array, function(arrItem){
-                if(arrItem.type === type)
-                    item = arrItem;
-            });
-            if(!item) {
-                item = {
-                    type: type
-                };
-                array.push(item);
-            }
-
-            return item;
         }
     }
 

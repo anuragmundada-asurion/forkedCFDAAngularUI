@@ -1,28 +1,52 @@
 'use strict';
 
 describe("Unit Tests for Add Edit Controller", function () {
-    var $controller;
-    var $httpBackend;
-    var $rootScope;
+    var $controller,
+        $httpBackend,
+        $rootScope,
+        $state,
+        Program,
+        util,
+        id = '3a98d8c8e9c9';
 
     beforeEach(function() {
         module('templates');
         module('app');
         var env = {'pub.api.programs': 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1'};
-        var program = {"_id": "66d1d2645f8acd25c2e79bb60b7342da", "award": {"procedures": {"content": "A peer review panel considers each proposal, evaluates the qualifications of applicants in line with research to be undertaken and determines priority for final negotiations of the grant."}}, "title": "Agricultural Research_Basic and Applied Research", "usage": {"rules": {"content": "Research is conducted that is in cooperation with and is correlated with the Agricultural Research Service's in-house research programs and projects.  Limited discretionary research funds are periodically made available."}, "loanTerms": {"flag": "na"}, "restrictions": {"flag": "na"}, "discretionaryFund": {"flag": "na"}}, "website": "http://www.ars.usda.gov", "agencyId": "e9c3af2c5ece7d62bd3a29d957152c84", "contacts": {"list": [{"zip": "20705", "city": "Betsville", "type": "headquarter", "email": "kathleen.townson@ars.usda.gov", "phone": "(301) 504-1702.", "state": "MD", "title": "Grants Management Analyst", "address": "0000 Main Street #00", "country": "US", "fullName": "Kathleen S. Townson,"}, {"fax": "393939", "zip": "20303", "city": "Sterling", "type": "headquarter", "email": "kathleen.townson@ars.usda.gob", "phone": "000-000-000", "state": "IL", "title": "Mr", "address": "5917 Street", "country": "USA", "fullName": "Jane Smith", "contactId": "kathleen.townson@ars.usda.gob"}], "local": {"flag": "appendix", "additionalInfo": {"content": "See the Agricultural Research Service Regional Offices listed in Appendix IV of the Catalog."}}}, "projects": {"flag": "no"}, "_revision": "2015", "financial": {"accounts": [{"code": "12-1400-0-1-352"}], "treasury": {"tafs": [{"accountCode": "12-1400", "departmentCode": "12"}]}, "obligations": [{"values": {"2014": {"actual": 31391667, "estimate": 33000000}, "2015": {"estimate": 33000000}, "2016": {"estimate": 33000000}}, "questions": {"recovery": {"flag": "na"}, "salary_or_expense": {"flag": "na", "assistanceType": "0003003"}}, "additionalInfo": {}}], "additionalInfo": {"content": "$1,000 to $25,000.  Average $15,000"}}, "objective": "To make agricultural research discoveries, evaluate alternative ways of attaining research goals, and provide scientific technical information.", "postAward": {"audit": {"flag": "yes", "content": "As performed by cognizant audit agency.", "questions": {"OMBCircularA133": {"flag": "yes"}}}, "records": {"content": "Financial records, supporting documents, statistical records, and all other records pertinent to an award shall be retained for a period of three years from the date of submission of the final expenditure report or, for awards that are renewed quarterly or annually, from the date of the submission of the quarterly or annual financial report, as authorized by the Federal awarding agency."}, "reports": {"flag": "yes", "list": {"cash": {"flag": "na"}, "program": {"flag": "yes", "content": "Progress reports, final technical reports, financial statements, and inventions and subaward reports."}, "progress": {"flag": "na"}, "expenditure": {"flag": "na"}, "performanceMonitoring": {"flag": "na"}}}, "documents": {"flag": "yes", "content": "7 CFR 3015 and 7 CFR 3019."}, "accomplishments": {"flag": "na", "list": {"2014": {"content": {}}, "2015": {"content": {}}, "2016": {"content": {}}}}}, "relatedTo": [], "assistance": {"moe": {"flag": "na"}, "formula": {"flag": "no"}, "matching": {"flag": "na"}, "limitation": {"content": "None"}}, "application": {"deadlines": {"appeal": {"interval": "9", "otherInfo": {"content": "None"}}, "renewal": {"interval": "9", "otherInfo": {"content": "None"}}, "approval": {"interval": "9"}, "submission": {"flag": "yes", "list": [{"end": "2016-01-12T05:00:00.000Z", "start": "2015-11-30T05:00:00.000Z", "description": ""}, {"start": "2015-12-28T05:00:00.000Z"}, {"description": "Desc"}, {"start": "2015-12-31T05:00:00.000Z", "description": "Descrip"}, {"end": "2016-03-23T04:00:00.000Z", "start": "2016-02-17T05:00:00.000Z", "description": "Descrip"}]}}, "procedures": {"additionalInfo": {"content": "Letters should be submitted to the Agricultural Research Service, Department of Agriculture. Give name of applicants, location of facilities, and State of incorporation, if any."}}, "selectionCriteria": {"flag": "yes", "content": "Peer review."}}, "eligibility": {"applicant": {"types": ["0041"], "additionalInfo": {"content": "Usually nonprofit institutions of higher education or other nonprofit research organizations, whose primary purpose is conducting scientific research."}, "assistanceUsageTypes": ["22"]}, "beneficiary": {"types": ["19", "7"], "additionalInfo": {"content": "Usually nonprofit institutions of higher education or other nonprofit research organizations, whose primary purpose is conducting scientific research."}}, "documentation": {"flag": "na"}}, "programNumber": "10.001", "projectsArray": [], "authorizations": [{"USC": {"title": "7", "section": "427-427i, 1624"}, "act": {"description": "Food Security Act of 1985"}, "version": 1, "publicLaw": {"number": "198", "congressCode": "99"}, "authorizationId": "c775cdfa0de8e6ef557ee48920116318", "authorizationType": "act"}, {"act": {"description": "Test Amendment"}, "active": true, "version": 2, "authorizationId": "c775cdfa0de8e6ef557ee48920116318", "authorizationType": "act"}], "preApplication": {"coordination": {"flag": "yes", "questions": {"ExecutiveOrder12372": {"flag": "no"}}, "environmentalImpact": {"flag": "no"}}}, "assistanceTypes": ["0003001"], "functionalCodes": ["0001004", "0001005"], "relatedPrograms": {"flag": "yes", "relatedTo": ["07ed0ddb6a41a43e1fb11887dda677f6", "190044087999f1e3b1abe49cad4e0be0", "6aac5ca2d5adf8d3e369b86d4c0823c5", "bd19f77b4f3b41f7619ae77a165f9a1d", "c5d41a2c08913a7438e28d464e609835", "d10084bc379a420f8ea52500f71a424b", "d10eb3bbfd5a6c96ece5dc26631090a6", "f201edc7e6232a057f51464901b64231", "f5e7c50d38232da169fb62759382df2e"]}, "alternativeNames": ["(Extramural Research)"]};
         var coreChoices = {"yes_no":{"yes":{"element_id":"yes","description":"Yes","value":"Yes","code":"yes","elements":null},"no":{"element_id":"no","description":"No","value":"No","code":"no","elements":null}},"yes_na":{"yes":{"element_id":"yes","description":null,"value":"Yes","code":"yes","elements":null},"na":{"element_id":"na","description":"Not Applicable","value":"Not Applicable","code":"na","elements":null}},"yes_no_na":{"yes":{"element_id":"yes","description":"Yes","value":"Yes","code":"yes","elements":null},"no":{"element_id":"no","description":"No","value":"No","code":"no","elements":null},"na":{"element_id":"na","description":"Not Applicable","value":"Not Applicable","code":"na","elements":null}},"authorization_type":{"act":{"element_id":"act","description":null,"value":"Act","code":"act","elements":null},"eo":{"element_id":"eo","description":null,"value":"Executive Order","code":"eo","elements":null},"publiclaw":{"element_id":"publiclaw","description":null,"value":"Public Law","code":"publiclaw","elements":null},"statute":{"element_id":"statute","description":null,"value":"Statute","code":"statute","elements":null},"usc":{"element_id":"usc","description":null,"value":"USC","code":"usc","elements":null}},"$promise":{},"$resolved":true};
+
+        function Program() {
+            angular.extend(this, {
+                save: function() {},
+                update: function() {}
+            });
+        }
 
         module(function($provide) {
             $provide.value('env', env);
-            $provide.value('program', program);
             $provide.value('coreChoices', coreChoices);
+            $provide.value('program', new Program());
         });
 
-        inject(function(_$controller_, _$httpBackend_, _$rootScope_){
+        inject(function(_$controller_, _$httpBackend_, _$rootScope_, _util_, _$state_, _Program_){
             $controller = _$controller_;
             $httpBackend = _$httpBackend_;
             $rootScope = _$rootScope_;
+            Program = _Program_;
+            util = _util_;
+            $state = _$state_;
         });
+
+        $httpBackend
+            .whenGET('http://gsaiae-cfda-program-uat01.reisys.com/api/v1/contacts')
+            .respond('{"results":[{"dmt@test.com":{"_id":"dmt@test.com","title":"Program Manager DMT Safari Test dmt@test.com","info":"Program Manager,x,DMT Safari Test,x,dmt@test.com,x,1234567897,x,,x,123 Test,x,Test,x,MD,x,20601"}},{"dmt1@test.com":{"_id":"dmt1@test.com","title":"dd dmt1@test.com","info":",x,dd,x,dmt1@test.com,x,1234567,x,,x,ddd,x,ddd,x,KY,x,1233445"}},{"dmt1@test.com":{"_id":"dmt1@test.com","title":"dd dmt1@test.com","info":",x,dd,x,dmt1@test.com,x,1234567,x,,x,ddd,x,ddd,x,KY,x,1233445"}},{"dmt@test.com":{"_id":"dmt@test.com","title":"DMT Safari Test dmt@test.com","info":",x,DMT Safari Test,x,dmt@test.com,x,1234567897,x,,x,123 Test,x,Test,x,MD,x,20601"}},{"jdoe@test.com":{"_id":"jdoe@test.com","title":"Ms John Doe jdoe@test.com","info":"Ms,x,John Doe,x,jdoe@test.com,x,230-123-1231,x,230-122-1311,x,234, Independence Ave,x,Washington DC,x,DC,x,20134"}},{"dmt@test.com":{"_id":"dmt@test.com","title":"DMT Safari Test dmt@test.com","info":",x,DMT Safari Test,x,dmt@test.com,x,1234567897,x,,x,123 Test,x,Test,x,MD,x,20601"}}]}');
+
+        $httpBackend
+            .whenPOST('http://gsaiae-cfda-program-uat01.reisys.com/api/v1')
+            .respond(id);
+        $httpBackend
+            .whenPUT('http://gsaiae-cfda-program-uat01.reisys.com/api/v1')
+            .respond(id);
 
         $httpBackend
             .whenGET(/http:\/\/gsaiae-cfda-program-uat01.reisys.com\/api\/v1\/programs(\?limit=[\n]+)*/i)
@@ -56,8 +80,93 @@ describe("Unit Tests for Add Edit Controller", function () {
             expect($scope.vm.saveAndFinishLater).toBeDefined();
         });
 
-        //it('should update program on save', function(){
-        //    controller.save();
-        //})
+        it('should have the ability to cancel changes made and go home', function(){
+            spyOn($state, 'go');
+
+            controller.cancelForm();
+            expect($state.go).toHaveBeenCalledWith('home');
+        });
+
+        it('should have the ability to create new authorizations', function(){
+            var authorization = controller.createAuthorization(null, 'eo');
+
+            expect(authorization.authorizationId).toBeDefined();
+            expect(authorization.version).toBe(1);
+            expect(authorization.authorizationType).toBe('eo');
+            expect(authorization.active).toBe(true);
+        });
+
+        it("should indicate if the passed object is an authorization in the 'isAuthorization' function.", function(){
+            var authorization = controller.createAuthorization();
+            expect(controller.exps.isAuthorization(authorization)).toBe(true);
+
+            authorization.version = null;
+            expect(controller.exps.isAuthorization(authorization)).toBe(true);
+            authorization.version = 2;
+            expect(controller.exps.isAuthorization(authorization)).toBe(false);
+        });
+
+        it("should generate an authorization key", function(){
+            var authorization = controller.createAuthorization(),
+                id = authorization.authorizationId,
+                version = authorization.version,
+                key = controller.exps.generateAuthKey(authorization);
+
+            expect(key).toEqual(id + version);
+        });
+
+        it("should have the ability to create amendments from authorization info", function(){
+            var authorization = controller.createAuthorization(null, 'eo'),
+                amendment = controller.createAmendment(authorization);
+
+            expect(amendment.authorizationId).toBeDefined();
+            expect(amendment.version).toBe(2);
+            expect(amendment.authorizationType).toBe('eo');
+            expect(amendment.active).toBe(true);
+
+            expect(amendment.authorizationId).toEqual(authorization.authorizationId);
+        });
+
+        it("should have the ability to tell if an amendment is part of an authorization", function() {
+            var authorization = controller.createAuthorization(null, 'eo'),
+                partOfAuthFunc = controller.exps.isPartOfAuth(authorization),
+                amendment = controller.createAmendment(authorization),
+                otherAuthorization = controller.createAuthorization(null, 'act'),
+                otherAmendment = controller.createAmendment(otherAuthorization);
+
+            expect(partOfAuthFunc(amendment)).toBe(true);
+            expect(partOfAuthFunc(otherAmendment)).toBe(false);
+        });
+
+        it("should have the ability to create empty contact objects", function(){
+            var contact = controller.createContact();
+
+            expect(contact).toEqual({
+                type: 'headquarter'
+            });
+        });
+
+        it("should have the ability to reveal validations for a particular section", function(){
+            expect($scope.vm.validationFlag['info']).toBeUndefined();
+            controller.revealValidations('info');
+            expect($scope.vm.validationFlag['info']).toBe(true);
+        });
+
+        it("should have the ability to open datepickers", function(){
+            expect($scope.vm.datepickers['testDatepicker']).toBeUndefined();
+            controller.openDatepicker({
+                preventDefault: function() {},
+                stopPropagation: function() {}
+            }, 'testDatepicker');
+
+            expect($scope.vm.datepickers['testDatepicker'].opened).toBe(true);
+            $scope.vm.datepickers['testDatepicker'].opened = false;
+
+            controller.openDatepicker({
+                preventDefault: function() {},
+                stopPropagation: function() {}
+            }, 'testDatepicker');
+            expect($scope.vm.datepickers['testDatepicker'].opened).toBe(true);
+        })
     })
 });
