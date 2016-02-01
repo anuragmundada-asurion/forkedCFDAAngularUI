@@ -8,7 +8,24 @@
         return {
             restrict: 'AE',
             require: '^^uxForm',
-            templateUrl: 'partials/components/form/ux-form-nav.tpl.html'
+            templateUrl: 'partials/components/form/ux-form-nav.tpl.html',
+            link: postLink
         };
+
+        ////////////////
+
+        function postLink(scope, element, attrs, controller) {
+            if(!scope.uxForm)
+                scope.uxForm = controller;
+            scope.$watch(getElementHeight, function(heightVal){
+                scope.offset = controller.offset = heightVal;
+            });
+
+            /////////////
+
+            function getElementHeight() {
+                return element.height();
+            }
+        }
     }
 })();

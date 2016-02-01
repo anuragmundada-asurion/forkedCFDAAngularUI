@@ -18,7 +18,7 @@
             transclude: true,
             controller: multiEntryContactsFormController,
             controllerAs: '$subForm',
-            templateUrl:'partials/components/multi-entry-sub-form.tpl.html',
+            templateUrl:'partials/components/controls/multi-entry-sub-form.tpl.html',
             require: ['^multiEntry', 'multiEntryContactsSubForm'],
             scope: {
                 createFunction: "=",

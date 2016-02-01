@@ -144,8 +144,8 @@
             transclude: true,
             templateUrl: function(element, attr) {
                 return attr.editable === "true"
-                    ? 'partials/components/multi-entry-list-editable.tpl.html'
-                    : 'partials/components/multi-entry-list.tpl.html';
+                    ? 'partials/components/controls/multi-entry-list-editable.tpl.html'
+                    : 'partials/components/controls/multi-entry-list.tpl.html';
             },
             compile: compile
         };

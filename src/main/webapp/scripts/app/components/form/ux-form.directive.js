@@ -80,12 +80,15 @@
         });
 
         angular.extend(self, {
+            bookmarks: [],
             addSection: addSection,
             isSection: isSection,
             goToSection: goToSection,
             goToNextSection: goToNextSection,
             goToPreviousSection: goToPreviousSection,
-            onSectionChange: angular.noop
+            onSectionChange: angular.noop,
+            addBookmark: addBookmark,
+            goToBookmark: goToBookmark
         });
 
         //////////////////
@@ -190,6 +193,21 @@
             var previousIndex = sections.indexOf(self.current) - 1;
             if(previousIndex >= 0)
                 sections[previousIndex].go();
+        }
+
+        function addBookmark(bookmark) {
+            self.bookmarks.push(bookmark);
+        }
+
+        function goToBookmark(){
+            var bookmark = self.selectedBookmark;
+            if(bookmark) {
+                if(bookmark.section !== self.current)
+                    bookmark.section.go();
+                $timeout(function(){
+                    bookmark.goToElement(self.offset);
+                });
+            }
         }
     }
 
