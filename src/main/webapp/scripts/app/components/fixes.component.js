@@ -37,7 +37,7 @@
 
     function jdFixParsingInconsistencies() {
         return {
-            priority: (angular.version.full.indexOf('1.2.') === 0) ? 1 : 0,
+            priority: 1,
             require: '?ngModel',
             restrict: 'E',
             link: link
@@ -59,15 +59,13 @@
                 if ((ngModelController.$invalid)) {
                     value = ngModelController.$viewValue;
                     var tempVal;
-                    if(angular.isDefined(value)) {
-                        angular.forEach(ngModelController.$parsers, function ($parser) {
-                            if ($parser !== fixParser) {
-                                tempVal = $parser(value);
-                                if(angular.isDefined(tempVal))
-                                    value = tempVal;
-                            }
-                        });
-                    }
+                    angular.forEach(ngModelController.$parsers, function ($parser) {
+                        if ($parser !== fixParser) {
+                            tempVal = $parser(value);
+                            if(angular.isDefined(tempVal))
+                                value = tempVal;
+                        }
+                    });
                 }
                 return value;
             }
@@ -75,7 +73,7 @@
     }
     function noAutoCompleteDefault() {
         return {
-            priority: (angular.version.full.indexOf('1.2.') === 0) ? 1 : 0,
+            priority: 1,
             restrict: 'E',
             link: link
         };

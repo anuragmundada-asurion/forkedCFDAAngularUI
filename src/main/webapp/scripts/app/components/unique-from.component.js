@@ -21,7 +21,6 @@
 
         function link(scope, elem, attrs, ctrl) {
             if (!ctrl) return;
-            if (!attrs[directiveId]) return;
 
             var primaryField = $parse(attrs[directiveId]),
                 hasNgList = angular.isDefined(attrs.ngList),
@@ -29,10 +28,13 @@
 
             var validator = function (value) {
                 var temp = primaryField(scope),
-                    v = !hasNgList || !value
+                    valid = true;
+                if(angular.isDefined(value)) {
+                    valid = !hasNgList
                         ? value !== temp
                         : !$filter('filter')(value.split(ngListValue), temp, true).length;
-                ctrl.$setValidity(directiveId, v);
+                }
+                ctrl.$setValidity(directiveId, valid);
                 return value;
             };
 
@@ -45,7 +47,7 @@
             ////////////////
 
             function generateRegex(value) {
-                return value ? new RegExp(value) : /[, ]+/;
+                return value ? new RegExp(value) : /,\s+/;
             }
         }
     }

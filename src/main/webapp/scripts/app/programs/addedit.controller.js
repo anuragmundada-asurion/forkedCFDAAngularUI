@@ -5,25 +5,15 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', '$document', '$window', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
+    addEditProgramController.$inject = ['$state', '$filter', '$parse', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, $document, $window, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+    function addEditProgramController($state, $filter, $parse, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
         var vm = this,
-            scrollPromise,
-            AMENDMENT_SELECTED_NAME = 'amendments',
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
-            ARRAY_ACTIONS = [
-                { arrayName: 'authorizations', fnBaseName: 'Authorization', objCreateFn: createAuthorization, onRemoved: onAuthorizationRemoved },
-                { arrayName: 'financial.accounts', fnBaseName: 'Account' },
-                { arrayName: 'financial.obligations', fnBaseName: 'Obligation'},
-                { arrayName: 'financial.treasury.tafs', fnBaseName: 'TAFSCode'},
-                { arrayName: 'reports', fnBaseName: 'Report'},
-                { arrayName: 'application.deadlines.submission.list', fnBaseName: 'Deadline'}
-            ],
             DICTIONARIES = [
                 'functional_codes',
                 'program_subject_terms',
@@ -34,113 +24,68 @@
                 'date_range',
                 'match_percent'
             ];
-        vm.createAuthorization = createAuthorization;
-        vm.onAuthorizationRemoved = onAuthorizationRemoved;
-        vm.currentStep = null; //Must set to null due to a bug in angular-wizard
-        if(!vm._id) vm._id = null; //Must set to fix filtering bug of undefined properties in Angular's $filter
-
-        vm.isEdit = $state.is('editProgram');
-
         vm.program = program;
 
-        vm.fyTpls = [
-            {
-                name: "Past Fiscal Year",
-                year: CURRENT_FISCAL_YEAR - 1,
-                type: 'Actual'
-            },
-            {
-                name: "Current Fiscal Year",
-                year: CURRENT_FISCAL_YEAR,
-                type: 'Projection',
-                obligType: 'Estimate'
-            },
-            {
-                name: "Budget Fiscal Year",
-                year: CURRENT_FISCAL_YEAR + 1,
-                type: 'Projection',
-                obligType: 'Estimate'
-            }
-        ];
-        vm.types = {
-            reportTypes: [
-                'statement',
-                'assessment'
-            ]
-        };
-
-        angular.forEach(vm.fyTpls, function(tpl){
-            tpl.idName = tpl.name.replace(/\s/g, '-');
-            tpl.varName = tpl.type.toLowerCase();
-            tpl.obligVarName = (tpl.obligType || tpl.type).toLowerCase();
-            tpl.isRequired = tpl.type.toLowerCase() === "actual";
-        });
-
-        vm.uiLogic = {
-            relatedProgramsFlag: !!program.relatedTo && !!program.relatedTo.length,
-            fundedProjectsExampleFlag: hasFyFundedProjects()
-        };
-        vm.constants = appConstants;
-
-        var queryObj = {
-            limit: 1000
-        };
-        var agencyIdObj = {
-            agencyId: getAgencyId()
-        };
-        function getAgencyId() {
-            return vm.program.agencyId;
-        };
-        vm.choices = {
-            programs: Programs.query(queryObj),
-            contacts: Contacts.query(agencyIdObj),
-            offices: [
+        angular.extend(vm, {
+            isEdit: $state.is('editProgram'),
+            IsVisible: true,
+            fyTpls: [
                 {
-                    id: 1,
-                    name: 'Test Office'
+                    name: "Past Fiscal Year",
+                    year: CURRENT_FISCAL_YEAR - 1,
+                    type: 'Actual'
                 },
                 {
-                    id: 2,
-                    name: 'Dev Office'
+                    name: "Current Fiscal Year",
+                    year: CURRENT_FISCAL_YEAR,
+                    type: 'Projection',
+                    obligType: 'Estimate'
                 },
                 {
-                    id: 3,
-                    name: 'Admin Office'
+                    name: "Budget Fiscal Year",
+                    year: CURRENT_FISCAL_YEAR + 1,
+                    type: 'Projection',
+                    obligType: 'Estimate'
                 }
-            ]
-        };
-        vm.choices.programs.$promise.then(function(data){
-            var relatedTo = getArray('relatedTo');
-            if(relatedTo.length > 0) {
-                var idArr = data.map(function (item) {
-                    return item._id;
-                });
-                vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
-            }
-        });
-        vm.IsVisible = true;
-        vm.exps = {
-            isAuthorization: isAuthorization,
-            generateAuthKey: generateAuthKey,
-            isPartOfAuth: isPartOfAuth
-        };
-        vm.groupByFns = {
+            ],
+            types: {
+                reportTypes: appConstants.REPORT_TYPES
+            },
+            groupByFns: {
             multiPickerGroupByFn: function(item) {
                 return !!item.parent ? item.parent.value : item.value;
             }
-        };
-        angular.extend(vm.choices, coreChoices);
-        Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
-            angular.extend(vm.choices, data);
-        });
-
-        angular.extend(vm, {
+        },
+            choices: angular.extend({
+                programs: Programs.query({ limit: 1000 }),
+                contacts: Contacts.query({ agencyId: vm.program.agencyId}),
+                offices: [
+                    {
+                        id: 1,
+                        name: 'Test Office'
+                    },
+                    {
+                        id: 2,
+                        name: 'Dev Office'
+                    },
+                    {
+                        id: 3,
+                        name: 'Admin Office'
+                    }
+                ]
+            }, coreChoices),
+            exps: {
+                isAuthorization: isAuthorization,
+                generateAuthKey: generateAuthKey,
+                isPartOfAuth: isPartOfAuth
+            },
+            createAuthorization: createAuthorization,
+            onAuthorizationRemoved: onAuthorizationRemoved,
             save: save,
             saveAndFinishLater: saveAndFinishLater,
             cancelForm: cancelForm,
             createAmendment: createAmendment,
             removeAmendment: removeAmendment,
-            updateAmendments: updateAmendments,
             getAuthAmendments: getAuthAmendments,
             onAuthorizationSave: onAuthorizationSave,
             onAmendmentBeforeSave: onAmendmentBeforeSave,
@@ -163,13 +108,29 @@
             getTafsTitle: appUtil.getTafsTitle,
             getDeadlineTitle: appUtil.getDeadlineTitle,
             getContactTitle: appUtil.getContactTitle,
-            nextId: util.nextId,
-            getEmailList: getEmailList
+            nextId: util.nextId
         });
 
-        angular.forEach(ARRAY_ACTIONS, function(action){
-            vm['add' + action.fnBaseName] = addGenerator(action.arrayName, action.objCreateFn || createObj);
-            vm['remove' + action.fnBaseName] = removeGenerator(action.arrayName, action.onRemoved || angular.noop);
+        Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
+            angular.extend(vm.choices, data);
+        });
+
+        angular.forEach(vm.fyTpls, function(tpl){
+            tpl.idName = tpl.name.replace(/\s/g, '-');
+            tpl.varName = tpl.type.toLowerCase();
+            tpl.obligVarName = (tpl.obligType || tpl.type).toLowerCase();
+            tpl.isRequired = tpl.type.toLowerCase() === "actual";
+        });
+
+
+        vm.choices.programs.$promise.then(function(data){
+            var relatedTo = getArray('relatedTo');
+            if(relatedTo.length > 0) {
+                var idArr = data.map(function (item) {
+                    return item._id;
+                });
+                vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
+            }
         });
 
         ////////////////////
@@ -195,33 +156,11 @@
             vm.program._id = res._id;
            // $window.alert("Your changes have been saved.")
         }
-
-        function addGenerator(arrayName, createObjFn) {
-            return function() {
-                var newEntry = createObjFn();
-                getArray(arrayName).push(newEntry);
-                addSelectedEntry(newEntry, arrayName);
-                vm.focusAuthAdd = true;
-            }
-        }
-
-        function removeGenerator(arrayName, onRemoved) {
-            return function($index) {
-                var removedItem = getArray(arrayName).splice($index, 1)[0];
-                if(getSelectedEntry(arrayName) === removedItem)
-                    removeSelectedEntry(arrayName);
-                onRemoved(removedItem);
-            }
-        }
-
         function onAuthorizationSave(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId);
             angular.forEach(amendments, function(amendment){
                 onAuthorizationTypeUpdate(authorization, amendment);
             });
-        }
-        function onAuthorizationCancel(authorization) {
-            //if()
         }
         function onAuthorizationRemoved(authorization) {
             var amendments = getAuthorizationAmendments(authorization.authorizationId),
@@ -289,13 +228,6 @@
             return $filter('orderBy')(filteredArray, "-version")[0];
         }
 
-        function updateAmendments(authorization) {
-            /*var amendments = getAuthorizationAmendments(authorization.authorizationId);
-            angular.forEach(amendments, function(amendment){
-                onAuthorizationTypeUpdate(authorization, amendment);
-            });*/
-        }
-
         function onAuthDialogOpen(authorization, ctrlLocals) {
             ctrlLocals.amendmentFilter = isPartOfAuth(authorization);
         }
@@ -354,12 +286,6 @@
             }
         }
 
-        function createObj() {
-            return {
-                id: util.generateUUID()
-            }
-        }
-
         function getFormFiscalYearProject(year) {
             var project = getFiscalYearProject(year);
             if(!project) {
@@ -375,17 +301,6 @@
             if(!!projectsArray.length)
                 fyProject = projectsArray[0];
             return fyProject;
-        }
-
-        function hasFyFundedProjects() {
-            var hasFundedProjects = true;
-            angular.forEach(vm.fyTpls, function(fyTpl){
-                var project = getFiscalYearProject(fyTpl.year);
-                if(hasFundedProjects)
-                    hasFundedProjects = !!project && !!project[fyTpl.varName];
-            });
-
-            return hasFundedProjects;
         }
 
         function onSectionChange(prevSectionKey) {
@@ -425,14 +340,6 @@
             }
 
             return item;
-        }
-
-        var emailSearchObj = {
-            agencyId: 'emailOnly' + getAgencyId()
-        };
-
-        function getEmailList() {
-            return Contacts.getEmails(emailSearchObj);
         }
     }
 

@@ -13,13 +13,14 @@
         var vm = this,
             previousState;
 
-        vm.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
-        vm.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
+        angular.extend(vm, {
+            itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
+            itemsByPageNumbers: appConstants.PAGE_ITEM_NUMBERS,
 
-        vm.loadPrograms = loadPrograms;
-        vm.editProgram = editProgram;
-        vm.reviewProgram = reviewProgram;
-        vm.deleteProgram = deleteProgram;
+            loadPrograms: loadPrograms,
+            editProgram: editProgram,
+            deleteProgram: deleteProgram
+        });
 
         /////////////////////
 
@@ -35,7 +36,7 @@
                 queryObj['keyword'] = tableState.search.predicateObject.$;
             }
 
-            if(angular.isDefined(tableState.sort.predicate)) {
+            if(tableState.sort.predicate) {
                 var isDescending = tableState.sort.reverse,
                     sortingProperty = tableState.sort.predicate;
                 queryObj.sortBy = ( isDescending ? '-' : '' ) + sortingProperty;
@@ -51,10 +52,6 @@
                 tableState.pagination.totalItemCount = totalCount;
                 previousState = tableState;
             })
-        }
-
-        function reviewProgram(program) {
-            editProgram(program, 'review');
         }
 
         function editProgram(program, section) {

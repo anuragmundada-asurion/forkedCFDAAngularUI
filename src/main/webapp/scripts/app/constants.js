@@ -21,6 +21,10 @@
             'yes_na',
             'yes_no_na',
             'authorization_type'
+        ],
+        REPORT_TYPES: [
+            'statement',
+            'assessment'
         ]
     };
 

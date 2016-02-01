@@ -1,7 +1,8 @@
 'use strict';
 
 describe("Unit Tests for Programs List Controller", function () {
-    var $controller;
+    var $controller,
+        appConstants;
 
     beforeEach(function() {
         module('app');
@@ -10,8 +11,9 @@ describe("Unit Tests for Programs List Controller", function () {
             $provide.value('env', env);
         });
 
-        inject(function(_$controller_){
+        inject(function(_$controller_, _appConstants_){
             $controller = _$controller_;
+            appConstants = _appConstants_;
         });
     });
 
@@ -26,11 +28,17 @@ describe("Unit Tests for Programs List Controller", function () {
         });
 
 
-        it('should have global methods', inject(function() {
-            expect($scope.vm).toBeDefined();
-            expect($scope.vm.loadPrograms).toBeDefined();
-            expect($scope.vm.editProgram).toBeDefined();
-            expect($scope.vm.deleteProgram).toBeDefined();
+        it('should have global methods and variables defined before program list load', inject(function() {
+            var vm = $scope.vm;
+
+            expect(vm).toBeDefined();
+            expect(vm.itemsByPage).toBeDefined();
+            expect(vm.itemsByPage).toEqual(appConstants.DEFAULT_PAGE_ITEM_NUMBER);
+            expect(vm.itemsByPageNumbers).toBeDefined();
+            expect(vm.itemsByPageNumbers).toEqual(appConstants.PAGE_ITEM_NUMBERS);
+            expect(vm.loadPrograms).toBeDefined();
+            expect(vm.editProgram).toBeDefined();
+            expect(vm.deleteProgram).toBeDefined();
         }));
     })
 });
