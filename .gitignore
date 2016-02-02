@@ -4,6 +4,7 @@ logs
 
 # Runtime data
 application.properties
+karma.conf.js
 pids
 *.pid
 *.seed
