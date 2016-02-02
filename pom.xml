@@ -5,7 +5,7 @@
 
     <groupId>gov.gsa</groupId>
     <artifactId>cfda-angular-ui</artifactId>
-    <version>0.5.2.${env.BUILD_NUMBER}</version>
+    <version>0.1.0.${env.BUILD_NUMBER}</version>
 
     <name>cfda-angular-ui</name>
     <description>GSA CFDA Angular UI</description>
