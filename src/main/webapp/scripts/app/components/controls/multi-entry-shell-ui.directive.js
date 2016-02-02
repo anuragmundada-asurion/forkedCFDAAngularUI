@@ -169,7 +169,7 @@
         return {
             restrict: 'E',
             transclude: true,
-            templateUrl:'partials/components/multi-entry-header-section.tpl.html'
+            templateUrl:'partials/components/controls/multi-entry-header-section.tpl.html'
         };
     }
 })();
