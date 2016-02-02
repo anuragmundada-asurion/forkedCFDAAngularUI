@@ -1,0 +1,15 @@
+<div class="search-content" ng-controller="ProgramSearchCtrl">
+    <div class="usa-grid searchbox">
+        <div class="usa-grid search-bar">
+            <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
+            <input id="filterYearVal" type="hidden" name="filterYear" value="0">
+            <div role="search" class="usa-width-one-whole usa-search usa-search-big center">
+                <label class="usa-sr-only" for="search-field-big">Search big</label>
+                <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue" type="search" id="search-field-big" required="required" placeholder="Keywords or CFDA Number" name="text">
+                <button type="submit" ng-click="searchPrograms()">
+                    <span class="usa-search-submit-text">Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
