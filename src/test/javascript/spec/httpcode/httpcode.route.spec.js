@@ -3,11 +3,6 @@
 describe("Unit Tests for HTTP Code Routes", function () {
     var $window, $state, $rootScope, $location, $templateCache, $httpBackend;
 
-    function mockTemplate(templateRoute, tpl) {
-        $templateCache.put(templateRoute, tpl || templateRoute);
-        $httpBackend.expectGET(templateRoute);
-    }
-
     function goTo(url) {
         $location.url(url);
         $rootScope.$digest();
@@ -15,6 +10,7 @@ describe("Unit Tests for HTTP Code Routes", function () {
 
     beforeEach(function() {
         module('app');
+        module('templates');
         inject(function(_$window_, _$state_, _$rootScope_, _$location_, _$templateCache_, _$httpBackend_){
             $window = _$window_;
             $state = _$state_;
@@ -26,8 +22,6 @@ describe("Unit Tests for HTTP Code Routes", function () {
             $httpBackend.whenGET('/environment/api').respond('Test API');
 
             $httpBackend.expectGET('/environment/api');
-
-            mockTemplate('partials/httpcode/404.tpl.html');
         });
     });
 

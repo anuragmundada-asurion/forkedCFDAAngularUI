@@ -13,7 +13,7 @@
         $stateProvider
             .state('404', {
                 url: "/404",
-                templateUrl: "partials/httpcode/404.tpl.html"
+                templateUrl: "httpcode/404.tpl.html"
             });
 
         $urlRouterProvider.otherwise(redirectToNotFound);

@@ -144,8 +144,8 @@
             transclude: true,
             templateUrl: function(element, attr) {
                 return attr.editable === "true"
-                    ? 'partials/components/controls/multi-entry-list-editable.tpl.html'
-                    : 'partials/components/controls/multi-entry-list.tpl.html';
+                    ? 'components/controls/multi-entry-list-editable.tpl.html'
+                    : 'components/controls/multi-entry-list.tpl.html';
             },
             compile: compile
         };
@@ -169,7 +169,7 @@
         return {
             restrict: 'E',
             transclude: true,
-            templateUrl:'partials/components/controls/multi-entry-header-section.tpl.html'
+            templateUrl:'components/controls/multi-entry-header-section.tpl.html'
         };
     }
 })();

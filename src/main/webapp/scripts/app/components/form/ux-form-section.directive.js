@@ -12,7 +12,7 @@
 
     function UxFormSectionDirective() {
 
-        UxFormSectionController.$inject = [];
+        UxFormSectionController.$inject = ['$document'];
 
         return {
             restrict: 'AE',
@@ -25,19 +25,38 @@
 
         ///////////////////////
 
-        function UxFormSectionController() {
+        function UxFormSectionController($document) {
             var self = this,
-                subSections = [];
+                _subSections = [];
 
-            /*angular.extend(self, {
+            angular.extend(self, {
+                go: go,
                 addSubSection: addSubSection
-            });*/
+            });
+
+            Object.defineProperties(self, {
+                'subSections': {
+                    enumerable: true,
+                    get: getSubSections
+                }
+            });
 
             //////////////////
 
-            /*function addSubSection(subSection) {
-                subSections.push(subSection);
-            }*/
+            function addSubSection(subSection) {
+                _subSections.push(subSection);
+
+                subSection.uxFormSection = self;
+            }
+
+            function getSubSections() {
+                return _subSections.slice();
+            }
+
+            function go() {
+                self.uxForm.current = self;
+                $document.scrollToElementAnimated($document.findAll(self.uxForm.scrollAnchor));
+            }
         }
 
         function compile(element, attrs) {

@@ -5,11 +5,10 @@
 
     <groupId>gov.gsa</groupId>
     <artifactId>cfda-angular-ui</artifactId>
-    <version>0.1.0.${env.BUILD_NUMBER}</version>
+    <version>0.5.2.${env.BUILD_NUMBER}</version>
 
     <name>cfda-angular-ui</name>
     <description>GSA CFDA Angular UI</description>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -110,7 +109,7 @@
                     <execution>
                         <id>bower install</id>
                         <goals>
-                            <goal>bower</goal>
+                            <goal>bower </goal>
                         </goals>
                     </execution>
                     <execution>
@@ -119,6 +118,9 @@
                             <goal>gulp</goal>
                         </goals>
                         <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>default --version ${project.version}</arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

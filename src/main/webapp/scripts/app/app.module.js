@@ -16,6 +16,53 @@
         'vs-repeat'
     ];
 
+    /**
+     * @ngdoc overview
+     * @name app
+     *
+     * @requires ngAnimate
+     * @requires ngResource
+     * @requires ngTouch
+     * @requires ngSanitize
+     * @requires ui.router
+     * @requires duScroll
+     * @requires smart-table
+     * @requires mgo-angular-wizard
+     * @requires ui.select
+     * @requires ui.bootstrap
+     * @requires sticky
+     * @requires vs-repeat
+     *
+     * @description
+     * # ui.router
+     *
+     * ## The main module for ui.router
+     * There are several sub-modules included with the ui.router module, however only this module is needed
+     * as a dependency within your angular app. The other modules are for organization purposes.
+     *
+     * The modules are:
+     * * ui.router - the main "umbrella" module
+     * * ui.router.router -
+     *
+     * *You'll need to include **only** this module as the dependency within your angular app.*
+     *
+     * <pre>
+     * <!doctype html>
+     * <html ng-app="myApp">
+     * <head>
+     *   <script src="js/angular.js"></script>
+     *   <!-- Include the ui-router script -->
+     *   <script src="js/angular-ui-router.min.js"></script>
+     *   <script>
+     *     // ...and add 'ui.router' as a dependency
+     *     var myApp = angular.module('myApp', ['ui.router']);
+     *   </script>
+     * </head>
+     * <body>
+     * </body>
+     * </html>
+     * </pre>
+     */
     angular.module('app', requiredModules);
 
     //TODO: Avoid extending the existing object and move these functions into the util service as helper methods instead.

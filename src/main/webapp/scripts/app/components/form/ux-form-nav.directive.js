@@ -8,7 +8,7 @@
         return {
             restrict: 'AE',
             require: '^^uxForm',
-            templateUrl: 'partials/components/form/ux-form-nav.tpl.html',
+            templateUrl: 'components/form/ux-form-nav.tpl.html',
             link: postLink
         };
 

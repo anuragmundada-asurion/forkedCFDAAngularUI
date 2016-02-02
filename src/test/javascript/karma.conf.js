@@ -59,7 +59,6 @@ module.exports = function(config) {
 
         ngHtml2JsPreprocessor: {
             stripPrefix: 'main/webapp/scripts/app/',
-            prependPrefix: 'partials/',
             moduleName: 'templates'
         },
 

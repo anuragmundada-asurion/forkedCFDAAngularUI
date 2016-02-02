@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var argv = require('yargs').argv;
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
@@ -9,6 +10,9 @@ var gzip = require('gulp-gzip');
 var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
+var merge = require('merge-stream');
+var ngdocs = require('gulp-ngdocs');
+var templateCache = require('gulp-angular-templatecache');
 var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
 
@@ -69,28 +73,31 @@ gulp.task('vendor-css-files', ['ie8-vendor-js-files'], function () {
 
 gulp.task('app-js-files', ['vendor-css-files'], function () {
     //Read App JS files and combine
-    appJs = gulp.src([
+    var js = gulp.src([
             appFilesBase + '/*.bootstrap.js',
             appFilesBase + '/*.module.js',
             appFilesBase + '/services/**/*.js',
             appFilesBase + '/**/*.js'
-        ], {base: appFilesBase})
-        .pipe(concat('app.js'))
+        ], {base: appFilesBase});
+
+    var htmlTemplates = gulp.src(appFilesBase + "/**/*.tpl.html")
+        .pipe(templateCache({
+            module: 'app'
+        }));
+
+    appJs = merge(js, htmlTemplates)
+        .pipe(concat('app-' + argv.version + '.js'))
         .pipe(gulp.dest('target/classes/static/js'));
 });
 
 gulp.task('app-sass-files', ['app-js-files'], function () {
     appSass = gulp.src('src/main/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(rename('main-' + argv.version +".css"))
         .pipe(gulp.dest('target/classes/static/css'));
 });
 
-gulp.task('app-html-tpl-files', ['app-sass-files'], function () {
-    gulp.src(appFilesBase + "/**/*.tpl.html")
-        .pipe(gulp.dest('target/classes/static/partials'));
-});
-
-gulp.task('index', ['app-html-tpl-files'], function () {
+gulp.task('index', ['app-sass-files'], function () {
     var target = gulp.src("src/main/webapp/assets/index.html");
     var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
     return target.pipe(rename("index.html"))
@@ -143,6 +150,17 @@ gulp.task('test', ['wiredep', 'gzip'], function(done) {
     }, done).start();
 });
 
+gulp.task('ngdocs', ['test'], function () {
+    var options = {
+        //scripts: ['../app.min.js'],
+        html5Mode: true,
+        title: "CFDA Modernization Documentation",
+    };
+    return gulp.src('target/classes/static/js/*.js')
+        .pipe(ngdocs.process(options))
+        .pipe(gulp.dest('src/ngdocs'));
+});
+
 // Default Task
-gulp.task('default', ['test'], function () {
+gulp.task('default', ['ngdocs'], function () {
 });
