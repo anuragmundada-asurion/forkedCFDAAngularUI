@@ -56,11 +56,22 @@ module.exports = function(config) {
             'main/webapp/scripts/app/**/*.html' : "ng-html2js"
         },
 
+
         ngHtml2JsPreprocessor: {
             stripPrefix: 'main/webapp/scripts/app/',
             prependPrefix: 'partials/',
             moduleName: 'templates'
         },
+
+
+        coverageReporter: {
+            dir: '../target/site/coverage',
+            reporters: [
+                { type: 'html', subdir: 'html' },
+                { type: 'cobertura', subdir: 'cobertura', file: 'cobertura.xml' }
+            ]
+        },
+
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
