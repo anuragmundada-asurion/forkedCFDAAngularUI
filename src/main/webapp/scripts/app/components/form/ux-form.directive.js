@@ -43,7 +43,6 @@
             $stateParams,
             $state,
             urlSectionParamName = $attrs.useUiRouter,
-            scrollAnchor = $attrs.scrollAnchor || 'ux-form',
             isUsingUiRouter = !!urlSectionParamName;
 
         if(isUsingUiRouter) {
@@ -81,6 +80,7 @@
 
         angular.extend(self, {
             bookmarks: [],
+            scrollAnchor: $attrs.scrollAnchor || 'ux-form',
             addSection: addSection,
             isSection: isSection,
             goToSection: goToSection,
@@ -98,7 +98,7 @@
         }
 
         function getSections() {
-            return sections;
+            return sections.slice();
         }
 
         function isSection(stateKey) {
@@ -140,10 +140,7 @@
 
         function addSection(section) {
             sections.push(section);
-            section.go = function() {
-                self.current = section;
-                $document.scrollToElementAnimated($document.findAll(scrollAnchor));
-            };
+            section.uxForm = self;
 
             Object.defineProperty(section, 'selected', {
                 enumerable: true,

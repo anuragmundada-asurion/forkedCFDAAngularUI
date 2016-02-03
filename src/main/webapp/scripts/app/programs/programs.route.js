@@ -16,7 +16,7 @@
         $stateProvider
             .state('addProgram', {
                 url: "/programs/add/:section",
-                templateUrl: "partials/programs/addedit.tpl.html",
+                templateUrl: "programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {
                     program: createProgram,
@@ -25,7 +25,7 @@
             })
             .state('editProgram', {
                 url: "/programs/:id/edit/:section",
-                templateUrl: "partials/programs/addedit.tpl.html",
+                templateUrl: "programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
                 resolve: {
                     program: getProgram,
@@ -34,7 +34,7 @@
             })
             .state('home', {
                 url: "/",
-                templateUrl: "partials/programs/programs-list.tpl.html",
+                templateUrl: "programs/programs-list.tpl.html",
                 controller: "ProgramsListController as vm"
             });
         $urlRouterProvider.when('', goHome);
