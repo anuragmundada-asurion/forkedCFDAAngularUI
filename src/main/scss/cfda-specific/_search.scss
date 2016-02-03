@@ -1,4 +1,4 @@
-.search-content {
+.search-box {
   background-color: $color-primary-darkest;
   margin: 0;
   padding: 2em 0;
@@ -8,6 +8,19 @@
 
     input[type="search"] {
       max-width: 100rem;
+    }
+  }
+}
+
+.search-results-content {
+  .search-info {
+    font-size: 4rem;
+    margin: 3rem 0;
+  }
+
+  .search-table {
+    th.sortable {
+      cursor: pointer;
     }
   }
 }

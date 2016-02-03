@@ -1,9 +1,9 @@
 !function() {
     'use strict';
 
-    angular.module('app').factory('searchPrograms', ['$resource', 'Program', function($resource, Program){
-        return $resource('/search', {}, {
-            query: {method:'GET', params: { keyword: '@keyword' }, isArray:true}
+    angular.module('app').factory('Search', ['$resource', function($resource){
+        return $resource('/api/search', {}, {
+            get: {method:'GET', params: { keyword: '@keyword' }}
         });
     }]);
 }();
