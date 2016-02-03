@@ -103,9 +103,6 @@ describe('Unit Tests for Program Search Controller', function() {
     });
 
     describe('$scope.getSearchResults', function() {
-        var testSortColumn = 'Test Column';
-        var testResults = [ 'Result 1', 'Result 2' ];
-
         it('should instantiate getSearchResults function', function() {
             var scope = {};
             $controller('ProgramSearchCtrl', { $scope: scope });
@@ -120,28 +117,82 @@ describe('Unit Tests for Program Search Controller', function() {
         });
 
         describe('Search.get', function() {
+            var testResults = [ 'Result 1', 'Result 2' ];
+            var testTotalCount = 100;
             var mockSearchResource;
+            var appConstants;
+
             beforeEach(function() {
                 mockSearchResource = {
                     get: function(queryObject, fnCallback) {
-                        console.log(arguments);
-                        fnCallback(testResults);
+                        this.queryObject = queryObject;
+                        fnCallback({
+                            totalCount: testTotalCount,
+                            results: testResults
+                        });
                     }
-                }
+                };
             });
+
+            beforeEach(inject(function(_appConstants_) {
+                appConstants = _appConstants_;
+            }));
 
             it('should call search resource to query results', function() {
+                var scope = {};
+                spyOn(mockSearchResource, 'get').and.returnValue({});
+                $controller('ProgramSearchCtrl', { $scope: scope, Search: mockSearchResource });
+                scope.globalSearchValue = testKeyword;
+                scope.getSearchResults();
+                expect(mockSearchResource.get).toHaveBeenCalled();
             });
 
-            it('should handle returned results', function() {
+            it('should populate scope correctly after data is returned', function() {
+                var scope = {};
+                var tableState = {
+                    search: {},
+                    pagination: {},
+                    sort: {}
+                };
+                $controller('ProgramSearchCtrl', { $scope: scope, Search: mockSearchResource, appConstants: appConstants });
+                scope.globalSearchValue = testKeyword;
+                scope.getSearchResults(tableState);
+                expect(scope.isLoading).toBe(false);
+                expect(scope.searchResults).toBe(testResults);
+                expect(tableState.pagination.numberOfPages).toBe(Math.ceil(testTotalCount / appConstants.DEFAULT_PAGE_ITEM_NUMBER));
             });
 
-            it('should sort by ascending', function() {
+            describe('Sorting', function() {
+                var testSortColumn = 'Test Column';
+                var scope;
+                var tableState;
 
-            });
+                beforeEach(function() {
+                    scope = {};
+                    tableState = {
+                        search: {},
+                        pagination: {},
+                        sort: {
+                            predicate: testSortColumn
+                        }
+                    };
+                });
 
-            it('should sort by descending', function() {
+                it('should sort by ascending', function() {
+                    $controller('ProgramSearchCtrl', { $scope: scope, Search: mockSearchResource, appConstants: appConstants });
+                    scope.globalSearchValue = testKeyword;
+                    scope.getSearchResults(tableState);
+                    expect(mockSearchResource.queryObject.sortBy).toBe(testSortColumn);
 
+                });
+
+                it('should sort by descending', function() {
+                    tableState.sort.reverse = true;
+                    $controller('ProgramSearchCtrl', { $scope: scope, Search: mockSearchResource, appConstants: appConstants });
+                    scope.globalSearchValue = testKeyword;
+                    scope.getSearchResults(tableState);
+                    expect(mockSearchResource.queryObject.sortBy).toBe('-' + testSortColumn);
+                });
             });
         });
     });
