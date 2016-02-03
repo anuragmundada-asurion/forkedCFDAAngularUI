@@ -51,7 +51,6 @@ describe('Unit Tests for the multi-entry directives', function() {
             var element = createElement(),
                 controller = element.scope.$ctrl;
 
-            console.log(element.scope);
             expect(controller.deleteEntry).toBeDefined();
             expect(controller.allowModifications).toBeDefined();
             expect(controller.openEntryDialog).toBeDefined();
