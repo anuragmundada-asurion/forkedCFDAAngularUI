@@ -12,7 +12,7 @@ describe("Unit Tests for Programs List Controller", function () {
     beforeEach(function() {
         module('app');
         module('templates');
-        var env = {'pub.api.programs': 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1'};
+        var env = {'pub.api.programs': '/api'};
         module(function($provide) {
             $provide.value('env', env);
         });
@@ -28,7 +28,7 @@ describe("Unit Tests for Programs List Controller", function () {
         });
 
         $httpBackend
-            .whenGET(/http:\/\/gsaiae-cfda-program-uat01.reisys.com\/api\/v1\/programs(\?[\w=&]+)*/i)
+            .whenGET(/\/api\/programs(\?[\w=&]+)*/i)
             .respond(angular.toJson({
                 result: [
                     {
@@ -52,7 +52,7 @@ describe("Unit Tests for Programs List Controller", function () {
                 "totalCount":totalCount,"offset":0,"limit":limit
             }));
         $httpBackend
-            .whenDELETE('http://gsaiae-cfda-program-uat01.reisys.com/api/v1/programs')
+            .whenDELETE('/api/programs')
             .respond(200);
     });
 

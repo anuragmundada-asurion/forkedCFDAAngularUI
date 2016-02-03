@@ -5,13 +5,12 @@
         .module('app')
         .factory('Program', Program);
 
-    Program.$inject = ['$resource', 'env'];
+    Program.$inject = ['$resource'];
 
     ////////////
 
     function Program($resource, env) {
-        var domainUrl = env["pub.api.programs"];
-        return $resource(domainUrl + '/programs/:id', {
+        return $resource('/api/programs/:id', {
             id: '@_id'
         }, {
             save: {
