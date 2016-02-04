@@ -13,6 +13,17 @@
         var domainUrl = env["pub.api.programs"];
 
         return $resource(domainUrl + '/dictionaries', {}, {
+            query: {
+                transformResponse: function(data) {
+                    data = JSON.parse(data);
+                    var dictionary = {};
+                    angular.forEach(data, function(dictionaryJSON){
+                        addDisplayValue(dictionaryJSON.elements);
+                        dictionary[dictionaryJSON.id] = dictionaryJSON.elements;
+                    });
+                    return dictionary;
+                }
+            },
             toDropdown: {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -33,6 +44,14 @@
 
         function isSpecialDictionary(dictionaryName) {
             return !!$filter('filter')(appConstants.CORE_DICTIONARIES, dictionaryName, true).length;
+        }
+
+        function addDisplayValue(elements) {
+            angular.forEach(elements, function(item){
+                if(item.elements)
+                    addDisplayValue(item.elements);
+                item.displayValue = item.code + " - " + item.value;
+            });
         }
 
         //  TODO Review implementation
