@@ -428,8 +428,9 @@
                             </multi-entry-select>
                         </multi-entry>
                         </div>
-                            <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
-                            </textarea>
+                        <label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
+                        <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
+                        </textarea>
                         <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
                             <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
