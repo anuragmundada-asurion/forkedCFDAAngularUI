@@ -5,14 +5,12 @@
         .module('app')
         .factory('Dictionary', Dictionary);
 
-    Dictionary.$inject = ['$resource', '$filter', 'env', 'appConstants'];
+    Dictionary.$inject = ['$resource', '$filter', 'appConstants'];
 
     /////////////
 
-    function Dictionary($resource, $filter, env, appConstants) {
-        var domainUrl = env["pub.api.programs"];
-
-        return $resource(domainUrl + '/dictionaries', {}, {
+    function Dictionary($resource, $filter, appConstants) {
+        return $resource('/api/dictionaries', {}, {
             toDropdown: {
                 method: 'GET',
                 transformResponse: function (data) {

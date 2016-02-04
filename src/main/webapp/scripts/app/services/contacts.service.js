@@ -5,13 +5,12 @@
         .module('app')
         .factory('Contact', Contact);
 
-    Contact.$inject = ['$resource', 'env'];
+    Contact.$inject = ['$resource'];
 
     /////////////
 
-    function Contact($resource, env) {
-        var domainUrl = env["pub.api.programs"];
-        return $resource(domainUrl + '/contacts/:agencyId', {
+    function Contact($resource) {
+        return $resource('/api/contacts/:agencyId', {
             id: '@_id',
             agencyId: '@agencyId'
         }, {

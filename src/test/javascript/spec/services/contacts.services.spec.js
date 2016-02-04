@@ -5,11 +5,6 @@ describe("Unit Tests for Contacts Service", function () {
     beforeEach(function() {
         module('app');
 
-        var env = {'pub.api.programs': 'http://gsaiae-cfda-program-uat01.reisys.com/api/v1'};
-        module(function($provide) {
-            $provide.value('env', env);
-        });
-
         inject(function(_$httpBackend_, _Contact_){
             $httpBackend = _$httpBackend_;
             contactSvc = _Contact_;
@@ -20,7 +15,7 @@ describe("Unit Tests for Contacts Service", function () {
     describe("Testing for Contact retrieval", function() {
         it('should make a get call to list of contacts for test agency', function() {
             $httpBackend
-                .whenGET('http://gsaiae-cfda-program-uat01.reisys.com/api/v1/contacts/REI%20Test%20Agency')
+                .whenGET('/api/contacts/REI%20Test%20Agency')
                 .respond('{"results":[{"title 2,x,Reddy,x,reddy@reddy.com,x,7034809200,x,,x,REI Way,x,Sterling,x,VA,x,20170":{"_id": "title 2,x,Reddy,x,reddy@reddy.com,x,7034809200,x,,x,REI Way,x,Sterling,x,VA,x,20170", "title":"Reddy, title 2"}}]}');
             var contacts = contactSvc.query({ agencyId: "REI Test Agency" });
             $httpBackend.flush();
@@ -29,7 +24,7 @@ describe("Unit Tests for Contacts Service", function () {
 
         it('should populate _id if none is present', function() {
             $httpBackend
-                .whenGET('http://gsaiae-cfda-program-uat01.reisys.com/api/v1/contacts/REI%20Test%20Agency')
+                .whenGET('/api/contacts/REI%20Test%20Agency')
                 .respond('{"results":[{"title 2,x,Reddy,x,reddy@reddy.com,x,7034809200,x,,x,REI Way,x,Sterling,x,VA,x,20170":{"title":"Reddy, title 2"}}]}');
             var contacts = contactSvc.query({ agencyId: "REI Test Agency" });
             $httpBackend.flush();

@@ -36,10 +36,6 @@ public class EnvironmentController {
     }
 
     private String getProgramApiUrl() {
-        String apiUrl = environment.getProperty(programsApiEnvName);
-        if(apiUrl == null) {
-            apiUrl = "http://gsaiae-cfda-program-uat01.reisys.com/api/v1";
-        }
-        return apiUrl;
+        return environment.getProperty(programsApiEnvName);
     }
 }

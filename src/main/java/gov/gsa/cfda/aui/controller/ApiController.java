@@ -1,30 +1,22 @@
 package gov.gsa.cfda.aui.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Resource;
 
 @RestController
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
 public class ApiController {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
 
-    @Autowired
+    @Resource
     private Environment environment;
 
     @RequestMapping(value = "/api/programs", method = RequestMethod.GET, produces = "application/json")
@@ -94,6 +86,31 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/contacts/{agencyId}", method = RequestMethod.GET)
+    public String getContactListApiCall(@PathVariable("agencyId") String agencyId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getContactsApiUrl() + "/" + agencyId);
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+    @RequestMapping(value = "/api/dictionaries", method = RequestMethod.GET)
+    public String getDictionaries(@RequestParam(required = false) String[] ids) throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getDictionaryApiUrl())
+                .queryParam("ids", ids);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     @RequestMapping(value = "/api/search", method = RequestMethod.GET, produces = "application/json")
     public String searchApiCall(@RequestParam(value = "keyword", required = true) String keyword) {
 //        RestTemplate restTemplate = new RestTemplate();
@@ -123,6 +140,6 @@ public class ApiController {
     }
 
     private String getSearchApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV);
+        return environment.getProperty(API_SEARCH_ENV);
     }
 }
