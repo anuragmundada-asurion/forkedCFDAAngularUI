@@ -132,7 +132,7 @@
                                     ng-model="_multiEntrySelect.current"
                                     ux-tree="$ctrl.parentVm.trees['assistance_type']"
                                     ux-multiple
-                                    ux-branch-x="item.element_id as item.value for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                    ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
                                     ux-branch-1="has label 'Category'"
                             >
                             </ux-hierarchy-dropdown>
