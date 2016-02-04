@@ -9,7 +9,7 @@
 
     /////////////
 
-    function Dictionary($resource, $filter, env, appConstants) {
+    function Dictionary($resource, $filter, appConstants) {
         return $resource('/api/dictionaries', {}, {
             query: {
                 transformResponse: function(data) {
