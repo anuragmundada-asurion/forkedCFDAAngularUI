@@ -110,21 +110,34 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
-                <h3 for="assistanceTypes">060 Types of Assistance<span class="required" >*</span></h3>
                 <div class="input-field">
                     <!--<p>
                         Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
                         picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
                     </p>-->
-                    <ui-select id="assistanceTypes" multiple ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
-                        <ui-select-match placeholder="Please select at least one type of Assistance">{{$item.value}}</ui-select-match>
-                        <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
-                            <div ng-bind-html="item.value | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">
-                        <span ng-show="gsavm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
                     </div>
+                    <multi-entry ng-model="gsavm.program.assistanceTypes" name="assistanceTypes"  new-entry-btn-name="+ Add Assistance Types" delete-btn-label="Remove Assistance Type"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry-header>
+                            <h3>060 Types of Assistance<span class="required" >*</span></h3>
+                        </multi-entry-header>
+                        <div>
+                            <span ng-show="$ctrl.parentVm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
+                        </div>
+                        <multi-entry-list editable="false">
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').value}}</span>
+                        </multi-entry-list>
+                        <multi-entry-select>
+                            <ux-hierarchy-dropdown
+                                    ng-model="_multiEntrySelect.current"
+                                    ux-tree="$ctrl.parentVm.trees['assistance_type']"
+                                    ux-multiple
+                                    ux-branch-x="item.element_id as item.value for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                    ux-branch-1="has label 'Category'"
+                            >
+                            </ux-hierarchy-dropdown>
+                        </multi-entry-select>
+                    </multi-entry>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
@@ -305,17 +318,28 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
-                <h3>190 Functional Codes<span class="required" >*</span></h3>
                 <div class="input-field">
-                    <ui-select multiple ng-model="gsavm.program.functionalCodes" name="functionalCodes" class="usa-input-large" theme="select2" required-Length='{ "min": 1 }'>
-                        <ui-select-match placeholder="Select code...">{{$item.displayValue}}</ui-select-match>
-                        <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['functional_codes'] | propsFilter: {displayValue: $select.search, 'parent.value': $select.search}">
-                            <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                    <div ng-show="gsavm.validationFlag.info || gsavm.form.functionalCodes.$dirty">
-                        <span ng-show="gsavm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
-                    </div>
+                    <multi-entry ng-model="gsavm.program.functionalCodes" name="functionalCodes"  new-entry-btn-name="+ Add Functional Codes" delete-btn-label="Remove Functional Code"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry-header>
+                            <h3>190 Functional Codes<span class="required" >*</span></h3>
+                        </multi-entry-header>
+                        <div>
+                            <span ng-show="$ctrl.parentVm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
+                        </div>
+                        <multi-entry-list editable="false">
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
+                        </multi-entry-list>
+                        <multi-entry-select>
+                            <ux-hierarchy-dropdown
+                                    ng-model="_multiEntrySelect.current"
+                                    ux-tree="$ctrl.parentVm.trees['functional_codes']"
+                                    ux-multiple
+                                    ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Functional Code'"
+                                    ux-branch-1="item.element_id as item.value for item in uxTree with children item.elements track by item.element_id has label 'Category'"
+                            >
+                            </ux-hierarchy-dropdown>
+                        </multi-entry-select>
+                    </multi-entry>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark>
@@ -359,31 +383,51 @@
                 <section class="sub-minor-section" field-finder-bookmark>
                     <h4>081 Applicant Eligibility</h4>
                     <div class="input-field">
-                        <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
-                        <ui-select id="eligibleApplicants" name="eligibleApplicants" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.types" class="usa-input-large" required-Length='{ "min": 1 }'>
-                            <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['applicant_types'] | filter:$select.search">
-                                <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
-
-                        <div ng-show="gsavm.form.$submit || gsavm.form.eligibleApplicants.$dirty">
-                            <span ng-show="gsavm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
-                        </div>
+                        <multi-entry ng-model="gsavm.program.eligibility.applicant.types" name="eligibleApplicants"  new-entry-btn-name="+ Add Eligible Applicants" delete-btn-label="Remove Eligible Applicant"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                            <multi-entry-header>
+                                <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
+                            </multi-entry-header>
+                            <div>
+                                <span ng-show="$ctrl.parentVm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
+                            </div>
+                            <multi-entry-list editable="false">
+                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'applicant_types').displayValue}}</span>
+                            </multi-entry-list>
+                            <multi-entry-select>
+                                <ux-hierarchy-dropdown
+                                        id="eligibleApplicants"
+                                        ng-model="_multiEntrySelect.current"
+                                        ux-tree="$ctrl.parentVm.trees['applicant_types']"
+                                        ux-multiple
+                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Applicant Type'"
+                                >
+                                </ux-hierarchy-dropdown>
+                            </multi-entry-select>
+                        </multi-entry>
                     </div>
                     <div class="input-field">
-                        <label for="useOfAssistance">Use of Assistance<span class="required" >*</span></label>
-                        <ui-select id="useOfAssistance" name="useOfAssistance" theme="select2" multiple ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" class="usa-input-large" required-Length='{ "min": 1 }'>
-                            <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['assistance_usage_types'] | filter:$select.search">
-                                <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
-
-                        <div ng-show="gsavm.form.$submit || gsavm.form.useOfAssistance.$dirty">
-                            <span ng-show="gsavm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
+                        <multi-entry ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" name="useOfAssistance"  new-entry-btn-name="+ Add Use Of Assistances" delete-btn-label="Remove Use Of Assistance"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                            <multi-entry-header>
+                                <label for="useOfAssistance">Use Of Assistance<span class="required" >*</span></label>
+                            </multi-entry-header>
+                            <div>
+                                <span ng-show="$ctrl.parentVm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
+                            </div>
+                            <multi-entry-list editable="false">
+                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_usage_types').displayValue}}</span>
+                            </multi-entry-list>
+                            <multi-entry-select>
+                                <ux-hierarchy-dropdown
+                                        id="useOfAssistance"
+                                        ng-model="_multiEntrySelect.current"
+                                        ux-tree="$ctrl.parentVm.trees['assistance_usage_types']"
+                                        ux-multiple
+                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                >
+                                </ux-hierarchy-dropdown>
+                            </multi-entry-select>
+                        </multi-entry>
                         </div>
-                        <label for="assistanceAdditionalInfo">Additional Information<span class="required" >*</span></label>
                             <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
                             </textarea>
                         <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
@@ -394,16 +438,27 @@
                 <section class="sub-minor-section" field-finder-bookmark>
                     <h4>082 Beneficiary Eligibility</h4>
                     <div class="input-field">
-                        <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
-                        <ui-select id="beneficiaryEligibility" name="beneficiaryEligibility" theme="select2" multiple ng-model="gsavm.program.eligibility.beneficiary.types"  class="usa-input-large" required-Length='{ "min": 1 }'>
-                            <ui-select-match placeholder="Search here">{{$item.displayValue}}</ui-select-match>
-                            <ui-select-choices repeat="item.element_id as item in gsavm.choices['beneficiary_types'] | filter:$select.search">
-                                <div ng-bind-html="item.displayValue | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
-                        <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryEligibility.$dirty">
-                            <span ng-show="gsavm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
-                        </div>
+                        <multi-entry ng-model="gsavm.program.eligibility.beneficiary.types" name="beneficiaryEligibility"  new-entry-btn-name="+ Add Beneficiary Eligibilities" delete-btn-label="Remove Beneficiary Eligibility"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                            <multi-entry-header>
+                                <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
+                            </multi-entry-header>
+                            <div>
+                                <span ng-show="$ctrl.parentVm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
+                            </div>
+                            <multi-entry-list editable="false">
+                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'beneficiary_types').displayValue}}</span>
+                            </multi-entry-list>
+                            <multi-entry-select>
+                                <ux-hierarchy-dropdown
+                                        id="beneficiaryEligibility"
+                                        ng-model="_multiEntrySelect.current"
+                                        ux-tree="$ctrl.parentVm.trees['beneficiary_types']"
+                                        ux-multiple
+                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                >
+                                </ux-hierarchy-dropdown>
+                            </multi-entry-select>
+                        </multi-entry>
                         <label for="beneficiaryAdditionalInfo">Additional Information<span class="required" >*</span></label>
                         <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.beneficiary.additionalInfo.content" required>
                         </textarea>

@@ -15,14 +15,16 @@
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             DICTIONARIES = [
-                'functional_codes',
                 'program_subject_terms',
+                'date_range',
+                'match_percent'
+            ],
+            TREES = [
                 'assistance_type',
                 'applicant_types',
                 'assistance_usage_types',
                 'beneficiary_types',
-                'date_range',
-                'match_percent'
+                'functional_codes'
             ];
         vm.program = program;
 
@@ -76,6 +78,10 @@
                     }
                 ]
             }, coreChoices),
+            trees: {},
+            filters: {
+                traverseTree: $filter('traverseTree')
+            },
             exps: {
                 isAuthorization: isAuthorization,
                 generateAuthKey: generateAuthKey,
@@ -98,6 +104,7 @@
             onSectionChange: onSectionChange,
             openDatepicker: openDatepicker,
             getChoiceModel: getChoiceModel,
+            getTreeNodeModel: getTreeNodeModel,
             createContact: createContact,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
             getAmendmentTitle: appUtil.getAuthorizationTitle,
@@ -111,6 +118,10 @@
 
         Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
+        });
+
+        Dictionary.query({ ids: TREES.join(',') }, function(data){
+            angular.extend(vm.trees, data);
         });
 
         angular.forEach(vm.fyTpls, function(tpl){
@@ -164,8 +175,8 @@
             var amendments = getAuthorizationAmendments(authorization.authorizationId),
                 authArray = getArray('authorizations');
             for(var i = 0; i < authArray.length; i++) {
-                var authorization = authArray[i];
-                if(amendments.indexOf(authorization) > - 1) {
+                var srchAuthorization = authArray[i];
+                if(amendments.indexOf(srchAuthorization) > - 1) {
                     authArray.splice(i, 1);
                     i--;
                 }
@@ -258,6 +269,18 @@
             });
 
             return selectedChoice;
+        }
+
+        function getTreeNodeModel(value, keyName, childrenName, dictionaryName) {
+            var selected = vm.filters.traverseTree([value], vm.trees[dictionaryName], {
+                branches: {
+                    X: {
+                        keyProperty: $parse(keyName),
+                        childrenProperty: $parse(childrenName)
+                    }
+                }
+            })[0];
+            return selected ? selected.$original : null;
         }
 
         function createContact() {
