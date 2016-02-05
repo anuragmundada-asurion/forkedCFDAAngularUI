@@ -150,14 +150,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main</directory>
-                <excludes>
-                    <exclude>webapp/**</exclude>
-                </excludes>
-            </resource>
-        </resources>
     </build>
 
     <repositories>
