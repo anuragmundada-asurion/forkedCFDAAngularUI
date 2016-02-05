@@ -85,6 +85,8 @@
 
             ctrl.locals = {};
 
+            ctrl.showList = true;
+
             ctrl.deleteEntry = deleteEntry;
             ctrl.allowModifications = true;
             ctrl.openEntryDialog = openEntryDialog;

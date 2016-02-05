@@ -47,18 +47,11 @@
             ///////////////////
 
             function add() {
-                multiEntrySelect.current = [];
+                multiEntrySelect.current = multiEntryCtrl.model.$modelValue.slice();
+                multiEntryCtrl.showList = false;
             }
-
             function save() {
-                var list = multiEntryCtrl.model.$modelValue || [];
-
-                angular.forEach(multiEntrySelect.current, function(choice){
-                    if(list.indexOf(choice) < 0)
-                        list.push(choice);
-                });
-
-                multiEntryCtrl.model.$setViewValue(list);
+                multiEntryCtrl.model.$setViewValue(multiEntrySelect.current);
                 multiEntryCtrl.model.$render();
                 clearCurrent();
             }
@@ -66,6 +59,7 @@
             function clearCurrent() {
                 multiEntrySelect.current = null;
                 multiEntryCtrl.closeEntryDialog();
+                multiEntryCtrl.showList = true;
             }
         }
     }
