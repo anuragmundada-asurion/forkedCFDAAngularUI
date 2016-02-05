@@ -1,5 +1,8 @@
 package gov.gsa.cfda.aui.controller;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +15,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.Resource;
 
 @RestController
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
 public class ApiController {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
