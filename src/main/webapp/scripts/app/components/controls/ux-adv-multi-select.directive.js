@@ -5,7 +5,7 @@
     advMultiSelect.$inject = ['$parse', '$filter', '$timeout', 'util'];
 
     var DEFAULT_DISPLAYED_PAGES = 10,
-        FILTER_EXP_REGEX = /([\w\-]+):*\s*([\w\-]+|\{[\w\-:\s\{\}]+\})*:*\s*([\w\-]+)*/i;
+        FILTER_EXP_REGEX = /([\w\-]+):*\s*([\w\-]+|\{[\w\-:\s\{}]+})*:*\s*([\w\-]+)*/i;
 
     /////////////////
 
@@ -95,7 +95,7 @@
 
             scope.$watchCollection(function() { return getChoices();}, updateItemCount);
 
-            scope.$watchCollection(function(){ return model.$modelValue; }, function(newValue, oldValue) {
+            scope.$watchCollection(function(){ return model.$modelValue; }, function() {
                 model.$modelValue = null;
             });
 
@@ -103,7 +103,7 @@
 
             function updateItemCount(choices) {
                 if(attr.uxSearchFilter) {
-                    var searchExpParts = FILTER_EXP_REGEX.exec(attr.uxSearchFilter)
+                    var searchExpParts = FILTER_EXP_REGEX.exec(attr.uxSearchFilter);
                     choices = $filter(searchExpParts[1])(choices, $parse(searchExpParts[2])(scope), searchExpParts[3])
                 }
                 controller.itemCount = choices.length;

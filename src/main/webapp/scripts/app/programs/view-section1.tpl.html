@@ -130,7 +130,7 @@
         <fieldset class="usa-fieldset-inputs usa-sans">
             <label>Select any related programs below:<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.choices['programs'] | selectedChoiceFilter:gsavm.program.relatedPrograms.relatedTo:'_id' track by item._id">
-                <p type="text" class="italic" ng-bind="item.title"></p>
+                <p type="text" class="italic">{{ item.programNumber + " " + item.title }}</p>
             </div>
         </fieldset>
     </div>

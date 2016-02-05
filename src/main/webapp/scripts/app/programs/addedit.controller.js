@@ -104,6 +104,7 @@
             onSectionChange: onSectionChange,
             openDatepicker: openDatepicker,
             getChoiceModel: getChoiceModel,
+            formatModelString: formatModelString,
             getTreeNodeModel: getTreeNodeModel,
             createContact: createContact,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
@@ -269,6 +270,12 @@
             });
 
             return selectedChoice;
+        }
+
+        function formatModelString(value, key, dictionaryName, exp) {
+            var model = getChoiceModel(value, key, dictionaryName);
+
+            return $parse(exp)(model);
         }
 
         function getTreeNodeModel(value, keyName, childrenName, dictionaryName) {

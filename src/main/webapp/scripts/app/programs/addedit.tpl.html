@@ -250,14 +250,14 @@
                             <span ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
                         </div>
                         <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.getChoiceModel(item, '_id', 'programs').title}}</span>
+                            <span class='text-nowrap'>{{$ctrl.parentVm.formatModelString(item, '_id', 'programs', 'programNumber + " " + title')}}</span>
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-adv-multi-select
                                     ng-model="_multiEntrySelect.current"
                                     ux-choices="$ctrl.parentVm.choices['programs']"
                                     ux-choice-value="_id"
-                                    ux-choice-title="title"
+                                    ux-choice-title="programNumber + ' ' + title"
                                     ux-items-per-page="25"
                                     ux-displayed-pages="5"
                                     ux-search-filter="filter: {title: srchText }"
@@ -359,7 +359,7 @@
                                 ng-model="_multiEntrySelect.current"
                                 ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
                                 ux-choice-value="element_id"
-                                ux-choice-title="value"
+                                ux-choice-title="item.value"
                                 ux-items-per-page="25"
                                 ux-displayed-pages="5"
                                 ux-search-filter="filter: {value: srchText }"
