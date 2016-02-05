@@ -16,7 +16,7 @@
                     data = JSON.parse(data);
                     var dictionary = {};
                     angular.forEach(data, function(dictionaryJSON){
-                        addDisplayValue(dictionaryJSON.elements);
+                        updateTreeNodes(dictionaryJSON.elements);
                         dictionary[dictionaryJSON.id] = dictionaryJSON.elements;
                     });
                     return dictionary;
@@ -44,11 +44,12 @@
             return !!$filter('filter')(appConstants.CORE_DICTIONARIES, dictionaryName, true).length;
         }
 
-        function addDisplayValue(elements) {
+        function updateTreeNodes(elements, parent) {
             angular.forEach(elements, function(item){
                 if(item.elements)
-                    addDisplayValue(item.elements);
+                    updateTreeNodes(item.elements, item);
                 item.displayValue = item.code + " - " + item.value;
+                item.parent = parent;
             });
         }
 
