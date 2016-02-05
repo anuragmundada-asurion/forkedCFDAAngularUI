@@ -154,11 +154,11 @@ gulp.task('ngdocs', ['test'], function () {
     var options = {
         //scripts: ['../app.min.js'],
         html5Mode: true,
-        title: "CFDA Modernization Documentation",
+        title: "CFDA Modernization Documentation"
     };
     return gulp.src('target/classes/static/js/*.js')
         .pipe(ngdocs.process(options))
-        .pipe(gulp.dest('src/ngdocs'));
+        .pipe(gulp.dest('target/site/ngdocs'));
 });
 
 // Default Task
