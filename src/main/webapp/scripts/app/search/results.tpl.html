@@ -31,7 +31,7 @@
                         <label for="program-{{$index}}"></label>
                     </td>
                     <td>{{row.programNumber || '-'}}</td>
-                    <td>{{row.title}}</td>
+                    <td><a ui-sref="editProgram({id: row.id, section: 'review'})">{{row.title}}</a></td>
                     <td>{{row.agencyId}}</td>
                     <td>{{row.assistanceTypes}}</td>
                 </tr>
