@@ -88,7 +88,8 @@
             goToPreviousSection: goToPreviousSection,
             onSectionChange: angular.noop,
             addBookmark: addBookmark,
-            goToBookmark: goToBookmark
+            goToBookmark: goToBookmark,
+            goToBookmarkById: goToBookmarkById
         });
 
         //////////////////
@@ -195,6 +196,7 @@
         function goToBookmark(){
             var bookmark = self.selectedBookmark;
             if(bookmark) {
+                removeAllHighlights();
                 if(bookmark.section !== self.current)
                     bookmark.section.go();
                 $timeout(function(){
@@ -202,6 +204,29 @@
                 });
             }
         }
-    }
 
+        function removeAllHighlights() {
+            angular.forEach(self.bookmarks, function(value) {
+                value.removeHighlight();
+            });
+        }
+
+        function goToBookmarkById(id) {
+            var bookmark = null;
+            self.bookmarks.some(function(value) {
+                if (value.id === id) {
+                    bookmark = value;
+                    return true;
+                }
+            });
+            if (bookmark) {
+                removeAllHighlights();
+                if(bookmark.section !== self.current)
+                    bookmark.section.go();
+                $timeout(function() {
+                    bookmark.goToElement(self.offset);
+                });
+            }
+        }
+    }
 })();
