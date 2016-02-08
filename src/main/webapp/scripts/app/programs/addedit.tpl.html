@@ -15,7 +15,7 @@
     <section class="usa-grid-full">
         <ux-form-section state-key="info" section-title="General Information" field-finder-section>
             <h2><span class="section-circle">1</span> General Information</h2>
-            <section field-finder-bookmark="000 Intro" style="display:none" class="sub-section">
+            <section field-finder-bookmark title="000 Intro" style="display:none" class="sub-section">
                 <h3>Intro</h3>
                 <div class="input-field usa-width-one-fourth">
                     <label for="agency">Agency</label>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark class="usa-grid-full">
+            <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required" >*</span></label></h3>
                 <div class="input-field" >
                     <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="020 Popular Name">
                 <h3><label for="alternativeName">020 Popular Name</label></h3>
                 <div class="input-field">
                     <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="040 Authorization">
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
@@ -99,7 +99,7 @@
                     </multi-entry>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="050 Objectives">
                 <h3><label for="objective">050 Objectives<span class="required" >*</span></label></h3>
                 <div class="input-field">
                     <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="060 Types of Assistance">
                 <div class="input-field">
                     <!--<p>
                         Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
@@ -140,7 +140,7 @@
                     </multi-entry>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="070 Uses and Use Restrictions">
                 <h3>070 Uses and Use Restrictions</h3>
                 <div class="input-field">
                     <label for="usageRulesContent">Select "Not Applicable" if the requested information does not apply to your program. If "Yes" is selected, users are required to provide more details in text fields.</label>
@@ -213,7 +213,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="160 Related Programs">
                 <h3>160 Related Programs<span class="required" >*</span></h3>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
@@ -277,7 +277,7 @@
                     </div>-->
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="170 Examples of Funded Projects">
                 <h3>170 Examples of Funded Projects<span class="required" >*</span></h3>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
@@ -317,7 +317,7 @@
                     </div>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="190 Functional Codes">
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.functionalCodes" name="functionalCodes"  new-entry-btn-name="+ Add Functional Codes" delete-btn-label="Remove Functional Code"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
@@ -342,7 +342,7 @@
                     </multi-entry>
                 </div>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="300 Subject Terms">
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
@@ -362,8 +362,7 @@
                                 ux-choice-title="item.value"
                                 ux-items-per-page="25"
                                 ux-displayed-pages="5"
-                                ux-search-filter="filter: {value: srchText }"
-                            >
+                                ux-search-filter="filter: {value: srchText }">
                             </ux-adv-multi-select>
                         </multi-entry-select>
                     </multi-entry>
@@ -378,9 +377,9 @@
         </ux-form-section>
         <ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
             <h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="080 Eligibility Requirements">
                 <h3>080 Eligibility Requirements</h3>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="081 Applicant Eligibility">
                     <h4>081 Applicant Eligibility</h4>
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.eligibility.applicant.types" name="eligibleApplicants"  new-entry-btn-name="+ Add Eligible Applicants" delete-btn-label="Remove Eligible Applicant"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
@@ -436,7 +435,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="082 Beneficiary Eligibility">
                     <h4>082 Beneficiary Eligibility</h4>
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.eligibility.beneficiary.types" name="beneficiaryEligibility"  new-entry-btn-name="+ Add Beneficiary Eligibilities" delete-btn-label="Remove Beneficiary Eligibility"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
@@ -468,7 +467,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="083 Credentials/Documentation">
                     <h4>083 Credentials/Documentation</h4>
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -512,11 +511,11 @@
         </ux-form-section>
         <ux-form-section state-key="apply" section-title="How to Apply" field-finder-section>
             <h2><span class="section-circle">3</span> How to Apply</h2>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="090 Application and Award Process">
                 <h3>090 Application and Award Process</h3>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="091 Pre-application Coordination">
                     <div class="input-field">
-                        <h4>091 Preapplication Coordination<span class="required">*</span></h4>
+                        <h4>091 Pre-application Coordination<span class="required">*</span></h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label>Is any prior coordination or approval required with governmental or nongovernmental units
                                 prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
@@ -584,7 +583,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="092 Application Procedures">
                     <div class="input-field">
                         <h4>092 Application Procedures<span class="required">*</span></h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -610,7 +609,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="093 Award Procedure">
                     <div class="input-field">
                         <h4><label for="awardProc3">093 Award Procedure<span class="required" >*</span></label></h4>
                         <label for="awardProc3">What are the basic procedural steps for awarding assistance?</label>
@@ -620,7 +619,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="094 Deadlines">
                     <div class="input-field">
                         <h4>094 Deadlines</h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -695,7 +694,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="095 Range of Approval/Disapproval Time">
                     <div class="input-field">
                         <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
                         <ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2" style="width:250px" required>
@@ -713,7 +712,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="096 Appeals">
                     <div class="input-field">
                         <h4>096 Appeals<span class="required" >*</span></h4>
                         <ui-select id="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" name="appeals3" theme="select2" style="width:250px" required>
@@ -734,7 +733,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="097 Renewals">
                     <div class="input-field">
                         <h4>097 Renewals<span class="required" >*</span></h4>
                         <ui-select id="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" name="renewals3" theme="select2" style="width:250px" required>
@@ -756,9 +755,9 @@
                     </div>
                 </section>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="100 Assistance Consideration">
                 <h3>100 Assistance Consideration</h3>
-                <section class="sub-minor-section" field-finder-bookmark="">
+                <section class="sub-minor-section" field-finder-bookmark title="101 Formula and Matching Requirements">
                     <div class="input-field">
                         <h4>101 Formula and Matching Requirements</h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -865,7 +864,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark="">
+                <section class="sub-minor-section" field-finder-bookmark title="102 Length and Time Phasing of Assistance">
                     <div class="input-field" >
                         <h4>102 Length and Time Phasing of Assistance</h4>
                         <label for="assistLimit3">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></label>
@@ -883,7 +882,7 @@
                         </select>
                     </div>
                 </section>
-                <section class="sub-section" field-finder-bookmark="">
+                <section class="sub-section" field-finder-bookmark title="180 Criteria for Selecting Proposals">
                     <h3>180 Criteria for Selecting Proposals<span class="required" >*</span></h3>
                     <div class="input-field">
 
@@ -922,9 +921,9 @@
         </ux-form-section>
         <ux-form-section state-key="awards" section-title="Post Award Requirements" field-finder-section>
             <h2><span class="section-circle">4</span> Post Award Requirements</h2>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="110 Post Assistance Requirements">
                 <h3>110 Post Assistance Requirements</h3>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="111 Reports">
                     <h4>111 Reports</h4>
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1097,7 +1096,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="112 Audits">
                     <h4>112 Audits</h4>
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1146,14 +1145,14 @@
 
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="113 Records">
                     <h4>113 Records</h4>
                     <div class="input-field">
                         <label for="recordContent">Describe what records the Federal agency requires the recipient to maintain and the time periods.</label>
                         <textarea id="recordContent" name="records" class="usa-input-large" ng-model="gsavm.program.postAward.records.content"></textarea>
                     </div>
                 </section>
-                <section class="sub-section" field-finder-bookmark>
+                <section class="sub-section" field-finder-bookmark title="140 Regulations, Guidelines, and Literature">
                     <h3>140 Regulations, Guidelines, and Literature</h3>
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1185,9 +1184,9 @@
         </ux-form-section>
         <ux-form-section state-key="financial" section-title="Financial Information and Accomplishments" field-finder-section>
             <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
-            <section class="sub-section" field-finder-bookmark="">
+            <section class="sub-section" field-finder-bookmark title="120 Financial Information">
                 <h3>120 Financial Information</h3>
-                <div class="sub-minor-section" field-finder-bookmark>
+                <div class="sub-minor-section" field-finder-bookmark title="121 Account Identification">
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
                             <multi-entry-header>
@@ -1209,7 +1208,7 @@
                         </multi-entry>
                     </div>
                 </div>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="122 Obligations">
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
                             <multi-entry-header>
@@ -1308,13 +1307,13 @@
                         </multi-entry>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="123 Range and Average of Financial Assistance">
                     <div class="input-field">
                         <h4><label for="financialAdditionalInfo">123 Range and Average of Financial Assistance</label></h4>
                         <textarea id="financialAdditionalInfo" name="financialAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.financial.additionalInfo.content"></textarea>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark><div class="input-field">
+                <section class="sub-minor-section" field-finder-bookmark title="124 TAFS Codes - Unique Treasury Appropriation Fund Symbols"><div class="input-field">
                     <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
                         <multi-entry-header>
                             <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
@@ -1363,7 +1362,7 @@
                 </div>
                 </section>
             </section>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="130 Program Accomplishments">
                 <h3>130 Program Accomplishments<span class="required" >*</span></h3>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1404,9 +1403,9 @@
         </ux-form-section>
         <ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
             <h2><span class="section-circle">6</span> Contact Information</h2>
-            <section class="sub-section" field-finder-bookmark>
+            <section class="sub-section" field-finder-bookmark title="150 Information Contacts">
                 <h3>150 Information Contacts<span class="required" >*</span></h3>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <h4>151 Regional or Local Office<span class="required" >*</span></h4>
                         <ul class="usa-unstyled-list">
@@ -1427,7 +1426,7 @@
                     <textarea id="office6info" name="office6info" class="usa-input-large" ng-model="gsavm.program.contacts['local'].additionalInfo.content" cl required></textarea>
                     <br/>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="152 Headquarters Office">
                     <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
                         <multi-entry-header>
                             <h4>152 Headquarters Office<span class="required" >*</span></h4>
@@ -1730,9 +1729,9 @@
                         </multi-entry-contacts-sub-form>
                     </multi-entry>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark>
+                <section class="sub-minor-section" field-finder-bookmark title="153 Website">
                     <div class="input-field">
-                        <h4><label for="website6">153 Website:</label></h4>
+                        <h4><label for="website6">153 Website</label></h4>
                         <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
                     </div>
                 </section>
