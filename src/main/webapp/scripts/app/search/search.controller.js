@@ -21,7 +21,13 @@
                 }
             };
 
+            var lastTime;
             $scope.getSearchResults = function(tableState) {
+                if (lastTime && ((new Date()).getTime() - lastTime) < 500) {
+                    return;
+                }
+                lastTime = (new Date()).getTime();
+
                 tableState = tableState || {
                     search: {},
                     pagination: {},

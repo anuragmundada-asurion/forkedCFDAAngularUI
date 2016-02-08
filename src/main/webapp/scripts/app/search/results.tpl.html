@@ -25,21 +25,24 @@
             </tr>
             </thead>
             <tbody ng-show="!isLoading">
-            <tr ng-repeat="row in searchResults">
-                <td>
-                    <input type="checkbox" id="program-{{$index}}">
-                    <label for="program-{{$index}}"></label>
-                </td>
-                <td>{{row.programNumber || '-'}}</td>
-                <td>{{row.title}}</td>
-                <td>{{row.agencyId}}</td>
-                <td>{{row.assistanceTypes}}</td>
-            </tr>
+                <tr ng-repeat="row in searchResults">
+                    <td>
+                        <input type="checkbox" id="program-{{$index}}">
+                        <label for="program-{{$index}}"></label>
+                    </td>
+                    <td>{{row.programNumber || '-'}}</td>
+                    <td>{{row.title}}</td>
+                    <td>{{row.agencyId}}</td>
+                    <td>{{row.assistanceTypes}}</td>
+                </tr>
+                <tr ng-show="!searchResults || searchResults.length == 0">
+                    <td colspan="5" class="text-center">No Results Found</td>
+                </tr>
             </tbody>
             <tbody ng-show="isLoading">
-            <tr>
-                <td colspan="5" class="text-center">Loading ...</td>
-            </tr>
+                <tr>
+                    <td colspan="5" class="text-center">Loading ...</td>
+                </tr>
             </tbody>
         </table>
     </div>
