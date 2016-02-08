@@ -32,10 +32,13 @@
 
                 var queryObj = {
                     keyword: $scope.globalSearchValue,
-                    limit: $scope.itemsByPage,
-                    offset: tableState.pagination.start || 0,
+                    size: $scope.itemsByPage,
                     includeCount: true
                 };
+
+                if (tableState.pagination.start) {
+                    queryObj["page"] = Math.ceil(tableState.pagination.start / queryObj.size);
+                }
 
                 if (tableState.sort.predicate) {
                     var isDescending = tableState.sort.reverse,
