@@ -66,8 +66,8 @@
             Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
             picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
         </p>-->
-        <div ng-repeat="item in gsavm.choices['assistance_type'] | selectedChoiceFilter:gsavm.program.assistanceTypes:'element_id' track by item.element_id">
-            <p type="text" class="italic" ng-bind="item.displayValue"></p>
+        <div ng-repeat="item in gsavm.program.assistanceTypes">
+            <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
         </div>
     </div>
 </section>
@@ -164,9 +164,9 @@
 <section class="sub-section" >
     <div class="input-field">
         <h3>190 Functional Codes<span class="required" >*</span></h3>
-            <div ng-repeat="item in gsavm.choices['functional_codes'] | selectedChoiceFilter:gsavm.program.functionalCodes:'element_id' track by item.element_id">
-                <p type="text" class="italic" ng-bind="item.displayValue"></p>
-            </div>
+        <div ng-repeat="item in gsavm.program.functionalCodes">
+            <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
+        </div>
     </div>
 </section>
 <section class="sub-section" >
