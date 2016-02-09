@@ -131,6 +131,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/*Application*</exclude>
+                        <exclude>**/*ApiController*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
