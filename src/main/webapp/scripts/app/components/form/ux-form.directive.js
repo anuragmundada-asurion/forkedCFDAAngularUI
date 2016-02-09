@@ -89,7 +89,7 @@
             onSectionChange: angular.noop,
             addBookmark: addBookmark,
             goToBookmark: goToBookmark,
-            goToBookmarkById: goToBookmarkById
+            goToBookmarkByText: goToBookmarkByText
         });
 
         //////////////////
@@ -211,10 +211,10 @@
             });
         }
 
-        function goToBookmarkById(id) {
+        function goToBookmarkByText(text) {
             var bookmark = null;
             self.bookmarks.some(function(value) {
-                if (value.id === id) {
+                if (value.text === text) {
                     bookmark = value;
                     return true;
                 }
