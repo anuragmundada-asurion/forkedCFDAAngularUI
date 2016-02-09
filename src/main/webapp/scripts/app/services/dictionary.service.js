@@ -46,10 +46,17 @@
 
         function updateTreeNodes(elements, parent) {
             angular.forEach(elements, function(item){
-                if(item.elements)
+                if(item.elements) {
                     updateTreeNodes(item.elements, item);
-                item.displayValue = item.code + " - " + item.value;
+                }
+
                 item.parent = parent;
+
+                if (item.parent) {
+                    item.displayValue = item.parent.value + " - " + item.value;
+                } else {
+                    item.displayValue = item.code + " - " + item.value;
+                }
             });
         }
 

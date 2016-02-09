@@ -67,7 +67,7 @@
             picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
         </p>-->
         <div ng-repeat="item in gsavm.program.assistanceTypes">
-            <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
+            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
         </div>
     </div>
 </section>
@@ -165,7 +165,7 @@
     <div class="input-field">
         <h3>190 Functional Codes<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.program.functionalCodes">
-            <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
+            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
         </div>
     </div>
 </section>

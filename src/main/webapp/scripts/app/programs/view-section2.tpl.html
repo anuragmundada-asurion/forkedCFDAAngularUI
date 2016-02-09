@@ -6,11 +6,11 @@
         <div class="input-field">
             <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.program.eligibility.applicant.types">
-                <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'applicant_types').displayValue}}</span>
+                <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'applicant_types').displayValue}}</span>
             </div>
             <label for="useOfAssistance">Use Of Assistance<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.program.eligibility.applicant.assistanceUsageTypes">
-                <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_usage_types').displayValue}}</span>
+                <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_usage_types').displayValue}}</span>
             </div>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="assistanceAdditionalInfo7">Additional Information<span class="required" >*</span></label>
@@ -23,7 +23,7 @@
         <div class="input-field">
             <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.program.eligibility.beneficiary.types">
-                <span class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'beneficiary_types').displayValue}}</span>
+                <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'beneficiary_types').displayValue}}</span>
             </div>
             <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="beneficiaryAdditionalInfo7">Additional Information<span class="required" >*</span></label>
