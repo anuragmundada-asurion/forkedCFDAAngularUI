@@ -47,7 +47,8 @@
             ///////////////////
 
             function add() {
-                multiEntrySelect.current = multiEntryCtrl.model.$modelValue.slice();
+                var value = multiEntryCtrl.model.$modelValue || [];
+                multiEntrySelect.current = value.slice();
                 multiEntryCtrl.showList = false;
             }
             function save() {
