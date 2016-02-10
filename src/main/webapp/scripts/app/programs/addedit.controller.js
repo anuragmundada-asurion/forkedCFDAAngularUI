@@ -265,8 +265,9 @@
                 selectedChoice = null;
 
             angular.forEach(vm.choices[dictionaryName], function(choice){
-                if(getter(choice) === value)
+                if (getter(choice) === value) {
                     selectedChoice = choice;
+                }
             });
 
             return selectedChoice;
@@ -274,8 +275,11 @@
 
         function formatModelString(value, key, dictionaryName, exp) {
             var model = getChoiceModel(value, key, dictionaryName);
-
-            return $parse(exp)(model);
+            if (model) {
+                return $parse(exp)(model);
+            } else {
+                return "Error value " + value + " not found in " + dictionaryName;
+            }
         }
 
         function getTreeNodeModel(value, keyName, childrenName, dictionaryName) {
