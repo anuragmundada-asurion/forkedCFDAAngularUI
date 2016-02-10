@@ -278,7 +278,7 @@
             if (model) {
                 return $parse(exp)(model);
             } else {
-                return "Error value " + value + " not found in " + dictionaryName;
+                return "Error: " + dictionaryName + " " + value + " not found";
             }
         }
 
