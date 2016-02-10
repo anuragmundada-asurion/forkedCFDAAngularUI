@@ -83,14 +83,14 @@
                         <td style="padding:4px;vertical-align:top;border:0px">
                             <div class="col-md-6">
                                 <p class="input-group">
-                                    <span type="text" class="italic" ng-bind="deadline.start"></span>
+                                    <span type="text" class="italic">{{deadline.start | date: 'MMM dd, yyyy'}}</span>
                                 </p>
                             </div>
                         </td>
                         <td style="padding:4px;vertical-align:top;border:0px">
                             <div class="col-md-6">
                                 <p class="input-group">
-                                    <span type="text" class="italic" ng-bind="deadline.end"></span>
+                                    <span type="text" class="italic">{{deadline.end | date: 'MMM dd, yyyy'}}</span>
                                 </p>
                             </div>
                         </td>
@@ -98,7 +98,7 @@
                 </table>
                 <br/>
                 Description:<br/>
-                <span type="text" class="italic" id="deadlineDesc7" ng-bind="deadline.description"></span>
+                <span type="text" class="italic" id="deadlineDesc7">{{deadline.description}}</span>
                 <br/>
             </div>
             <br/>
