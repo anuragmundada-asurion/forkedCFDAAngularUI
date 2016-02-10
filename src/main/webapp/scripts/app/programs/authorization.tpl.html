@@ -1,7 +1,7 @@
 <section class="usa-grid">
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'act'">
         <label for="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}">Description</label>
-        <input id="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="description" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].description" unique-from="$ctrl.parentVm.program.title" required>
+        <input id="{{ 'desc-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="description" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].description" unique-from="$ctrl.parentVm.program.title" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.description.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.description.$error.required">The Description must be filled.</span>
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.description.$error.uniqueFrom">This Description must be unique from the listing's Title.</span>
@@ -9,7 +9,7 @@
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act' || $subForm.current.authorizationType === 'usc'">
         <label for="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}">Title</label>
-        <input id="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="title" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].title" unique-from="$ctrl.parentVm.program.title" required>
+        <input id="{{ 'title-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="title" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].title" unique-from="$ctrl.parentVm.program.title" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.title.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.title.$error.required">The Title must be filled.</span>
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.title.$error.uniqueFrom">This title must be unique from the listing's Title.</span>
@@ -17,14 +17,14 @@
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act'">
         <label for="{{ 'part-' + $subForm.current.authorizationType + '-' + idPath }}">Part</label>
-        <input id="{{ 'part-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="part" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].part" required>
+        <input id="{{ 'part-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="part" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].part" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.part.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.part.$error.required">The Part must be filled.</span>
         </div>
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'eo' || $subForm.current.authorizationType === 'act' || $subForm.current.authorizationType === 'usc'">
         <label for="{{ 'section-' + $subForm.current.authorizationType + '-' + idPath }}">Section</label>
-        <input id="{{ 'section-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="section" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].section" required>
+        <input id="{{ 'section-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="section" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].section" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.section.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.section.$error.required">The Section must be filled.</span>
         </div>
@@ -32,7 +32,7 @@
     <!-- Public Law -->
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'publiclaw'">
         <label for="{{ 'congress-code-' + $subForm.current.authorizationType + '-' + idPath }}">Congress</label>
-        <input id="{{ 'congress-code-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].congressCode" ng-minlength="3" ng-maxlength="3" required>
+        <input id="{{ 'congress-code-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" ng-pattern="/^(\d*)*$/" name="congressCode" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].congressCode" ng-minlength="3" ng-maxlength="3" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.congressCode.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.congressCode.$error.required">A Congress Code must be filled.</span>
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.congressCode.$error.pattern || $ctrl.parentVm.form.{{formPath}}.congressCode.$error.minlength || $ctrl.parentVm.form.authorization{{$index}}.congressCode.$error.maxlength">The Congress Code must be a three digit number.</span>
@@ -40,7 +40,7 @@
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'publiclaw'">
         <label for="{{ 'law-number-' + $subForm.current.authorizationType + '-' + idPath }}">Law Number</label>
-        <input id="{{ 'law-number-' + $subForm.current.authorizationType + '-' + idPath }}" type="number" name="lawNumber" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].lawNumber" required>
+        <input id="{{ 'law-number-' + $subForm.current.authorizationType + '-' + idPath }}" type="number" name="lawNumber" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].lawNumber" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.lawNumber.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.lawNumber.$error.required">The Law Number must be filled.</span>
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.lawNumber.$error.number">The Law Number must be a number.</span>
@@ -48,14 +48,14 @@
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'statute'">
         <label for="{{ 'volume-' + $subForm.current.authorizationType + '-' + idPath }}">Volume</label>
-        <input id="{{ 'volume-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="volume" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].volume" required>
+        <input id="{{ 'volume-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="volume" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].volume" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.volume.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.volume.$error.required">The Volume must be filled.</span>
         </div>
     </div>
     <div class="input-field" ng-if="$subForm.current.authorizationType === 'statute'">
         <label for="{{ 'page-' + $subForm.current.authorizationType + '-' + idPath }}">Page</label>
-        <input id="{{ 'page-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="page" ng-model="$subForm.current[$ctrl.parentVm.constants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].page" required>
+        <input id="{{ 'page-' + $subForm.current.authorizationType + '-' + idPath }}" type="text" name="page" ng-model="$subForm.current[$ctrl.appConstants.AUTH_TYPE_KEYS[$subForm.current.authorizationType]].page" required>
         <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.{{formPath}}.page.$dirty">
             <span ng-show="$ctrl.parentVm.form.{{formPath}}.page.$error.required">The Page must be filled.</span>
         </div>

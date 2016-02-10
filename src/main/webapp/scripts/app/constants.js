@@ -30,6 +30,5 @@
 
     appConstants.DEFAULT_PAGE_ITEM_NUMBER = appConstants.PAGE_ITEM_NUMBERS[1];
 
-    angular.module('app')
-        .constant('appConstants', appConstants);
+    angular.module('app').constant('appConstants', appConstants);
 })();

@@ -7,11 +7,11 @@
         .directive('multiEntryHeader', multiEntryHeaderDirective)
         .directive('multiEntryList', multiEntryListDirective);
 
-    multiEntryDirective.$inject = ['$parse', '$compile'];
+    multiEntryDirective.$inject = ['$parse', '$compile', 'appConstants'];
 
     //////////////////
 
-    function multiEntryDirective($parse, $compile) {
+    function multiEntryDirective($parse, $compile, appConstants) {
         return {
             restrict: 'E',
             controller: multiEntryController,
@@ -41,12 +41,15 @@
             var ctrl = ctrls[0],
                 model = ctrls[1];
 
+            ctrl.appConstants = appConstants;
             ctrl.model = model;
+
             scope.$watch(function() {
                 return scope.parentVm;
             }, function(newVal){
                 ctrl.parentVm = newVal;
             });
+
             if (element.find('multi-entry-list').length <= 0) {
                 var listElement = angular.element("<multi-entry-list><span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span></multi-entry-list>"),
                     filterFunc;
