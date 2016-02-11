@@ -346,20 +346,20 @@
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>300 Subject Terms<span class="required" >*</span></h3>
+                            <h3>300 bject Terms<span class="required" >*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
                         </div>
                         <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').value}}</span>
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').displayValue}}</span>
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-adv-multi-select
                                 ng-model="_multiEntrySelect.current"
                                 ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
                                 ux-choice-value="element_id"
-                                ux-choice-title="item.value"
+                                ux-choice-title="displayValue"
                                 ux-items-per-page="25"
                                 ux-displayed-pages="5"
                                 ux-search-filter="filter: {value: srchText }">
