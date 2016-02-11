@@ -33,7 +33,7 @@
                     <td>{{row.programNumber || '-'}}</td>
                     <td><a ui-sref="editProgram({id: row.id, section: 'review'})">{{row.title}}</a></td>
                     <td>{{row.agencyId}}</td>
-                    <td>{{row.assistanceTypes}}</td>
+                    <td><span ng-bind-html="row.assistanceTypes"></span></td>
                 </tr>
                 <tr ng-show="!searchResults || searchResults.length == 0">
                     <td colspan="5" class="text-center">No Results Found</td>
