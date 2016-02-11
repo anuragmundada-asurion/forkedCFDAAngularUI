@@ -147,6 +147,9 @@
 
         function save() {
             var copy = angular.copy(vm.program);
+            if( !copy.status ) {
+                copy.status = "Draft";
+            }
             copy[copy._id ? '$update' : '$save']().then(updateId);
         }
 
