@@ -119,7 +119,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/search", method = RequestMethod.GET, produces = "application/json")
     public String searchApiCall(@RequestParam(value="keyword", required=false) String keyword,
-                                @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
+                                @RequestParam(value="sortBy", required=false, defaultValue="score") String sortBy,
                                 @RequestParam(value="page", required=false, defaultValue="0") int page,
                                 @RequestParam(value="size", required=false, defaultValue="10") int size) {
         RestTemplate restTemplate = new RestTemplate();
