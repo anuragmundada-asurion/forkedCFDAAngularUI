@@ -65,8 +65,10 @@ describe('Unit Tests for Program Search Controller', function() {
 
         describe('$location.path', function() {
             var $location;
-            beforeEach(inject(function(_$location_) {
+            var $state;
+            beforeEach(inject(function(_$location_, _$state_) {
                 $location = _$location_;
+                $state = _$state_;
             }));
 
             it('should change location path if globalSearchValue is passed', function() {
@@ -74,7 +76,8 @@ describe('Unit Tests for Program Search Controller', function() {
                 var rootScope = {};
                 spyOn($location, 'path');
                 spyOn($location, 'search');
-                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location });
+                spyOn($state, 'reload');
+                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location, $state: $state });
                 scope['globalSearchValue'] = testKeyword;
                 scope.searchPrograms();
                 expect($location.path).toHaveBeenCalledWith('/search');
@@ -93,7 +96,8 @@ describe('Unit Tests for Program Search Controller', function() {
             it('should set globalSearchValue in rootScope to value in scope', function() {
                 var scope = $rootScope.$new();
                 var rootScope = {};
-                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location });
+                spyOn($state, 'reload');
+                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location, $state: $state });
                 scope['globalSearchValue'] = testKeyword;
                 scope.searchPrograms();
                 scope.$digest();

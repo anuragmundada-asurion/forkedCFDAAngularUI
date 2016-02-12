@@ -1,8 +1,8 @@
 !function() {
     'use strict';
 
-    angular.module('app').controller('ProgramSearchCtrl', ['$rootScope', '$scope', '$stateParams', '$location', 'appConstants', 'Search',
-        function($rootScope, $scope, $stateParams, $location, appConstants, Search) {
+    angular.module('app').controller('ProgramSearchCtrl', ['$rootScope', '$scope', '$stateParams', '$location', 'appConstants', 'Search', '$state',
+        function($rootScope, $scope, $stateParams, $location, appConstants, Search, $state) {
             $scope['globalSearchValue'] = $rootScope['globalSearchValue'] || $stateParams['keyword'] || '';
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -18,6 +18,7 @@
                     $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
                     $location.path('/search');
                     $location.search('keyword', $scope['globalSearchValue']);
+                    $state.reload();
                 }
             };
 

@@ -18,10 +18,6 @@ describe("Unit Tests for HTTP Code Routes", function () {
             $location = _$location_;
             $templateCache = _$templateCache_;
             $httpBackend = _$httpBackend_;
-
-            $httpBackend.whenGET('/environment/api').respond('Test API');
-
-            $httpBackend.expectGET('/environment/api');
         });
     });
 

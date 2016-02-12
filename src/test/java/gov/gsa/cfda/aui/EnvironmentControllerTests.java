@@ -29,11 +29,6 @@ public class EnvironmentControllerTests {
     }
 
     @Test
-    public void testGettingEnvironmentApi() throws Exception {
-        this.mvc.perform(get("/environment/api")).andExpect(status().isOk());
-    }
-
-    @Test
     public void testGettingXDomain() throws Exception {
         this.mvc.perform(get("/_xdomainVariables")).andExpect(status().isOk());
     }
