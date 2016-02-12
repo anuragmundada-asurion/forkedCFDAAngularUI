@@ -125,7 +125,7 @@
                             <span ng-show="$ctrl.parentVm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
                         </div>
                         <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').code}} - {{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').value}}</span>
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-hierarchy-dropdown
@@ -346,7 +346,7 @@
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>300 bject Terms<span class="required" >*</span></h3>
+                            <h3>300 Subject Terms<span class="required" >*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
