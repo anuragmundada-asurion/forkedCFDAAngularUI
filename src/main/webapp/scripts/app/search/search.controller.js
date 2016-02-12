@@ -16,9 +16,7 @@
             $scope.searchPrograms = function() {
                 if ($scope['globalSearchValue']) {
                     $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                    $location.path('/search');
-                    $location.search('keyword', $scope['globalSearchValue']);
-                    $state.reload();
+                    $state.go('searchPrograms', {keyword: $scope['globalSearchValue']}, {reload: true, inherit: false});
                 }
             };
 

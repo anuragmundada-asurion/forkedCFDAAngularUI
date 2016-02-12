@@ -74,14 +74,11 @@ describe('Unit Tests for Program Search Controller', function() {
             it('should change location path if globalSearchValue is passed', function() {
                 var scope = $rootScope.$new();
                 var rootScope = {};
-                spyOn($location, 'path');
-                spyOn($location, 'search');
-                spyOn($state, 'reload');
-                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location, $state: $state });
+                spyOn($state, 'go');
+                $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $state: $state });
                 scope['globalSearchValue'] = testKeyword;
                 scope.searchPrograms();
-                expect($location.path).toHaveBeenCalledWith('/search');
-                expect($location.search).toHaveBeenCalledWith('keyword', testKeyword);
+                expect($state.go).toHaveBeenCalled();
             });
 
             it('should not change location path if globalSearchValue is missing', function() {
@@ -96,7 +93,7 @@ describe('Unit Tests for Program Search Controller', function() {
             it('should set globalSearchValue in rootScope to value in scope', function() {
                 var scope = $rootScope.$new();
                 var rootScope = {};
-                spyOn($state, 'reload');
+                spyOn($state, 'go');
                 $controller('ProgramSearchCtrl', { $rootScope: rootScope, $scope: scope, $location: $location, $state: $state });
                 scope['globalSearchValue'] = testKeyword;
                 scope.searchPrograms();
