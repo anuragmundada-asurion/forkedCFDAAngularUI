@@ -16,7 +16,7 @@
                     data = JSON.parse(data);
                     var dictionary = {};
                     angular.forEach(data, function(dictionaryJSON){
-                        updateTreeNodes(dictionaryJSON.elements);
+                        updateTreeNodes(dictionaryJSON.id, dictionaryJSON.elements);
                         dictionary[dictionaryJSON.id] = dictionaryJSON.elements;
                     });
                     return dictionary;
@@ -44,18 +44,26 @@
             return !!$filter('filter')(appConstants.CORE_DICTIONARIES, dictionaryName, true).length;
         }
 
-        function updateTreeNodes(elements, parent) {
+        function updateTreeNodes(dictionaryName, elements, parent) {
             angular.forEach(elements, function(item){
                 if(item.elements) {
-                    updateTreeNodes(item.elements, item);
+                    updateTreeNodes(dictionaryName, item.elements, item);
                 }
 
                 item.parent = parent;
-
-                if (!item.displayValue) {
-                    item.displayValue = item.code + " - " + item.value;
-                }
+                item.displayValue = formatDisplayValue(dictionaryName, item);
             });
+        }
+
+        //  TODO: Review implementation
+        function formatDisplayValue(dictionaryName, item) {
+            switch(dictionaryName) {
+                case "functional_codes":
+                    return (item.parent ? item.parent.value : "") + " - " + item.value;
+                default:
+                    return item.code + " - " + item.value;
+                    break;
+            }
         }
 
         //  TODO Review implementation
