@@ -52,9 +52,7 @@
 
                 item.parent = parent;
 
-                if (item.parent) {
-                    item.displayValue = item.parent.value + " - " + item.value;
-                } else {
+                if (!item.displayValue) {
                     item.displayValue = item.code + " - " + item.value;
                 }
             });

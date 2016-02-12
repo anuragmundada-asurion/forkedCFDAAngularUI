@@ -67,7 +67,7 @@
             picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
         </p>-->
         <div ng-repeat="item in gsavm.program.assistanceTypes">
-            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
+            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').code}} - {{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').value}}</span>
         </div>
     </div>
 </section>
