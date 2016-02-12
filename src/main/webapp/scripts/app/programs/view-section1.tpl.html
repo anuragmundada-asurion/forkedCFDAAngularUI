@@ -21,7 +21,7 @@
                 <span ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">You need to create at least one Authorization.</span>
             </div>
             <multi-entry-list editable="true">
-                <span class='text-nowrap'>{{$ctrl.formatTitle(item)}}</span><span> ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
+                <span>{{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
             </multi-entry-list>
             <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel" read-only="true">
                 <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
