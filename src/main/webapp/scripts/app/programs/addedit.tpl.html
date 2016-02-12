@@ -125,7 +125,7 @@
                             <span ng-show="$ctrl.parentVm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
                         </div>
                         <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>
+                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').code}} - {{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').value}}</span>
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-hierarchy-dropdown
