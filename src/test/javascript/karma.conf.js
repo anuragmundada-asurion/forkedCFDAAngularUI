@@ -34,12 +34,12 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-vs-repeat/src/angular-vs-repeat.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
-            'main/webapp/scripts/app/**/*.html',
-            'main/webapp/scripts/app/app.bootstrap.js',
-            'main/webapp/scripts/app/app.module.js',
-            'main/webapp/scripts/app/app.config.js',
-            'main/webapp/scripts/app/constants.js',
-            'main/webapp/scripts/app/**/*.js',
+            'main/webapp/app/**/*.html',
+            'main/webapp/app/app.bootstrap.js',
+            'main/webapp/app/app.module.js',
+            'main/webapp/app/app.config.js',
+            'main/webapp/app/constants.js',
+            'main/webapp/app/**/*.js',
             'test/javascript/**/!(karma.conf).js'
         ],
 
@@ -52,13 +52,13 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            "main/webapp/scripts/app/**/*.js": "coverage",
-            'main/webapp/scripts/app/**/*.html' : "ng-html2js"
+            "main/webapp/app/**/*.js": "coverage",
+            'main/webapp/app/**/*.html' : "ng-html2js"
         },
 
 
         ngHtml2JsPreprocessor: {
-            stripPrefix: 'main/webapp/scripts/app/',
+            stripPrefix: 'main/webapp/app/',
             moduleName: 'templates'
         },
 

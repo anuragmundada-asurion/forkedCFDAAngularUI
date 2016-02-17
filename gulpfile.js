@@ -16,7 +16,7 @@ var templateCache = require('gulp-angular-templatecache');
 var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
 
-var appFilesBase = "src/main/webapp/scripts/app";
+var appFilesBase = "src/main/webapp/app";
 
 var ie8VendorDep = ['**/jquery.js'];
 var ie9VendorDep = ['**/xdomain.js'];
