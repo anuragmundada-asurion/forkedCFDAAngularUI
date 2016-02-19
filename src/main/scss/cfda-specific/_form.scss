@@ -119,6 +119,39 @@ select {
   }
 }
 
+ul {
+    &.tab-menu {
+        list-style-type: none;
+        height: auto;
+        margin: 0px;
+        padding: 8px 0px;
+        > li  {
+            font-weight: bold;
+            text-align: center;
+            display: inline;
+            height: 55px;
+            border-style: solid;
+            background-color: $color-white;
+            border-color: $color-gray;
+            border-width: 2px 2px 2px 2px;
+            color: $color-gray;
+
+            &.tab-selected {
+                background-color: $color-gray-lighter;
+                border-color: $color-primary;
+                border-width: 2px 2px 2px 4px;
+                color: $color-primary;
+
+            }
+
+            > a {
+                text-decoration: none;
+            }
+
+         }
+    }
+}
+
 ux-form-nav {
   display: block;
 }

@@ -8,10 +8,15 @@
     programsListController.$inject = ['$state', 'appConstants', 'Program'];
 
     //////////////////////
-
     function programsListController($state, appConstants, Program) {
-        var vm = this,
-            previousState;
+        var vm = this;
+        var previousState;
+
+        vm.tabs = [
+            { title:'Open', content:'Dynamic content 1' },
+            { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+        ];
+        vm.selectedTab = vm.tabs[0];
 
         angular.extend(vm, {
             itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -19,10 +24,30 @@
 
             loadPrograms: loadPrograms,
             editProgram: editProgram,
-            deleteProgram: deleteProgram
+            deleteProgram: deleteProgram,
+            getTabClass: getTabClass,
+            getSelectedTab: getSelectedTab,
+            setSelectedTab: setSelectedTab
         });
 
         /////////////////////
+
+        function getTabClass(tab) {
+            if (vm.selectedTab == tab) {
+                return "active";
+            } else {
+                return "";
+            }
+         }
+
+
+        function setSelectedTab(tab) {
+            vm.selectedTab = tab;
+        }
+
+        function getSelectedTab() {
+            return vm.selectedTab;
+        }
 
         function loadPrograms(tableState) {
             tableState = tableState || {
