@@ -1,0 +1,20 @@
+home-header {
+  > * {
+    background-color:#112E51;
+    margin:0px;
+  }
+  >table {
+    border-collapse: collapse;
+    width:100%;
+  td.spacer {
+    border:none;
+    width:25%;
+  }
+  td.content {
+    border:none;
+    width:50%;
+    color:#FFF;
+    text-align:center
+  }
+  }
+}

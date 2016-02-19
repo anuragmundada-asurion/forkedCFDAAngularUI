@@ -71,11 +71,11 @@ describe("Unit Tests for Add Edit Controller", function () {
             expect($scope.vm.saveAndFinishLater).toBeDefined();
         });
 
-        it('should have the ability to cancel changes made and go home', function(){
+        it('should have the ability to cancel changes made and go to programList', function(){
             spyOn($state, 'go');
 
             controller.cancelForm();
-            expect($state.go).toHaveBeenCalledWith('home');
+            expect($state.go).toHaveBeenCalledWith('programList');
         });
 
         it('should have the ability to create new authorizations', function(){

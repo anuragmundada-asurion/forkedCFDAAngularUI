@@ -34,6 +34,11 @@
             })
             .state('home', {
                 url: "/",
+                templateUrl: "main/home.tpl.html",
+                controller: "HomeController as vm"
+            })
+            .state('programList', {
+                url: "/programs",
                 templateUrl: "programs/programs-list.tpl.html",
                 controller: "ProgramsListController as vm"
             });
