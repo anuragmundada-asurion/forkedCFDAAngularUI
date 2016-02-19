@@ -38,7 +38,7 @@
                 controller: "HomeController as vm"
             })
             .state('programList', {
-                url: "/",
+                url: "/programs",
                 templateUrl: "programs/programs-list.tpl.html",
                 controller: "ProgramsListController as vm"
             });

@@ -155,14 +155,14 @@
 
         function saveAndFinishLater(){
             save();
-            $state.go('home');
+            $state.go('programList');
         }
 
         function cancelForm(){
          //   if(vm.form.$dirty) {
          //       alert("Are you sure you want to leave?");
          //   }
-            $state.go('home');
+            $state.go('programList');
         }
 
         function updateId(res){
