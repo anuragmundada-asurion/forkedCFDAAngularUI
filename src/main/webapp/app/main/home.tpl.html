@@ -1,5 +1,4 @@
 <a ui-sref="programList">Login</a>
-<!--div style="background-color:#112E51"-->
 <home-header>
     <div style="min-height:20px"></div>
     <table>
@@ -11,8 +10,36 @@
         </td>
         <td class="spacer"></td>
     </table>
-<global-search-box></global-search-box>
+    <global-search-box></global-search-box>
 </home-header>
+<div style="background-color:#112e51">
+    <!-- search options are another grid-->
+    <div class="usa-grid-full search-options">
+        <div class="usa-grid-full" style="background-color:#F1F1F1">
+            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
+                <label for="qs-posted">By Agency</label>
+                <select size="1" id="qs-posted">
+                </select>
+            </div>
+            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
+                <label for="qs-type">By Assistance Type</label>
+                <select size="1" id="qs-type">
+                </select>
+            </div>
+            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
+                <label for="agency-search-field">By Historical Index</label>
+                <select size="1" id="agency-search-field">
+                </select>
+            </div>
+            <div class="usa-width-one-fourth" style="padding:45px 0px 0px 20px;">
+                <button type="submit" ng-click="">
+                    <span class="usa-search-submit-text">Advanced Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div style="min-height:40px"></div>
+</div>
 <!--/div-->
 
 <home-quick-links>
@@ -58,52 +85,52 @@
         <tr>
             <td class="spacer"></td>
             <td class="image">
-                <img src="/img/links/grants.png"/>
+                <a href="http://www.grants.gov/" target="_blank"><img src="/img/links/grants.png"/></a>
             </td>
             <td class="image">
-                <img src="/img/links/benefits.png"/>
+                <a href="http://www.benefits.gov/" target="_blank"><img src="/img/links/benefits.png"/></a>
             </td>
             <td class="image">
-                <img src="/img/links/govloans.png"/>
+                <a href="http://www.govloans.gov/" target="_blank"><img src="/img/links/govloans.png"/></a>
             </td>
             <td class="spacer"></td>
         </tr>
         <tr>
             <td class="spacer"></td>
             <td class="content">
-                Grants.gov is your gateway to finding information about and applying for grant opportunities from over 1000 federal programs.
+                <a href="http://www.grants.gov/" target="_blank">Grants.gov is your gateway to finding information about and applying for grant opportunities from over 1000 federal programs.</a>
             </td>
             <td class="content">
-                Benefits.gov offers information on more than 1000 Federal and state benefit programs. Simply complete the free.
+                <a href="http://www.benefits.gov/" target="_blank">Benefits.gov offers information on more than 1000 Federal and state benefit programs. Simply complete the free.</a>
             </td>
             <td class="content">
-                GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you determine which loans may be right for you.
+                <a href="http://www.govloans.gov/" target="_blank">GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you determine which loans may be right for you.</a>
             </td>
             <td class="spacer"></td>
         </tr>
         <tr>
             <td class="spacer"></td>
             <td class="image">
-                <img src="/img/links/data.png"/><br/>
+                <a href="http://www.data.gov/" target="_blank"><img src="/img/links/data.png"/></a>
             </td>
             <td class="image">
-                <img src="/img/links/omb.png"/>
+                <a href="https://www.whitehouse.gov/omb" target="_blank"><img src="/img/links/omb.png"/></a>
             </td>
             <td class="image">
-                <img src="/img/links/usaspending.png"/>
+                <a href="https://www.usaspending.gov/" target="_blank"><img src="/img/links/usaspending.png"/></a>
             </td>
             <td class="spacer"></td>
         </tr>
         <tr>
             <td class="spacer"></td>
             <td class="content">
-                Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and resources to conduct.
+                <a href="http://www.data.gov/" target="_blank">Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and resources to conduct.</a>
             </td>
             <td class="content">
-                Benefits.gov offers information on more than 1000 Federal and state benefit programs. Simply complete the free.
+                <a href="https://www.whitehouse.gov/omb" target="_blank">The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed to help.</a>
             </td>
             <td class="content">
-                GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you determine which loans may be right for you.
+                <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov is a searchable website that shows the public how their tax dollars are spent through federal contracts, grants, and loans.</a>
             </td>
             <td class="spacer"></td>
         </tr>
