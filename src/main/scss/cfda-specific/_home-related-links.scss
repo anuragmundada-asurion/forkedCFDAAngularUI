@@ -1,0 +1,27 @@
+home-related-links {
+  > * {
+    background-color:#EEEEEE;
+    text-align:center;
+    margin:0px;
+  }
+  >table {
+    border-collapse: collapse;
+    width:100%;
+    td.spacer {
+      border:none;
+      width:14%;
+    }
+    td.image {
+      border:none;
+      width:24%;
+      padding:0px 15px 0px 15px
+    }
+    td.content {
+      border:none;
+      width:24%;
+      padding:0px 15px 30px 15px;
+      vertical-align:top;
+      color:#0973BC;
+    }
+  }
+}
