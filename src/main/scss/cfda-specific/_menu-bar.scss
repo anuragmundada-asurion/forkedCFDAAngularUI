@@ -1,13 +1,23 @@
 menu-bar {
-  > * {
-    background-color: #E1F3F8;
-    width:100%;
-    font-weight:bold;
-    height:16px;
-    margin:0px;
-    help {
-      background-color:#3FCC19;
-      color:#FFFFFF;
+    > * {
+      .menuitem {
+        margin: 0;
+        padding: 10px;
+        overflow: hidden;
+        background-color: #333;
+        float: left;
+      }
+
+      .menuitem a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .menuitem a:hover {
+        background-color: #111;
+      }
     }
-  }
 }
