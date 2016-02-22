@@ -1,10 +1,12 @@
 <a ui-sref="home">Home</a>
 <global-search-box></global-search-box>
-<div class="usa-grid">
+<div class="usa-grid-full">
     <ul class="tab-menu">
-        <li class="tab-selected">All</li>
-        <li>Requests</li>
-        <li>Archived</li>
+        <li><a href="#">Pending</a></li>
+        <li><a href="#">Published</a></li>
+        <li class="tab-selected"><a href="#">All</a></li>
+        <li><a href="#">Archived</a></li>
+        <li><a href="#">Requests</a></li>
     </ul>
 </div>
 <section st-pipe="vm.loadPrograms" st-table="vm.programs">

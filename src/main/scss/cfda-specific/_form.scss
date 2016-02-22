@@ -121,31 +121,47 @@ select {
 
 ul {
     &.tab-menu {
-        list-style-type: none;
-        height: auto;
-        margin: 0px;
-        padding: 8px 0px;
+        list-style: none;
+        margin: 1.5em 0em 0em 0em;
+        padding: 0;
         > li  {
+            &:before {
+                content: none;
+            }
+            line-height: 1 !important;
             font-weight: bold;
             text-align: center;
-            display: inline;
-            height: 55px;
+            display: inline-block;
             border-style: solid;
-            background-color: $color-white;
-            border-color: $color-gray;
-            border-width: 2px 2px 2px 2px;
-            color: $color-gray;
+            background-color: $color-gray-lightest;
+            border-color: $color-primary;
+            color: $color-primary;
+            height: 55px;
+            border-width: 1px 1px 1px 1px;
+            margin-right: -6px;
 
             &.tab-selected {
-                background-color: $color-gray-lighter;
-                border-color: $color-primary;
-                border-width: 2px 2px 2px 4px;
-                color: $color-primary;
+               background-color: $color-white !important;
+               color: $color-gray !important;
+               border-color: $color-gray !important;
+               border-width: 1px 1px 3px 1px !important;
 
+               > a {
+                    color: $color-gray !important;
+               }
             }
 
             > a {
                 text-decoration: none;
+                display: block;
+                height: 100%;
+                padding-top: 1em;
+                padding-left: 1.75em;
+                padding-right: 1.75em;
+                color: $color-primary;
+                &:hover {
+                    background-color: $color-gray-lighter;
+                }
             }
 
          }
