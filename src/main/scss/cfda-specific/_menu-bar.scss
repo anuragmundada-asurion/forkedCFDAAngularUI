@@ -1,0 +1,23 @@
+menu-bar {
+    > * {
+      .menuitem {
+        margin: 0;
+        padding: 10px;
+        overflow: hidden;
+        background-color: #333;
+        float: left;
+      }
+
+      .menuitem a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .menuitem a:hover {
+        background-color: #111;
+      }
+    }
+}

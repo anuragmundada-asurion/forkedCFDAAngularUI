@@ -17,16 +17,25 @@
             itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
             itemsByPageNumbers: appConstants.PAGE_ITEM_NUMBERS,
 
-            programList: programList
+            data: {
+                singleSelect: null,
+                multipleSelect: [],
+                option1: 'option-1',
+            },
+            programList: programList,
+            getPdf: getPdf
         });
 
         /////////////////////
-
 
         function programList() {
             $state.go('programList');
         }
 
+        function getPdf() {
+            console.log("===== getPdf()");
+            console.log("===== " + JSON.stringify(vm.data));
+        }
     }
 
 })();
