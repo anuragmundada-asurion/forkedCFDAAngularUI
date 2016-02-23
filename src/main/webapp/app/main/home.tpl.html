@@ -1,7 +1,11 @@
 <div class="primary-nav">
     <div class="nav-bar">
-        <a ui-sref="home">Home</a>
+        <a ui-sref="home">Federal Assistance</a>
+        <a ui-sref="home">Listings</a>
+        <a ui-sref="home">Regional Agency Offices</a>
+        <a ui-sref="home">About Us</a>
         <a ui-sref="programList">Login</a>
+        <a ui-sref="home" style="float:right;background-color:#3FCC19;color:#FFF">Help</a>
     </div>
 </div>
 <home-header>
@@ -15,7 +19,7 @@
         </td>
         <td class="spacer"></td>
     </table>
-    <global-search-box></global-search-box>
+    <global-search-box style="font-weight:normal"></global-search-box>
 </home-header>
 <div style="background-color:#112e51;position:relative;top:-30px;">
     <!-- search options are another grid-->
@@ -44,18 +48,30 @@
         </div>
     </div>
     <div style="min-height:20px"></div>
-    <div class="usa-grid-full search-options" style="background-color:#FFF;padding-top:5px;text-align:center">
-        <h3>New in 2015</h3>
+    <div class="usa-grid-full search-options" style="background-color:#FFF;padding-top:5px;text-align:left">
+        <h3 style="margin-left:130px">New in 2015</h3>
         <div class="usa-grid-full">
-            <div class="usa-width-one-third" style="background-color:#E1F3F8;color:#0B74BD;width:306px;margin:15px 15px 15px 30px;padding:15px 0px 15px 0px;">5 New Listings</div>
-            <div class="usa-width-one-third" style="background-color:#E1F3F8;color:#0B74BD;width:306px;margin:15px;padding:15px 0px 15px 0px;">6 Archived Listings</div>
-            <div class="usa-width-one-third" style="background-color:#E1F3F8;color:#0B74BD;width:306px;margin:15px;padding:15px 0px 15px 0px;">12 Updated Listings</div>
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold">
+                <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.new}}</span>
+                New Listings
+                <img src="/img/links/flag.png"/>
+            </div>
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold"">
+                <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.archived}}</span>
+                Archived Listings
+                <img src="/img/links/flag.png"/>
+            </div>
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold"">
+                <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.updated}}</span>
+                Updated Listings
+                <img src="/img/links/flag.png"/>
+            </div>
         </div>
     </div>
     <div style="min-height:50px"></div>
 </div>
 
-<home-quick-links>
+<home-quick-links class="usa-grid-full search-options">
     <div style="min-height:25px"></div>
     <h2>Quick Links</h2>
     <div style="min-height:30px"></div>
@@ -100,7 +116,7 @@
     <div style="min-height:30px"></div>
 </home-quick-links>
 
-<home-related-links>
+<home-related-links class="usa-grid-full search-options">
     <div style="min-height:55px"></div>
     <h2>Related Links</h2>
     <div style="min-height:30px"></div>
