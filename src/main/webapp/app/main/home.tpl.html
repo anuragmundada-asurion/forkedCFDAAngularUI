@@ -8,19 +8,14 @@
         <a ui-sref="home" style="float:right;background-color:#3FCC19;color:#FFF">Help</a>
     </div>
 </div>
-<home-header>
-    <div style="min-height:20px"></div>
-    <table>
-        <td class="spacer"></td>
-        <td class="content">
-            Catalog of Federal Domestic Assistance (CFDA) provides a full listing of all Federal programs available to State and local governments
-            (including the District of Columbia); federally-recognized Indian tribal governments; Territories (and possessions) of the United States;
-            domestic public, quasi-public, and private profit and nonprofit organizations and institutions; specialized groups; and individuals.
-        </td>
-        <td class="spacer"></td>
-    </table>
+<div class="home-header">
+    <div style="width:600px;margin: 0px auto 0px auto;padding-top:30px;text-align:center;">
+        Catalog of Federal Domestic Assistance (CFDA) provides a full listing of all Federal programs available to State and local governments
+        (including the District of Columbia); federally-recognized Indian tribal governments; Territories (and possessions) of the United States;
+        domestic public, quasi-public, and private profit and nonprofit organizations and institutions; specialized groups; and individuals.
+    </div>
     <global-search-box style="font-weight:normal"></global-search-box>
-</home-header>
+</div>
 <div style="background-color:#112e51;position:relative;top:-30px;">
     <!-- search options are another grid-->
     <div class="usa-grid-full search-options">
@@ -28,16 +23,19 @@
             <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
                 <label for="qs-posted">By Agency</label>
                 <select size="1" id="qs-posted">
+                    <option selected value="">By Agency</option>
                 </select>
             </div>
             <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
                 <label for="qs-type">By Assistance Type</label>
                 <select size="1" id="qs-type">
+                    <option selected value="">By Assistance</option>
                 </select>
             </div>
             <div class="usa-width-one-fourth" style="padding:0px 0px 28px 20px;">
                 <label for="agency-search-field">By Historical Index</label>
                 <select size="1" id="agency-search-field">
+                    <option selected value="">Historical Index</option>
                 </select>
             </div>
             <div class="usa-width-one-fourth" style="padding:45px 0px 0px 20px;">
@@ -48,36 +46,36 @@
         </div>
     </div>
     <div style="min-height:20px"></div>
-    <div class="usa-grid-full search-options" style="background-color:#FFF;padding-top:5px;text-align:left">
-        <h3 style="margin-left:130px">New in 2015</h3>
+    <div class="usa-grid-full search-options" style="background-color:#FFF;padding:2px 8px 8px 8px;text-align:left">
+        <h3 style="margin-left:135px;color:#112E51">New in 2015</h3>
+        <div style="min-height:12px"></div>
         <div class="usa-grid-full">
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold">
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:380px;margin:15px;padding:15px;font-weight:bold">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.new}}</span>
                 New Listings
-                <img src="/img/links/flag.png"/>
+                <img style="position:relative;top:10px;" src="/img/links/flag.png"/>
             </div>
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold"">
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:380px;margin:15px;padding:15px;font-weight:bold"">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.archived}}</span>
                 Archived Listings
-                <img src="/img/links/flag.png"/>
+                <img style="position:relative;top:10px;" src="/img/links/flag.png"/>
             </div>
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:360px;margin:15px;padding:15px;font-weight:bold"">
+            <div style="background-color:#E1F3F8;color:#0B74BD;width:380px;margin:15px;padding:15px;font-weight:bold"">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-weight:bold">{{vm.test.testid.updated}}</span>
                 Updated Listings
-                <img src="/img/links/flag.png"/>
+                <img style="position:relative;top:10px;" src="/img/links/flag.png"/>
             </div>
         </div>
     </div>
     <div style="min-height:50px"></div>
 </div>
 
-<home-quick-links class="usa-grid-full search-options">
-    <div style="min-height:25px"></div>
-    <h2>Quick Links</h2>
-    <div style="min-height:30px"></div>
+<div class="home-quick-links">
+    <div style="min-height:20px"></div>
+    <h3>Quick Links</h3>
+    <div style="width:1000px;margin: 0px auto 0px auto;padding-top:25px;text-align:center;">
     <table>
         <tr>
-            <td class="spacer"></td>
             <td class="image">
                 <img src="/img/links/PublicUserGuide.png"/>
             </td>
@@ -87,10 +85,8 @@
             <td class="image">
                 <img src="/img/links/FTPDownloads.png"/>
             </td>
-            <td class="spacer"></td>
         </tr>
         <tr>
-            <td class="spacer"></td>
             <td class="content">
                 CFDA Public User Guide
             </td>
@@ -110,19 +106,18 @@
             <td class="content">
                 FTP Downloads
             </td>
-            <td class="spacer"></td>
         </tr>
     </table>
+    </div>
     <div style="min-height:30px"></div>
-</home-quick-links>
+</div>
 
-<home-related-links class="usa-grid-full search-options">
-    <div style="min-height:55px"></div>
-    <h2>Related Links</h2>
-    <div style="min-height:30px"></div>
+<div class="home-related-links">
+    <div style="min-height:50px"></div>
+    <h3>Related Links</h3>
+    <div style="width:1000px;margin: 0px auto 0px auto;padding-top:25px;text-align:center;">
     <table>
         <tr>
-            <td class="spacer"></td>
             <td class="image">
                 <a href="http://www.grants.gov/" target="_blank"><img src="/img/links/grants.png"/></a>
             </td>
@@ -132,10 +127,8 @@
             <td class="image">
                 <a href="http://www.govloans.gov/" target="_blank"><img src="/img/links/govloans.png"/></a>
             </td>
-            <td class="spacer"></td>
         </tr>
         <tr>
-            <td class="spacer"></td>
             <td class="content">
                 <a href="http://www.grants.gov/" target="_blank">Grants.gov is your gateway to finding information about and applying for grant opportunities from over 1000 federal programs.</a>
             </td>
@@ -145,10 +138,8 @@
             <td class="content">
                 <a href="http://www.govloans.gov/" target="_blank">GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you determine which loans may be right for you.</a>
             </td>
-            <td class="spacer"></td>
         </tr>
         <tr>
-            <td class="spacer"></td>
             <td class="image">
                 <a href="http://www.data.gov/" target="_blank"><img src="/img/links/data.png"/></a>
             </td>
@@ -158,10 +149,8 @@
             <td class="image">
                 <a href="https://www.usaspending.gov/" target="_blank"><img src="/img/links/usaspending.png"/></a>
             </td>
-            <td class="spacer"></td>
         </tr>
         <tr>
-            <td class="spacer"></td>
             <td class="content">
                 <a href="http://www.data.gov/" target="_blank">Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and resources to conduct.</a>
             </td>
@@ -171,8 +160,8 @@
             <td class="content">
                 <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov is a searchable website that shows the public how their tax dollars are spent through federal contracts, grants, and loans.</a>
             </td>
-            <td class="spacer"></td>
         </tr>
     </table>
+    </div>
     <div style="min-height:10px"></div>
-</home-related-links>
+</div>

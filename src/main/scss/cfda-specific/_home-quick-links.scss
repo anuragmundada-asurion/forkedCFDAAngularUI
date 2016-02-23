@@ -1,9 +1,9 @@
-home-quick-links {
-  > * {
-    text-align:center;
-    margin:0px;
-  }
-  >table {
+.home-quick-links {
+  color:$color-primary-darkest;
+  text-align:center;
+  margin:0px;
+
+  table {
     border-collapse: collapse;
     width:100%;
     td.spacer {

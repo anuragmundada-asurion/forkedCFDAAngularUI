@@ -1,25 +1,10 @@
-home-header {
-  > * {
+.home-header {
     //background-color:#112E51;
     background-color: $color-primary-darkest;
     //font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
-
     font-family: $font-sans;
     font-weight:bold;
+    color:white;
     margin:0px;
-  }
-  >table {
-      border-collapse: collapse;
-      width:100%;
-    td.spacer {
-      border:none;
-      width:25%;
-    }
-    td.content {
-      border:none;
-      width:50%;
-      color:#FFF;
-      text-align:center;
-    }
-  }
+    width:100%;
 }
