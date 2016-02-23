@@ -103,12 +103,12 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/listingcount", method = RequestMethod.GET)
-    public String getListingCountApiCall() {
+    @RequestMapping(value = "/api/listingcount/{year}", method = RequestMethod.GET)
+    public String getListingCountApiCall(@PathVariable("year") String year) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getListingCountApiUrl());
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getListingCountApiUrl() + "/" + year);
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();

@@ -24,9 +24,8 @@
             },
             programList: programList,
             getListingCount: getListingCount,
-            test: {
-                testid: getListingCount()
-            }
+            listingCount: getListingCount(),
+            currentYear: getCurrentYear()
         });
 
         /////////////////////
@@ -36,7 +35,13 @@
         }
 
         function getListingCount() {
-            return ListingCount.query();
+            return ListingCount.query({ year: getCurrentYear() });
+        }
+
+        function getCurrentYear() {
+            var date = new Date();
+            var year = date.getFullYear();
+            return year;
         }
     }
 

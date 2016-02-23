@@ -10,7 +10,8 @@
     /////////////
 
     function ListingCount($resource) {
-        return $resource('/api/listingcount', {
+        return $resource('/api/listingcount/:year', {
+            year: '@year'
         }, {
             query: {
                 transformResponse: function (data) {
