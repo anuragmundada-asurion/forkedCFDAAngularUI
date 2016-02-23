@@ -7,7 +7,7 @@
 
     ListingCount.$inject = ['$resource'];
 
-    /////////////
+    //////////////
 
     function ListingCount($resource) {
         return $resource('/api/listingcount/:year', {

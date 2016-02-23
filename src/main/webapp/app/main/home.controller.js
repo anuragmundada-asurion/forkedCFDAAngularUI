@@ -7,7 +7,7 @@
 
     homeController.$inject = ['$state', 'appConstants', 'Program', 'ListingCount'];
 
-    //////////////////////
+    ///////////////////////
 
     function homeController($state, appConstants, Program, ListingCount) {
         var vm = this,
