@@ -23,4 +23,26 @@
     }
   }
 
+  .nav-bar-right {
+
+    @extend .usa-grid-full;
+    text-align: right;
+
+    a {
+      @extend .usa-button-big;
+      background-color: transparent;
+      color: #1d2021;
+      padding: $nav-padding-height $nav-padding-width;
+      margin: 0;
+      font-family: $font-sans;
+      font-weight: $font-bold;
+      display: inline-block;
+      &:hover {
+        background-color: $color-primary-alt;
+        text-decoration: none;
+
+      }
+    }
+  }
+
 }

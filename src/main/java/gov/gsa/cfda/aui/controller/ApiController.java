@@ -103,6 +103,17 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/listingcount", method = RequestMethod.GET)
+    public String getListingCountApiCall() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getListingCountApiUrl());
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     @RequestMapping(value = "/api/dictionaries", method = RequestMethod.GET)
     public String getDictionaries(@RequestParam(required = false) String[] ids) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -145,6 +156,10 @@ public class ApiController {
 
     private String getContactsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/contacts";
+    }
+
+    private String getListingCountApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/listingcount";
     }
 
     private String getDictionaryApiUrl() {

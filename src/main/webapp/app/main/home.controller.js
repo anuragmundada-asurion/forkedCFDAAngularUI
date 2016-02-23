@@ -5,11 +5,11 @@
         .module('app')
         .controller('HomeController', homeController);
 
-    homeController.$inject = ['$state', 'appConstants', 'Program'];
+    homeController.$inject = ['$state', 'appConstants', 'Program', 'ListingCount'];
 
     //////////////////////
 
-    function homeController($state, appConstants, Program) {
+    function homeController($state, appConstants, Program, ListingCount) {
         var vm = this,
             previousState;
 
@@ -23,7 +23,10 @@
                 option1: 'option-1',
             },
             programList: programList,
-            getPdf: getPdf
+            getListingCount: getListingCount,
+            test: {
+                testid: getListingCount()
+            }
         });
 
         /////////////////////
@@ -32,9 +35,8 @@
             $state.go('programList');
         }
 
-        function getPdf() {
-            console.log("===== getPdf()");
-            console.log("===== " + JSON.stringify(vm.data));
+        function getListingCount() {
+            return ListingCount.query();
         }
     }
 
