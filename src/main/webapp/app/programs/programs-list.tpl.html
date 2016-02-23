@@ -6,12 +6,12 @@
 </div>
 <global-search-box></global-search-box>
 <div class="usa-grid-full">
-    <ul class="tab-menu">
-        <li><a href="#">Pending</a></li>
-        <li><a href="#">Published</a></li>
-        <li class="tab-selected"><a href="#">All</a></li>
-        <li><a href="#">Archived</a></li>
-        <li><a href="#">Requests</a></li>
+    <ul class="tab-menu" >
+        <li><a ui-sref="/tabPending">Pending</a></li>
+        <li><a ui-sref="/tabPublished">Published</a></li>
+        <li class="tab-selected"><a ui-sref="/tabAll">All</a></li>
+        <li><a ui-sref="/tabArchived">Archived</a></li>
+        <li><a ui-sref="/tabRequests">Requests</a></li>
     </ul>
 </div>
 <section st-pipe="vm.loadPrograms" st-table="vm.programs">
@@ -27,6 +27,7 @@
         </div>
     </div>
     <div class="usa-grid-full">
+        <div ui-view></div>
         <table class="listing-table cfda-table">
             <thead>
                 <tr>

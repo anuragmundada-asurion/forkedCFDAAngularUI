@@ -1,22 +1,51 @@
 (function(){
     "use strict";
 
-    angular
-        .module('app')
-        .controller('ProgramsListController', programsListController);
+    var myApp = angular
+        .module('app');
+
+    myApp.controller('ProgramsListController', programsListController);
 
     programsListController.$inject = ['$state', 'appConstants', 'Program'];
 
     //////////////////////
+
+    myApp.config(function($stateProvider, $urlRouterProvider){
+
+       // $urlRouterProvider.otherwise("/main/tabAll");
+
+        $stateProvider.
+           state('main', {
+                abstract: true,
+                url:"/main",
+                templateUrl:"programs/programs-list.tpl.html"
+           }).
+           state('/tabPending', {
+               templateUrl: 'programs/programs-list-table-all.tpl.html',
+               controller: 'tabPending'
+           }).
+           state('/tabPublished',{
+               templateUrl: 'programs/programs-list-table-all.tpl.html',
+               controller: 'tabPublished'
+           }).
+           state('/tabAll',{
+               templateUrl: 'programs/programs-list-table-all.tpl.html',
+               controller: 'tabAll'
+           }).
+           state('/tabArchived',{
+                templateUrl: 'programs/programs-list-table-all.tpl.html',
+                controller: 'tabArchived'
+           }).
+           state('/tabRequests',{
+                templateUrl: 'programs/programs-list-table-all.tpl.html',
+                controller: 'tabRequests'
+           });
+
+    });
+
     function programsListController($state, appConstants, Program) {
         var vm = this;
         var previousState;
-
-        vm.tabs = [
-            { title:'Open', content:'Dynamic content 1' },
-            { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-        ];
-        vm.selectedTab = vm.tabs[0];
 
         angular.extend(vm, {
             itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -98,5 +127,25 @@
             });
         }
     }
+    myApp.controller('tabAll', function($scope, $http) {
+     $scope.message = 'This is Tab1 space';
+    });
+
+    myApp.controller('tabPending', function($scope, $http) {
+     $scope.message = 'This is Tab2 space';
+    });
+
+    myApp.controller('tabPublished', function($scope, $http) {
+     $scope.message = 'This is Tab3 space';
+    });
+
+    myApp.controller('tabArchived', function($scope, $http) {
+     $scope.message = 'This is Tab4 space';
+    });
+
+    myApp.controller('tabRequests', function($scope, $http) {
+     $scope.message = 'This is Tab5 space';
+    });
 
 })();
+

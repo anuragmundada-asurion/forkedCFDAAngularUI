@@ -38,7 +38,6 @@ describe('Unit Tests for the multi-entry directives', function() {
         if(attrs)
             element.find('multi-entry').attr(attrs);
         var element = $compile(element)($rootScope);
-        $timeout.flush();
         $rootScope.$digest();
         return {
             component: element,
