@@ -21,13 +21,6 @@ public class EnvironmentController {
     @Resource
     private Environment environment;
 
-    @RequestMapping(value = "/environment/api", method = RequestMethod.GET)
-    public String getEnvVariables() throws Exception {
-        JSONObject json = new JSONObject();
-        json.put(programsApiEnvName, getProgramApiUrl());
-        return json.toString();
-    }
-
     @RequestMapping(value = "_xdomainVariables", method = RequestMethod.GET)
     public String getXdomain() throws Exception {
         JSONObject json = new JSONObject();

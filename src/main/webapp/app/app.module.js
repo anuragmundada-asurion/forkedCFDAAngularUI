@@ -114,8 +114,4 @@
                 ;
         });
     };
-
-    angular.injector(['app.bootstrap'])
-        .get('bootstrap')
-        .run();
 })();
