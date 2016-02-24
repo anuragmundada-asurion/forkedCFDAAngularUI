@@ -1,7 +1,9 @@
 <div class="primary-nav">
     <div class="nav-bar">
         <a ui-sref="home">Federal Assistance</a>
-        <a ui-sref="home">Listings</a>
+        <span ng-controller="ProgramSearchCtrl">
+        <a ng-click="searchAllPrograms()">Listings</a>
+        </span>
         <a ui-sref="home">Regional Agency Offices</a>
         <a ui-sref="home">About Us</a>
         <a ui-sref="programList">Login</a>

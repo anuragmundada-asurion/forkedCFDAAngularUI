@@ -14,10 +14,13 @@
             };
 
             $scope.searchPrograms = function() {
-                if ($scope['globalSearchValue']) {
-                    $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                    $state.go('searchPrograms', {keyword: $scope['globalSearchValue']}, {reload: true, inherit: false});
-                }
+                $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
+                $state.go('searchPrograms', {keyword: $scope['globalSearchValue']}, {reload: true, inherit: false});
+            };
+
+            $scope.searchAllPrograms = function() {
+                $scope['globalSearchValue'] = '';
+                $scope.searchPrograms();
             };
 
             var lastTime;
