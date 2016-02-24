@@ -1,26 +1,26 @@
-home-related-links {
-  > * {
-    background-color:#EEEEEE;
-    text-align:center;
-    margin:0px;
-    a:link {
+.home-related-links {
+  background-color:#EEEEEE;
+  color:$color-primary-darkest;
+  text-align:center;
+  margin:0px;
+  a:link {
       color:#006AB8;
       text-decoration: none;
-    }
-    a:visited {
-      color:#006AB8;
-      text-decoration: none;
-    }
-    a:hover {
-      color:#006AB8;
-      text-decoration: none;
-    }
-    a:active {
-      color:#006AB8;
-      text-decoration: none;
-    }
   }
-  >table {
+  a:visited {
+      color:#006AB8;
+      text-decoration: none;
+  }
+  a:hover {
+      color:#006AB8;
+      text-decoration: none;
+  }
+  a:active {
+      color:#006AB8;
+      text-decoration: none;
+  }
+
+  table {
     border-collapse: collapse;
     width:100%;
     td.spacer {

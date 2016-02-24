@@ -17,6 +17,7 @@ var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
 
 var appFilesBase = "src/main/webapp/app";
+var assetFilesBase = "src/main/webapp/assets";
 
 var ie8VendorDep = ['**/jquery.js'];
 var ie9VendorDep = ['**/xdomain.js'];
@@ -25,7 +26,7 @@ var unneededDepForMondernBrowsers = ie8VendorDep.concat(ie9VendorDep);
 var vendorJs;
 var ie8VendorJs;
 var ie9VendorJs;
-var vendorCss;
+var vendorCss, styleCSS;
 var appJs;
 var appSass;
 
@@ -71,7 +72,14 @@ gulp.task('vendor-css-files', ['ie8-vendor-js-files'], function () {
         .pipe(gulp.dest('target/classes/static/vendor/css'));
 });
 
-gulp.task('app-js-files', ['vendor-css-files'], function () {
+gulp.task('site-css-files', function () {
+    styleCSS = gulp.src('src/main/webapp/assets/css/*')
+        .pipe(concat('styles.css'))
+        .pipe(minify())
+        .pipe(gulp.dest('target/classes/static/css'));
+});
+
+gulp.task('app-js-files', ['vendor-css-files', 'site-css-files'], function () {
     //Read App JS files and combine
     var js = gulp.src([
             appFilesBase + '/*.bootstrap.js',
@@ -109,7 +117,7 @@ gulp.task('index', ['app-sass-files'], function () {
             starttag: '<!-- ie9-inject --><!--[if lte IE 9]>',
             endtag: '<![endif]-->'
         }))
-        .pipe(inject(series(vendorCss, appJs, appSass, sources), {relative: true}))
+        .pipe(inject(series(vendorCss, styleCSS, appJs, appSass, sources), {relative: true}))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -159,6 +167,26 @@ gulp.task('ngdocs', ['test'], function () {
     return gulp.src('target/classes/static/js/*.js')
         .pipe(ngdocs.process(options))
         .pipe(gulp.dest('target/site/ngdocs'));
+});
+
+//Add watch task for UI Changes in order to save the headache of compiling and reloading new changes
+//please run these two command line in different terminal: 
+// terminal1#REISystems-GSA-CFDA-Angular-UI$: mvn spring-boot:run -Denv.BUILD_NUMBER=1
+// terminal2#REISystems-GSA-CFDA-Angular-UI$: 
+gulp.task('watch', function(){
+   gulp.watch([
+        appFilesBase + '/*.bootstrap.js',
+        appFilesBase + '/*.module.js',
+        appFilesBase + '/services/**/*.js',
+        appFilesBase + '/**/*.js',
+        assetFilesBase + '/*.html',
+        assetFilesBase + '/**/*',
+        'src/main/scss/**/*.scss'
+    ],{ //slow down CPU Usage
+        interval: 500,
+        debounceDelay: 500, // default 500
+        mode: 'poll' 
+    }, ['index']); 
 });
 
 // Default Task
