@@ -181,6 +181,7 @@ gulp.task('watch', function(){
         appFilesBase + '/**/*.js',
         assetFilesBase + '/*.html',
         assetFilesBase + '/**/*',
+        'src/main/scss/**/*.scss'
     ],{ //slow down CPU Usage
         interval: 500,
         debounceDelay: 500, // default 500
