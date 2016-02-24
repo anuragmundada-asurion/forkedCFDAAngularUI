@@ -8,13 +8,16 @@
         <a ui-sref="home" style="float:right;background-color:#3FCC19;color:#FFF">Help</a>
     </div>
 </div>
+
 <global-search-box></global-search-box>
+
 <div class="usa-grid-full">
     <ul class="tab-menu" >
-        <li ng-class="getTabStyle('tabPublished')"><a ui-sref=".tabPublished">Published</a></li>
-        <li ng-class="getTabStyle('tabAll')"><a ui-sref=".tabAll">All</a></li>
-        <li ng-class="getTabStyle('tabArchived')"><a ui-sref=".tabArchived">Archived</a></li>
-        <li ng-class="getTabStyle('tabRequests')"><a ui-sref=".tabRequests">Requests</a></li>
+        <li ng-class="getTabStyle('tabPublished')"><a ui-sref="main.tabPublished">Published</a></li>
+        <li ng-class="getTabStyle('tabAll')"><a ui-sref="main.tabAll">All</a></li> 
+        <li ng-class="getTabStyle('tabArchived')"><a ui-sref="main.tabArchived">Archived</a></li>
+        <li ng-class="getTabStyle('tabArchived')"><a ui-sref="main.tabPending">Pending</a></li>
+        <li ng-class="getTabStyle('tabRequests')"><a ui-sref="main.tabRequests">Requests</a></li>
     </ul>
 </div>
-        <div ui-view></div>
+<div ui-view></div>

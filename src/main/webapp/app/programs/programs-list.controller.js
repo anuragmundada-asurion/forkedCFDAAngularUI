@@ -13,10 +13,12 @@
     myApp.config(function($stateProvider, $urlRouterProvider){
 
        // $urlRouterProvider.otherwise("/main/tabAll");
-        $urlRouterProvider.when("", "/main/tabAll");
+       //redirect from /programs /programs/main/tabAll
+        $urlRouterProvider.when("/programs", "/programs/main");
+
         $stateProvider.
            state('main', {
-                url:"/main",
+                url:"/programs/main",
                 templateUrl:"programs/programs-list.tpl.html"
            }).
            state('main.tabPending', {
@@ -26,7 +28,7 @@
            }).
            state('main.tabPublished',{
                url: '/tabPublished',
-               templateUrl: 'programs/programs-list-table-all.tpl.html',
+               templateUrl: 'programs/programs-list-table-published.tpl.html',
                controller: 'tabPublished'
            }).
            state('main.tabAll',{
@@ -36,7 +38,7 @@
            }).
            state('main.tabArchived',{
                 url: '/tabArchived',
-                templateUrl: 'programs/programs-list-table-all.tpl.html',
+                templateUrl: 'programs/programs-list-table-archived.tpl.html',
                 controller: 'tabArchived'
            }).
            state('main.tabRequests',{
