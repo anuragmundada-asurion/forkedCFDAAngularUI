@@ -6,44 +6,48 @@
 
     myApp.controller('ProgramsListController', programsListController);
 
-    programsListController.$inject = ['$state', 'appConstants', 'Program'];
+    programsListController.$inject = ['$state', 'appConstants', 'Program', '$location'];
 
     //////////////////////
 
     myApp.config(function($stateProvider, $urlRouterProvider){
 
        // $urlRouterProvider.otherwise("/main/tabAll");
-
+        $urlRouterProvider.when("", "/main/tabAll");
         $stateProvider.
            state('main', {
-                abstract: true,
                 url:"/main",
                 templateUrl:"programs/programs-list.tpl.html"
            }).
-           state('/tabPending', {
+           state('main.tabPending', {
+               url: '/tabPending',
                templateUrl: 'programs/programs-list-table-all.tpl.html',
                controller: 'tabPending'
            }).
-           state('/tabPublished',{
+           state('main.tabPublished',{
+               url: '/tabPublished',
                templateUrl: 'programs/programs-list-table-all.tpl.html',
                controller: 'tabPublished'
            }).
-           state('/tabAll',{
+           state('main.tabAll',{
+               url: '/tabAll',
                templateUrl: 'programs/programs-list-table-all.tpl.html',
                controller: 'tabAll'
            }).
-           state('/tabArchived',{
+           state('main.tabArchived',{
+                url: '/tabArchived',
                 templateUrl: 'programs/programs-list-table-all.tpl.html',
                 controller: 'tabArchived'
            }).
-           state('/tabRequests',{
-                templateUrl: 'programs/programs-list-table-all.tpl.html',
+           state('main.tabRequests',{
+                url: '/tabRequests',
+                templateUrl: 'programs/programs-list-table-requests.tpl.html',
                 controller: 'tabRequests'
            });
 
     });
 
-    function programsListController($state, appConstants, Program) {
+    function programsListController($state, appConstants, Program, $location) {
         var vm = this;
         var previousState;
 
@@ -54,28 +58,17 @@
             loadPrograms: loadPrograms,
             editProgram: editProgram,
             deleteProgram: deleteProgram,
-            getTabClass: getTabClass,
-            getSelectedTab: getSelectedTab,
-            setSelectedTab: setSelectedTab
+            getTabStyle: getTabStyle
         });
 
         /////////////////////
-
-        function getTabClass(tab) {
-            if (vm.selectedTab == tab) {
-                return "active";
+        function getTabStyle(path) {
+            console.log("path = " + path);
+            if($location.path() == '/main/'+path){
+                return "tab-selected";
             } else {
                 return "";
             }
-         }
-
-
-        function setSelectedTab(tab) {
-            vm.selectedTab = tab;
-        }
-
-        function getSelectedTab() {
-            return vm.selectedTab;
         }
 
         function loadPrograms(tableState) {
@@ -127,24 +120,27 @@
             });
         }
     }
-    myApp.controller('tabAll', function($scope, $http) {
-     $scope.message = 'This is Tab1 space';
+    myApp.controller('tabAll', function($scope, $http, $injector) {
+        $injector.invoke(myApp, this, {$scope: $scope});
+
+         $scope.loadPrograms = $scope.loadPrograms;
     });
 
     myApp.controller('tabPending', function($scope, $http) {
-     $scope.message = 'This is Tab2 space';
+        $scope.title = 'Open Federal Assistance Listings';
     });
 
     myApp.controller('tabPublished', function($scope, $http) {
-     $scope.message = 'This is Tab3 space';
+        $scope.title = 'Open Federal Assistance Listings';
     });
 
     myApp.controller('tabArchived', function($scope, $http) {
-     $scope.message = 'This is Tab4 space';
+        $scope.title = 'Open Federal Assistance Listings';
     });
 
     myApp.controller('tabRequests', function($scope, $http) {
-     $scope.message = 'This is Tab5 space';
+        $scope.title = 'Federal Assistance Listings Requests';
+
     });
 
 })();

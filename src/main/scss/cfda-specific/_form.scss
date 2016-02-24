@@ -121,9 +121,9 @@ select {
 
 ul {
     &.tab-menu {
+        width: 100%;
         list-style: none;
         margin: 2.1em 0em 1em 0em;
-        padding: 0;
         > li  {
             &:before {
                 content: none;
