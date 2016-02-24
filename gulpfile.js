@@ -17,6 +17,7 @@ var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
 
 var appFilesBase = "src/main/webapp/app";
+var assetFilesBase = "src/main/webapp/assets";
 
 var ie8VendorDep = ['**/jquery.js'];
 var ie9VendorDep = ['**/xdomain.js'];
@@ -166,6 +167,25 @@ gulp.task('ngdocs', ['test'], function () {
     return gulp.src('target/classes/static/js/*.js')
         .pipe(ngdocs.process(options))
         .pipe(gulp.dest('target/site/ngdocs'));
+});
+
+//Add watch task for UI Changes in order to save the headache of compiling and reloading new changes
+//please run these two command line in different terminal: 
+// terminal1#REISystems-GSA-CFDA-Angular-UI$: mvn spring-boot:run -Denv.BUILD_NUMBER=1
+// terminal2#REISystems-GSA-CFDA-Angular-UI$: 
+gulp.task('watch', function(){
+   gulp.watch([
+        appFilesBase + '/*.bootstrap.js',
+        appFilesBase + '/*.module.js',
+        appFilesBase + '/services/**/*.js',
+        appFilesBase + '/**/*.js',
+        assetFilesBase + '/*.html',
+        assetFilesBase + '/**/*',
+    ],{ //slow down CPU Usage
+        interval: 500,
+        debounceDelay: 500, // default 500
+        mode: 'poll' 
+    }, ['index']); 
 });
 
 // Default Task
