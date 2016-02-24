@@ -179,6 +179,7 @@ gulp.task('watch', function(){
         appFilesBase + '/*.module.js',
         appFilesBase + '/services/**/*.js',
         appFilesBase + '/**/*.js',
+        appFilesBase + '/**/**/*.html',
         assetFilesBase + '/*.html',
         assetFilesBase + '/**/*',
         'src/main/scss/**/*.scss'
