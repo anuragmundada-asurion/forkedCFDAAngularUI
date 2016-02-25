@@ -2,6 +2,14 @@
   color:$color-primary-darkest;
   text-align:center;
   margin:0px;
+  padding-top:18px;
+
+  .main {
+    width:1000px;
+    margin: 0px auto 0px auto;
+    padding-top:4px;
+    text-align:center;
+  }
 
   table {
     border-collapse: collapse;
