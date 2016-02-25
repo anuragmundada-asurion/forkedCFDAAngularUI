@@ -5,9 +5,10 @@ describe("Unit Tests for Programs List Controller", function () {
         $httpBackend,
         $state,
         Program,
+        ProgramService,
         appConstants,
-        totalCount,
-        limit;
+        oApiParam,
+        totalCount;
 
     beforeEach(function() {
         module('app');
@@ -17,14 +18,27 @@ describe("Unit Tests for Programs List Controller", function () {
             $provide.value('env', env);
         });
         //
+        //setup oApiParam variable
+        oApiParam = {
+            apiName: 'listProgram',
+            apiSuffix: '',
+            oParams: {
+                limit: 5,
+                offset: 0,
+                includeCount: true
+            }, 
+            oData: {}, 
+            method: 'GET'
+        };
+
         totalCount = 1000;
-        limit = 5;
-        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _Program_){
+        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _Program_,_ProgramService_){
             $controller = _$controller_;
             $state = _$state_;
             appConstants = _appConstants_;
             $httpBackend = _$httpBackend_;
             Program = _Program_;
+            ProgramService = _ProgramService_;
         });
 
         $httpBackend
@@ -49,7 +63,7 @@ describe("Unit Tests for Programs List Controller", function () {
                         }
                     }
                 ],
-                "totalCount":totalCount,"offset":0,"limit":limit
+                "totalCount":totalCount,"offset":0,"limit":oApiParam.oParams.limit
             }));
         $httpBackend
             .whenDELETE('/api/programs')
@@ -61,27 +75,25 @@ describe("Unit Tests for Programs List Controller", function () {
 
         beforeEach(function(){
             $scope = {};
-            controller = $controller('ProgramsListController as vm', {
+            controller = $controller('ProgramsListCtrl as vm', {
                 $scope: $scope
             });
         });
 
 
         it('should have global methods and variables defined before program list load', function() {
-            var vm = $scope.vm;
-
-            expect(vm).toBeDefined();
-            expect(vm.itemsByPage).toBeDefined();
-            expect(vm.itemsByPage).toEqual(appConstants.DEFAULT_PAGE_ITEM_NUMBER);
-            expect(vm.itemsByPageNumbers).toBeDefined();
-            expect(vm.itemsByPageNumbers).toEqual(appConstants.PAGE_ITEM_NUMBERS);
-            expect(vm.loadPrograms).toBeDefined();
-            expect(vm.editProgram).toBeDefined();
-            expect(vm.deleteProgram).toBeDefined();
+            expect($scope).toBeDefined();
+            expect($scope.itemsByPage).toBeDefined();
+            expect($scope.itemsByPage).toEqual(appConstants.DEFAULT_PAGE_ITEM_NUMBER);
+            expect($scope.itemsByPageNumbers).toBeDefined();
+            expect($scope.itemsByPageNumbers).toEqual(appConstants.PAGE_ITEM_NUMBERS);
+            expect($scope.loadPrograms).toBeDefined();
+            expect($scope.editProgram).toBeDefined();
+            expect($scope.deleteProgram).toBeDefined();
         });
 
         it('should be able to query a list of programs', function(done){
-            var vm = $scope.vm,
+            var vm = $scope,
                 tableState = {
                     search: {},
                     sort: {},
@@ -90,21 +102,17 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(Program, 'query').and.callThrough();
-            vm.itemsByPage = limit;
+            spyOn(ProgramService, 'query').and.callThrough();
+            vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
             expect(vm.isLoading).toBe(true);
 
-            vm.programs.$promise.finally(function(){
+            vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
                 var pagination = tableState.pagination;
 
-                expect(Program.query).toHaveBeenCalledWith({
-                    limit: limit,
-                    offset: 0,
-                    includeCount: true
-                });
+                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
                 expect(pagination.numberOfPages).toEqual(200);
                 expect(pagination.totalItemCount).toEqual(totalCount);
 
@@ -114,7 +122,7 @@ describe("Unit Tests for Programs List Controller", function () {
         });
 
         it('should be able to query a list of programs with ascending sorting', function(done){
-            var vm = $scope.vm,
+            var vm = $scope,
                 tableState = {
                     search: {},
                     sort: {
@@ -126,27 +134,23 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(Program, 'query').and.callThrough();
-            vm.itemsByPage = limit;
+            spyOn(ProgramService, 'query').and.callThrough();
+            vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
             expect(vm.isLoading).toBe(true);
 
-            vm.programs.$promise.finally(function(){
+            vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
-                expect(Program.query).toHaveBeenCalledWith({
-                    limit: limit,
-                    offset: 0,
-                    includeCount: true,
-                    sortBy: "title"
-                });
+                oApiParam.oParams['sortBy'] = 'title';
+                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();
         });
 
         it('should be able to query a list of programs with descending sorting', function(done){
-            var vm = $scope.vm,
+            var vm = $scope,
                 tableState = {
                     search: {},
                     sort: {
@@ -158,27 +162,23 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(Program, 'query').and.callThrough();
-            vm.itemsByPage = limit;
+            spyOn(ProgramService, 'query').and.callThrough();
+            vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
             expect(vm.isLoading).toBe(true);
 
-            vm.programs.$promise.finally(function(){
+            vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
-                expect(Program.query).toHaveBeenCalledWith({
-                    limit: limit,
-                    offset: 0,
-                    includeCount: true,
-                    sortBy: "-title"
-                });
+                oApiParam.oParams['sortBy'] = '-title';
+                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();
         });
 
         it('should be able to perform a search on the list of programs', function(done){
-            var vm = $scope.vm,
+            var vm = $scope,
                 tableState = {
                     search: {
                         predicateObject: {
@@ -191,27 +191,23 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(Program, 'query').and.callThrough();
-            vm.itemsByPage = limit;
+            spyOn(ProgramService, 'query').and.callThrough();
+            vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
             expect(vm.isLoading).toBe(true);
 
-            vm.programs.$promise.finally(function(){
+            vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
-                expect(Program.query).toHaveBeenCalledWith({
-                    limit: limit,
-                    offset: 0,
-                    includeCount: true,
-                    keyword: 'keyword'
-                });
+                oApiParam.oParams['keyword'] = 'keyword';
+                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();
         });
 
         it("should be able to call $state to go to the 'editProgram' state", function(){
-            var vm = $scope.vm;
+            var vm = $scope;
             spyOn($state, 'go');
 
             vm.editProgram({
@@ -225,7 +221,7 @@ describe("Unit Tests for Programs List Controller", function () {
         });
 
         it("should be able to call $state to go to the 'editProgram' state with a specified section name", function(){
-            var vm = $scope.vm;
+            var vm = $scope;
             spyOn($state, 'go');
 
             vm.editProgram({
@@ -239,7 +235,7 @@ describe("Unit Tests for Programs List Controller", function () {
         });
 
         it("should be able to call the Program service's $delete function", function(done){
-            var vm = $scope.vm,
+            var vm = $scope,
                 program = new Program();
 
             spyOn(program, '$delete').and.callThrough();

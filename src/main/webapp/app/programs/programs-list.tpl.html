@@ -15,11 +15,11 @@
 
 <div class="usa-grid-full">
     <ul class="tab-menu" >
-        <li ng-class="getTabStyle('tabPublished')"><a ui-sref="main.tabPublished">Published</a></li>
-        <li ng-class="getTabStyle('tabAll')"><a ui-sref="main.tabAll">All</a></li> 
-        <li ng-class="getTabStyle('tabArchived')"><a ui-sref="main.tabArchived">Archived</a></li>
-        <li ng-class="getTabStyle('tabArchived')"><a ui-sref="main.tabPending">Pending</a></li>
-        <li ng-class="getTabStyle('tabRequests')"><a ui-sref="main.tabRequests">Requests</a></li>
+        <li ng-class="(programStatus === 'Published') ? 'tab-selected' : '';"><a ui-sref="programList.status({status: 'published'})">Published</a></li>
+        <li ng-class="(programStatus === 'All' || !programStatus) ? 'tab-selected' : '';"><a ui-sref="programList.status({status: 'all'})">All</a></li> 
+        <li ng-class="(programStatus === 'Archived') ? 'tab-selected' : '';"><a ui-sref="programList.status({status: 'archived'})">Archived</a></li>
+        <li ng-class="(programStatus === 'Pending') ? 'tab-selected' : '';"><a ui-sref="programList.status({status: 'pending'})">Pending</a></li>
+        <li ng-class="(programStatus === 'requests') ? 'tab-selected' : '';"><a ui-sref="programList.status({status: 'requests'})">Requests</a></li>
     </ul>
 </div>
 <div ui-view></div>

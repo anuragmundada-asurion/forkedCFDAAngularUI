@@ -4,146 +4,128 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListController', programsListController);
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$location', '$stateParams', 'appConstants', 'Program', 'ProgramService', function($scope, $state, $location, $stateParams, appConstants, Program, ProgramService) {
+        $scope.previousState = null;
+        $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
+        $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
+        $scope.programStatus = 'All';
 
-    programsListController.$inject = ['$state', 'appConstants', 'Program', '$location'];
+        console.log('controller run');
 
-    //////////////////////
-
-    myApp.config(function($stateProvider, $urlRouterProvider){
-
-       // $urlRouterProvider.otherwise("/main/tabAll");
-       //redirect from /programs /programs/main/tabAll
-        $urlRouterProvider.when("/programs", "/programs/main");
-
-        $stateProvider.
-           state('main', {
-                url:"/programs/main",
-                templateUrl:"programs/programs-list.tpl.html"
-           }).
-           state('main.tabPending', {
-               url: '/tabPending',
-               templateUrl: 'programs/programs-list-table-all.tpl.html',
-               controller: 'tabPending'
-           }).
-           state('main.tabPublished',{
-               url: '/tabPublished',
-               templateUrl: 'programs/programs-list-table-published.tpl.html',
-               controller: 'tabPublished'
-           }).
-           state('main.tabAll',{
-               url: '/tabAll',
-               templateUrl: 'programs/programs-list-table-all.tpl.html',
-               controller: 'tabAll'
-           }).
-           state('main.tabArchived',{
-                url: '/tabArchived',
-                templateUrl: 'programs/programs-list-table-archived.tpl.html',
-                controller: 'tabArchived'
-           }).
-           state('main.tabRequests',{
-                url: '/tabRequests',
-                templateUrl: 'programs/programs-list-table-requests.tpl.html',
-                controller: 'tabRequests'
-           });
-
-    });
-
-    function programsListController($state, appConstants, Program, $location) {
-        var vm = this;
-        var previousState;
-
-        angular.extend(vm, {
-            itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
-            itemsByPageNumbers: appConstants.PAGE_ITEM_NUMBERS,
-
-            loadPrograms: loadPrograms,
-            editProgram: editProgram,
-            deleteProgram: deleteProgram,
-            getTabStyle: getTabStyle
-        });
-
-        /////////////////////
-        function getTabStyle(path) {
-            console.log("path = " + path);
-            if($location.path() == '/main/'+path){
-                return "tab-selected";
-            } else {
-                return "";
+        //updating scope programStatus parent for tabs/query puposes
+        if($stateParams.hasOwnProperty('status')) {
+            if($stateParams.status === 'published') {
+                $scope.$parent.programStatus = 'Published';
+            } else if($stateParams.status === 'archived') {
+                $scope.$parent.programStatus = 'Archived';
+            } else if($stateParams.status === 'pending') {
+                $scope.$parent.programStatus = 'Pending';
+            } else if($stateParams.status === 'requests') {
+                $scope.$parent.programStatus = 'requests';
+            } else if($stateParams.status === 'all') {
+                $scope.$parent.programStatus = 'All';
             }
         }
 
-        function loadPrograms(tableState) {
+        /**
+         * Function loading programs
+         * @param {type} tableState
+         * @returns Void
+         */
+        $scope.loadPrograms = function(tableState) {
+            console.log('loadPrograms Fired !!!!!!');
+
             tableState = tableState || {
-                    search: {},
-                    pagination: {},
-                    sort: {}
-                };
-            vm.isLoading = true;
-            var queryObj = {
-                limit: vm.itemsByPage,
-                offset: tableState.pagination.start || 0,
-                includeCount: true
+                search: {},
+                pagination: {},
+                sort: {}
+            };
+
+            $scope.isLoading = true;
+
+            var oApiParam = {
+                apiName: 'listProgram',
+                apiSuffix: '',
+                oParams: {
+                    limit: $scope.itemsByPage,
+                    offset: tableState.pagination.start || 0,
+                    includeCount: true
+                }, 
+                oData: {}, 
+                method: 'GET'
             };
 
             if (tableState.search.predicateObject) {
-                queryObj['keyword'] = tableState.search.predicateObject.$;
+                oApiParam.oParams['keyword'] = tableState.search.predicateObject.$;
+            }
+
+            //for unit test purposes $scope.hasOwnProperty('$parent')
+            if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus === 'requests') {
+                oApiParam.apiSuffix = $scope.$parent.programStatus;
+            } else if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus !== 'All') {
+                oApiParam.oParams['status'] = $scope.$parent.programStatus;
             }
 
             if(tableState.sort.predicate) {
                 var isDescending = tableState.sort.reverse,
                     sortingProperty = tableState.sort.predicate;
-                queryObj.sortBy = ( isDescending ? '-' : '' ) + sortingProperty;
+                oApiParam.oParams['sortBy'] = ( isDescending ? '-' : '' ) + sortingProperty;
             }
 
-            vm.programs = Program.query(queryObj);
+            //call api and get results
+            $scope.promise = ProgramService.query(oApiParam).then(
+                function(data) {
+                    console.log(data);
+                    var programs = [];
+                    //cleanup and adjust strutre data
+                    if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus === 'requests'){
+                        programs = data.results;
+                    } else {
+                        angular.forEach(data.results, function (item) {
+                            angular.forEach(item, function (prop, key) {
+                                if (!prop._id)
+                                    prop._id = key;
+                                programs.push(prop);
+                            });
+                        });
+                    }
 
-            vm.programs.$promise.then(function(data){
-                vm.isLoading = false;
-                var totalCount = data.$metadata.totalCount;
+                    $scope.programs = programs;
+                    $scope.isLoading = false;
 
-                tableState.pagination.numberOfPages = Math.ceil(totalCount / vm.itemsByPage);
-                tableState.pagination.totalItemCount = totalCount;
-                previousState = tableState;
-            })
-        }
+                    tableState.pagination.numberOfPages = Math.ceil(data.totalCount / $scope.itemsByPage);
+                    tableState.pagination.totalItemCount = data.totalCount;
+                    $scope.previousState = tableState;
+                }, 
+                function(error){
+                    
+            });
+        };
 
-        function editProgram(program, section) {
+        /**
+         * function for editing program
+         * @param Object program
+         * @param {type} section
+         * @returns Void
+         */
+        $scope.editProgram= function(program, section) {
             section = section || 'info';
             $state.go('editProgram', {
                 id: program._id,
                 section: section
             });
-        }
+        };
 
-        function deleteProgram(program) {
+        /**
+         * function for deleting program
+         * @param Object program
+         * @returns Q
+         */
+        $scope.deleteProgram = function(program) {
             return program.$delete().then(function() {
-                vm.loadPrograms(previousState);
+                $scope.loadPrograms($scope.previousState);
             });
-        }
-    }
-    myApp.controller('tabAll', function($scope, $http, $injector) {
-        $injector.invoke(myApp, this, {$scope: $scope});
-
-         $scope.loadPrograms = $scope.loadPrograms;
-    });
-
-    myApp.controller('tabPending', function($scope, $http) {
-        $scope.title = 'Open Federal Assistance Listings';
-    });
-
-    myApp.controller('tabPublished', function($scope, $http) {
-        $scope.title = 'Open Federal Assistance Listings';
-    });
-
-    myApp.controller('tabArchived', function($scope, $http) {
-        $scope.title = 'Open Federal Assistance Listings';
-    });
-
-    myApp.controller('tabRequests', function($scope, $http) {
-        $scope.title = 'Federal Assistance Listings Requests';
-
-    });
-
+        };
+    }]);
 })();
 

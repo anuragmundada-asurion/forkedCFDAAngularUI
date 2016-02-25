@@ -1,7 +1,7 @@
 <section st-pipe="loadPrograms" st-table="programs">
     <div class="usa-grid-full page-heading">
         <div class="usa-width-one-half">
-            <h1 style="width:99%;">Federal Assistance Listing Published</h1>
+            <h1 style="width:99%;">Open Federal Assistance Listing (Pending)</h1>
         </div>
         <div class="usa-width-one-fourth" style="margin-top:25px;">
             <a class="usa-button" ui-sref="addProgram">Create a new listing</a>
@@ -11,8 +11,7 @@
         </div>
     </div>
     <div class="usa-grid-full">
-
-<table class="listing-table cfda-table">
+    <table class="listing-table cfda-table">
     <thead>
     <tr>
         <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
@@ -22,11 +21,10 @@
         <th st-sort="dateSubmitted" st-skip-natural="true">Date Submitted</th>
         <th>Actions</th>
         <th st-sort="status" st-skip-natural="true">Status</th>
-        <th st-sort="" st-skip-natural="true"></th>
     </tr>
     </thead>
-    <tbody ng-show="!vm.isLoading">
-    <tr ng-repeat="row in vm.programs">
+    <tbody ng-show="!isLoading">
+    <tr ng-repeat="row in programs">
         <td>
             <input type="checkbox" id="program-{{$index}}">
             <label for="program-{{$index}}"></label>
@@ -37,28 +35,27 @@
         </td>
         <td>{{row.agencyId}}</td>
         <td>{{row.dateSubmitted}}</td>
-        <td class="action-row"><button type="button" ng-click="vm.editProgram(row)"><span class="fa fa-pencil"></span></button><button type="button" ng-click="vm.deleteProgram(row)"><span class="fa fa-trash-o"></span></button></td>
+        <td class="action-row"><button type="button" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button><button type="button" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button></td>
         <td>{{row.status}}</td>
     </tr>
     </tbody>
-    <tbody ng-show="vm.isLoading">
+    <tbody ng-show="isLoading">
     <tr>
         <td colspan="7" class="text-center">Loading ...</td>
     </tr>
     </tbody>
 </table>
-        
-</div>
-<div class="pagination-panel">
-    <div class="pagination-controls usa-grid-full">
-        <div class="pagination-item-count-control">
-            <span>Showing </span>
-            <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
-            <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
-            </select>
-            <span> Per Page</span>
-        </div>
-        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
     </div>
-</div>
+    <div class="pagination-panel">
+        <div class="pagination-controls usa-grid-full">
+            <div class="pagination-item-count-control">
+                <span>Showing </span>
+                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
+                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
+                </select>
+                <span> Per Page</span>
+            </div>
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+        </div>
+    </div>
 </section>

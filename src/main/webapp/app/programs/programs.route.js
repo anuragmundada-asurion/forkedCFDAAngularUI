@@ -14,7 +14,7 @@
 
     function configureRoutes($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('addProgram', {
+            .state('addProgram', { 
                 url: "/programs/add/:section",
                 templateUrl: "programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
@@ -38,10 +38,28 @@
                 controller: "HomeController as vm"
             })
             .state('programList', {
-                url: "/programs",
+                url: "/programs/main",
                 templateUrl: "programs/programs-list.tpl.html",
-                controller: "ProgramsListController as vm"
+                controller: "ProgramsListCtrl"
+            })
+            .state('programList.status', {
+                url: '/:status',
+                templateUrl:  function ($stateParams) {
+                    if($stateParams.status && $stateParams.status === 'pending') {
+                        return 'programs/programs-list-table-pending.tpl.html';
+                    } else if($stateParams.status && $stateParams.status === 'archived') {
+                        return 'programs/programs-list-table-archived.tpl.html';
+                    } else if($stateParams.status && $stateParams.status === 'published'){
+                        return 'programs/programs-list-table-published.tpl.html';
+                    } else if($stateParams.status && $stateParams.status === 'requests'){
+                        return 'programs/programs-list-table-requests.tpl.html';
+                    } else {
+                        return 'programs/programs-list-table-all.tpl.html';
+                    }
+                },
+                controller: 'ProgramsListCtrl'
             });
+
         $urlRouterProvider.when('', goHome);
     }
 
