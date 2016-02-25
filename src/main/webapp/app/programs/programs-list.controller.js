@@ -4,27 +4,33 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$location', '$stateParams', 'appConstants', 'Program', 'ProgramService', function($scope, $state, $location, $stateParams, appConstants, Program, ProgramService) {
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$location', '$stateParams', 'appConstants', 'ProgramService', function($scope, $state, $location, $stateParams, appConstants, ProgramService) {
         $scope.previousState = null;
         $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
         $scope.programStatus = 'All';
 
-        console.log('controller run');
-
         //updating scope programStatus parent for tabs/query puposes
         if($stateParams.hasOwnProperty('status')) {
             if($stateParams.status === 'published') {
+                $scope.programStatus = 'Published';
                 $scope.$parent.programStatus = 'Published';
             } else if($stateParams.status === 'archived') {
+                $scope.programStatus = 'Archived';
                 $scope.$parent.programStatus = 'Archived';
             } else if($stateParams.status === 'pending') {
+                $scope.programStatus = 'Pending';
                 $scope.$parent.programStatus = 'Pending';
             } else if($stateParams.status === 'requests') {
+                $scope.programStatus = 'requests';
                 $scope.$parent.programStatus = 'requests';
             } else if($stateParams.status === 'all') {
+                $scope.programStatus = 'All';
                 $scope.$parent.programStatus = 'All';
             }
+        } else {
+            //main page, go to All tab
+            $state.go('programList.status', {status: 'all'});
         }
 
         /**
@@ -33,8 +39,6 @@
          * @returns Void
          */
         $scope.loadPrograms = function(tableState) {
-            console.log('loadPrograms Fired !!!!!!');
-
             tableState = tableState || {
                 search: {},
                 pagination: {},
@@ -60,10 +64,10 @@
             }
 
             //for unit test purposes $scope.hasOwnProperty('$parent')
-            if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus === 'requests') {
-                oApiParam.apiSuffix = $scope.$parent.programStatus;
-            } else if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus !== 'All') {
-                oApiParam.oParams['status'] = $scope.$parent.programStatus;
+            if($scope.programStatus === 'requests') {
+                oApiParam.apiSuffix = $scope.programStatus;
+            } else if( $scope.programStatus !== 'All') {
+                oApiParam.oParams['status'] = $scope.programStatus;
             }
 
             if(tableState.sort.predicate) {
@@ -75,10 +79,9 @@
             //call api and get results
             $scope.promise = ProgramService.query(oApiParam).then(
                 function(data) {
-                    console.log(data);
                     var programs = [];
                     //cleanup and adjust strutre data
-                    if($scope.hasOwnProperty('$parent') && $scope.$parent.programStatus === 'requests'){
+                    if($scope.programStatus === 'requests'){
                         programs = data.results;
                     } else {
                         angular.forEach(data.results, function (item) {
