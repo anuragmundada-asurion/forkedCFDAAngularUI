@@ -159,7 +159,7 @@ public class ApiController {
     }
 
     private String getListingCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/listingcount";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings";
     }
 
     private String getDictionaryApiUrl() {
