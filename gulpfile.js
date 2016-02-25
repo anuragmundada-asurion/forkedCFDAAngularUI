@@ -35,7 +35,12 @@ gulp.task('app-static-files', function () {
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('vendor-js-files', ['app-static-files'], function () {
+gulp.task('iae-widgets', function() {
+    gulp.src('src/main/webapp/vendor/iae-widgets/**/*.*')
+        .pipe(gulp.dest('target/classes/static'));
+});
+
+gulp.task('vendor-js-files', ['app-static-files', 'iae-widgets'], function () {
     var bowerSrc = ['**/*.js'];
     unneededDepForMondernBrowsers.forEach(function (src) {
         bowerSrc.push('!' + src);
@@ -99,7 +104,7 @@ gulp.task('app-js-files', ['vendor-css-files', 'site-css-files'], function () {
 });
 
 gulp.task('app-sass-files', ['app-js-files'], function () {
-    appSass = gulp.src('src/main/scss/**/*.scss')
+    appSass = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(rename('main-' + argv.version +".css"))
         .pipe(gulp.dest('target/classes/static/css'));

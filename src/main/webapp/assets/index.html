@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
-
     <!-- inject:css -->
     <!-- endinject -->
+
+    <link rel="stylesheet" href="/css/all.css"/>
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="/css/all-ie-only.css" />
+    <![endif]-->
+
     <!--[if lte IE 9]>
     <script type="text/javascript">
         'use strict';
@@ -28,11 +33,15 @@
     <!-- endinject -->
 </head>
 <body ng-app="app">
-    <header ng-include="'layout/header.tpl.html'" class="header" role="banner">
+    <header class="header" role="banner">
+        <section id="iae-authentication-modal" class="gsa-authentication-modal"></section>
+        <section id="iae-header"></section>
     </header>
     <div id="main" ui-view aria-live="polite" role="main">
     </div>
-    <footer ng-include="'layout/footer.tpl.html'" class="footer">
+    <footer class="footer">
+        <section id="iae-footer"></section>
     </footer>
+    <script src="/js/iae-widgets.min.js"></script>
 </body>
 </html>

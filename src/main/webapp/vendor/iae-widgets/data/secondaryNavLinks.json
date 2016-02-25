@@ -1,0 +1,19 @@
+{
+	"secondaryNavLinks": [{
+		"url": "#",
+		"text": "Sub Category 1"
+	},
+	{
+		"url": "#",
+		"text": "Sub Category 2",
+		"active": "true"
+	},
+	{
+		"url": "#",
+		"text": "Sub Category 3"
+	},
+	{
+		"url": "#",
+		"text": "Sub Category 4"
+	}]
+}

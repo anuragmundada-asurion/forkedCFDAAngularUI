@@ -15,7 +15,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             // bower:js
-            'main/webapp/bower_components/jquery/dist/jquery.js',
+            'main/webapp/bower_components/jquery/dist/jquery.min.js',
             'main/webapp/bower_components/angular/angular.js',
             'main/webapp/bower_components/angular-resource/angular-resource.js',
             'main/webapp/bower_components/angular-touch/angular-touch.js',
@@ -32,6 +32,9 @@ module.exports = function(config) {
             'main/webapp/bower_components/matchmedia/matchMedia.js',
             'main/webapp/bower_components/ngSticky/lib/sticky.js',
             'main/webapp/bower_components/angular-vs-repeat/src/angular-vs-repeat.js',
+            'main/webapp/bower_components/react/react.js',
+            'main/webapp/bower_components/react/react-dom.js',
+            'main/webapp/bower_components/js-cookie/src/js.cookie.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/app/**/*.html',
@@ -45,6 +48,7 @@ module.exports = function(config) {
 
         // list of files to exclude
         exclude: [
+            'main/webapp/bower_components/react/*.*'
         ],
 
 

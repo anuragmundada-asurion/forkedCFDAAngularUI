@@ -1,0 +1,42 @@
+{
+	"sidebarLinks": [{
+		"url": "#",
+		"text": "Alerts",
+		"children": [{
+			"url": "#",
+			"text": "Child link"
+		},
+		{
+			"url": "#",
+			"text": "Child link"
+		}]
+	},
+	{
+		"url": "#",
+		"text": "Release Notes"
+	},
+	{
+		"url": "#",
+		"text": "Transition Roadmap",
+		"children": [{
+			"url": "#",
+			"text": "Child link"
+		},
+		{
+			"url": "#",
+			"text": "Child link",
+			"grandchildren": [{
+				"url": "#",
+				"text": "Grandchild link"
+			},
+			{
+				"url": "#",
+				"text": "Grandchild link"
+			},
+			{
+				"url": "#",
+				"text": "Grandchild link"
+			}]
+		}]
+	}]
+}
