@@ -74,7 +74,9 @@ describe("Unit Tests for Programs List Controller", function () {
         var $scope, controller;
 
         beforeEach(function(){
-            $scope = {programStatus: ''};
+            $scope = { $parent: {
+                    programStatus: ''
+            }};
             controller = $controller('ProgramsListCtrl as vm', {
                 $scope: $scope
             });
