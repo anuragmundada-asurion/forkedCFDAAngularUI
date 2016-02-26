@@ -154,7 +154,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/archive/request/{id}", method = RequestMethod.POST)
     public String archiveProgramRequest(@PathVariable("id") String programId,
-                                        @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                         @RequestParam (value="reason", required=true) String reason) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -172,7 +172,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/publish/request/{id}", method = RequestMethod.POST)
     public String publishProgramRequest(@PathVariable("id") String programId,
-                                        @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                         @RequestParam (value="reason", required=false, defaultValue="") String reason,
                                         @RequestBody String jsonData) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -190,7 +190,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/unarchive/request/{id}", method = RequestMethod.POST)
     public String unarchiveProgramRequest(@PathVariable("id") String programId,
-                                          @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                          @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                           @RequestParam (value="reason", required=true) String reason) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -207,7 +207,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/archive/{id}", method = RequestMethod.POST)
     public String archiveProgram(@PathVariable("id") String programId,
-                                 @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                 @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                  @RequestParam (value="reason", required=true) String reason,
                                  @RequestParam (value="programNumber", required=true) String programNumber) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -226,7 +226,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/unarchive/{id}", method = RequestMethod.POST)
     public String unarchiveProgram(@PathVariable("id") String programId,
-                                   @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                   @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                    @RequestParam (value="reason", required=true) String reason,
                                    @RequestParam (value="programNumber", required=true) String programNumber)throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -264,7 +264,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/archive/reject/{id}", method = RequestMethod.POST)
     public String rejectArchiveProgram(@PathVariable("id") String programId,
-                                       @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                       @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                        @RequestParam (value="reason", required=true) String reason) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -281,7 +281,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/unarchive/reject/{id}", method = RequestMethod.POST)
     public String rejectUnarchiveProgram(@PathVariable("id") String programId,
-                                         @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                         @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                          @RequestParam (value="reason", required=true) String reason) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -298,7 +298,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/publish/reject/{id}", method = RequestMethod.POST)
     public String rejectPublishProgram(@PathVariable("id") String programId,
-                                       @RequestParam (value="parentProgramId", required=true) String parentProgramId,
+                                       @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                        @RequestParam (value="reason", required=true) String reason) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
