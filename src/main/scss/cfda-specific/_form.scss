@@ -124,6 +124,8 @@ ul {
         width: 100%;
         list-style: none;
         margin: 2.1em 0em 1em 0em;
+        border-bottom: 1px solid $color-gray-lightest;
+        
         > li  {
             &:before {
                 content: none;
@@ -133,17 +135,18 @@ ul {
             text-align: center;
             display: inline-block;
             border-style: solid;
-            background-color: $color-gray-lightest;
-            border-color: $color-primary;
+            background-color: white;
+            border-color: $color-gray-lightest;
             color: $color-primary;
             height: 55px;
             border-width: 1px 1px 1px 1px;
             margin-right: -6px;
+            margin-bottom: 0px !important;
 
             &.tab-selected {
-               background-color: $color-white !important;
+               background-color:$color-primary-alt-lightest !important;
                color: $color-gray !important;
-               border-color: $color-gray !important;
+               border-color: none !important;
                border-width: 1px 1px 3px 1px !important;
 
                > a {
