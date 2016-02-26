@@ -130,6 +130,15 @@
             });
         };
 
+        /**
+         * 
+         * @param String string
+         * @returns Object
+         */
+        $scope.stringToJson = function(string) {
+            return JSON.parse(string);
+        };
+
         //global function for change status modal
         /**
          * 
@@ -194,9 +203,10 @@
                         oApiParam.apiName = 'programArchiveRequest';
                     } else if($scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequest';
+                    } else if($scope.oProgram.status === 'Draft') {
+                        oApiParam.apiName = 'programPublishRequest';
                     }
                 } else if($scope.ngDialogData.typeEntity === 'request') {
-
                     if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Published') {
                         oApiParam.apiName = 'programArchive';
                     } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Published') {
@@ -205,6 +215,10 @@
                         oApiParam.apiName = 'programUnArchive';
                     } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequestReject';
+                    } else if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Draft') {
+                        oApiParam.apiName = 'programPublish';
+                    } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Draft') {
+                        oApiParam.apiName = 'programPublishRequestReject';
                     }
                 }
 

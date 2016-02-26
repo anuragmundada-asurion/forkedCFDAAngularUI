@@ -26,7 +26,8 @@
     "ngSticky": "~1.8.0",
     "angular-vs-repeat": "1.0.1-beta",
     "react": "~0.14.6",
-    "js-cookie": "~2.1.0"
+    "js-cookie": "~2.1.0",
+    "angular-moment": "~0.10.3"
   },
   "resolutions": {
     "angular": "~1.2.0"

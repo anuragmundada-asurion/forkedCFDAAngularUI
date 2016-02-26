@@ -6,12 +6,15 @@
    myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
         var APIs = {
             "programList": "/api/programs",
-            "programArchiveRequest": "/api/v1/programs/archive/request", // /:program_id
-            "programArchive": "/api/v1/programs/archive", // /:program_id
-            "programArchiveRequestReject": "/api/v1/programs/archive/reject", // /:program_id
-            "programUnArchiveRequest": "/api/v1/programs/unarchive/request", // /:program_id
-            "programUnArchive": "/api/v1/programs/unarchive", // /:program_id
-            "programUnArchiveRequestReject": "/api/v1/programs/unarchive/reject", // /:program_id
+            "programArchiveRequest": "/api/programs/archive/request", // /:program_id
+            "programArchive": "/api/programs/archive", // /:program_id
+            "programArchiveRequestReject": "/api/programs/archive/reject", // /:program_id
+            "programUnArchiveRequest": "/api/programs/unarchive/request", // /:program_id
+            "programUnArchive": "/api/programs/unarchive", // /:program_id
+            "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
+            "programPublishRequest": "/api/programs/publish/request", // /:program_id
+            "programPublish": "/api/programs/publish", // /:program_id
+            "programPublishRequestReject": "/api/programs/publish/reject", // /:program_id
         };
 
         this.APIs = APIs;

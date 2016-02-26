@@ -30,7 +30,8 @@ public class ApiController {
                                         @RequestParam(value="includeCount", required=false, defaultValue="false") Boolean includeCount,
                                         @RequestParam(value="limit", required=false, defaultValue="100") int limit,
                                         @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                                        @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy) {
+                                        @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
+                                        @RequestParam(value="status", required=false, defaultValue="") String status) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -40,7 +41,8 @@ public class ApiController {
                 .queryParam("includeCount", includeCount)
                 .queryParam("limit", limit)
                 .queryParam("offset", offset)
-                .queryParam("sortBy", sortBy);
+                .queryParam("sortBy", sortBy)
+                .queryParam("status", status);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
