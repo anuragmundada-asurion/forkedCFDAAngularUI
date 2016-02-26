@@ -39,6 +39,9 @@
         </td>
         <td>{{ row.dateModified | amDateFormat:'MMMM, Do YYYY h:mm a' }}</td>
     </tr>
+    <tr ng-show="!programs || programs.length == 0">
+        <td colspan="5" class="text-center">No Results Found</td>
+    </tr>
     </tbody>
     <tbody ng-show="isLoading">
     <tr>
