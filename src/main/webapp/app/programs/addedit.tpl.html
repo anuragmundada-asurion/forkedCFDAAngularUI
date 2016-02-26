@@ -1739,7 +1739,7 @@
             </section>
         </ux-form-section>
         <ux-form-section state-key="review" section-title="Review">
-            <div style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
+            <div id="formErrorMessages" style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
                         || !gsavm.program.objective || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0 || !gsavm.program.usage.restrictions.flag
                         || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag
                         || (gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content)
@@ -1902,7 +1902,9 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" ng-show="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Save / Publish</button>
+        <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Draft'" ng-click="gsavm.publishProgram(true, gsavm.program)">Save & Publish</button>
+        <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showChangeStatusModal(gsavm.program, 'program')">Archive</button>
+        <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Archived'" ng-click="showChangeStatusModal(gsavm.program, 'program')">Unarchive</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>
         <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>

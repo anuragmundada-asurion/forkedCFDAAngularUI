@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$state', '$filter', '$parse', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
+    addEditProgramController.$inject = ['$scope', '$location', '$state', '$filter', '$parse', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($state, $filter, $parse, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+    function addEditProgramController($scope, $location, $state, $filter, $parse, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -107,6 +107,8 @@
             formatModelString: formatModelString,
             getTreeNodeModel: getTreeNodeModel,
             createContact: createContact,
+            publishProgram: publishProgram,
+            validateProgramFields: validateProgramFields,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
             getAmendmentTitle: appUtil.getAuthorizationTitle,
             getAccountTitle: appUtil.getAccountTitle,
@@ -321,6 +323,7 @@
         }
 
         function onSectionChange(prevSectionKey) {
+            console.log(prevSectionKey);
             save();
             revealValidations(prevSectionKey);
         }
@@ -337,6 +340,65 @@
 
             datepicker.opened = true;
         }
-    }
 
+        /**
+         * TODO: Split program validation into sections
+         * @param Object oProgram program to be validated
+         * @returns Boolean 
+         */
+        function validateProgramFields(oProgram) {
+            return !(!oProgram.title || !oProgram.authorizations || oProgram.authorizations.length==0
+                || !oProgram.objective || !oProgram.assistanceTypes || oProgram.assistanceTypes.length==0 || !oProgram.usage.restrictions.flag
+                || (oProgram.usage.restrictions.flag===vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
+                || (oProgram.usage.discretionaryFund.flag===vm.choices['yes_no'].yes.code && !oProgram.usage.discretionaryFund.content)
+                || !oProgram.usage.loanTerms.flag || (oProgram.usage.loanTerms.flag===vm.choices['yes_no'].yes.code && !oProgram.usage.loanTerms.content)
+                || !oProgram.relatedPrograms.flag || (oProgram.relatedPrograms.flag==='yes' && !oProgram.relatedPrograms.relatedTo) || !oProgram.projects.flag
+                || !oProgram.functionalCodes || oProgram.functionalCodes.length==0 || !oProgram.subjectTerms || oProgram.subjectTerms.length==0
+                || !oProgram.eligibility.applicant.types || oProgram.eligibility.applicant.types.length==0
+                || !oProgram.eligibility.applicant.assistanceUsageTypes || oProgram.eligibility.applicant.assistanceUsageTypes.length==0 || !oProgram.eligibility.applicant.additionalInfo
+                || !oProgram.eligibility.beneficiary.types || oProgram.eligibility.beneficiary.types.length==0 || !oProgram.eligibility.beneficiary.additionalInfo.content
+                || !oProgram.eligibility.documentation.flag || (oProgram.eligibility.documentation.flag==='yes' && !oProgram.eligibility.documentation.content)
+                || oProgram.eligibility.documentation.flag==='yes' && !oProgram.eligibility.documentation.questions['OMBCircularA87'].flag
+                || !oProgram.preApplication.coordination.flag || (oProgram.preApplication.coordination.flag==='yes' && !oProgram.preApplication.coordination.environmentalImpact.flag)
+                || (oProgram.preApplication.coordination.flag==='yes' && !oProgram.preApplication.coordination.questions.ExecutiveOrder12372.flag) || !oProgram.application.procedures.questions.OMBCircularA102.flag
+                || !oProgram.award.procedures.content || !oProgram.application.deadlines.submission.flag || !oProgram.application.deadlines.approval.interval || !oProgram.application.deadlines.appeal.interval
+                || !oProgram.application.deadlines.renewal.interval || !oProgram.assistance.formula.flag || !oProgram.assistance.matching.flag || (oProgram.assistance.matching.flag=='yes' && !oProgram.assistance.matching.percent)
+                || !oProgram.assistance.moe.flag || !oProgram.assistance.limitation.content || !oProgram.assistance.limitation.awarded || !oProgram.application.selectionCriteria.flag
+                || (oProgram.application.selectionCriteria.flag=='yes' && !oProgram.application.selectionCriteria.content)
+                || !oProgram.postAward.reports.flag || (oProgram.postAward.reports.flag==='yes' && !oProgram.postAward.reports.list.program.flag)
+                || (oProgram.postAward.reports.flag==='yes' && !oProgram.postAward.reports.list.cash.flag) || (oProgram.postAward.reports.flag==='yes' && !oProgram.postAward.reports.list.progress.flag)
+                || (oProgram.postAward.reports.flag==='yes' && !oProgram.postAward.reports.list.expenditure.flag) || (oProgram.postAward.reports.flag==='yes' && !oProgram.postAward.reports.list.performanceMonitoring.flag)
+                || !oProgram.postAward.audit.flag || (oProgram.postAward.audit.flag==='yes' && !oProgram.postAward.audit.questions['OMBCircularA133'].flag)
+                || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag==='yes' && !oProgram.postAward.documents.content)
+                || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length==0 || !oProgram.postAward.accomplishments.flag
+                || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length==0);
+        }
+
+        /**
+         * 
+         * @param Boolean save True -> Save Program then create publish request
+         * @param Object oProgram
+         * @returns Void
+         */
+        function publishProgram(save, oProgram) {
+            var isProgramValidated = validateProgramFields(oProgram);
+
+            if(isProgramValidated) {
+                if(save) {
+                    //Call save program on success call showProgramChangeStatus
+                    var copy = angular.copy(vm.program);
+
+                    copy['$update']().then(function(data){ //on success
+                        $scope.$parent.showChangeStatusModal(oProgram, 'program');
+                    });
+                } else {
+                    //call showProgramChangeStatus directly
+                    $scope.$parent.showChangeStatusModal(oProgram, 'program');
+                }
+            } else {
+                //program has an issue and cannot be published yet
+                $location.hash('formErrorMessages');
+            }
+        }
+    }
 })();

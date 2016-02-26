@@ -4,7 +4,8 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListCtrl', ['$rootScope', '$scope', '$state', '$location', '$stateParams', 'appConstants', 'ProgramService', 'ngDialog', function($rootScope, $scope, $state, $location, $stateParams, appConstants, ProgramService, ngDialog) {
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ProgramService', 
+    function($scope, $state, $stateParams, appConstants, ProgramService) {
         $scope.previousState = null;
         $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
@@ -137,31 +138,6 @@
          */
         $scope.stringToJson = function(string) {
             return JSON.parse(string);
-        };
-
-        //global function for change status modal
-        /**
-         * 
-         * @param Object oEntity  Program | Program Request
-         * @param String typeEntity Type of entity provided in oEntity
-         * @param String action action to perform (Approve|Reject)
-         * @returns Void
-         */
-        $rootScope.showChangeStatusModal = function(oEntity, typeEntity, action) {
-            ngDialog.open({ 
-                template: 'programs/_ProgramStatusModal.tpl.html', 
-                className: 'ngdialog-theme-default',
-                data: {
-                    oEntity: oEntity, 
-                    typeEntity: typeEntity,
-                    action: action
-                } 
-            });
-        };
-
-        //global function for Closing change status modal
-        $rootScope.closeChangeStatusModal = function() {
-            ngDialog.close();
         };
     }]);
 
