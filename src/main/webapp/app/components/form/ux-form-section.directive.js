@@ -55,7 +55,7 @@
 
             function go() {
                 self.uxForm.current = self;
-                $document.scrollToElementAnimated($document.findAll(self.uxForm.scrollAnchor));
+                $document.scrollToElementAnimated($document.findAll(self.uxForm.scrollAnchor), 187);
             }
         }
 
