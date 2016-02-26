@@ -24,7 +24,7 @@
             } else if($stateParams.status === 'requests') {
                 $scope.programStatus = 'requests';
                 $scope.$parent.programStatus = 'requests';
-            } else if($stateParams.status === 'all') {
+            } else {
                 $scope.programStatus = 'All';
                 $scope.$parent.programStatus = 'All';
             }
