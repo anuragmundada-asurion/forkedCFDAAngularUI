@@ -29,7 +29,7 @@
             <label for="program-{{$index}}"></label>
         </td>
         <td>
-            <a ui-sref="editProgram({id: row._id, section: 'review'})">{{ stringToJson(row.data).title }}</a>
+            <a ui-sref="editProgram({id: stringToJson(row.data)._id, section: 'review'})">{{ stringToJson(row.data).title }}</a>
         </td>
         <td>{{row.actionCode}}</td>
         <td>{{row.reason}}</td>
