@@ -142,8 +142,8 @@
     }]);
 
     //Controller for Program Status
-    myApp.controller('ProgramStatusCtrl', ['$scope', 'ApiService', 'ngDialog',
-        function($scope, ApiService, ngDialog) {
+    myApp.controller('ProgramStatusCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
+        function($scope, $state, $timeout, ApiService, ngDialog) {
 
         //get the oEntity that was passed from ngDialog in 'data' option
         $scope.oProgram = $scope.ngDialogData.oEntity;
@@ -159,6 +159,11 @@
          * @returns Void
          */
         $scope.changeProgramStatus = function() {
+            var message = {
+                success: 'Your request has been submitted !',
+                error: 'An error has occurred, please try again !'
+            };
+
             if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
                 var oApiParam = {
                     apiName: '',
@@ -183,8 +188,10 @@
                     } else if($scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequest';
                     } else if($scope.oProgram.status === 'Draft') {
-                        oApiParam.apiName = 'programPublishRequest';
+                        oApiParam.apiName = 'programPublish';
                     }
+
+                    message.success = 'Your request has been processed !';
                 } else if($scope.ngDialogData.typeEntity === 'request') {
                     if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Published') {
                         oApiParam.apiName = 'programArchive';
@@ -194,10 +201,6 @@
                         oApiParam.apiName = 'programUnArchive';
                     } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequestReject';
-                    } else if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Draft') {
-                        oApiParam.apiName = 'programPublish';
-                    } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Draft') {
-                        oApiParam.apiName = 'programPublishRequestReject';
                     }
                 }
 
@@ -206,13 +209,18 @@
                 function(data){
                     $scope.flash = {
                         type: 'success',
-                        message: 'Your request has been processed !'
+                        message: message.success
                     };
+
+                    //go to list page after 2 seconds
+                    $timeout(function() {
+                        $state.go('programList.status', {status: 'all'});
+                    }, 2000);
                 }, 
                 function(error){
                     $scope.flash = {
                         type: 'error',
-                        message: 'an error has occurred, please try again !'
+                        message: message.error
                     };
                 });
             }
