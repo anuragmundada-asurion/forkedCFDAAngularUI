@@ -17,7 +17,6 @@
         <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
         <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
         <th st-sort="requestType" st-skip-natural="true">Request Type</th>
-        <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
         <th st-sort="reason" st-skip-natural="true">Reason</th>
         <th>Actions</th>
         <th st-sort="dateRequested" st-skip-natural="true">Date Requested</th>
@@ -30,16 +29,15 @@
             <label for="program-{{$index}}"></label>
         </td>
         <td>
-            <a ui-sref="editProgram({id: row._id, section: 'review'})">{{row.title}}</a>
+            <a ui-sref="editProgram({id: stringToJson(row.data)._id, section: 'review'})">{{ stringToJson(row.data).title }}</a>
         </td>
-        <td>{{row.requestType}}</td>
-        <td>{{row.agencyId}}</td>
+        <td>{{row.actionCode}}</td>
         <td>{{row.reason}}</td>
         <td class="action-row">
             <button type="button" ng-click="showChangeStatusModal(row, 'request', 'approve')"><span class="fa fa-check-circle-o"></span></button>
             <button type="button" ng-click="showChangeStatusModal(row, 'request', 'reject')"><span class="fa fa-times-circle"></span></button>
         </td>
-        <td>{{row.dateRequested}}</td>
+        <td>{{ row.dateModified | amDateFormat:'MMMM, Do YYYY h:mm a' }}</td>
     </tr>
     </tbody>
     <tbody ng-show="isLoading">

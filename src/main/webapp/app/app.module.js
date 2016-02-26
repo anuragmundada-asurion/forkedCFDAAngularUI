@@ -14,7 +14,8 @@
         'ui.bootstrap',
         'sticky',
         'vs-repeat',
-        'ngDialog'
+        'ngDialog',
+        'angularMoment'
     ];
 
     /**
