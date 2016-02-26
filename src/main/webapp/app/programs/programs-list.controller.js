@@ -174,9 +174,6 @@
          * @returns Void
          */
         $scope.changeProgramStatus = function() {
-            console.log($scope.ngDialogData.oEntity);
-            console.log($scope.reason);
-
             if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
                 var oApiParam = {
                     apiName: '',
@@ -211,20 +208,15 @@
                     }
                 }
 
-                console.log(oApiParam);
-
                 //Call API
                 ApiService.call(oApiParam).then(
                 function(data){
-                    console.log(data);
-
                     $scope.flash = {
                         type: 'success',
                         message: 'Your request has been processed !'
                     };
                 }, 
                 function(error){
-                    console.log(error);
                     $scope.flash = {
                         type: 'error',
                         message: 'an error has occurred, please try again !'
