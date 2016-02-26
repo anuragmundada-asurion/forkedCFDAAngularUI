@@ -160,7 +160,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/archive/request/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/request/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
@@ -179,7 +179,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/publish/request/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/request/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
@@ -196,7 +196,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/unarchive/request/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/request/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
@@ -214,7 +214,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/archive/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason)
                 .queryParam("programNumber", programNumber);
@@ -233,7 +233,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/unarchive/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason)
                 .queryParam("programNumber", programNumber);
@@ -252,7 +252,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/publish/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason)
                 .queryParam("programNumber", programNumber);
@@ -270,7 +270,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/archive/reject/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/reject/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
@@ -287,7 +287,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/unarchive/reject/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/reject/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
@@ -304,7 +304,7 @@ public class ApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/programs/publish/reject/" + programId)
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/reject/" + programId)
                 .queryParam("parentProgramId", parentProgramId)
                 .queryParam("reason", reason);
 
