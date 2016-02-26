@@ -214,6 +214,7 @@
 
                     //go to list page after 2 seconds
                     $timeout(function() {
+                        ngDialog.closeAll();
                         $state.go('programList.status', {status: 'all'});
                     }, 2000);
                 }, 
