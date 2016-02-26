@@ -36,6 +36,8 @@ module.exports = function(config) {
             'main/webapp/bower_components/react/react.js',
             'main/webapp/bower_components/react/react-dom.js',
             'main/webapp/bower_components/js-cookie/src/js.cookie.js',
+            'main/webapp/bower_components/moment/moment.js',
+            'main/webapp/bower_components/angular-moment/angular-moment.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/app/**/*.html',
