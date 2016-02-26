@@ -3,6 +3,7 @@
         <div ng-switch on="oProgram.status">
             <h4 ng-switch-when='Published'>Archive Request</h4>
             <h4 ng-switch-when='Archived'>Publish Request</h4>
+            <h4 ng-switch-when='Draft'>Publish Request</h4>
         </div>
     </div>
 
@@ -16,8 +17,10 @@
     </div>
 
     <section class="sub-section">
-        <div ng-show="flash && flash.type && flash.message" ng-class="'usa-alert-'+flash.type">
-            <p>{{ flash.message }}</p>
+        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+            <div class="usa-alert-body">
+                <p class="usa-alert-text">{{ flash.message }}</p>
+            </div>
         </div>
         <form name='statusForm'>
             <div class="input-field">
