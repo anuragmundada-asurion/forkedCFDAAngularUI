@@ -61,7 +61,7 @@
             }
         },
             choices: angular.extend({
-                programs: Programs.query({ limit: 1000 }),
+                programs: Programs.query({ limit: 2500 }),
                 contacts: Contacts.query({ agencyId: vm.program.agencyId}),
                 offices: [
                     {
