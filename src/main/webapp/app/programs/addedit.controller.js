@@ -323,7 +323,6 @@
         }
 
         function onSectionChange(prevSectionKey) {
-            console.log(prevSectionKey);
             save();
             revealValidations(prevSectionKey);
         }
