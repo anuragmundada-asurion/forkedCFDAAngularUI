@@ -29,6 +29,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/ui-select/dist/select.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'main/webapp/bower_components/xdomain/dist/xdomain.js',
+            'main/webapp/bower_components/ng-dialog/js/ngDialog.js',
             'main/webapp/bower_components/matchmedia/matchMedia.js',
             'main/webapp/bower_components/ngSticky/lib/sticky.js',
             'main/webapp/bower_components/angular-vs-repeat/src/angular-vs-repeat.js',

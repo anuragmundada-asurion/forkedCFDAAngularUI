@@ -13,7 +13,8 @@
         'ui.select',
         'ui.bootstrap',
         'sticky',
-        'vs-repeat'
+        'vs-repeat',
+        'ngDialog'
     ];
 
     /**

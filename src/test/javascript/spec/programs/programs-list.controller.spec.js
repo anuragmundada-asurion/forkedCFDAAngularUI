@@ -20,7 +20,7 @@ describe("Unit Tests for Programs List Controller", function () {
         //
         //setup oApiParam variable
         oApiParam = {
-            apiName: 'listProgram',
+            apiName: 'programList',
             apiSuffix: '',
             oParams: {
                 limit: 5,

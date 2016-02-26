@@ -1,0 +1,41 @@
+<div ng-controller="ProgramStatusCtrl">
+    <div ng-show="ngDialogData.typeEntity === 'program'">
+        <div ng-switch on="oProgram.status">
+            <h4 ng-switch-when='Published'>Archive Request</h4>
+            <h4 ng-switch-when='Archived'>Publish Request</h4>
+        </div>
+    </div>
+
+    <div ng-show="ngDialogData.typeEntity === 'request'">
+        <div ng-switch on="oProgram.status">
+            <h4 ng-switch-when='Published' ng-show="ngDialogData.action === 'approve'">Archive Request Approval</h4>
+            <h4 ng-switch-when='Published' ng-show="ngDialogData.action === 'reject'">Archive Request Reject</h4>
+            <h4 ng-switch-when='Archived' ng-show="ngDialogData.action === 'approve'">Publish Request Approval</h4>
+            <h4 ng-switch-when='Archived' ng-show="ngDialogData.action === 'reject'">Publish Request Reject</h4>
+        </div>
+    </div>
+
+    <section class="sub-section">
+        <div ng-show="flash && flash.type && flash.message" ng-class="'usa-alert-'+flash.type">
+            <p>{{ flash.message }}</p>
+        </div>
+        <form name='statusForm'>
+            <div class="input-field">
+                <label for="reason">Reason<span class="required" >*</span></label>
+                <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
+                <textarea id="reason" name="reason" ng-model="reason" required></textarea>
+                <div ng-show="form.error || statusForm.reason.$dirty">
+                    <span ng-show="statusForm.reason.$error.required">You must provide Reason of this request.</span>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.typeEntity === 'program'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="changeProgramStatus()">Submit</button>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.typeEntity === 'request'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="changeProgramStatus(ngDialogData.action)">Submit</button>
+    </section>
+</div>
