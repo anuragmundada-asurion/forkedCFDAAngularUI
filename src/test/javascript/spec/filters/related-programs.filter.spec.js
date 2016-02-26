@@ -7,7 +7,7 @@ describe('Unit Tests for Filter: related programs', function() {
     beforeEach(function(){
         module('app');
         inject(function(_$filter_) {
-            testPrograms = [{id:1, title: "Test Title"}, {id:2, programNumber: "Test Program Number"}, {id: 3, title: "Test Both", programNumber: "Test Both"}];
+            testPrograms = [{id:1, title: "Test Title", status: 'Published'}, {id:2, programNumber: "Test Program Number", status: 'Published'}, {id: 3, title: "Test Both", programNumber: "Test Both", status: 'Published'}];
             relatedFilter = _$filter_('searchRelatedPrograms');
         });
     });

@@ -12,9 +12,7 @@
             "programUnArchiveRequest": "/api/programs/unarchive/request", // /:program_id
             "programUnArchive": "/api/programs/unarchive", // /:program_id
             "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
-            "programPublishRequest": "/api/programs/publish/request", // /:program_id
             "programPublish": "/api/programs/publish", // /:program_id
-            "programPublishRequestReject": "/api/programs/publish/reject", // /:program_id
         };
 
         this.APIs = APIs;

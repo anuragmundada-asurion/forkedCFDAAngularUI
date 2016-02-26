@@ -6,6 +6,7 @@
             if (!dataArray) return;
 
             return dataArray.filter(function(item) {
+                if (item['status'] !== 'Published') return false;
                 if (!searchTerm) return true;
 
                 searchTerm = searchTerm.toLowerCase();
