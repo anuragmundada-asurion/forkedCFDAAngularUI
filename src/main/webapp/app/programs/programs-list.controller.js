@@ -188,11 +188,14 @@
                     apiName: '',
                     apiSuffix: '/'+$scope.oProgram._id,
                     oParams: {
+                        reason: $scope.reason,
+                        parentProgramId: '',
+                        programNumber: $scope.oProgram.programNumber
                     }, 
                     oData: {
                         reason: $scope.reason,
                         parentProgramId: '',
-                        programNumber: $scope.oProgram.programNumber,
+                        programNumber: $scope.oProgram.programNumber
                     }, 
                     method: 'POST'
                 };
