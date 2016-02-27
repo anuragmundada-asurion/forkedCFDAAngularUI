@@ -188,8 +188,6 @@
                     } else if($scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequest';
                     }
-
-                    message.success = 'Your request has been processed !';
                 } else if($scope.ngDialogData.typeEntity === 'request') {
                     if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Published') {
                         oApiParam.apiName = 'programArchive';
@@ -200,6 +198,8 @@
                     } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequestReject';
                     }
+
+                    message.success = 'Your request has been processed !';
                 }
 
                 //Call API
