@@ -226,12 +226,6 @@
                 });
             }
         };
-
-//        //create an event and link it to changeStatus function
-//        $scope.$on('changeStatus', function(event, args) {
-//            console.log(args);
-//            $scope.changeStatus(args);
-//        });
     }]);
 })();
 

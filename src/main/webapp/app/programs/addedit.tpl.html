@@ -1902,7 +1902,7 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Draft'" ng-click="gsavm.publishProgram(true, gsavm.program)">Save & Publish</button>
+        <button type="button" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status)" ng-click="gsavm.publishProgram(gsavm.program)">Save & Publish</button>
         <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showChangeStatusModal(gsavm.program, 'program')">Archive</button>
         <button type="button" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Archived'" ng-click="showChangeStatusModal(gsavm.program, 'program')">Unarchive</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>

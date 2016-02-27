@@ -147,12 +147,20 @@
 
         ////////////////////
 
-        function save() {
+        function save(cbFnSuccess) {
             var copy = angular.copy(vm.program);
             if( !copy._id ) {
                 copy.status = "Draft";
             }
-            copy[copy._id ? '$update' : '$save']().then(updateId);
+            copy[copy._id ? '$update' : '$save']().then(function(data) {
+                //update current program and add _id
+                updateId(data);
+    
+                //callback function success
+                if(typeof cbFnSuccess === 'function') {
+                    cbFnSuccess(data);
+                }
+            });
         }
 
         function saveAndFinishLater(){
@@ -375,29 +383,27 @@
 
         /**
          * 
-         * @param Boolean save True -> Save Program then create publish request
-         * @param Object oProgram
+         * @param Boolean saveProgram True -> Save Program then create publish request
+         * @param Object oProgram (using as variable in order to call this function out of edit page program)
          * @returns Void
          */
-        function publishProgram(save, oProgram) {
+        function publishProgram(oProgram) {
             var isProgramValidated = validateProgramFields(oProgram);
+            console.log(isProgramValidated);
+            console.log(oProgram);
 
-            if(isProgramValidated) {
-                if(save) {
-                    //Call save program on success call showProgramChangeStatus
-                    var copy = angular.copy(vm.program);
+            //Call save program on success then call showProgramChangeStatus
+            save(function(data){
+                console.log(isProgramValidated);
+                console.log(oProgram);
 
-                    copy['$update']().then(function(data){ //on success
-                        $scope.$parent.showChangeStatusModal(oProgram, 'program');
-                    });
-                } else {
-                    //call showProgramChangeStatus directly
+                if(isProgramValidated) {
                     $scope.$parent.showChangeStatusModal(oProgram, 'program');
+                } else {
+                    //program has an issue and cannot be published yet
+                    $location.hash('formErrorMessages');
                 }
-            } else {
-                //program has an issue and cannot be published yet
-                $location.hash('formErrorMessages');
-            }
+            });
         }
     }
 })();
