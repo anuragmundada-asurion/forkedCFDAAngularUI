@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$scope', '$location', '$state', '$filter', '$parse', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
+    addEditProgramController.$inject = ['$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($scope, $location, $state, $filter, $parse, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+    function addEditProgramController($location, $state, $filter, $parse, $timeout, ngDialog, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -392,9 +392,22 @@
 
             //Call save program on success then call showProgramChangeStatus
             save(function(data){
-
                 if(isProgramValidated) {
-                    $scope.$parent.showChangeStatusModal(oProgram, 'program');
+                    ngDialog.open({
+                        template: 
+                        "<div class='usa-alert usa-alert-success'>"+
+                            "<div class='usa-alert-body'>"+
+                                "<p class='usa-alert-text'>This program has been published !</p>"+
+                            "</div>"+
+                        "</div>", 
+                        plain: true
+                    });
+
+                    //go to list page after 2 seconds
+                    $timeout(function() {
+                        ngDialog.closeAll();
+                        $state.go('programList.status', {status: 'all'});
+                    }, 2000);
                 } else {
                     //program has an issue and cannot be published yet
                     $location.hash('formErrorMessages');

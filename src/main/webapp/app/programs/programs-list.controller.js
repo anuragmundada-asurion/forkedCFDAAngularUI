@@ -31,7 +31,7 @@
             }
         } else {
             //main page, go to All tab
-            $state.go('programList.status', {status: 'all'});
+            $state.go('programList.status', { status: 'all' });
         }
 
         /**
