@@ -389,13 +389,9 @@
          */
         function publishProgram(oProgram) {
             var isProgramValidated = validateProgramFields(oProgram);
-            console.log(isProgramValidated);
-            console.log(oProgram);
 
             //Call save program on success then call showProgramChangeStatus
             save(function(data){
-                console.log(isProgramValidated);
-                console.log(oProgram);
 
                 if(isProgramValidated) {
                     $scope.$parent.showChangeStatusModal(oProgram, 'program');
