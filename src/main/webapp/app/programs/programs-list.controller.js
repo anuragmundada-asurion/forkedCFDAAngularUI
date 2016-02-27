@@ -187,8 +187,6 @@
                         oApiParam.apiName = 'programArchiveRequest';
                     } else if($scope.oProgram.status === 'Archived') {
                         oApiParam.apiName = 'programUnArchiveRequest';
-                    } else if($scope.oProgram.status === 'Draft') {
-                        oApiParam.apiName = 'programPublish';
                     }
 
                     message.success = 'Your request has been processed !';

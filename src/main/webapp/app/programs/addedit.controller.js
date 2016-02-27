@@ -5,11 +5,11 @@
         .module('app')
         .controller('AddEditProgram', addEditProgramController);
 
-    addEditProgramController.$inject = ['$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
+    addEditProgramController.$inject = ['$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
 
     //////////////////////
 
-    function addEditProgramController($location, $state, $filter, $parse, $timeout, ngDialog, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+    function addEditProgramController($location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -149,9 +149,11 @@
 
         function save(cbFnSuccess) {
             var copy = angular.copy(vm.program);
-            if( !copy._id ) {
+
+            if( !copy._id || !copy.status) {
                 copy.status = "Draft";
             }
+
             copy[copy._id ? '$update' : '$save']().then(function(data) {
                 //update current program and add _id
                 updateId(data);
@@ -393,21 +395,44 @@
             //Call save program on success then call showProgramChangeStatus
             save(function(data){
                 if(isProgramValidated) {
-                    ngDialog.open({
-                        template: 
-                        "<div class='usa-alert usa-alert-success'>"+
-                            "<div class='usa-alert-body'>"+
-                                "<p class='usa-alert-text'>This program has been published !</p>"+
-                            "</div>"+
-                        "</div>", 
-                        plain: true
-                    });
+                    //Call API to publish program
+                    var oApiParam = {
+                        apiName: 'programPublish',
+                        apiSuffix: '/'+data._id,
+                        oParams: {}, 
+                        oData: {}, 
+                        method: 'POST'
+                    };
 
-                    //go to list page after 2 seconds
-                    $timeout(function() {
-                        ngDialog.closeAll();
-                        $state.go('programList.status', {status: 'all'});
-                    }, 2000);
+                    ApiService.call(oApiParam).then(
+                    function(data){
+                        ngDialog.open({
+                            template: 
+                            "<div class='usa-alert usa-alert-success'>"+
+                                "<div class='usa-alert-body'>"+
+                                    "<p class='usa-alert-text'>This program has been published !</p>"+
+                                "</div>"+
+                            "</div>", 
+                            plain: true
+                        });
+
+                        //go to list page after 2 seconds
+                        $timeout(function() {
+                            ngDialog.closeAll();
+                            $state.go('programList.status', {status: 'all'});
+                        }, 2000);
+                    },
+                    function(error){
+                        ngDialog.open({
+                            template: 
+                            "<div class='usa-alert usa-alert-error'>"+
+                                "<div class='usa-alert-body'>"+
+                                    "<p class='usa-alert-text'>An error has occurred, Please try again !</p>"+
+                                "</div>"+
+                            "</div>", 
+                            plain: true
+                        });
+                    });
                 } else {
                     //program has an issue and cannot be published yet
                     $location.hash('formErrorMessages');
