@@ -6,6 +6,7 @@ describe("Unit Tests for Programs List Controller", function () {
         $state,
         Program,
         ProgramService,
+        ApiService,
         appConstants,
         oApiParam,
         totalCount;
@@ -32,13 +33,14 @@ describe("Unit Tests for Programs List Controller", function () {
         };
 
         totalCount = 1000;
-        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _Program_,_ProgramService_){
+        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _Program_,_ProgramService_,_ApiService_){
             $controller = _$controller_;
             $state = _$state_;
             appConstants = _appConstants_;
             $httpBackend = _$httpBackend_;
             Program = _Program_;
             ProgramService = _ProgramService_;
+            ApiService = _ApiService_;
         });
 
         $httpBackend
@@ -104,7 +106,7 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(ProgramService, 'query').and.callThrough();
+            spyOn(ApiService, 'call').and.callThrough();
             vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
@@ -114,7 +116,7 @@ describe("Unit Tests for Programs List Controller", function () {
                 expect(vm.isLoading).toBe(false);
                 var pagination = tableState.pagination;
 
-                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
+                expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
                 expect(pagination.numberOfPages).toEqual(200);
                 expect(pagination.totalItemCount).toEqual(totalCount);
 
@@ -136,7 +138,7 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(ProgramService, 'query').and.callThrough();
+            spyOn(ApiService, 'call').and.callThrough();
             vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
@@ -145,7 +147,7 @@ describe("Unit Tests for Programs List Controller", function () {
             vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
                 oApiParam.oParams['sortBy'] = 'title';
-                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
+                expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();
@@ -164,7 +166,7 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(ProgramService, 'query').and.callThrough();
+            spyOn(ApiService, 'call').and.callThrough();
             vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
@@ -173,7 +175,7 @@ describe("Unit Tests for Programs List Controller", function () {
             vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
                 oApiParam.oParams['sortBy'] = '-title';
-                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
+                expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();
@@ -193,7 +195,7 @@ describe("Unit Tests for Programs List Controller", function () {
                     }
                 };
 
-            spyOn(ProgramService, 'query').and.callThrough();
+            spyOn(ApiService, 'call').and.callThrough();
             vm.itemsByPage = oApiParam.oParams.limit;
             vm.loadPrograms(tableState);
 
@@ -202,7 +204,7 @@ describe("Unit Tests for Programs List Controller", function () {
             vm.promise.finally(function(){
                 expect(vm.isLoading).toBe(false);
                 oApiParam.oParams['keyword'] = 'keyword';
-                expect(ProgramService.query).toHaveBeenCalledWith(oApiParam);
+                expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
                 done();
             });
             $httpBackend.flush();

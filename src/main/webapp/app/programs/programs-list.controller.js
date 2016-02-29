@@ -4,8 +4,8 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ProgramService', 
-    function($scope, $state, $stateParams, appConstants, ProgramService) {
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 
+    function($scope, $state, $stateParams, appConstants, ApiService) {
         $scope.previousState = null;
         $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
@@ -64,9 +64,8 @@
                 oApiParam.oParams['keyword'] = tableState.search.predicateObject.$;
             }
 
-            //for unit test purposes $scope.hasOwnProperty('$parent')
             if($scope.programStatus === 'requests') {
-                oApiParam.apiSuffix = $scope.programStatus;
+                oApiParam.apiSuffix = '/'+$scope.programStatus;
             } else if( $scope.programStatus !== 'All') {
                 oApiParam.oParams['status'] = $scope.programStatus;
             }
@@ -78,7 +77,7 @@
             }
 
             //call api and get results
-            $scope.promise = ProgramService.query(oApiParam).then(
+            $scope.promise = ApiService.call(oApiParam).then(
                 function(data) {
                     var programs = [];
                     //cleanup and adjust strutre data
