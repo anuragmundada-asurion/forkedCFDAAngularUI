@@ -29,7 +29,7 @@
     "js-cookie": "~2.1.0",
     "angular-moment": "~0.10.3",
     "d3": "*",
-    "angular-nvd3": "*"
+    "angular-nvd3": "*",
     "uswds": "https://github.com/18F/web-design-standards.git#0.8.3"
   },
   "resolutions": {
