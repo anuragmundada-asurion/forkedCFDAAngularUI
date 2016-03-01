@@ -53,6 +53,7 @@ gulp.task('ie', ['index'], function() {
 gulp.task('base', ['index'], function() {
     var baseCss = gulp.src(mainBowerFiles('**/*.scss'), {base: 'src/main/webapp/bower_components/uswds'})
         .pipe(sass().on('error', sass.logError))
+        .pipe(minify())
         .pipe(rename('base.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
@@ -67,6 +68,7 @@ gulp.task('vendor', ['index'], function() {
 
     var vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('vendor.min.css'))
+        .pipe(minify())
         .pipe(gulp.dest('target/classes/static/css'));
 
     var bowerSrc = ['**/*.js'];
@@ -85,6 +87,7 @@ gulp.task('vendor', ['index'], function() {
 gulp.task('plugins', ['index'], function() {
     var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/all-ie-only.css'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.css'))
+        .pipe(minify())
         .pipe(gulp.dest('target/classes/static/css'));
 
     var pluginsJs = gulp.src('src/main/webapp/plugins/**/*.js', {base: './src/main/webapp/plugins'})
@@ -114,6 +117,7 @@ gulp.task('iae', function() {
 gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(minify())
         .pipe(rename('cfda.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
@@ -193,5 +197,5 @@ gulp.task('watch', function(){
     }, ['index']);
 });
 
-gulp.task('default', ['package'], function () {
+gulp.task('default', ['package', 'test'], function () {
 });
