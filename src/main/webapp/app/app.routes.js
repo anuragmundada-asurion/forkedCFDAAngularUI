@@ -49,6 +49,11 @@
                     }
                 },
                 controller: 'ProgramsListCtrl'
+            })
+            .state('agencyList', {
+                url: "/agency/main",
+                templateUrl: "agency/agency-list.tpl.html",
+                controller: "AgencyListController"
             });
 
          // the known route

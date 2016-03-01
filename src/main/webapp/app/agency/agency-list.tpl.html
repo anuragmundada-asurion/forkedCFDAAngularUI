@@ -1,0 +1,72 @@
+<primary-nav-bar></primary-nav-bar>
+<global-search-box></global-search-box>
+
+<section st-pipe="loadAgencies" st-table="agencies">
+    <div class="usa-grid-full page-heading">
+        <div class="usa-width-one-half">
+            <h1 style="width:99%;">Regional Agency Offices</h1>
+        </div>
+        <div class="usa-width-one-fourth" >
+            <a class="usa-button" ui-sref="addAgency">Create a new agency</a>
+        </div>
+        <div class="usa-width-one-fourth" >
+            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agencies-table">
+        </div>
+    </div>
+    <div class="usa-grid-full">
+        <table class="listing-table cfda-table">
+            <thead>
+            <tr>
+                <th style="width:22%" st-sort="agencyName" st-sort-default="true" st-skip-natural="true">Name</th>
+                <th style="width:25%" st-sort="street" st-skip-natural="true">Street</th>
+                <th style="width:13%" st-sort="city" st-skip-natural="true">City</th>
+                <th style="width:13%" st-sort="state" st-skip-natural="true">State</th>
+                <th st-sort="zip" st-skip-natural="true">Zip</th>
+                <th style="width=13%" st-sort="phone" st-skip-natural="true">Phone</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody ng-show="!isLoading">
+            <tr ng-repeat="row in agencies">
+
+                <td>
+                    {{row.agencyName || '-'}}
+                </td>
+
+                <td>{{row.street}}</td>
+                <td>
+                   <!-- <a ui-sref="editProgram({id: row._id, section: 'review'})">{{row.title}}</a>-->
+                    {{row.city}}
+                </td>
+                <td>{{row.state}}</td>
+                <td>{{row.zip}}</td>
+                <td>{{row.phone}}</td>
+                <td class="action-row">
+                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text-o"></span></button>
+                    <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
+                </td>
+            </tr>
+            <tr ng-show="!agencies || agencies.length == 0">
+                <td colspan="5" class="text-center">No Agencies Found</td>
+            </tr>
+            </tbody>
+            <tbody ng-show="isLoading">
+            <tr>
+                <td colspan="7" class="text-center">Loading ...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-panel">
+        <div class="pagination-controls usa-grid-full">
+            <div class="pagination-item-count-control">
+                <span>Showing </span>
+                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
+                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
+                </select>
+                <span> Per Page</span>
+            </div>
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+        </div>
+    </div>
+</section>
