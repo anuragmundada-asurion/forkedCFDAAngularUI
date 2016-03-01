@@ -69,8 +69,6 @@ describe("Unit Tests for Program Routes", function () {
 
         expect($state.is('addProgram')).toBe(true);
         expect($stateParams.section).toEqual("info");
-//        expect($injector.invoke($state.current.resolve.program)).toBeDefined();
-//        expect($injector.invoke($state.current.resolve.coreChoices)).toEqual(coreChoices);
     });
 
     it("should should have the proper 'editProgram' url", function() {
@@ -88,9 +86,5 @@ describe("Unit Tests for Program Routes", function () {
         expect($state.is('editProgram')).toBe(true);
         expect($stateParams.id).toEqual(id);
         expect($stateParams.section).toEqual("info");
-//        var programResult = $injector.invoke($state.current.resolve.program);
-//        expect(programResult).toBeDefined();
-//        expect(programResult).toEqual(program);
-//        expect($injector.invoke($state.current.resolve.coreChoices)).toEqual(coreChoices);
     });
 });
