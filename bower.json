@@ -51,8 +51,11 @@
     },
     "uswds": {
       "main": [
-        "assets/**/*",
-        "!assets/css/*.scss"
+        "assets/_scss/*",
+        "assets/fonts/*",
+        "assets/css/*.css",
+        "assets/img/*",
+        "assets/js/*"
       ]
     }
   }
