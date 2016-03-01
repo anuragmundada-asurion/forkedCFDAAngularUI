@@ -21,7 +21,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-touch/angular-touch.js',
             'main/webapp/bower_components/angular-animate/angular-animate.js',
             'main/webapp/bower_components/angular-sanitize/angular-sanitize.js',
-            'main/webapp/bower_components/ui-router/release/angular-ui-router.js',
+            'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
             'main/webapp/bower_components/angular-smart-table/dist/smart-table.js',
             'main/webapp/bower_components/angular-scroll/angular-scroll.js',
             'main/webapp/bower_components/lodash/dist/lodash.compat.js',
@@ -41,6 +41,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/d3/d3.js',
             'main/webapp/bower_components/nvd3/build/nv.d3.js',
             'main/webapp/bower_components/angular-nvd3/dist/angular-nvd3.js',
+            'main/webapp/bower_components/uswds/assets/js/components.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/app/**/*.html',
