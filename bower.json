@@ -27,7 +27,8 @@
     "angular-vs-repeat": "1.0.1-beta",
     "react": "~0.14.6",
     "js-cookie": "~2.1.0",
-    "angular-moment": "~0.10.3"
+    "angular-moment": "~0.10.3",
+    "uswds": "https://github.com/18F/web-design-standards.git#0.8.3"
   },
   "resolutions": {
     "angular": "~1.2.0"
@@ -46,6 +47,11 @@
     "jquery": {
       "main": [
         "dist/jquery.min.js"
+      ]
+    },
+    "uswds": {
+      "main": [
+        "assets/**/*"
       ]
     }
   }

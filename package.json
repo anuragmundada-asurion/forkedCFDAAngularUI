@@ -29,6 +29,7 @@
     "gulp-run-sequence": "0.3.2",
     "gulp-ngdocs": "~0.2.0",
     "gulp-watch": "^4.3.5",
+    "gulp-flatten": "^0.2.0",
     "yargs": "~3.32.0",
     "stream-series": "0.1.1",
     "gulp-gzip": "1.2.0",

@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var argv = require('yargs').argv;
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
@@ -15,128 +14,142 @@ var ngdocs = require('gulp-ngdocs');
 var templateCache = require('gulp-angular-templatecache');
 var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
+var flatten = require('gulp-flatten');
 
-var appFilesBase = "src/main/webapp/app";
-var assetFilesBase = "src/main/webapp/assets";
-
+var appFilesBase = 'src/main/webapp/app';
+var assetFilesBase = 'src/main/webapp/assets';
 var ie8VendorDep = ['**/jquery.js'];
 var ie9VendorDep = ['**/xdomain.js'];
 var unneededDepForMondernBrowsers = ie8VendorDep.concat(ie9VendorDep);
 
-var vendorJs;
-var ie8VendorJs;
-var ie9VendorJs;
-var vendorCss, styleCSS;
-var appJs;
-var appSass;
+var index;
 
-gulp.task('app-static-files', function () {
+gulp.task('assets', function() {
     gulp.src('src/main/webapp/assets/**/*.*')
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('iae-widgets', function() {
-    gulp.src('src/main/webapp/vendor/iae-widgets/**/*.*')
+gulp.task('index', function() {
+    index = gulp.src('src/main/webapp/assets/index.html')
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('vendor-js-files', ['app-static-files', 'iae-widgets'], function () {
+gulp.task('ie', ['index'], function() {
+    var ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), {base: 'src/main/webapp/bower_components'})
+        .pipe(concat('ie9-lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    var ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), {base: 'src/main/webapp/bower_components'})
+        .pipe(concat('ie8-lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    index.pipe(inject(series(ie8VendorJs), {relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
+        .pipe(inject(series(ie9VendorJs), { relative: true, starttag: '<!--[if IE 9]>', endtag: '<![endif]-->' }))
+        .pipe(gulp.dest('target/classes/static'));
+});
+
+gulp.task('base', ['index'], function() {
+    var baseCss = gulp.src(mainBowerFiles('**/*.scss'), {base: 'src/main/webapp/bower_components/uswds'})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(rename('base.min.css'))
+        .pipe(gulp.dest('target/classes/static/css'));
+
+    index.pipe(inject(baseCss, { name: 'base', relative: true }))
+        .pipe(gulp.dest('target/classes/static'));
+});
+
+gulp.task('vendor', ['index'], function() {
+    gulp.src(mainBowerFiles('**/*.{otf,eot,ttf,woff,woff2}'), {base: 'src/main/webapp/bower_components'})
+        .pipe(flatten())
+        .pipe(gulp.dest('target/classes/static/fonts'));
+
+    var vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
+        .pipe(concat('vendor.min.css'))
+        .pipe(gulp.dest('target/classes/static/css'));
+
     var bowerSrc = ['**/*.js'];
     unneededDepForMondernBrowsers.forEach(function (src) {
         bowerSrc.push('!' + src);
     });
-    vendorJs = gulp.src(mainBowerFiles(bowerSrc), {base: 'src/main/webapp/bower_components'})
+    var vendorJs = gulp.src(mainBowerFiles(bowerSrc), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('lib.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('target/classes/static/vendor/js'));
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    index.pipe(inject(vendorCss, { name: 'vendor', relative: true }))
+        .pipe(inject(vendorJs, { name: 'vendor', relative: true }))
+        .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('vendor-font-files', ['vendor-js-files'], function () {
-    gulp.src(mainBowerFiles('**/*.{otf,eot,svg,ttf,woff,woff2}'))
-        .pipe(gulp.dest('target/classes/static/vendor/fonts'));
-});
-
-gulp.task('ie9-vendor-js-files', ['vendor-font-files'], function () {
-    ie9VendorJs = gulp.src(mainBowerFiles(ie9VendorDep), {base: 'src/main/webapp/bower_components'})
-        .pipe(concat('ie9-lib.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('target/classes/static/vendor/js'));
-});
-
-gulp.task('ie8-vendor-js-files', ['ie9-vendor-js-files'], function () {
-    ie8VendorJs = gulp.src(mainBowerFiles(ie8VendorDep), {base: 'src/main/webapp/bower_components'})
-        .pipe(concat('ie8-lib.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('target/classes/static/vendor/js'));
-});
-
-gulp.task('vendor-css-files', ['ie8-vendor-js-files'], function () {
-    vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
-        .pipe(concat('lib.min.css'))
-        .pipe(minify())
-        .pipe(gulp.dest('target/classes/static/vendor/css'));
-});
-
-gulp.task('site-css-files', function () {
-    styleCSS = gulp.src('src/main/webapp/assets/css/*')
-        .pipe(concat('styles.css'))
-        .pipe(minify())
+gulp.task('plugins', ['index'], function() {
+    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/all-ie-only.css'], {base: './src/main/webapp/plugins'})
+        .pipe(concat('plugins.css'))
         .pipe(gulp.dest('target/classes/static/css'));
+
+    var pluginsJs = gulp.src('src/main/webapp/plugins/**/*.js', {base: './src/main/webapp/plugins'})
+        .pipe(concat('plugins.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    index.pipe(inject(pluginsCss, { name: 'plugins', relative: true }))
+        .pipe(inject(pluginsJs, { name: 'plugins', relative: true }))
+        .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('app-js-files', ['vendor-css-files', 'site-css-files'], function () {
-    //Read App JS files and combine
+gulp.task('iae', function() {
+    gulp.src('src/main/webapp/plugins/iae-widgets/fonts/**/*')
+        .pipe(gulp.dest('target/classes/static/fonts'));
+
+    gulp.src('src/main/webapp/plugins/iae-widgets/data/*.*')
+        .pipe(gulp.dest('target/classes/static/data'));
+
+    gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
+        .pipe(gulp.dest('target/classes/static/img'));
+
+    index.pipe(inject(gulp.src('src/main/webapp/plugins/iae-widgets/css/all-ie-only'), {relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
+        .pipe(gulp.dest('target/classes/static'));
+});
+
+gulp.task('cfda', ['index'], function() {
+    var cfdaCss = gulp.src('src/main/scss/main.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(rename('cfda.min.css'))
+        .pipe(gulp.dest('target/classes/static/css'));
+
     var js = gulp.src([
-            appFilesBase + '/*.bootstrap.js',
-            appFilesBase + '/*.module.js',
-            appFilesBase + '/services/**/*.js',
-            appFilesBase + '/**/*.js'
-        ], {base: appFilesBase});
+        appFilesBase + '/*.bootstrap.js',
+        appFilesBase + '/*.module.js',
+        appFilesBase + '/services/**/*.js',
+        appFilesBase + '/**/*.js'
+    ], {base: appFilesBase});
 
     var htmlTemplates = gulp.src(appFilesBase + "/**/*.tpl.html")
         .pipe(templateCache({
             module: 'app'
         }));
 
-    appJs = merge(js, htmlTemplates)
-        .pipe(concat('app-' + argv.version + '.js'))
+    var cfdaJs = merge(js, htmlTemplates)
+        .pipe(concat('cfda.js'))
         .pipe(gulp.dest('target/classes/static/js'));
-});
 
-gulp.task('app-sass-files', ['app-js-files'], function () {
-    appSass = gulp.src('src/main/scss/main.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(rename('main-' + argv.version +".css"))
-        .pipe(gulp.dest('target/classes/static/css'));
-});
-
-gulp.task('index', ['app-sass-files'], function () {
-    var target = gulp.src("src/main/webapp/assets/index.html");
-    var sources = gulp.src(['target/classes/static/*.js', 'target/classes/static/*.css'], {read: false});
-    return target.pipe(rename("index.html"))
-        .pipe(gulp.dest('target/classes/static'))
-        .pipe(inject(series(vendorJs), {relative: true, starttag: '<!-- inject:vendor:{{ext}} -->'}))
-        .pipe(inject(series(ie8VendorJs), {relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
-        .pipe(inject(series(ie9VendorJs), {
-            relative: true,
-            starttag: '<!-- ie9-inject --><!--[if lte IE 9]>',
-            endtag: '<![endif]-->'
-        }))
-        .pipe(inject(series(vendorCss, styleCSS, appJs, appSass, sources), {relative: true}))
+    index.pipe(inject(cfdaCss, { name: 'cfda', relative: true }))
+        .pipe(inject(cfdaJs, { name: 'cfda', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('gzip', ['index'], function () {
+gulp.task('package', ['assets', 'ie', 'base', 'vendor', 'plugins', 'cfda', 'iae'], function() {
     gulp.src('target/classes/static/**/*.{js,css}')
         .pipe(clone())
         .pipe(gzip())
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('wiredep', ['wiredep:test']);
+gulp.task('test-dependencies', function() {
+    gulp.src('src/test/javascript/**/*.js')
+        .pipe(gulp.dest('target/test/javascript'));
 
-gulp.task('wiredep:test', function () {
-    return gulp.src('src/test/javascript/karma.conf.js')
+    gulp.src('target/test/javascript/karma.conf.js')
         .pipe(wiredep({
             exclude: [/angular-scenario/],
             ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
@@ -153,33 +166,18 @@ gulp.task('wiredep:test', function () {
                 }
             }
         }))
-        .pipe(gulp.dest('src/test/javascript'));
+        .pipe(gulp.dest('target/test/javascript'));
 });
 
-gulp.task('test', ['wiredep', 'gzip'], function(done) {
+gulp.task('test', ['test-dependencies'], function(done) {
     new karmaServer({
         configFile: __dirname + '/src/test/javascript/karma.conf.js',
         singleRun: true
     }, done).start();
 });
 
-gulp.task('ngdocs', ['test'], function () {
-    var options = {
-        //scripts: ['../app.min.js'],
-        html5Mode: true,
-        title: "CFDA Modernization Documentation"
-    };
-    return gulp.src('target/classes/static/js/*.js')
-        .pipe(ngdocs.process(options))
-        .pipe(gulp.dest('target/site/ngdocs'));
-});
-
-//Add watch task for UI Changes in order to save the headache of compiling and reloading new changes
-//please run these two command line in different terminal: 
-// terminal1#REISystems-GSA-CFDA-Angular-UI$: mvn spring-boot:run -Denv.BUILD_NUMBER=1
-// terminal2#REISystems-GSA-CFDA-Angular-UI$: 
 gulp.task('watch', function(){
-   gulp.watch([
+    gulp.watch([
         appFilesBase + '/*.bootstrap.js',
         appFilesBase + '/*.module.js',
         appFilesBase + '/services/**/*.js',
@@ -191,10 +189,9 @@ gulp.task('watch', function(){
     ],{ //slow down CPU Usage
         interval: 500,
         debounceDelay: 500, // default 500
-        mode: 'poll' 
-    }, ['index']); 
+        mode: 'poll'
+    }, ['index']);
 });
 
-// Default Task
-gulp.task('default', ['ngdocs'], function () {
+gulp.task('default', ['package'], function () {
 });
