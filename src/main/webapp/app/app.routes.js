@@ -1,41 +1,32 @@
 (function(){
     "use strict";
 
-    angular
-        .module('app')
-        .config(configureRoutes);
-
-    configureRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
-    createProgram.$inject = ['Program'];
-    getProgram.$inject = ['$stateParams', 'Program'];
-    getCoreDictionaries.$inject = ['Dictionary', 'appConstants'];
-
-    //////////////////
-
-    function configureRoutes($stateProvider, $urlRouterProvider) {
+    angular.module('app')
+        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         $stateProvider
+            .state('home', {
+                url: "/",
+                templateUrl: "main/home.tpl.html",
+                controller: "HomeController"
+            })
+            .state('404', {
+                url: "/404",
+                templateUrl: "httpcode/404.tpl.html"
+            })
+            .state('searchPrograms', {
+                url: "/search?keyword",
+                templateUrl: "search/results.tpl.html",
+                controller: "ProgramSearchCtrl"
+            })
             .state('addProgram', { 
                 url: "/programs/add/:section",
                 templateUrl: "programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
-                resolve: {
-                    program: createProgram,
-                    coreChoices: getCoreDictionaries
-                }
             })
             .state('editProgram', {
                 url: "/programs/:id/edit/:section",
                 templateUrl: "programs/addedit.tpl.html",
                 controller: "AddEditProgram as gsavm",
-                resolve: {
-                    program: getProgram,
-                    coreChoices: getCoreDictionaries
-                }
-            })
-            .state('home', {
-                url: "/",
-                templateUrl: "main/home.tpl.html",
-                controller: "HomeController as vm"
             })
             .state('programList', {
                 url: "/programs/main",
@@ -60,23 +51,10 @@
                 controller: 'ProgramsListCtrl'
             });
 
-        $urlRouterProvider.when('', goHome);
-    }
+         // the known route
+        $urlRouterProvider.when('', '/');
 
-    function goHome($state) {
-        $state.go('home');
-    }
-    function createProgram(Program) {
-        var program = new Program();
-        program.agencyId = "REI Test Agency";
-        program._id = null;
-        return program;
-    }
-    function getProgram($stateParams, Program) {
-        var id = $stateParams.id;
-        return Program.get({id: id}).$promise;
-    }
-    function getCoreDictionaries(Dictionary, appConstants) {
-        return Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise;
-    }
+        // For any unmatched url, send to 404
+        $urlRouterProvider.otherwise('/404');
+    }]);
 })();

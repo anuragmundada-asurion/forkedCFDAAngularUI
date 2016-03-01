@@ -1,15 +1,8 @@
 (function () {
     "use strict";
 
-    angular
-        .module('app')
-        .factory('Dictionary', Dictionary);
-
-    Dictionary.$inject = ['$resource', '$filter', 'appConstants'];
-
-    /////////////
-
-    function Dictionary($resource, $filter, appConstants) {
+    angular.module('app')
+        .factory('Dictionary', ['$resource', '$filter', 'appConstants', function ($resource, $filter, appConstants) {
         return $resource('/api/dictionaries', {}, {
             query: {
                 transformResponse: function(data) {
@@ -92,5 +85,5 @@
             item.elements = undefined;
             return item;
         }
-    }
+    }]);
 })();

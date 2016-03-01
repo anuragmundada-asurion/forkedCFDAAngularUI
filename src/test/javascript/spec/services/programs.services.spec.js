@@ -5,9 +5,9 @@ describe("Unit Tests for Programs Service", function () {
     beforeEach(function() {
         module('app');
 
-        inject(function(_$httpBackend_, _Program_){
+        inject(function(_$httpBackend_, _ProgramFactory_){
             $httpBackend = _$httpBackend_;
-            programsSvc = _Program_;
+            programsSvc = _ProgramFactory_;
         });
     });
 

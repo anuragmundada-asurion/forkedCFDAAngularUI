@@ -40,24 +40,27 @@
     </div>
     <div style="min-height:20px"></div>
     <div class="usa-grid-full search-options" style="background-color:#FFF;padding:1px 8px 8px 8px;text-align:left">
-        <h3 style="margin-left:190px;color:#112E51;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">New in {{vm.currentYear}}</h3>
+        <h3 style="margin-left:190px;color:#112E51;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">New in {{ currentYear }}</h3>
         <div style="min-height:8px"></div>
         <div class="usa-grid-full">
             <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
-                {{vm.listingCount.new}}</span>
+                {{ aProgramCount.new }}
+                </span>
                 <span style="position:relative;top:8px">New Listings</span>
                 <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="New Listings"/>
             </div>
             <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;verticapkll-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
-                {{vm.listingCount.archived}}</span>
+                {{ aProgramCount.archived }}
+                </span>
                 <span style="position:relative;top:8px">Archived Listings</span>
                 <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Archived Listings"/>
             </div>
             <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
-                {{vm.listingCount.updated}}</span>
+                {{ aProgramCount.updated }}
+                </span>
                 <span style="position:relative;top:8px">Updated Listings</span>
                 <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Updated Listings"/>
             </div>

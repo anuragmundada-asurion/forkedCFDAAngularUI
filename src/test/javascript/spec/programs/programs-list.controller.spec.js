@@ -4,8 +4,7 @@ describe("Unit Tests for Programs List Controller", function () {
     var $controller,
         $httpBackend,
         $state,
-        Program,
-        ProgramService,
+        ProgramFactory,
         ApiService,
         appConstants,
         oApiParam,
@@ -33,13 +32,12 @@ describe("Unit Tests for Programs List Controller", function () {
         };
 
         totalCount = 1000;
-        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _Program_,_ProgramService_,_ApiService_){
+        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _ProgramFactory_,_ApiService_){
             $controller = _$controller_;
             $state = _$state_;
             appConstants = _appConstants_;
             $httpBackend = _$httpBackend_;
-            Program = _Program_;
-            ProgramService = _ProgramService_;
+            ProgramFactory = _ProgramFactory_;
             ApiService = _ApiService_;
         });
 
@@ -240,7 +238,7 @@ describe("Unit Tests for Programs List Controller", function () {
 
         it("should be able to call the Program service's $delete function", function(done){
             var vm = $scope,
-                program = new Program();
+                program = new ProgramFactory();
 
             spyOn(program, '$delete').and.callThrough();
             spyOn(vm, 'loadPrograms').and.callThrough();

@@ -3,8 +3,9 @@
 
     var myApp = angular.module('app');
 
-   myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
+    myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
         var APIs = {
+            "programEntity": "/api/programs/:id",
             "programList": "/api/programs",
             "programArchiveRequest": "/api/programs/archive/request", // /:program_id
             "programArchive": "/api/programs/archive", // /:program_id
@@ -13,6 +14,7 @@
             "programUnArchive": "/api/programs/unarchive", // /:program_id
             "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
             "programPublish": "/api/programs/publish", // /:program_id
+            "programCount": "/api/listingcount", //  /:year
         };
 
         this.APIs = APIs;

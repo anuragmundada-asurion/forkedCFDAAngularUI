@@ -3,15 +3,12 @@
 
     angular
         .module('app')
-        .controller('AddEditProgram', addEditProgramController);
-
-    addEditProgramController.$inject = ['$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'Program', 'program', 'Contact', 'coreChoices'];
-
-    //////////////////////
-
-    function addEditProgramController($location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, Programs, program, Contacts, coreChoices) {
+        .controller('AddEditProgram', 
+    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 
+    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
 
         var vm = this,
+            coreChoices,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             DICTIONARIES = [
@@ -26,8 +23,16 @@
                 'beneficiary_types',
                 'functional_codes'
             ];
-        vm.program = program;
 
+        //initialize program object
+        if($state.current === 'editProgram') { //edit program
+            vm.program = ProgramFactory.get({id: $stateParams.id}).$promise;
+        } else { //new program
+            vm.program = new ProgramFactory();
+            vm.program.agencyId = "REI Test Agency";
+            vm.program._id = null;
+        }
+        
         angular.extend(vm, {
             isEdit: $state.is('editProgram'),
             IsVisible: true,
@@ -58,10 +63,10 @@
             groupByFns: {
             multiPickerGroupByFn: function(item) {
                 return !!item.parent ? item.parent.value : item.value;
-            }
-        },
+                }
+            },
             choices: angular.extend({
-                programs: Programs.query({ limit: 2500 }),
+                programs: ProgramFactory.query({ limit: 2500 }),
                 contacts: Contacts.query({ agencyId: vm.program.agencyId}),
                 offices: [
                     {
@@ -119,6 +124,10 @@
             nextId: util.nextId
         });
 
+        Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise.then(function(data){
+            angular.extend(vm.choices, data);
+        });
+
         Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
             angular.extend(vm.choices, data);
         });
@@ -133,7 +142,6 @@
             tpl.obligVarName = (tpl.obligType || tpl.type).toLowerCase();
             tpl.isRequired = tpl.type.toLowerCase() === "actual";
         });
-
 
         vm.choices.programs.$promise.then(function(data){
             var relatedTo = getArray('relatedTo');
@@ -439,5 +447,5 @@
                 }
             });
         }
-    }
+    }]);
 })();
