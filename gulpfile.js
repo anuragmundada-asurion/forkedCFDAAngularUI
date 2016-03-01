@@ -1,3 +1,5 @@
+require('events').EventEmitter.prototype._maxListeners = 25;
+
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');

@@ -51,7 +51,8 @@
     },
     "uswds": {
       "main": [
-        "assets/**/*"
+        "assets/**/*",
+        "!assets/css/*.scss"
       ]
     }
   }
