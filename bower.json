@@ -19,7 +19,7 @@
     "angular-smart-table": "~2.1.7",
     "angular-scroll": "~1.0.0",
     "angular-wizard": "~0.6.1",
-    "ui-select": "https://github.com/angular-ui/ui-select.git",
+    "ui-select": "https://github.com/angular-ui/ui-select.git#0.14.9",
     "jquery": "<2.0",
     "angular-bootstrap": "~1.2.1",
     "font-awesome": "~4.5.0",
