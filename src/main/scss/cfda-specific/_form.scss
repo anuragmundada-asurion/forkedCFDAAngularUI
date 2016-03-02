@@ -171,6 +171,10 @@ ul {
     }
 }
 
+ul li:before {
+  content: '';
+}
+
 ux-form-nav {
   display: block;
 }
