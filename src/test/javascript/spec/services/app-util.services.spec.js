@@ -272,60 +272,6 @@ describe("Unit Tests for App Utility Service", function () {
         });
     });
 
-    describe("Unit Tests for Get Obligation Title", function() {
-        it('should get obligation title with a lot of values', function(){
-            var obligationTitle = appUtilSvc.getObligationTitle({
-                "values": {
-                    "2014": {
-                        "flag": "yes",
-                        "actual": 100000,
-                        "estimate": 10000
-                    },
-                    "2015": {
-                        "flag": "no",
-                        "estimate": 10000
-                    },
-                    "2016": {
-                        "flag": "na",
-                        "estimate": 10000
-                    }
-                },
-                "questions": {
-                    "recovery": {
-                        "flag": "yes"
-                    },
-                    "salary_or_expense": {
-                        "flag": "yes",
-                        "assistanceType": "0003001"
-                    }
-                },
-                "additionalInfo": {
-                    "content": "TestContent"
-                }
-            });
-            expect(obligationTitle).toBeDefined();
-            expect(obligationTitle).toBe('FY14 (actual): 100000 (est): 10000. FY15: Not separately identifiable. FY16: Not available. This is a Recovery and Reinvestment Act obligation. This obligation is for salaries and expenses. TestContent ');
-        });
-
-        it('should get obligation title with minimal values', function(){
-            var obligationTitle = appUtilSvc.getObligationTitle({
-                "values": {
-                    "2014": {
-                        "flag": "yes"
-                    },
-                    "2015": {
-                        "flag": "no"
-                    },
-                    "2016": {}
-                },
-                "questions": {},
-                "additionalInfo": {}
-            });
-            expect(obligationTitle).toBeDefined();
-            expect(obligationTitle).toBe('FY14. FY15: Not separately identifiable. FY16');
-        });
-    });
-
     describe("Unit Tests for Get Deadline Title", function() {
         var deadlineStartDateString = "Jan 30, 2013",
             deadlineEndDateString = "May 10, 2013",

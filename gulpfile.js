@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var minify = require('gulp-minify-css');
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
-var gzip = require('gulp-gzip');
 var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
@@ -150,7 +149,6 @@ gulp.task('package', ['assets', 'ie', 'base', 'vendor', 'plugins', 'cfda', 'iae'
 gulp.task('test-dependencies', function() {
     gulp.src('src/test/javascript/karma.conf.js')
         .pipe(wiredep({
-            exclude: [/angular-scenario/],
             ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
             devDependencies: true,
             fileTypes: {

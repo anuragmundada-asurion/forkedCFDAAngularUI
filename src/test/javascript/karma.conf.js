@@ -24,7 +24,6 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
             'main/webapp/bower_components/angular-smart-table/dist/smart-table.js',
             'main/webapp/bower_components/angular-scroll/angular-scroll.js',
-            'main/webapp/bower_components/lodash/dist/lodash.compat.js',
             'main/webapp/bower_components/angular-wizard/dist/angular-wizard.min.js',
             'main/webapp/bower_components/ui-select/dist/select.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
