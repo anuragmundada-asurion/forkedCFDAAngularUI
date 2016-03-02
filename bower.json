@@ -41,6 +41,11 @@
     "angular-mocks": "~1.5.0"
   },
   "overrides": {
+    "xdomain": {
+        "main": [
+          "dist/xdomain.min.js"
+        ]
+    },
     "font-awesome": {
       "main": [
         "css/font-awesome.min.css",
