@@ -44,11 +44,6 @@ describe('Unit Tests for miscellaneous field fixes', function() {
 
         var element = createElement("<form name='form'>" + inputHtml + "</form>"),
             inputElement = element.find('input');
-        inputElement.val('Some').trigger('input');
-        $rootScope.$digest();
-
-        expect($rootScope.form.myInput.$invalid).toBe(true);
-        expect($rootScope.value).toEqual('Some');
 
         inputElement.val('Some text').trigger('input');
         $rootScope.$digest();
@@ -66,12 +61,6 @@ describe('Unit Tests for miscellaneous field fixes', function() {
     it("should respect other $parsers if field is not valid and save to model", function() {
         var element = createElement("<form name='form'>" + inputNgListHtml + "</form>"),
             inputElement = element.find('input');
-        inputElement.val('a, b').trigger('input');
-        $rootScope.$digest();
-
-        expect($rootScope.form.myInput.$invalid).toBe(true);
-        expect($rootScope.value).toEqual(['a', 'b']);
-
         inputElement.val('a, b, c, d, e').trigger('input');
         $rootScope.$digest();
 

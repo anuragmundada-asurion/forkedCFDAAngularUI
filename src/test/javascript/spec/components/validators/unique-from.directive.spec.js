@@ -85,12 +85,6 @@ describe('Unit Tests for the uniqueFrom validator', function() {
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
-        element.secondaryInput.val('Secondary, My Title, Unique Title').trigger('input');
-        $rootScope.$digest();
-        expect($rootScope.form.secondaryTitle.$invalid).toBe(true);
-        expect($rootScope.form.secondaryTitle.$error.uniqueFrom).toBeDefined();
-
-
         element.secondaryInput.val('Secondary, New Title, Unique Title').trigger('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
@@ -103,12 +97,6 @@ describe('Unit Tests for the uniqueFrom validator', function() {
         element.primaryInput.val('My Title').trigger('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
-
-        element.secondaryInput.val('Secondary-My Title-Unique Title').trigger('input');
-        $rootScope.$digest();
-        expect($rootScope.form.secondaryTitle.$invalid).toBe(true);
-        expect($rootScope.form.secondaryTitle.$error.uniqueFrom).toBeDefined();
-
 
         element.secondaryInput.val('Secondary-New Title-Unique Title').trigger('input');
         $rootScope.$digest();

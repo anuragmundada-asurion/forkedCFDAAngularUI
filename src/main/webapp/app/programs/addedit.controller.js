@@ -4,11 +4,10 @@
     angular
         .module('app')
         .controller('AddEditProgram', 
-    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 
-    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
+    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'program', 'coreChoices',
+    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, program, coreChoices) {
 
         var vm = this,
-            coreChoices,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
             AUTH_VERSION_BASELINE = 1,
             DICTIONARIES = [
@@ -25,8 +24,8 @@
             ];
 
         //initialize program object
-        if($state.current === 'editProgram') { //edit program
-            vm.program = ProgramFactory.get({id: $stateParams.id}).$promise;
+        if($state.current['name'] === 'editProgram') { //edit program
+            vm.program = program;
         } else { //new program
             vm.program = new ProgramFactory();
             vm.program.agencyId = "REI Test Agency";

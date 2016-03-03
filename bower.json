@@ -8,24 +8,26 @@
   ],
   "testPath": "src/test/javascript/spec",
   "dependencies": {
-    "angular": "~1.2.0",
-    "angular-resource": "~1.2.0",
-    "angular-touch": "~1.2.0",
-    "angular-animate": "~1.2.0",
-    "angular-sanitize": "~1.2.0",
-    "ui-router": "~0.2.0",
-    "angular-smart-table": "~2.1.0",
+    "es5-shim": "~4.5.7",
+    "es6-shim": "~0.35.0",
+    "angular": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-touch": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-ui-router": "~0.2.18",
+    "angular-smart-table": "~2.1.7",
     "angular-scroll": "~1.0.0",
-    "angular-wizard": "~0.5.0",
-    "ui-select": "https://github.com/angular-ui/ui-select.git",
+    "angular-wizard": "~0.6.1",
+    "ui-select": "https://github.com/angular-ui/ui-select.git#0.14.9",
     "jquery": "<2.0",
-    "angular-bootstrap": "~0.12.0",
+    "angular-bootstrap": "~1.2.1",
     "font-awesome": "~4.5.0",
-    "xdomain": "~0.7.0",
-    "ng-dialog": "^0.5.8",
-    "ngSticky": "~1.8.0",
-    "angular-vs-repeat": "1.0.1-beta",
-    "react": "~0.14.6",
+    "xdomain": "~0.7.5",
+    "ng-dialog": "~0.5.8",
+    "ngSticky": "~1.8.7",
+    "angular-vs-repeat": "~1.1.6",
+    "react": "~0.14.7",
     "js-cookie": "~2.1.0",
     "angular-moment": "~0.10.3",
     "d3": "*",
@@ -34,13 +36,17 @@
     "uswds": "https://github.com/18F/web-design-standards.git#0.8.3"
   },
   "resolutions": {
-    "angular": "~1.2.0"
+    "angular": "~1.5.0"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.0",
-    "angular-scenario": "~1.2.0"
+    "angular-mocks": "~1.5.0"
   },
   "overrides": {
+    "xdomain": {
+        "main": [
+          "dist/xdomain.min.js"
+        ]
+    },
     "font-awesome": {
       "main": [
         "css/font-awesome.min.css",

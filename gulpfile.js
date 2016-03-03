@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var minify = require('gulp-minify-css');
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
-var gzip = require('gulp-gzip');
 var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
@@ -145,19 +144,11 @@ gulp.task('cfda', ['index'], function() {
 });
 
 gulp.task('package', ['assets', 'ie', 'base', 'vendor', 'plugins', 'cfda', 'iae'], function() {
-    gulp.src('target/classes/static/**/*.{js,css}')
-        .pipe(clone())
-        .pipe(gzip())
-        .pipe(gulp.dest('target/classes/static'));
 });
 
 gulp.task('test-dependencies', function() {
-    gulp.src('src/test/javascript/**/*.js')
-        .pipe(gulp.dest('target/test/javascript'));
-
-    gulp.src('target/test/javascript/karma.conf.js')
+    gulp.src('src/test/javascript/karma.conf.js')
         .pipe(wiredep({
-            exclude: [/angular-scenario/],
             ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
             devDependencies: true,
             fileTypes: {
@@ -172,7 +163,7 @@ gulp.task('test-dependencies', function() {
                 }
             }
         }))
-        .pipe(gulp.dest('target/test/javascript'));
+        .pipe(gulp.dest('src/test/javascript'));
 });
 
 gulp.task('test', ['test-dependencies'], function(done) {

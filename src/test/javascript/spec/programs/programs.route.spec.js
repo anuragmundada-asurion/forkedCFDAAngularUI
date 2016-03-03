@@ -51,6 +51,10 @@ describe("Unit Tests for Program Routes", function () {
             $httpBackend = _$httpBackend_;
             appConstants = _appConstants_;
         });
+
+        $httpBackend
+            .whenGET(/\/api\/program(\?[\w=&]+)*/i)
+            .respond(angular.toJson(program));
     });
 
     it("should have the proper 'home' url", function(){
@@ -64,9 +68,7 @@ describe("Unit Tests for Program Routes", function () {
 
     it("should go to 'addProgram' state with a new program object and core dictionary choices", function(){
         $rootScope.$digest();
-
         goFrom('/#/').toState('addProgram', { section: 'info' });
-
         expect($state.is('addProgram')).toBe(true);
         expect($stateParams.section).toEqual("info");
     });
@@ -82,7 +84,7 @@ describe("Unit Tests for Program Routes", function () {
         $rootScope.$digest();
         var id = '66d1d2645f8acd25c2e79bb60b7342da';
         goFrom('/#/').toState('editProgram', { id: id, section: 'info' });
-
+        $httpBackend.flush();
         expect($state.is('editProgram')).toBe(true);
         expect($stateParams.id).toEqual(id);
         expect($stateParams.section).toEqual("info");
