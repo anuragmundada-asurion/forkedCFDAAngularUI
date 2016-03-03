@@ -25,7 +25,7 @@
             ];
 
         //initialize program object
-        if($state.current === 'editProgram') { //edit program
+        if($state.current['name'] === 'editProgram') { //edit program
             vm.program = ProgramFactory.get({id: $stateParams.id}).$promise;
         } else { //new program
             vm.program = new ProgramFactory();
