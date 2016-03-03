@@ -21,25 +21,12 @@
             .state('addProgram', { 
                 url: "/programs/add/:section",
                 templateUrl: "programs/addedit.tpl.html",
-                controller: "AddEditProgram as gsavm",
-                resolve: {
-                    coreChoices: function(Dictionary, appConstants) {
-                        return Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise;
-                    }
-                }
+                controller: "AddEditProgram as gsavm"
             })
             .state('editProgram', {
                 url: "/programs/:id/edit/:section",
                 templateUrl: "programs/addedit.tpl.html",
-                controller: "AddEditProgram as gsavm",
-                resolve: {
-                    program: function($stateParams, ProgramFactory) {
-                        return ProgramFactory.get({id: $stateParams.id}).$promise;
-                    },
-                    coreChoices: function(Dictionary, appConstants) {
-                        return Dictionary.toDropdown({ ids: appConstants.CORE_DICTIONARIES.join(',') }).$promise;
-                    }
-                }
+                controller: "AddEditProgram as gsavm"
             })
             .state('programList', {
                 url: "/programs/main",

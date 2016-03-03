@@ -3,9 +3,9 @@
 
     angular
         .module('app')
-        .controller('AddEditProgram', 
-    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'program', 'coreChoices',
-    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, program, coreChoices) {
+        .controller('AddEditProgram',
+    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact',
+    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -25,13 +25,18 @@
 
         //initialize program object
         if($state.current['name'] === 'editProgram') { //edit program
-            vm.program = program;
+            vm.program = {};
+            ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data){
+                vm.program = data;
+                //reload contacts when object is available
+                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId});
+            });
         } else { //new program
             vm.program = new ProgramFactory();
             vm.program.agencyId = "REI Test Agency";
             vm.program._id = null;
         }
-        
+
         angular.extend(vm, {
             isEdit: $state.is('editProgram'),
             IsVisible: true,
@@ -66,7 +71,7 @@
             },
             choices: angular.extend({
                 programs: ProgramFactory.query({ limit: 2500 }),
-                contacts: Contacts.query({ agencyId: vm.program.agencyId}),
+                contacts: (typeof vm.program.agencyId !== 'undefined') ? Contacts.query({ agencyId: vm.program.agencyId}) : {},
                 offices: [
                     {
                         id: 1,
@@ -81,7 +86,7 @@
                         name: 'Admin Office'
                     }
                 ]
-            }, coreChoices),
+            }),
             trees: {},
             filters: {
                 traverseTree: $filter('traverseTree')
@@ -164,7 +169,7 @@
             copy[copy._id ? '$update' : '$save']().then(function(data) {
                 //update current program and add _id
                 updateId(data);
-    
+
                 //callback function success
                 if(typeof cbFnSuccess === 'function') {
                     cbFnSuccess(data);
@@ -360,7 +365,7 @@
         /**
          * TODO: Split program validation into sections
          * @param Object oProgram program to be validated
-         * @returns Boolean 
+         * @returns Boolean
          */
         function validateProgramFields(oProgram) {
             return !(!oProgram.title || !oProgram.authorizations || oProgram.authorizations.length==0
@@ -391,7 +396,7 @@
         }
 
         /**
-         * 
+         *
          * @param Boolean saveProgram True -> Save Program then create publish request
          * @param Object oProgram (using as variable in order to call this function out of edit page program)
          * @returns Void
@@ -406,20 +411,20 @@
                     var oApiParam = {
                         apiName: 'programPublish',
                         apiSuffix: '/'+data._id,
-                        oParams: {}, 
-                        oData: {}, 
+                        oParams: {},
+                        oData: {},
                         method: 'POST'
                     };
 
                     ApiService.call(oApiParam).then(
                     function(data){
                         ngDialog.open({
-                            template: 
+                            template:
                             "<div class='usa-alert usa-alert-success'>"+
                                 "<div class='usa-alert-body'>"+
                                     "<p class='usa-alert-text'>This program has been published !</p>"+
                                 "</div>"+
-                            "</div>", 
+                            "</div>",
                             plain: true
                         });
 
@@ -431,12 +436,12 @@
                     },
                     function(error){
                         ngDialog.open({
-                            template: 
+                            template:
                             "<div class='usa-alert usa-alert-error'>"+
                                 "<div class='usa-alert-body'>"+
                                     "<p class='usa-alert-text'>An error has occurred, Please try again !</p>"+
                                 "</div>"+
-                            "</div>", 
+                            "</div>",
                             plain: true
                         });
                     });
