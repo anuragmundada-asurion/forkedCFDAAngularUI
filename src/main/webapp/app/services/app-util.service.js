@@ -77,9 +77,7 @@
         function getObligationTitle(obligation) {
             var title = "";
             for (var year = 2000; year < 2100; year++) {
-                var param = 'values.' + year;
-                var obligationGetter = $parse(param);
-                var data = (obligationGetter(obligation) || undefinedTextValue);
+                var data = (obligation['values'][year] || undefinedTextValue);
 
                 if (data) {
                     title = title + "FY" + year.toString().substr(2, 2);
