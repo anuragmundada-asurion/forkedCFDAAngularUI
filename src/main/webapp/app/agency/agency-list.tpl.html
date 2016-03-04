@@ -35,7 +35,7 @@
             <tr>
                 <th>Action</th>
                 <th style="width:22%" st-sort="agency" st-sort-default="true" st-skip-natural="true">Agency Name</th>
-                <th style="width:25%" st-skip-natural="true">Street</th>
+                <th style="width:20%" >Street</th>
                 <th style="width:13%" st-sort="city" st-skip-natural="true">City</th>
                 <th style="width:13%" st-sort="state" st-skip-natural="true">State</th>
                 <th st-sort="zip" st-skip-natural="true">Zip</th>
@@ -46,7 +46,7 @@
             <tbody ng-show="!isLoading">
             <tr ng-repeat="row in agencies">
                 <td class="action-row">
-                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text-o"></span></button>
+                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text"></span></button>
                     <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
                 </td>
                 <td>
