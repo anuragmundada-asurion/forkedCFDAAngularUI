@@ -1,8 +1,12 @@
 (function(){
     "use strict";
 
-    angular.module('app')
-        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    angular.module('app').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 'ROLES',
+        function ($locationProvider, $stateProvider, $urlRouterProvider, ROLES) {
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
         $stateProvider
             .state('home', {
                 url: "/",
