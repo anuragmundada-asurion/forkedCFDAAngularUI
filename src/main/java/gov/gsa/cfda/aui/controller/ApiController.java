@@ -152,7 +152,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/archive/request/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/archive/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String archiveProgramRequest(@PathVariable("id") String programId,
                                         @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                         @RequestParam (value="reason", required=true) String reason) throws Exception {
@@ -170,7 +170,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/request/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/publish/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String publishProgramRequest(@PathVariable("id") String programId,
                                         @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                         @RequestParam (value="reason", required=false, defaultValue="") String reason,
@@ -188,7 +188,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/unarchive/request/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/unarchive/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String unarchiveProgramRequest(@PathVariable("id") String programId,
                                           @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                           @RequestParam (value="reason", required=true) String reason) throws Exception {
@@ -205,7 +205,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/archive/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/archive/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String archiveProgram(@PathVariable("id") String programId,
                                  @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                  @RequestParam (value="reason", required=true) String reason,
@@ -224,7 +224,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/unarchive/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/unarchive/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String unarchiveProgram(@PathVariable("id") String programId,
                                    @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                    @RequestParam (value="reason", required=true) String reason,
@@ -243,7 +243,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/publish/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String publishProgram(@PathVariable("id") String programId,
                                  @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                  @RequestParam (value="reason", required=false) String reason,
@@ -262,7 +262,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/archive/reject/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/archive/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String rejectArchiveProgram(@PathVariable("id") String programId,
                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                        @RequestParam (value="reason", required=true) String reason) throws Exception {
@@ -279,7 +279,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/unarchive/reject/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/unarchive/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String rejectUnarchiveProgram(@PathVariable("id") String programId,
                                          @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                          @RequestParam (value="reason", required=true) String reason) throws Exception {
@@ -296,7 +296,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/reject/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/programs/publish/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String rejectPublishProgram(@PathVariable("id") String programId,
                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
                                        @RequestParam (value="reason", required=true) String reason) throws Exception {
