@@ -3,6 +3,7 @@
 describe("Unit Tests for Utility Service", function () {
     var utilSvc;
     beforeEach(function() {
+        module('templates');
         module('app');
         inject(function(_util_){
             utilSvc = _util_;

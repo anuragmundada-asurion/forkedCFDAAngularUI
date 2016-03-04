@@ -3,6 +3,7 @@
 describe("Unit Tests for Dictionary Service", function () {
     var $httpBackend, dictionarySvc;
     beforeEach(function() {
+        module('templates');
         module('app');
 
         inject(function(_$httpBackend_, _Dictionary_){

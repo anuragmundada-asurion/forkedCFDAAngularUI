@@ -3,6 +3,7 @@
 describe("Unit Tests for Contacts Service", function () {
     var $httpBackend, contactSvc;
     beforeEach(function() {
+        module('templates');
         module('app');
 
         inject(function(_$httpBackend_, _Contact_){

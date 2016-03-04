@@ -6,7 +6,7 @@ describe('Unit Tests for triggerClickOnEnter', function() {
         $window,
         elementHtml,
         enterKey;
-
+    beforeEach(module('templates'));
     beforeEach(module('app'));
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){

@@ -21,7 +21,7 @@ describe('Unit Tests for the maskedInput directive', function() {
         maskInputFieldLength = mask.split('-').length;
         html = '' +
             "<form name='form'>" +
-                "<masked-input mask='" + mask + "' ng-model='value'></masked-input>" +
+            "<masked-input mask='" + mask + "' ng-model='value'></masked-input>" +
             "</form>";
     }));
 
@@ -41,20 +41,30 @@ describe('Unit Tests for the maskedInput directive', function() {
     it("should set the proper model value upon input)", function() {
         var element = createElement();
 
-        angular.element(element.find('input')[0]).val('123').trigger('input').trigger('keydown');
+        var e = angular.element(element.find('input')[0]);
+        e.val('123');
+        e.triggerHandler('input');
+        e.triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-____-__');
 
-        angular.element(element.find('input')[1]).val('456').trigger('input').trigger('keydown');
+        e = angular.element(element.find('input')[1]).val('456');
+        e.triggerHandler('input');
+        e.triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-456_-__');
 
-        angular.element(element.find('input')[1]).val('4567').trigger('input').trigger('keydown');
+        e = angular.element(element.find('input')[1]).val('4567');
+        e.triggerHandler('input');
+        e.triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
-        angular.element(element.find('input')[2]).val('89').trigger('input').trigger('keydown');
+
+        e = angular.element(element.find('input')[2]).val('89');
+        e.triggerHandler('input');
+        e.triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-4567-89');
