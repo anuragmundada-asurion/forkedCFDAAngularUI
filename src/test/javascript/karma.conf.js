@@ -16,6 +16,8 @@ module.exports = function(config) {
         files: [
             // bower:js
             'main/webapp/bower_components/jquery/dist/jquery.min.js',
+            'main/webapp/bower_components/es5-shim/es5-shim.js',
+            'main/webapp/bower_components/es6-shim/es6-shim.js',
             'main/webapp/bower_components/angular/angular.js',
             'main/webapp/bower_components/angular-resource/angular-resource.js',
             'main/webapp/bower_components/angular-touch/angular-touch.js',
@@ -27,7 +29,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-wizard/dist/angular-wizard.min.js',
             'main/webapp/bower_components/ui-select/dist/select.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-            'main/webapp/bower_components/xdomain/dist/xdomain.js',
+            'main/webapp/bower_components/xdomain/dist/xdomain.min.js',
             'main/webapp/bower_components/ng-dialog/js/ngDialog.js',
             'main/webapp/bower_components/matchmedia/matchMedia.js',
             'main/webapp/bower_components/ngSticky/lib/sticky.js',
@@ -42,6 +44,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-nvd3/dist/angular-nvd3.js',
             'main/webapp/bower_components/angular-multi-select/isteven-multi-select.js',
             'main/webapp/bower_components/uswds/assets/js/components.js',
+            'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/app/**/*.html',
