@@ -3,7 +3,6 @@
 describe("Unit Tests for Programs Service", function () {
     var $httpBackend, programsSvc;
     beforeEach(function() {
-        module('templates');
         module('app');
 
         inject(function(_$httpBackend_, _ProgramFactory_){

@@ -8,7 +8,7 @@ describe('Unit Tests for the uniqueFrom validator', function() {
         nomodelInputHtml,
         ngListInputHtml,
         ngListWithPatternInputHtml;
-    beforeEach(module('templates'));
+
     beforeEach(module('app'));
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){

@@ -4,7 +4,6 @@ describe("Unit Tests for App Utility Service", function () {
     var appUtilSvc;
 
     beforeEach(function() {
-        module('templates');
         module('app');
 
         inject(function(_appUtil_){

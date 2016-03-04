@@ -7,7 +7,6 @@ describe('Unit Tests for miscellaneous field fixes', function() {
         inputHtml,
         inputNgListHtml;
 
-    beforeEach(module('templates'));
     beforeEach(module('app'));
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){

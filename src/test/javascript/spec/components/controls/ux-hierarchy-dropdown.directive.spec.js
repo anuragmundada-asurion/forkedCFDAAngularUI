@@ -7,7 +7,6 @@ describe("Unit Tests for the uxHierarchyDropdown directive", function() {
         t_counter,
         tree;
 
-    beforeEach(module("templates"));
     beforeEach(module("app"));
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_){
