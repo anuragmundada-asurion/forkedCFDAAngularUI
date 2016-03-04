@@ -7,33 +7,53 @@
             <h1 style="width:99%;">Regional Agency Offices</h1>
         </div>
         <div class="usa-width-one-fourth" >
-            <a class="usa-button" ui-sref="addAgency">Create a new agency</a>
+            <a class="usa-button" ui-sref="addAgency">Create a New Address</a>
         </div>
         <div class="usa-width-one-fourth" >
-            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agencies-table">
+            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agency-table">
         </div>
     </div>
+    <div class="usa-grid-full">
+      <div class="usa-width-one-half">
+          <label for="agency-select">Agency</label>
+          <select id="agency-select" name="agency-select" class="usa-form-medium">
+              <option value='' disabled style="display:none"></option>
+          </select>
+      </div>
+      <div class="usa-width-one-half">
+          <label for="division-select">Division</label>
+            <select id="division-select" name="division-select" class="usa-form-medium">
+                <option value='' disabled style="display:none"></option>
+            </select>
+      </div>
+    </div>
+
+
     <div class="usa-grid-full">
         <table class="listing-table cfda-table">
             <thead>
             <tr>
-                <th style="width:22%" st-sort="agencyName" st-sort-default="true" st-skip-natural="true">Name</th>
-                <th style="width:25%" st-sort="street" st-skip-natural="true">Street</th>
+                <th>Action</th>
+                <th style="width:22%" st-sort="agency" st-sort-default="true" st-skip-natural="true">Agency Name</th>
+                <th style="width:25%" st-skip-natural="true">Street</th>
                 <th style="width:13%" st-sort="city" st-skip-natural="true">City</th>
                 <th style="width:13%" st-sort="state" st-skip-natural="true">State</th>
                 <th st-sort="zip" st-skip-natural="true">Zip</th>
-                <th style="width=13%" st-sort="phone" st-skip-natural="true">Phone</th>
-                <th>Action</th>
+                <th style="width=13%" st-skip-natural="true">Phone</th>
+
             </tr>
             </thead>
             <tbody ng-show="!isLoading">
             <tr ng-repeat="row in agencies">
-
+                <td class="action-row">
+                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text-o"></span></button>
+                    <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
+                </td>
                 <td>
-                    {{row.agencyName || '-'}}
+                    {{row.agency || '-'}}
                 </td>
 
-                <td>{{row.street}}</td>
+                <td>{{row.address}}</td>
                 <td>
                    <!-- <a ui-sref="editProgram({id: row._id, section: 'review'})">{{row.title}}</a>-->
                     {{row.city}}
@@ -41,10 +61,6 @@
                 <td>{{row.state}}</td>
                 <td>{{row.zip}}</td>
                 <td>{{row.phone}}</td>
-                <td class="action-row">
-                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text-o"></span></button>
-                    <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
-                </td>
             </tr>
             <tr ng-show="!agencies || agencies.length == 0">
                 <td colspan="5" class="text-center">No Agencies Found</td>

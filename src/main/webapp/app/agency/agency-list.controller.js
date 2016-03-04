@@ -23,7 +23,7 @@
                      $scope.isLoading = true;
 
                      var oApiParam = {
-                         apiName: 'agencyList',
+                         apiName: 'regionalAgencyList',
                          apiSuffix: '',
                          oParams: {
                              limit: $scope.itemsByPage,
