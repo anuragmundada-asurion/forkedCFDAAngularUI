@@ -79,6 +79,14 @@
                      });
                  };
 
+                 $scope.viewAgency= function(agency, section) {
+                      section = section || 'info';
+                      $state.go('viewAgency', {
+                          id: agency._id,
+                          section: section
+                      });
+                  };
+
             }]);
 
 })();
