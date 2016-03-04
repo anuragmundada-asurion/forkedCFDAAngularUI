@@ -101,7 +101,7 @@ gulp.task('plugins', ['index'], function() {
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('iae', function() {
+gulp.task('iae', ['index'], function() {
     gulp.src('src/main/webapp/plugins/iae-widgets/fonts/**/*')
         .pipe(gulp.dest('target/classes/static/fonts'));
 
@@ -111,7 +111,10 @@ gulp.task('iae', function() {
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
 
-    index.pipe(inject(gulp.src('src/main/webapp/plugins/iae-widgets/css/all-ie-only'), {relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
+    var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/all-ie-only.css')
+        .pipe(gulp.dest('target/classes/static/css'));
+
+    index.pipe(inject(ieCss, {relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
         .pipe(gulp.dest('target/classes/static'));
 });
 
