@@ -18,6 +18,11 @@
                 templateUrl: "search/results.tpl.html",
                 controller: "ProgramSearchCtrl"
             })
+            .state('advancedSearch', {
+                url: "/advanced-search",
+                templateUrl: "search/_AdvancedSearch.tpl.html",
+                controller: "ProgramSearchCtrl"
+            })
             .state('addProgram', { 
                 url: "/programs/add/:section",
                 templateUrl: "programs/addedit.tpl.html",

@@ -15,7 +15,8 @@
         'sticky',
         'vs-repeat',
         'ngDialog',
-        'angularMoment'
+        'angularMoment',
+        'isteven-multi-select'
     ];
 
     /**

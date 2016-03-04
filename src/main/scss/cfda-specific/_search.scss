@@ -24,3 +24,73 @@
     }
   }
 }
+
+.advanced-search {
+    background-color:#112e51;
+    position:relative;
+    margin-bottom: -70px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+    .search-options {
+        background-color: #F1F1F1;
+        padding:30px;
+        
+        > .search-box{
+            background-color: #F1F1F1;
+            padding-bottom: 3em;
+        }
+        .float-left{
+            float: left;
+            padding:0 10px;
+            padding:14px 0px 10px 14px;
+        }
+        .float-right{
+            float: right;
+            padding:14px 0px 10px 0px;
+        }
+        global-search-box{
+            .search-box{
+                background-color: #F1F1F1 !important;
+            }
+        }
+        .usa-grid-full{
+            .input-field{
+                position:relative;
+
+                ul.dropdown-menu{
+                    position: absolute;
+                    z-index: 1;
+                }
+                ul li:before{
+                    content: none !important;
+                }
+                isteven-multi-select{
+
+                    .multiSelect > button{
+                        width:100%;
+                    }
+                    .multiSelect > button:hover{
+                        color: #555555;
+                        border-bottom: 1px solid #c6c6c6;
+                    }
+                    .multiSelect .checkboxLayer{
+                        width:100%;
+                    }
+                    div.checkboxLayer button{
+                        padding:0px 6px;
+                    }
+                    div.checkboxLayer button.clearButton{
+                        margin: 0px;
+                        padding: 0px;
+                    }
+                    div.checkboxLayer .inputFilter{
+                        padding-top:7px;
+                        padding-bottom:7px;
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+}
