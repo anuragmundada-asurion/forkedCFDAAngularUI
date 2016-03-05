@@ -2,6 +2,13 @@
 // Generated on Wed Sep 30 2015 16:44:29 GMT-0400 (EDT)
 
 module.exports = function(config) {
+
+    //bugfix in phantomjs-rebuilt
+    //https://github.com/karma-runner/karma/issues/356
+    //https://github.com/karma-runner/karma-phantomjs-launcher/issues/69
+    //https://github.com/amir20/phantomjs-node/issues/24
+    process.env.PHANTOMJS_BIN = 'node_modules/phantomjs-prebuilt/bin/phantomjs';
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -112,7 +119,7 @@ module.exports = function(config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['PhantomJS'],
-
+        
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
