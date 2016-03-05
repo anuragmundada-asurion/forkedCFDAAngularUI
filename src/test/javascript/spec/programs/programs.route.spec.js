@@ -54,32 +54,50 @@ describe("Unit Tests for Program Routes", function () {
     });
 
     it("should have the proper 'home' url", function(){
-        expect($state.href('home')).toEqual("#/");
+        //expect($state.href('home')).toEqual("#/"); HTML5 Mode OFF
+        expect($state.href('home')).toEqual("/"); //HTML5 Mode ON
     });
 
     it("should have the proper 'addProgram' url", function() {
-        expect($state.href('addProgram', { section: 'info' })).toEqual('#/programs/add/info');
-        expect($state.href('addProgram', { section: 'review' })).toEqual('#/programs/add/review');
+        //HTML5 Mode OFF
+        //expect($state.href('addProgram', { section: 'info' })).toEqual('#/programs/add/info');
+        //expect($state.href('addProgram', { section: 'review' })).toEqual('#/programs/add/review');
+
+        //HTML5 Mode ON
+        expect($state.href('addProgram', { section: 'info' })).toEqual('/programs/add/info');
+        expect($state.href('addProgram', { section: 'review' })).toEqual('/programs/add/review');
     });
 
     it("should go to 'addProgram' state with a new program object and core dictionary choices", function(){
         $rootScope.$digest();
-        goFrom('/#/').toState('addProgram', { section: 'info' });
+        //HTML5 Mode Off
+        //goFrom('/#/').toState('addProgram', { section: 'info' });
+        //HTML5 Mode ON
+        goFrom('/').toState('addProgram', { section: 'info' });
         expect($state.is('addProgram')).toBe(true);
         expect($stateParams.section).toEqual("info");
     });
 
     it("should should have the proper 'editProgram' url", function() {
+        //HTML5 Mode OFF
+        //expect($state.href('editProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da', section: 'info' }))
+        //    .toEqual('#/programs/66d1d2645f8acd25c2e79bb60b7342da/edit/info');
+        //expect($state.href('editProgram', { id: '4da0527af647322bf5e4b43bec7c6cef', section: 'review' }))
+        //    .toEqual('#/programs/4da0527af647322bf5e4b43bec7c6cef/edit/review');
+        //HTML5 Mode ON
         expect($state.href('editProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da', section: 'info' }))
-            .toEqual('#/programs/66d1d2645f8acd25c2e79bb60b7342da/edit/info');
+            .toEqual('/programs/66d1d2645f8acd25c2e79bb60b7342da/edit/info');
         expect($state.href('editProgram', { id: '4da0527af647322bf5e4b43bec7c6cef', section: 'review' }))
-            .toEqual('#/programs/4da0527af647322bf5e4b43bec7c6cef/edit/review');
+            .toEqual('/programs/4da0527af647322bf5e4b43bec7c6cef/edit/review');
     });
 
     it("should go to 'editProgram' state with an existing program object and core dictionary choices", function(){
         $rootScope.$digest();
         var id = '66d1d2645f8acd25c2e79bb60b7342da';
-        goFrom('/#/').toState('editProgram', { id: id, section: 'info' });
+        //HTML5 Mode OFF
+        //goFrom('/#/').toState('editProgram', { id: id, section: 'info' });
+        //HTML5 Mode On
+        goFrom('/').toState('editProgram', { id: id, section: 'info' });
         expect($state.is('editProgram')).toBe(true);
         expect($stateParams.id).toEqual(id);
         expect($stateParams.section).toEqual("info");
