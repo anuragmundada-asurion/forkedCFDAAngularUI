@@ -1,11 +1,21 @@
-div[datepicker] {
-  font-size: 12px;
+.uib-datepicker-popup{
+    table.uib-daypicker, table.uib-monthpicker, table.uib-yearpicker{
+        margin:0px;
+        border:1px solid #c6c6c6;
 
-  td {
-    padding: 0;
-  }
-  button {
-    padding: 10px;
-    margin: 1px
-  }
+        tr{
+            background-color: white;
+        }
+        td,th{
+            border: none;
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+
+    button{
+        min-width: 0;
+        padding: 0.3rem 0.5rem;
+        font-size: 1.3rem;
+    }
 }

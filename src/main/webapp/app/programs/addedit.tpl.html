@@ -662,7 +662,7 @@
                                         <div class="usa-width-one-half">
                                             <p class="input-group">
                                                 <label for="deadline-start">Deadline Start Date</label>
-                                                <input type="text" id="deadline-start" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineStart'].opened"
+                                                <input type="text" id="deadline-start" class="form-control" uib-datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineStart'].opened"
                                                        ng-model="$subForm.current.start" ng-required="true" close-text="Close" />
                                                  <span class="input-group-btn">
                                                     <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineStart')"><i class="fa fa-calendar"></i></button>
@@ -672,7 +672,7 @@
                                         <div class="usa-width-one-half">
                                             <p class="input-group">
                                                 <label for="deadline-end">Deadline End Date</label>
-                                                <input id="deadline-end" type="text" class="form-control" datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineEnd'].opened"
+                                                <input id="deadline-end" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineEnd'].opened"
                                                        ng-model="$subForm.current.end"  close-text="Close" />
                                                  <span class="input-group-btn">
                                                     <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineEnd')"><i class="fa fa-calendar"></i></button>
