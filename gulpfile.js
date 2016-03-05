@@ -46,8 +46,8 @@ gulp.task('ie', ['index'], function() {
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/js'));
 
-    index.pipe(inject(series(ie8VendorJs), {relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
-        .pipe(inject(series(ie9VendorJs), { relative: true, starttag: '<!--[if IE 9]>', endtag: '<![endif]-->' }))
+    index.pipe(inject(series(ie8VendorJs), { addRootSlash: true, relative: true, starttag: '<!--[if lt IE 9]>', endtag: '<![endif]-->'}))
+        .pipe(inject(series(ie9VendorJs), { addRootSlash: true, relative: true, starttag: '<!--[if IE 9]>', endtag: '<![endif]-->' }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -58,7 +58,7 @@ gulp.task('base', ['index'], function() {
         .pipe(rename('base.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
-    index.pipe(inject(baseCss, { name: 'base', relative: true }))
+    index.pipe(inject(baseCss, { name: 'base', addRootSlash: true, relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -80,8 +80,8 @@ gulp.task('vendor', ['index'], function() {
         .pipe(concat('lib.min.js'))
         .pipe(gulp.dest('target/classes/static/js'));
 
-    index.pipe(inject(vendorCss, { name: 'vendor', relative: true }))
-        .pipe(inject(vendorJs, { name: 'vendor', relative: true }))
+    index.pipe(inject(vendorCss, { addRootSlash: true, name: 'vendor', relative: true }))
+        .pipe(inject(vendorJs, { addRootSlash: true, name: 'vendor', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -96,8 +96,8 @@ gulp.task('plugins', ['index'], function() {
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/js'));
 
-    index.pipe(inject(pluginsCss, { name: 'plugins', relative: true }))
-        .pipe(inject(pluginsJs, { name: 'plugins', relative: true }))
+    index.pipe(inject(pluginsCss, { addRootSlash: true, name: 'plugins', relative: true }))
+        .pipe(inject(pluginsJs, { addRootSlash: true, name: 'plugins', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -114,7 +114,7 @@ gulp.task('iae', ['index'], function() {
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/all-ie-only.css')
         .pipe(gulp.dest('target/classes/static/css'));
 
-    index.pipe(inject(ieCss, {relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
+    index.pipe(inject(ieCss, { addRootSlash: true, relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -141,8 +141,8 @@ gulp.task('cfda', ['index'], function() {
         .pipe(concat('cfda.js'))
         .pipe(gulp.dest('target/classes/static/js'));
 
-    index.pipe(inject(cfdaCss, { name: 'cfda', relative: true }))
-        .pipe(inject(cfdaJs, { name: 'cfda', relative: true }))
+    index.pipe(inject(cfdaCss, { addRootSlash: true, name: 'cfda', relative: true }))
+        .pipe(inject(cfdaJs, { addRootSlash: true, name: 'cfda', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
