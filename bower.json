@@ -32,6 +32,7 @@
     "angular-moment": "~0.10.3",
     "d3": "*",
     "c3": "*",
+    "pathseg": "~1.0.2",
     "angular-nvd3": "*",
     "uswds": "https://github.com/18F/web-design-standards.git#0.8.3"
   },

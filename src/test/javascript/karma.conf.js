@@ -41,6 +41,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-moment/angular-moment.js',
             'main/webapp/bower_components/d3/d3.js',
             'main/webapp/bower_components/c3/c3.js',
+            'main/webapp/bower_components/pathseg/pathseg.js',
             'main/webapp/bower_components/nvd3/build/nv.d3.js',
             'main/webapp/bower_components/angular-nvd3/dist/angular-nvd3.js',
             'main/webapp/bower_components/uswds/assets/js/components.js',

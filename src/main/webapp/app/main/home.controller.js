@@ -51,109 +51,79 @@
                     };
                 });
 
-
-                //gonna get data for 2014
-                console.log("A. get data for 2014");
-
-                $scope.year2 = new moment().subtract(2, 'year').format('YYYY');
-                console.log('year2 is : ' + $scope.year2);
-
-                var apiParams2 = {
-                    apiName: 'programCount',
-                    apiSuffix: '/' + $scope.year2,
+                //make eligiblisting api call
+                var eligbParams = {
+                    apiName: 'programEligibCount',
+                    apiSuffix: '/',
                     oParams: {},
                     oData: {},
                     method: 'GET'
                 };
 
-                console.log('apiParams2:');
-                console.log(apiParams2);
-                $scope.programCount2 = {
-                    'new': 212,
-                    'archived': 112,
-                    'updated': 423
-                };
-                console.log('about to call api service to make a call to this app\'s backend');
-                ApiService.call(apiParams2).then(function (data) {
-                    console.log('after the api call was made, the returned data: ' + data);
-                    $scope.programCount2 = {
-                        'new': d3.format($scope.formatNumber(parseInt(data.new)))(data.new),
-                        'archived': d3.format($scope.formatNumber(parseInt(data.archived)))(data.archived),
-                        'updated': d3.format($scope.formatNumber(parseInt(data.updated)))(data.updated)
+                $scope.eligibCount = {};
+
+                ApiService.call(eligbParams).then(function (data) {
+                    $scope.eligibCount = {
+                        'individual': data.individual,
+                        'local': data.local,
+                        'nonprofit': data.nonprofit,
+                        'state': data.state,
+                        'us_territories': data.us_territories,
+                        'frito': data.frito
                     };
-                    console.log("program count:");
-                    console.log($scope.programCount2);
+                    console.log('after api call, eligbCount:');
+                    console.log($scope.eligibCount);
+                    makeHomePageChart();
                 });
 
-                console.log("Z. get data for 2014");
 
-                console.log($scope.programCount2);
 
-                //make chart
-                $scope.chart = c3.generate({
-                    bindto: document.getElementById('listingsChart'),
-                    data: {
-                        json: [
-                            {
-                                name: 'New',
-                                total: $scope.programCount2.new
-                            }, {
-                                name: 'Archived',
-                                total: $scope.programCount2.archived
-                            }, {
-                                name: 'Updated',
-                                total: $scope.programCount2.updated
+                function makeHomePageChart() {
+                    var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+                    $scope.chart = c3.generate({
+                        bindto: document.getElementById('listingsChart'),
+                        data: {
+                            type: 'bar',
+                            onclick: onClickOne,
+                            x: 'x',
+                            columns: [
+                                ['x', 'Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'],
+                                ['data', $scope.eligibCount.individual, $scope.eligibCount.local, $scope.eligibCount.nonprofit, $scope.eligibCount.state, $scope.eligibCount.us_territories, $scope.eligibCount.frito]
+                            ],
+                            color: colorFunction
+                        },
+                        bar: {
+                            width: {
+                                ratio: 0.75
                             }
-
-
-
-
-
-                        //    {
-                        //    name: 'Individual',
-                        //    total: 400
-                        //}, {
-                        //    name: 'Local',
-                        //    total: 400
-                        //}, {
-                        //    name: 'Nonprofit',
-                        //    total: 500
-                        //}, {
-                        //    name: 'State',
-                        //    total: 5000
-                        //}, {
-                        //    name: 'U.S. Territories',
-                        //    total: 100
-                        //}, {
-                        //    name: 'Federally Recognized Indian Tribal Organizations',
-                        //    total: 800
-                        //}
-                        ],
-                        keys: {
-                            x: 'name', // it's possible to specify 'x' when category axis
-                            value: ['total']
                         },
-                        type: 'bar'
-                    },
-                    bar: {
-                        width: {
-                            ratio: 0.55
+                        axis: {
+                            x: {
+                                type: 'category',
+                                label: 'Listing Category'
+                            },
+                            y: {
+                                label: '# of Listings'
+                            }
                         }
-                        // or
-                        //width: 100 // this makes bar width 100px
-                    },
-                    axis: {
-                        x: {
-                            type: 'category',
-                            label: 'Listing Category'
-                        },
-                        y: {
-                            label: '# of Listings'
-                        },
+                    });
+
+                    function onClickOne(d) {
+                        console.log(d);
+                        alert('click event..');
+                        console.log('old gsv ' + $scope.globalSearchValue);
+                        $scope.globalSearchValue = d.value;
+                        console.log('new gsv ' + $scope.globalSearchValue);
                     }
 
-                });
 
-                $scope.chart.legend.hide();
+                    function colorFunction(color, d) {
+                        // d will be 'id' when called for legends
+                        var cnt = (d.value) % (extraColors.length);
+                        return d.id && d.id === 'data' ? extraColors[d.index] : color;
+                    }
+
+                    $scope.chart.legend.hide();
+                }
             }]);
 })();
