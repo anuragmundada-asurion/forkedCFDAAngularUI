@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', 'appConstants', 'ApiService', 'moment',
-            function ($scope, appConstants, ApiService, moment) {
+        .controller('HomeController', ['$rootScope', '$scope', 'appConstants', 'ApiService', 'moment', 'Search', '$state',
+            function ($rootScope, $scope, appConstants, ApiService, moment, Search, $state) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -71,8 +71,6 @@
                         'us_territories': data.us_territories,
                         'frito': data.frito
                     };
-                    console.log('after api call, eligbCount:');
-                    console.log($scope.eligibCount);
                     makeHomePageChart();
                 });
 
@@ -80,6 +78,8 @@
 
                 function makeHomePageChart() {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+                    //things that are searched for when a bar is clicked on
+                    var searchCriteria = ['Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'];
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
@@ -109,11 +109,9 @@
                     });
 
                     function onClickOne(d) {
-                        console.log(d);
-                        alert('click event..');
-                        console.log('old gsv ' + $scope.globalSearchValue);
-                        $scope.globalSearchValue = d.value;
-                        console.log('new gsv ' + $scope.globalSearchValue);
+                        $scope.globalSearchValue = searchCriteria[d.index];
+                        $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
+                        $state.go('searchPrograms', {keyword: $scope['globalSearchValue']}, {reload: true, inherit: false});
                     }
 
 
