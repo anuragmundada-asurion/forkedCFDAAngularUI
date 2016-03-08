@@ -1,8 +1,8 @@
 (function(){
     "use strict";
 
-    angular.module('app').config(['$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    angular.module('app').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 'PERMISSIONS',
+        function ($locationProvider, $stateProvider, $urlRouterProvider, PERMISSIONS) {
             $locationProvider.html5Mode({
                 enabled: true,
                 requireBase: false
@@ -13,9 +13,21 @@
                     templateUrl: "main/home.tpl.html",
                     controller: "HomeController"
                 })
+                .state('401', {
+                    url: "/unauthorized",
+                    templateUrl: "httpcode/401.tpl.html"
+                })
+                .state('403', {
+                    url: "/forbidden",
+                    templateUrl: "httpcode/403.tpl.html"
+                })
                 .state('404', {
                     url: "/404",
                     templateUrl: "httpcode/404.tpl.html"
+                })
+                .state('500', {
+                    url: "/error",
+                    templateUrl: "httpcode/500.tpl.html"
                 })
                 .state('searchPrograms', {
                     url: "/search?keyword",
@@ -40,7 +52,20 @@
                 .state('programList', {
                     url: "/programs/main",
                     templateUrl: "programs/programs-list.tpl.html",
-                    controller: "ProgramsListCtrl"
+                    controller: "ProgramsListCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_REVIEW_PROGRAMS,
+                            PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
+                            PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                            PERMISSIONS.CAN_REQUEST_ARCHIVE,
+                            PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                            PERMISSIONS.CAN_REQUEST_UNARCHIVE,
+                            PERMISSIONS.CAN_APPROVE_UNARCHIVE
+                        ]
+                    }
                 })
                 .state('programList.status', {
                     url: '/:status',
@@ -57,7 +82,20 @@
                             return 'programs/programs-list-table-all.tpl.html';
                         }
                     },
-                    controller: 'ProgramsListCtrl'
+                    controller: 'ProgramsListCtrl',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_REVIEW_PROGRAMS,
+                            PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
+                            PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                            PERMISSIONS.CAN_REQUEST_ARCHIVE,
+                            PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                            PERMISSIONS.CAN_REQUEST_UNARCHIVE,
+                            PERMISSIONS.CAN_APPROVE_UNARCHIVE
+                        ]
+                    }
                 })
                 .state('agencyList', {
                     url: "/agency/main",

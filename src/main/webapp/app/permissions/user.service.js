@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.factory('User', ['PermissionService', function(PermissionService) {
+    myApp.factory('User', ['PermissionService', 'ROLES', function(PermissionService, ROLES) {
         function User(IamUser) {
             var t = IamUser ? IamUser['token'] : null;
             var uid = t ? t['uid'] : null;
@@ -20,6 +20,10 @@
                     }
                 });
             });
+
+            if (!permissions.length) {
+                permissions = ROLES.ANONYMOUS.permissions;
+            }
 
             return {
                 uid: uid,
@@ -39,6 +43,10 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', function($rootScope, User, ROLES) {
         this.getUser = function() {
+            if (!$rootScope.user) {
+                $rootScope.user = new User();
+            }
+
             return $rootScope.user;
         };
 

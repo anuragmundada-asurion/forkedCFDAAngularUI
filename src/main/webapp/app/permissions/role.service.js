@@ -135,7 +135,7 @@
 
     myApp.service('PermissionService', ['ROLES', function(ROLES) {
         this.getPermissionsFromIAMRole = function(iamRole) {
-            var role = ROLES.ANONYMOUS;
+            var role = null;
 
             ROLES.ROLE_LIST.every(function(r) {
                 if (iamRole === r.iamRoleId) {
@@ -146,7 +146,7 @@
                 }
             });
 
-            return role.permissions;
+            return role ? role.permissions : [];
         };
     }]);
 

@@ -17,7 +17,7 @@
                     event.preventDefault();
                     return $state.go('401');
                 } else {
-                    var authorized = AuthorizationService.authorize(stateConfig['access']['requiredRoles']);
+                    var authorized = AuthorizationService.authorize(stateConfig['access']['requiredPermissions']);
                     if (!authorized) {
                         event.preventDefault();
                         return $state.go('403');
