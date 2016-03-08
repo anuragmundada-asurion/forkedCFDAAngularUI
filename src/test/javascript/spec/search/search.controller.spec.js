@@ -6,15 +6,11 @@ describe('Unit Tests for Program Search Controller', function() {
     var testKeyword = "ASDF Test Search";
     var SearchFactory;
 
-    beforeEach(function() {
-        module('app');
-
-        inject(function(_$rootScope_, _$location_, _$controller_, _SearchFactory_) {
-            $rootScope = _$rootScope_;
-            $controller = _$controller_;
-            SearchFactory = _SearchFactory_;
-        })
-    });
+    beforeEach(inject(function(_$rootScope_, _$location_, _$controller_, _SearchFactory_) {
+        $rootScope = _$rootScope_;
+        $controller = _$controller_;
+        SearchFactory = _SearchFactory_;
+    }));
 
     describe('$scope.globalSearchValue', function() {
         it('should set the default value of globalSearchValue', function() {

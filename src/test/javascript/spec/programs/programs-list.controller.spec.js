@@ -11,8 +11,6 @@ describe("Unit Tests for Programs List Controller", function () {
         totalCount;
 
     beforeEach(function() {
-        module('app');
-        module('templates');
         var env = {'pub.api.programs': '/api'};
         module(function($provide) {
             $provide.value('env', env);

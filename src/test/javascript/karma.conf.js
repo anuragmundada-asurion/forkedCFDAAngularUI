@@ -22,7 +22,6 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             // bower:js
-            'main/webapp/bower_components/jquery/dist/jquery.min.js',
             'main/webapp/bower_components/es5-shim/es5-shim.js',
             'main/webapp/bower_components/es6-shim/es6-shim.js',
             'main/webapp/bower_components/angular/angular.js',
@@ -35,6 +34,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-scroll/angular-scroll.js',
             'main/webapp/bower_components/angular-wizard/dist/angular-wizard.min.js',
             'main/webapp/bower_components/ui-select/dist/select.js',
+            'main/webapp/bower_components/jquery/dist/jquery.min.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'main/webapp/bower_components/xdomain/dist/xdomain.min.js',
             'main/webapp/bower_components/ng-dialog/js/ngDialog.js',

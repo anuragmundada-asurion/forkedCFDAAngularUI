@@ -6,8 +6,7 @@ describe('Unit Tests for Filter: selectedChoice', function() {
         propKey,
         selectedChoiceFilter;
 
-    beforeEach(function(){
-        module('app');
+    beforeEach(function() {
         propKey = 'id';
 
         //Create choices with the following schema: { letter: "string", id: "number" }

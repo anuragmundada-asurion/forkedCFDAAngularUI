@@ -8,8 +8,7 @@ describe('Unit Tests for Filter: propsFilter', function() {
         georgeChoice,
         propsFilter;
 
-    beforeEach(function(){
-        module('app');
+    beforeEach(function() {
         inject(function(_$filter_) {
             marryChoice = {
                 name: 'Marry',

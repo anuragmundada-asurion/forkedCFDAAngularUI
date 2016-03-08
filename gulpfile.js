@@ -4,14 +4,13 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
-var minify = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
 var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
 var merge = require('merge-stream');
-var ngdocs = require('gulp-ngdocs');
 var templateCache = require('gulp-angular-templatecache');
 var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
@@ -54,7 +53,7 @@ gulp.task('ie', ['index'], function() {
 gulp.task('base', ['index'], function() {
     var baseCss = gulp.src(mainBowerFiles('**/*.scss'), {base: 'src/main/webapp/bower_components/uswds'})
         .pipe(sass().on('error', sass.logError))
-        .pipe(minify())
+        .pipe(cleanCss())
         .pipe(rename('base.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
@@ -69,7 +68,7 @@ gulp.task('vendor', ['index'], function() {
 
     var vendorCss = gulp.src(mainBowerFiles('**/*.css'), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('vendor.min.css'))
-        .pipe(minify())
+        .pipe(cleanCss())
         .pipe(gulp.dest('target/classes/static/css'));
 
     var bowerSrc = ['**/*.js'];
@@ -88,7 +87,7 @@ gulp.task('vendor', ['index'], function() {
 gulp.task('plugins', ['index'], function() {
     var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/all-ie-only.css'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.css'))
-        .pipe(minify())
+        .pipe(cleanCss())
         .pipe(gulp.dest('target/classes/static/css'));
 
     var pluginsJs = gulp.src('src/main/webapp/plugins/**/*.js', {base: './src/main/webapp/plugins'})
@@ -121,7 +120,7 @@ gulp.task('iae', ['index'], function() {
 gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(minify())
+        .pipe(cleanCss())
         .pipe(rename('cfda.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
@@ -190,7 +189,7 @@ gulp.task('watch', function(){
         interval: 500,
         debounceDelay: 500, // default 500
         mode: 'poll'
-    }, ['index']);
+    }, ['package']);
 });
 
 gulp.task('default', ['package', 'test'], function () {

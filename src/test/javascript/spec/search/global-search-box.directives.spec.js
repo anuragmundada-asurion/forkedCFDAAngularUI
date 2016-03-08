@@ -5,11 +5,6 @@ describe('Unit Tests for Global Search Box Directive', function() {
     var $rootScope;
     var $compile;
 
-    beforeEach(function() {
-        module('templates');
-        module('app');
-    });
-
     beforeEach(inject(function(_$rootScope_, _$compile_) {
         element = '<global-search-box></global-search-box>';
         $rootScope = _$rootScope_;
