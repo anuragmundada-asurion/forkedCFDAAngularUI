@@ -22,10 +22,9 @@
               </select>
         </div>
       <div class="usa-width-one-third">
-          <label for="division-select">Division</label>
-            <select id="division-select" name="division-select" class="usa-form-medium">
-                <option value='' disabled style="display:none"></option>
-            </select>
+          <select id="division-select" name="division-select" class="usa-form-medium" ng-model="selectedDivision" ng-options="division.value for division in choices.regional_office_division track by division.element_id" required>
+              <option value='' disabled style="display:none">Division</option>
+          </select>
       </div>
 
     </div>

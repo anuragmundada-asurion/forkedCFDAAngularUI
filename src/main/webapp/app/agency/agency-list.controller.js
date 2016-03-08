@@ -6,10 +6,16 @@
             function($scope, $state, $stateParams, appConstants, ApiService, Dictionary) {
                  $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
                  $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
+                 $scope.selectedDivision = null;
+                 $scope.choices = {};
                 var DICTIONARIES = [
                                      'states',
                                      'regional_office_division'
-                                 ];
+                                   ];
+
+                Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
+                             angular.extend($scope.choices, data);
+                         });
 
                  /**
                   * Function loading agencies
