@@ -15,7 +15,8 @@
                 $scope.dictionary = {};
 
                 //loading dictionaries
-                var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes', 'program_subject_terms'];
+                //var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes', 'program_subject_terms'];
+                var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes'];
                 Dictionary.query({ ids: aDictionaries.join(',') }, function(data) {
                     //Assistance Types
                     $scope.dictionary.aAssistanceType = $scope.dropdownDataStructure(data.assistance_type, $scope.advancedSearch.aAssistanceType, true);
@@ -30,7 +31,7 @@
                     $scope.dictionary.aBeneficiaryEligibility = $scope.dropdownDataStructure(data.beneficiary_types, $scope.advancedSearch.aBeneficiaryEligibility, false);
 
                     //Subject Terms
-//                    $scope.dictionary.aSubjectTerm = $scope.dropdownDataStructure(data.program_subject_terms, $scope.advancedSearch.aSubjectTerm, true);
+                    //$scope.dictionary.aSubjectTerm = $scope.dropdownDataStructure(data.program_subject_terms, $scope.advancedSearch.aSubjectTerm, true);
                 });
 
                 //function for setting the popup when opened to it's field input
@@ -52,7 +53,7 @@
                  * @returns Void
                  */
                 $scope.clearAdvancedSearchForm = function(){
-//                    var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aSubjectTerm'];
+                    //var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aSubjectTerm'];
                     var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility'];
                     $scope.advancedSearch = {};
 
@@ -115,7 +116,7 @@
                 //check if we have criteria set from advanced search
                 if(!_.isEmpty(advancedSearch)) {
                     angular.extend(queryObj, {oFilterParam: JSON.stringify(advancedSearch)});
-                    console.log(queryObj);
+                    //console.log(queryObj);
                 }
 
                 if (tableState.pagination.start) {

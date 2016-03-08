@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.Resource;
+import org.json.JSONObject;
 
 @RestController
 @Configuration
@@ -134,7 +135,9 @@ public class ApiController {
     public String searchApiCall(@RequestParam(value="keyword", required=false) String keyword,
                                 @RequestParam(value="sortBy", required=false, defaultValue="score") String sortBy,
                                 @RequestParam(value="page", required=false, defaultValue="0") int page,
-                                @RequestParam(value="size", required=false, defaultValue="10") int size) {
+                                @RequestParam(value="size", required=false, defaultValue="10") int size,
+                                @RequestParam(value="oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -144,7 +147,8 @@ public class ApiController {
                 .queryParam("includeCount", true)
                 .queryParam("sortBy", sortBy)
                 .queryParam("page", page)
-                .queryParam("size", size);
+                .queryParam("size", size)
+                .queryParam("oFilterParam", oFilterParam);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
