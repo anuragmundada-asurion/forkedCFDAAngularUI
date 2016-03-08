@@ -21,10 +21,6 @@
                 });
             });
 
-            if (!permissions.length) {
-                permissions = ROLES.ANONYMOUS.permissions;
-            }
-
             return {
                 uid: uid,
                 token: token,
@@ -43,10 +39,6 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', function($rootScope, User, ROLES) {
         this.getUser = function() {
-            if (!$rootScope.user) {
-                $rootScope.user = new User();
-            }
-
             return $rootScope.user;
         };
 
