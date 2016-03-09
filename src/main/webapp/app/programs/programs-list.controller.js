@@ -141,7 +141,7 @@
     }]);
 
     //Controller for Program Status
-    myApp.controller('ProgramStatusCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
+    myApp.controller('ProgramRequestCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
         function($scope, $state, $timeout, ApiService, ngDialog) {
 
         //get the oEntity that was passed from ngDialog in 'data' option
@@ -157,7 +157,7 @@
          * function for submitting changes RestAPI call backend
          * @returns Void
          */
-        $scope.changeProgramStatus = function() {
+        $scope.submitProgramRequest = function() {
             var message = {
                 success: 'Your request has been submitted !',
                 error: 'An error has occurred, please try again !'

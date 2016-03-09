@@ -17,9 +17,9 @@
              * @param String action action to perform (Approve|Reject)
              * @returns Void
              */
-            $rootScope.showChangeStatusModal = function(oEntity, typeEntity, action) {
+            $rootScope.showProgramRequestModal = function(oEntity, typeEntity, action) {
                 ngDialog.open({ 
-                    template: 'programs/_ProgramStatusModal.tpl.html', 
+                    template: 'programs/_ProgramRequestModal.tpl.html', 
                     className: 'ngdialog-theme-default',
                     data: {
                         oEntity: oEntity, 
@@ -30,7 +30,7 @@
             };
 
             //global function for Closing change status modal
-            $rootScope.closeChangeStatusModal = function() {
+            $rootScope.closeProgramRequestModal = function() {
                 ngDialog.close();
             };
         }
