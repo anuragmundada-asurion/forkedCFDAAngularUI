@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var cleanCss = require('gulp-clean-css');
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
-var clone = require('gulp-clone');
 var rename = require('gulp-rename');
 var series = require('stream-series');
 var merge = require('merge-stream');
