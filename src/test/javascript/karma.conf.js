@@ -2,6 +2,13 @@
 // Generated on Wed Sep 30 2015 16:44:29 GMT-0400 (EDT)
 
 module.exports = function(config) {
+
+    //bugfix in phantomjs-rebuilt
+    //https://github.com/karma-runner/karma/issues/356
+    //https://github.com/karma-runner/karma-phantomjs-launcher/issues/69
+    //https://github.com/amir20/phantomjs-node/issues/24
+    process.env.PHANTOMJS_BIN = 'node_modules/phantomjs-prebuilt/bin/phantomjs';
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,7 +22,6 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             // bower:js
-            'main/webapp/bower_components/jquery/dist/jquery.min.js',
             'main/webapp/bower_components/es5-shim/es5-shim.js',
             'main/webapp/bower_components/es6-shim/es6-shim.js',
             'main/webapp/bower_components/angular/angular.js',
@@ -28,6 +34,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/angular-scroll/angular-scroll.js',
             'main/webapp/bower_components/angular-wizard/dist/angular-wizard.min.js',
             'main/webapp/bower_components/ui-select/dist/select.js',
+            'main/webapp/bower_components/jquery/dist/jquery.min.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'main/webapp/bower_components/xdomain/dist/xdomain.min.js',
             'main/webapp/bower_components/ng-dialog/js/ngDialog.js',
@@ -44,7 +51,9 @@ module.exports = function(config) {
             'main/webapp/bower_components/pathseg/pathseg.js',
             'main/webapp/bower_components/nvd3/build/nv.d3.js',
             'main/webapp/bower_components/angular-nvd3/dist/angular-nvd3.js',
+            'main/webapp/bower_components/angular-multi-select/isteven-multi-select.js',
             'main/webapp/bower_components/uswds/assets/js/components.js',
+            'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/app/**/*.html',
@@ -112,7 +121,7 @@ module.exports = function(config) {
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['PhantomJS'],
-
+        
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

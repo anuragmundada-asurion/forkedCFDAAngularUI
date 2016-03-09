@@ -7,8 +7,6 @@ describe('Unit Tests for miscellaneous field fixes', function() {
         inputHtml,
         inputNgListHtml;
 
-    beforeEach(module('app'));
-
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -45,13 +43,13 @@ describe('Unit Tests for miscellaneous field fixes', function() {
         var element = createElement("<form name='form'>" + inputHtml + "</form>"),
             inputElement = element.find('input');
 
-        inputElement.val('Some text').trigger('input');
+        inputElement.val('Some text').triggerHandler('input');
         $rootScope.$digest();
 
         expect($rootScope.form.myInput.$invalid).toBe(false);
         expect($rootScope.value).toEqual('Some text');
 
-        inputElement.val(undefined).trigger('input');
+        inputElement.val('').triggerHandler('input');
         $rootScope.$digest();
 
         expect($rootScope.form.myInput.$invalid).toBe(false);
@@ -61,7 +59,7 @@ describe('Unit Tests for miscellaneous field fixes', function() {
     it("should respect other $parsers if field is not valid and save to model", function() {
         var element = createElement("<form name='form'>" + inputNgListHtml + "</form>"),
             inputElement = element.find('input');
-        inputElement.val('a, b, c, d, e').trigger('input');
+        inputElement.val('a, b, c, d, e').triggerHandler('input');
         $rootScope.$digest();
 
         expect($rootScope.form.myInput.$invalid).toBe(false);

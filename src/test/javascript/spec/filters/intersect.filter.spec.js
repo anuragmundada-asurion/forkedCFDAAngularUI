@@ -8,7 +8,6 @@ describe('Unit Tests for Filter: intersect', function() {
       intersect;
 
   beforeEach(function(){
-    module('app');
     inject(function(_$filter_) {
       leftStringArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       rightStringArr = ['e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];

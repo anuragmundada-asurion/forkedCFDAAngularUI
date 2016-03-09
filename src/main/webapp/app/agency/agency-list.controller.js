@@ -2,11 +2,14 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService',
-            function($scope, $state, $stateParams, appConstants, ApiService) {
+     myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 'Dictionary',
+            function($scope, $state, $stateParams, appConstants, ApiService, Dictionary) {
                  $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
                  $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
-
+                var DICTIONARIES = [
+                                     'states',
+                                     'regional_office_division'
+                                 ];
 
                  /**
                   * Function loading agencies
@@ -23,7 +26,7 @@
                      $scope.isLoading = true;
 
                      var oApiParam = {
-                         apiName: 'agencyList',
+                         apiName: 'regionalAgencyList',
                          apiSuffix: '',
                          oParams: {
                              limit: $scope.itemsByPage,
@@ -49,19 +52,7 @@
                      $scope.promise = ApiService.call(oApiParam).then(
                          function(data) {
                              var agencies = [];
-                             //cleanup and adjust strutre data
-                            /* if($scope.programStatus === 'requests'){
-                                 programs = data.results;
-                             } else {*/
-                                 angular.forEach(data.results, function (item) {
-                                     angular.forEach(item, function (prop, key) {
-                                         if (!prop._id)
-                                             prop._id = key;
-                                         agencies.push(prop);
-                                     });
-                                 });
-                           /*  }*/
-
+                             agencies = data.results;
                              $scope.agencies = agencies;
                              $scope.isLoading = false;
 
@@ -87,6 +78,14 @@
                          section: section
                      });
                  };
+
+                 $scope.viewAgency= function(agency, section) {
+                      section = section || 'info';
+                      $state.go('viewAgency', {
+                          id: agency._id,
+                          section: section
+                      });
+                  };
 
             }]);
 

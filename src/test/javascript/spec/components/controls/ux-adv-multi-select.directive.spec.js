@@ -7,9 +7,6 @@ describe('Unit Tests for the uxAdvMultiSelect directive', function() {
         $timeout,
         html;
 
-    beforeEach(module('templates'));
-    beforeEach(module('app'));
-
     beforeEach(inject(function(_$document_,_$compile_, _$rootScope_, _$timeout_){
         $document = _$document_;
         $compile = _$compile_;

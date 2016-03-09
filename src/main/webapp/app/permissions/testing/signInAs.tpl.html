@@ -1,0 +1,6 @@
+<div ng-controller="TestingController">
+    <select ng-model="roleChange">
+        <option ng-repeat="(key, obj) in ROLES.ROLE_LIST" value="{{ obj.iamRoleId }}">{{ obj.iamRoleId }}</option>
+    </select>
+    <button type="submit" ng-click="changeRole()">Submit</button>
+</div>

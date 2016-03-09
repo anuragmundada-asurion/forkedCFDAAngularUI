@@ -9,8 +9,6 @@ describe('Unit Tests for the uniqueFrom validator', function() {
         ngListInputHtml,
         ngListWithPatternInputHtml;
 
-    beforeEach(module('app'));
-
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -46,17 +44,17 @@ describe('Unit Tests for the uniqueFrom validator', function() {
     it("should throw a validation error if the two fields are the same String value", function() {
         var element = createElement(plainInputHtml);
 
-        element.primaryInput.val('My Title').trigger('input');
+        element.primaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
-        element.secondaryInput.val('My Title').trigger('input');
+        element.secondaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(true);
         expect($rootScope.form.secondaryTitle.$error.uniqueFrom).toBeDefined();
 
 
-        element.secondaryInput.val('My Secondary Title').trigger('input');
+        element.secondaryInput.val('My Secondary Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
@@ -65,15 +63,15 @@ describe('Unit Tests for the uniqueFrom validator', function() {
     it("should not add the validator config if the input does not have ngModel", function() {
         var element = createElement(nomodelInputHtml);
 
-        element.primaryInput.val('My Title').trigger('input');
+        element.primaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.$invalid).toBe(false);
 
-        element.secondaryInput.val('My Title').trigger('input');
+        element.secondaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.$invalid).toBe(false);
 
-        element.secondaryInput.val('My Secondary Title').trigger('input');
+        element.secondaryInput.val('My Secondary Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.$invalid).toBe(false);
     });
@@ -81,11 +79,11 @@ describe('Unit Tests for the uniqueFrom validator', function() {
     it("should throw a validation error if any of the items in the ng-list default pattern matches the targeted field", function() {
         var element = createElement(ngListInputHtml);
 
-        element.primaryInput.val('My Title').trigger('input');
+        element.primaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
-        element.secondaryInput.val('Secondary, New Title, Unique Title').trigger('input');
+        element.secondaryInput.val('Secondary, New Title, Unique Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
@@ -94,11 +92,11 @@ describe('Unit Tests for the uniqueFrom validator', function() {
     it("should throw a validation error if any of the items in the ng-list with a pattern matches the targeted field", function() {
         var element = createElement(ngListWithPatternInputHtml);
 
-        element.primaryInput.val('My Title').trigger('input');
+        element.primaryInput.val('My Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 
-        element.secondaryInput.val('Secondary-New Title-Unique Title').trigger('input');
+        element.secondaryInput.val('Secondary-New Title-Unique Title').triggerHandler('input');
         $rootScope.$digest();
         expect($rootScope.form.secondaryTitle.$invalid).toBe(false);
 

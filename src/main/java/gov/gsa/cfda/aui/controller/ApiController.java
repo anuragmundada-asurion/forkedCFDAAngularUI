@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.Resource;
+import org.json.JSONObject;
 
 @RestController
 @Configuration
@@ -166,7 +167,9 @@ public class ApiController {
     public String searchApiCall(@RequestParam(value="keyword", required=false) String keyword,
                                 @RequestParam(value="sortBy", required=false, defaultValue="score") String sortBy,
                                 @RequestParam(value="page", required=false, defaultValue="0") int page,
-                                @RequestParam(value="size", required=false, defaultValue="10") int size) {
+                                @RequestParam(value="size", required=false, defaultValue="10") int size,
+                                @RequestParam(value="oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -176,7 +179,8 @@ public class ApiController {
                 .queryParam("includeCount", true)
                 .queryParam("sortBy", sortBy)
                 .queryParam("page", page)
-                .queryParam("size", size);
+                .queryParam("size", size)
+                .queryParam("oFilterParam", oFilterParam);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
@@ -349,8 +353,38 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/regionalAgency", method = RequestMethod.GET, produces = "application/json")
+    public String getRegionalAgencyListApiCall(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+                                        @RequestParam(value="includeCount", required=false, defaultValue="false") Boolean includeCount,
+                                        @RequestParam(value="limit", required=false, defaultValue="100") int limit,
+                                        @RequestParam(value="offset", required=false, defaultValue="0") int offset,
+                                        @RequestParam(value="sortBy", required=false, defaultValue="-agency") String sortBy,
+                                        @RequestParam(value="agency", required=false, defaultValue="") String agency,
+                                        @RequestParam(value="division", required=false, defaultValue="") String division) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl())
+                .queryParam("keyword", keyword)
+                .queryParam("includeCount", includeCount)
+                .queryParam("limit", limit)
+                .queryParam("offset", offset)
+                .queryParam("sortBy", sortBy)
+                .queryParam("agency", agency)
+                .queryParam("division", division);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     private String getProgramsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programs";
+    }
+
+    private String getRegionalAgencyApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/regionalAgency";
     }
 
     private String getContactsApiUrl() {

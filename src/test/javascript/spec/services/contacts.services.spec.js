@@ -2,15 +2,10 @@
 
 describe("Unit Tests for Contacts Service", function () {
     var $httpBackend, contactSvc;
-    beforeEach(function() {
-        module('app');
-
-        inject(function(_$httpBackend_, _Contact_){
-            $httpBackend = _$httpBackend_;
-            contactSvc = _Contact_;
-        });
-    });
-
+    beforeEach(inject(function(_$httpBackend_, _Contact_){
+        $httpBackend = _$httpBackend_;
+        contactSvc = _Contact_;
+    }));
 
     describe("Testing for Contact retrieval", function() {
         it('should make a get call to list of contacts for test agency', function() {

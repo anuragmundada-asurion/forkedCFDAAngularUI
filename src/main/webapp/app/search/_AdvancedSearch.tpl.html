@@ -1,0 +1,197 @@
+<primary-nav-bar></primary-nav-bar>
+
+<div class='advanced-search'>
+
+    <div class="usa-grid-full search-options">
+        <div class="search-box">
+            <div class="usa-grid">
+                <div class="usa-grid search-bar">
+                    <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
+                    <input id="filterYearVal" type="hidden" name="filterYear" value="0">
+                    <div role="search" class="usa-width-one-whole usa-search usa-search-big center">
+                        <label class="usa-sr-only" for="search-field-big">Search big</label>
+                        <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue" type="search" id="search-field-big" required="required" placeholder="Keyword / FAL#" name="text">
+                        <button type="submit" ng-click="searchPrograms()">
+                            <span class="usa-search-submit-text">Search</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:#112e51;position:relative;top:-35px;margin-bottom:-35px">
+            <!-- search options are another grid -->
+            <div class="usa-grid-full search-options">
+                <div style="min-height:4px;width:100%;background-color:#cacaca"></div>
+                <div class="usa-grid-full" style="background-color:#F1F1F1;padding:0px 14px 0px 14px">
+                    <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
+                        <label for="qs-posted">By Agency</label>
+                        <select size="1" id="qs-posted" style="font-weight:bold">
+                            <option selected value="">By Agency</option>
+                        </select>
+                    </div>
+                    <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
+                        <label for="qs-type">By Assistance Type</label>
+                        <select size="1" id="qs-type" style="font-weight:bold">
+                            <option selected value="">By Assistance</option>
+                        </select>
+                    </div>
+                    <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
+                        <label for="agency-search-field">By Historical Index</label>
+                        <select size="1" id="agency-search-field" style="font-weight:bold">
+                            <option selected value="">Historical Index</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            <div style="min-height:20px"></div>
+        
+        <div class="usa-grid-full">
+            <div class="usa-grid-full" style="background-color:#F1F1F1;">
+                
+                <div class="usa-width-one-fourth usa-search usa-search-big float-right">
+                    <button type="submit" ng-click="clearAdvancedSearchForm()" style="width:225px">
+                        <span class="usa-search-submit-text">Clear All</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <h4>Assistance Types</h4>
+            <div class="input-field">
+                <isteven-multi-select
+                    max-labels="6"
+                    input-model="dictionary.aAssistanceType"    
+                    output-model="advancedSearch.aAssistanceType"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                    group-property="msGroup"
+                >
+                </isteven-multi-select>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <h4>Applicant Eligibility</h4>
+            <div class="input-field">
+                <isteven-multi-select
+                    max-labels="6"
+                    input-model="dictionary.aApplicantEligibility"    
+                    output-model="advancedSearch.aApplicantEligibility"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                >
+                </isteven-multi-select>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <h4>Beneficiary Eligibility</h4>
+            <div class="input-field">
+                <isteven-multi-select
+                    max-labels="6"
+                    input-model="dictionary.aBeneficiaryEligibility"    
+                    output-model="advancedSearch.aBeneficiaryEligibility"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                >
+                </isteven-multi-select>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <h4>Functional Codes</h4>
+            <div class="input-field">
+                <isteven-multi-select
+                    max-labels="6"
+                    input-model="dictionary.aFunctionalCode"    
+                    output-model="advancedSearch.aFunctionalCode"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                    group-property="msGroup"
+                >
+                </isteven-multi-select>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <div class="usa-width-one-half" style="padding:0px 0px 28px 8px;">
+                <h4>Date Published</h4>
+                <div class="input-field">
+                    <input type="text" placeholder="01-March-2016" class="form-control" 
+                        ng-click="openDatepicker($event, 'datePublishedStartOpened')" 
+                        uib-datepicker-popup="MM/dd/yyyy" 
+                        ng-model="advancedSearch.datePublishedStart" 
+                        is-open="advancedSearch.datePublishedStartOpened" 
+                        datepicker-options="dateOptions" 
+                        close-text="Close" />
+                </div>
+            </div>
+            <div class="usa-width-one-half" style="padding:0px 0px 28px 8px;">
+                <h4>To</h4>
+                <div class="input-field">
+                    <input type="text" placeholder="02-March-2016" class="form-control" 
+                        ng-click="openDatepicker($event, 'datePublishedEndOpened')" 
+                        uib-datepicker-popup="MM/dd/yyyy" 
+                        ng-model="advancedSearch.datePublishedEnd" 
+                        is-open="advancedSearch.datePublishedEndOpened" 
+                        datepicker-options="dateOptions" 
+                        close-text="Close" />
+                </div>
+            </div>
+        </div>
+
+        <div class="usa-grid-full">
+            <h4>Executive Order 12372</h4>
+            <div class="input-field">
+                <ul>
+                    <li>
+                        <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderYes" value="yes"> 
+                        <label for="executiveOrderYes">Yes</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderNo" value="no">
+                        <label for="executiveOrderNo">No</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+<!--        <div class="usa-grid-full">
+            <h4>Subject Terms</h4>
+            <div class="input-field">
+                <isteven-multi-select
+                    max-labels="6"
+                    input-model="dictionary.aSubjectTerm"    
+                    output-model="advancedSearch.aSubjectTerm"
+                    button-label="code value"
+                    item-label="code value"
+                    tick-property="ticked"
+                    max-height="250px"
+                    group-property="msGroup"
+                >
+                </isteven-multi-select>
+            </div>
+        </div>-->
+    
+        <div class="usa-grid-full">
+            <div class="usa-grid-full">
+                <div class="usa-width-one-fourth usa-search usa-search-big float-right">
+                    <button type="submit" ng-click="searchPrograms()" style="width:225px">
+                        <span class="usa-search-submit-text">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

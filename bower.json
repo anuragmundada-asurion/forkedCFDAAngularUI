@@ -30,11 +30,13 @@
     "react": "~0.14.7",
     "js-cookie": "~2.1.0",
     "angular-moment": "~0.10.3",
-    "d3": "*",
+    "d3": "~3.5.16",
     "c3": "*",
     "pathseg": "~1.0.2",
-    "angular-nvd3": "*",
-    "uswds": "https://github.com/18F/web-design-standards.git#0.8.3"
+    "angular-nvd3": "~1.0.5",
+    "angular-multi-select": "https://github.com/isteven/angular-multi-select.git",
+    "uswds": "https://github.com/18F/web-design-standards.git#0.8.3",
+    "lodash": "^4.6.1"
   },
   "resolutions": {
     "angular": "~1.5.0"

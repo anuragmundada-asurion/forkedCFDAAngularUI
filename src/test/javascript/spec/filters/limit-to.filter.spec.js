@@ -7,7 +7,6 @@ describe('Unit Tests for Filter: limitTo', function() {
   var limitTo;
 
   beforeEach(function(){
-    module('app');
     inject(function(_$filter_) {
       items = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       str = "tuvwxyz";

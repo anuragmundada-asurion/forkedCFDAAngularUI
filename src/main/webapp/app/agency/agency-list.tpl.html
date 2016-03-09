@@ -3,47 +3,59 @@
 
 <section st-pipe="loadAgencies" st-table="agencies">
     <div class="usa-grid-full page-heading">
-        <div class="usa-width-one-half">
-            <h1 style="width:99%;">Regional Agency Offices</h1>
+        <div class="usa-width-three-fourths">
+            <h1>Regional Agency Offices</h1>
         </div>
         <div class="usa-width-one-fourth" >
-            <a class="usa-button" ui-sref="addAgency">Create a new agency</a>
+            <a class="usa-button" ui-sref="addAgency">Create a New Address</a>
         </div>
-        <div class="usa-width-one-fourth" >
-            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agencies-table">
-        </div>
+
     </div>
+    <div class="usa-grid-full">
+        <div class="usa-width-one-third" >
+            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agency-table">
+        </div>
+        <div class="usa-width-one-third">
+              <label for="agency-select">Agency</label>
+              <select id="agency-select" name="agency-select" class="usa-form-medium">
+                  <option value='' disabled style="display:none"></option>
+              </select>
+        </div>
+      <div class="usa-width-one-third">
+          <label for="division-select">Division</label>
+            <select id="division-select" name="division-select" class="usa-form-medium">
+                <option value='' disabled style="display:none"></option>
+            </select>
+      </div>
+
+    </div>
+
+
     <div class="usa-grid-full">
         <table class="listing-table cfda-table">
             <thead>
             <tr>
-                <th style="width:22%" st-sort="agencyName" st-sort-default="true" st-skip-natural="true">Name</th>
-                <th style="width:25%" st-sort="street" st-skip-natural="true">Street</th>
-                <th style="width:13%" st-sort="city" st-skip-natural="true">City</th>
-                <th style="width:13%" st-sort="state" st-skip-natural="true">State</th>
-                <th st-sort="zip" st-skip-natural="true">Zip</th>
-                <th style="width=13%" st-sort="phone" st-skip-natural="true">Phone</th>
-                <th>Action</th>
+                <th style="width:21%" st-sort="agency" st-sort-default="true">Agency Name</th>
+                <th style="width:21%">Street</th>
+                <th st-sort="city" >City</th>
+                <th st-sort="state" >State</th>
+                <th st-sort="zip">Zip</th>
+                <th>Phone</th>
+                <th style="width:7%">Action</th>
+
             </tr>
             </thead>
             <tbody ng-show="!isLoading">
             <tr ng-repeat="row in agencies">
-
-                <td>
-                    {{row.agencyName || '-'}}
-                </td>
-
-                <td>{{row.street}}</td>
-                <td>
-                   <!-- <a ui-sref="editProgram({id: row._id, section: 'review'})">{{row.title}}</a>-->
-                    {{row.city}}
-                </td>
+                <td><a ui-sref="editAgency({id: row._id, section: 'review'})">{{row.agency || '-'}}</a> </td>
+                <td>{{row.address}}</td>
+                <td>{{row.city}}</td>
                 <td>{{row.state}}</td>
                 <td>{{row.zip}}</td>
                 <td>{{row.phone}}</td>
-                <td class="action-row">
-                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-text-o"></span></button>
+                <td class="action-row" style="text-align: right !important">
                     <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
+                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-file-text-o"></span></button>
                 </td>
             </tr>
             <tr ng-show="!agencies || agencies.length == 0">

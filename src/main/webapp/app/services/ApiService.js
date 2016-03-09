@@ -5,6 +5,7 @@
 
     myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
         var APIs = {
+            "dictrionaryList": "/api/dictionaries",
             "programEntity": "/api/programs/:id",
             "programList": "/api/programs",
             "programArchiveRequest": "/api/programs/archive/request", // /:program_id
@@ -15,7 +16,8 @@
             "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
             "programPublish": "/api/programs/publish", // /:program_id
             "programCount": "/api/listingcount", //  /:year
-            "programEligibCount": "/api/eligibilitylistings"
+            "programEligibCount": "/api/eligibilitylistings",
+            "regionalAgencyList": "/api/regionalAgency"
         };
 
         this.APIs = APIs;
