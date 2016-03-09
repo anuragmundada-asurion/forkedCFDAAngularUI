@@ -116,9 +116,9 @@ describe('$scope.getSearchResults', function() {
             //simulating SearchFactory mock
             mockSearchResource = {
                 getSearchCriteria: function() {
-                    return { keyword: testKeyword, advancedSearche: {} };
+                    return { keyword: testKeyword, advancedSearch: {} };
                 },
-                setSearchCriteria: function(keyword, advancedSearche) {},
+                setSearchCriteria: function(keyword, advancedSearch) {},
                 search: function() {
                     return { 
                         get: function(queryObject, fnCallback) {

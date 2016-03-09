@@ -112,7 +112,7 @@
                 };
 
                 //advanced seach
-                var advancedSearch = SearchFactory.getSearchCriteria().advancedSearch;
+                var advancedSearch = $scope.prepareAdvancedSearchDataStructure(SearchFactory.getSearchCriteria().advancedSearch);
                 //check if we have criteria set from advanced search
                 if(!_.isEmpty(advancedSearch)) {
                     angular.extend(queryObj, {oFilterParam: JSON.stringify(advancedSearch)});
@@ -200,6 +200,47 @@
                 }
 
                 return results;
+            };
+
+            /**
+             * prepare advanced search data structure to send to search API as parameters
+             * @param Object advancedSearchData
+             * @returns Object
+             */
+            $scope.prepareAdvancedSearchDataStructure = function(advancedSearchData){
+                var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility'];
+                var oResult = {};
+
+                //loop through each filter
+                angular.forEach(aArray, function(element){
+//                    if(advancedSearchData.hasOwnProperty(element) && advancedSearchData[element].length > 0){
+                    if(advancedSearchData.hasOwnProperty(element)){
+                        angular.forEach(advancedSearchData[element], function(row){
+                            if(oResult.hasOwnProperty(element)) {
+                                oResult[element].push(row.element_id);
+                            } else {
+                                oResult[element] = [row.element_id];
+                            }
+                        });
+
+                        //delete treated object
+                        //delete advancedSearchData[element];
+                    }
+                });
+
+                //include whatever left into oResult Object
+                //angular.extend(oResult, advancedSearchData);
+                if(advancedSearchData.hasOwnProperty('datePublishedStart')) {
+                    oResult['datePublishedStart'] = advancedSearchData.datePublishedStart;
+                }
+                if(advancedSearchData.hasOwnProperty('datePublishedEnd')) {
+                    oResult['datePublishedEnd'] = advancedSearchData.datePublishedEnd;
+                }
+                if(advancedSearchData.hasOwnProperty('executiveOrder12372')) {
+                    oResult['executiveOrder12372'] = advancedSearchData.executiveOrder12372;
+                }
+
+                return oResult;
             };
         }
     ]);
