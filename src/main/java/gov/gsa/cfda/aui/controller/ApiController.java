@@ -47,11 +47,6 @@ public class ApiController {
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
-        System.out.println("************ProgramList******************");
-        System.out.println("url passed to get program list call: \n" + builder.build().encode().toUri());
-        System.out.println("***************ProgramList***************");
-
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
@@ -125,23 +120,12 @@ public class ApiController {
 
     @RequestMapping(value = "/api/eligibilitylistings", method = RequestMethod.GET)
     public String getEligibilitylistingsApiCall() {
-        System.out.println("************CategoryEligibilitylistings******************");
-
-
-
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getEligibilitylistingsApiUrl());
         HttpEntity<?> entity = new HttpEntity<>(headers);
-
-        System.out.println("A. perpared request: \nurl: " + builder.build().encode().toUri() + " \n entity: " + entity.toString());
-
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-
-        System.out.println("B. . got response, body: " + response.getBody().toString());
-        System.out.println("***************CategoryEligibilitylistings***************");
         return response.getBody();
     }
 
@@ -183,11 +167,6 @@ public class ApiController {
                 .queryParam("oFilterParam", oFilterParam);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-
-        System.out.println("************search******************");
-        System.out.println("url passed to get program list call: \n" + builder.build().encode().toUri());
-        System.out.println("***************search***************");
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
