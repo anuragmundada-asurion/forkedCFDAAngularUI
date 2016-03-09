@@ -13,16 +13,16 @@
     </div>
     <div class="usa-grid-full">
         <div class="usa-width-one-third" >
-            <input type="search" class="bold-border" st-search placeholder="Search Agencies" aria-controls="agency-table">
+            <input type="search" class="bold-border" st-search placeholder="Search" aria-controls="agency-table">
         </div>
         <div class="usa-width-one-third">
-              <label for="agency-select">Agency</label>
-              <select id="agency-select" name="agency-select" class="usa-form-medium">
-                  <option value='' disabled style="display:none"></option>
+              <select id="agency-select"  name="agency-select" class="usa-form-medium">
+                  <option value='' disabled style="display:none">Agency</option>
               </select>
         </div>
       <div class="usa-width-one-third">
-          <select id="division-select" name="division-select" class="usa-form-medium" ng-model="selectedDivision" ng-options="division.value for division in choices.regional_office_division track by division.element_id" required>
+          <select id="division-select" name="division-select" class="usa-form-medium" ng-model="selectedDivision"
+                  ng-options="division.value for division in choices.regional_office_division track by division.element_id">
               <option value='' disabled style="display:none">Division</option>
           </select>
       </div>

@@ -1,0 +1,55 @@
+<div ng-controller="AgencyUpdateCtrl">
+    <h4>Regional Agency Office</h4>
+
+    <section class="sub-section">
+        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+            <div class="usa-alert-body">
+                <p class="usa-alert-text">{{ flash.message }}</p>
+            </div>
+        </div>
+        <form name='agencyForm'>
+            <div class="input-field">
+                <label for="agency">Agency<span class="required" >*</span></label>
+                <select id="agency" required></select>
+                <div ng-show="form.error || agencyForm.agency.$dirty">
+                    <span ng-show="agencyForm.agency.$error.required">You must provide Reason of this request.</span>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label for="division">Division</label>
+                <select id="division"></select>
+            </div>
+
+            <div class="input-field">
+                <label for="branch">Branch</label>
+                <input type="text" id="branch"/>
+            </div>
+            <div class="input-field">
+                <label for="region">Sstate/Region</label>
+                <input type="text" id="region"/>
+            </div>
+            <div class="input-field">
+                <label for="subbranch">Sub-branch</label>
+                <input type="text" id="subbranch"/>
+            </div>
+
+            <div class="input-field">
+                <label for="phone" required>Phone<span class="required" >*</span></label>
+                <input type="text" id="phone"/>
+            </div>
+            <div ng-show="form.error || agencyForm.phone.$dirty">
+                <span ng-show="agencyForm.phone.$error.required">You must provide phone number.</span>
+            </div>
+
+        </form>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.typeEntity === 'program'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="changeProgramStatus()">Submit</button>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.typeEntity === 'request'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="changeProgramStatus(ngDialogData.action)">Submit</button>
+    </section>
+</div>

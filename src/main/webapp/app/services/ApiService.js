@@ -5,7 +5,7 @@
 
     myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
         var APIs = {
-            "dictrionaryList": "/api/dictionaries",
+            "dictionaryList": "/api/dictionaries",
             "programEntity": "/api/programs/:id",
             "programList": "/api/programs",
             "programArchiveRequest": "/api/programs/archive/request", // /:program_id

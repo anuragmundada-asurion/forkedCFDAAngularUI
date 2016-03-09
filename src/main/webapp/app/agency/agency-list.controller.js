@@ -17,6 +17,7 @@
                              angular.extend($scope.choices, data);
                          });
 
+
                  /**
                   * Function loading agencies
                   * @param {type} tableState
@@ -45,7 +46,16 @@
 
                      if (tableState.search.predicateObject) {
                          oApiParam.oParams['keyword'] = tableState.search.predicateObject.$;
+
                      }
+                 /*    if (tableState.search.predicateObject.agency && tableState.search.predicateObject.agency != '') {
+                         oApiParam.oParams['agency'] = tableState.search.predicateObject.agency;
+
+                     }
+                     if (tableState.search.predicateObject.division && tableState.search.predicateObject.agency != '') {
+                         oApiParam.oParams['division'] = tableState.search.predicateObject.division;
+
+                     }*/
 
 
                      if(tableState.sort.predicate) {
