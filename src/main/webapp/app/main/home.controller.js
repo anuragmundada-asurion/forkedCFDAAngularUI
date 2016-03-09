@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$rootScope', '$scope', 'appConstants', 'ApiService', 'moment', '$state',
-            function ($rootScope, $scope, appConstants, ApiService, moment, $state) {
+        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory',
+            function ($scope, $state, appConstants, ApiService, moment, SearchFactory) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -63,14 +63,38 @@
 
                 ApiService.call(eligbParams).then(function (data) {
                     $scope.applicantTypeData = data;
-                    $scope.eligibCount = {
-                        'individual': data.individual.count,
-                        'local': data.local.count,
-                        'nonprofit': data.nonprofit.count,
-                        'state': data.state.count,
-                        'us_territories': data.us_territories.count,
-                        'frito': data.frito.count,
-                    };
+                    $scope.chartData = [
+                        {
+                            name: 'Individual',
+                            count: data.individual.count,
+                            ids: data.individual.ids
+                        },
+                        {
+                            name: 'Local',
+                            count: data.local.count,
+                            ids: data.local.ids
+                        },
+                        {
+                            name: 'Nonprofit',
+                            count: data.nonprofit.count,
+                            ids: data.nonprofit.ids
+                        },
+                        {
+                            name: 'State',
+                            count: data.state.count,
+                            ids: data.state.ids
+                        },
+                        {
+                            name: 'U.S. Territories',
+                            count: data.us_territories.count,
+                            ids: data.us_territories.ids
+                        },
+                        {
+                            name: 'Federally Recognized Indian Tribal Organizations',
+                            count: data.frito.count,
+                            ids: data.frito.ids
+                        }
+                    ];
 
                     //load chart
                     $scope.makeHomePageChart();
@@ -82,26 +106,31 @@
                  */
                 $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
-                    //things that are searched for when a bar is clicked on
-                    var searchCriteria = ['Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'];
+
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
                             type: 'bar',
+                            json: $scope.chartData,
                             onclick: function (d) {
-                                $scope.globalSearchValue = searchCriteria[d.index];
-                                $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                                $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {
+
+                                //Set advanced search criteria
+                                SearchFactory.setSearchCriteria('', { aApplicantEligibility: $scope.chartData[d.index].ids.map(function(i){
+                                        return { element_id: i };
+                                    })
+                                });
+
+                                $state.go('searchPrograms', {}, {
                                     reload: true,
                                     inherit: false
                                 });
                             },
-                            x: 'x',
-                            columns: [
-                                ['x', 'Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'],
-                                ['data', $scope.eligibCount.individual, $scope.eligibCount.local, $scope.eligibCount.nonprofit, $scope.eligibCount.state, $scope.eligibCount.us_territories, $scope.eligibCount.frito]
-                            ],
+                            keys: {
+                                x: 'name',
+                                value: ['count']
+                            },
                             color: function (color, d) {
+                                console.log(d)
                                 // d will be 'id' when called for legends
                                 var cnt = (d.value) % (extraColors.length);
                                 return d.id && d.id === 'data' ? extraColors[d.index] : color;
