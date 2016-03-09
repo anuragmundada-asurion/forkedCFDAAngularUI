@@ -7,9 +7,6 @@ describe('Unit Tests for the uxForm directive', function() {
         util,
         html;
 
-    beforeEach(module('templates'));
-    beforeEach(module('app'));
-
     beforeEach(inject(function(_$document_,_$compile_, _$rootScope_, _util_){
         $document = _$document_;
         $compile = _$compile_;
@@ -39,18 +36,18 @@ describe('Unit Tests for the uxForm directive', function() {
     function createElement(attrs){
         var element = angular.element(html);
 
-        if(attrs)
+        if(attrs) {
             element.attr(attrs);
+        }
 
         angular.element($document).find('body').append(element);
-        var element = $compile(element)($rootScope);
+        element = $compile(element)($rootScope);
         $rootScope.$digest();
-
         return {
             uxForm: element,
             nav: element.find('ux-form-nav'),
             searchBox: element.find('field-finder-searchbox'),
-            bookmark: angular.element(element.find('[field-finder-bookmark]')[0]),
+            bookmark: angular.element(element[0].querySelector("[field-finder-bookmark]")),
             controller: $rootScope.uxForm
         }
     }
@@ -131,8 +128,7 @@ describe('Unit Tests for the uxForm directive', function() {
             expect(element.controller.current).toBe(sections[0]);
         });
         it("should allow 'isSection' to return a boolean if given key matches the current section's key", function() {
-            var element = createElement(),
-                sections = element.controller.sections;
+            var element = createElement();
 
             expect(element.controller.isSection('info')).toBe(true);
             element.controller.goToNextSection();

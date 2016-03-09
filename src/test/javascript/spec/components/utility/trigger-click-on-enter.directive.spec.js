@@ -7,8 +7,6 @@ describe('Unit Tests for triggerClickOnEnter', function() {
         elementHtml,
         enterKey;
 
-    beforeEach(module('app'));
-
     beforeEach(inject(function(_$compile_, _$rootScope_, _$window_){
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -28,9 +26,11 @@ describe('Unit Tests for triggerClickOnEnter', function() {
 
     function triggerKeyEvent(element, eventName, keyCode, keyCodeVariable) {
         keyCodeVariable = keyCodeVariable || "which";
-        var e = angular.element.Event(eventName);
-        e[keyCodeVariable] = keyCode;
-        element.trigger(e);
+        var event = {
+            type: eventName
+        };
+        event[keyCodeVariable] = keyCode;
+        element.triggerHandler(event);
     }
 
     function hasClass(element, cls) {
@@ -92,7 +92,7 @@ describe('Unit Tests for triggerClickOnEnter', function() {
 
         triggerKeyEvent(element, 'keydown', enterKey);
         expect(hasClass(element, 'active')).toBe(true);
-        element.trigger('blur');
+        element.triggerHandler('blur');
         expect(hasClass(element, 'active')).toBe(false);
     });
 });

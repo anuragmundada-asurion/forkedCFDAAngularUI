@@ -9,8 +9,6 @@ describe("Unit Tests for HTTP Code Routes", function () {
     }
 
     beforeEach(function() {
-        module('app');
-        module('templates');
         inject(function(_$window_, _$state_, _$rootScope_, _$location_, _$templateCache_, _$httpBackend_){
             $window = _$window_;
             $state = _$state_;

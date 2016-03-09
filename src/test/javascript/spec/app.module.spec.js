@@ -1,4 +1,9 @@
-'use strict'
+'use strict';
+
+jasmine.getEnv().topSuite().beforeEach({fn: function() {
+    module('templates');
+    module('app');
+}});
 
 describe('Unit Tests for App Module', function() {
     var $window,
@@ -6,7 +11,6 @@ describe('Unit Tests for App Module', function() {
 
     describe("Unit Tests for prototype extensions",function() {
         beforeEach(function() {
-            module('app');
             inject(function (_$window_, _$document_) {
                 $window = _$window_;
                 $document = _$document_;

@@ -3,13 +3,9 @@
 describe("Unit Tests for App Utility Service", function () {
     var appUtilSvc;
 
-    beforeEach(function() {
-        module('app');
-
-        inject(function(_appUtil_){
-            appUtilSvc = _appUtil_;
-        });
-    });
+    beforeEach(inject(function(_appUtil_){
+        appUtilSvc = _appUtil_;
+    }));
 
     describe("Unit Tests for Get Authorization Title", function() {
         describe("Unit Tests for Act Authorization Type", function() {

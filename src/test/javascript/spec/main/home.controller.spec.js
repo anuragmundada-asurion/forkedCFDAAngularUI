@@ -10,10 +10,6 @@ describe("Unit Tests for Home Controller", function () {
         util;
 
     beforeEach(function() {
-        module('templates');
-        module('app');
-
-
         inject(function(_$controller_, _$httpBackend_, _$rootScope_, _util_, _$state_, _appConstants_, _ApiService_){
             $controller = _$controller_;
             $httpBackend = _$httpBackend_;

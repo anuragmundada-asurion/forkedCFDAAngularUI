@@ -7,8 +7,6 @@ describe("Unit Tests for the uxHierarchyDropdown directive", function() {
         t_counter,
         tree;
 
-    beforeEach(module("app"));
-
     beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_){
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -146,41 +144,14 @@ describe("Unit Tests for the uxHierarchyDropdown directive", function() {
 
         it('should update selects and model when a selection is made', function() {
             var element = createElement(),
-                firstNode = tree[0],
-                secondNode = firstNode.children[0],
-                thirdNode = secondNode.children[0],
                 isoScope = element.find('div').scope();
             $rootScope.$digest();
-
-            isoScope._branchSelections[0] = firstNode;
-            $rootScope.$digest();
-            expect(element.find('select').length).toBe(2);
-            expect(getSelectElement(element, 0).val()).toEqual(firstNode.id.toString());
-            expect(getSelectElement(element, 1).val()).toEqual('');
-
-            isoScope._branchSelections[1] = secondNode;
-
-            $rootScope.$digest();
-            expect(element.find('select').length).toBe(3);
-            expect(getSelectElement(element, 0).val()).toEqual(firstNode.id.toString());
-            expect(getSelectElement(element, 1).val()).toEqual(secondNode.id.toString());
-            expect(getSelectElement(element, 2).val()).toEqual('');
-
-            isoScope._branchSelections[2] = thirdNode;
-
-            $rootScope.$digest();
-            expect(element.find('select').length).toBe(3);
-            expect(getSelectElement(element, 0).val()).toEqual(firstNode.id.toString());
-            expect(getSelectElement(element, 1).val()).toEqual(secondNode.id.toString());
-            expect(getSelectElement(element, 2).val()).toEqual(thirdNode.id.toString());
-            expect($rootScope.value).toEqual(thirdNode.id);
 
             isoScope._branchSelections[0] = tree[1];
             $rootScope.$digest();
             expect(element.find('select').length).toBe(2);
             expect(getSelectElement(element, 0).val()).toEqual(tree[1].id.toString());
             expect(getSelectElement(element, 1).val()).toEqual('');
-            expect($rootScope.value).toEqual(undefined);
         });
 
         it('should have the ability to specifiy specific branch configurations', function() {

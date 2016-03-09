@@ -7,8 +7,6 @@ describe("Unit Tests for the traverseTree filter", function() {
         traverseTreeFilter,
         tree;
 
-    beforeEach(module("app"));
-
     beforeEach(inject(function(_$filter_, _$parse_){
         $filter = _$filter_;
         $parse = _$parse_;

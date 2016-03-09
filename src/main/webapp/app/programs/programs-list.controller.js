@@ -11,7 +11,7 @@
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
         $scope.programStatus = 'All';
 
-        //updating scope programStatus parent for tabs/query puposes
+        //updating scope programStatus parent for tabs/query purposes
         if($stateParams.hasOwnProperty('status')) {
             if($stateParams.status === 'published') {
                 $scope.programStatus = 'Published';

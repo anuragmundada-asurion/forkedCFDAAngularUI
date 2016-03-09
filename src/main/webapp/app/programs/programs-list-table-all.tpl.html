@@ -4,7 +4,7 @@
             <h1 style="width:99%;">Open Federal Assistance Listing</h1>
         </div>
         <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <a class="usa-button" ui-sref="addProgram">Create a new listing</a>
+            <a class="usa-button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
         </div>
         <div class="usa-width-one-fourth" style="margin-top:25px;">
             <input type="search" class="bold-border" st-search placeholder="Search Listings" aria-controls="listings-table">
@@ -36,11 +36,11 @@
             <td>{{row.agencyId}}</td>
             <td>{{row.dateSubmitted}}</td>
             <td class="action-row">
-                <button type="button" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
-                <button type="button" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
 
-                <button type="button" ng-show="row.status === 'Published'" ng-click="showChangeStatusModal(row, 'program')"><span class="fa fa-folder"></span></button>
-                <button type="button" ng-show="row.status === 'Archived'" ng-click="showChangeStatusModal(row, 'program')"><span class="fa fa-folder-open"></span></button>
+                <button has-access="{{ [PERMISSION.CAN_REQUEST_ARCHIVE] }}" type="button" ng-show="row.status === 'Published'" ng-click="showChangeStatusModal(row, 'program')"><span class="fa fa-folder"></span></button>
+                <button has-access="{{ [PERMISSION.CAN_REQUEST_UNARCHIVE] }}" type="button" ng-show="row.status === 'Archived'" ng-click="showChangeStatusModal(row, 'program')"><span class="fa fa-folder-open"></span></button>
 
             </td>
             <td>{{row.status}}</td>
