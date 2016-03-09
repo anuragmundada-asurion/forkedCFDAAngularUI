@@ -46,7 +46,6 @@ public class ApiController {
                 .queryParam("status", status);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
