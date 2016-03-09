@@ -16,7 +16,8 @@
             "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
             "programPublish": "/api/programs/publish", // /:program_id
             "programCount": "/api/listingcount", //  /:year
-            "regionalAgencyList": "/api/regionalAgency",
+            "programEligibCount": "/api/eligibilitylistings",
+            "regionalAgencyList": "/api/regionalAgency"
         };
 
         this.APIs = APIs;

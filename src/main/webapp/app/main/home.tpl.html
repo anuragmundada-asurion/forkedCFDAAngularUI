@@ -1,13 +1,18 @@
 <primary-nav-bar></primary-nav-bar>
+
 <div class="home-header">
     <div style="width:600px;margin: 0px auto 0px auto;padding-top:30px;text-align:center;font-size:1.3em">
         Federal Assistance Searching - Simplified
         <div style="font-weight:normal;margin-top:12px">
-        Search here for information about federal assistance listings including grants, loans, scholarships, insurance, and more. Whether you are searching on behalf of a government entity, a nonprofit or educational institution, or any other sector, this site will help you determine eligibility, show availability, and provide relevant contact information.
+            Search here for information about federal assistance listings including grants, loans, scholarships,
+            insurance, and more. Whether you are searching on behalf of a government entity, a nonprofit or educational
+            institution, or any other sector, this site will help you determine eligibility, show availability, and
+            provide relevant contact information.
         </div>
     </div>
     <global-search-box style="font-weight:400"></global-search-box>
 </div>
+
 <div style="background-color:#112e51;position:relative;top:-35px;margin-bottom:-35px">
     <!-- search options are another grid -->
     <div class="usa-grid-full search-options">
@@ -38,32 +43,44 @@
             </div>
         </div>
     </div>
+
+
     <div style="min-height:20px"></div>
+
+
     <div class="usa-grid-full search-options" style="background-color:#FFF;padding:1px 8px 8px 8px;text-align:left">
-        <h3 style="margin-left:190px;color:#112E51;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">New in {{ currentYear }}</h3>
-        <div style="min-height:8px"></div>
-        <div class="usa-grid-full">
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
+        <div class="usa-width-one-half">
+            <h3 style="margin-left:190px;color:#112E51;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">
+                New in {{ currentYear }}</h3>
+
+            <div style="min-height:8px"></div>
+            <div class="usa-grid-full">
+                <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
                 {{ aProgramCount.new }}
                 </span>
-                <span style="position:relative;top:8px">New Listings</span>
-                <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="New Listings"/>
-            </div>
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
+                    <span style="position:relative;top:8px">New Listings</span>
+                    <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="New Listings"/>
+                </div>
+                <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;verticapkll-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
                 {{ aProgramCount.archived }}
                 </span>
-                <span style="position:relative;top:8px">Archived Listings</span>
-                <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Archived Listings"/>
-            </div>
-            <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
+                    <span style="position:relative;top:8px">Archived Listings</span>
+                    <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Archived Listings"/>
+                </div>
+                <div style="background-color:#E1F3F8;color:#0B74BD;width:460px;margin:15px;padding:15px;font-size:32pt;font-weight:200">
                 <span style="display:inline-block;width:66px;background-image:url('/img/circle.png');line-height:66px;vertical-align:middle;text-align:center;color:black;font-size:24px;font-weight:bold">
                 {{ aProgramCount.updated }}
                 </span>
-                <span style="position:relative;top:8px">Updated Listings</span>
-                <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Updated Listings"/>
+                    <span style="position:relative;top:8px">Updated Listings</span>
+                    <img style="position:relative;top:8px;" src="/img/links/flag.png" alt="Updated Listings"/>
+                </div>
             </div>
+        </div>
+        <div class="usa-width-one-half">
+            <h3 style="text-align: center;"> Who Can Apply</h3>
+            <div id="listingsChart"></div>
         </div>
     </div>
     <div style="min-height:50px"></div>
@@ -71,94 +88,111 @@
 
 <div class="home-quick-links">
     <h3 style="font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">Quick Links</h3>
+
     <div class="main">
-    <table>
-        <tr>
-            <td class="image">
-                <img src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"/>
-            </td>
-            <td class="image">
-                <a href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank"><img src="/img/links/PrintEdition.png" alt="Print Edition"/></a>
-            </td>
-            <td class="image">
-                <img src="/img/links/FTPDownloads.png" alt="FTP Downloads"/>
-            </td>
-        </tr>
-        <tr>
-            <td class="content">
-                CFDA Public User Guide
-            </td>
-            <td class="content">
-                2015 Print Edition<label for="printedition" style="display:none">Print Edition</label><br/><br/>
-                <select id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
-                    <option selected value="">Download Previous Editions</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
-                    <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
-                </select>
-            </td>
-            <td class="content">
-                FTP Downloads
-            </td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <td class="image">
+                    <img src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"/>
+                </td>
+                <td class="image">
+                    <a href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank"><img
+                            src="/img/links/PrintEdition.png" alt="Print Edition"/></a>
+                </td>
+                <td class="image">
+                    <img src="/img/links/FTPDownloads.png" alt="FTP Downloads"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    CFDA Public User Guide
+                </td>
+                <td class="content">
+                    2015 Print Edition<label for="printedition" style="display:none">Print Edition</label><br/><br/>
+                    <select id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
+                        <option selected value="">Download Previous Editions</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
+                        <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
+                    </select>
+                </td>
+                <td class="content">
+                    FTP Downloads
+                </td>
+            </tr>
+        </table>
     </div>
     <div style="min-height:30px"></div>
 </div>
 
 <div class="home-related-links">
     <h3 style="font-weight:bold;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">Related Links</h3>
+
     <div class="main">
-    <table>
-        <tr>
-            <td class="image">
-                <a href="http://www.grants.gov/" target="_blank"><img src="/img/links/grants.png" alt="Grants.gov"/></a>
-            </td>
-            <td class="image">
-                <a href="http://www.benefits.gov/" target="_blank"><img src="/img/links/benefits.png" alt="Benefits.gov"/></a>
-            </td>
-            <td class="image">
-                <a href="http://www.govloans.gov/" target="_blank"><img src="/img/links/govloans.png" alt="GovLoans.gov"/></a>
-            </td>
-        </tr>
-        <tr>
-            <td class="content">
-                <a href="http://www.grants.gov/" target="_blank">Grants.gov is your gateway to finding information about and applying for grant opportunities from over 1000 federal programs.</a>
-            </td>
-            <td class="content">
-                <a href="http://www.benefits.gov/" target="_blank">Benefits.gov offers information on more than 1,000 Federal and state benefit programs. Simply complete the free and confidential questionnaire and our prescreening tool will generate a tailored list of programs just for you.</a>
-            </td>
-            <td class="content">
-                <a href="http://www.govloans.gov/" target="_blank">GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you determine which loans may be right for you.</a>
-            </td>
-        </tr>
-        <tr>
-            <td class="image">
-                <a href="http://www.data.gov/" target="_blank"><img src="/img/links/data.png" alt="Data.gov"/></a>
-            </td>
-            <td class="image">
-                <a href="https://www.whitehouse.gov/omb" target="_blank"><img src="/img/links/omb.png" alt="Whitehouse.gov/OMB"/></a>
-            </td>
-            <td class="image">
-                <a href="https://www.usaspending.gov/" target="_blank"><img src="/img/links/usaspending.png" alt="UsaSpending.gov"/></a>
-            </td>
-        </tr>
-        <tr>
-            <td class="content">
-                <a href="http://www.data.gov/" target="_blank">Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and resources to conduct.</a>
-            </td>
-            <td class="content">
-                <a href="https://www.whitehouse.gov/omb" target="_blank">The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed to help.</a>
-            </td>
-            <td class="content">
-                <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov is a searchable website that shows the public how their tax dollars are spent through federal contracts, grants, and loans.</a>
-            </td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <td class="image">
+                    <a href="http://www.grants.gov/" target="_blank"><img src="/img/links/grants.png" alt="Grants.gov"/></a>
+                </td>
+                <td class="image">
+                    <a href="http://www.benefits.gov/" target="_blank"><img src="/img/links/benefits.png"
+                                                                            alt="Benefits.gov"/></a>
+                </td>
+                <td class="image">
+                    <a href="http://www.govloans.gov/" target="_blank"><img src="/img/links/govloans.png"
+                                                                            alt="GovLoans.gov"/></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    <a href="http://www.grants.gov/" target="_blank">Grants.gov is your gateway to finding information
+                        about and applying for grant opportunities from over 1000 federal programs.</a>
+                </td>
+                <td class="content">
+                    <a href="http://www.benefits.gov/" target="_blank">Benefits.gov offers information on more than
+                        1,000 Federal and state benefit programs. Simply complete the free and confidential
+                        questionnaire and our prescreening tool will generate a tailored list of programs just for
+                        you.</a>
+                </td>
+                <td class="content">
+                    <a href="http://www.govloans.gov/" target="_blank">GovLoans.gov is your first stop for Federal loan
+                        information and is specifically designed to help you determine which loans may be right for
+                        you.</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="image">
+                    <a href="http://www.data.gov/" target="_blank"><img src="/img/links/data.png" alt="Data.gov"/></a>
+                </td>
+                <td class="image">
+                    <a href="https://www.whitehouse.gov/omb" target="_blank"><img src="/img/links/omb.png"
+                                                                                  alt="Whitehouse.gov/OMB"/></a>
+                </td>
+                <td class="image">
+                    <a href="https://www.usaspending.gov/" target="_blank"><img src="/img/links/usaspending.png"
+                                                                                alt="UsaSpending.gov"/></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    <a href="http://www.data.gov/" target="_blank">Data.gov is the home of the U.S. government's open
+                        data. Here you will find open data sets, tools, and resources to conduct.</a>
+                </td>
+                <td class="content">
+                    <a href="https://www.whitehouse.gov/omb" target="_blank">The Compliance Supplement from the Office
+                        of Management and Budget (OMB) provides annual guidance designed to help.</a>
+                </td>
+                <td class="content">
+                    <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov is a searchable website that
+                        shows the public how their tax dollars are spent through federal contracts, grants, and
+                        loans.</a>
+                </td>
+            </tr>
+        </table>
     </div>
     <div style="min-height:10px"></div>
 </div>
