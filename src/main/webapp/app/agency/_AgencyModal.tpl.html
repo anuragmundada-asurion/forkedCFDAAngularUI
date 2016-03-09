@@ -1,0 +1,74 @@
+<div ng-controller="AgencyModalCtrl" style="overflow-y: auto; max-height:56rem;">
+    <h4>Regional Agency Office</h4>
+
+    <section class="sub-section">
+        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+            <div class="usa-alert-body">
+                <p class="usa-alert-text">{{ flash.message }}</p>
+            </div>
+        </div>
+        <form name='agencyForm'>
+            <div class="input-field">
+                <label for="agency">Agency<span class="required" >*</span></label>
+                <ui-select>
+
+                </ui-select>
+                <select id="agency" required ng-readonly="ngDialogData.action === 'view'"></select>
+                <div ng-show="form.error || agencyForm.agency.$dirty">
+                    <span ng-show="agencyForm.agency.$error.required">You must provide Reason of this request.</span>
+                </div>
+
+                <label for="division">Division</label>
+                <select id="division" name="division-select" class="usa-form-medium" ng-model="division"
+                        ng-options="division.value for division in choices.regional_office_division track by division.element_id"
+                        ng-readonly="ngDialogData.action === 'view'">
+                </select>
+
+                <label for="branch">Branch</label>
+                <input type="text" id="branch" ng-readonly="ngDialogData.action === 'view'"/>
+
+                <label for="region">State/Region</label>
+                <input type="text" id="region" ng-readonly="ngDialogData.action === 'view'"/>
+
+                <label for="subbranch">Sub-branch</label>
+                <input type="text" id="subbranch" ng-readonly="ngDialogData.action === 'view'"/>
+
+                <label for="phone" required>Phone<span class="required" >*</span></label>
+                <input type="text" id="phone" ng-readonly="ngDialogData.action === 'view'"/>
+
+                <div ng-show="form.error || agencyForm.phone.$dirty">
+                    <span ng-show="agencyForm.phone.$error.required">You must provide phone number.</span>
+                </div>
+                <label>Address</label>
+                <div class="sub-form">
+                    <label for="address" required>Street</label>
+                    <textarea id="address" ng-readonly="ngDialogData.action === 'view'"></textarea>
+                    <label for="city" required>City</label>
+                    <input type="text" id="city" ng-readonly="ngDialogData.action === 'view'"/>
+                    <label for="state" required>State</label>
+                    <select id="state" class="usa-form-small" ng-readonly="ngDialogData.action === 'view'"
+                        ng-model="state"
+                        ng-options="state.value for state in choices.states track by state.element_id">
+                    </select>
+                    <label for="zip" required>Zip<span class="required" >*</span></label>
+                    <input type="text" id="zip" ng-readonly="ngDialogData.action === 'view'"/>
+                    <label for="country" required>Country</label>
+                    <select id="country" class="usa-form-small" ng-readonly="ngDialogData.action === 'view'"
+                            ng-model="country"
+                            ng-options="country.value for country in choices.countries track by country.element_id">
+                    </select>
+                </div>
+            </div>
+
+        </form>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.action === 'create'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="changeProgramStatus()">Submit</button>
+    </section>
+    <section class="usa-grid-full" ng-show="ngDialogData.action === 'edit'">
+        <button type="button" ng-click="closeChangeStatusModal();">Cancel</button>
+        <button type="button" ng-click="closeChangeStatusModal();">Delete</button>
+        <button type="button" ng-click="changeProgramStatus(ngDialogData.action)">Submit</button>
+    </section>
+</div>

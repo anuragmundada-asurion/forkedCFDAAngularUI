@@ -7,7 +7,7 @@
             <h1>Regional Agency Offices</h1>
         </div>
         <div class="usa-width-one-fourth" >
-            <a class="usa-button" ui-sref="addAgency">Create a New Address</a>
+            <a class="usa-button" ng-click="editAgency('','regionalAgency', 'create')" >Create a New Address</a>
         </div>
 
     </div>
@@ -16,12 +16,18 @@
             <input type="search" class="bold-border" st-search placeholder="Search" aria-controls="agency-table">
         </div>
         <div class="usa-width-one-third">
-              <select id="agency-select"  name="agency-select" class="usa-form-medium">
+            <ui-select ng-model="searchAgency" name="agency-select" theme="select2"  style="width:100% !important">
+                <ui-select-match placeholder="Agency">{{$item.value}}</ui-select-match>
+                <ui-select-choices group-by="multiPickerGroupByFn" repeat="item.element_id as item in choices.agencies | filter: {value: $select.search } | orderBy:[multiPickerGroupByFn,'parent']">
+                    <div ng-bind-html="item.value | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+     <!--         <select id="agency-select"  name="agency-select" class="usa-form-medium">
                   <option value='' disabled style="display:none">Agency</option>
-              </select>
+              </select>-->
         </div>
       <div class="usa-width-one-third">
-          <select id="division-select" name="division-select" class="usa-form-medium" ng-model="selectedDivision"
+          <select id="division-select" name="division-select" class="usa-form-medium" ng-model="searchDivision"
                   ng-options="division.value for division in choices.regional_office_division track by division.element_id">
               <option value='' disabled style="display:none">Division</option>
           </select>
@@ -53,8 +59,8 @@
                 <td>{{row.zip}}</td>
                 <td>{{row.phone}}</td>
                 <td class="action-row" style="text-align: right !important">
-                    <button type="button" ng-click="editAgency(row)"><span class="fa fa-pencil"></span></button>
-                    <button type="button" ng-click="viewAgency(row)"><span class="fa fa-file-text-o"></span></button>
+                    <button type="button" ng-click="editAgency(row, 'regionalAgency', 'edit')"><span class="fa fa-pencil"></span></button>
+                    <button type="button" ng-click="editAgency(row, 'regionalAgency', 'view')"><span class="fa fa-file-text-o"></span></button>
                 </td>
             </tr>
             <tr ng-show="!agencies || agencies.length == 0">
