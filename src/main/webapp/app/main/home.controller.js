@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$rootScope', '$scope', 'appConstants', 'ApiService', 'moment', 'Search', '$state',
-            function ($rootScope, $scope, appConstants, ApiService, moment, Search, $state) {
+        .controller('HomeController', ['$rootScope', '$scope', 'appConstants', 'ApiService', 'moment', '$state',
+            function ($rootScope, $scope, appConstants, ApiService, moment, $state) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -111,7 +111,8 @@
                     function onClickOne(d) {
                         $scope.globalSearchValue = searchCriteria[d.index];
                         $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                        $state.go('searchPrograms', {keyword: $scope['globalSearchValue']}, {reload: true, inherit: false});
+                        //console.log("rs gsv: " + $rootScope['globalSearchValue']);
+                        $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {reload: true, inherit: false});
                     }
 
 
