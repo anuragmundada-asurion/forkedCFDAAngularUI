@@ -59,17 +59,17 @@
                     oData: {},
                     method: 'GET'
                 };
-
                 $scope.eligibCount = {};
 
                 ApiService.call(eligbParams).then(function (data) {
+                    $scope.applicantTypeData = data;
                     $scope.eligibCount = {
-                        'individual': data.individual,
-                        'local': data.local,
-                        'nonprofit': data.nonprofit,
-                        'state': data.state,
-                        'us_territories': data.us_territories,
-                        'frito': data.frito
+                        'individual': data.individual.count,
+                        'local': data.local.count,
+                        'nonprofit': data.nonprofit.count,
+                        'state': data.state.count,
+                        'us_territories': data.us_territories.count,
+                        'frito': data.frito.count,
                     };
 
                     //load chart
@@ -80,7 +80,7 @@
                  * Generate chart
                  * @returns void
                  */
-                $scope.makeHomePageChart = function() {
+                $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
                     //things that are searched for when a bar is clicked on
                     var searchCriteria = ['Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'];
@@ -88,18 +88,20 @@
                         bindto: document.getElementById('listingsChart'),
                         data: {
                             type: 'bar',
-                            onclick: function(d){
+                            onclick: function (d) {
                                 $scope.globalSearchValue = searchCriteria[d.index];
                                 $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                                //console.log("rs gsv: " + $rootScope['globalSearchValue']);
-                                $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {reload: true, inherit: false});
+                                $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {
+                                    reload: true,
+                                    inherit: false
+                                });
                             },
                             x: 'x',
                             columns: [
                                 ['x', 'Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'],
                                 ['data', $scope.eligibCount.individual, $scope.eligibCount.local, $scope.eligibCount.nonprofit, $scope.eligibCount.state, $scope.eligibCount.us_territories, $scope.eligibCount.frito]
                             ],
-                            color: function(color, d) {
+                            color: function (color, d) {
                                 // d will be 'id' when called for legends
                                 var cnt = (d.value) % (extraColors.length);
                                 return d.id && d.id === 'data' ? extraColors[d.index] : color;
