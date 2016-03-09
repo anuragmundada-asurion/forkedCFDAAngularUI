@@ -110,7 +110,7 @@ gulp.task('iae', ['index'], function() {
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
 
-    var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/all-ie-only.css')
+    var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
         .pipe(gulp.dest('target/classes/static/css'));
 
     index.pipe(inject(ieCss, { addRootSlash: true, relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
