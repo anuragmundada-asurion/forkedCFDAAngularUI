@@ -46,6 +46,7 @@ public class ApiController {
                 .queryParam("status", status);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
+
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
@@ -117,6 +118,21 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/eligibilitylistings", method = RequestMethod.GET)
+    public String getEligibilitylistingsApiCall() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getEligibilitylistingsApiUrl());
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+
+
+
+
     @RequestMapping(value = "/api/dictionaries", method = RequestMethod.GET)
     public String getDictionaries(@RequestParam(required = false) String[] ids) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -151,7 +167,6 @@ public class ApiController {
                 .queryParam("oFilterParam", oFilterParam);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
@@ -420,6 +435,10 @@ public class ApiController {
 
     private String getContactsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/contacts";
+    }
+
+    private String getEligibilitylistingsApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/eligibilitylistings";
     }
 
     private String getListingCountApiUrl() {
