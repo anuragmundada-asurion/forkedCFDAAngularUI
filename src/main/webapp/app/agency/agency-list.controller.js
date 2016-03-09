@@ -2,20 +2,40 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 'Dictionary',
-            function($scope, $state, $stateParams, appConstants, ApiService, Dictionary) {
+     myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants',
+                      'ApiService', 'Dictionary', 'ngDialog',
+            function($scope, $state, $stateParams, appConstants, ApiService, Dictionary, ngDialog) {
                  $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
                  $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
-                 $scope.selectedDivision = null;
+                 $scope.searchDivision = null;
+                 $scope.division = null;
+                 $scope.state = null;
+                 $scope.country = null;
+                 $scope.searchAgency = null;
                  $scope.choices = {};
+                 $scope.choices.agencies = [
+                     { element_id : 0, value:"General Services Administration" },
+                     { element_id : 1, parent_element_id:0, value:"General Services Administration" },
+                     { element_id : 2, parent_element_id:0, value:"EDS Location"},
+                     { element_id : 3, value:"Department of Energy" },
+                     { element_id : 4, parent_element_id: 3, value:"Department of Energy" },
+                     { element_id : 5, parent_element_id: 3, value:"Department of Fossil Energy"}
+                 ];
                 var DICTIONARIES = [
                                      'states',
-                                     'regional_office_division'
+                                     'regional_office_division',
+                                     'countries'
                                    ];
 
                 Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
                              angular.extend($scope.choices, data);
                          });
+
+                //Group by filter for the Agency ui-select list.
+                $scope.multiPickerGroupByFn = function(item) {
+                     return !!item.parent ? item.parent.value : item.value;
+                 }
+
 
 
                  /**
@@ -23,16 +43,16 @@
                   * @param {type} tableState
                   * @returns Void
                   */
-                 $scope.loadAgencies= function(tableState) {
+                $scope.loadAgencies= function(tableState) {
                      tableState = tableState || {
                          search: {},
                          pagination: {},
                          sort: {}
                      };
 
-                     $scope.isLoading = true;
+                    $scope.isLoading = true;
 
-                     var oApiParam = {
+                    var oApiParam = {
                          apiName: 'regionalAgencyList',
                          apiSuffix: '',
                          oParams: {
@@ -42,21 +62,12 @@
                          },
                          oData: {},
                          method: 'GET'
-                     };
+                    };
 
                      if (tableState.search.predicateObject) {
                          oApiParam.oParams['keyword'] = tableState.search.predicateObject.$;
 
                      }
-                 /*    if (tableState.search.predicateObject.agency && tableState.search.predicateObject.agency != '') {
-                         oApiParam.oParams['agency'] = tableState.search.predicateObject.agency;
-
-                     }
-                     if (tableState.search.predicateObject.division && tableState.search.predicateObject.agency != '') {
-                         oApiParam.oParams['division'] = tableState.search.predicateObject.division;
-
-                     }*/
-
 
                      if(tableState.sort.predicate) {
                          var isDescending = tableState.sort.reverse,
@@ -81,28 +92,31 @@
                      });
                  };
 
-                 /**
-                  * function for editing Agency
-                  * @param Object Agency
-                  * @param {type} section
-                  * @returns Void
-                  */
-                 $scope.editAgency= function(agency, section) {
-                     section = section || 'info';
-                     $state.go('editAgency', {
-                         id: agency._id,
-                         section: section
+                $scope.editAgency = function(oEntity, typeEntity, action) {
+                     ngDialog.open({
+                         template: 'agency/_AgencyModal.tpl.html',
+                         className: 'ngdialog-theme-default dialog-large',
+                         scope: $scope,
+                         data: {
+                             oEntity: oEntity,
+                             typeEntity: typeEntity,
+                             action: action
+                         }
                      });
-                 };
+                };
 
-                 $scope.viewAgency= function(agency, section) {
-                      section = section || 'info';
-                      $state.go('viewAgency', {
-                          id: agency._id,
-                          section: section
-                      });
-                  };
+                //global function for Closing change status modal
+                $scope.closeAgencyModal = function() {
+                     ngDialog.close();
+                };
 
-            }]);
+    }]);
+//Controller for Regional Agency dialog
+    myApp.controller('AgencyModalCtrl', ['$scope',
+        function($scope) {
+
+
+
+    }]);
 
 })();

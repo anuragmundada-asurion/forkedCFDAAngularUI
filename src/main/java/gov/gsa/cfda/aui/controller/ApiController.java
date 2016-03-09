@@ -375,7 +375,7 @@ public class ApiController {
                                               @RequestParam(value="region", required=false) String region,
                                               @RequestParam(value="subbranch", required=false) String subbranch,
                                               @RequestParam(value="phone", required=true) String phone,
-                                              @RequestParam(value="street", required=false) String street,
+                                              @RequestParam(value="address", required=false) String address,
                                               @RequestParam(value="city", required=false) String city,
                                               @RequestParam(value="state", required=false) String stateId,
                                               @RequestParam(value="zip", required=false) String zip,
@@ -390,7 +390,7 @@ public class ApiController {
                 .queryParam("region", region)
                 .queryParam("subbranch", subbranch)
                 .queryParam("phone", phone)
-                .queryParam("street", street)
+                .queryParam("address", address)
                 .queryParam("city", city)
                 .queryParam("state", stateId)
                 .queryParam("zip", zip)
@@ -402,35 +402,13 @@ public class ApiController {
 
     @RequestMapping(value = "/api/regionalAgency/{id}", method = RequestMethod.PUT)
     public String updateRegionalAgencyApiCall(@PathVariable("id") String id,
-                                              @RequestParam(value="address_id", required=true) String addressId,
-                                              @RequestParam(value="agency", required=true) String agencyId,
-                                              @RequestParam(value="division", required=false) String divisionId,
-                                              @RequestParam(value="branch", required=false) String branch,
-                                              @RequestParam(value="region", required=false) String region,
-                                              @RequestParam(value="subbranch", required=false) String subbranch,
-                                              @RequestParam(value="phone", required=true) String phone,
-                                              @RequestParam(value="street", required=false) String street,
-                                              @RequestParam(value="city", required=false) String city,
-                                              @RequestParam(value="state", required=false) String stateId,
-                                              @RequestParam(value="zip", required=false) String zip,
-                                              @RequestParam(value="country", required=false) String countryId) throws Exception {
+                                       @RequestBody String jsonData) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl() + "/" + id)
-                .queryParam("address_id", addressId)
-                .queryParam("agency", agencyId)
-                .queryParam("division", divisionId)
-                .queryParam("branch", branch)
-                .queryParam("region", region)
-                .queryParam("subbranch", subbranch)
-                .queryParam("phone", phone)
-                .queryParam("street", street)
-                .queryParam("city", city)
-                .queryParam("state", stateId)
-                .queryParam("zip", zip)
-                .queryParam("country", countryId);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
+        headers.set("Media-Type", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl() + "/" + id) ;
+        HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PUT, entity, String.class);
         return response.getBody();
     }
