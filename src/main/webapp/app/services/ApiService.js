@@ -8,12 +8,8 @@
             "dictionaryList": "/api/dictionaries",
             "programEntity": "/api/programs/:id",
             "programList": "/api/programs",
-            "programArchiveRequest": "/api/programs/archive/request", // /:program_id
-            "programArchive": "/api/programs/archive", // /:program_id
-            "programArchiveRequestReject": "/api/programs/archive/reject", // /:program_id
-            "programUnArchiveRequest": "/api/programs/unarchive/request", // /:program_id
-            "programUnArchive": "/api/programs/unarchive", // /:program_id
-            "programUnArchiveRequestReject": "/api/programs/unarchive/reject", // /:program_id
+            "programRequest": "/api/programRequests",
+            "programRequestAction": "/api/programRequestActions",
             "programPublish": "/api/programs/publish", // /:program_id
             "programCount": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
