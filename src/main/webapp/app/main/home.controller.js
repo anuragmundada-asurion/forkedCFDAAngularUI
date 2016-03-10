@@ -62,41 +62,7 @@
                 $scope.eligibCount = {};
 
                 ApiService.call(eligbParams).then(function (data) {
-                    $scope.applicantTypeData = data;
-                    $scope.chartData = [
-                        {
-                            name: 'Individual',
-                            count: data.individual.count,
-                            ids: data.individual.ids
-                        },
-                        {
-                            name: 'Local',
-                            count: data.local.count,
-                            ids: data.local.ids
-                        },
-                        {
-                            name: 'Nonprofit',
-                            count: data.nonprofit.count,
-                            ids: data.nonprofit.ids
-                        },
-                        {
-                            name: 'State',
-                            count: data.state.count,
-                            ids: data.state.ids
-                        },
-                        {
-                            name: 'U.S. Territories',
-                            count: data.us_territories.count,
-                            ids: data.us_territories.ids
-                        },
-                        {
-                            name: 'Federally Recognized Indian Tribal Organizations',
-                            count: data.frito.count,
-                            ids: data.frito.ids
-                        }
-                    ];
-
-                    //load chart
+                    $scope.chartData = data;
                     $scope.makeHomePageChart();
                 });
 
@@ -126,7 +92,7 @@
                                 });
                             },
                             keys: {
-                                x: 'name',
+                                x: 'label',
                                 value: ['count']
                             },
                             color: function (color, d) {
