@@ -130,10 +130,7 @@
                                 value: ['count']
                             },
                             color: function (color, d) {
-                                console.log(d)
-                                // d will be 'id' when called for legends
-                                var cnt = (d.value) % (extraColors.length);
-                                return d.id && d.id === 'data' ? extraColors[d.index] : color;
+                                return d.id ? extraColors[d.index] : color;
                             }
                         },
                         bar: {
