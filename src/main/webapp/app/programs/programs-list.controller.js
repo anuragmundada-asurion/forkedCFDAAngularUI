@@ -139,6 +139,11 @@
         //get the oEntity that was passed from ngDialog in 'data' option
         $scope.oEntity = $scope.ngDialogData.oEntity;
 
+        if($scope.ngDialogData.typeEntity === 'program_request_action') {
+            //populate field reason
+            $scope.reason = $scope.ngDialogData.oEntity.reason;
+        }
+
         /**
          * function for submitting changes RestAPI call backend
          * @returns Void
@@ -184,8 +189,6 @@
                         }
                     }
                 } else if($scope.ngDialogData.typeEntity === 'program_request_action') {
-                    //populate field reason
-                    $scope.reason = $scope.ngDialogData.oEntity.reason;
                     //set API Name to call
                     oApiParam.apiName = 'programRequestAction';
                     //define success message
@@ -222,6 +225,15 @@
                     };
                 });
             }
+        };
+
+        /**		
+          * 		
+          * @param String string		
+          * @returns Object		
+          */		
+        $scope.stringToJson = function(string) {		
+             return JSON.parse(string);		
         };
     }]);
 })();
