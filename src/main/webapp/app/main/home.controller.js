@@ -54,7 +54,7 @@
                 //make eligiblisting api call
                 var eligbParams = {
                     apiName: 'programEligibCount',
-                    apiSuffix: '/',
+                    apiSuffix: '',
                     oParams: {},
                     oData: {},
                     method: 'GET'
