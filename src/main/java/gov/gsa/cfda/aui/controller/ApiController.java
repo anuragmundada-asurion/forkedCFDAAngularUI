@@ -16,6 +16,8 @@ import javax.annotation.Resource;
 import org.json.JSONObject;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 //  TODO REFACTOR
 @RestController
@@ -194,65 +196,121 @@ public class ApiController {
                               @RequestParam(value="offset", required=false, defaultValue="0") int offset,
                               @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
                               @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramRequestsApiUrl())
-                .queryParam("keyword", keyword)
-                .queryParam("limit", limit)
-                .queryParam("offset", offset)
-                .queryParam("sortBy", sortBy)
-                .queryParam("includeCount", includeCount);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
+        Map<String, Object> params = new HashMap<>();
+        params.put("keyword", keyword);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        return getsCall(getProgramRequestsApiUrl(), params);
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createRequest(@RequestBody String jsonBody) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl());
-        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
+        return createCall(getProgramsApiUrl(), jsonBody);
     }
 
     @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequest(@PathVariable("id") String requestId) throws SQLException, RuntimeException {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramRequestsApiUrl() + "/" + requestId);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
+        return getCall(getProgramRequestsApiUrl() + "/" + requestId);
     }
 
     @RequestMapping(value = "/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     public String updateRequest(@PathVariable("id") String requestId,
                                 @RequestBody String jsonBody) {
+        return updateCall(getProgramsApiUrl() + "/" + requestId, jsonBody);
+    }
+
+    @RequestMapping(value = "/programRequests/{id}", method = RequestMethod.DELETE)
+    public void deleteRequest(@PathVariable("id") String requestId) {
+        deleteCall(getProgramsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getActions(@RequestParam(value="limit", required=false, defaultValue="100") int limit,
+                             @RequestParam(value="offset", required=false, defaultValue="0") int offset,
+                             @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
+                             @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        return getsCall(getProgramRequestActionsApiUrl(), params);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createAction(@RequestBody String jsonBody) throws SQLException, RuntimeException {
+        return createCall(getProgramRequestActionsApiUrl(), jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getAction(@PathVariable("id") String requestId) throws SQLException, RuntimeException {
+        return getCall(getProgramRequestActionsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateAction(@PathVariable("id") String requestId,
+                               @RequestBody String jsonBody) {
+        return updateCall(getProgramRequestActionsApiUrl() + "/" + requestId, jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.DELETE)
+    public void deleteAction(@PathVariable("id") String actionId) {
+        deleteCall(getProgramRequestActionsApiUrl() + "/" + actionId);
+    }
+
+    private String getsCall(String url, Map<String, Object> params) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            builder.queryParam(entry.getKey(), entry.getValue());
+        }
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+    private String createCall(String url, String jsonBody) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + requestId);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
+        return response.getBody();
+    }
+
+    private String getCall(String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+    private String updateCall(String url, String jsonBody) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/programRequests/{id}", method = RequestMethod.DELETE)
-    public void deleteRequest(@PathVariable("id") String requestId) {
+    private void deleteCall(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + requestId);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         restTemplate.delete(builder.build().encode().toUri());
     }
 
@@ -351,6 +409,10 @@ public class ApiController {
 
     private String getProgramRequestsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
+    }
+
+    private String getProgramRequestActionsApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestActions";
     }
 
     private String getProgramsApiUrl() {
