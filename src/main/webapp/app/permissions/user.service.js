@@ -16,8 +16,9 @@
                 var permissionList = PermissionService.getPermissionsFromIAMRole(r);
                 permissionList.every(function(p) {
                     if (permissions.indexOf(p) === -1) {
-                        return permissions.push(p);
+                        permissions.push(p);
                     }
+                    return true;
                 });
             });
 
