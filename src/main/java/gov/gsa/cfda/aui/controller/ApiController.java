@@ -192,12 +192,14 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+                              @RequestParam(value="completed", required=false, defaultValue="false") boolean isCompleted,
                               @RequestParam(value="limit", required=false, defaultValue="100") int limit,
                               @RequestParam(value="offset", required=false, defaultValue="0") int offset,
                               @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
                               @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);
+        params.put("completed", isCompleted);
         params.put("limit", limit);
         params.put("offset", offset);
         params.put("sortBy", sortBy);
