@@ -45,6 +45,7 @@
                 //setting for datepicker
                 $scope.dateOptions = {
                     formatYear: 'yy',
+                    showWeeks: false,
                     startingDay: 1
                 };
 
