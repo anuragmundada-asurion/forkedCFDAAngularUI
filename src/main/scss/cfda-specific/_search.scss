@@ -7,7 +7,8 @@
     padding: 0;
 
     input[type="search"] {
-      max-width: 100rem;
+      max-width: 89.9rem;
+      border: none;
     }
   }
 }
@@ -36,6 +37,10 @@
         background-color: #F1F1F1;
         padding:30px;
         
+        .search-box .usa-grid input[type=search] {
+            max-width: 84rem;
+            border: none;
+        }
         > .search-box{
             background-color: #F1F1F1;
             padding-bottom: 3em;
@@ -88,6 +93,9 @@
                         padding-top:7px;
                         padding-bottom:7px;
                         height: 28px;
+                    }
+                    div.checkboxLayer div.helperContainer .inputFilter{
+                        min-width: 100%;
                     }
                 }
             }

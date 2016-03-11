@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$rootScope', '$scope', 'appConstants', 'ApiService', 'moment', '$state',
-            function ($rootScope, $scope, appConstants, ApiService, moment, $state) {
+        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory',
+            function ($scope, $state, appConstants, ApiService, moment, SearchFactory) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -54,25 +54,15 @@
                 //make eligiblisting api call
                 var eligbParams = {
                     apiName: 'programEligibCount',
-                    apiSuffix: '/',
+                    apiSuffix: '',
                     oParams: {},
                     oData: {},
                     method: 'GET'
                 };
-
                 $scope.eligibCount = {};
 
                 ApiService.call(eligbParams).then(function (data) {
-                    $scope.eligibCount = {
-                        'individual': data.individual,
-                        'local': data.local,
-                        'nonprofit': data.nonprofit,
-                        'state': data.state,
-                        'us_territories': data.us_territories,
-                        'frito': data.frito
-                    };
-
-                    //load chart
+                    $scope.chartData = data;
                     $scope.makeHomePageChart();
                 });
 
@@ -80,29 +70,33 @@
                  * Generate chart
                  * @returns void
                  */
-                $scope.makeHomePageChart = function() {
+                $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
-                    //things that are searched for when a bar is clicked on
-                    var searchCriteria = ['Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'];
+
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
                             type: 'bar',
-                            onclick: function(d){
-                                $scope.globalSearchValue = searchCriteria[d.index];
-                                $rootScope['globalSearchValue'] = $scope['globalSearchValue'];
-                                //console.log("rs gsv: " + $rootScope['globalSearchValue']);
-                                $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {reload: true, inherit: false});
+                            json: $scope.chartData,
+                            onclick: function (d) {
+
+                                //Set advanced search criteria
+                                SearchFactory.setSearchCriteria('', { aApplicantEligibility: $scope.chartData[d.index].ids.map(function(i){
+                                        return { element_id: i };
+                                    })
+                                });
+
+                                $state.go('searchPrograms', {}, {
+                                    reload: true,
+                                    inherit: false
+                                });
                             },
-                            x: 'x',
-                            columns: [
-                                ['x', 'Individual', 'Local', 'Nonprofit', 'State', 'U.S. Territories', 'Federally Recognized Indian Tribal Organizations'],
-                                ['data', $scope.eligibCount.individual, $scope.eligibCount.local, $scope.eligibCount.nonprofit, $scope.eligibCount.state, $scope.eligibCount.us_territories, $scope.eligibCount.frito]
-                            ],
-                            color: function(color, d) {
-                                // d will be 'id' when called for legends
-                                var cnt = (d.value) % (extraColors.length);
-                                return d.id && d.id === 'data' ? extraColors[d.index] : color;
+                            keys: {
+                                x: 'label',
+                                value: ['count']
+                            },
+                            color: function (color, d) {
+                                return d.id ? extraColors[d.index] : color;
                             }
                         },
                         bar: {

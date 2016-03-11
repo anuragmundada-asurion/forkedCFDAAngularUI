@@ -65,7 +65,8 @@
             }
 
             if($scope.programStatus === 'requests') {
-                oApiParam.apiSuffix = '/'+$scope.programStatus;
+                oApiParam.apiName = 'programRequest';
+                oApiParam.oParams['completed'] = false;
             } else if( $scope.programStatus !== 'All') {
                 oApiParam.oParams['status'] = $scope.programStatus;
             }
@@ -129,27 +130,17 @@
                 $scope.loadPrograms($scope.previousState);
             });
         };
-
-        /**
-         * 
-         * @param String string
-         * @returns Object
-         */
-        $scope.stringToJson = function(string) {
-            return JSON.parse(string);
-        };
     }]);
 
     //Controller for Program Status
-    myApp.controller('ProgramStatusCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
+    myApp.controller('ProgramRequestCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
         function($scope, $state, $timeout, ApiService, ngDialog) {
 
         //get the oEntity that was passed from ngDialog in 'data' option
-        $scope.oProgram = $scope.ngDialogData.oEntity;
+        $scope.oEntity = $scope.ngDialogData.oEntity;
 
-        //if entity passed isn't program object then retrieve it
-        if($scope.ngDialogData.typeEntity === 'request') {
-            $scope.oProgram = JSON.parse($scope.ngDialogData.oEntity.data);
+        if($scope.ngDialogData.typeEntity === 'program_request_action') {
+            //populate field reason
             $scope.reason = $scope.ngDialogData.oEntity.reason;
         }
 
@@ -157,7 +148,11 @@
          * function for submitting changes RestAPI call backend
          * @returns Void
          */
-        $scope.changeProgramStatus = function() {
+        $scope.submitProgramRequest = function() {
+//            console.log('$scope.oEntity')
+//            console.log($scope.oEntity)
+//            console.log('$scope.ngDialogData')
+//            console.log($scope.ngDialogData)
             var message = {
                 success: 'Your request has been submitted !',
                 error: 'An error has occurred, please try again !'
@@ -166,40 +161,48 @@
             if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
                 var oApiParam = {
                     apiName: '',
-                    apiSuffix: '/'+$scope.oProgram._id,
-                    oParams: {
-                        reason: $scope.reason,
-                        parentProgramId: '',
-                        programNumber: $scope.oProgram.programNumber
-                    }, 
-                    oData: {
-                        reason: $scope.reason,
-                        parentProgramId: '',
-                        programNumber: $scope.oProgram.programNumber
-                    }, 
+                    apiSuffix: '',
+                    oParams: {}, 
+                    oData: {}, 
                     method: 'POST'
                 };
 
                 //which action should we apply to (Program or Program Requests)
-                if($scope.ngDialogData.typeEntity === 'program') {
-                    if($scope.oProgram.status === 'Published') {
-                        oApiParam.apiName = 'programArchiveRequest';
-                    } else if($scope.oProgram.status === 'Archived') {
-                        oApiParam.apiName = 'programUnArchiveRequest';
-                    }
-                } else if($scope.ngDialogData.typeEntity === 'request') {
-                    if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Published') {
-                        oApiParam.apiName = 'programArchive';
-                    } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Published') {
-                        oApiParam.apiName = 'programArchiveRequestReject';
-                    } else if($scope.ngDialogData.action === 'approve' && $scope.oProgram.status === 'Archived') {
-                        oApiParam.apiName = 'programUnArchive';
-                    } else if($scope.ngDialogData.action === 'reject' && $scope.oProgram.status === 'Archived') {
-                        oApiParam.apiName = 'programUnArchiveRequestReject';
-                    }
+                if($scope.ngDialogData.typeEntity === 'program_request') {
+                    //set API Name to call
+                    oApiParam.apiName = 'programRequest';
+                    //define API params
+                    oApiParam.oData = {
+                        programId: $scope.oEntity._id,
+                        requestType: $scope.ngDialogData.action,
+                        reason: $scope.reason,
+                        data: {}
+                    };
 
+                    //title change request has a new field (NEW TITLE)
+                    if($scope.ngDialogData.action === 'title_request') {
+                        if(typeof $scope.newTitle !== 'undefined' && $scope.newTitle !== '') {
+                            oApiParam.oData.data.title = $scope.newTitle;
+                        } else {
+                            //prevent fron submitting unless he provided the "new title" of this request
+                            return false;
+                        }
+                    }
+                } else if($scope.ngDialogData.typeEntity === 'program_request_action') {
+                    //set API Name to call
+                    oApiParam.apiName = 'programRequestAction';
+                    //define success message
                     message.success = 'Your request has been processed !';
+
+                    //define API params
+                    oApiParam.oData = {
+                        requestId: $scope.oEntity.id,
+                        actionType: $scope.ngDialogData.action,
+                        reason: $scope.reason
+                    };
                 }
+
+//                console.log(oApiParam);
 
                 //Call API
                 ApiService.call(oApiParam).then(
@@ -222,6 +225,15 @@
                     };
                 });
             }
+        };
+
+        /**
+          *
+          * @param String string
+          * @returns Object
+          */
+        $scope.stringToJson = function(string) {
+            return JSON.parse(string);
         };
     }]);
 })();

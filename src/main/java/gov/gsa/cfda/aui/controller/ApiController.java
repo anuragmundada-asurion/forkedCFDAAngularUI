@@ -15,6 +15,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.annotation.Resource;
 import org.json.JSONObject;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+//  TODO REFACTOR
 @RestController
 @Configuration
 @EnableAutoConfiguration
@@ -46,7 +51,6 @@ public class ApiController {
                 .queryParam("status", status);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
@@ -129,10 +133,6 @@ public class ApiController {
         return response.getBody();
     }
 
-
-
-
-
     @RequestMapping(value = "/api/dictionaries", method = RequestMethod.GET)
     public String getDictionaries(@RequestParam(required = false) String[] ids) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -171,97 +171,6 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/archive/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String archiveProgramRequest(@PathVariable("id") String programId,
-                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                        @RequestParam (value="reason", required=true) String reason) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/request/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/programs/publish/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String publishProgramRequest(@PathVariable("id") String programId,
-                                        @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                        @RequestParam (value="reason", required=false, defaultValue="") String reason,
-                                        @RequestBody String jsonData) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/request/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
-
-        HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/programs/unarchive/request/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String unarchiveProgramRequest(@PathVariable("id") String programId,
-                                          @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                          @RequestParam (value="reason", required=true) String reason) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/request/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/programs/archive/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String archiveProgram(@PathVariable("id") String programId,
-                                 @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                 @RequestParam (value="reason", required=true) String reason,
-                                 @RequestParam (value="programNumber", required=true) String programNumber) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason)
-                .queryParam("programNumber", programNumber);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/programs/unarchive/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String unarchiveProgram(@PathVariable("id") String programId,
-                                   @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                   @RequestParam (value="reason", required=true) String reason,
-                                   @RequestParam (value="programNumber", required=true) String programNumber)throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason)
-                .queryParam("programNumber", programNumber);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
     @RequestMapping(value = "/api/programs/publish/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
     public String publishProgram(@PathVariable("id") String programId,
                                  @RequestParam (value="parentProgramId", required=false) String parentProgramId,
@@ -281,55 +190,130 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/archive/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String rejectArchiveProgram(@PathVariable("id") String programId,
-                                       @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                       @RequestParam (value="reason", required=true) String reason) throws Exception {
+    @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRequests(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+                              @RequestParam(value="completed", required=false, defaultValue="false") boolean isCompleted,
+                              @RequestParam(value="limit", required=false, defaultValue="100") int limit,
+                              @RequestParam(value="offset", required=false, defaultValue="0") int offset,
+                              @RequestParam(value="sortBy", required=false, defaultValue="-entryDate") String sortBy,
+                              @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("keyword", keyword);
+        params.put("completed", isCompleted);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        return getsCall(getProgramRequestsApiUrl(), params);
+    }
+
+    @RequestMapping(value = "/api/programRequests", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createRequest(@RequestBody String jsonBody) {
+        return createCall(getProgramRequestsApiUrl(), jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRequest(@PathVariable("id") String requestId) throws SQLException, RuntimeException {
+        return getCall(getProgramRequestsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateRequest(@PathVariable("id") String requestId,
+                                @RequestBody String jsonBody) {
+        return updateCall(getProgramRequestsApiUrl() + "/" + requestId, jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.DELETE)
+    public void deleteRequest(@PathVariable("id") String requestId) {
+        deleteCall(getProgramRequestsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getActions(@RequestParam(value="limit", required=false, defaultValue="100") int limit,
+                             @RequestParam(value="offset", required=false, defaultValue="0") int offset,
+                             @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
+                             @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        return getsCall(getProgramRequestActionsApiUrl(), params);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createAction(@RequestBody String jsonBody) throws SQLException, RuntimeException {
+        return createCall(getProgramRequestActionsApiUrl(), jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getAction(@PathVariable("id") String requestId) throws SQLException, RuntimeException {
+        return getCall(getProgramRequestActionsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateAction(@PathVariable("id") String requestId,
+                               @RequestBody String jsonBody) {
+        return updateCall(getProgramRequestActionsApiUrl() + "/" + requestId, jsonBody);
+    }
+
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.DELETE)
+    public void deleteAction(@PathVariable("id") String actionId) {
+        deleteCall(getProgramRequestActionsApiUrl() + "/" + actionId);
+    }
+
+    private String getsCall(String url, Map<String, Object> params) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/archive/reject/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            builder.queryParam(entry.getKey(), entry.getValue());
+        }
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+    private String createCall(String url, String jsonBody) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/unarchive/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String rejectUnarchiveProgram(@PathVariable("id") String programId,
-                                         @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                         @RequestParam (value="reason", required=true) String reason) throws Exception {
+    private String getCall(String url) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/unarchive/reject/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/reject/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String rejectPublishProgram(@PathVariable("id") String programId,
-                                       @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                       @RequestParam (value="reason", required=true) String reason) throws Exception {
+    private String updateCall(String url, String jsonBody) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/reject/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
+        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
         return response.getBody();
+    }
+
+    private void deleteCall(String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        restTemplate.delete(builder.build().encode().toUri());
     }
 
     @RequestMapping(value = "/api/regionalAgency", method = RequestMethod.GET, produces = "application/json")
@@ -423,6 +407,14 @@ public class ApiController {
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
         return response.getBody();
+    }
+
+    private String getProgramRequestsApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
+    }
+
+    private String getProgramRequestActionsApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestActions";
     }
 
     private String getProgramsApiUrl() {

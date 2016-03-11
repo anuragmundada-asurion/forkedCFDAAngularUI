@@ -16,8 +16,9 @@
                 var permissionList = PermissionService.getPermissionsFromIAMRole(r);
                 permissionList.every(function(p) {
                     if (permissions.indexOf(p) === -1) {
-                        return permissions.push(p);
+                        permissions.push(p);
                     }
+                    return true;
                 });
             });
 
@@ -39,6 +40,12 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', function($rootScope, User, ROLES) {
         this.getUser = function() {
+            var iaeUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
+
+            if (!$rootScope.iamUser || $rootScope.iamUser != iaeUser) {
+                $rootScope.iamUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
+                $rootScope.user = new User($rootScope.iamUser);
+            }
             return $rootScope.user;
         };
 
