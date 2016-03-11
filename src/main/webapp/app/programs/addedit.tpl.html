@@ -44,7 +44,7 @@
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required" >*</span></label></h3>
                 <div class="input-field" >
-                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required>
+                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="gsavm.program.status==='Published' || gsavm.program.status==='published'">
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.title.$dirty">
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                     </div>
