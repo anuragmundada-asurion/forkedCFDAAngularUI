@@ -21,13 +21,15 @@
                 'assistance_usage_types',
                 'beneficiary_types',
                 'functional_codes'
-            ];
+            ],
+            originalTitle; //original title is stored because Published programs cannot have title changed.
 
         //initialize program object
         if($state.current['name'] === 'editProgram') { //edit program
             vm.program = {};
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data){
                 vm.program = data;
+                vm.originalTitle = vm.program.title;
                 //reload contacts when object is available
                 vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId});
             });
@@ -164,6 +166,12 @@
 
             if( !copy._id || !copy.status) {
                 copy.status = "Draft";
+            }
+
+            //title cannot be changed when the program is Published. Since the field
+            // is disabled, it won't be submitted with the form.
+            if(copy.status === 'Published' || copy.status === 'published') {
+                copy.title = vm.originalTitle;
             }
 
             copy[copy._id ? '$update' : '$save']().then(function(data) {
