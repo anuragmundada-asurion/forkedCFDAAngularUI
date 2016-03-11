@@ -1,17 +1,17 @@
 <div ng-controller="ProgramRequestCtrl">
     <div ng-show="ngDialogData.typeEntity === 'program_request'">
-        <h4 ng-show="ngDialogData.action === 'archive_request'">Archive Request</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive_request'">Publish Request</h4>
-        <h4 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h4>
+        <h3 ng-show="ngDialogData.action === 'archive_request'">Archive Request</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_request'">Publish Request</h3>
+        <h3 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h3>
     </div>
 
     <div ng-show="ngDialogData.typeEntity === 'program_request_action'">
-        <h4 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive'">Publish Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive_reject'">Publish Request Reject</h4>
-        <h4 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h4>
+        <h3 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive'">Publish Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_reject'">Publish Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h3>
     </div>
 
     <section class="sub-section">
@@ -22,11 +22,11 @@
         </div>
         <form name='statusForm'>
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
-                <label>Old title</label>
+                <h4>Existing title</h4>
                 <p>{{ (ngDialogData.action === 'title_request') ? oEntity.title : oEntity.program.title }}</p>
             </div>
             <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
-                <label>New title</label>
+                <h4>New title</h4>
                 <p>{{ stringToJson(oEntity.data).title }}</p>
             </div>
             <div class="input-field" ng-show="ngDialogData.action === 'title_request'">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="input-field">
-                <label for="reason">Reason<span class="required" >*</span></label>
+                <h4 for="reason">Reason<span class="required" >*</span></h4>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <textarea id="reason" name="reason" ng-model="reason" style="height: 10rem;" required></textarea>
                 <div ng-show="form.error || statusForm.reason.$dirty">
