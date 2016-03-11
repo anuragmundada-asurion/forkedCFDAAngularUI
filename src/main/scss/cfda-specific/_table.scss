@@ -72,6 +72,9 @@ table.cfda-table {
     }
 
     &.action-row {
+
+        white-space: normal !important;
+
       button {
         padding: 5px;
         font-size: 20px;
