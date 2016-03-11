@@ -15,11 +15,9 @@
 
         $scope.changeRole = function() {
             var user = {
-                "token": {
-                    "gsaRAC": [
-                        $scope.roleChange
-                    ]
-                }
+                "gsaRAC": [
+                    $scope.roleChange
+                ]
             };
             UserService.changeUser(user);
             ngDialog.close();
