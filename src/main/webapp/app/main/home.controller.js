@@ -73,21 +73,6 @@
                  */
                 $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
-                    var charData2 = [{
-                        "label": "Federally Recognized Indian Tribal Organizations",
-                        "count": "662",
-                        "ids": ["0019"]
-                    }, {"label": "Individual", "count": "366", "ids": ["0025"]}, {
-                        "label": "State",
-                        "count": "1476",
-                        "ids": ["0009", "0040"]
-                    }, {"label": "Local", "count": "822", "ids": ["0011"]}, {
-                        "label": "Nonprofit",
-                        "count": "2195",
-                        "ids": ["0035", "0015", "0037"]
-                    }, {"label": "US Territories", "count": "678", "ids": ["0021", "0020"]}];
-
-
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
