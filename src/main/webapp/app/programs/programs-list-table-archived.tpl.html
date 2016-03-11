@@ -36,9 +36,9 @@
         <td>{{row.agencyId}}</td>
         <td>{{row.dateSubmitted}}</td>
         <td class="action-row">
-            <button type="button" has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
-            <button type="button" has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
-            <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
+            <button type="button" has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
+            <button type="button" has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
+            <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
         </td>
         <td>{{row.status}}</td>
     </tr>
