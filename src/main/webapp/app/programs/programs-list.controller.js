@@ -158,7 +158,7 @@
                 error: 'An error has occurred, please try again !'
             };
 
-            if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
+            if(typeof $scope.reason !== 'undefined' && $scope.reason !== '' && !$scope.submissionInProgress) {
                 $scope.submissionInProgress = true;
                 var oApiParam = {
                     apiName: '',
