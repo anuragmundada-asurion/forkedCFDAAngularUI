@@ -1,7 +1,15 @@
 .uib-datepicker-popup{
+    background-color: white;
+
+    li.uib-button-bar{
+        display: block;
+        margin: 0;
+    }
     table.uib-daypicker, table.uib-monthpicker, table.uib-yearpicker{
         margin:0px;
         border:1px solid #c6c6c6;
+        padding-left: 7px;
+        display: block;
 
         tr{
             background-color: white;
@@ -17,5 +25,15 @@
         min-width: 0;
         padding: 0.3rem 0.5rem;
         font-size: 1.3rem;
+    }
+    
+    button.uib-right::before{
+        content: ">";
+    }
+    button.uib-left::before{
+        content: "<";
+    }
+    button span.text-muted{
+        font-weight: 100;
     }
 }
