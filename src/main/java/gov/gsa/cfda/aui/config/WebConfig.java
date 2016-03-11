@@ -13,18 +13,22 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Controller
     static class Routes {
-		@RequestMapping({
-				"/search",
-				"/advanced-search",
-				"/programs/add/{section:\\w+}",
-				"/programs/{id:\\w+}/edit/{section:\\w+}",
-				"/programs/main",
-				"/programs/main/{status:\\w+}",
-				"/agency/main",
-				"/unauthorized",
-				"/forbidden"
-		})
-		public String index() {
+
+	@RequestMapping({
+			"/search",
+			"/advanced-search",
+			"/programs/add/{section:\\w+}",
+			"/programs/{id:\\w+}/edit/{section:\\w+}",
+			"/programs/main",
+			"/programs/main/{status:\\w+}",
+			"/agency/main",
+			"/agency/edit/{id:\\w+}",
+			"/agency/review/{id:\\w+}",
+			"/agency/create",
+			"/unauthorized",
+			"/forbidden"
+	})
+	public String index() {
 	    return "forward:/index.html";
 	}
     }

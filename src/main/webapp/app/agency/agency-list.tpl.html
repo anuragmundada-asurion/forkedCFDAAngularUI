@@ -7,7 +7,7 @@
             <h1>Regional Agency Offices</h1>
         </div>
         <div class="usa-width-one-fourth" >
-            <a class="usa-button" ng-click="editAgency('','regionalAgency', 'create')" >Create a New Address</a>
+             <a ui-sref="agencyDetails({id: -1, action: 'create'})" class="usa-button" >Create a New Address</a>
         </div>
 
     </div>
@@ -52,15 +52,15 @@
             </thead>
             <tbody ng-show="!isLoading">
             <tr ng-repeat="row in agencies">
-                <td><a ui-sref="editAgency({id: row._id, section: 'review'})">{{row.agency || '-'}}</a> </td>
+                <td> <a ui-sref="agencyDetails({id: row.id, action: 'review'})">{{row.agency || '-'}}</a> </td>
                 <td>{{row.address}}</td>
                 <td>{{row.city}}</td>
                 <td>{{row.state}}</td>
                 <td>{{row.zip}}</td>
                 <td>{{row.phone}}</td>
                 <td class="action-row" style="text-align: right !important">
-                    <button type="button" ng-click="editAgency(row, 'regionalAgency', 'edit')"><span class="fa fa-pencil"></span></button>
-                    <button type="button" ng-click="editAgency(row, 'regionalAgency', 'view')"><span class="fa fa-file-text-o"></span></button>
+                    <a  ui-sref="agencyDetails({id: row.id, action: 'edit'})"><button type="button"><span class="fa fa-pencil"></span></button></a>
+                    <a  ui-sref="agencyDetails({id: row.id, action: 'review'})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
                 </td>
             </tr>
             <tr ng-show="!agencies || agencies.length == 0">
