@@ -65,6 +65,12 @@
                             }
                         });
                     });
+
+                    //empty Search criteria (keyword & advanced search criterias) 
+                    //when user go to other pages rather then search
+                    SearchFactory.setSearchCriteria(null, {});
+
+                    $scope.globalSearchValue = '';
                 };
             }
 
