@@ -159,6 +159,7 @@
             };
 
             if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
+                $scope.submissionInProgress = true;
                 var oApiParam = {
                     apiName: '',
                     apiSuffix: '',
@@ -214,11 +215,14 @@
 
                     //go to list page after 2 seconds
                     $timeout(function() {
+                        //  Due to delay, can't use finally block
+                        $scope.submissionInProgress = false;
                         ngDialog.closeAll();
                         $state.go('programList.status', {status: 'all'});
                     }, 2000);
                 }, 
                 function(error){
+                    $scope.submissionInProgress = false;
                     $scope.flash = {
                         type: 'error',
                         message: message.error
