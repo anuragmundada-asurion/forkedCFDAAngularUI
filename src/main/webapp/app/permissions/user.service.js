@@ -34,15 +34,19 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['$rootScope', 'User', 'ROLES', function($rootScope, User, ROLES) {
+    myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
         this.getUser = function() {
+            this.refreshUser();
+            return $rootScope.user;
+        };
+
+        this.refreshUser = function() {
             var iaeUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
 
             if (!$rootScope.iamUser || $rootScope.iamUser != iaeUser) {
                 $rootScope.iamUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
                 $rootScope.user = new User($rootScope.iamUser);
             }
-            return $rootScope.user;
         };
 
         this.getUserPermissions = function() {
@@ -53,5 +57,10 @@
         this.changeUser = function(iamUser) {
             $rootScope.user = new User(iamUser);
         };
+
+        var self = this;
+        $document.ready(function() {
+             self.refreshUser();
+        });
     }]);
 }();
