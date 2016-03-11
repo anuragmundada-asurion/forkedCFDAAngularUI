@@ -10,15 +10,17 @@
             var roles = IamUser ? IamUser['gsaRAC'] : [];
             var permissions = [];
 
-            roles.every(function(r) {
-                var permissionList = PermissionService.getPermissionsFromIAMRole(r);
-                permissionList.every(function(p) {
-                    if (permissions.indexOf(p) === -1) {
-                        permissions.push(p);
-                    }
-                    return true;
+            if (roles) {
+                roles.every(function(r) {
+                    var permissionList = PermissionService.getPermissionsFromIAMRole(r);
+                    permissionList.every(function(p) {
+                        if (permissions.indexOf(p) === -1) {
+                            permissions.push(p);
+                        }
+                        return true;
+                    });
                 });
-            });
+            }
 
             return {
                 uid: uid,
