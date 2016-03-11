@@ -227,13 +227,13 @@
             }
         };
 
-        /**		
-          * 		
-          * @param String string		
-          * @returns Object		
-          */		
-        $scope.stringToJson = function(string) {		
-             return JSON.parse(string);		
+        /**
+          *
+          * @param String string
+          * @returns Object
+          */
+        $scope.stringToJson = function(string) {
+            return JSON.parse(string);
         };
     }]);
 })();
