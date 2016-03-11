@@ -81,8 +81,9 @@
                             onclick: function (d) {
 
                                 //Set advanced search criteria
-                                SearchFactory.setSearchCriteria('', { aApplicantEligibility: $scope.chartData[d.index].ids.map(function(i){
-                                        return { element_id: i };
+                                SearchFactory.setSearchCriteria('', {
+                                    aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
+                                        return {element_id: i};
                                     })
                                 });
 
@@ -107,10 +108,28 @@
                         axis: {
                             x: {
                                 type: 'category',
-                                label: 'Listing Category'
+                                height: 50,
+                                label: {
+                                    text: 'Listing Category',
+                                    position: 'outer-center',
+
+                                },
+                                tick: {
+                                    culling: false
+                                }
                             },
                             y: {
-                                label: '# of Listings'
+                                height: 100,
+                                label: {
+                                    text: '# of Listings',
+                                    position: 'outer-middle'
+                                },
+                                tick: {
+                                    count: 9,
+                                    format: d3.format('.2s')
+                                }
+
+
                             }
                         }
                     });
