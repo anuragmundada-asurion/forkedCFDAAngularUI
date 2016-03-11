@@ -66,12 +66,27 @@
                     $scope.makeHomePageChart();
                 });
 
+
                 /**
                  * Generate chart
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
+                    var charData2 = [{
+                        "label": "Federally Recognized Indian Tribal Organizations",
+                        "count": "662",
+                        "ids": ["0019"]
+                    }, {"label": "Individual", "count": "366", "ids": ["0025"]}, {
+                        "label": "State",
+                        "count": "1476",
+                        "ids": ["0009", "0040"]
+                    }, {"label": "Local", "count": "822", "ids": ["0011"]}, {
+                        "label": "Nonprofit",
+                        "count": "2195",
+                        "ids": ["0035", "0015", "0037"]
+                    }, {"label": "US Territories", "count": "678", "ids": ["0021", "0020"]}];
+
 
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
@@ -130,6 +145,39 @@
                                 }
 
 
+                            }
+                        },
+                        tooltip: {
+                            contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                                var $$ = this,
+                                    config = $$.config,
+                                    titleFormat = config.tooltip_format_title || defaultTitleFormat,
+                                    nameFormat = config.tooltip_format_name || function (name) {
+                                            return name;
+                                        },
+                                    valueFormat = config.tooltip_format_value || defaultValueFormat,
+                                    text, i, title, value, name, bgcolor;
+                                for (i = 0; i < d.length; i++) {
+                                    if (!(d[i] && (d[i].value || d[i].value === 0))) {
+                                        continue;
+                                    }
+
+                                    if (!text) {
+                                        title = titleFormat ? titleFormat(d[i].x) : d[i].x;
+                                        text = "<table class='" + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
+                                    }
+
+                                    name = nameFormat(d[i].name);
+                                    value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+                                    // bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
+                                    bgcolor = d[i].id ? extraColors[d[i].index] : color;
+
+                                    text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
+                                    text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + "</td>";
+                                    text += "<td class='value'>" + value + "</td>";
+                                    text += "</tr>";
+                                }
+                                return text + "</table>";
                             }
                         }
                     });
