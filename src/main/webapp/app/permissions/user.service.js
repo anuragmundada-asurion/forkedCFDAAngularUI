@@ -5,11 +5,9 @@
 
     myApp.factory('User', ['PermissionService', 'ROLES', function(PermissionService, ROLES) {
         function User(IamUser) {
-            var t = IamUser ? IamUser['token'] : null;
-            var uid = t ? t['uid'] : null;
-            var token = t ? t['access_token'] : null;
-            var tokenExpiration = t ? t['expires_in'] : null;
-            var roles = t ? t['gsaRAC'] : [];
+            var uid = IamUser ? IamUser['uid'] : null;
+            var token = IamUser ? IamUser['tokenId'] : null;
+            var roles = IamUser ? IamUser['gsaRAC'] : [];
             var permissions = [];
 
             roles.every(function(r) {
@@ -25,10 +23,8 @@
             return {
                 uid: uid,
                 token: token,
-                tokenExpiration: tokenExpiration,
                 roles: roles,
                 permissions: permissions,
-                iamUserObject: IamUser,
                 getPermissions: function() {
                     return this.permissions ? this.permissions : [];
                 }
