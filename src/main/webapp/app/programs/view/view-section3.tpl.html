@@ -1,0 +1,249 @@
+<h2><span class="section-circle">3</span> How to Apply</h2>
+<section class="sub-section" >
+    <h3>090 Application and Award Process</h3>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4>091 Preapplication Coordination</h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label>Is any prior coordination or approval required with governmental or nongovernmental units
+                    prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
+                <span type="text" class="italic" id="preappCoord7" ng-bind="gsavm.choices['yes_na'][gsavm.program.preApplication.coordination.flag].value"></span>
+            </fieldset>
+        </div>
+        <div class="input-field" ng-show="gsavm.program.preApplication.coordination.flag === 'yes'">
+            <br/>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="environmentalImpact7">Does this program require submission of environmental impact information?<span class="required" >*</span></label>
+                <span type="text" class="italic" id="environmentalImpact7" ng-bind="gsavm.choices['yes_no'][gsavm.program.preApplication.coordination.environmentalImpact.flag].value"></span>
+            </fieldset>
+            <div class="input-field" ng-show="gsavm.program.preApplication.coordination.environmentalImpact.flag=='yes'">
+                <div ng-repeat="reportType in gsavm.types.reportTypes track by reportType">
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                        <label for="{{reportType + '-flag'}}">An environmental impact <span type="text" ng-bind="reportType"></span> is required for this program.</label>
+                        <span type="text" class="italic" id="{{reportType + '-flag'}}-yes" ng-if="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag == 'yes'">Yes</span>
+                        <span type="text" class="italic" id="{{reportType + '-flag'}}-no" ng-if="gsavm.program.preApplication.coordination.environmentalImpact.reports[reportType].flag == 'no'">No</span>
+                    </fieldset>
+                </div>
+            </div>
+            <br/>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="preappCoord7question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required" >*</span></label>
+                <span type="text" class="italic" id="preappCoord7question2" ng-bind="gsavm.choices['yes_no'][gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag].value"></span>
+            </fieldset>
+            <div class="input-field" ng-show="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag=='yes'">
+                <label for="preappCoord7question2info">Additional Information:</label>
+                <span type="text" class="italic" id="preappCoord7question2info" ng-bind="gsavm.program.preApplication.coordination.additionalInfo.content"></span>
+            </div>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4 for="applProc7">092 Application Procedures</h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="applProc7">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements
+                    for Federal Awards apply to this program?</label>
+                <span type="text" id="applProc7" class="italic" ng-bind="gsavm.choices['yes_no'][gsavm.program.application.procedures.questions.OMBCircularA102.flag].value"></span>
+            </fieldset>
+        </div>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="applProc7other">Other Application Procedures:</label>
+                <span type="text" class="italic" id="applProc7other" ng-bind="gsavm.program.application.procedures.additionalInfo.content"></span>
+            </fieldset>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4 for="awardProc7">093 Award Procedure<span class="required" >*</span></h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label>What are the basic procedural steps for awarding assistance?</label>
+                <span type="text" class="italic" id="awardProc7" ng-bind="gsavm.program.award.procedures.content"></span>
+            </fieldset>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4>094 Deadlines</h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="deadline7">Is a deadline for submission of application available? <span class="required" >*</span></label>
+                <span type="text" class="italic" id="deadline7Yes" ng-if="gsavm.program.application.deadlines.submission.flag == 'yes'">Yes</span>
+                <span type="text" class="italic" id="deadline7No" ng-if="gsavm.program.application.deadlines.submission.flag == 'no'">No</span>
+                <span type="text" class="italic" id="deadline7ContactHQ" ng-if="gsavm.program.application.deadlines.submission.flag == 'contactHQ'">Contact the headquarters or regional office, as appropriate for application deadlines</span>
+            </fieldset>
+        </div>
+        <div class="input-field" ng-show="gsavm.program.application.deadlines.submission.flag=='yes'">
+            <div class="sub-form" style="padding:4px;margin-bottom:8px;"
+                 ng-repeat="deadline in gsavm.program.application.deadlines.submission.list">
+                <table style="margin: 0px;">
+                    <tr>
+                        <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
+                        <td style="padding:4px;vertical-align:top;border:0px">Deadline End Date:</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:4px;vertical-align:top;border:0px">
+                            <div class="col-md-6">
+                                <p class="input-group">
+                                    <span type="text" class="italic">{{deadline.start | date: 'MMM dd, yyyy'}}</span>
+                                </p>
+                            </div>
+                        </td>
+                        <td style="padding:4px;vertical-align:top;border:0px">
+                            <div class="col-md-6">
+                                <p class="input-group">
+                                    <span type="text" class="italic">{{deadline.end | date: 'MMM dd, yyyy'}}</span>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                Description:<br/>
+                <span type="text" class="italic" id="deadlineDesc7">{{deadline.description}}</span>
+                <br/>
+            </div>
+            <br/>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="deadlineAdditionalInfo7">Other Deadline Information:</label>
+                <span type="text" class="italic" id="deadlineAdditionalInfo7" ng-bind="gsavm.program.application.deadlines.submission.additionalInfo.content"></span>
+            </fieldset>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='1'">From 1 to 15 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='2'">From 15 to 30 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='3'">From 30 to 60 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='4'">From 60 to 90 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='5'">From 90 to 120 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='6'">From 120 to 180 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='7'">&gt; 180 Days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='8'">Not Applicable</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.approval.interval =='9'">Other</span>
+            </fieldset>
+        </div>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="approvalTime7other">Other Approval Information:</label>
+                <span type="text" class="italic" id="approvalTime7other" ng-bind="gsavm.program.application.deadlines.approval.otherInfo.content"></span>
+            </fieldset>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4>096 Appeals<span class="required" >*</span></h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='1'">From 1 to 15 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='2'">From 15 to 30 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='3'">From 30 to 60 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='4'">From 60 to 90 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='5'">From 90 to 120 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='6'">From 120 to 180 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='7'">&gt; 180 Days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='8'">Not Applicable</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.appeal.interval =='9'">Other</span>
+            </fieldset>
+        </div>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="appealsTime7other">Other Appeals Information:</label>
+                <span type="text" class="italic" id="appealsTime7other" ng-bind="gsavm.program.application.deadlines.appeal.otherInfo.content"></span>
+            </fieldset>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4>097 Renewals<span class="required" >*</span></h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='1'">From 1 to 15 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='2'">From 15 to 30 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='3'">From 30 to 60 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='4'">From 60 to 90 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='5'">From 90 to 120 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='6'">From 120 to 180 days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='7'">&gt; 180 Days</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='8'">Not Applicable</span>
+                <span class="italic" ng-if="gsavm.program.application.deadlines.renewal.interval =='9'">Other</span>
+            </fieldset>
+        </div>
+        <div class="input-field">
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="renewalTime7other">Other Renewals Information:</label>
+                <span type="text" class="italic" id="renewalTime7other" ng-bind="gsavm.program.application.deadlines.renewal.otherInfo.content"></span>
+            </fieldset>
+        </div>
+    </section>
+</section>
+<section class="sub-section" >
+    <h3>100 Assistance Consideration</h3>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h4>101 Formula and Matching Requirements</h4>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="statuatoryFormula7">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></label>
+                <span type="text" class="italic" id="statuatoryFormula7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.formula.flag].value"></span>
+            </fieldset>
+            <div class="input-field usa-grid" ng-show="gsavm.program.assistance.formula.flag=='yes'">
+                <label for="formulaTitle7">Title:</label></td>
+                <span type="text" class="italic" id="formulaTitle7" ng-bind="gsavm.program.assistance.formula.title"></span>
+                <label for="formulaChapter7">Chapter:</label></td>
+                <span type="text" class="italic" id="formulaChapter7" ng-bind="gsavm.program.assistance.formula.chapter"></span>
+                <label for="formulaPart7">Part:</label></td>
+                <span type="text" class="italic" id="formulaPart7" ng-bind="gsavm.program.assistance.formula.part"></span>
+                <label for="formulaSubpart7">Subpart:</label></td>
+                <span type="text" class="italic" id="formulaSubpart7" ng-bind="gsavm.program.assistance.formula.subPart"></span>
+                <label for="formulaPublicLaw7">Public Law:</label></td>
+                <span type="text" class="italic" id="formulaPublicLaw7" ng-bind="gsavm.program.assistance.formula.publicLaw"></span>
+                <label for="formulaInfo7">Additional Info:</label></td>
+                <span type="text" class="italic" id="formulaInfo7" ng-bind="gsavm.program.assistance.formula.additionalInfo.content"></span>
+            </div>
+            <br/>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="matchingRequirements7">Does this program have matching requirements? <span class="required" >*</span></label>
+                <span type="text" class="italic" id="matchingRequirements7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.matching.flag].value"></span>
+            </fieldset>
+            <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
+                <label for="matchingPercent7">Select the Percentage Below<span class="required" >*</span>:</label>
+                <span type="text" class="italic" id="matchingPercent7" ng-bind="gsavm.program.assistance.matching.percent"></span>
+                <div class="input-field">
+                    <label for="matchingOtherInfo7">Other Matching Requirements Information:</label>
+                    <span type="text" class="italic" id="matchingOtherInfo7" ng-bind="gsavm.program.assistance.matching.otherInfo.content"></span>
+                </div>
+            </div>
+            <br/>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="MOErequirements7">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></label>
+                <span type="text" class="italic" id="MOErequirements7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.assistance.moe.flag].value"></span>
+            </fieldset>
+            <div class="input-field" ng-show="gsavm.program.assistance.moe.flag=='yes'">
+                <div class="input-field">
+                    <label for="MOEAddInfo7">Please enter any additional information below:</label>
+                    <span type="text" class="italic" id="MOEAddInfo7" ng-bind="gsavm.program.assistance.moe.additionalInfo.content"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field" >
+            <h4 for="assistLimit7">102 Length and Time Phasing of Assistance</h4>
+            <p>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></p>
+            <span type="text" class="italic" id="assistLimit7" ng-bind="gsavm.program.assistance.limitation.content"></span>
+            <label for="assistanceAwarded7">How is the assistance awarded and/or released?<span class="required" >*</span></label>
+            <span type="text" class="italic" id="assistanceAwarded7" ng-bind="gsavm.program.assistance.limitation.awarded"></span>
+        </div>
+    </section>
+    <section class="sub-minor-section" >
+        <div class="input-field">
+            <h3>180 Criteria for Selecting Proposals<span class="required" >*</span></h3>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="criteriaProposals7">Is there criteria for selecting proposals?</label>
+                <span type="text" class="italic" id="criteriaProposals7" ng-bind="gsavm.choices['yes_no_na'][gsavm.program.application.selectionCriteria.flag].value"></span>
+            </fieldset>
+        </div>
+        <div class="input-field" ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
+            <label for="criteriaProposals7Info">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
+            <span type="text" class="italic" id="criteriaProposals7Info" ng-bind="gsavm.program.application.selectionCriteria.content"></span>
+        </div>
+    </section>
+</section>

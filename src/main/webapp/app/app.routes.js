@@ -49,6 +49,11 @@
                     templateUrl: "programs/addedit.tpl.html",
                     controller: "AddEditProgram as gsavm"
                 })
+                .state('viewProgram', {
+                    url: "/programs/:id/view",
+                    templateUrl: "programs/view/viewProgram.tpl.html",
+                    controller: "ViewProgramCtrl as viewCtrl"
+                })
                 .state('programList', {
                     url: "/programs/main",
                     templateUrl: "programs/programs-list.tpl.html",

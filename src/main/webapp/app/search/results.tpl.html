@@ -21,29 +21,31 @@
                 <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
                 <th class="sortable" style="width:15%" st-sort="programNumber" st-skip-natural="true">FAL #</th>
                 <th class="sortable" style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
-                <th class="sortable" style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
+                <th class="sortable" style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier
+                    Agency & Office
+                </th>
                 <th class="sortable" st-sort="assistanceTypes">Types of Assistance</th>
             </tr>
             </thead>
             <tbody ng-show="!isLoading">
-                <tr ng-repeat="row in searchResults">
-                    <td>
-                        <input type="checkbox" id="program-{{$index}}">
-                        <label for="program-{{$index}}"></label>
-                    </td>
-                    <td>{{row.programNumber || '-'}}</td>
-                    <td><a href="https://www.google.com/?gws_rd=ssl">{{row.title}}</a></td>
-                    <td>{{row.agencyId}}</td>
-                    <td><span ng-bind-html="row.assistanceTypes"></span></td>
-                </tr>
-                <tr ng-show="!searchResults || searchResults.length == 0">
-                    <td colspan="5" class="text-center">No Results Found</td>
-                </tr>
+            <tr ng-repeat="row in searchResults">
+                <td>
+                    <input type="checkbox" id="program-{{$index}}">
+                    <label for="program-{{$index}}"></label>
+                </td>
+                <td>{{row.programNumber || '-'}}</td>
+                <td><a ui-sref="viewProgram({id: row.id})">{{row.title}}</a></td>
+                <td>{{row.agencyId}}</td>
+                <td><span ng-bind-html="row.assistanceTypes"></span></td>
+            </tr>
+            <tr ng-show="!searchResults || searchResults.length == 0">
+                <td colspan="5" class="text-center">No Results Found</td>
+            </tr>
             </tbody>
             <tbody ng-show="isLoading">
-                <tr>
-                    <td colspan="5" class="text-center">Loading ...</td>
-                </tr>
+            <tr>
+                <td colspan="5" class="text-center">Loading ...</td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -52,11 +54,13 @@
             <div class="pagination-item-count-control">
                 <span>Showing </span>
                 <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
-                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
+                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage"
+                        ng-options="pageNum for pageNum in itemsByPageNumbers">
                 </select>
                 <span> Per Page</span>
             </div>
-            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"
+                 st-template="programs/programs-list-pagination.tpl.html"></div>
         </div>
     </div>
 </section>
