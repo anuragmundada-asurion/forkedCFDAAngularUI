@@ -1,15 +1,15 @@
 <div ng-controller="ProgramRequestCtrl">
     <div ng-show="ngDialogData.typeEntity === 'program_request'">
         <h3 ng-show="ngDialogData.action === 'archive_request'">Archive Request</h3>
-        <h3 ng-show="ngDialogData.action === 'unarchive_request'">Publish Request</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_request'">Unarchive Request</h3>
         <h3 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h3>
     </div>
 
     <div ng-show="ngDialogData.typeEntity === 'program_request_action'">
         <h3 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h3>
         <h3 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h3>
-        <h3 ng-show="ngDialogData.action === 'unarchive'">Publish Request Approval</h3>
-        <h3 ng-show="ngDialogData.action === 'unarchive_reject'">Publish Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive'">Unarchive Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_reject'">Unarchive Request Reject</h3>
         <h3 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h3>
         <h3 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h3>
     </div>
