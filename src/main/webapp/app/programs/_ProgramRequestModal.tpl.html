@@ -47,7 +47,7 @@
         </form>
     </section>
     <section class="usa-grid-full">
-        <button type="button" ng-click="closeProgramRequestModal();">Cancel</button>
-        <button type="button" ng-click="submitProgramRequest()">Submit</button>
+        <button ng-class="submissionInProgress ? 'usa-button-disabled' : 'usa-button'" type="button" ng-click="closeProgramRequestModal();">Cancel</button>
+        <button ng-class="submissionInProgress ? 'usa-button-disabled' : 'usa-button'" type="button" ng-click="submitProgramRequest()">Submit</button>
     </section>
 </div>
