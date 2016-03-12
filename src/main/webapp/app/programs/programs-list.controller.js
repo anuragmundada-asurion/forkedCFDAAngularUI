@@ -149,10 +149,6 @@
          * @returns Void
          */
         $scope.submitProgramRequest = function() {
-//            console.log('$scope.oEntity')
-//            console.log($scope.oEntity)
-//            console.log('$scope.ngDialogData')
-//            console.log($scope.ngDialogData)
             var message = {
                 success: 'Your request has been submitted !',
                 error: 'An error has occurred, please try again !'
@@ -203,8 +199,6 @@
                     };
                 }
 
-//                console.log(oApiParam);
-
                 //Call API
                 ApiService.call(oApiParam).then(
                 function(data){
@@ -227,6 +221,11 @@
                         type: 'error',
                         message: message.error
                     };
+                });
+            } else {
+                //show error form validation
+                angular.forEach($scope.programRequestForm.$error.required, function(field) {
+                    field.$setDirty();
                 });
             }
         };

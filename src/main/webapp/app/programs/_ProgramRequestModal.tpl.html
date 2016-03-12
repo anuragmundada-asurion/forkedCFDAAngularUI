@@ -20,7 +20,7 @@
                 <p class="usa-alert-text">{{ flash.message }}</p>
             </div>
         </div>
-        <form name='statusForm'>
+        <form name='programRequestForm'>
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
                 <h4>Existing title</h4>
                 <p>{{ (ngDialogData.action === 'title_request') ? oEntity.title : oEntity.program.title }}</p>
@@ -32,16 +32,16 @@
             <div class="input-field" ng-show="ngDialogData.action === 'title_request'">
                 <label for="newTitle">New Title<span class="required" >*</span></label>
                 <input id="newTitle" name="newTitle" ng-model="newTitle" required />
-                <div ng-show="form.error || statusForm.newTitle.$dirty">
-                    <span ng-show="statusForm.newTitle.$error.required">You must provide a new Title of this request.</span>
+                <div ng-show="form.error || programRequestForm.newTitle.$dirty">
+                    <span ng-show="programRequestForm.newTitle.$error.required">You must provide a new Title of this request.</span>
                 </div>
             </div>
             <div class="input-field">
                 <h4 for="reason">Reason<span class="required" >*</span></h4>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <textarea id="reason" name="reason" ng-model="reason" style="height: 10rem;" required></textarea>
-                <div ng-show="form.error || statusForm.reason.$dirty">
-                    <span ng-show="statusForm.reason.$error.required">You must provide Reason of this request.</span>
+                <div ng-show="form.error || programRequestForm.reason.$dirty">
+                    <span ng-show="programRequestForm.reason.$error.required">You must provide Reason of this request.</span>
                 </div>
             </div>
         </form>
