@@ -108,6 +108,7 @@ describe('$scope.getSearchResults', function() {
     var mockSearchResource;
     var appConstants;
     var $rootScope;
+    var $state;
 
     beforeEach(function() {
         module('app');
@@ -115,10 +116,31 @@ describe('$scope.getSearchResults', function() {
         module(function($provide) {
             //simulating SearchFactory mock
             mockSearchResource = {
-                getSearchCriteria: function() {
-                    return { keyword: testKeyword, advancedSearch: {} };
+                keyword: '',
+                advancedSearch: {
+                    "aAssistanceType": [{
+                      element_id: "0001001"
+                    }],
+                    "aFunctionalCode": [{
+                      element_id: "0001003"
+                    }],
+                    "aApplicantEligibility": [{
+                      element_id:"0001"
+                    }],
+                    "aBeneficiaryEligibility": [{
+                      element_id:"1"
+                    }],
+                    "datePublishedStart": "2014-01-01T05:00:00.000Z",
+                    "datePublishedEnd": "2016-03-02T05:00:00.000Z",
+                    "executiveOrder12372": "yes"
                 },
-                setSearchCriteria: function(keyword, advancedSearch) {},
+                getSearchCriteria: function() {
+                    return { keyword: mockSearchResource.keyword, advancedSearch: mockSearchResource.advancedSearch };
+                },
+                setSearchCriteria: function(keyword, advancedSearch) {
+                    mockSearchResource.keyword = keyword;
+                    mockSearchResource.advancedSearch = advancedSearch;
+                },
                 search: function() {
                     return { 
                         get: function(queryObject, fnCallback) {
@@ -135,11 +157,56 @@ describe('$scope.getSearchResults', function() {
             $provide.value('SearchFactory', mockSearchResource);
         });
 
-        inject(function(_$rootScope_, _$controller_, _appConstants_) {
+        inject(function(_$rootScope_, _$controller_, _$state_, _appConstants_) {
             $rootScope = _$rootScope_;
             $controller = _$controller_;
             appConstants = _appConstants_;
+            $state = _$state_;
         });
+    });
+
+    it('Should store advanced search criteria and fire prepare data structure', function(){
+        var scope = {};
+        var tableState = {
+            search: {},
+            pagination: {},
+            sort: {}
+        };
+        $state.transitionTo('advancedSearch');
+        $rootScope.$apply();
+
+        $controller('ProgramSearchCtrl', { $scope: scope, SearchFactory: mockSearchResource, $state: $state });
+        spyOn(scope, 'prepareAdvancedSearchDataStructure');
+        scope.getSearchResults(tableState);
+        expect(scope.searchResults).toBe(testResults);
+        expect(scope.prepareAdvancedSearchDataStructure).toHaveBeenCalled();
+    });
+
+    it('Should restructure advanced search data', function(){
+        var scope = {};
+        var tableState = {
+            search: {},
+            pagination: {},
+            sort: {}
+        };
+        var oAdvancedSearchDataStruture = {
+            "aAssistanceType": ["0001001"],
+            "aFunctionalCode": ["0001003"],
+            "aApplicantEligibility": ["0001"],
+            "aBeneficiaryEligibility": ["1"],
+            "datePublishedStart": "2014-01-01T05:00:00.000Z",
+            "datePublishedEnd": "2016-03-02T05:00:00.000Z",
+            "executiveOrder12372": "yes"
+        };
+
+        $state.transitionTo('advancedSearch');
+        $rootScope.$apply();
+
+        $controller('ProgramSearchCtrl', { $scope: scope, SearchFactory: mockSearchResource, $state: $state });
+        scope.getSearchResults(tableState);
+        expect(scope.searchResults).toBe(testResults);
+        var result = scope.prepareAdvancedSearchDataStructure(mockSearchResource.getSearchCriteria().advancedSearch);
+        expect(result).toEqual(oAdvancedSearchDataStruture);
     });
 
     it('should instantiate getSearchResults function', function() {
@@ -176,7 +243,6 @@ describe('$scope.getSearchResults', function() {
         };
         $controller('ProgramSearchCtrl', { $scope: scope, SearchFactory: mockSearchResource, appConstants: appConstants });
         scope.globalSearchValue = testKeyword;
-        mockSearchResource.setSearchCriteria(testKeyword);
         scope.getSearchResults(tableState);
         expect(scope.isLoading).toBe(false);
         expect(scope.searchResults).toBe(testResults);
