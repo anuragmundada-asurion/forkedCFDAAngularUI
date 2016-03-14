@@ -430,7 +430,7 @@ public class ApiController {
     }
 
     private String getEligibilitylistingsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/eligibilitylistings";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings/eligibility";
     }
 
     private String getListingCountApiUrl() {

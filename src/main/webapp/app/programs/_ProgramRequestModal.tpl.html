@@ -23,7 +23,7 @@
         <form name='programRequestForm'>
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
                 <h4>Existing title</h4>
-                <p>{{ (ngDialogData.action === 'title_request') ? oEntity.title : oEntity.program.title }}</p>
+                <p>{{ (ngDialogData.action === 'title_request') ? oEntity.data.title : oEntity.program.title }}</p>
             </div>
             <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
                 <h4>New title</h4>

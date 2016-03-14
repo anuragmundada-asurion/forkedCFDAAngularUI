@@ -109,7 +109,7 @@
                     <execution>
                         <id>bower install</id>
                         <goals>
-                            <goal>bower </goal>
+                            <goal>bower</goal>
                         </goals>
                     </execution>
                     <execution>
@@ -120,6 +120,16 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <arguments>default --version ${project.version}</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gulp test</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>test</arguments>
                         </configuration>
                     </execution>
                 </executions>

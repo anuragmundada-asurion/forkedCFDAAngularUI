@@ -13,7 +13,7 @@
             "programPublish": "/api/programs/publish", // /:program_id
             "programCount": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
-            "regionalAgencyEntity": "/api/regionalAgency"
+            "regionalAgencyEntity": "/api/regionalAgencies"
         };
 
         this.APIs = APIs;

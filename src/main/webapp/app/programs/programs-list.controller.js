@@ -86,11 +86,7 @@
                         programs = data.results;
                     } else {
                         angular.forEach(data.results, function (item) {
-                            angular.forEach(item, function (prop, key) {
-                                if (!prop._id)
-                                    prop._id = key;
-                                programs.push(prop);
-                            });
+                            programs.push(item);
                         });
                     }
 
