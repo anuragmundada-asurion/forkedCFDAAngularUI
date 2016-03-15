@@ -77,7 +77,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH)
     public String updateProgramApiCall(@PathVariable("id") String id,
                                        @RequestBody String jsonData) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -85,7 +85,7 @@ public class ApiController {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + id) ;
         HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PUT, entity, String.class);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
         return response.getBody();
     }
 

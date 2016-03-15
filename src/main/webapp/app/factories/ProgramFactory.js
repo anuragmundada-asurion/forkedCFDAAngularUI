@@ -30,13 +30,7 @@
             get: {
                 transformResponse: function (data) {
                     data = JSON.parse(data);
-                    var returnData = null;
-                    angular.forEach(data, function (prop, key) {
-                        if (!prop._id)
-                            prop._id = key;
-                        returnData = prop;
-                    });
-                    return returnData;
+                    return data.data;
                 }
             },
             query: {
@@ -47,11 +41,7 @@
                     var res = data.results,
                         list = [];
                     angular.forEach(res, function (item) {
-                        angular.forEach(item, function (prop, key) {
-                            if (!prop._id)
-                                prop._id = key;
-                            list.push(prop);
-                        });
+                        list.push(item);
                     });
                     list.$metadata = {
                         totalCount: data.totalCount,
