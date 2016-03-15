@@ -1,13 +1,18 @@
-<div class = "usa-grid-full">
-    <div ng-include="'programs/view/view-section1.tpl.html'"></div>
-    <hr/>
-    <!--<div ng-include="'programs/view-section2.tpl.html'"></div>-->
-    <!--<hr/>-->
-    <!--<div ng-include="'programs/view-section3.tpl.html'"></div>-->
-    <!--<hr/>-->
-    <!--<div ng-include="'programs/view-section4.tpl.html'"></div>-->
-    <!--<hr/>-->
-    <!--<div ng-include="'programs/view-section5.tpl.html'"></div>-->
-    <!--<hr/>-->
-    <!--<div ng-include="'programs/view-section6.tpl.html'"></div>-->
+<div class="usa-grid-full">
+    <div ng-show="program">
+        <div ng-include="'programs/view/view-section1.tpl.html'"></div>
+        <hr/>
+        <!--<div ng-include="'programs/view-section2.tpl.html'"></div>-->
+        <!--<hr/>-->
+        <!--<div ng-include="'programs/view-section3.tpl.html'"></div>-->
+        <!--<hr/>-->
+        <!--<div ng-include="'programs/view-section4.tpl.html'"></div>-->
+        <!--<hr/>-->
+        <!--<div ng-include="'programs/view-section5.tpl.html'"></div>-->
+        <!--<hr/>-->
+        <!--<div ng-include="'programs/view-section6.tpl.html'"></div>-->
+    </div>
+    <div ng-show="!program">
+        <!-- loading icon -->
+    </div>
 </div>
