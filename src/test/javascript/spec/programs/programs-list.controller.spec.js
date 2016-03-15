@@ -49,19 +49,19 @@ describe("Unit Tests for Programs List Controller", function () {
                 result: [
                     {
                         1: {
-                            _id: 1
+                            id: 1
                         },
                         2: {
-                            _id: 2
+                            id: 2
                         },
                         3: {
-                            _id: 3
+                            id: 3
                         },
                         4: {
-                            _id: 4
+                            id: 4
                         },
                         5: {
-                            _id: 5
+                            id: 5
                         }
                     }
                 ],
@@ -217,7 +217,7 @@ describe("Unit Tests for Programs List Controller", function () {
             spyOn($state, 'go');
 
             vm.editProgram({
-                _id: 1
+                id: 1
             });
 
             expect($state.go).toHaveBeenCalledWith('editProgram', {
@@ -231,7 +231,7 @@ describe("Unit Tests for Programs List Controller", function () {
             spyOn($state, 'go');
 
             vm.editProgram({
-                _id: 1
+                id: 1
             }, 'review');
 
             expect($state.go).toHaveBeenCalledWith('editProgram', {
