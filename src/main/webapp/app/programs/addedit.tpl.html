@@ -1799,7 +1799,7 @@
                         <h4>General Information</h4>
                         <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('050 Objective')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
+                        <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('060 Types of Assistance')" ng-show="!gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0" trigger-click-on-enter>060 Types of Assistance is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
