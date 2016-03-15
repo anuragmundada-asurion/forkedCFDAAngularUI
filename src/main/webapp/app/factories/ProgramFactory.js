@@ -17,7 +17,7 @@
                 }
             },
             update: {
-                method: 'PUT',
+                method: 'PATCH',
                 params: {
                     id: '@_id'
                 },
