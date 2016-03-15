@@ -21,10 +21,9 @@
                 params: {
                     id: '@_id'
                 },
-                transformResponse: function(data) {
-                    return {
-                        _id: data
-                    };
+                transformResponse: function (data) {
+                    data = JSON.parse(data);
+                    return data.data;
                 }
             },
             get: {

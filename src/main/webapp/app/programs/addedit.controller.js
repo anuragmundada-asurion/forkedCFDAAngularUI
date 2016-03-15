@@ -174,9 +174,14 @@
                 copy.title = vm.originalTitle;
             }
 
+            var creation = copy._id ? false : true;
             copy[copy._id ? '$update' : '$save']().then(function(data) {
                 //update current program and add _id
-                updateId(data);
+                if (!creation) {
+                    vm.program = data;
+                } else {
+                    vm.program._id = data._id;
+                }
 
                 //callback function success
                 if(typeof cbFnSuccess === 'function') {
