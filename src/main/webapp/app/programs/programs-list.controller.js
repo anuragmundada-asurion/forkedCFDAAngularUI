@@ -111,7 +111,7 @@
         $scope.editProgram= function(program, section) {
             section = section || 'info';
             $state.go('editProgram', {
-                id: program._id,
+                id: program.id,
                 section: section
             });
         };
@@ -166,7 +166,7 @@
                     oApiParam.apiName = 'programRequest';
                     //define API params
                     oApiParam.oData = {
-                        programId: $scope.oEntity._id,
+                        programId: $scope.oEntity.id,
                         requestType: $scope.ngDialogData.action,
                         reason: $scope.reason,
                         data: {}
