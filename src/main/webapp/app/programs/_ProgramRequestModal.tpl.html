@@ -1,17 +1,17 @@
 <div ng-controller="ProgramRequestCtrl">
     <div ng-show="ngDialogData.typeEntity === 'program_request'">
-        <h4 ng-show="ngDialogData.action === 'archive_request'">Archive Request</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive_request'">Publish Request</h4>
-        <h4 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h4>
+        <h3 ng-show="ngDialogData.action === 'archive_request'">Archive Request</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_request'">Unarchive Request</h3>
+        <h3 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h3>
     </div>
 
     <div ng-show="ngDialogData.typeEntity === 'program_request_action'">
-        <h4 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive'">Publish Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'unarchive_reject'">Publish Request Reject</h4>
-        <h4 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h4>
-        <h4 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h4>
+        <h3 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive'">Unarchive Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'unarchive_reject'">Unarchive Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h3>
+        <h3 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h3>
     </div>
 
     <section class="sub-section">
@@ -20,30 +20,34 @@
                 <p class="usa-alert-text">{{ flash.message }}</p>
             </div>
         </div>
-        <form name='statusForm'>
+        <form name='programRequestForm'>
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
-                <label>Old title</label>
-                <p>{{ (ngDialogData.action === 'title_request') ? oEntity.title : oEntity.program.title }}</p>
+                <h4>Existing title</h4>
+                <p>{{ (ngDialogData.action === 'title_request') ? oEntity.data.title : oEntity.program.title }}</p>
+            </div>
+            <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="input-field">
+                <h4>New title</h4>
+                <p>{{ stringToJson(oEntity.data).title }}</p>
             </div>
             <div class="input-field" ng-show="ngDialogData.action === 'title_request'">
                 <label for="newTitle">New Title<span class="required" >*</span></label>
                 <input id="newTitle" name="newTitle" ng-model="newTitle" required />
-                <div ng-show="form.error || statusForm.newTitle.$dirty">
-                    <span ng-show="statusForm.newTitle.$error.required">You must provide a new Title of this request.</span>
+                <div ng-show="form.error || programRequestForm.newTitle.$dirty">
+                    <span ng-show="programRequestForm.newTitle.$error.required">You must provide a new Title of this request.</span>
                 </div>
             </div>
             <div class="input-field">
-                <label for="reason">Reason<span class="required" >*</span></label>
+                <h4 for="reason">Reason<span class="required" >*</span></h4>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <textarea id="reason" name="reason" ng-model="reason" style="height: 10rem;" required></textarea>
-                <div ng-show="form.error || statusForm.reason.$dirty">
-                    <span ng-show="statusForm.reason.$error.required">You must provide Reason of this request.</span>
+                <div ng-show="form.error || programRequestForm.reason.$dirty">
+                    <span ng-show="programRequestForm.reason.$error.required">You must provide Reason of this request.</span>
                 </div>
             </div>
         </form>
     </section>
     <section class="usa-grid-full">
-        <button type="button" ng-click="closeProgramRequestModal();">Cancel</button>
-        <button type="button" ng-click="submitProgramRequest()">Submit</button>
+        <button ng-class="submissionInProgress ? 'usa-button-disabled' : 'usa-button'" type="button" ng-click="closeProgramRequestModal();">Cancel</button>
+        <button ng-class="submissionInProgress ? 'usa-button-disabled' : 'usa-button'" type="button" ng-click="submitProgramRequest()">Submit</button>
     </section>
 </div>

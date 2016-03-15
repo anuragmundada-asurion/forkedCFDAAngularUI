@@ -195,7 +195,7 @@ public class ApiController {
                               @RequestParam(value="completed", required=false, defaultValue="false") boolean isCompleted,
                               @RequestParam(value="limit", required=false, defaultValue="100") int limit,
                               @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                              @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
+                              @RequestParam(value="sortBy", required=false, defaultValue="-entryDate") String sortBy,
                               @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);
@@ -209,7 +209,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createRequest(@RequestBody String jsonBody) {
-        return createCall(getProgramsApiUrl(), jsonBody);
+        return createCall(getProgramRequestsApiUrl(), jsonBody);
     }
 
     @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -217,15 +217,15 @@ public class ApiController {
         return getCall(getProgramRequestsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     public String updateRequest(@PathVariable("id") String requestId,
                                 @RequestBody String jsonBody) {
-        return updateCall(getProgramsApiUrl() + "/" + requestId, jsonBody);
+        return updateCall(getProgramRequestsApiUrl() + "/" + requestId, jsonBody);
     }
 
-    @RequestMapping(value = "/programRequests/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.DELETE)
     public void deleteRequest(@PathVariable("id") String requestId) {
-        deleteCall(getProgramsApiUrl() + "/" + requestId);
+        deleteCall(getProgramRequestsApiUrl() + "/" + requestId);
     }
 
     @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -430,7 +430,7 @@ public class ApiController {
     }
 
     private String getEligibilitylistingsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/eligibilitylistings";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings/eligibility";
     }
 
     private String getListingCountApiUrl() {

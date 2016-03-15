@@ -45,6 +45,7 @@
                 //setting for datepicker
                 $scope.dateOptions = {
                     formatYear: 'yy',
+                    showWeeks: false,
                     startingDay: 1
                 };
 
@@ -64,6 +65,12 @@
                             }
                         });
                     });
+
+                    //empty Search criteria (keyword & advanced search criterias) 
+                    //when user go to other pages rather then search
+                    SearchFactory.setSearchCriteria(null, {});
+
+                    $scope.globalSearchValue = '';
                 };
             }
 

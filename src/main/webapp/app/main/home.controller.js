@@ -66,13 +66,13 @@
                     $scope.makeHomePageChart();
                 });
 
+
                 /**
                  * Generate chart
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
                     var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
-
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
@@ -81,8 +81,9 @@
                             onclick: function (d) {
 
                                 //Set advanced search criteria
-                                SearchFactory.setSearchCriteria('', { aApplicantEligibility: $scope.chartData[d.index].ids.map(function(i){
-                                        return { element_id: i };
+                                SearchFactory.setSearchCriteria('', {
+                                    aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
+                                        return {element_id: i};
                                     })
                                 });
 
@@ -107,10 +108,61 @@
                         axis: {
                             x: {
                                 type: 'category',
-                                label: 'Listing Category'
+                                height: 50,
+                                label: {
+                                    text: 'Listing Category',
+                                    position: 'outer-center',
+
+                                },
+                                tick: {
+                                    culling: false
+                                }
                             },
                             y: {
-                                label: '# of Listings'
+                                height: 100,
+                                label: {
+                                    text: '# of Listings',
+                                    position: 'outer-middle'
+                                },
+                                tick: {
+                                    count: 9,
+                                    format: d3.format('.2s')
+                                }
+
+
+                            }
+                        },
+                        tooltip: {
+                            contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                                var $$ = this,
+                                    config = $$.config,
+                                    titleFormat = config.tooltip_format_title || defaultTitleFormat,
+                                    nameFormat = config.tooltip_format_name || function (name) {
+                                            return name;
+                                        },
+                                    valueFormat = config.tooltip_format_value || defaultValueFormat,
+                                    text, i, title, value, name, bgcolor;
+                                for (i = 0; i < d.length; i++) {
+                                    if (!(d[i] && (d[i].value || d[i].value === 0))) {
+                                        continue;
+                                    }
+
+                                    if (!text) {
+                                        title = titleFormat ? titleFormat(d[i].x) : d[i].x;
+                                        text = "<table class='" + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
+                                    }
+
+                                    name = nameFormat(d[i].name);
+                                    value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+                                    // bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
+                                    bgcolor = d[i].id ? extraColors[d[i].index] : color;
+
+                                    text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
+                                    text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + "</td>";
+                                    text += "<td class='value'>" + value + "</td>";
+                                    text += "</tr>";
+                                }
+                                return text + "</table>";
                             }
                         }
                     });

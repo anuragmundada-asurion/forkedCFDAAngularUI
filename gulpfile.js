@@ -191,5 +191,5 @@ gulp.task('watch', function(){
     }, ['package']);
 });
 
-gulp.task('default', ['package', 'test'], function () {
+gulp.task('default', ['package'], function () {
 });

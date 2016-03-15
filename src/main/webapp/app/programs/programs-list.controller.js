@@ -86,11 +86,7 @@
                         programs = data.results;
                     } else {
                         angular.forEach(data.results, function (item) {
-                            angular.forEach(item, function (prop, key) {
-                                if (!prop._id)
-                                    prop._id = key;
-                                programs.push(prop);
-                            });
+                            programs.push(item);
                         });
                     }
 
@@ -139,21 +135,23 @@
         //get the oEntity that was passed from ngDialog in 'data' option
         $scope.oEntity = $scope.ngDialogData.oEntity;
 
+        if($scope.ngDialogData.typeEntity === 'program_request_action') {
+            //populate field reason
+            $scope.reason = $scope.ngDialogData.oEntity.reason;
+        }
+
         /**
          * function for submitting changes RestAPI call backend
          * @returns Void
          */
         $scope.submitProgramRequest = function() {
-//            console.log('$scope.oEntity')
-//            console.log($scope.oEntity)
-//            console.log('$scope.ngDialogData')
-//            console.log($scope.ngDialogData)
             var message = {
                 success: 'Your request has been submitted !',
                 error: 'An error has occurred, please try again !'
             };
 
-            if(typeof $scope.reason !== 'undefined' && $scope.reason !== '') {
+            if(typeof $scope.reason !== 'undefined' && $scope.reason !== '' && !$scope.submissionInProgress) {
+                $scope.submissionInProgress = true;
                 var oApiParam = {
                     apiName: '',
                     apiSuffix: '',
@@ -184,8 +182,6 @@
                         }
                     }
                 } else if($scope.ngDialogData.typeEntity === 'program_request_action') {
-                    //populate field reason
-                    $scope.reason = $scope.ngDialogData.oEntity.reason;
                     //set API Name to call
                     oApiParam.apiName = 'programRequestAction';
                     //define success message
@@ -199,8 +195,6 @@
                     };
                 }
 
-//                console.log(oApiParam);
-
                 //Call API
                 ApiService.call(oApiParam).then(
                 function(data){
@@ -211,17 +205,34 @@
 
                     //go to list page after 2 seconds
                     $timeout(function() {
+                        //  Due to delay, can't use finally block
+                        $scope.submissionInProgress = false;
                         ngDialog.closeAll();
                         $state.go('programList.status', {status: 'all'});
                     }, 2000);
                 }, 
                 function(error){
+                    $scope.submissionInProgress = false;
                     $scope.flash = {
                         type: 'error',
                         message: message.error
                     };
                 });
+            } else {
+                //show error form validation
+                angular.forEach($scope.programRequestForm.$error.required, function(field) {
+                    field.$setDirty();
+                });
             }
+        };
+
+        /**
+          *
+          * @param String string
+          * @returns Object
+          */
+        $scope.stringToJson = function(string) {
+            return JSON.parse(string);
         };
     }]);
 })();

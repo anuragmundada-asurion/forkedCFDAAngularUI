@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.run(['$rootScope', '$document', 'ngDialog',
-        function ($rootScope, $document, ngDialog) {
+    myApp.run(['$rootScope', '$document', 'ngDialog', 'SearchFactory',
+        function ($rootScope, $document, ngDialog, SearchFactory) {
             $rootScope.$on('$stateChangeSuccess', function() {
                 $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
             });
@@ -33,6 +33,17 @@
             $rootScope.closeProgramRequestModal = function() {
                 ngDialog.close();
             };
+
+            /**
+             * Default event trigger after state changes from one to another
+             */
+            $rootScope.$on('$stateChangeStart', function(event, stateConfig){
+                if(stateConfig.name !== 'searchPrograms' && stateConfig.name !== 'advancedSearch') {
+                    //empty Search criteria (keyword & advanced search criterias) 
+                    //when user go to other pages rather then search
+                    SearchFactory.setSearchCriteria(null, {});
+                }
+            });
         }
     ]);
 

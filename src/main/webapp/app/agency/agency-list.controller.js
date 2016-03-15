@@ -3,14 +3,11 @@
 
      var myApp = angular.module('app');
      myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants',
-                      'ApiService', 'Dictionary', 'ngDialog',
-            function($scope, $state, $stateParams, appConstants, ApiService, Dictionary, ngDialog) {
+                      'ApiService', 'Dictionary',
+            function($scope, $state, $stateParams, appConstants, ApiService, Dictionary) {
                  $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
                  $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
                  $scope.searchDivision = null;
-                 $scope.division = null;
-                 $scope.state = null;
-                 $scope.country = null;
                  $scope.searchAgency = null;
                  $scope.choices = {};
                  $scope.choices.agencies = [
@@ -22,9 +19,8 @@
                      { element_id : 5, parent_element_id: 3, value:"Department of Fossil Energy"}
                  ];
                 var DICTIONARIES = [
-                                     'states',
                                      'regional_office_division',
-                                     'countries'
+                                     'states'
                                    ];
 
                 Dictionary.toDropdown({ ids: DICTIONARIES.join(',') }).$promise.then(function(data){
@@ -35,8 +31,6 @@
                 $scope.multiPickerGroupByFn = function(item) {
                      return !!item.parent ? item.parent.value : item.value;
                  }
-
-
 
                  /**
                   * Function loading agencies
@@ -53,7 +47,7 @@
                     $scope.isLoading = true;
 
                     var oApiParam = {
-                         apiName: 'regionalAgencyList',
+                         apiName: 'regionalAgencyEntity',
                          apiSuffix: '',
                          oParams: {
                              limit: $scope.itemsByPage,
@@ -89,34 +83,9 @@
                          },
                          function(error){
 
-                     });
-                 };
 
-                $scope.editAgency = function(oEntity, typeEntity, action) {
-                     ngDialog.open({
-                         template: 'agency/_AgencyModal.tpl.html',
-                         className: 'ngdialog-theme-default dialog-large',
-                         scope: $scope,
-                         data: {
-                             oEntity: oEntity,
-                             typeEntity: typeEntity,
-                             action: action
-                         }
                      });
                 };
-
-                //global function for Closing change status modal
-                $scope.closeAgencyModal = function() {
-                     ngDialog.close();
-                };
-
-    }]);
-//Controller for Regional Agency dialog
-    myApp.controller('AgencyModalCtrl', ['$scope',
-        function($scope) {
-
-
-
     }]);
 
 })();

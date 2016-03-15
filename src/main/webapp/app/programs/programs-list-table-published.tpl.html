@@ -19,7 +19,7 @@
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
         <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
         <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-        <th st-sort="dateSubmitted" st-skip-natural="true">Date Submitted</th>
+        <th st-sort="publishedDate" st-skip-natural="true">Date Submitted</th>
         <th>Actions</th>
         <th st-sort="status" st-skip-natural="true">Status</th>
     </tr>
@@ -30,19 +30,19 @@
             <input type="checkbox" id="program-{{$index}}">
             <label for="program-{{$index}}"></label>
         </td>
-        <td>{{row.programNumber || '-'}}</td>
+        <td>{{row.data.programNumber || '-'}}</td>
         <td>
-            <a ui-sref="editProgram({id: row._id, section: 'review'})">{{row.title}}</a>
+            <a ui-sref="editProgram({id: row.id, section: 'review'})">{{row.data.title}}</a>
         </td>
-        <td>{{row.agencyId}}</td>
-        <td>{{row.dateSubmitted}}</td>
+        <td>{{row.data.agencyId}}</td>
+        <td>{{row.publishedDate}}</td>
         <td class="action-row">
-            <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
-            <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
-            <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
-            <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
+            <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
+            <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
+            <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
+            <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
         </td>
-        <td>{{row.status}}</td>
+        <td>{{row.data.status}}</td>
     </tr>
     <tr ng-show="!programs || programs.length == 0">
         <td colspan="5" class="text-center">No Results Found</td>

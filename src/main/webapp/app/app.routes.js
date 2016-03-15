@@ -106,6 +106,10 @@
                     url: "/agency/main",
                     templateUrl: "agency/agency-list.tpl.html",
                     controller: "AgencyListController"
+                }).state('agencyDetails', {
+                      url: "/agency/:action/:id", //action = review, edit or create
+                      templateUrl: "agency/agency-details.tpl.html",
+                      controller: "AgencyDetailsController"
                 });
 
              // the known route
