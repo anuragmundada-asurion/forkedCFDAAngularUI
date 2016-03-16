@@ -3,6 +3,19 @@
   margin: 0;
   padding: 2em 0;
 
+  .usa-grid-full{
+        background-color:#F1F1F1;
+        padding:0px 14px 0px 14px;
+          
+    label, select{
+        color: black;
+    }
+  }
+  
+  .usa-grid-full:last-child{
+      margin-bottom: 20px;
+  }
+  
   .usa-grid {
     padding: 0;
 
@@ -98,6 +111,42 @@
                         min-width: 100%;
                     }
                 }
+            }
+        }
+    }
+}
+
+global-search-box{
+    .search-box{
+        isteven-multi-select{
+
+            .multiSelect > button{
+                width:100%;
+            }
+            .multiSelect > button:hover{
+                color: #555555;
+                border-bottom: 1px solid #c6c6c6;
+            }
+            .multiSelect .checkboxLayer{
+                width:100%;
+            }
+            .multiSelect .checkboxLayer.show{
+                width:50%;
+            }
+            div.checkboxLayer button{
+                padding:0px 6px;
+            }
+            div.checkboxLayer button.clearButton{
+                margin: 0px;
+                padding: 0px;
+            }
+            div.checkboxLayer .inputFilter{
+                padding-top:7px;
+                padding-bottom:7px;
+                height: 28px;
+            }
+            div.checkboxLayer div.helperContainer .inputFilter{
+                min-width: 100%;
             }
         }
     }

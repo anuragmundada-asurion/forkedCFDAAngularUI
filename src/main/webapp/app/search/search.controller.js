@@ -8,19 +8,21 @@
             $scope.globalSearchValue = $scope.globalSearchValue || $stateParams['keyword'] || SearchFactory.getSearchCriteria().keyword || '';
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
+            $scope.advancedSearch = SearchFactory.getSearchCriteria().advancedSearch;
+            $scope.dictionary = {};
+
+            //loading dictionary: assistance_type
+            Dictionary.query({ ids: 'assistance_type' }, function(data) {
+                //Assistance Types
+                $scope.dictionary.aAssistanceType = $scope.dropdownDataStructure(data.assistance_type, $scope.advancedSearch.aAssistanceType, true);
+            });
 
             //initialize advanced search fields criterias
             if($state.current['name'] === 'advancedSearch') {
-                $scope.advancedSearch = SearchFactory.getSearchCriteria().advancedSearch;
-                $scope.dictionary = {};
-
                 //loading dictionaries
                 //var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes', 'program_subject_terms'];
-                var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes'];
+                var aDictionaries = ['applicant_types', 'beneficiary_types', 'functional_codes', 'assistance_usage_types'];
                 Dictionary.query({ ids: aDictionaries.join(',') }, function(data) {
-                    //Assistance Types
-                    $scope.dictionary.aAssistanceType = $scope.dropdownDataStructure(data.assistance_type, $scope.advancedSearch.aAssistanceType, true);
-
                     //Functional Code
                     $scope.dictionary.aFunctionalCode = $scope.dropdownDataStructure(data.functional_codes, $scope.advancedSearch.aFunctionalCode, true);
 
@@ -30,6 +32,8 @@
                     //Beneficiary Eligibility
                     $scope.dictionary.aBeneficiaryEligibility = $scope.dropdownDataStructure(data.beneficiary_types, $scope.advancedSearch.aBeneficiaryEligibility, false);
 
+                    //Use of Assistance
+                    $scope.dictionary.aAssistanceUsageType = $scope.dropdownDataStructure(data.assistance_usage_types, $scope.advancedSearch.aAssistanceUsageType, false);
                     //Subject Terms
                     //$scope.dictionary.aSubjectTerm = $scope.dropdownDataStructure(data.program_subject_terms, $scope.advancedSearch.aSubjectTerm, true);
                 });
@@ -55,7 +59,7 @@
                  */
                 $scope.clearAdvancedSearchForm = function(){
                     //var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aSubjectTerm'];
-                    var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility'];
+                    var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aAssistanceUsageType'];
                     $scope.advancedSearch = {};
 
                     angular.forEach(aArray, function(element){
@@ -85,15 +89,8 @@
              * @returns Void
              */
             $scope.searchPrograms = function() {
-                var advancedSearchCriteria = {};
-
-                //store advanced search criteria into SearchFactory
-                if($state.current['name'] === 'advancedSearch') {
-                    advancedSearchCriteria = $scope.advancedSearch;
-                }
-
                 //set the search criteria into factory and store them
-                SearchFactory.setSearchCriteria($scope.globalSearchValue, advancedSearchCriteria);
+                SearchFactory.setSearchCriteria($scope.globalSearchValue, $scope.advancedSearch);
                 $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {reload: true, inherit: false});
             };
 
@@ -220,7 +217,7 @@
              * @returns Object
              */
             $scope.prepareAdvancedSearchDataStructure = function(advancedSearchData){
-                var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility'];
+                var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aAssistanceUsageType'];
                 var oResult = {};
 
                 //loop through each filter

@@ -10,41 +10,11 @@
             provide relevant contact information.
         </div>
     </div>
-    <global-search-box style="font-weight:400"></global-search-box>
+    <global-search-box ng-controller="ProgramSearchCtrl" style="font-weight:400"></global-search-box>
 </div>
 
 <div style="background-color:#112e51;position:relative;top:-35px;margin-bottom:-35px">
     <!-- search options are another grid -->
-    <div class="usa-grid-full search-options">
-        <div style="min-height:4px;width:100%;background-color:#cacaca"></div>
-        <div class="usa-grid-full" style="background-color:#F1F1F1;padding:0px 14px 0px 14px">
-            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
-                <label for="qs-posted">By Agency</label>
-                <select size="1" id="qs-posted" style="font-weight:bold">
-                    <option selected value="">By Agency</option>
-                </select>
-            </div>
-            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
-                <label for="qs-type">By Assistance Type</label>
-                <select size="1" id="qs-type" style="font-weight:bold">
-                    <option selected value="">By Assistance</option>
-                </select>
-            </div>
-            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
-                <label for="agency-search-field">By Historical Index</label>
-                <select size="1" id="agency-search-field" style="font-weight:bold">
-                    <option selected value="">Historical Index</option>
-                </select>
-            </div>
-            <div class="usa-width-one-fourth usa-search usa-search-big" style="padding-top: 42px;">
-                <a ui-sref="advancedSearch" class="usa-button">Advanced Search</a>
-            </div>
-        </div>
-    </div>
-
-
-    <div style="min-height:20px"></div>
-
 
     <div class="usa-grid-full home-info" style="background-color:#FFF;padding:1px 8px 8px 8px;text-align:left">
         <div class="usa-width-one-half">
