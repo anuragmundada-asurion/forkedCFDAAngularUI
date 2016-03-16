@@ -1,138 +1,42 @@
 <div class="subsection general-info">
-    <h2> Sub-Section 1 (General Information)</h2>
+    <h3 class="section-header"> Sub-Section 1 (General Information)</h3>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight: bold ;"> Listing Title (010):</h4>
+        <p class="vp-field-label"> Listing Title (010):</p>
 
         <p class="vp-field-value" ng-bind="programData.title"></p>
     </div>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight: bold;"> Popular Name (020):</h4>
+        <p class="vp-field-label"> Popular Name (020):</p>
 
         <p class="vp-field-value" ng-bind="programData.alternativeNames"></p>
     </div>
 
 
     <div>
-        <h4 class="vp-field-label" style="font-weight: bold;"> Authorization (040):</h4>
+        <p class="vp-field-label"> Authorization (040):</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.authorizations"><p>{{item.act.description}},</p></div>
     </div>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Objectives (050): </h4>
+        <p class="vp-field-label"> Objectives (050): </p>
 
         <p class="vp-field-value" ng-bind="programData.objective"></p>
     </div>
 
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Types of Assistance (040):</h4>
+        <p class="vp-field-label"> Types of Assistance (040):</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.assistanceTypes"><p>{{item}},</p></div>
     </div>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Uses and Use Restrictions (070): </h4>
+        <p class="vp-field-label"> Uses and Use Restrictions (070): </p>
 
         <p class="vp-field-value" ng-bind="programData.usage.rules.content"></p>
     </div>
 
 </div>
-
-<div class="subsection general-info">
-    <!--<h1>Post Award Requirements</h1>-->
-    <h2> Sub-Section 5 (Post Assistance Requirements (110))</h2>
-
-    <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Reports (111):</h4>
-
-        <h5>Are reports required by the funding agency?</h5>
-
-        <p class="vp-field-value" ng-bind="programData.postAward.reports.flag"></p>
-
-        <div class="vp-field-value" ng-show="programData.postAward.reports.flag =='yes'">
-
-            <p class="vp-field-value"> Are program reports required? <span ng-bind="programData.postAward.reports.list.program.flag"></span></p>
-
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.program.flag =='yes'">
-                <p class="vp-field-value"> Please describe the program reports required. <span ng-bind="programData.postAward.reports.list.program.content"></span></p>
-            </div>
-
-
-            <p class="vp-field-value"> Are cash reports required? <span ng-bind="programData.postAward.reports.list.cash.flag"></span></p>
-
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.cash.flag =='yes'">
-                <p class="vp-field-value">Please describe the cash reports required. <span ng-bind="programData.postAward.reports.list.cash.content"></span></p>
-            </div>
-
-
-            <p class="vp-field-value"> Are progress reports required? <span ng-bind="programData.postAward.reports.list.progress.flag"></span></p>
-
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.progress.flag === 'yes'">
-                <p class="vp-field-value">Please describe the progress reports required. <span ng-bind="programData.postAward.reports.list.progress.content"></span></p>
-            </div>
-
-            <p class="vp-field-value"> Are expenditure reports required? <span ng-bind="programData.postAward.reports.list.expenditure.flag"></span></p>
-
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.expenditure.flag === 'yes'">
-                <p class="vp-field-value">Please describe the expenditure reports required. <span ng-bind="programData.postAward.reports.list.expenditure.content"></span></p>
-            </div>
-
-            <p class="vp-field-value"> Is performance monitoring required? <span ng-bind="programData.postAward.reports.list.performanceMonitoring.flag"></span></p>
-
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.performanceMonitoring.flag === 'yes'">
-                <p class="vp-field-value">Please describe the performance monitoring required. <span ng-bind="programData.postAward.reports.list.performanceMonitoring.content"></span></p>
-            </div>
-        </div>
-    </div>
-
-
-    <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Audits (112):</h4>
-
-        <h5>Are audits required for the program?</h5>
-
-        <p class="vp-field-value" ng-bind="programData.postAward.audit.flag"></p>
-
-        <div class="vp-field-value" ng-show="programData.postAward.audit.flag === 'yes'">
-
-            <p class="vp-field-value"> Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?
-                <span ng-bind="programData.postAward.audit.questions['OMBCircularA133'].flag"></span></p>
-
-            <p class="vp-field-value"> What audit procedures have been mandated for the program?
-                <span ng-bind="programData.postAward.audit.content"></span></p>
-
-        </div>
-    </div>
-
-    <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Records (113):</h4>
-
-        <h5>Describe what records the Federal agency requires the recipient to maintain and the time periods.</h5>
-
-        <p class="vp-field-value" ng-bind="programData.postAward.records.content"></p>
-
-    </div>
-
-</div>
-
-<div class="subsection general-info">
-    <h2> Sub-Section (Regulations, Guidelines, and Literature (140))</h2>
-
-    <h5>Are there any regulations, guidelines or literature?</h5>
-
-    <p class="vp-field-value" ng-bind="programData.postAward.documents.flag"></p>
-
-    <div class="vp-field-value" ng-show="programData.postAward.documents.flag === 'yes'">
-
-        <p class="vp-field-value"> Please describe regulations, guidelines, and literature.
-            <span ng-bind="programData.postAward.documents.content"></span></p>
-
-    </div>
-
-</div>
-
-
-

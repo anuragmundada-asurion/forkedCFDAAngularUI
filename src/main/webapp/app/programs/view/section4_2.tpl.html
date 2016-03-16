@@ -1,0 +1,15 @@
+<div class="subsection regulations-info">
+    <h3 class="section-header"> Sub-Section 4_2 (Regulations, Guidelines, and Literature (140))</h3>
+
+    <h5>Are there any regulations, guidelines or literature?</h5>
+
+    <p class="vp-field-value" ng-bind="programData.postAward.documents.flag"></p>
+
+    <div class="vp-field-value" ng-show="programData.postAward.documents.flag === 'yes'">
+
+        <p class="vp-field-value"> Please describe regulations, guidelines, and literature.
+            <span ng-bind="programData.postAward.documents.content"></span></p>
+
+    </div>
+
+</div>
