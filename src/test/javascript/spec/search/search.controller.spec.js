@@ -5,12 +5,20 @@ describe('Unit Tests for Program Search Controller', function() {
     var $rootScope;
     var testKeyword = "ASDF Test Search";
     var SearchFactory;
+    var $httpBackend;
 
-    beforeEach(inject(function(_$rootScope_, _$location_, _$controller_, _SearchFactory_) {
-        $rootScope = _$rootScope_;
-        $controller = _$controller_;
-        SearchFactory = _SearchFactory_;
-    }));
+    beforeEach(function() {
+        inject(function(_$rootScope_, _$controller_, _$httpBackend_, _SearchFactory_) {
+            $rootScope = _$rootScope_;
+            $controller = _$controller_;
+            SearchFactory = _SearchFactory_;
+            $httpBackend = _$httpBackend_;
+        });
+
+        $httpBackend
+            .whenGET(/\/api\/dictionaries(\?ids=[a-z_]+)*/i)
+            .respond({});
+    });
 
     describe('$scope.globalSearchValue', function() {
         it('should set the default value of globalSearchValue', function() {
