@@ -160,23 +160,9 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String publishProgram(@PathVariable("id") String programId,
-                                 @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                 @RequestParam (value="reason", required=false) String reason,
-                                 @RequestParam (value="programNumber", required=false) String programNumber) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason)
-                .queryParam("programNumber", programNumber);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
+    @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String submitProgram(@PathVariable("id") String programId, @RequestBody(required=false) String jsonData) throws Exception {
+        return this.actionCall(getProgramsApiUrl() + "/" + programId + "/submit", jsonData);
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -264,6 +250,16 @@ public class ApiController {
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
+    private String actionCall(String url, String jsonBody) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
         return response.getBody();
     }
 

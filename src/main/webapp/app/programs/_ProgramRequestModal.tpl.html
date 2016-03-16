@@ -4,7 +4,9 @@
         <h3 ng-show="ngDialogData.action === 'unarchive_request'">Unarchive Request</h3>
         <h3 ng-show="ngDialogData.action === 'title_request'">Title Change Request</h3>
     </div>
-
+    <div ng-show="ngDialogData.typeEntity === 'program_submit'">
+        <h3>Program Submission Request</h3>
+    </div>
     <div ng-show="ngDialogData.typeEntity === 'program_request_action'">
         <h3 ng-show="ngDialogData.action === 'archive'">Archive Request Approval</h3>
         <h3 ng-show="ngDialogData.action === 'archive_reject'">Archive Request Reject</h3>
@@ -12,6 +14,8 @@
         <h3 ng-show="ngDialogData.action === 'unarchive_reject'">Unarchive Request Reject</h3>
         <h3 ng-show="ngDialogData.action === 'title'">Title Change Request Approval</h3>
         <h3 ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h3>
+        <h3 ng-show="ngDialogData.action === 'reject_program'">Reject Program</h3>
+        <h3 ng-show="ngDialogData.action === 'publish'">Approve Program Submission</h3>
     </div>
 
     <section class="sub-section">

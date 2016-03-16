@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-    ['$stateParams', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact',
-    function($stateParams, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
+    ['$stateParams', '$scope','$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact',
+    function($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -118,7 +118,7 @@
             formatModelString: formatModelString,
             getTreeNodeModel: getTreeNodeModel,
             createContact: createContact,
-            publishProgram: publishProgram,
+            submitProgram: submitProgram,
             validateProgramFields: validateProgramFields,
             getAuthorizationTitle: appUtil.getAuthorizationTitle,
             getAmendmentTitle: appUtil.getAuthorizationTitle,
@@ -414,50 +414,13 @@
          * @param Object oProgram (using as variable in order to call this function out of edit page program)
          * @returns Void
          */
-        function publishProgram(oProgram) {
+        function submitProgram(oProgram) {
             var isProgramValidated = validateProgramFields(oProgram);
 
             //Call save program on success then call showProgramChangeStatus
-            save(function(data){
-                if(isProgramValidated) {
-                    //Call API to publish program
-                    var oApiParam = {
-                        apiName: 'programPublish',
-                        apiSuffix: '/'+data._id,
-                        oParams: {},
-                        oData: {},
-                        method: 'POST'
-                    };
-
-                    ApiService.call(oApiParam).then(
-                    function(data){
-                        ngDialog.open({
-                            template:
-                            "<div class='usa-alert usa-alert-success'>"+
-                                "<div class='usa-alert-body'>"+
-                                    "<p class='usa-alert-text'>This program has been published !</p>"+
-                                "</div>"+
-                            "</div>",
-                            plain: true
-                        });
-
-                        //go to list page after 2 seconds
-                        $timeout(function() {
-                            ngDialog.closeAll();
-                            $state.go('programList.status', {status: 'all'});
-                        }, 2000);
-                    },
-                    function(error){
-                        ngDialog.open({
-                            template:
-                            "<div class='usa-alert usa-alert-error'>"+
-                                "<div class='usa-alert-body'>"+
-                                    "<p class='usa-alert-text'>An error has occurred, Please try again !</p>"+
-                                "</div>"+
-                            "</div>",
-                            plain: true
-                        });
-                    });
+            save(function(){
+                if (isProgramValidated) {
+                    $scope.showProgramRequestModal(oProgram, 'program_submit');
                 } else {
                     //program has an issue and cannot be published yet
                     $location.hash('formErrorMessages');

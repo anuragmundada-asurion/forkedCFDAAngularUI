@@ -10,7 +10,7 @@
             "programList": "/api/programs",
             "programRequest": "/api/programRequests",
             "programRequestAction": "/api/programRequestActions",
-            "programPublish": "/api/programs/publish", // /:program_id
+            "programSubmit": "/api/programs", // /:program_id
             "programCount": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
             "regionalAgencyEntity": "/api/regionalAgencies"
