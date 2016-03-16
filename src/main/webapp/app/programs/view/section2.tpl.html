@@ -1,50 +1,53 @@
-
 <div class="subsection eligibility-info">
-    <h3 class="section-header">2 --  Eligibility Requirements (080)</h3>
+    <h3 class="section-header">2 -- Eligibility Requirements (080)</h3>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Applicant Eligibility (081):</h4>
+        <h5> Applicant Eligibility (081):</h5>
 
-        <h5>Eligible Applicants</h5>
+        <p class="vp-field-label">Eligible Applicants</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types"><p>{{item}},</p></div>
 
-        <h5>Use Of Assistance</h5>
+        <p class="vp-field-label">Use Of Assistance</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.assistanceUsageTypes"><p>{{item}},</p></div>
 
-        <h5>Additional Information</h5>
+        <p class="vp-field-label">Additional Information</p>
 
         <p class="vp-field-value" ng-bind="programData.eligibility.applicant.additionalInfo.content"></p>
 
     </div>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Beneficiary Eligibility (082):</h4>
-        <h5>Beneficiary Eligibility</h5>
+        <h5> Beneficiary Eligibility (082):</h5>
+
+        <p class="vp-field-label">Beneficiary Eligibility</p>
 
         <div class="vp-field-value" ng-repeat="item  in programData.eligibility.beneficiary.types"><p>{{item}},</p>
         </div>
 
-        <h5>Additional Information</h5>
+        <p class="vp-field-label">Additional Information</p>
 
         <p class="vp-field-value" ng-bind="programData.eligibility.beneficiary.additionalInfo.content"></p>
     </div>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Credentials/Documentation (083):</h4>
+        <h5> Credentials/Documentation (083):</h5>
 
-        <h5>Are there credentials or documentation?</h5>
+        <p class="vp-field-label">Are there credentials or documentation?</p>
 
         <p class="vp-field-value" ng-bind="programData.eligibility.documentation.flag"></p>
 
-        <h5>Please explain:</h5>
+        <div class="tabover" ng-show="programData.eligibility.documentation.flag === 'yes'">
 
-        <p class="vp-field-value" ng-bind="programData.eligibility.documentation.content"></p>
+            <p class="vp-field-label">Please explain:</p>
 
-        <h5>Is 2 CFR 200, Subpart E - Cost Principles applicable?</h5>
+            <p class="vp-field-value" ng-bind="programData.eligibility.documentation.content"></p>
 
-        <p class="vp-field-value" ng-bind="programData.eligibility.documentation.questions['OMBCircularA87'].flag"></p>
+            <p class="vp-field-label">Is 2 CFR 200, Subpart E - Cost Principles applicable?</p>
+
+            <p class="vp-field-value" ng-bind="programData.eligibility.documentation.questions['OMBCircularA87'].flag"></p>
+        </div>
 
     </div>
 
