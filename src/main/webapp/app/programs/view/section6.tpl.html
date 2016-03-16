@@ -1,21 +1,21 @@
 <div class="section contact-info">
     <h3 class="section-header">6 -- Contact Information</h3>
 
-    <p class="label">Website:</p>
+    <p class="vp-field-label">Website:</p>
 
-    <p class="content website"><a ng-href="{{programData.website}}" ng-bind="programData.website"></a></p>
+    <p class="vp-field-value website"><a ng-href="{{programData.website}}" ng-bind="programData.website"></a></p>
 
-    <p class="label">Regional or Local Office:</p>
+    <p class="vp-field-label">Regional or Local Office:</p>
 
-    <p class="content" ng-bind="programData.contacts['local'].flag == 'regional'"></p>
+    <p class="vp-field-value" ng-bind="programData.contacts['local'].flag == 'regional'"></p>
 
-    <p class="label">Additional Information:</p>
+    <p class="vp-field-label">Additional Information:</p>
 
-    <p class="content" ng-bind="programData.contacts['local'].additionalInfo.content"></p>
+    <p class="vp-field-value" ng-bind="programData.contacts['local'].additionalInfo.content"></p>
 
-    <p class="label">Headquarters Office:</p>
+    <p class="vp-field-label">Headquarters Office:</p>
 
-    <div class="content" ng-repeat="item in programData.contacts.list">
+    <div class="vp-field-value" ng-repeat="item in programData.contacts.list">
         <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
         <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
         <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
