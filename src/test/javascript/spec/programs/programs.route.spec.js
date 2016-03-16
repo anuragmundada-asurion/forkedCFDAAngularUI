@@ -10,14 +10,12 @@ describe("Unit Tests for Program Routes", function () {
         $httpBackend,
         appConstants,
         coreChoices,
-        program;
+        program,
+        User;
 
-    function goFrom(url) {
-        return {toState: function (state, params) {
-            $location.replace().url(url);
-            $state.go(state, params);
-            $rootScope.$digest();
-        }};
+    function changeState(state, params) {
+        $state.go(state, params);
+        $rootScope.$digest();
     }
 
     beforeEach(function() {
@@ -39,7 +37,7 @@ describe("Unit Tests for Program Routes", function () {
             };
             $provide.value("Program", Program);
         });
-        inject(function(_$state_, _$stateParams_, _$rootScope_, _$location_, _$injector_, _$timeout_, _$httpBackend_, _appConstants_){
+        inject(function(_$state_, _$stateParams_, _$rootScope_, _$location_, _$injector_, _$timeout_, _$httpBackend_, _appConstants_, _User_){
             $state = _$state_;
             $stateParams = _$stateParams_;
             $rootScope = _$rootScope_;
@@ -48,7 +46,10 @@ describe("Unit Tests for Program Routes", function () {
             $timeout = _$timeout_;
             $httpBackend = _$httpBackend_;
             appConstants = _appConstants_;
+            User = _User_;
         });
+
+        $rootScope.user = new User({ "gsaRAC": ["GSA_CFDA_R_cfdasuperuser"] });
     });
 
     it("should have the proper 'home' url", function(){
@@ -71,7 +72,7 @@ describe("Unit Tests for Program Routes", function () {
         //HTML5 Mode Off
         //goFrom('/#/').toState('addProgram', { section: 'info' });
         //HTML5 Mode ON
-        goFrom('/').toState('addProgram', { section: 'info' });
+        changeState('addProgram', { section: 'info' });
         expect($state.is('addProgram')).toBe(true);
         expect($stateParams.section).toEqual("info");
     });
@@ -95,7 +96,7 @@ describe("Unit Tests for Program Routes", function () {
         //HTML5 Mode OFF
         //goFrom('/#/').toState('editProgram', { id: id, section: 'info' });
         //HTML5 Mode On
-        goFrom('/').toState('editProgram', { id: id, section: 'info' });
+        changeState('editProgram', { id: id, section: 'info' });
         expect($state.is('editProgram')).toBe(true);
         expect($stateParams.id).toEqual(id);
         expect($stateParams.section).toEqual("info");

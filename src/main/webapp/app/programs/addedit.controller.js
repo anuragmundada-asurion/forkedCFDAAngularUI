@@ -170,7 +170,7 @@
 
             //title cannot be changed when the program is Published. Since the field
             // is disabled, it won't be submitted with the form.
-            if(copy.status === 'Published' || copy.status === 'published') {
+            if((copy.status === 'Published' || copy.status === 'published') && !copy.archived) {
                 copy.title = vm.originalTitle;
             }
 
