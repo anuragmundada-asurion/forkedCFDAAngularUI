@@ -1,73 +1,87 @@
 <div class="subsection assistanceRequirements-info">
     <!--<h1>Post Award Requirements</h1>-->
-    <h3 class="section-header">4.1 --  Post Assistance Requirements (110)</h3>
+    <h3 class="section-header">4.1 -- Post Assistance Requirements (110)</h3>
 
     <div>
-        <p class="vp-field-label"> Reports (111):</p>
+        <h5> Reports (111):</h5>
 
-        <h5>Are reports required by the funding agency?</h5>
+        <p class="vp-field-label">Are reports required by the funding agency?</p>
 
         <p class="vp-field-value" ng-bind="programData.postAward.reports.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.postAward.reports.flag =='yes'">
+        <div class="tabover" ng-show="programData.postAward.reports.flag =='yes'">
 
-            <p class="vp-field-value"> Are program reports required? <span ng-bind="programData.postAward.reports.list.program.flag"></span></p>
+            <p class="vp-field-label"> Are program reports required? </p>
+            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.program.flag"></p>
 
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.program.flag =='yes'">
-                <p class="vp-field-value"> Please describe the program reports required. <span ng-bind="programData.postAward.reports.list.program.content"></span></p>
+            <div class="tabover" ng-show="programData.postAward.reports.list.program.flag =='yes'">
+                <p class="vp-field-label"> Please describe the program reports required. </p>
+
+                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.program.content"></p>
             </div>
 
 
-            <p class="vp-field-value"> Are cash reports required? <span ng-bind="programData.postAward.reports.list.cash.flag"></span></p>
+            <p class=" vp-field-label"> Are cash reports required? </p>
+            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.cash.flag"></p>
 
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.cash.flag =='yes'">
-                <p class="vp-field-value">Please describe the cash reports required. <span ng-bind="programData.postAward.reports.list.cash.content"></span></p>
+            <div class="tabover" ng-show="programData.postAward.reports.list.cash.flag =='yes'">
+                <p class="vp-field-label">Please describe the cash reports required.</p>
+                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.cash.content"></p>
             </div>
 
 
-            <p class="vp-field-value"> Are progress reports required? <span ng-bind="programData.postAward.reports.list.progress.flag"></span></p>
+            <p class="vp-field-label"> Are progress reports required? </p>
+            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.progress.flag"></p>
 
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.progress.flag === 'yes'">
-                <p class="vp-field-value">Please describe the progress reports required. <span ng-bind="programData.postAward.reports.list.progress.content"></span></p>
+            <div class="tabover" ng-show="programData.postAward.reports.list.progress.flag === 'yes'">
+                <p class="vp-field-label">Please describe the progress reports required. </p>
+
+                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.progress.content"></p>
             </div>
 
-            <p class="vp-field-value"> Are expenditure reports required? <span ng-bind="programData.postAward.reports.list.expenditure.flag"></span></p>
+            <p class="vp-field-label"> Are expenditure reports required? </p>
+            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.expenditure.flag"></p>
 
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.expenditure.flag === 'yes'">
-                <p class="vp-field-value">Please describe the expenditure reports required. <span ng-bind="programData.postAward.reports.list.expenditure.content"></span></p>
+            <div class="tabover" ng-show="programData.postAward.reports.list.expenditure.flag === 'yes'">
+                <p class="vp-field-label">Please describe the expenditure reports required.</p>
+
+                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.expenditure.content"></p>
             </div>
 
-            <p class="vp-field-value"> Is performance monitoring required? <span ng-bind="programData.postAward.reports.list.performanceMonitoring.flag"></span></p>
+            <p class="vp-field-label"> Is performance monitoring required? </p>
+            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.performanceMonitoring.flag"></p>
 
-            <div class="vp-field-value" ng-show="programData.postAward.reports.list.performanceMonitoring.flag === 'yes'">
-                <p class="vp-field-value">Please describe the performance monitoring required. <span ng-bind="programData.postAward.reports.list.performanceMonitoring.content"></span></p>
+            <div class="tabover" ng-show="programData.postAward.reports.list.performanceMonitoring.flag === 'yes'">
+                <p class="vp-field-label">Please describe the performance monitoring required.</p>
+
+                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.performanceMonitoring.content"></p>
             </div>
         </div>
     </div>
 
 
     <div>
-        <p class="vp-field-label"> Audits (112):</p>
+        <h5> Audits (112):</h5>
 
-        <h5>Are audits required for the program?</h5>
+        <p class="vp-field-label">Are audits required for the program?</p>
 
         <p class="vp-field-value" ng-bind="programData.postAward.audit.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.postAward.audit.flag === 'yes'">
+        <div class="tabover" ng-show="programData.postAward.audit.flag === 'yes'">
 
-            <p class="vp-field-value"> Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?
-                <span ng-bind="programData.postAward.audit.questions['OMBCircularA133'].flag"></span></p>
+            <p class="vp-field-label"> Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?</p>
+            <p class="vp-field-value" ng-bind="programData.postAward.audit.questions['OMBCircularA133'].flag"></p>
 
-            <p class="vp-field-value"> What audit procedures have been mandated for the program?
-                <span ng-bind="programData.postAward.audit.content"></span></p>
+            <p class="vp-field-label"> What audit procedures have been mandated for the program?</p>
+            <p class="vp-field-value" ng-bind="programData.postAward.audit.content"></p>
 
         </div>
     </div>
 
     <div>
-        <p class="vp-field-label"> Records (113):</p>
+        <h5> Records (113):</h5>
 
-        <h5>Describe what records the Federal agency requires the recipient to maintain and the time periods.</h5>
+        <p class="vp-field-label">Describe what records the Federal agency requires the recipient to maintain and the time periods.</p>
 
         <p class="vp-field-value" ng-bind="programData.postAward.records.content"></p>
 
