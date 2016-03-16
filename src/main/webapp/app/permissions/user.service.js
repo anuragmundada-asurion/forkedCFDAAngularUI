@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.factory('User', ['PermissionService', 'ROLES', function(PermissionService, ROLES) {
+    myApp.factory('User', ['PermissionService', function(PermissionService) {
         function User(IamUser) {
             var uid = IamUser ? IamUser['uid'] : null;
             var token = IamUser ? IamUser['tokenId'] : null;
@@ -45,9 +45,14 @@
         this.refreshUser = function() {
             var iaeUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
 
-            if (!$rootScope.iamUser || $rootScope.iamUser != iaeUser) {
-                $rootScope.iamUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
-                $rootScope.user = new User($rootScope.iamUser);
+            //  If there is a user object
+            if (iaeUser) {
+                //  If no user object is being held OR user object being held doesn't match new user object
+                if (!$rootScope.iamUser || $rootScope.iamUser != iaeUser) {
+                    //  Change user
+                    $rootScope.iamUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
+                    $rootScope.user = new User($rootScope.iamUser);
+                }
             }
         };
 

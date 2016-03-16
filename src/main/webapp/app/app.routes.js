@@ -42,12 +42,33 @@
                 .state('addProgram', {
                     url: "/programs/add/:section",
                     templateUrl: "programs/addedit.tpl.html",
-                    controller: "AddEditProgram as gsavm"
+                    controller: "AddEditProgram as gsavm",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_PROGRAMS
+                        ]
+                    }
                 })
                 .state('editProgram', {
                     url: "/programs/:id/edit/:section",
                     templateUrl: "programs/addedit.tpl.html",
-                    controller: "AddEditProgram as gsavm"
+                    controller: "AddEditProgram as gsavm",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
+                        ]
+                    }
+                })
+                .state('reviewProgram', {
+                    url: "/programs/:id/edit/review",
+                    templateUrl: "programs/addedit.tpl.html",
+                    controller: "AddEditProgram as gsavm",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_REVIEW_PROGRAMS
+                        ]
+                    }
                 })
                 .state('programList', {
                     url: "/programs/main",

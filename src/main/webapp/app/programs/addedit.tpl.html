@@ -43,7 +43,7 @@
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required" >*</span></label></h3>
                 <div class="input-field" >
-                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="gsavm.program.status==='Published' || gsavm.program.status==='published'">
+                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status==='Published' || gsavm.program.status==='published') && !gsavm.program.archived">
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.title.$dirty">
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                     </div>
@@ -1901,10 +1901,10 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_SUBMIT_OMB] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status)" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Archived'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_SUBMIT_OMB] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>
         <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>

@@ -43,7 +43,7 @@
                 <button has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" type="button" ng-show="row.data.status === 'Archived'" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
                 <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" ng-show="row.data.status === 'Published'" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
             </td>
-            <td>{{row.data.status}}</td>
+            <td>{{row.archived ? 'Archived' : row.status.value}}</td>
         </tr>
         <tr ng-show="!programs || programs.length == 0">
             <td colspan="7" class="text-center">No Results Found</td>
