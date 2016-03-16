@@ -39,9 +39,9 @@
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_PROGRAMS] }}" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
 
-                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" ng-show="row.data.status === 'Published'" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" type="button" ng-show="row.data.status === 'Archived'" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" ng-show="row.data.status === 'Published'" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" ng-show="row.data.status === 'Published' && !row.archived" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" type="button" ng-show="row.data.status === 'Published' && row.archived" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" ng-show="row.data.status === 'Published' && !row.archived" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
             </td>
             <td>{{row.archived ? 'Archived' : row.status.value}}</td>
         </tr>
