@@ -30,13 +30,15 @@
     <div>
         <p class="vp-field-label"> Types of Assistance (040):</p>
 
-        <div class="vp-field-value" ng-repeat="item in programData.assistanceTypes"><p>{{item}},</p></div>
+        <div class="vp-field-value" ng-repeat="item in programData.assistanceTypes">
+            <p>{{traverseTree(item).displayValue}}</p>
+        </div>
     </div>
 
     <div>
         <p class="vp-field-label"> Uses and Use Restrictions (070): </p>
 
-        <p class="vp-field-value" ng-bind="programData.usage.rules.content"></p>
+        <p class="vp-field-value">{{ programData.usage.rules.content }}</p>
     </div>
 
 </div>
