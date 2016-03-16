@@ -3,6 +3,19 @@
   margin: 0;
   padding: 2em 0;
 
+  .usa-grid-full{
+        background-color:#F1F1F1;
+        padding:0px 14px 0px 14px;
+          
+    label, select{
+        color: black;
+    }
+  }
+  
+  .usa-grid-full:last-child{
+      margin-bottom: 20px;
+  }
+  
   .usa-grid {
     padding: 0;
 
