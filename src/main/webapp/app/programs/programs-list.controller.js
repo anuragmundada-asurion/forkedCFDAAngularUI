@@ -166,7 +166,7 @@
                     oApiParam.apiName = 'programRequest';
                     //define API params
                     oApiParam.oData = {
-                        programId: $scope.oEntity.id,
+                        programId: $scope.oEntity._id,
                         requestType: $scope.ngDialogData.action,
                         reason: $scope.reason,
                         data: {}
@@ -191,6 +191,18 @@
                     oApiParam.oData = {
                         requestId: $scope.oEntity.id,
                         actionType: $scope.ngDialogData.action,
+                        reason: $scope.reason
+                    };
+                } else if ($scope.ngDialogData.typeEntity === 'program_submit') {
+                    //set API Name to call
+                    oApiParam.apiName = 'programSubmit';
+                    //define success message
+                    message.success = 'This program has been submitted for review!';
+
+                    oApiParam.apiSuffix = '/' + $scope.oEntity._id + '/submit';
+
+                    //define API params
+                    oApiParam.oData = {
                         reason: $scope.reason
                     };
                 }

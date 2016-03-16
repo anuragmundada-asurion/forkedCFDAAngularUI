@@ -8,6 +8,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -68,25 +69,13 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs", method = RequestMethod.POST)
     public String createProgramApiCall(@RequestBody String jsonData) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl());
-        HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
+        return this.createCall(getProgramsApiUrl(), jsonData);
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
     public String updateProgramApiCall(@PathVariable("id") String id,
                                        @RequestBody String jsonData) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + id) ;
-        HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
-        return response.getBody();
+        return this.updateCall(getProgramsApiUrl() + "/" + id, jsonData);
     }
 
     @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.DELETE)
@@ -171,23 +160,9 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/publish/{id}", method = RequestMethod.POST, produces = { MediaType.TEXT_PLAIN_VALUE })
-    public String publishProgram(@PathVariable("id") String programId,
-                                 @RequestParam (value="parentProgramId", required=false) String parentProgramId,
-                                 @RequestParam (value="reason", required=false) String reason,
-                                 @RequestParam (value="programNumber", required=false) String programNumber) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/publish/" + programId)
-                .queryParam("parentProgramId", parentProgramId)
-                .queryParam("reason", reason)
-                .queryParam("programNumber", programNumber);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
+    @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String submitProgram(@PathVariable("id") String programId, @RequestBody(required=false) String jsonData) throws Exception {
+        return this.actionCall(getProgramsApiUrl() + "/" + programId + "/submit", jsonData);
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -278,6 +253,16 @@ public class ApiController {
         return response.getBody();
     }
 
+    private String actionCall(String url, String jsonBody) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
+        HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
+        return response.getBody();
+    }
+
     private String createCall(String url, String jsonBody) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -302,8 +287,12 @@ public class ApiController {
 
     private String updateCall(String url, String jsonBody) {
         RestTemplate restTemplate = new RestTemplate();
+        //  Needed for PATCH calls
+        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+        restTemplate.setRequestFactory(requestFactory);
+
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
@@ -430,11 +419,11 @@ public class ApiController {
     }
 
     private String getEligibilitylistingsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings/eligibility";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/reports/programEligibilityDistribution";
     }
 
     private String getListingCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/reports/programCount";
     }
 
     private String getDictionaryApiUrl() {

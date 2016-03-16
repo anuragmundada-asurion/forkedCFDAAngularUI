@@ -1799,7 +1799,7 @@
                         <h4>General Information</h4>
                         <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('050 Objective')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
+                        <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('060 Types of Assistance')" ng-show="!gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0" trigger-click-on-enter>060 Types of Assistance is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
@@ -1902,7 +1902,7 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status)" ng-click="gsavm.publishProgram(gsavm.program)">Save & Publish</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_SUBMIT_OMB] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status)" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Archived'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published'" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>
