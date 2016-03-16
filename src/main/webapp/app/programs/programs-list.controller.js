@@ -166,7 +166,8 @@
                     oApiParam.apiName = 'programRequest';
                     //define API params
                     oApiParam.oData = {
-                        programId: $scope.oEntity._id,
+                        //from listing programs we get $scope.oEntity.id /// from editPage program, we get : $scope.oEntity._id
+                        programId: ($scope.oEntity.hasOwnProperty('id')) ? $scope.oEntity.id : $scope.oEntity._id,
                         requestType: $scope.ngDialogData.action,
                         reason: $scope.reason,
                         data: {}
