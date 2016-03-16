@@ -7,9 +7,8 @@
         function ($state, $scope, $stateParams, appConstants, SearchFactory, ProgramFactory, Dictionary) {
             console.log("hello world from viewProgramController... yay!");
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data) {
-                $scope.program = data;
-                $scope.programData = $scope.program.data;
-                console.log($scope.program);
+                $scope.programData = data;
+                console.log($scope.programData);
             });
         }
     ]);

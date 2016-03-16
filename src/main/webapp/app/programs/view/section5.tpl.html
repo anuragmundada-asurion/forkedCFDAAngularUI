@@ -1,0 +1,59 @@
+<div class="section financial-info">
+    <h1>Financial Information and Accomplishments</h1>
+
+
+    <div class="subsection">
+        <h2> Financial Information (120)</h2>
+
+        <div class="field">
+            <p class="vp-field-label">Account Identification (121):</p>
+
+            <p class="vp-field-value" ng-bind="programData.financial.accounts.code"></p>
+        </div>
+        <div class="field">
+            <p class="vp-field-label">Obligations (122):</p>
+            <p>listing of obligations...</p>
+            <div class="vp-field-value" ng-repeat="item in programData.financial.obligations.values"><p>{{item}};</p></div>
+        </div>
+        <div class="field">
+            <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
+
+            <p class="vp-field-value" ng-bind="programData.financial.additionalInfo.content"></p>
+        </div>
+        <div class="field">
+            <p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>
+
+            <p class="vp-field-value">Treasury Dept Code: <span ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
+
+            <p class="vp-field-value">Allocation Transfer Agency: <span ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
+
+            <p class="vp-field-value">FY 1: <span ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
+
+            <p class="vp-field-value">FY 2: <span ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
+
+            <p class="vp-field-value">Treasury Account Main Code: <span ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
+
+            <p class="vp-field-value">TAFS Sub-Account: <span ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
+        </div>
+
+    </div>
+
+
+    <div class="subsection">
+        <h2>Program Accomplishments 130:</h2>
+
+
+        <h5>Are there program accomplishments?</h5>
+
+        <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
+
+        <div class="vp-field-value" ng-show="programData.postAward.accomplishments.flag === 'yes'">
+
+            <p>listing of accomplishments...</p>
+            <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
+
+        </div>
+    </div>
+
+
+</div>

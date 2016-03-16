@@ -1,8 +1,24 @@
-.vp-section{
-  p{
-    margin:0;
+.vp-section {
+  p {
+    margin: 0;
+    color: blue;
   }
-  span{
+  span {
+    color: blue;
+  }
+
+  .contact-info {
+    background-color: #F1FAE6;
+    padding: 20px;
+
+    .website a {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        overflow: visible;
+      }
+    }
 
   }
 }

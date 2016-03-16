@@ -1,18 +1,22 @@
-<div class="usa-grid-full">
-    <div ng-show="program">
-        <div ng-include="'programs/view/view-section1.tpl.html'"></div>
-        <hr/>
-        <!--<div ng-include="'programs/view-section2.tpl.html'"></div>-->
-        <!--<hr/>-->
-        <!--<div ng-include="'programs/view-section3.tpl.html'"></div>-->
-        <!--<hr/>-->
-        <!--<div ng-include="'programs/view-section4.tpl.html'"></div>-->
-        <!--<hr/>-->
-        <!--<div ng-include="'programs/view-section5.tpl.html'"></div>-->
-        <!--<hr/>-->
-        <!--<div ng-include="'programs/view-section6.tpl.html'"></div>-->
+<div ng-show="programData" class="usa-grid-full vp-section">
+
+    <div class="usa-width-three-fourths" style="">
+        <h1> Listing Information </h1>
+
+        <div ng-include="'programs/view/section1.tpl.html'"></div>
+        <div ng-include="'programs/view/section2.tpl.html'"></div>
+        <div ng-include="'programs/view/section3.tpl.html'"></div>
+        <div ng-include="'programs/view/section4.tpl.html'"></div>
+        <div ng-include="'programs/view/section5.tpl.html'"></div>
+
     </div>
-    <div ng-show="!program">
-        <!-- loading icon -->
+
+    <div class="usa-width-one-fourth">
+        <div ng-include="'programs/view/section6.tpl.html'"></div>
     </div>
+
 </div>
+<div ng-show="!programData">
+    <!-- loading icon -->
+</div>
+
