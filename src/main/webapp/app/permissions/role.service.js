@@ -7,107 +7,102 @@
         this.ANONYMOUS = {
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS
+                PERMISSIONS.CAN_VIEW_PROGRAM
             ]
         };
         this.SUPER_USER = {
             'iamRoleId' : 'GSA_CFDA_R_cfdasuperuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
-                PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
-                PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                PERMISSIONS.CAN_PERFORM_ARCHIVE,
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
-                PERMISSIONS.CAN_APPROVE_UNARCHIVE,
-                PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
+                PERMISSIONS.CAN_PERFORM_UNARCHIVE,
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
+                PERMISSIONS.CAN_REQUEST_SUBMISSION,
+                PERMISSIONS.CAN_PERFORM_SUBMISSION
             ]
         };
         this.AGENCY_COORDINATOR = {
             'iamRoleId' : 'GSA_CFDA_R_cfda_agency_coord',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
-                PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
-                PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                PERMISSIONS.CAN_PERFORM_ARCHIVE,
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
-                PERMISSIONS.CAN_APPROVE_UNARCHIVE,
-                PERMISSIONS.CAN_SUBMIT_OMB
+                PERMISSIONS.CAN_PERFORM_UNARCHIVE,
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
+                PERMISSIONS.CAN_REQUEST_SUBMISSION
             ]
         };
         this.AGENCY_USER = {
             'iamRoleId' : 'GSA_CFDA_R_agency_submitter',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
-                PERMISSIONS.CAN_SUBMIT_OMB
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
+                PERMISSIONS.CAN_REQUEST_SUBMISSION
             ]
         };
         this.OMB_ANALYST = {
             'iamRoleId' : 'GSA_CFDA_R_omb_analyst',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
-                PERMISSIONS.CAN_APPROVE_PROGRAMS,
-                PERMISSIONS.CAN_REJECT_PROGRAMS
+                PERMISSIONS.CAN_PERFORM_SUBMISSION
             ]
         };
         this.GSA_ANALYST = {
             'iamRoleId' : 'GSA_CFDA_R_gsa_analyst',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
+                PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
+                PERMISSIONS.CAN_PERFORM_SUBMISSION
             ]
         };
         this.RMO_SUPER_USER = {
             'iamRoleId' : 'GSA_CFDA_R_rmo_superuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
-                PERMISSIONS.CAN_EDIT_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
-                PERMISSIONS.CAN_REQUEST_UNARCHIVE
+                PERMISSIONS.CAN_REQUEST_UNARCHIVE,
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
+                PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
             ]
         };
 
@@ -115,10 +110,9 @@
             'iamRoleId' : 'GSA_CFDA_R_cfdalimitedsuperuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
-                PERMISSIONS.CAN_QUERY_REGIONAL_AGENCY_OFFICES,
-                PERMISSIONS.CAN_VIEW_PROGRAMS,
+                PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
-                PERMISSIONS.CAN_VIEW_ARCHIVE_PROGRAMS
+                PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS
             ]
         };
 
@@ -134,8 +128,8 @@
         ];
     }]);
 
-    myApp.service('PermissionService', ['ROLES', function(ROLES) {
-        this.getPermissionsFromIAMRole = function(iamRole) {
+    myApp.service('RoleService', ['ROLES', function(ROLES) {
+        this.getRoleFromIAMRole = function(iamRole) {
             var role = null;
 
             ROLES.ROLE_LIST.every(function(r) {
@@ -147,8 +141,8 @@
                 }
             });
 
-            return role ? role.permissions : [];
-        };
+            return role;
+        }
     }]);
 
     myApp.run(['$rootScope', 'ROLES', function($rootScope, ROLES) {

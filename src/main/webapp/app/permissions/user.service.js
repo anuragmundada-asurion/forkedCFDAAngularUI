@@ -3,32 +3,41 @@
 
     var myApp = angular.module('app');
 
-    myApp.factory('User', ['PermissionService', function(PermissionService) {
+    myApp.factory('User', ['RoleService', 'ROLES', function(RoleService, ROLES) {
         function User(IamUser) {
             var uid = IamUser ? IamUser['uid'] : null;
             var token = IamUser ? IamUser['tokenId'] : null;
-            var roles = IamUser ? IamUser['gsaRAC'] : [];
+            var roles = IamUser ? IamUser['gsaRAC'] : null;
+            var roleList = [];
             var permissions = [];
 
             if (roles) {
-                roles.every(function(r) {
-                    var permissionList = PermissionService.getPermissionsFromIAMRole(r);
-                    permissionList.every(function(p) {
-                        if (permissions.indexOf(p) === -1) {
-                            permissions.push(p);
-                        }
-                        return true;
-                    });
+                roles.forEach(function(r) {
+                    var role = RoleService.getRoleFromIAMRole(r);
+                    if (role) {
+                        roleList.push(role);
+                        role.permissions.forEach(function(p) {
+                            if (permissions.indexOf(p) === -1) {
+                                permissions.push(p);
+                            }
+                        });
+                    }
                 });
+            } else {
+                roleList.push(ROLES.ANONYMOUS);
+                permissions = ROLES.ANONYMOUS.permissions;
             }
 
             return {
                 uid: uid,
                 token: token,
-                roles: roles,
+                roles: roleList,
                 permissions: permissions,
                 getPermissions: function() {
                     return this.permissions ? this.permissions : [];
+                },
+                getRoles: function() {
+                    return this.roles ? this.roles : [];
                 }
             };
         }
@@ -39,6 +48,11 @@
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
         this.getUser = function() {
             this.refreshUser();
+
+            if (!$rootScope.user) {
+                $rootScope.user = new User();
+            }
+
             return $rootScope.user;
         };
 
