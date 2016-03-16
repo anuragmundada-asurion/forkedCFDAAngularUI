@@ -3,7 +3,7 @@
 
 
     <div class="subsection">
-        <h2> Financial Information (120)</h2>
+        <h4 class="vp-field-label"> Financial Information (120)</h4>
 
         <div class="field">
             <p class="vp-field-label">Account Identification (121):</p>
@@ -12,7 +12,7 @@
         </div>
         <div class="field">
             <p class="vp-field-label">Obligations (122):</p>
-            <p>listing of obligations...</p>
+
             <div class="vp-field-value" ng-repeat="item in programData.financial.obligations.values"><p>{{item}};</p></div>
         </div>
         <div class="field">
@@ -23,25 +23,24 @@
         <div class="field">
             <p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>
 
-            <p class="vp-field-value">Treasury Dept Code: <span ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
+            <p>Treasury Dept Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
 
-            <p class="vp-field-value">Allocation Transfer Agency: <span ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
+            <p>Allocation Transfer Agency: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
 
-            <p class="vp-field-value">FY 1: <span ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
+            <p>FY 1: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
 
-            <p class="vp-field-value">FY 2: <span ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
+            <p>FY 2: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
 
-            <p class="vp-field-value">Treasury Account Main Code: <span ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
+            <p>Treasury Account Main Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
 
-            <p class="vp-field-value">TAFS Sub-Account: <span ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
+            <p>TAFS Sub-Account: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
         </div>
 
     </div>
 
 
     <div class="subsection">
-        <h2>Program Accomplishments 130:</h2>
-
+        <h4 class="vp-field-label"> Program Accomplishments (130)</h4>
 
         <h5>Are there program accomplishments?</h5>
 
@@ -50,6 +49,7 @@
         <div class="vp-field-value" ng-show="programData.postAward.accomplishments.flag === 'yes'">
 
             <p>listing of accomplishments...</p>
+
             <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
 
         </div>
