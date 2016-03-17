@@ -12,7 +12,6 @@
             //}
             if (stateConfig['access']) {
                 var authenticated = AuthenticationService.authenticate();
-
                 if (!authenticated) {
                     event.preventDefault();
                     return $state.go('401');

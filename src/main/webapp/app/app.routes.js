@@ -32,12 +32,22 @@
                 .state('searchPrograms', {
                     url: "/search?keyword",
                     templateUrl: "search/results.tpl.html",
-                    controller: "ProgramSearchCtrl"
+                    controller: "ProgramSearchCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
+                        ]
+                    }
                 })
                 .state('advancedSearch', {
                     url: "/advanced-search",
                     templateUrl: "search/_AdvancedSearch.tpl.html",
-                    controller: "ProgramSearchCtrl"
+                    controller: "ProgramSearchCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
+                        ]
+                    }
                 })
                 .state('addProgram', {
                     url: "/programs/add/:section",
@@ -55,14 +65,14 @@
                     controller: "AddEditProgram as gsavm",
                     access: {
                         requiredPermissions: [
-                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                             PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
                         ]
                     }
                 })
                 .state('reviewProgram', {
-                    url: "/programs/:id/edit/review",
-                    templateUrl: "programs/addedit.tpl.html",
+                    url: "/programs/:id/review",
+                    templateUrl: "programs/view/review.tpl.html",
                     controller: "AddEditProgram as gsavm",
                     access: {
                         requiredPermissions: [
@@ -73,7 +83,12 @@
                 .state('viewProgram', {
                     url: "/programs/:id/view",
                     templateUrl: "programs/view/viewProgram.tpl.html",
-                    controller: "ViewProgramCtrl as viewCtrl"
+                    controller: "ViewProgramCtrl as viewCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_VIEW_PROGRAM
+                        ]
+                    }
                 })
                 .state('programList', {
                     url: "/programs/main",
@@ -82,14 +97,17 @@
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_CREATE_PROGRAMS,
-                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
                             PERMISSIONS.CAN_REVIEW_PROGRAMS,
                             PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
-                            PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                            PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                             PERMISSIONS.CAN_REQUEST_ARCHIVE,
-                            PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                            PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                             PERMISSIONS.CAN_REQUEST_UNARCHIVE,
-                            PERMISSIONS.CAN_APPROVE_UNARCHIVE
+                            PERMISSIONS.CAN_PERFORM_UNARCHIVE,
+                            PERMISSIONS.CAN_REQUEST_SUBMISSION,
+                            PERMISSIONS.CAN_PERFORM_SUBMISSION
                         ]
                     }
                 })
@@ -112,14 +130,17 @@
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_CREATE_PROGRAMS,
-                            PERMISSIONS.CAN_EDIT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
                             PERMISSIONS.CAN_REVIEW_PROGRAMS,
                             PERMISSIONS.CAN_REQUEST_TITLE_CHANGE,
-                            PERMISSIONS.CAN_APPROVE_TITLE_CHANGE,
+                            PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                             PERMISSIONS.CAN_REQUEST_ARCHIVE,
-                            PERMISSIONS.CAN_APPROVE_ARCHIVE,
+                            PERMISSIONS.CAN_PERFORM_TITLE_CHANGE,
                             PERMISSIONS.CAN_REQUEST_UNARCHIVE,
-                            PERMISSIONS.CAN_APPROVE_UNARCHIVE
+                            PERMISSIONS.CAN_PERFORM_UNARCHIVE,
+                            PERMISSIONS.CAN_REQUEST_SUBMISSION,
+                            PERMISSIONS.CAN_PERFORM_SUBMISSION
                         ]
                     }
                 })
