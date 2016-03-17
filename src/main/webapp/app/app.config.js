@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.run(['$rootScope', '$document', 'ngDialog', 'SearchFactory',
-        function ($rootScope, $document, ngDialog, SearchFactory) {
+    myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory',
+        function ($rootScope, $document, $state, ngDialog, SearchFactory) {
             $rootScope.$on('$stateChangeSuccess', function() {
                 $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
             });
@@ -42,6 +42,13 @@
                     //empty Search criteria (keyword & advanced search criterias) 
                     //when user go to other pages rather then search
                     SearchFactory.setSearchCriteria(null, {});
+                }
+
+                //bugfix: angular-ui-router: 0.2.13+
+                //http://stackoverflow.com/questions/27120308/angular-ui-router-urlrouterprovider-when-not-working-when-i-click-a-ui-sref
+                if (stateConfig.name === "programList") { 
+                    event.preventDefault();
+                    $state.go('programList.status', {status: 'all'});
                 }
             });
         }
