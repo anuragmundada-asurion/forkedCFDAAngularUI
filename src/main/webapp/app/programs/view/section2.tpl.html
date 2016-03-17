@@ -7,6 +7,7 @@
         <p class="vp-field-label">Eligible Applicants</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types"><p>{{item}},</p></div>
+        <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types"><p>{{traverseTree(item).displayValue}},</p></div>
 
         <p class="vp-field-label">Use Of Assistance</p>
 
