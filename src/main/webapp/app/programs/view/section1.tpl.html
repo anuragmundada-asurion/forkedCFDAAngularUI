@@ -2,19 +2,6 @@
     <h3 class="section-header">1 -- General Information</h3>
 
     <div>
-        <p class="vp-field-label"> Listing Title (010):</p>
-
-        <p class="vp-field-value" ng-bind="programData.title"></p>
-    </div>
-
-    <div>
-        <p class="vp-field-label"> Popular Name (020):</p>
-
-        <p class="vp-field-value" ng-bind="programData.alternativeNames"></p>
-    </div>
-
-
-    <div>
         <p class="vp-field-label"> Authorization (040):</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.authorizations"><p>{{item.act.description}},</p></div>
