@@ -250,14 +250,14 @@
                             <span ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
                         </div>
                         <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.formatModelString(item, '_id', 'programs', 'programNumber + " " + title')}}</span>
+                            <span class='text-nowrap'>{{$ctrl.parentVm.formatModelString(item, 'data._id', 'programs', 'data.programNumber + " " + data.title')}}</span>
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-adv-multi-select
                                     ng-model="_multiEntrySelect.current"
                                     ux-choices="$ctrl.parentVm.choices['programs']"
-                                    ux-choice-value="_id"
-                                    ux-choice-title="programNumber + ' ' + title"
+                                    ux-choice-value="id"
+                                    ux-choice-title="data.programNumber + ' ' + data.title"
                                     ux-items-per-page="25"
                                     ux-displayed-pages="5"
                                     ux-search-filter="searchRelatedPrograms:srchText"
@@ -1901,7 +1901,7 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_SUBMIT_OMB] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>

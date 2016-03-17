@@ -35,23 +35,23 @@
         <td>{{row.reason}}</td>
         <td class="action-row">
             <div  ng-show="row.requestType.value === 'archive_request'">
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_ARCHIVE] }}" type="button" title="Approve Archive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'archive')"><span class="fa fa-check-circle-o"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_ARCHIVE] }}" type="button" title="Reject Archive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'archive_reject')"><span class="fa fa-times-circle"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_ARCHIVE] }}" type="button" title="Approve Archive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'archive')"><span class="fa fa-check-circle-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_ARCHIVE] }}" type="button" title="Reject Archive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'archive_reject')"><span class="fa fa-times-circle"></span></button>
             </div>
 
             <div ng-show="row.requestType.value === 'unarchive_request'">
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_UNARCHIVE] }}" type="button" title="Approve Unarchive Request"ng-click="showProgramRequestModal(row, 'program_request_action', 'unarchive')"><span class="fa fa-check-circle-o"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_UNARCHIVE] }}" type="button" title="Reject Unarchive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'unarchive_reject')"><span class="fa fa-times-circle"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}" type="button" title="Approve Unarchive Request"ng-click="showProgramRequestModal(row, 'program_request_action', 'unarchive')"><span class="fa fa-check-circle-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}" type="button" title="Reject Unarchive Request" ng-click="showProgramRequestModal(row, 'program_request_action', 'unarchive_reject')"><span class="fa fa-times-circle"></span></button>
             </div>
 
             <div ng-show="row.requestType.value === 'title_request'">
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_TITLE_CHANGE] }}" type="button" title="Approve Title Change" ng-click="showProgramRequestModal(row, 'program_request_action', 'title')"><span class="fa fa-check-circle-o"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_TITLE_CHANGE] }}" type="button" title="Reject Title Change" ng-click="showProgramRequestModal(row, 'program_request_action', 'title_reject')"><span class="fa fa-times-circle"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_TITLE_CHANGE] }}" type="button" title="Approve Title Change" ng-click="showProgramRequestModal(row, 'program_request_action', 'title')"><span class="fa fa-check-circle-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_TITLE_CHANGE] }}" type="button" title="Reject Title Change" ng-click="showProgramRequestModal(row, 'program_request_action', 'title_reject')"><span class="fa fa-times-circle"></span></button>
             </div>
 
             <div ng-show="row.requestType.value === 'submit'">
-                <button has-access="{{ [PERMISSIONS.CAN_APPROVE_PROGRAMS] }}" type="button" title="Approve Program Publish" ng-click="showProgramRequestModal(row, 'program_request_action', 'publish')"><span class="fa fa-check-circle-o"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_REJECT_PROGRAMS] }}" type="button" title="Reject Program" ng-click="showProgramRequestModal(row, 'program_request_action', 'reject_program')"><span class="fa fa-times-circle"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" type="button" title="Approve Program Publish" ng-click="showProgramRequestModal(row, 'program_request_action', 'publish')"><span class="fa fa-check-circle-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" type="button" title="Reject Program" ng-click="showProgramRequestModal(row, 'program_request_action', 'reject_program')"><span class="fa fa-times-circle"></span></button>
             </div>
         </td>
         <td>{{ row.entryDate | amDateFormat:'MMMM, Do YYYY h:mm a' }}</td>

@@ -6,9 +6,9 @@
             if (!dataArray) return;
 
             return dataArray.filter(function(item) {
-                if (item['status'] !== 'Published') return false;
                 if (!searchTerm) return true;
 
+                item = item['data'];
                 searchTerm = searchTerm.toLowerCase();
                 return (item['title'] ? item['title'].toLowerCase().indexOf(searchTerm) > -1 : false) || (item['programNumber'] ? item['programNumber'].toLowerCase().indexOf(searchTerm) > -1 : false);
             });
