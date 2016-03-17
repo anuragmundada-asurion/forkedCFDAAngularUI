@@ -6,11 +6,11 @@
 
         <p class="vp-field-label">Eligible Applicants</p>
 
-        <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types"><p>{{item}},</p></div>
+        <span class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types">{{traverseTree(item).displayValue}}, </span>
 
         <p class="vp-field-label">Use Of Assistance</p>
 
-        <div class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.assistanceUsageTypes"><p>{{item}},</p></div>
+        <span class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.assistanceUsageTypes">{{traverseTree(item).displayValue}}, </span>
 
         <p class="vp-field-label">Additional Information</p>
 
@@ -23,8 +23,7 @@
 
         <p class="vp-field-label">Beneficiary Eligibility</p>
 
-        <div class="vp-field-value" ng-repeat="item  in programData.eligibility.beneficiary.types"><p>{{item}},</p>
-        </div>
+        <span class="vp-field-value" ng-repeat="item  in programData.eligibility.beneficiary.types">{{traverseTree(item).displayValue}}, </span>
 
         <p class="vp-field-label">Additional Information</p>
 

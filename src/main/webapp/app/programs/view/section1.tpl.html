@@ -30,9 +30,8 @@
     <div>
         <p class="vp-field-label"> Types of Assistance (040):</p>
 
-        <div class="vp-field-value" ng-repeat="item in programData.assistanceTypes">
-            <p>{{traverseTree(item).displayValue}}</p>
-        </div>
+        <span class="vp-field-value" ng-repeat="item in programData.assistanceTypes">{{traverseTree(item).displayValue}}, </span>
+
     </div>
 
     <div>
