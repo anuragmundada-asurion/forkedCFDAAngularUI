@@ -58,7 +58,7 @@
 
 
         this.isLoggedIn = function() {
-            return $rootScope.iamUser ? true : false;
+            return $rootScope.iamUser ? ($rootScope.iamUser.uid ? true : false) : false;
         };
 
         this.refreshUser = function() {
