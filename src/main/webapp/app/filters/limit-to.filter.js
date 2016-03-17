@@ -1,7 +1,7 @@
 !function() {
     //Exact limitTo filter found in Angular 1.4+. Remove once upgraded from 1.2.
     angular.module('app')
-        .filter('limitTo', limitToFilter)
+        .filter('limitToCFDA', limitToFilter)
 
     ////////////
 

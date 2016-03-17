@@ -72,7 +72,7 @@
                 }
             },
             choices: angular.extend({
-                programs: ProgramFactory.query({ limit: 2500 }),
+                programs: ProgramFactory.query({ limit: 2500, status: 'Published' }),
                 contacts: (typeof vm.program.agencyId !== 'undefined') ? Contacts.query({ agencyId: vm.program.agencyId}) : {},
                 offices: [
                     {
@@ -150,10 +150,11 @@
         });
 
         vm.choices.programs.$promise.then(function(data){
-            var relatedTo = getArray('relatedTo');
+            var relatedPrograms = $parse('relatedPrograms')(vm.program);
+            var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
             if(relatedTo.length > 0) {
                 var idArr = data.map(function (item) {
-                    return item._id;
+                    return item.data._id;
                 });
                 vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
             }
