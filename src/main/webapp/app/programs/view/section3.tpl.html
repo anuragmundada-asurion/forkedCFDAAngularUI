@@ -5,7 +5,8 @@
         <p class="vp-field-label">Is any prior coordination or approval required with governmental or nongovernmental units
             prior to the submission of a formal application to the Federal funding agency?</p>
 
-        <p class="vp-field-value" ng-bind="programData.preApplication.coordination.flag"></p>
+        <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'yes'"> Preapplication coordination is required.</p>
+        <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'no'"> Preapplication coordination is not applicable.</p>
 
         <!--<h5>Does this program require submission of environmental impact information?</h5>-->
         <!--<p class="vp-field-value" ng-bind="programData.preApplication.coordination.flag"></p>-->
