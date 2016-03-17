@@ -31,7 +31,7 @@
                                 '<button type="button" class="button-circle" ng-click="_ctrl.remove(item)"><span class="fa fa-times"></span></button>' +
                             '</div>' +
                             '<div class="item-title-group">' +
-                                '<span>{{ (item) }}</span>' +
+                                '<span>{{ _ctrl.choiceTitleGetter(item) }}</span>' +
                             '</div>' +
                         '</li>' +
                     '</ul>';

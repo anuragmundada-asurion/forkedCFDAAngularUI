@@ -35,7 +35,7 @@
             });
         } else { //new program
             vm.program = new ProgramFactory();
-            vm.program.agencyId = "REI Test Agency";
+            vm.program.agencyId = "100000000";
             vm.program._id = null;
         }
 
@@ -152,7 +152,7 @@
         vm.choices.programs.$promise.then(function(data){
             var relatedPrograms = $parse('relatedPrograms')(vm.program);
             var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
-            if(relatedTo.length > 0) {
+            if(relatedTo && relatedTo.length > 0) {
                 var idArr = data.map(function (item) {
                     return item.data._id;
                 });

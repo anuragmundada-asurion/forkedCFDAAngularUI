@@ -14,6 +14,7 @@
             'iamRoleId' : 'GSA_CFDA_R_cfdasuperuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
@@ -27,13 +28,15 @@
                 PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
                 PERMISSIONS.CAN_REQUEST_SUBMISSION,
-                PERMISSIONS.CAN_PERFORM_SUBMISSION
+                PERMISSIONS.CAN_PERFORM_SUBMISSION,
+                PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS
             ]
         };
         this.AGENCY_COORDINATOR = {
             'iamRoleId' : 'GSA_CFDA_R_cfda_agency_coord',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
@@ -45,13 +48,15 @@
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
                 PERMISSIONS.CAN_PERFORM_UNARCHIVE,
                 PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
-                PERMISSIONS.CAN_REQUEST_SUBMISSION
+                PERMISSIONS.CAN_REQUEST_SUBMISSION,
+                PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS
             ]
         };
         this.AGENCY_USER = {
             'iamRoleId' : 'GSA_CFDA_R_agency_submitter',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
@@ -60,13 +65,15 @@
                 PERMISSIONS.CAN_REQUEST_ARCHIVE,
                 PERMISSIONS.CAN_REQUEST_UNARCHIVE,
                 PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS,
-                PERMISSIONS.CAN_REQUEST_SUBMISSION
+                PERMISSIONS.CAN_REQUEST_SUBMISSION,
+                PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS
             ]
         };
         this.OMB_ANALYST = {
             'iamRoleId' : 'GSA_CFDA_R_omb_analyst',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
@@ -82,6 +89,7 @@
             'iamRoleId' : 'GSA_CFDA_R_gsa_analyst',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
@@ -94,6 +102,7 @@
             'iamRoleId' : 'GSA_CFDA_R_rmo_superuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_CREATE_PROGRAMS,
                 PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
@@ -110,6 +119,7 @@
             'iamRoleId' : 'GSA_CFDA_R_cfdalimitedsuperuser',
             'permissions': [
                 PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS,
+                PERMISSIONS.CAN_QUERY_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_PROGRAM,
                 PERMISSIONS.CAN_REVIEW_PROGRAMS,
                 PERMISSIONS.CAN_VIEW_ARCHIVED_PROGRAMS
