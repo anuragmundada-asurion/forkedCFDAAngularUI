@@ -64,7 +64,7 @@
                 'request': function(config) {
                     var user = UserService.getUser();
                     if (user) {
-                        config['X-Auth-Token'] = user.token;
+                        config['headers']['X-Auth-Token'] = user.token;
                     }
                     return config;
                 }

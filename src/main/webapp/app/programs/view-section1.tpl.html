@@ -130,7 +130,7 @@
         <fieldset class="usa-fieldset-inputs usa-sans">
             <label>Select any related programs below:<span class="required" >*</span></label>
             <div ng-repeat="item in gsavm.program.relatedPrograms.relatedTo">
-                <p type="text" class="italic">{{gsavm.formatModelString(item, '_id', 'programs', 'programNumber + " " + title')}}</p>
+                <p type="text" class="italic">{{gsavm.formatModelString(item, 'data._id', 'programs', 'data.programNumber + " " + data.title')}}</p>
             </div>
         </fieldset>
     </div>

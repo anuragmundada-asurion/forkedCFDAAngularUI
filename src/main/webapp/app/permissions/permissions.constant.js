@@ -7,6 +7,9 @@
         //  Public Search
         'CAN_QUERY_PUBLISHED_PROGRAMS': 'CanQueryPublishedPrograms',
 
+        //  Database Search
+        'CAN_QUERY_PROGRAMS': 'CanQueryPrograms',
+
         //  Individual Published Program
         'CAN_VIEW_PROGRAM': 'CanViewProgram',
 
@@ -15,6 +18,9 @@
 
         //  Edit Draft Program
         'CAN_EDIT_DRAFT_PROGRAMS': 'CanEditDraftPrograms',
+
+        //  Delete Draft Program
+        'CAN_DELETE_DRAFT_PROGRAMS': 'CanDeleteDraftPrograms',
 
         //  Review Program Page
         'CAN_REVIEW_PROGRAMS': 'CanReviewPrograms',
