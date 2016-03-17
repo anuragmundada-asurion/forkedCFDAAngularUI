@@ -1,6 +1,7 @@
 <div class="subsection general-info">
     <div>
         <p class="vp-field-label-big"> Authorization (040):</p>
+
         <div class="vp-field-value" ng-repeat="item in programData.authorizations">
             <p>{{ appUtil.getAuthorizationTitle(item) }}</p>
         </div>
@@ -22,8 +23,24 @@
 
     <div>
         <p class="vp-field-label-big"> Uses and Use Restrictions (070): </p>
-        <p class="vp-field-label"> Describe how assistance can potentially be used </p>
-        <p class="vp-field-value">{{ programData.usage.rules.content }}</p>
+
+        <div class="tabover">
+            <p class="vp-field-label"> Describe how assistance can potentially be used </p>
+
+            <p class="vp-field-value">{{ programData.usage.rules.content }}</p>
+
+            <p class="vp-field-label"> Are there specific restrictions place upon the use of the assistance? </p>
+
+            <p class="vp-field-value">{{ programData.usage.restrictions.flag }}</p>
+
+            <p class="vp-field-label"> Are there discretionary funds available? </p>
+
+            <p class="vp-field-value">{{ programData.usage.discretionaryFund.flag}}</p>
+
+            <p class="vp-field-label"> Are loans a type of assistance in this program? </p>
+
+            <p class="vp-field-value">{{ programData.usage.loanTerms.flag}}</p>
+        </div>
     </div>
 
 </div>
