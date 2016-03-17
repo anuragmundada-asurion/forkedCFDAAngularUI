@@ -56,6 +56,11 @@
             return $rootScope.user;
         };
 
+
+        this.isLoggedIn = function() {
+            return $rootScope.iamUser ? true : false;
+        };
+
         this.refreshUser = function() {
             var iaeUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
 
