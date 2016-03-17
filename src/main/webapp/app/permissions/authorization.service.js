@@ -21,5 +21,36 @@
 
             return hasPermission;
         };
+
+        /**
+         * Authorize user by role
+         * @param aRequiredRoles Array
+         * @returns Boolean
+         */
+        this.authorizeByRole = function(aRequiredRoles) {
+            var oUserRoles = UserService.getUser().getRoles();
+            var aUserRoles = [];
+            var hasRole = false;
+
+            //get roles from User (usually always one but we count for more)
+            angular.forEach(oUserRoles, function(oRole){
+                if(oRole.hasOwnProperty('iamRoleId')){
+                    aUserRoles.push(oRole.iamRoleId);
+                }
+            });
+
+            if (aRequiredRoles && aRequiredRoles.length) {
+                aRequiredRoles.every(function(oRequiredRole) {
+                    if (aUserRoles.indexOf(oRequiredRole.iamRoleId) !== -1) {
+                        hasRole = true;
+                        return false;
+                    }
+
+                    return true;
+                });
+            }
+
+            return hasRole;
+        };
     }]);
 }();

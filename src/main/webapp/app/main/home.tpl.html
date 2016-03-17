@@ -16,6 +16,44 @@
 <div style="background-color:#112e51;position:relative;top:-35px;margin-bottom:-35px">
     <!-- search options are another grid -->
 
+    <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}" class="usa-grid-full home-dashboard">
+        <div class="usa-grid-full">
+            <div class="user-dashboard-label">{{ user.name }}'s Dashboard</div>
+            <div class="user-dashboard-request">
+                <span><img src="/img/img_cfda/loading.svg" /></span> Request(s)
+            </div>
+        </div>
+        <div class="count-box">
+            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <h4>Total Active Listings</h4>
+        </div>
+        <div class="count-box">
+            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <h4>Open Listings</h4>
+        </div>
+        <div class="count-box">
+            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <h4>Pending Listings</h4>
+        </div>
+        <div class="count-box">
+            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <h4>Published Listings</h4>
+        </div>
+        <div class="count-box">
+            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <h4>Rejected Listings</h4>
+        </div>
+        
+        <div class="usa-grid-full text-center">
+            <a class="usa-button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}"><span class="fa fa-plus-circle"></span> Create a new listing</a>
+        </div>
+        <hr>
+        <div class="usa-grid-full text-center">
+            <a class="usa-button usa-button-gray" ui-sref="programList.status({status: 'archived'})"><span class="fa fa-archive"></span> Archived Listing</a>
+            <a class="usa-button usa-button-gray"><span class="fa fa-server"></span> Historical Index</a>
+        </div>
+    </div>
+
     <div class="usa-grid-full home-info" style="background-color:#FFF;padding:1px 8px 8px 8px;text-align:left">
         <div class="usa-width-one-half">
             <h3>New in {{ currentYear }}</h3>

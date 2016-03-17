@@ -43,3 +43,71 @@
     height: 100%;
   }
 }
+
+.home-dashboard{
+    background-color:#FFF;
+    padding:5px 0px 5px 0px;
+    margin-bottom: 20px;
+    
+    .userDashboardCount{
+        font-size: 30px;
+        font-weight: bold;
+        color:#112E51;
+
+        img{
+            max-width: 15%;
+        }
+    }
+
+    .count-box{
+        float: left;
+        background-color:#E1F3F8;
+        width: 207px;
+        padding: 20px;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 1px;
+        min-height: 170px;
+
+        h4{
+            font-weight: 300;
+            font-size: 25px;
+        }
+    }
+    .count-box:last-child{
+        margin-right: 0;
+    }
+
+    .user-dashboard-label{
+        float: left;
+        height: 70px;
+        line-height: 4;
+        padding-left: 50px;
+        font-weight: bold;
+        color: #666;
+        min-width: 600px;
+    }
+    .user-dashboard-request{
+        float: right;
+        height: 45px;
+        background-color: #48c92e;
+        min-width: 290px;
+        padding-left: 10px;
+        margin: 10px 0;
+        color: #fff;
+        font-weight: 700;
+        font-size: 17px;
+        font-family: Merriweather,Georgia,"Times New Roman",serif;
+        line-height: 3;
+        text-transform: uppercase;
+        
+        span img{
+            max-width: 5%;
+        }
+    }
+
+    hr{
+        border-top: 1px solid #888;
+        max-width: 90%;
+    }
+}
