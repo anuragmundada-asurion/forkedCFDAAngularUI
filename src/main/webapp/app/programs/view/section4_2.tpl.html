@@ -1,14 +1,15 @@
 <div class="subsection regulations-info">
-    <h3 class="section-header">4.2 --  Regulations, Guidelines, and Literature (140)</h3>
+    <h3 class="section-header">4.2 -- Regulations, Guidelines, and Literature (140)</h3>
 
-    <h5>Are there any regulations, guidelines or literature?</h5>
+    <p class="vp-field-label">Are there any regulations, guidelines or literature?</p>
 
     <p class="vp-field-value" ng-bind="programData.postAward.documents.flag"></p>
 
-    <div class="vp-field-value" ng-show="programData.postAward.documents.flag === 'yes'">
+    <div class="tabover" ng-show="programData.postAward.documents.flag === 'yes'">
 
-        <p class="vp-field-value"> Please describe regulations, guidelines, and literature.
-            <span ng-bind="programData.postAward.documents.content"></span></p>
+        <p class="vp-field-label"> Please describe regulations, guidelines, and literature.</p>
+
+        <p class="vp-field-value" ng-bind="programData.postAward.documents.content"></p>
 
     </div>
 

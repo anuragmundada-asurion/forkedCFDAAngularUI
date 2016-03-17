@@ -1,52 +1,55 @@
-
 <div class="subsection assistance-info">
-    <h3 class="section-header">4 --  Assistance Consideration (100)</h3>
+    <h3 class="section-header">4 -- Assistance Consideration (100)</h3>
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Formula and Matching Requirements (101):</h4>
-        <h5>Does this program have a statutory formula and/or administrative rule reference in the CFR? </h5>
+        <h5> Formula and Matching Requirements (101):</h5>
+
+        <p class="vp-field-label">Does this program have a statutory formula and/or administrative rule reference in the CFR? </p>
 
         <p class="vp-field-value" ng-bind="programData.assistance.formula.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.assistance.formula.flag =='yes'">
-            <p class="vp-field-value"> Title: <span ng-bind="programData.assistance.formula.title"></span></p>
+        <div class="tabover" ng-show="programData.assistance.formula.flag =='yes'">
+            <p class="vp-field-label"> Title: <span class="vp-field-value" ng-bind="programData.assistance.formula.title"></span></p>
 
-            <p class="vp-field-value"> Chapter: <span ng-bind="programData.assistance.formula.chapter"></span></p>
+            <p class="vp-field-label"> Chapter: <span class="vp-field-value" ng-bind="programData.assistance.formula.chapter"></span></p>
 
-            <p class="vp-field-value"> Part: <span ng-bind="programData.assistance.formula.part"></span></p>
+            <p class="vp-field-label"> Part: <span class="vp-field-value" ng-bind="programData.assistance.formula.part"></span></p>
 
-            <p class="vp-field-value"> Subpart: <span ng-bind="programData.assistance.formula.subPart"></span></p>
+            <p class="vp-field-label"> Subpart: <span class="vp-field-value" ng-bind="programData.assistance.formula.subPart"></span></p>
 
-            <p class="vp-field-value"> Public Law: <span ng-bind="programData.assistance.formula.publicLaw"></span></p>
+            <p class="vp-field-label"> Public Law: <span class="vp-field-value" ng-bind="programData.assistance.formula.publicLaw"></span></p>
 
-            <p class="vp-field-value"> Additional Info: <span ng-bind="programData.assistance.formula.additionalInfo.content"></span></p>
+            <p class="vp-field-label"> Additional Info: <span class="vp-field-value" ng-bind="programData.assistance.formula.additionalInfo.content"></span></p>
         </div>
-        <h5>Does this program have matching requirements? </h5>
+
+
+        <p class="vp-field-label">Does this program have matching requirements? </p>
 
         <p class="vp-field-value" ng-bind="programData.assistance.matching.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.assistance.matching.flag =='yes'">
-            <p class="vp-field-value"> Select the Percentage Below: <span ng-bind="programData.assistance.matching.percent"></span></p>
+        <div class="tabover" ng-show="programData.assistance.matching.flag =='yes'">
+            <p class="vp-field-label"> Select the Percentage Below: <span class="vp-field-value" ng-bind="programData.assistance.matching.percent"></span></p>
 
-            <p class="vp-field-value"> Other Matching Requirements Information: <span ng-bind="programData.assistance.matching.otherInfo.content"></span></p>
+            <p class="vp-field-label"> Other Matching Requirements Information: <span class="vp-field-value" ng-bind="programData.assistance.matching.otherInfo.content"></span></p>
         </div>
-        <h5>Does this program have MOE requirements AND total allocations over $100 million (current FY)</h5>
+        <p class="vp-field-label">Does this program have MOE requirements AND total allocations over $100 million (current FY)</p>
 
         <p class="vp-field-value" ng-bind="programData.assistance.moe.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.assistance.moe.flag =='yes'">
-            <p class="vp-field-value"> Please enter any additional information below: <span ng-bind="programData.assistance.moe.additionalInfo.content"></span></p>
+        <div class="tabover" ng-show="programData.assistance.moe.flag =='yes'">
+            <p class="vp-field-label"> Please enter any additional information below: <span class="vp-field-value" ng-bind="programData.assistance.moe.additionalInfo.content"></span></p>
         </div>
     </div>
 
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Length and Time Phasing of Assistance (102):</h4>
-        <h5>What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</h5>
+        <h5> Length and Time Phasing of Assistance (102):</h5>
+
+        <p class="vp-field-label">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</p>
 
         <p class="vp-field-value" ng-bind="programData.assistance.limitation.content"></p>
 
-        <p class="vp-field-value"> How is the assistance awarded and/or released? </p>
+        <p class="vp-field-label"> How is the assistance awarded and/or released? </p>
 
         <p class="vp-field-value" ng-bind="programData.assistance.limitation.awarded"></p>
 
@@ -54,13 +57,14 @@
 
 
     <div>
-        <h4 class="vp-field-label" style="font-weight:bold;"> Criteria for Selecting Proposals (180):</h4>
-        <h5>Is there criteria for selecting proposals?</h5>
+        <h5> Criteria for Selecting Proposals (180):</h5>
+
+        <p class="vp-field-label">Is there criteria for selecting proposals?</p>
 
         <p class="vp-field-value" ng-bind="programData.application.selectionCriteria.flag"></p>
 
-        <div class="vp-field-value" ng-show="programData.application.selectionCriteria.flag=='yes'">
-            <p class="vp-field-value"> Please describe criteria for selecting proposals <span ng-bind="programData.application.selectionCriteria.content"></span></p>
+        <div class="tabover" ng-show="programData.application.selectionCriteria.flag=='yes'">
+            <p class="vp-field-label"> Please describe criteria for selecting proposals <span class="vp-field-value" ng-bind="programData.application.selectionCriteria.content"></span></p>
         </div>
 
     </div>

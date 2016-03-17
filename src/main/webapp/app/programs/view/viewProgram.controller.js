@@ -7,7 +7,7 @@
         function ($state, $scope, $stateParams,  $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary) {
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data) {
                 $scope.programData = data;
-                console.log($scope.programData);
+                //console.log($scope.programData);
             });
 
             Dictionary.query({ ids: ['assistance_type'] }, function(data) {
