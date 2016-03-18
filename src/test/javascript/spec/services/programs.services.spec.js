@@ -70,7 +70,7 @@ describe("Unit Tests for Programs Service", function () {
         it('should make a patch call to create program', function() {
             $httpBackend
                 .whenPATCH('/api/programs')
-                .respond('{"id": "testID", "data":{"_id": "testID"}}');
+                .respond('testID');
             var response = programsSvc.update({id: "testID"});
             $httpBackend.flush();
             expect(response).toBeDefined();

@@ -59,7 +59,7 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.GET, produces = "application/json")
-    public String getProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+    public String getProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                     @PathVariable("id") String id) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -77,7 +77,7 @@ public class ApiController {
         return this.createCall(accessToken, getProgramsApiUrl(), jsonData);
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String id,
                                        @RequestBody String jsonData) throws Exception {
@@ -203,7 +203,7 @@ public class ApiController {
         return getCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String requestId,
                                 @RequestBody String jsonBody) {
@@ -241,7 +241,7 @@ public class ApiController {
         return getCall(accessToken, getProgramRequestActionsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                @PathVariable("id") String requestId,
                                @RequestBody String jsonBody) {
@@ -444,7 +444,7 @@ public class ApiController {
     }
 
     private String getListingCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCount";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCountByYear";
     }
 
     private String getDictionaryApiUrl() {
