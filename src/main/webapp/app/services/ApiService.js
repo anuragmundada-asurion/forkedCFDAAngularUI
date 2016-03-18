@@ -11,9 +11,10 @@
             "programRequest": "/api/programRequests",
             "programRequestAction": "/api/programRequestActions",
             "programSubmit": "/api/programs", // /:program_id
-            "programCount": "/api/listingcount", //  /:year
+            "programCountByYear": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
-            "regionalAgencyEntity": "/api/regionalAgencies"
+            "regionalAgencyEntity": "/api/regionalAgencies",
+            "programCount": "/api/programCount"
         };
 
         this.APIs = APIs;

@@ -35,7 +35,7 @@
                 };
 
                 var oApiParam = {
-                    apiName: 'programCount',
+                    apiName: 'programCountByYear',
                     apiSuffix: '/' + $scope.currentYear,
                     oParams: {},
                     oData: {},
@@ -169,5 +169,27 @@
 
                     $scope.chart.legend.hide();
                 };
+
+                //Dashboard feature
+                if($scope.user) {
+                    var oApiParam = {
+                        apiName: 'programCount',
+                        apiSuffix: '',
+                        oParams: {},
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    //make api call to get count of programs
+                    ApiService.call(oApiParam).then(function (data) {
+                        $scope.oDashboardReport = {
+                            active: data.total_active_listing,
+                            draft: data.total_draft_listing,
+                            pending: data.total_pending_listing,
+                            public: data.total_published_listing,
+                            rejected: data.total_archived_listing
+                        };
+                    });
+                }
             }]);
 })();

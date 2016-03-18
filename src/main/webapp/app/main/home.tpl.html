@@ -24,23 +24,28 @@
             </div>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="oDashboardReport.active">{{ oDashboardReport.active }}</span>
             <h4>Total Active Listings</h4>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
-            <h4>Open Listings</h4>
+            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="oDashboardReport.draft">{{ oDashboardReport.draft }}</span>
+            <h4>Draft Listings</h4>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="oDashboardReport.pending">{{ oDashboardReport.pending }}</span>
             <h4>Pending Listings</h4>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="oDashboardReport.published">{{ oDashboardReport.published }}</span>
             <h4>Published Listings</h4>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+            <span class="userDashboardCount" ng-show="oDashboardReport.rejected">{{ oDashboardReport.rejected }}</span>
             <h4>Rejected Listings</h4>
         </div>
         
