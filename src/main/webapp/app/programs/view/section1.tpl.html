@@ -15,7 +15,7 @@
 
 
     <div>
-        <p class="vp-field-label-big"> Types of Assistance (040):</p>
+        <p class="vp-field-label-big"> Types of Assistance (060):</p>
 
         <p class="vp-field-value" ng-repeat="item in programData.assistanceTypes">{{traverseTree(item, 'assistance_type').displayValue}} </p>
 
@@ -31,15 +31,15 @@
 
             <p class="vp-field-label"> Are there specific restrictions place upon the use of the assistance? </p>
 
-            <p class="vp-field-value">{{ programData.usage.restrictions.flag }}</p>
+            <p class="vp-field-value">{{traverseTree(programData.usage.restrictions.flag, 'yes_no_na').value}}</p>
 
             <p class="vp-field-label"> Are there discretionary funds available? </p>
 
-            <p class="vp-field-value">{{ programData.usage.discretionaryFund.flag}}</p>
+            <p class="vp-field-value">{{traverseTree(programData.usage.discretionaryFund.flag, 'yes_no_na').value}}</p>
 
             <p class="vp-field-label"> Are loans a type of assistance in this program? </p>
 
-            <p class="vp-field-value">{{ programData.usage.loanTerms.flag}}</p>
+            <p class="vp-field-value">{{traverseTree(programData.usage.loanTerms.flag, 'yes_no_na').value}}</p>
         </div>
     </div>
 

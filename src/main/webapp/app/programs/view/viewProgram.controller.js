@@ -10,26 +10,28 @@
                 $scope.programData = data;
             });
 
-            Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types']}, function (data) {
+            Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
                 $scope.allTypes = {
                     assistance_type: data['assistance_type'],
                     applicant_types: data['applicant_types'],
                     assistance_usage_types: data['assistance_usage_types'],
-                    beneficiary_types: data['beneficiary_types']
+                    beneficiary_types: data['beneficiary_types'],
+                    yes_no_na: data['yes_no_na']
+                };
+
+                $scope.traverseTree = function (value, dictionaryName) {
+                    var selected = $filter('traverseTree')([value], $scope.allTypes[dictionaryName], {
+                        branches: {
+                            X: {
+                                keyProperty: $parse('element_id'),
+                                childrenProperty: $parse('elements')
+                            }
+                        }
+                    })[0];
+                    return selected ? selected.$original : null;
                 };
             });
 
-            $scope.traverseTree = function(value, dictionaryName) {
-                var selected = $filter('traverseTree')([value], $scope.allTypes[dictionaryName], {
-                    branches: {
-                        X: {
-                            keyProperty: $parse('element_id'),
-                            childrenProperty: $parse('elements')
-                        }
-                    }
-                })[0];
-                return selected ? selected.$original : null;
-            };
 
             $scope.appUtil = appUtil;
         }
