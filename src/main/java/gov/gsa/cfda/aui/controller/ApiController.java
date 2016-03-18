@@ -117,6 +117,18 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/programCount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getProgramCount(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Auth-Token", accessToken);
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramCountApiUrl());
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     @RequestMapping(value = "/api/eligibilitylistings", method = RequestMethod.GET)
     public String getEligibilitylistingsApiCall() {
         RestTemplate restTemplate = new RestTemplate();
@@ -445,6 +457,10 @@ public class ApiController {
 
     private String getListingCountApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCount";
+    }
+
+    private String getProgramCountApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCounts";
     }
 
     private String getDictionaryApiUrl() {
