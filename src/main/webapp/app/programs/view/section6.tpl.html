@@ -25,4 +25,16 @@
     </div>
 
 
+    <div>
+        <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
+
+        <p class="vp-field-label">Is there criteria for selecting proposals?</p>
+
+        <p class="vp-field-value" ng-bind="programData.application.selectionCriteria.flag"></p>
+
+        <div class="tabover" ng-show="programData.application.selectionCriteria.flag=='yes'">
+            <p class="vp-field-label"> Please describe criteria for selecting proposals <span class="vp-field-value" ng-bind="programData.application.selectionCriteria.content"></span></p>
+        </div>
+
+    </div>
 </div>
