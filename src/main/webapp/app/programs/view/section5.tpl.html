@@ -6,11 +6,18 @@
         <div>
             <p class="vp-field-label">Account Identification (121):</p>
 
-            <p class="vp-field-value" ng-bind="programData.financial.accounts.code"></p>
+            <div ng-repeat="account in programData.financial.accounts" style="margin-bottom:.5em;">
+                <p class="vp-field-value">{{account.code}}</p>
+
+                <p class="vp-field-value">{{account.description}}</p>
+            </div>
 
             <p class="vp-field-label">Obligations (122):</p>
 
-            <div class="vp-field-value" ng-repeat="item in programData.financial.obligations.values"><p>{{item}};</p></div>
+            <div ng-repeat="obligation in programData.financial.obligations">
+                <p class="vp-field-value">{{obligation.values}}</p>
+            </div>
+
 
             <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
 
@@ -19,18 +26,19 @@
             <p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>
 
             <div class="tabover">
+                <div ng-repeat="taf in programData.financial.treasury.tafs">
+                    <p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>
 
-                <p>Treasury Dept Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
+                    <p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf..allocationTransferAgency"></span></p>
 
-                <p>Allocation Transfer Agency: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
+                    <p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>
 
-                <p>FY 1: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
+                    <p class="vp-field-label">FY 2: <span class="vp-field-value" ng-bind="taf.fy2"></span></p>
 
-                <p>FY 2: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
+                    <p class="vp-field-label"> Treasury Account Main Code: <span class="vp-field-value" ng-bind="taf.accountCode"></span></p>
 
-                <p>Treasury Account Main Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
-
-                <p>TAFS Sub-Account: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
+                    <p class="vp-field-label">TAFS Sub-Account: <span class="vp-field-value" ng-bind="taf.subAccountCode"></span></p>
+                </div>
             </div>
 
         </div>
@@ -39,14 +47,16 @@
         <div>
             <p class="vp-field-label"> Program Accomplishments (130):</p>
 
-            <p class="vp-field-label">Are there program accomplishments?</p>
+            <div class="tabover">
+                <p class="vp-field-label">Are there program accomplishments?</p>
 
-            <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
+                <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
 
-            <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
+                <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
 
-                <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
+                    <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
 
+                </div>
             </div>
         </div>
 
@@ -54,21 +64,18 @@
         <div>
             <p class="vp-field-label"> Regulations, Guidelines, and Literature (140):</p>
 
-            <p class="vp-field-label">Are there any regulations, guidelines or literature?</p>
-
             <div class="tabover">
+                <p class="vp-field-label">Are there any regulations, guidelines or literature?</p>
+
                 <p class="vp-field-value">{{traverseTree(programData.postAward.documents.flag, 'yes_no_na').value}}</p>
 
                 <div class="tabover" ng-show="programData.postAward.documents.flag === 'yes'">
-
                     <p class="vp-field-label"> Please describe regulations, guidelines, and literature.</p>
 
                     <p class="vp-field-value" ng-bind="programData.postAward.documents.content"></p>
-
                 </div>
             </div>
         </div>
-
 
     </div>
 </div>

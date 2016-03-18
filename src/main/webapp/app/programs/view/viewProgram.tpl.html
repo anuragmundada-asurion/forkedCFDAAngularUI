@@ -1,15 +1,12 @@
 <primary-nav-bar></primary-nav-bar>
 <global-search-box ng-controller="ProgramSearchCtrl"></global-search-box>
 
-
 <div ng-include="'programs/view/titleHeading.tpl.html'"></div>
 
-
 <div ng-show="programData" class="usa-grid-full vp-section">
-
-
-    <div class="usa-width-three-fourths" >
+    <div class="usa-width-three-fourths">
         <h2 class="heading"> Listing Information </h2>
+
         <div ng-include="'programs/view/section1.tpl.html'"></div>
         <div ng-include="'programs/view/section2.tpl.html'"></div>
         <div ng-include="'programs/view/section3.tpl.html'"></div>
