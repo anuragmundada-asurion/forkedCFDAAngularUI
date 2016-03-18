@@ -2,55 +2,61 @@
     <div>
         <p class="vp-field-label-big"> Applicant Eligibility (081):</p>
 
-        <p class="vp-field-label">Eligible Applicants</p>
+        <div class="tabover">
+            <p class="vp-field-label">Eligible Applicants</p>
 
-        <p class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types">{{traverseTree(item, 'applicant_types').displayValue}} </p>
+            <p class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.types">{{traverseTree(item, 'applicant_types').displayValue}} </p>
 
-        <p class="vp-field-label">Use Of Assistance</p>
+            <p class="vp-field-label">Use Of Assistance</p>
 
-        <p class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.assistanceUsageTypes">{{traverseTree(item, 'assistance_usage_types').displayValue}} </p>
+            <p class="vp-field-value" ng-repeat="item in programData.eligibility.applicant.assistanceUsageTypes">{{traverseTree(item, 'assistance_usage_types').displayValue}} </p>
 
-        <p class="vp-field-label">Additional Information</p>
+            <p class="vp-field-label">Additional Information</p>
 
-        <p class="vp-field-value" ng-bind="programData.eligibility.applicant.additionalInfo.content"></p>
+            <p class="vp-field-value">{{programData.eligibility.applicant.additionalInfo.content}}</p>
+        </div>
 
     </div>
 
     <div>
         <p class="vp-field-label-big"> Beneficiary Eligibility (082):</p>
 
-        <p class="vp-field-label">Beneficiary Eligibility</p>
+        <div class="tabover">
 
-        <p class="vp-field-value" ng-repeat="item in programData.eligibility.beneficiary.types">{{traverseTree(item, 'beneficiary_types').displayValue}}</p>
+            <p class="vp-field-label">Beneficiary Eligibility</p>
 
-        <p class="vp-field-label">Additional Information</p>
+            <p class="vp-field-value" ng-repeat="item in programData.eligibility.beneficiary.types">{{traverseTree(item, 'beneficiary_types').displayValue}}</p>
 
-        <p class="vp-field-value" ng-bind="programData.eligibility.beneficiary.additionalInfo.content"></p>
+            <p class="vp-field-label">Additional Information</p>
+
+            <p class="vp-field-value">{{programData.eligibility.beneficiary.additionalInfo.content}}</p>
+        </div>
     </div>
 
     <div>
         <p class="vp-field-label-big"> Credentials/Documentation (083):</p>
 
-        <p class="vp-field-label">Are there credentials or documentation?</p>
+        <div class="tabover">
 
-        <p class="vp-field-value" ng-bind="programData.eligibility.documentation.flag"></p>
+            <p class="vp-field-label">Are there credentials or documentation?</p>
 
-        <div class="tabover" ng-show="programData.eligibility.documentation.flag === 'yes'">
+            <p class="vp-field-value">{{traverseTree(programData.eligibility.documentation.flag, 'yes_no_na').value}}</p>
 
-            <p class="vp-field-label">Please explain:</p>
+            <div class="tabover" ng-show="programData.eligibility.documentation.flag === 'yes'">
 
-            <p class="vp-field-value" ng-bind="programData.eligibility.documentation.content"></p>
+                <p class="vp-field-label">Please explain:</p>
+
+                <p class="vp-field-value">{{programData.eligibility.documentation.content}}</p>
+
+                <p class="vp-field-value" ng-show="programData.eligibility.documentation.questions['OMBCircularA87'].flag === 'yes'">
+                    2 CFR 200, Subpart E - Cost Principles applies to this program.</p>
 
 
-            <p class="vp-field-value" ng-show="programData.eligibility.documentation.questions['OMBCircularA87'].flag === 'yes'">
-                2 CFR 200, Subpart E - Cost Principles applies to this program.</p>
+                <p class="vp-field-value" ng-show="programData.eligibility.documentation.questions['OMBCircularA87'].flag === 'no'">
+                    This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</p>
 
-
-            <p class="vp-field-value" ng-show="programData.eligibility.documentation.questions['OMBCircularA87'].flag === 'no'">
-                This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</p>
-
+            </div>
         </div>
-
     </div>
 
 </div>
