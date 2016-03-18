@@ -1,184 +1,215 @@
 <div class="subsection awardProcess-info">
-    <div>
-        <p class="vp-field-label-big"> Preapplication Coordination (091):</p>
+    <p class="vp-field-label-big"> Application and Award Process (090)</p>
 
-        <p class="vp-field-label">Is any prior coordination or approval required with governmental or nongovernmental units
-            prior to the submission of a formal application to the Federal funding agency?</p>
+    <div class="tabover">
+        <div>
+            <p class="vp-field-label"> Preapplication Coordination (091):</p>
 
-        <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'yes'"> Preapplication coordination is required.</p>
-        <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'no'"> Preapplication coordination is not applicable.</p>
+            <div class="tabover">
+                <p class="vp-field-label">Is any prior coordination or approval required with governmental or nongovernmental units
+                    prior to the submission of a formal application to the Federal funding agency?</p>
 
-        <!--<h5>Does this program require submission of environmental impact information?</h5>-->
-        <!--<p class="vp-field-value" ng-bind="programData.preApplication.coordination.flag"></p>-->
+                <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'yes'"> Preapplication coordination is required.</p>
 
-        <!-- doesnt show up for some fals -->
-        <p class="vp-field-label">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?</p>
+                <p class="vp-field-value" ng-show="programData.preApplication.coordination.flag == 'na'"> Preapplication coordination is not applicable.</p>
 
-        <p class="vp-field-value" ng-bind="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag"></p>
+                <p class="vp-field-label">Does this program require submission of environmental impact information?</p>
 
-        <p class="vp-field-label">Additional Information:</p>
+                <p class="vp-field-value">{{traverseTree(programData.preApplication.coordination.environmentalImpact.flag, 'yes_no_na').value}}</p>
 
-        <p class="vp-field-value" ng-bind="programData.preApplication.coordination.additionalInfo.content"></p>
+                <div class="tabover">
+                    <div ng-repeat="(key, value) in programData.preApplication.coordination.environmentalImpact.reports">
+                        <p ng-show="value.flag === 'yes'" class="vp-field-value">An environmental impact <b>{{key}}</b> is required for this program.</p>
+                    </div>
+                </div>
 
-    </div>
+                <p class="vp-field-label">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?</p>
 
+                <div class="tabover">
+                    <p class="vp-field-value" ng-show="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'yes'">
+                        This program is eligible for coverage under E.O. 12372, "Intergovernmental Review of Federal Programs."
+                        An applicant should consult the office or official designated as the single point of contact in his or her State for more information
+                        on the process the State requires to be followed in applying for assistance, if the State has selected the program for review.</p>
 
-    <div>
-        <p class="vp-field-label-big"> Application Procedures (092):</p>
+                    <p class="vp-field-value" ng-show="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'no'">
+                        This program is excluded from coverage under E.O. 12372.</p>
 
-        <p class="vp-field-label">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?</p>
+                    <p class="vp-field-label">Additional Information:</p>
 
-        <p class="vp-field-value" ng-bind="programData.application.procedures.questions.OMBCircularA102.flag"></p>
-
-        <p class="vp-field-label">Other Application Procedures:</p>
-
-        <p class="vp-field-value" ng-bind="programData.application.procedures.additionalInfo.content"></p>
-
-    </div>
-
-
-    <div>
-        <p class="vp-field-label-big"> Award Procedure (093):</p>
-
-        <p class="vp-field-label">What are the basic procedural steps for awarding assistance?</p>
-
-        <p class="vp-field-value" ng-bind="programData.award.procedures.content"></p>
-
-    </div>
-
-
-    <div>
-        <p class="vp-field-label-big">  Deadlines (094):</p>
-
-        <p class="vp-field-label">Is a deadline for submission of application available?</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'yes'">Yes</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'no'">No</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'contactHQ'">
-            Contact the headquarters or regional office, as appropriate for application deadlines</p>
-
-
-        <!-- dates -->
-        <div class="tabover" ng-show="programData.application.deadlines.submission.flag=='yes'">
-            <div ng-repeat="deadline in programData.application.deadlines.submission.list">
-                <table style="margin: 0px;">
-                    <tr>
-                        <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
-                        <td style="padding:4px;vertical-align:top;border:0px">Deadline End Date:</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:4px;vertical-align:top;border:0px">
-                            <div class="col-md-6">
-                                <p class="input-group">
-                                            <span type="text"
-                                                  class="italic">{{deadline.start | date: 'MMM dd, yyyy'}}</span>
-                                </p>
-                            </div>
-                        </td>
-                        <td style="padding:4px;vertical-align:top;border:0px">
-                            <div class="col-md-6">
-                                <p class="input-group">
-                                            <span type="text"
-                                                  class="italic">{{deadline.end | date: 'MMM dd, yyyy'}}</span>
-                                </p>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <br/>Description:<br/>
-                <span type="text" class="italic" id="deadlineDesc7">{{deadline.description}}</span>
-                <br/>
+                    <p class="vp-field-value" ng-bind="programData.preApplication.coordination.additionalInfo.content"></p>
+                </div>
             </div>
         </div>
 
-        <p class="vp-field-label">Other Deadline Information:</p>
 
-        <p class="vp-field-value" ng-bind="programData.application.deadlines.submission.additionalInfo.content"></p>
-    </div>
+        <div>
+            <p class="vp-field-label"> Application Procedures (092):</p>
 
-    <div>
-        <p class="vp-field-label"> Range of Approval/Disapproval Time(095):</p>
+            <div class="tabover">
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='1'">From 1 to 15 days</p>
+                <p class="vp-field-label">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='2'">From 15 to 30 days</p>
+                <p class="vp-field-value" ng-bind="programData.application.procedures.questions.OMBCircularA102.flag"></p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='3'">From 30 to 60 days</p>
+                <p class="vp-field-label">Other Application Procedures:</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='4'">From 60 to 90 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='5'">From 90 to 120 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='6'">From 120 to 180 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='7'">&gt; 180 Days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='8'">Not Applicable</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='9'">Other</p>
-
-        <p class="vp-field-label"> Other Approval Information:</p>
-
-        <p class="vp-field-value" ng-bind="programData.application.deadlines.approval.otherInfo.content"></p>
-
-    </div>
+                <p class="vp-field-value" ng-bind="programData.application.procedures.additionalInfo.content"></p>
+            </div>
+        </div>
 
 
-    <div>
-        <p class="vp-field-label-big"> Appeals (096):</p>
+        <div>
+            <p class="vp-field-label"> Award Procedure (093):</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='1'">From 1 to 15 days</p>
+            <p class="vp-field-label">What are the basic procedural steps for awarding assistance?</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='2'">From 15 to 30 days</p>
+            <p class="vp-field-value" ng-bind="programData.award.procedures.content"></p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='3'">From 30 to 60 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='4'">From 60 to 90 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='5'">From 90 to 120 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='6'">From 120 to 180 days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='7'">&gt; 180 Days</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='8'">Not
-            Applicable</p>
-
-        <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='9'">Other</p>
+        </div>
 
 
-        <p class="vp-field-label"> Other Appeals Information:</p>
+        <div>
+            <p class="vp-field-label"> Deadlines (094):</p>
 
-        <p class="vp-field-value" ng-bind="programData.application.deadlines.appeal.otherInfo.content"></p>
+            <div class="tabover">
+                <p class="vp-field-label">Is a deadline for submission of application available?</p>
 
-    </div>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'yes'">Yes</p>
 
-    <div>
-        <p class="vp-field-label-big"> Renewals (097):</p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'no'">No</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='1'">From 1 to 15 days</p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.submission.flag == 'contactHQ'">
+                    Contact the headquarters or regional office, as appropriate for application deadlines</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='2'">From 15 to 30 days</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='3'">From 30 to 60 days</p>
+                <!-- dates -->
+                <div class="tabover" ng-show="programData.application.deadlines.submission.flag=='yes'">
+                    <div ng-repeat="deadline in programData.application.deadlines.submission.list">
+                        <table style="margin: 0px;">
+                            <tr>
+                                <td style="padding:4px;vertical-align:top;border:0px">Deadline Start Date:</td>
+                                <td style="padding:4px;vertical-align:top;border:0px">Deadline End Date:</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:4px;vertical-align:top;border:0px">
+                                    <div class="col-md-6">
+                                        <p class="input-group">
+                                            <span type="text"
+                                                  class="italic">{{deadline.start | date: 'MMM dd, yyyy'}}</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td style="padding:4px;vertical-align:top;border:0px">
+                                    <div class="col-md-6">
+                                        <p class="input-group">
+                                            <span type="text"
+                                                  class="italic">{{deadline.end | date: 'MMM dd, yyyy'}}</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>Description:<br/>
+                        <span type="text" class="italic" id="deadlineDesc7">{{deadline.description}}</span>
+                        <br/>
+                    </div>
+                </div>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='4'">From 60 to 90 days</p>
+                <p class="vp-field-label">Other Deadline Information:</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='5'">From 90 to 120 days</p>
+                <p class="vp-field-value" ng-bind="programData.application.deadlines.submission.additionalInfo.content"></p>
+            </div>
+        </div>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='6'">From 120 to 180 days</p>
+        <div>
+            <p class="vp-field-label"> Range of Approval/Disapproval Time(095):</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='7'">&gt; 180 Days</p>
+            <div class="tabover">
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='8'">Not Applicable</p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='1'">From 1 to 15 days</p>
 
-        <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='9'">Other</p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='2'">From 15 to 30 days</p>
 
-        <p class="vp-field-label"> Other Renewals Information:</p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='3'">From 30 to 60 days</p>
 
-        <p class="vp-field-value" ng-bind="programData.application.deadlines.renewal.otherInfo.content"></p>
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='4'">From 60 to 90 days</p>
 
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='5'">From 90 to 120 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='6'">From 120 to 180 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='7'">&gt; 180 Days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='8'">Not Applicable</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.approval.interval =='9'">Other</p>
+
+                <p class="vp-field-label"> Other Approval Information:</p>
+
+                <p class="vp-field-value" ng-bind="programData.application.deadlines.approval.otherInfo.content"></p>
+            </div>
+
+        </div>
+
+
+        <div>
+            <p class="vp-field-label"> Appeals (096):</p>
+
+            <div class="tabover">
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='1'">From 1 to 15 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='2'">From 15 to 30 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='3'">From 30 to 60 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='4'">From 60 to 90 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='5'">From 90 to 120 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='6'">From 120 to 180 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='7'">&gt; 180 Days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='8'">Not Applicable</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.appeal.interval =='9'">Other</p>
+
+
+                <p class="vp-field-label"> Other Appeals Information:</p>
+
+                <p class="vp-field-value" ng-bind="programData.application.deadlines.appeal.otherInfo.content"></p>
+            </div>
+
+        </div>
+
+        <div>
+            <p class="vp-field-label"> Renewals (097):</p>
+
+            <div class="tabover">
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='1'">From 1 to 15 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='2'">From 15 to 30 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='3'">From 30 to 60 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='4'">From 60 to 90 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='5'">From 90 to 120 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='6'">From 120 to 180 days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='7'">&gt; 180 Days</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='8'">Not Applicable</p>
+
+                <p class="vp-field-value" ng-if="programData.application.deadlines.renewal.interval =='9'">Other</p>
+
+                <p class="vp-field-label"> Other Renewals Information:</p>
+
+                <p class="vp-field-value" ng-bind="programData.application.deadlines.renewal.otherInfo.content"></p>
+            </div>
+        </div>
     </div>
 </div>
