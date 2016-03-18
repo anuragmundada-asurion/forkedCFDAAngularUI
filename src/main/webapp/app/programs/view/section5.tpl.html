@@ -1,52 +1,74 @@
-<div class="section financial-info">
-    <div class="subsection">
-        <p class="vp-field-label-big"> Financial Information (120)</p>
+<div class="subsection financial-info">
 
-        <p class="vp-field-label">Account Identification (121):</p>
+    <p class="vp-field-label-big"> Financial Information (120)</p>
 
-        <p class="vp-field-value" ng-bind="programData.financial.accounts.code"></p>
+    <div class="tabover">
+        <div>
+            <p class="vp-field-label">Account Identification (121):</p>
 
-        <p class="vp-field-label">Obligations (122):</p>
+            <p class="vp-field-value" ng-bind="programData.financial.accounts.code"></p>
 
-        <div class="vp-field-value" ng-repeat="item in programData.financial.obligations.values"><p>{{item}};</p></div>
+            <p class="vp-field-label">Obligations (122):</p>
 
-        <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
+            <div class="vp-field-value" ng-repeat="item in programData.financial.obligations.values"><p>{{item}};</p></div>
 
-        <p class="vp-field-value" ng-bind="programData.financial.additionalInfo.content"></p>
+            <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
 
-        <p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>
+            <p class="vp-field-value" ng-bind="programData.financial.additionalInfo.content"></p>
 
-        <div class="tabover">
+            <p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>
 
-            <p>Treasury Dept Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
+            <div class="tabover">
 
-            <p>Allocation Transfer Agency: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
+                <p>Treasury Dept Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.departmentCode"></span></p>
 
-            <p>FY 1: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
+                <p>Allocation Transfer Agency: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.allocationTransferAgency"></span></p>
 
-            <p>FY 2: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
+                <p>FY 1: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy1"></span></p>
 
-            <p>Treasury Account Main Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
+                <p>FY 2: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.fy2"></span></p>
 
-            <p>TAFS Sub-Account: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
-        </div>
+                <p>Treasury Account Main Code: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.accountCode"></span></p>
 
-    </div>
-
-
-    <div class="subsection">
-        <p class="vp-field-label-big"> Program Accomplishments (130)</p>
-
-        <p class="vp-field-label">Are there program accomplishments?</p>
-
-        <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
-
-        <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
-
-            <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
+                <p>TAFS Sub-Account: <span class="vp-field-value" ng-bind="programData.financial.treasury.tafs.subAccountCode"></span></p>
+            </div>
 
         </div>
+
+
+        <div>
+            <p class="vp-field-label"> Program Accomplishments (130):</p>
+
+            <p class="vp-field-label">Are there program accomplishments?</p>
+
+            <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
+
+            <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
+
+                <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <p class="vp-field-label"> Regulations, Guidelines, and Literature (140):</p>
+
+            <p class="vp-field-label">Are there any regulations, guidelines or literature?</p>
+
+            <div class="tabover">
+                <p class="vp-field-value">{{traverseTree(programData.postAward.documents.flag, 'yes_no_na').value}}</p>
+
+                <div class="tabover" ng-show="programData.postAward.documents.flag === 'yes'">
+
+                    <p class="vp-field-label"> Please describe regulations, guidelines, and literature.</p>
+
+                    <p class="vp-field-value" ng-bind="programData.postAward.documents.content"></p>
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
-
-
 </div>
