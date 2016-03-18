@@ -1,87 +1,112 @@
 <div class="subsection assistanceRequirements-info">
-    <div>
-        <p class="vp-field-label-big"> Reports (111):</p>
+    <p class="vp-field-label-big"> Post Assistance Requirements (110)</p>
 
-        <p class="vp-field-label">Are reports required by the funding agency?</p>
+    <div class="tabover">
+        <div>
+            <p class="vp-field-label"> Reports (111):</p>
 
-        <p class="vp-field-value" ng-bind="programData.postAward.reports.flag"></p>
+            <div class="tabover">
+                <p class="vp-field-label">Are reports required by the funding agency?</p>
 
-        <div class="tabover" ng-show="programData.postAward.reports.flag =='yes'">
+                <p class="vp-field-value">{{traverseTree(programData.postAward.reports.flag, 'yes_no_na').value}}</p>
 
-            <p class="vp-field-label"> Are program reports required? </p>
-            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.program.flag"></p>
+                <div class="tabover" ng-show="programData.postAward.reports.flag =='yes'">
 
-            <div class="tabover" ng-show="programData.postAward.reports.list.program.flag =='yes'">
-                <p class="vp-field-label"> Please describe the program reports required. </p>
+                    <p class="vp-field-label"> Are program reports required? </p>
 
-                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.program.content"></p>
-            </div>
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.reports.list.program.flag, 'yes_no_na').value}}</p>
 
+                    <div class="tabover" ng-show="programData.postAward.reports.list.program.flag =='yes'">
+                        <p class="vp-field-label"> Please describe the program reports required. </p>
 
-            <p class=" vp-field-label"> Are cash reports required? </p>
-            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.cash.flag"></p>
-
-            <div class="tabover" ng-show="programData.postAward.reports.list.cash.flag =='yes'">
-                <p class="vp-field-label">Please describe the cash reports required.</p>
-                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.cash.content"></p>
-            </div>
+                        <p class="vp-field-value" ng-bind="programData.postAward.reports.list.program.content"></p>
+                    </div>
 
 
-            <p class="vp-field-label"> Are progress reports required? </p>
-            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.progress.flag"></p>
+                    <p class=" vp-field-label"> Are cash reports required? </p>
 
-            <div class="tabover" ng-show="programData.postAward.reports.list.progress.flag === 'yes'">
-                <p class="vp-field-label">Please describe the progress reports required. </p>
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.reports.list.cash.flag, 'yes_no_na').value}}</p>
 
-                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.progress.content"></p>
-            </div>
+                    <div class="tabover" ng-show="programData.postAward.reports.list.cash.flag =='yes'">
+                        <p class="vp-field-label">Please describe the cash reports required.</p>
 
-            <p class="vp-field-label"> Are expenditure reports required? </p>
-            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.expenditure.flag"></p>
+                        <p class="vp-field-value" ng-bind="programData.postAward.reports.list.cash.content"></p>
+                    </div>
 
-            <div class="tabover" ng-show="programData.postAward.reports.list.expenditure.flag === 'yes'">
-                <p class="vp-field-label">Please describe the expenditure reports required.</p>
 
-                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.expenditure.content"></p>
-            </div>
+                    <p class="vp-field-label"> Are progress reports required? </p>
 
-            <p class="vp-field-label"> Is performance monitoring required? </p>
-            <p class="vp-field-value" ng-bind="programData.postAward.reports.list.performanceMonitoring.flag"></p>
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.reports.list.progress.flag, 'yes_no_na').value}}</p>
 
-            <div class="tabover" ng-show="programData.postAward.reports.list.performanceMonitoring.flag === 'yes'">
-                <p class="vp-field-label">Please describe the performance monitoring required.</p>
+                    <div class="tabover" ng-show="programData.postAward.reports.list.progress.flag === 'yes'">
+                        <p class="vp-field-label">Please describe the progress reports required. </p>
 
-                <p class="vp-field-value" ng-bind="programData.postAward.reports.list.performanceMonitoring.content"></p>
+                        <p class="vp-field-value" ng-bind="programData.postAward.reports.list.progress.content"></p>
+                    </div>
+
+                    <p class="vp-field-label"> Are expenditure reports required? </p>
+
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.reports.list.expenditure.flag, 'yes_no_na').value}}</p>
+
+                    <div class="tabover" ng-show="programData.postAward.reports.list.expenditure.flag === 'yes'">
+                        <p class="vp-field-label">Please describe the expenditure reports required.</p>
+
+                        <p class="vp-field-value" ng-bind="programData.postAward.reports.list.expenditure.content"></p>
+                    </div>
+
+                    <p class="vp-field-label"> Is performance monitoring required? </p>
+
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.reports.list.performanceMonitoring.flag, 'yes_no_na').value}}</p>
+
+                    <div class="tabover" ng-show="programData.postAward.reports.list.performanceMonitoring.flag === 'yes'">
+                        <p class="vp-field-label">Please describe the performance monitoring required.</p>
+
+                        <p class="vp-field-value" ng-bind="programData.postAward.reports.list.performanceMonitoring.content"></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div>
-        <p class="vp-field-label-big"> Audits (112):</p>
+        <div>
+            <p class="vp-field-label"> Audits (112):</p>
 
-        <p class="vp-field-label">Are audits required for the program?</p>
+            <div class="tabover">
+                <p class="vp-field-label">Are audits required for the program?</p>
 
-        <p class="vp-field-value" ng-bind="programData.postAward.audit.flag"></p>
+                <div class="tabover" ng-show="programData.postAward.audit.flag === 'no'">
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.audit.flag, 'yes_no_na').value}}</p>
+                </div>
 
-        <div class="tabover" ng-show="programData.postAward.audit.flag === 'yes'">
+                <div class="tabover" ng-show="programData.postAward.audit.flag === 'yes'">
+                    <p class="vp-field-value">
+                        In accordance with the provisions of 2 CFR 200, Subpart F - Audit Requirements, nonfederal entities
+                        that expend financial assistance of $750,000 or more in Federal awards will have a single or a program-specific audit
+                        conducted for that year. Non-Federal entities that expend less than $750,000 a year in Federal awards are exempt
+                        from Federal audit requirements for that year, except as noted in 2 CFR 200.503
+                    </p>
 
-            <p class="vp-field-label"> Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?</p>
-            <p class="vp-field-value" ng-bind="programData.postAward.audit.questions['OMBCircularA133'].flag"></p>
+                    <p class="vp-field-label"> Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?</p>
 
-            <p class="vp-field-label"> What audit procedures have been mandated for the program?</p>
-            <p class="vp-field-value" ng-bind="programData.postAward.audit.content"></p>
+                    <p class="vp-field-value">{{traverseTree(programData.postAward.audit.questions['OMBCircularA133'].flag, 'yes_no_na').value}}</p>
 
+                    <p class="vp-field-label"> What audit procedures have been mandated for the program?</p>
+
+                    <p class="vp-field-value" ng-bind="programData.postAward.audit.content"></p>
+
+                </div>
+            </div>
         </div>
+
+        <div>
+            <p class="vp-field-label"> Records (113):</p>
+
+            <div class="tabover">
+                <p class="vp-field-label">Describe what records the Federal agency requires the recipient to maintain and the time periods.</p>
+
+                <p class="vp-field-value" ng-bind="programData.postAward.records.content"></p>
+            </div>
+        </div>
+
     </div>
-
-    <div>
-        <p class="vp-field-label-big"> Records (113):</p>
-
-        <p class="vp-field-label">Describe what records the Federal agency requires the recipient to maintain and the time periods.</p>
-
-        <p class="vp-field-value" ng-bind="programData.postAward.records.content"></p>
-
-    </div>
-
 </div>

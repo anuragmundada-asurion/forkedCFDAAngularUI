@@ -15,10 +15,10 @@
     margin-top: 1.2em;
   }
   .vp-field-value {
-    margin:0;
+    margin: 0;
     color: #17AB5A;
-    p{
-      margin:0;
+    p {
+      margin: 0;
     }
   }
 
@@ -46,11 +46,11 @@
 
     }
 
-    .section-header{
-      color:black;
+    .section-header {
+      color: black;
       margin: auto;
       font-size: 1em;
-      border:none;
+      border: none;
 
     }
   }
@@ -70,16 +70,16 @@
     margin-bottom: 3em;
   }
 
-  .tabover{
+  .tabover {
     margin-left: 10px;
-    padding-left:10px;
+    padding-left: 10px;
     border-left: 1px solid #aeb0b5;
-    .tabover{
-      border-left: none;
+    .tabover {
+      border-left: 1px dashed lightgray;
     }
   }
 
-  .heading{
+  .heading {
     margin-top: .8em;
   }
 }

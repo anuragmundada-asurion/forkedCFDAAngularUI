@@ -1,70 +1,74 @@
 <div class="subsection assistance-info">
-    <div>
-        <p class="vp-field-label-big"> Formula and Matching Requirements (101):</p>
+    <p class="vp-field-label-big">Assistance Consideration (100)</p>
 
-        <p class="vp-field-label">Does this program have a statutory formula and/or administrative rule reference in the CFR? </p>
+    <div class="tabover">
+        <div>
+            <p class="vp-field-label"> Formula and Matching Requirements (101):</p>
 
-        <p class="vp-field-value" ng-bind="programData.assistance.formula.flag"></p>
+            <div class="tabover">
+                <p class="vp-field-label">Does this program have a statutory formula and/or administrative rule reference in the CFR? </p>
 
-        <div class="tabover" ng-show="programData.assistance.formula.flag =='yes'">
-            <p class="vp-field-label"> Title: <span class="vp-field-value" ng-bind="programData.assistance.formula.title"></span></p>
+                <p class="vp-field-value">{{traverseTree(programData.assistance.formula.flag, 'yes_no_na').value}}</p>
 
-            <p class="vp-field-label"> Chapter: <span class="vp-field-value" ng-bind="programData.assistance.formula.chapter"></span></p>
+                <div class="tabover" ng-show="programData.assistance.formula.flag =='yes'">
+                    <p class="vp-field-label"> Title: <span class="vp-field-value" ng-bind="programData.assistance.formula.title"></span></p>
 
-            <p class="vp-field-label"> Part: <span class="vp-field-value" ng-bind="programData.assistance.formula.part"></span></p>
+                    <p class="vp-field-label"> Chapter: <span class="vp-field-value" ng-bind="programData.assistance.formula.chapter"></span></p>
 
-            <p class="vp-field-label"> Subpart: <span class="vp-field-value" ng-bind="programData.assistance.formula.subPart"></span></p>
+                    <p class="vp-field-label"> Part: <span class="vp-field-value" ng-bind="programData.assistance.formula.part"></span></p>
 
-            <p class="vp-field-label"> Public Law: <span class="vp-field-value" ng-bind="programData.assistance.formula.publicLaw"></span></p>
+                    <p class="vp-field-label"> Subpart: <span class="vp-field-value" ng-bind="programData.assistance.formula.subPart"></span></p>
 
-            <p class="vp-field-label"> Additional Info: <span class="vp-field-value" ng-bind="programData.assistance.formula.additionalInfo.content"></span></p>
+                    <p class="vp-field-label"> Public Law: <span class="vp-field-value" ng-bind="programData.assistance.formula.publicLaw"></span></p>
+
+                    <p class="vp-field-label"> Additional Info: <span class="vp-field-value" ng-bind="programData.assistance.formula.additionalInfo.content"></span></p>
+                </div>
+
+
+                <p class="vp-field-label">Does this program have matching requirements? </p>
+
+                <div ng-show="programData.assistance.matching.flag =='no'">
+                    <p class="vp-field-value"> This program has no matching requirements. </p>
+                </div>
+
+                <div class="tabover" ng-show="programData.assistance.matching.flag =='yes'">
+                    <p class="vp-field-value">Yes, Percent: {{programData.assistance.matching.percent}}</p>
+
+                    <p class="vp-field-label"> Other Matching Requirements Information: </p>
+
+                    <p class="vp-field-value" ng-bind="programData.assistance.matching.otherInfo.content"></p>
+                </div>
+
+
+                <p class="vp-field-label">Does this program have MOE requirements AND total allocations over $100 million (current FY)?</p>
+
+                <div class="tabover" ng-show="programData.assistance.moe.flag ==='yes'">
+                    <p class="vp-field-value"> This program has MOE requirements, see funding agency for further details. </p>
+
+                    <p class="vp-field-label"> Additional Information: </p>
+
+                    <p class="vp-field-value"> {{programData.assistance.moe.additionalInfo.content}}</p>
+                </div>
+
+                <p class="vp-field-value" ng-show="programData.assistance.moe.flag ==='no'">
+                    This program does not have MOE requirements.</p>
+            </div>
         </div>
 
 
-        <p class="vp-field-label">Does this program have matching requirements? </p>
+        <div>
+            <p class="vp-field-label"> Length and Time Phasing of Assistance (102):</p>
 
-        <p class="vp-field-value" ng-bind="programData.assistance.matching.flag"></p>
+            <div class="tabover">
+                <p class="vp-field-label">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</p>
 
-        <div class="tabover" ng-show="programData.assistance.matching.flag =='yes'">
-            <p class="vp-field-label"> Select the Percentage Below: <span class="vp-field-value" ng-bind="programData.assistance.matching.percent"></span></p>
+                <p class="vp-field-value" ng-bind="programData.assistance.limitation.content"></p>
 
-            <p class="vp-field-label"> Other Matching Requirements Information: <span class="vp-field-value" ng-bind="programData.assistance.matching.otherInfo.content"></span></p>
+                <p class="vp-field-label"> How is the assistance awarded and/or released? </p>
+
+                <p class="vp-field-value" ng-bind="programData.assistance.limitation.awarded"></p>
+            </div>
         </div>
-        <p class="vp-field-label">Does this program have MOE requirements AND total allocations over $100 million (current FY)</p>
 
-        <p class="vp-field-value" ng-bind="programData.assistance.moe.flag"></p>
-
-        <div class="tabover" ng-show="programData.assistance.moe.flag =='yes'">
-            <p class="vp-field-label"> Please enter any additional information below: <span class="vp-field-value" ng-bind="programData.assistance.moe.additionalInfo.content"></span></p>
-        </div>
     </div>
-
-
-    <div>
-        <p class="vp-field-label-big"> Length and Time Phasing of Assistance (102):</p>
-
-        <p class="vp-field-label">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?</p>
-
-        <p class="vp-field-value" ng-bind="programData.assistance.limitation.content"></p>
-
-        <p class="vp-field-label"> How is the assistance awarded and/or released? </p>
-
-        <p class="vp-field-value" ng-bind="programData.assistance.limitation.awarded"></p>
-
-    </div>
-
-
-    <div>
-        <p class="vp-field-label-big"> Criteria for Selecting Proposals (180):</p>
-
-        <p class="vp-field-label">Is there criteria for selecting proposals?</p>
-
-        <p class="vp-field-value" ng-bind="programData.application.selectionCriteria.flag"></p>
-
-        <div class="tabover" ng-show="programData.application.selectionCriteria.flag=='yes'">
-            <p class="vp-field-label"> Please describe criteria for selecting proposals <span class="vp-field-value" ng-bind="programData.application.selectionCriteria.content"></span></p>
-        </div>
-
-    </div>
-
 </div>
