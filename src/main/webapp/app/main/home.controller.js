@@ -183,11 +183,11 @@
                     //make api call to get count of programs
                     ApiService.call(oApiParam).then(function (data) {
                         $scope.oDashboardReport = {
-                            active: data.total_active_listing,
-                            draft: data.total_draft_listing,
-                            pending: data.total_pending_listing,
-                            public: data.total_published_listing,
-                            rejected: data.total_archived_listing
+                            active: parseInt(data.total_active_listing),
+                            draft: parseInt(data.total_draft_listing),
+                            pending: parseInt(data.total_pending_listing),
+                            published: parseInt(data.total_published_listing),
+                            rejected: parseInt(data.total_archived_listing)
                         };
                     });
                 }
