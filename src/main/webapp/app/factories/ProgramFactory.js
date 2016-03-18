@@ -22,8 +22,9 @@
                     id: '@_id'
                 },
                 transformResponse: function (data) {
-                    data = JSON.parse(data);
-                    return data.data;
+                    return {
+                        _id: data
+                    }
                 }
             },
             get: {
