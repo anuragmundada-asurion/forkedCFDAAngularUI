@@ -8,33 +8,11 @@
             var vm = this;
             $scope.appUtil = appUtil;
 
-
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                console.log($scope.programData);
-
-                angular.extend(vm, {
-                    choices: angular.extend({
-                        programs: ProgramFactory.query({limit: 2500, status: 'Published'}),
-                        contacts: (typeof $scope.programData.agencyId !== 'undefined') ? Contacts.query({agencyId: $scope.programData.agencyId}) : {},
-                        offices: [
-                            {
-                                id: 1,
-                                name: 'Test Office'
-                            },
-                            {
-                                id: 2,
-                                name: 'Dev Office'
-                            },
-                            {
-                                id: 3,
-                                name: 'Admin Office'
-                            }
-                        ]
-                    })
-                });
-
             });
+
+            $scope.relatedPrograms = ProgramFactory.query({limit: 2500, status: 'Published'});
 
             Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
                 $scope.allTypes = {
@@ -58,29 +36,19 @@
                 };
             });
 
+            $scope.formatModelString = function (item) {
+                var model = null;
 
-
-            function getChoiceModel(value, key, dictionaryName) {
-                var getter = $parse(key),
-                    selectedChoice = null;
-
-                angular.forEach(vm.choices[dictionaryName], function (choice) {
-                    if (getter(choice) === value) {
-                        selectedChoice = choice;
-                    }
+                model = $scope.relatedPrograms.filter(function (rp) {
+                    return rp['data']['_id'] == item;
                 });
 
-                return selectedChoice;
-            }
-
-            function formatModelString(value, key, dictionaryName, exp) {
-                var model = getChoiceModel(value, key, dictionaryName);
-                if (model) {
-                    return $parse(exp)(model);
+                if (model[0]) {
+                    return model[0]['data']['programNumber'] + ' ' + model[0]['data']['title'];
                 } else {
-                    return "Error: " + dictionaryName + " " + value + " not found";
+                    return "Error: " + $scope.relatedPrograms + " " + " not found";
                 }
-            }
+            };
 
 
         }
