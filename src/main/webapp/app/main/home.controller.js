@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory',
-            function ($scope, $state, appConstants, ApiService, moment, SearchFactory) {
+        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'ROLES',
+            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, ROLES) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -171,7 +171,7 @@
                 };
 
                 //Dashboard feature
-                if($scope.user) {
+                if($scope.user && AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
                     var oApiParam = {
                         apiName: 'programCount',
                         apiSuffix: '',
