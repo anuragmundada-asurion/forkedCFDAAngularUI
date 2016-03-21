@@ -68,23 +68,22 @@
 
             </div>
         </div>
-    </div>
 
 
-    <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
+        <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
 
-    <div class="tabover">
-        <p class="vp-field-label">Is there criteria for selecting proposals?</p>
+        <div class="tabover">
+            <p class="vp-field-label">Is there criteria for selecting proposals?</p>
 
-        <p class="vp-field-value">{{traverseTree(programData.application.selectionCriteria.flag, 'yes_no_na').value}}</p>
+            <p class="vp-field-value">{{traverseTree(programData.application.selectionCriteria.flag, 'yes_no_na').value}}</p>
 
-        <div ng-show="programData.application.selectionCriteria.flag ==='yes'">
-            <p class="vp-field-label"> Please describe criteria for selecting proposals </p>
+            <div ng-show="programData.application.selectionCriteria.flag ==='yes'">
+                <p class="vp-field-label"> Please describe criteria for selecting proposals </p>
 
-            <p class="vp-field-value">{{programData.application.selectionCriteria.content}}</p>
+                <p class="vp-field-value">{{programData.application.selectionCriteria.content}}</p>
+            </div>
         </div>
+
     </div>
-
-
 </div>
 </div>
