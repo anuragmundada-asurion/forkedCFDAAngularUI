@@ -106,7 +106,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/listingcount/{year}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/listingcount/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getListingCountApiCall(@PathVariable("year") String year) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
