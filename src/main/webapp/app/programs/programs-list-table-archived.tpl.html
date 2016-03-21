@@ -30,13 +30,10 @@
             <label for="program-{{$index}}"></label>
         </td>
         <td>{{row.data.programNumber || '-'}}</td>
-        <td>
-            <a ui-sref="editProgram({id: row.id, section: 'review'})">{{row.data.title}}</a>
-        </td>
+        <td>{{row.data.title}}</td>
         <td>{{row.data.agencyId}}</td>
         <td>{{row.publishedDate}}</td>
         <td class="action-row">
-            <button type="button" has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
             <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
         </td>
         <td>{{row.archived ? 'Archived' : row.status.value}}</td>
