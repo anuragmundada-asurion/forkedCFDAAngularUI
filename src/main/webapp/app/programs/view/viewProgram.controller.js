@@ -3,13 +3,36 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil) {
-            console.log("hello from the ViewProgramCtrl.. yay!");
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts) {
+            var vm = this;
+            $scope.appUtil = appUtil;
+
+
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                console.log("got the program data: ", $scope.programData);
-                console.log('values: ' , $scope.programData.financial.obligations.values);
+                console.log($scope.programData);
+
+                angular.extend(vm, {
+                    choices: angular.extend({
+                        programs: ProgramFactory.query({limit: 2500, status: 'Published'}),
+                        contacts: (typeof $scope.programData.agencyId !== 'undefined') ? Contacts.query({agencyId: $scope.programData.agencyId}) : {},
+                        offices: [
+                            {
+                                id: 1,
+                                name: 'Test Office'
+                            },
+                            {
+                                id: 2,
+                                name: 'Dev Office'
+                            },
+                            {
+                                id: 3,
+                                name: 'Admin Office'
+                            }
+                        ]
+                    })
+                });
 
             });
 
@@ -35,7 +58,31 @@
                 };
             });
 
-            $scope.appUtil = appUtil;
+
+
+            function getChoiceModel(value, key, dictionaryName) {
+                var getter = $parse(key),
+                    selectedChoice = null;
+
+                angular.forEach(vm.choices[dictionaryName], function (choice) {
+                    if (getter(choice) === value) {
+                        selectedChoice = choice;
+                    }
+                });
+
+                return selectedChoice;
+            }
+
+            function formatModelString(value, key, dictionaryName, exp) {
+                var model = getChoiceModel(value, key, dictionaryName);
+                if (model) {
+                    return $parse(exp)(model);
+                } else {
+                    return "Error: " + dictionaryName + " " + value + " not found";
+                }
+            }
+
+
         }
     ]);
 }();
