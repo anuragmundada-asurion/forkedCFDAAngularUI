@@ -23,6 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/programs/main/{status:\\w+}",
                 "/programs/{id:\\w+}/view",
                 "/programs/{id:\\w+}/preview",
+                "/programs/{id:\\w+}/review",
 
                 "/agency/main",
                 "/agency/edit/{id:\\w+}",

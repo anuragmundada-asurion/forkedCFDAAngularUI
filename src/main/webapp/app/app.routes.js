@@ -84,7 +84,7 @@
                 })
                 .state('reviewProgram', {
                     url: "/programs/:id/review",
-                    templateUrl: "programs/view/review.tpl.html",
+                    templateUrl: "programs/review.tpl.html",
                     controller: "AddEditProgram as gsavm",
                     access: {
                         requiredPermissions: [

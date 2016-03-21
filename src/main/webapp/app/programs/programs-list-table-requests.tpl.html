@@ -29,7 +29,19 @@
             <label for="program-{{$index}}"></label>
         </td>
         <td>
-           <a ui-sref="editProgram({id: row.programId, section: 'review'})">{{ row.program.title }}</a>
+            <div ng-show="row.status.code === 'published' && !row.archived">
+                <a ui-sref="reviewProgram({ id: row.programId })">{{row.data.title}}</a>
+            </div>
+            <div ng-show="row.status.code === 'revised' && !row.archived">
+                <a ui-sref="reviewProgram({ id: row.programId })">{{row.data.title}}</a>
+            </div>
+            <div ng-show="row.status.code === 'pending' && !row.archived">
+                <a ng-show="authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="editProgram({ id: row.programId, section: 'review' })">{{row.data.title}}</a>
+                <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])">{{row.data.title}}</span>
+            </div>
+            <div ng-show="row.archived">
+                <a ui-sref="reviewProgram({ id: row.programId })">{{row.data.title}}</a>
+            </div>
         </td>
         <td>{{row.requestType.publicValue}}</td>
         <td>{{row.reason}}</td>

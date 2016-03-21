@@ -22,17 +22,9 @@ form {
     margin-top: 3rem;
   }
 
-  fieldset > label {
-        margin-bottom: .7em;
-  }
-
   .usa-input-large {
       max-width: 56rem;
       width: 56rem;
-  }
-
-  span.italic, p.italic, label.italic {
-      font-style: italic;
   }
 
   span.icon {
@@ -107,6 +99,14 @@ form {
     color: $color-base;
     border-color: $color-limegreen;
   }
+}
+
+fieldset > label {
+  margin-bottom: .7em;
+}
+
+fieldset {
+  border: 0;
 }
 
 .required {

@@ -25,7 +25,10 @@
             originalTitle; //original title is stored because Published programs cannot have title changed.
 
         //initialize program object
-        if($state.current['name'] === 'editProgram') { //edit program
+        if($state.current['name'] === 'createProgram') { // Create Program
+            vm.program = new ProgramFactory();
+            vm.program._id = null;
+        } else { // Edit/Review program
             vm.program = {};
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data){
                 vm.program = data;
@@ -33,9 +36,6 @@
                 //reload contacts when object is available
                 vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId });
             });
-        } else { //new program
-            vm.program = new ProgramFactory();
-            vm.program._id = null;
         }
 
         angular.extend(vm, {

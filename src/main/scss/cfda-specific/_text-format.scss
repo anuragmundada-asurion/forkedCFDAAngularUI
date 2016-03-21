@@ -9,3 +9,9 @@
   vertical-align: middle;
   max-width: 500px;
 }
+
+span, p, label {
+  .italic {
+    font-style: italic;
+  }
+}

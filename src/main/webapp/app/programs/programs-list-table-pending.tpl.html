@@ -30,7 +30,10 @@
                 <label for="program-{{$index}}"></label>
             </td>
             <td>{{row.data.programNumber || '-'}}</td>
-            <td>{{row.data.title}}</td>
+            <td>
+                <a ng-show="authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
+                <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])">{{row.data.title}}</span>
+            </td>
             <td>{{row.data.agencyId}}</td>
             <td>{{row.publishedDate}}</td>
             <td class="action-row">

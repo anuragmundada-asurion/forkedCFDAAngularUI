@@ -30,9 +30,33 @@
                 <label for="program-{{$index}}"></label>
             </td>
             <td>{{row.data.programNumber || '-'}}</td>
-            <td>{{row.data.title}}</td>
+            <td>
+                <div ng-show="!row.archived">
+                    <div ng-show="row.status.code === 'published'">
+                        <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
+                    </div>
+                    <div ng-show="row.status.code === 'draft'">
+                        <a ng-show="authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
+                        <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])">{{row.data.title}}</span>
+                    </div>
+                    <div ng-show="row.status.code === 'rejected'">
+                        <a ng-show="authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
+                        <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])">{{row.data.title}}</span>
+                    </div>
+                    <div ng-show="row.status.code === 'revised'">
+                        <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
+                    </div>
+                    <div ng-show="row.status.code === 'pending'">
+                        <a ng-show="authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
+                        <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])">{{row.data.title}}</span>
+                    </div>
+                </div>
+                <div ng-show="row.archived">
+                    <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
+                </div>
+            </td>
             <td>{{row.data.agencyId}}</td>
-            <td>{{row.publishedDate}}</td>
+            <td>{{row.publishedDate | date:'medium' }}</td>
             <td class="action-row">
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="row.status.code === 'draft' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" ng-show="row.status.code === 'pending' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
