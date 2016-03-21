@@ -3,12 +3,16 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil) {
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts) {
+            var vm = this;
+            $scope.appUtil = appUtil;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
             });
+
+            $scope.relatedPrograms = ProgramFactory.query({limit: 2500, status: 'Published'});
 
             Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
                 $scope.allTypes = {
@@ -32,8 +36,21 @@
                 };
             });
 
+            $scope.formatModelString = function (item) {
+                var model = null;
 
-            $scope.appUtil = appUtil;
+                model = $scope.relatedPrograms.filter(function (rp) {
+                    return rp['data']['_id'] == item;
+                });
+
+                if (model[0]) {
+                    return model[0]['data']['programNumber'] + ' ' + model[0]['data']['title'];
+                } else {
+                    return "Error: " + $scope.relatedPrograms + " " + " not found";
+                }
+            };
+
+
         }
     ]);
 }();

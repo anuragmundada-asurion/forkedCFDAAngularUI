@@ -15,7 +15,19 @@
             <p class="vp-field-label">Obligations (122):</p>
 
             <div ng-repeat="obligation in programData.financial.obligations">
-                <p class="vp-field-value">{{obligation.values}}</p>
+                <div class="tabover" ng-repeat="(key, value) in obligation.values">
+                    <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
+
+                    <div class="tabover">
+                        <p class="vp-field-label">Flag: <span class="vp-field-value"> {{traverseTree(value.flag, 'yes_no_na').value}}</span></p>
+
+                        <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual}}</span></p>
+
+                        <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate}}</span></p>
+
+                        <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation}}</span></p>
+                    </div>
+                </div>
             </div>
 
 
@@ -29,7 +41,7 @@
                 <div ng-repeat="taf in programData.financial.treasury.tafs">
                     <p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>
 
-                    <p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf..allocationTransferAgency"></span></p>
+                    <p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf.allocationTransferAgency"></span></p>
 
                     <p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>
 
@@ -50,11 +62,21 @@
             <div class="tabover">
                 <p class="vp-field-label">Are there program accomplishments?</p>
 
-                <p class="vp-field-value" ng-bind="programData.postAward.accomplishments.flag"></p>
+                <p class="vp-field-value">{{traverseTree(programData.postAward.accomplishments.flag, 'yes_no_na').value}}</p>
 
                 <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
 
-                    <div class="vp-field-value" ng-repeat="item in programData.postAward.accomplishments.list"><p>{{item}};</p></div>
+                    <div class="vp-field-value" ng-repeat="(key,value) in programData.postAward.accomplishments.list">
+
+                        <p class="vp-field-label">Year: <span class="vp-field-value"> {{key}}</span></p>
+
+                        <div class="tabover">
+                            <p class="vp-field-label">Projected: <span class="vp-field-value"> {{value.content.projection}}</span></p>
+
+                            <p class="vp-field-label">Actual: <span class="vp-field-value">{{value.content.actual}}</span></p>
+                        </div>
+
+                    </div>
 
                 </div>
             </div>
