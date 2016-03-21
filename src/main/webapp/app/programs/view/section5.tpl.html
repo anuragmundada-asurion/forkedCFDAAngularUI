@@ -14,22 +14,21 @@
 
             <p class="vp-field-label">Obligations (122):</p>
 
+            <div ng-repeat="obligation in programData.financial.obligations">
+                <div class="tabover" ng-repeat="(key, value) in programData.financial.obligation.values">
+                    <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
 
-            <div class="tabover" ng-repeat="(key, value) in programData.financial.obligations[0].values">
-                <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
+                    <div class="tabover">
+                        <p class="vp-field-label">Flag: <span class="vp-field-value"> {{traverseTree(value.flag, 'yes_no_na').value}}</span></p>
 
-                <div class="tabover">
-                    <p class="vp-field-label">Flag: <span class="vp-field-value"> {{value.flag}}</span></p>
+                        <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual}}</span></p>
 
-                    <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual}}</span></p>
+                        <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate}}</span></p>
 
-                    <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate}}</span></p>
-
-                    <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation}}</span></p>
+                        <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation}}</span></p>
+                    </div>
                 </div>
             </div>
-
-            <p class="vp-field-value">{{obligation.values}}</p>
 
 
             <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
