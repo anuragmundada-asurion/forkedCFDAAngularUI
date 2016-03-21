@@ -31,11 +31,10 @@
                 vm.program = data;
                 vm.originalTitle = vm.program.title;
                 //reload contacts when object is available
-                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId});
+                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId });
             });
         } else { //new program
             vm.program = new ProgramFactory();
-            vm.program.agencyId = "100000000";
             vm.program._id = null;
         }
 
