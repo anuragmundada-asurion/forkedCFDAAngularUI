@@ -15,7 +15,7 @@
             <p class="vp-field-label">Obligations (122):</p>
 
             <div ng-repeat="obligation in programData.financial.obligations">
-                <div class="tabover" ng-repeat="(key, value) in programData.financial.obligation.values">
+                <div class="tabover" ng-repeat="(key, value) in obligation.values">
                     <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
 
                     <div class="tabover">
