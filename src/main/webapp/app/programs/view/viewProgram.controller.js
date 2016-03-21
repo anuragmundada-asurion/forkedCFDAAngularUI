@@ -5,9 +5,12 @@
 
     app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil',
         function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil) {
-
+            console.log("hello from the ViewProgramCtrl.. yay!");
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
+                console.log("got the program data: ", $scope.programData);
+                console.log('values: ' , $scope.programData.financial.obligations.values);
+
             });
 
             Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
@@ -31,7 +34,6 @@
                     return selected ? selected.$original : null;
                 };
             });
-
 
             $scope.appUtil = appUtil;
         }

@@ -1,4 +1,4 @@
-(function(){
+(function () {
     "use strict";
 
     angular.module('app').config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 'PERMISSIONS',
@@ -59,6 +59,18 @@
                         ]
                     }
                 })
+                .state('previewProgram', {
+                    url: "/programs/:id/preview",
+                    templateUrl: "programs/view/viewProgram.tpl.html",
+                    controller: "ViewProgramCtrl as viewCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
+                        ]
+                    }
+                })
                 .state('editProgram', {
                     url: "/programs/:id/edit/:section",
                     templateUrl: "programs/addedit.tpl.html",
@@ -113,14 +125,14 @@
                 })
                 .state('programList.status', {
                     url: '/:status',
-                    templateUrl:  function ($stateParams) {
-                        if($stateParams.status && $stateParams.status === 'pending') {
+                    templateUrl: function ($stateParams) {
+                        if ($stateParams.status && $stateParams.status === 'pending') {
                             return 'programs/programs-list-table-pending.tpl.html';
-                        } else if($stateParams.status && $stateParams.status === 'archived') {
+                        } else if ($stateParams.status && $stateParams.status === 'archived') {
                             return 'programs/programs-list-table-archived.tpl.html';
-                        } else if($stateParams.status && $stateParams.status === 'published'){
+                        } else if ($stateParams.status && $stateParams.status === 'published') {
                             return 'programs/programs-list-table-published.tpl.html';
-                        } else if($stateParams.status && $stateParams.status === 'requests'){
+                        } else if ($stateParams.status && $stateParams.status === 'requests') {
                             return 'programs/programs-list-table-requests.tpl.html';
                         } else {
                             return 'programs/programs-list-table-all.tpl.html';
@@ -149,12 +161,12 @@
                     templateUrl: "agency/agency-list.tpl.html",
                     controller: "AgencyListController"
                 }).state('agencyDetails', {
-                      url: "/agency/:action/:id", //action = review, edit or create
-                      templateUrl: "agency/agency-details.tpl.html",
-                      controller: "AgencyDetailsController"
+                    url: "/agency/:action/:id", //action = review, edit or create
+                    templateUrl: "agency/agency-details.tpl.html",
+                    controller: "AgencyDetailsController"
                 });
 
-             // the known route
+            // the known route
             $urlRouterProvider.when('', '/');
 
             // For any unmatched url, send to 404

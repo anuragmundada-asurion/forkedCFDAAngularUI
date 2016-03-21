@@ -14,9 +14,22 @@
 
             <p class="vp-field-label">Obligations (122):</p>
 
-            <div ng-repeat="obligation in programData.financial.obligations">
-                <p class="vp-field-value">{{obligation.values}}</p>
+
+            <div class="tabover" ng-repeat="(key, value) in programData.financial.obligations[0].values">
+                <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
+
+                <div class="tabover">
+                    <p class="vp-field-label">Flag: <span class="vp-field-value"> {{value.flag}}</span></p>
+
+                    <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual}}</span></p>
+
+                    <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate}}</span></p>
+
+                    <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation}}</span></p>
+                </div>
             </div>
+
+            <p class="vp-field-value">{{obligation.values}}</p>
 
 
             <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
@@ -29,7 +42,7 @@
                 <div ng-repeat="taf in programData.financial.treasury.tafs">
                     <p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>
 
-                    <p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf..allocationTransferAgency"></span></p>
+                    <p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf.allocationTransferAgency"></span></p>
 
                     <p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>
 
