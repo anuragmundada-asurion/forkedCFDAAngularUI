@@ -32,7 +32,7 @@
             <td>{{row.data.programNumber || '-'}}</td>
             <td>
                 <a ng-show="authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
-                <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])">{{row.data.title}}</span>
+                <a ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
             </td>
             <td>{{row.data.agencyId}}</td>
             <td>{{row.publishedDate}}</td>
