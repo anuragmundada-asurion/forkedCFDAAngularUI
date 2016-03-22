@@ -84,7 +84,7 @@ gulp.task('vendor', ['index'], function() {
 });
 
 gulp.task('plugins', ['index'], function() {
-    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/all-ie-only.css'], {base: './src/main/webapp/plugins'})
+    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest('target/classes/static/css'));
