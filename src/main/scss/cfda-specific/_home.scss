@@ -58,6 +58,14 @@
             max-width: 15%;
         }
     }
+    
+    .userDashboardCountBell{
+        background-color: #132f4f;
+        padding: 17px;
+        margin-left: -25px;
+        border-radius: 24px;
+        -webkit-font-smoothing: antialiased;
+    }
 
     .count-box{
         float: left;
@@ -72,6 +80,10 @@
         h4{
             font-weight: 300;
             font-size: 25px;
+        }
+        a{
+            color: #112E51;
+            text-decoration: none;
         }
     }
     .count-box:last-child{
@@ -103,6 +115,10 @@
         
         span img{
             max-width: 5%;
+        }
+        a{
+            color: white;
+            text-decoration: none;
         }
     }
 
