@@ -12,6 +12,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.hateoas.MediaTypes;
 
 import javax.annotation.Resource;
 import org.json.JSONObject;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class ApiController {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
+    public static final String API_FEDERAL_HIERARCHY_ENV = "pub.api.fh";
 
     @Resource
     private Environment environment;
@@ -431,6 +433,17 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
+    public String getFederalHierarchyById(@PathVariable("id") String id) throws SQLException, RuntimeException {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaTypes.HAL_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getFederalHierarchiesApiUrl() + "/" + id);
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     private String getProgramRequestsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
     }
@@ -449,6 +462,10 @@ public class ApiController {
 
     private String getContactsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/contacts";
+    }
+
+    private String getFederalHierarchiesApiUrl() {
+        return environment.getProperty(API_FEDERAL_HIERARCHY_ENV) + "/fh";
     }
 
     private String getEligibilitylistingsApiUrl() {
