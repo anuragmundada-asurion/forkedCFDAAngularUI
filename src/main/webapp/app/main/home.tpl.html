@@ -21,6 +21,7 @@
             <div class="user-dashboard-label">{{ user.name }}'s Dashboard</div>
             <div class="user-dashboard-request">
                 <a ui-sref="programList.status({status: 'requests'})">
+                    <span class="userDashboardCountBell"><span class="fa fa-bell"></span></span>
                     <span ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
                     <span ng-show="oDashboardReport">{{ oDashboardReport.request }}</span> Request(s)
                 </a>
