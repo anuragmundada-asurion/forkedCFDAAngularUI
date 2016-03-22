@@ -32,12 +32,11 @@
         </td>
         <td>{{row.data.programNumber || '-'}}</td>
         <td>
-            <a ui-sref="editProgram({id: row.id, section: 'review'})">{{row.data.title}}</a>
+            <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
         </td>
         <td>{{row.data.agencyId}}</td>
         <td>{{row.publishedDate}}</td>
         <td class="action-row">
-            <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
         </td>

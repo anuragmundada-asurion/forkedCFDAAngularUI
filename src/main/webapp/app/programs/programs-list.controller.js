@@ -4,12 +4,13 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 
-    function($scope, $state, $stateParams, appConstants, ApiService) {
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 'AuthorizationService',
+    function($scope, $state, $stateParams, appConstants, ApiService, AuthorizationService) {
         $scope.previousState = null;
         $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
         $scope.programStatus = 'All';
+        $scope.authorize = AuthorizationService.authorize;
 
         //updating scope programStatus parent for tabs/query purposes
         if($stateParams.hasOwnProperty('status')) {

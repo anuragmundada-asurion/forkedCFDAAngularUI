@@ -18,7 +18,8 @@
                 "gsaRAC": [
                     $scope.roleChange
                 ],
-                'tokenId': $scope.roleChange
+                'tokenId': $scope.roleChange,
+                'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
             };
             UserService.changeUser(user);
             ngDialog.close();

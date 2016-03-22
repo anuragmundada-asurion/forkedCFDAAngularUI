@@ -14,7 +14,8 @@
             "programCountByYear": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
             "regionalAgencyEntity": "/api/regionalAgencies",
-            "programCount": "/api/programCount"
+            "programCount": "/api/programCount",
+            "federalHierarchyList": "/api/federalHierarchies"
         };
 
         this.APIs = APIs;

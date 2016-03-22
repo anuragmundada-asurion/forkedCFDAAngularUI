@@ -25,18 +25,40 @@
             originalTitle; //original title is stored because Published programs cannot have title changed.
 
         //initialize program object
-        if($state.current['name'] === 'editProgram') { //edit program
+        if($state.current['name'] === 'createProgram') { // Create Program
+            vm.program = new ProgramFactory();
+            vm.program._id = null;
+        } else { // Edit/Review program
             vm.program = {};
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data){
                 vm.program = data;
                 vm.originalTitle = vm.program.title;
                 //reload contacts when object is available
-                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId});
+                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId });
+
+                if (vm.program.status === 'Pending') {
+                    var oApiParam = {
+                        apiName: 'programRequest',
+                        apiSuffix: '',
+                        oParams: {
+                            completed: false,
+                            programId: vm.program._id,
+                            type: 'submit'
+                        },
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    ApiService.call(oApiParam).then(function(data) {
+                        var results = data['results'];
+                        if (results && results.length) {
+                            $scope.submissionRequest = results[0];
+                        }
+                    }, function(error) {
+                        console.log(error);
+                    });
+                }
             });
-        } else { //new program
-            vm.program = new ProgramFactory();
-            vm.program.agencyId = "100000000";
-            vm.program._id = null;
         }
 
         angular.extend(vm, {
