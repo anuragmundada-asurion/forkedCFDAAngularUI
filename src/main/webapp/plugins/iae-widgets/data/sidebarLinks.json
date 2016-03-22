@@ -1,48 +1,42 @@
-[{
-	"url": "#",
-	"active":true,
-	"text": "Alerts",
-	"children": [{
-		"url": "#",
-		"active":false,
-		"text": "Child link1"
-	},
-	{
-		"url": "#",
-		"active":false,
-		"text": "Child link2"
-	}]
-},
 {
-	"url": "#",
-	"active":false,
-	"text": "Release Notes"
-},
-{
-	"url": "#",
-	"active":false,
-	"text": "Transition Roadmap",
-	"children": [{
+	"sidebarLinks": [{
 		"url": "#",
-		"text": "Child link3"
-	},
-	{
-		"url": "#",
-		"active":false,
-		"text": "Child link4",
+		"text": "Alerts",
 		"children": [{
 			"url": "#",
-			"text": "Grandchild link5"
+			"text": "Child link"
 		},
 		{
 			"url": "#",
-			"active":false,
-			"text": "Grandchild link6"
+			"text": "Child link"
+		}]
+	},
+	{
+		"url": "#",
+		"text": "Release Notes"
+	},
+	{
+		"url": "#",
+		"text": "Transition Roadmap",
+		"children": [{
+			"url": "#",
+			"text": "Child link"
 		},
 		{
 			"url": "#",
-			"active":false,
-			"text": "Grandchild link7"
+			"text": "Child link",
+			"grandchildren": [{
+				"url": "#",
+				"text": "Grandchild link"
+			},
+			{
+				"url": "#",
+				"text": "Grandchild link"
+			},
+			{
+				"url": "#",
+				"text": "Grandchild link"
+			}]
 		}]
 	}]
-}]
+}
