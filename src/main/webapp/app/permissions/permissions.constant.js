@@ -13,6 +13,12 @@
         //  Individual Published Program
         'CAN_VIEW_PROGRAM': 'CanViewProgram',
 
+        //  Regional Office
+        'CAN_CREATE_REGIONAL_OFFICE': 'CanCreateRegionalOffice',
+        'CAN_EDIT_REGIONAL_OFFICE': 'CanEditRegionalOffice',
+        'CAN_DELETE_REGIONAL_OFFICE': 'CanDeleteRegionalOffice',
+        'CAN_VIEW_REGIONAL_OFFICE': 'CanViewRegionalOffice',
+
         //  Create Draft Program
         'CAN_CREATE_PROGRAMS': 'CanCreatePrograms',
 
