@@ -3,13 +3,14 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts) {
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService) {
             var vm = this;
             $scope.appUtil = appUtil;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
+                $scope.getAgencyName($scope.programData.agencyId);
             });
 
             $scope.relatedPrograms = ProgramFactory.query({limit: 2500, status: 'Published'});
@@ -49,6 +50,13 @@
                     return "Error: " + $scope.relatedPrograms + " " + " not found";
                 }
             };
+
+            $scope.getAgencyName = function (id) {
+                FederalHierarchyService.getFederalHierarchyById(id, function (data) {
+                    $scope.agencyName = data.name;
+                });
+            };
+
 
 
         }
