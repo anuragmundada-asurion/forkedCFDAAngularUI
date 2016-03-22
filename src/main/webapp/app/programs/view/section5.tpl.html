@@ -21,12 +21,17 @@
                     <div class="tabover">
                         <p class="vp-field-label">Flag: <span class="vp-field-value"> {{traverseTree(value.flag, 'yes_no_na').value}}</span></p>
 
-                        <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual}}</span></p>
+                        <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual | currency}}</span></p>
 
-                        <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate}}</span></p>
+                        <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate | currency}}</span></p>
 
-                        <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation}}</span></p>
+                        <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation | currency}}</span></p>
                     </div>
+                </div>
+                <div class="tabover">
+                    <p class="vp-field-label">Additional Info: </p>
+
+                    <p class="vp-field-value"> {{obligation.additionalInfo.content}}</p>
                 </div>
             </div>
 
@@ -40,19 +45,19 @@
             <!--<p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>-->
 
             <!--<div class="tabover">-->
-                <!--<div ng-repeat="taf in programData.financial.treasury.tafs">-->
-                    <!--<p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>-->
+            <!--<div ng-repeat="taf in programData.financial.treasury.tafs">-->
+            <!--<p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>-->
 
-                    <!--<p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf.allocationTransferAgency"></span></p>-->
+            <!--<p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf.allocationTransferAgency"></span></p>-->
 
-                    <!--<p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>-->
+            <!--<p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>-->
 
-                    <!--<p class="vp-field-label">FY 2: <span class="vp-field-value" ng-bind="taf.fy2"></span></p>-->
+            <!--<p class="vp-field-label">FY 2: <span class="vp-field-value" ng-bind="taf.fy2"></span></p>-->
 
-                    <!--<p class="vp-field-label"> Treasury Account Main Code: <span class="vp-field-value" ng-bind="taf.accountCode"></span></p>-->
+            <!--<p class="vp-field-label"> Treasury Account Main Code: <span class="vp-field-value" ng-bind="taf.accountCode"></span></p>-->
 
-                    <!--<p class="vp-field-label">TAFS Sub-Account: <span class="vp-field-value" ng-bind="taf.subAccountCode"></span></p>-->
-                <!--</div>-->
+            <!--<p class="vp-field-label">TAFS Sub-Account: <span class="vp-field-value" ng-bind="taf.subAccountCode"></span></p>-->
+            <!--</div>-->
             <!--</div>-->
 
         </div>
