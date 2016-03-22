@@ -4,7 +4,7 @@
     var myApp = angular.module('app');
 
     myApp.service('FederalHierarchyService', ['ApiService', function (ApiService){
-        this.getFederalHierarchyById = function(id) {
+        this.getFederalHierarchyById = function(id, callbackFnSuccess) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: '/' + id,
@@ -16,6 +16,9 @@
             //make api call to get federalHierarchy by id
             ApiService.call(oApiParam).then(
             function (data) {
+                if(typeof callbackFnSuccess === 'function'){
+                    callbackFnSuccess(data);
+                }
                 return data;
             }, 
             function(error){
