@@ -35,6 +35,29 @@
                 vm.originalTitle = vm.program.title;
                 //reload contacts when object is available
                 vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId });
+
+                if (vm.program.status === 'Pending') {
+                    var oApiParam = {
+                        apiName: 'programRequest',
+                        apiSuffix: '',
+                        oParams: {
+                            completed: false,
+                            programId: vm.program._id,
+                            type: 'submit'
+                        },
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    ApiService.call(oApiParam).then(function(data) {
+                        var results = data['results'];
+                        if (results && results.length) {
+                            $scope.submissionRequest = results[0];
+                        }
+                    }, function(error) {
+                        console.log(error);
+                    });
+                }
             });
         }
 
