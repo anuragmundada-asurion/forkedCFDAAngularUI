@@ -35,13 +35,9 @@
                     <div ng-show="row.status.code === 'published'">
                         <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
                     </div>
-                    <div ng-show="row.status.code === 'draft'">
+                    <div ng-show="row.status.code === 'draft' || row.status.code === 'rejected'">
                         <a ng-show="authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
-                        <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])">{{row.data.title}}</span>
-                    </div>
-                    <div ng-show="row.status.code === 'rejected'">
-                        <a ng-show="authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])" ui-sref="editProgram({ id: row.id, section: 'review' })">{{row.data.title}}</a>
-                        <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])">{{row.data.title}}</span>
+                        <a ng-show="!authorize([PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS])" ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
                     </div>
                     <div ng-show="row.status.code === 'revised'">
                         <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
@@ -58,10 +54,10 @@
             <td>{{row.data.agencyId}}</td>
             <td>{{row.publishedDate | date:'medium' }}</td>
             <td class="action-row">
-                <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="row.status.code === 'draft' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
-                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" ng-show="row.status.code === 'pending' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="(row.status.code === 'draft' || row.status.code === 'rejected') && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id, section: 'review' })"><span class="fa fa-pencil"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" ng-show="row.status.code === 'pending' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id, section: 'review' })"><span class="fa fa-pencil"></span></button>
 
-                <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="row.status.code === 'draft' && !row.archived" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS] }}" ng-show="(row.status.code === 'draft' || row.status.code === 'rejected') && !row.archived" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
 
                 <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" ng-show="row.status.code === 'published' && !row.archived" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
                 <button has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" type="button" ng-show="row.status.code === 'published' && row.archived" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>

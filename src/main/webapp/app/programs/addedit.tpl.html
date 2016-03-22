@@ -1901,7 +1901,7 @@
     </section>
     <section class="usa-grid-full">
         <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>
