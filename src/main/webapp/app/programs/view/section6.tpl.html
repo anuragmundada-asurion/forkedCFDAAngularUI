@@ -39,8 +39,8 @@
 
             <p class="vp-field-value"> {{traverseTree(programData.relatedPrograms.flag, 'yes_no_na').value}}</p>
 
-            <div ng-repeat="item in programData.relatedPrograms.relatedTo" ng-model="relatedPrograms">
-                <p>{{formatModelString(item)}}</p>
+            <div ng-repeat="item in relatedPrograms">
+                <p>{{item.title}}</p>
             </div>
 
 
