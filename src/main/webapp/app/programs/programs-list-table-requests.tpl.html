@@ -37,7 +37,7 @@
             </div>
             <div ng-show="row.program.status === 'pending' && !row.program.archived">
                 <a ng-show="authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="editProgram({ id: row.programId, section: 'review' })">{{row.program.title}}</a>
-                <span ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])">{{row.program.title}}</span>
+                <a ng-show="!authorize([PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS])" ui-sref="reviewProgram({ id: row.programId })">{{row.program.title}}</a>
             </div>
             <div ng-show="row.program.archived">
                 <a ui-sref="reviewProgram({ id: row.programId })">{{row.program.title}}</a>
