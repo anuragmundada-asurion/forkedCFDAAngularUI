@@ -73,6 +73,10 @@
             font-weight: 300;
             font-size: 25px;
         }
+        a{
+            color: #112E51;
+            text-decoration: none;
+        }
     }
     .count-box:last-child{
         margin-right: 0;
@@ -103,6 +107,10 @@
         
         span img{
             max-width: 5%;
+        }
+        a{
+            color: white;
+            text-decoration: none;
         }
     }
 

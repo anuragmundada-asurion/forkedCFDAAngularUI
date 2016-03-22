@@ -20,34 +20,46 @@
         <div class="usa-grid-full">
             <div class="user-dashboard-label">{{ user.name }}'s Dashboard</div>
             <div class="user-dashboard-request">
-                <span ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span ng-show="oDashboardReport">{{ oDashboardReport.request }}</span> Request(s)
+                <a ui-sref="programList.status({status: 'requests'})">
+                    <span ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                    <span ng-show="oDashboardReport">{{ oDashboardReport.request }}</span> Request(s)
+                </a>
             </div>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-            <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
-            <h4>Total Active Listings</h4>
+            <a ui-sref="programList.status({status: 'all'})">
+                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
+                <h4>Total Active Listings</h4>
+            </a>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-            <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
-            <h4>Draft Listings</h4>
+                <a ui-sref="programList.status({status: 'draft'})">
+                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
+                <h4>Draft Listings</h4>
+            </a>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-            <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
-            <h4>Pending Listings</h4>
+            <a ui-sref="programList.status({status: 'pending'})">
+                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
+                <h4>Pending Listings</h4>
+            </a>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-            <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
-            <h4>Published Listings</h4>
+            <a ui-sref="programList.status({status: 'published'})">
+                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
+                <h4>Published Listings</h4>
+            </a>
         </div>
         <div class="count-box">
-            <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-            <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
-            <h4>Rejected Listings</h4>
+            <a ui-sref="programList.status({status: 'rejected'})">
+                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
+                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
+                <h4>Rejected Listings</h4>
+            </a>
         </div>
         
         <div class="usa-grid-full text-center">
