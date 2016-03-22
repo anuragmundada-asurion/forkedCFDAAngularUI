@@ -5,11 +5,7 @@
 
     <p class="vp-field-label">Regional or Local Office:</p>
 
-    <p class="vp-field-value" ng-bind="programData.contacts['local'].flag == 'regional'"></p>
-
-    <p class="vp-field-label">Additional Information:</p>
-
-    <p class="vp-field-value" ng-bind="programData.contacts['local'].additionalInfo.content"></p>
+    <p class="vp-field-value">{{programData.contacts['local'].flag == 'regional'}}, {{programData.contacts['local'].additionalInfo.content}}</p>
 
     <p class="vp-field-label">Headquarters Office:</p>
 
