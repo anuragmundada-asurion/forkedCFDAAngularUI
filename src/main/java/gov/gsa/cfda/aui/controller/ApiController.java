@@ -341,99 +341,6 @@ public class ApiController {
         restTemplate.delete(builder.build().encode().toUri());
     }
 
-    @RequestMapping(value = "/api/regionalAgency", method = RequestMethod.GET, produces = "application/json")
-    public String getRegionalAgencyListApiCall(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
-                                        @RequestParam(value="includeCount", required=false, defaultValue="true") Boolean includeCount,
-                                        @RequestParam(value="limit", required=false, defaultValue="100") int limit,
-                                        @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                                        @RequestParam(value="sortBy", required=false, defaultValue="-agency") String sortBy,
-                                        @RequestParam(value="agency", required=false) String agency,
-                                        @RequestParam(value="division", required=false) String division) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl())
-                .queryParam("keyword", keyword)
-                .queryParam("includeCount", includeCount)
-                .queryParam("limit", limit)
-                .queryParam("offset", offset)
-                .queryParam("sortBy", sortBy)
-                .queryParam("agency", agency)
-                .queryParam("division", division);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/regionalAgency/{id}", method = RequestMethod.GET, produces = "application/json")
-    public String getRegionalAgencyApiCall(@PathVariable("id") String id) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl() + "/" + id);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/regionalAgency", method = RequestMethod.POST)
-    public String createRegionalAgencyApiCall(@RequestParam(value="agency", required=true) String agencyId,
-                                              @RequestParam(value="division", required=false) String divisionId,
-                                              @RequestParam(value="branch", required=false) String branch,
-                                              @RequestParam(value="region", required=false) String region,
-                                              @RequestParam(value="subbranch", required=false) String subbranch,
-                                              @RequestParam(value="phone", required=true) String phone,
-                                              @RequestParam(value="address", required=false) String address,
-                                              @RequestParam(value="city", required=false) String city,
-                                              @RequestParam(value="state", required=false) String stateId,
-                                              @RequestParam(value="zip", required=false) String zip,
-                                              @RequestParam(value="country", required=false) String countryId) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl())
-                .queryParam("agency", agencyId)
-                .queryParam("division", divisionId)
-                .queryParam("branch", branch)
-                .queryParam("region", region)
-                .queryParam("subbranch", subbranch)
-                .queryParam("phone", phone)
-                .queryParam("address", address)
-                .queryParam("city", city)
-                .queryParam("state", stateId)
-                .queryParam("zip", zip)
-                .queryParam("country", countryId);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.POST, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/regionalAgency/{id}", method = RequestMethod.PUT)
-    public String updateRegionalAgencyApiCall(@PathVariable("id") String id,
-                                       @RequestBody String jsonData) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        headers.set("Media-Type", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl() + "/" + id) ;
-        HttpEntity<?> entity = new HttpEntity<>(jsonData, headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PUT, entity, String.class);
-        return response.getBody();
-    }
-
-    @RequestMapping(value = "/api/regionalAgency/{id}", method = RequestMethod.DELETE)
-    public String deleteRegionalAgencyApiCall(@PathVariable("id") String id) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getRegionalAgencyApiUrl() + "/" + id);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
-        return response.getBody();
-    }
-
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public String getFederalHierarchyById(@PathVariable("id") String id) throws SQLException, RuntimeException {
         RestTemplate restTemplate = new RestTemplate();
@@ -457,7 +364,7 @@ public class ApiController {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programs";
     }
 
-    private String getRegionalAgencyApiUrl() {
+    private String getRegionalOfficeApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/regionalAgency";
     }
 
