@@ -36,7 +36,9 @@
                 </td>
                 <td>{{row.programNumber || '-'}}</td>
                 <td><a ui-sref="viewProgram({id: row.id})">{{row.title}}</a></td>
-                <td>{{row.agencyId}}</td>
+                <td>
+                    <federal-hierarchy-label organization-id="{{ row.agencyId }}"></federal-hierarchy-label>
+                </td>
                 <td><span ng-bind-html="row.assistanceTypes"></span></td>
             </tr>
             <tr ng-show="!searchResults || searchResults.length == 0">
