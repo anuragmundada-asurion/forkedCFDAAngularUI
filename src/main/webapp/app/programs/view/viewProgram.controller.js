@@ -3,7 +3,7 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q', '$log','ApiService',
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q', '$log', 'ApiService',
         function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q, $log, ApiService) {
             $scope.appUtil = appUtil;
             $scope.$log = $log;
@@ -36,6 +36,7 @@
                 console.log(params);
 
                 ApiService.call(params).then(function (data) {
+                    $scope.historicalIndex = data;
                     console.log(data);
                 });
 
