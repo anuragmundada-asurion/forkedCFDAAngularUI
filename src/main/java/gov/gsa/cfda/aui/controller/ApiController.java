@@ -226,8 +226,48 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.DELETE)
-    public void deleteRequest(@PathVariable("id") String requestId) {
-        deleteCall(getProgramRequestsApiUrl() + "/" + requestId);
+    public void deleteRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                              @PathVariable("id") String requestId) {
+        deleteCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId);
+    }
+
+    @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRegionalOffices(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+                                     @RequestParam(value="includeCount", required=false, defaultValue="false") Boolean includeCount,
+                                     @RequestParam(value="limit", required=false, defaultValue="100") int limit,
+                                     @RequestParam(value="offset", required=false, defaultValue="0") int offset,
+                                     @RequestParam(value="sortBy", required=false, defaultValue="-agencyId") String sortBy) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("keyword", keyword);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        return getsCall("", getRegionalOfficeApiUrl(), params);
+    }
+
+    @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRegionalOffice(@PathVariable("id") String officeId) {
+        return getCall("", getRegionalOfficeApiUrl() + "/" + officeId);
+    }
+
+    @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                       @RequestBody String jsonBody) throws SQLException, RuntimeException {
+        return this.createCall(accessToken, getRegionalOfficeApiUrl(), jsonBody);
+    }
+
+    @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String updateRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                                  @PathVariable("id") String officeId,
+                                                  @RequestBody String jsonData) {
+        return this.updateCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId, jsonData);
+    }
+
+    @RequestMapping(value = "/regionalOffices/{id}", method = RequestMethod.DELETE)
+    public void deleteRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                     @PathVariable("id") String officeId) throws SQLException, RuntimeException {
+        this.deleteCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
     @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -264,8 +304,9 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.DELETE)
-    public void deleteAction(@PathVariable("id") String actionId) {
-        deleteCall(getProgramRequestActionsApiUrl() + "/" + actionId);
+    public void deleteAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                             @PathVariable("id") String actionId) {
+        deleteCall(accessToken, getProgramRequestActionsApiUrl() + "/" + actionId);
     }
 
     private String getsCall(String accessToken, String url, Map<String, Object> params) {
@@ -328,17 +369,20 @@ public class ApiController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Auth-Token", accessToken);
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
         return response.getBody();
     }
 
-    private void deleteCall(String url) {
+    private void deleteCall(String accessToken, String url) {
         RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Auth-Token", accessToken);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-        restTemplate.delete(builder.build().encode().toUri());
+        HttpEntity<?> entity = new HttpEntity<>(null, headers);
+        restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
     }
 
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
@@ -365,7 +409,7 @@ public class ApiController {
     }
 
     private String getRegionalOfficeApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/regionalAgency";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/regionalOffices";
     }
 
     private String getContactsApiUrl() {
