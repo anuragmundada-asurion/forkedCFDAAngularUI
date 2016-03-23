@@ -5,20 +5,19 @@
 
     app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q',
         function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q) {
-            var vm = this;
             $scope.appUtil = appUtil;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                //console.log($scope.programData);
+                console.log($scope.programData);
                 $scope.getAgencyName($scope.programData.agencyId);
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
-                    angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function(item, key) {
+                    angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {
                         promises.push(ProgramFactory.get({id: item}).$promise);
                     });
 
-                    $q.all(promises).then(function(values) {
+                    $q.all(promises).then(function (values) {
                         $scope.relatedPrograms = values;
                     });
                 }
@@ -47,11 +46,13 @@
             });
 
             $scope.getAgencyName = function (id) {
-                FederalHierarchyService.getFederalHierarchyById(id, function (data) {
-                    $scope.agencyName = data.name;
-                });
+                console.log('trying to getAgencyName.. id is:' + id);
+                if (id) {
+                    FederalHierarchyService.getFederalHierarchyById(id, function (data) {
+                        $scope.agencyName = data.name;
+                    });
+                }
             };
-
 
 
         }

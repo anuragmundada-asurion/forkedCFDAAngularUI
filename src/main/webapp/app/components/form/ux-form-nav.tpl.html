@@ -21,6 +21,7 @@
             </ul>
             <div class="usa-width-one-half">
                 <div class="navigator-button-group">
+                    <a ui-sref="previewProgram({id: gsavm.program._id})"><button class="usa-button">Preview</button></a>
                     <button type="button" class="usa-button-unstyled button-circle action-button"  ng-disabled="uxForm.isOnFirstSection" ng-click="uxForm.goToPreviousSection()" trigger-click-on-enter><span class="fa fa-arrow-left"></span></button>
                     <button type="button" class="usa-button-unstyled button-circle action-button" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
                 </div>

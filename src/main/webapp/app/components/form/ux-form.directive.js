@@ -1,4 +1,4 @@
-(function() {
+(function () {
     "use strict";
 
     angular
@@ -26,7 +26,7 @@
         function postLink(scope, element, attrs) {
             var fn = $parse(attrs.onSectionChange);
 
-            scope.uxForm.onSectionChange = function(prevSectionKey, nextSectionKey) {
+            scope.uxForm.onSectionChange = function (prevSectionKey, nextSectionKey) {
                 fn(scope, {
                     prevSectionKey: prevSectionKey,
                     nextSectionKey: nextSectionKey
@@ -123,12 +123,12 @@
         }
 
         function setCurrentSection(section) {
-            if(section === _currentSection)
+            if (section === _currentSection)
                 return;
 
-            if(angular.isObject(section))
+            if (angular.isObject(section))
                 section = sections.indexOf(section);
-            if(angular.isNumber(section) && section >= 0) {
+            if (angular.isNumber(section) && section >= 0) {
                 _previousSection = _currentSection;
                 _currentSection = sections[section];
             }
@@ -145,17 +145,17 @@
 
             Object.defineProperty(section, 'selected', {
                 enumerable: true,
-                get: function() {
+                get: function () {
                     return self.current === section;
                 }
             });
 
-            if(!self.current)
+            if (!self.current)
                 _currentSection = section;
 
-            if(isUsingUiRouter) {
+            if (isUsingUiRouter) {
                 var stateKey = $stateParams[urlSectionParamName];
-                if(stateKey === section.stateKey)
+                if (stateKey === section.stateKey)
                     _currentSection = section;
             }
         }
@@ -165,7 +165,7 @@
         }
 
         function changeUiState(section) {
-            if(isUsingUiRouter) {
+            if (isUsingUiRouter) {
                 var stateName = $state.current.name,
                     stateParams = angular.copy($stateParams),
                     newParams = {};
@@ -179,13 +179,13 @@
 
         function goToNextSection() {
             var nextIndex = sections.indexOf(self.current) + 1;
-            if(nextIndex < sections.length)
+            if (nextIndex < sections.length)
                 sections[nextIndex].go();
         }
 
         function goToPreviousSection() {
             var previousIndex = sections.indexOf(self.current) - 1;
-            if(previousIndex >= 0)
+            if (previousIndex >= 0)
                 sections[previousIndex].go();
         }
 
@@ -193,27 +193,27 @@
             self.bookmarks.push(bookmark);
         }
 
-        function goToBookmark(){
+        function goToBookmark() {
             var bookmark = self.selectedBookmark;
-            if(bookmark) {
+            if (bookmark) {
                 removeAllHighlights();
-                if(bookmark.section !== self.current)
+                if (bookmark.section !== self.current)
                     bookmark.section.go();
-                $timeout(function(){
+                $timeout(function () {
                     bookmark.goToElement(self.offset);
                 });
             }
         }
 
         function removeAllHighlights() {
-            angular.forEach(self.bookmarks, function(value) {
+            angular.forEach(self.bookmarks, function (value) {
                 value.removeHighlight();
             });
         }
 
         function goToBookmarkByText(text) {
             var bookmark = null;
-            self.bookmarks.some(function(value) {
+            self.bookmarks.some(function (value) {
                 if (value.text === text) {
                     bookmark = value;
                     return true;
@@ -221,9 +221,9 @@
             });
             if (bookmark) {
                 removeAllHighlights();
-                if(bookmark.section !== self.current)
+                if (bookmark.section !== self.current)
                     bookmark.section.go();
-                $timeout(function() {
+                $timeout(function () {
                     bookmark.goToElement(self.offset);
                 });
             }
