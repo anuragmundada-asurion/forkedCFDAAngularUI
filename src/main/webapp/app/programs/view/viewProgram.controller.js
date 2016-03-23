@@ -3,14 +3,14 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q) {
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q','$log',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q, $log) {
             $scope.appUtil = appUtil;
+            $scope.$log = $log;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
                 console.log($scope.programData);
-                $scope.getAgencyName($scope.programData.agencyId);
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
                     angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {
@@ -44,15 +44,6 @@
                     return selected ? selected.$original : null;
                 };
             });
-
-            $scope.getAgencyName = function (id) {
-                console.log('trying to getAgencyName.. id is:' + id);
-                if (id) {
-                    FederalHierarchyService.getFederalHierarchyById(id, function (data) {
-                        $scope.agencyName = data.name;
-                    });
-                }
-            };
 
 
         }
