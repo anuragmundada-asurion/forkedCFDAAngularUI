@@ -28,7 +28,7 @@
                 var params = {
                     apiName: 'historicalIndex',
                     apiSuffix: '/' + $scope.programId,
-                    oParams: {},
+                    oParams: {programNumber: $scope.programData.programNumber},
                     oData: {},
                     method: 'GET'
                 };
@@ -38,10 +38,6 @@
                 ApiService.call(params).then(function (data) {
                     console.log(data);
                 });
-
-
-
-
 
 
             });

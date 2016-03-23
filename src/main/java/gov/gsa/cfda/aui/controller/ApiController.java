@@ -398,13 +398,16 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/historicalIndex/{id}", method = RequestMethod.GET)
-    public String getHistoricalIndex(@PathVariable("id") String id) {
+    public String getHistoricalIndex(@PathVariable("id") String id,
+                                     @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         System.out.println("going to: \n" + getHistoricalIndexApiUrl() + "/" + id);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getHistoricalIndexApiUrl() + "/" + id);
+        System.out.println("query parameter, (programNumber): \n" + programNumber);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getHistoricalIndexApiUrl() + "/" + id).queryParam("programNumber", programNumber);
+        System.out.println("toUri... : " + builder.build().encode().toUri());
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
