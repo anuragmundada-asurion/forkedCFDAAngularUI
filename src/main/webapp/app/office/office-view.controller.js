@@ -2,7 +2,7 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('AgencyListController', ['$scope', '$state', '$stateParams', 'appConstants',
+     myApp.controller('RegionalOfficeViewController', ['$scope', '$state', '$stateParams', 'appConstants',
                       'ApiService', 'Dictionary',
             function($scope, $state, $stateParams, appConstants, ApiService, Dictionary) {
                  $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;

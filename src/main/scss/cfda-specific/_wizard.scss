@@ -16,6 +16,7 @@
           width: calc(100%/7);
         }
         .step-title {
+          cursor: pointer;
           display: block;
           font-size: 12px;
           font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif;
@@ -49,6 +50,7 @@
     > .step-num {
       @extend .section-circle;
       box-sizing: border-box;
+      cursor: pointer;
       @include transition(all .3s cubic-bezier(.55, 0, .55, .2));
     }
     &:focus > .step-num {

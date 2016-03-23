@@ -156,14 +156,42 @@
                         ]
                     }
                 })
-                .state('agencyList', {
-                    url: "/agency/main",
-                    templateUrl: "agency/agency-list.tpl.html",
-                    controller: "AgencyListController"
-                }).state('agencyDetails', {
-                    url: "/agency/:action/:id", //action = review, edit or create
-                    templateUrl: "agency/agency-details.tpl.html",
-                    controller: "AgencyDetailsController"
+                .state('regionalOfficeList', {
+                    url: "/regionalOffice",
+                    templateUrl: "office/office-list.tpl.html",
+                    controller: "RegionalOfficeListController",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
+                        ]
+                    }
+                }).state('viewRegionalOffice', {
+                    url: "/regionalOffice/:id",
+                    templateUrl: "agency/office-view.tpl.html",
+                    controller: "RegionalOfficeViewController",
+                access: {
+                    requiredPermissions: [
+                        PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
+                    ]
+                }
+                }).state('createRegionalOffice', {
+                    url: "/regionalOffice/create",
+                    templateUrl: "agency/office-form.tpl.html",
+                    controller: "RegionalOfficeEditController",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE
+                        ]
+                    }
+                }).state('editRegionalOffice', {
+                    url: "/regionalOffice/:id/edit",
+                    templateUrl: "office/office-form.tpl.html",
+                    controller: "RegionalOfficeEditController",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
+                        ]
+                    }
                 });
 
             // the known route
