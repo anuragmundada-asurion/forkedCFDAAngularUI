@@ -18,7 +18,7 @@
 
     <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}" class="usa-grid-full home-dashboard">
         <div class="usa-grid-full">
-            <div class="user-dashboard-label">{{ user.name }}'s Dashboard</div>
+            <div class="user-dashboard-label">{{ user.fullName }}'s Dashboard</div>
             <div class="user-dashboard-request">
                 <a ui-sref="programList.status({status: 'requests'})">
                     <span class="userDashboardCountBell"><span class="fa fa-bell"></span></span>
