@@ -15,7 +15,8 @@
             "programEligibCount": "/api/eligibilitylistings",
             "regionalAgencyEntity": "/api/regionalAgencies",
             "programCount": "/api/programCount",
-            "federalHierarchyList": "/api/federalHierarchies"
+            "federalHierarchyList": "/api/federalHierarchies",
+            "historicalIndex": "/api/historicalIndex" //:programNumber
         };
 
         this.APIs = APIs;

@@ -3,10 +3,12 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q','$log',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q, $log) {
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q', '$log','ApiService',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q, $log, ApiService) {
             $scope.appUtil = appUtil;
             $scope.$log = $log;
+            $scope.programId = $stateParams.id;
+
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
@@ -21,6 +23,27 @@
                         $scope.relatedPrograms = values;
                     });
                 }
+
+                //get historical index data
+                var params = {
+                    apiName: 'historicalIndex',
+                    apiSuffix: '/' + $scope.programId,
+                    oParams: {},
+                    oData: {},
+                    method: 'GET'
+                };
+
+                console.log(params);
+
+                ApiService.call(params).then(function (data) {
+                    console.log(data);
+                });
+
+
+
+
+
+
             });
 
             Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {

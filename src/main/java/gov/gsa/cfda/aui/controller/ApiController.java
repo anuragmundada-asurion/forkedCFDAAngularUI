@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.hateoas.MediaTypes;
 
 import javax.annotation.Resource;
+
 import org.json.JSONObject;
 
 import java.sql.SQLException;
@@ -36,12 +37,12 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs", method = RequestMethod.GET, produces = "application/json")
     public String getProgramListApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
-                                        @RequestParam(value="keyword", required=false, defaultValue="") String keyword,
-                                        @RequestParam(value="includeCount", required=false, defaultValue="false") Boolean includeCount,
-                                        @RequestParam(value="limit", required=false, defaultValue="100") int limit,
-                                        @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                                        @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
-                                        @RequestParam(value="status", required=false, defaultValue="") String status) {
+                                        @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                                        @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
+                                        @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                                        @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                                        @RequestParam(value = "sortBy", required = false, defaultValue = "-title") String sortBy,
+                                        @RequestParam(value = "status", required = false, defaultValue = "") String status) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Auth-Token", accessToken);
@@ -158,11 +159,11 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/search", method = RequestMethod.GET, produces = "application/json")
-    public String searchApiCall(@RequestParam(value="keyword", required=false) String keyword,
-                                @RequestParam(value="sortBy", required=false, defaultValue="score") String sortBy,
-                                @RequestParam(value="page", required=false, defaultValue="0") int page,
-                                @RequestParam(value="size", required=false, defaultValue="10") int size,
-                                @RequestParam(value="oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
+    public String searchApiCall(@RequestParam(value = "keyword", required = false) String keyword,
+                                @RequestParam(value = "sortBy", required = false, defaultValue = "score") String sortBy,
+                                @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                                @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -181,21 +182,21 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String submitProgram(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String programId,
-                                @RequestBody(required=false) String jsonData) throws Exception {
+                                @RequestBody(required = false) String jsonData) throws Exception {
         return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/submit", jsonData);
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                              @RequestParam(value="keyword", required=false, defaultValue="") String keyword,
-                              @RequestParam(value="completed", required=false, defaultValue="false") boolean isCompleted,
-                              @RequestParam(value="limit", required=false, defaultValue="100") int limit,
-                              @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                              @RequestParam(value="sortBy", required=false, defaultValue="-entryDate") String sortBy,
-                              @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
+                              @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                              @RequestParam(value = "completed", required = false, defaultValue = "false") boolean isCompleted,
+                              @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                              @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                              @RequestParam(value = "sortBy", required = false, defaultValue = "-entryDate") String sortBy,
+                              @RequestParam(value = "includeCount", required = false, defaultValue = "false") boolean includeCount) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);
         params.put("completed", isCompleted);
@@ -232,11 +233,11 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getRegionalOffices(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
-                                     @RequestParam(value="includeCount", required=false, defaultValue="false") Boolean includeCount,
-                                     @RequestParam(value="limit", required=false, defaultValue="100") int limit,
-                                     @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                                     @RequestParam(value="sortBy", required=false, defaultValue="-agencyId") String sortBy) {
+    public String getRegionalOffices(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                                     @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
+                                     @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                                     @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                                     @RequestParam(value = "sortBy", required = false, defaultValue = "-agencyId") String sortBy) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);
         params.put("limit", limit);
@@ -259,8 +260,8 @@ public class ApiController {
 
     @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                                  @PathVariable("id") String officeId,
-                                                  @RequestBody String jsonData) {
+                                       @PathVariable("id") String officeId,
+                                       @RequestBody String jsonData) {
         return this.updateCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId, jsonData);
     }
 
@@ -272,10 +273,10 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getActions(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                             @RequestParam(value="limit", required=false, defaultValue="100") int limit,
-                             @RequestParam(value="offset", required=false, defaultValue="0") int offset,
-                             @RequestParam(value="sortBy", required=false, defaultValue="-title") String sortBy,
-                             @RequestParam(value="includeCount", required=false, defaultValue="false") boolean includeCount) {
+                             @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                             @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                             @RequestParam(value = "sortBy", required = false, defaultValue = "-title") String sortBy,
+                             @RequestParam(value = "includeCount", required = false, defaultValue = "false") boolean includeCount) {
         Map<String, Object> params = new HashMap<>();
         params.put("limit", limit);
         params.put("offset", offset);
@@ -396,6 +397,23 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/historicalIndex/{id}", method = RequestMethod.GET)
+    public String getHistoricalIndex(@PathVariable("id") String id) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        System.out.println("going to: \n" + getHistoricalIndexApiUrl() + "/" + id);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getHistoricalIndexApiUrl() + "/" + id);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+
+
+        System.out.println("got this response: " + response.getBody());
+        return response.getBody();
+    }
+
     private String getProgramRequestsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
     }
@@ -418,6 +436,10 @@ public class ApiController {
 
     private String getFederalHierarchiesApiUrl() {
         return environment.getProperty(API_FEDERAL_HIERARCHY_ENV) + "/fh";
+    }
+
+    private String getHistoricalIndexApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/historicalIndex";
     }
 
     private String getEligibilitylistingsApiUrl() {
