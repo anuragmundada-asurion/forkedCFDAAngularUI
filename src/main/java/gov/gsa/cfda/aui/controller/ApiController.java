@@ -87,10 +87,11 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.DELETE)
-    public String deleteProgramApiCall(@PathVariable("id") String id) throws Exception {
+    public String deleteProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                       @PathVariable("id") String id) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.add("X-Auth-Token", accessToken);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + id);
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);

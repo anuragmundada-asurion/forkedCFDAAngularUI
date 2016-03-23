@@ -4,8 +4,8 @@
     var myApp = angular
         .module('app');
 
-    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 'AuthorizationService',
-    function($scope, $state, $stateParams, appConstants, ApiService, AuthorizationService) {
+    myApp.controller('ProgramsListCtrl', ['$scope', '$state', '$stateParams', 'appConstants', 'ApiService', 'AuthorizationService', 'ngDialog',
+    function($scope, $state, $stateParams, appConstants, ApiService, AuthorizationService, ngDialog) {
         $scope.previousState = null;
         $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
         $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
@@ -120,9 +120,44 @@
          * @returns Q
          */
         $scope.deleteProgram = function(program) {
-            return program.$delete().then(function() {
-                $scope.loadPrograms($scope.previousState);
-            });
+
+            if(confirm("Are you sure you want to delete this program?")) {
+                var oApiParam = {
+                    apiName: 'programList',
+                    apiSuffix: '/'+program.id,
+                    oParams: {},
+                    oData: {
+                        id: program.id
+                    }, 
+                    method: 'DELETE'
+                };
+
+                ApiService.call(oApiParam).then(function() {
+                    $scope.loadPrograms($scope.previousState);
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-success" role="alert">'+
+                                    '<div class="usa-alert-body">'+
+                                      '<p class="usa-alert-text">This program has been successfully deleted.</p>'+
+                                    '</div>'+
+                                  '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+                }, function(error){
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-error" role="alert">'+
+                                    '<div class="usa-alert-body">'+
+                                      '<h3 class="usa-alert-heading">Error Status</h3>'+
+                                      '<p class="usa-alert-text">An error has occurred, please try again!</p>'+
+                                    '</div>'+
+                                  '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+                });
+            }
         };
     }]);
 
