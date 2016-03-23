@@ -240,21 +240,21 @@ describe("Unit Tests for Programs List Controller", function () {
             });
         });
 
-        it("should be able to call the Program service's $delete function", function(done){
-            var vm = $scope,
-                program = new ProgramFactory();
-
-            spyOn(program, '$delete').and.callThrough();
-            spyOn(vm, 'loadPrograms').and.callThrough();
-
-            vm.deleteProgram(program).then(function(){
-                expect(vm.loadPrograms).toHaveBeenCalled();
-                done();
-            });
-
-            expect(program.$delete).toHaveBeenCalled();
-            $httpBackend.flush();
-
-        });
+//        it("should be able to call the Program service's $delete function", function(done){
+//            var vm = $scope,
+//                program = new ProgramFactory();
+//
+//            spyOn(program, '$delete').and.callThrough();
+//            spyOn(vm, 'loadPrograms').and.callThrough();
+//
+//            vm.deleteProgram(program).then(function(){
+//                expect(vm.loadPrograms).toHaveBeenCalled();
+//                done();
+//            });
+//
+//            expect(program.$delete).toHaveBeenCalled();
+//            $httpBackend.flush();
+//
+//        });
     });
 });
