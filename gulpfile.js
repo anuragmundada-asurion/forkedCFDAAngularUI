@@ -14,6 +14,7 @@ var templateCache = require('gulp-angular-templatecache');
 var wiredep = require('wiredep').stream;
 var karmaServer = require('karma').Server;
 var flatten = require('gulp-flatten');
+var cssPrefix = require('gulp-css-prefix');
 
 var appFilesBase = 'src/main/webapp/app';
 var assetFilesBase = 'src/main/webapp/assets';
@@ -84,7 +85,7 @@ gulp.task('vendor', ['index'], function() {
 });
 
 gulp.task('plugins', ['index'], function() {
-    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css'], {base: './src/main/webapp/plugins'})
+    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/*.css'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest('target/classes/static/css'));
@@ -108,11 +109,17 @@ gulp.task('iae', ['index'], function() {
 
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
+        
+    var allCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all.css')
+        .pipe(cssPrefix({parentClass: 'theme-iae'}))
+        .pipe(gulp.dest('target/classes/static/css'));
 
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
+        .pipe(cssPrefix({parentClass: 'theme-iae'}))
         .pipe(gulp.dest('target/classes/static/css'));
 
     index.pipe(inject(ieCss, { addRootSlash: true, relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
+        .pipe(inject(allCss, { addRootSlash: true, name: 'iae', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 

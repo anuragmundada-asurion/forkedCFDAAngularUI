@@ -187,7 +187,7 @@
                             draft: parseInt((data.total_draft_listing) ? data.total_draft_listing : 0),
                             pending: parseInt((data.total_pending_listing) ? data.total_pending_listing : 0),
                             published: parseInt((data.total_published_listing) ? data.total_published_listing : 0),
-                            rejected: parseInt((data.total_archived_listing) ? data.total_archived_listing : 0),
+                            rejected: parseInt((data.total_rejected_listing) ? data.total_rejected_listing : 0),
                             request: parseInt((data.total_request) ? data.total_request : 0)
                         };
                     });
