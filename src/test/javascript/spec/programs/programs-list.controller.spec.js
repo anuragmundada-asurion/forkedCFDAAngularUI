@@ -71,7 +71,7 @@ describe("Unit Tests for Programs List Controller", function () {
             .whenDELETE('/api/programs')
             .respond(200);
 
-        $rootScope.user = new User({ "gsaRAC": ["GSA_CFDA_R_cfdasuperuser"] });
+        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
     });
 
     describe("Default Programs List Controller", function() {

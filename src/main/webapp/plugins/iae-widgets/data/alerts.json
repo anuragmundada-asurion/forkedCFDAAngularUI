@@ -1,12 +1,10 @@
-{
-    "alerts": [
-        {
-            "title": "Testing alert",
-            "content": "This is the body of a test alert"
+[
+    {
+        "title": "Testing alert",
+        "text": "This is the body of a test alert"
         },
         {
             "title": "Second test",
-            "content": "This is the body of the second alert"
-        },
-    ]
-}
+            "text": "This is the body of the second alert"
+        }
+]

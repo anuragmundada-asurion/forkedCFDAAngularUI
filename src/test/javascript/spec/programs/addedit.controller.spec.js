@@ -35,7 +35,7 @@ describe("Unit Tests for Add Edit Controller", function () {
             User = _User_;
         });
 
-        $rootScope.user = new User({ "gsaRAC": ["GSA_CFDA_R_cfdasuperuser"] });
+        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
 
         $httpBackend
             .whenGET('/api/contacts')

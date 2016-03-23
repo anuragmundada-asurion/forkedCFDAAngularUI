@@ -49,7 +49,7 @@ describe("Unit Tests for Program Routes", function () {
             User = _User_;
         });
 
-        $rootScope.user = new User({ "gsaRAC": ["GSA_CFDA_R_cfdasuperuser"] });
+        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
     });
 
     it("should have the proper 'home' url", function(){

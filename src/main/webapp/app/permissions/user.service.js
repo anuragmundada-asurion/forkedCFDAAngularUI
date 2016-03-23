@@ -5,11 +5,19 @@
 
     myApp.factory('User', ['RoleService', 'ROLES', function(RoleService, ROLES) {
         function User(IamUser) {
-            var uid = IamUser ? IamUser['uid'] : null;
-            var token = IamUser ? IamUser['tokenId'] : null;
-            var roles = IamUser ? IamUser['gsaRAC'] : null;
+            var uname, email, fname, roles, lname, fullName, phone;
             var roleList = [];
             var permissions = [];
+
+            if (IamUser) {
+                uname = IamUser['username'];
+                email = IamUser['emailAddress'];
+                fname = IamUser['firstName'];
+                roles = IamUser['roles'];
+                lname = IamUser['lastName'];
+                fullName = IamUser['fullName'];
+                phone = IamUser['phoneNumber'];
+            }
 
             if (roles) {
                 roles.forEach(function(r) {
@@ -29,8 +37,12 @@
             }
 
             return {
-                uid: uid,
-                token: token,
+                email: email,
+                firstName: fname,
+                lastName: lname,
+                fullName: fullName,
+                uid: uname,
+                phone: phone,
                 roles: roleList,
                 permissions: permissions,
                 getPermissions: function() {
@@ -56,22 +68,12 @@
             return $rootScope.user;
         };
 
-
-        this.isLoggedIn = function() {
-            return $rootScope.iamUser ? ($rootScope.iamUser.uid ? true : false) : false;
-        };
-
         this.refreshUser = function() {
-            var iaeUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
-
-            //  If there is a user object
-            if (iaeUser) {
-                //  If no user object is being held OR user object being held doesn't match new user object
-                if (!$rootScope.iamUser || $rootScope.iamUser != iaeUser) {
-                    //  Change user
-                    $rootScope.iamUser = window.iaeHeader ? window.iaeHeader.getUser() : null;
-                    $rootScope.user = new User($rootScope.iamUser);
-                }
+            if (window.iaeHeader) {
+                var self = this;
+                window.iaeHeader.getUser(function(u) {
+                    self.changeUser(u);
+                });
             }
         };
 

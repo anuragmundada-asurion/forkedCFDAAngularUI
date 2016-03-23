@@ -15,10 +15,10 @@
 
         $scope.changeRole = function() {
             var user = {
-                "gsaRAC": [
+                "roles": [
                     $scope.roleChange
                 ],
-                'tokenId': $scope.roleChange,
+                'username': $scope.roleChange,
                 'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
             };
             UserService.changeUser(user);
