@@ -18,7 +18,7 @@
         <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
         <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
-        <th style="width:25%" st-sort="agencyId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
+        <th style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
         <th st-sort="publishedDate" st-skip-natural="true">Date Submitted</th>
         <th>Actions</th>
         <th st-sort="status" st-skip-natural="true">Status</th>
@@ -35,7 +35,7 @@
             <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
         </td>
         <td>
-            <federal-hierarchy-label organization-id="{{row.data.agencyId}}"></federal-hierarchy-label>
+            <federal-hierarchy-label organization-id="{{row.data.organizationId}}"></federal-hierarchy-label>
         </td>
         <td>{{row.publishedDate}}</td>
         <td class="action-row">

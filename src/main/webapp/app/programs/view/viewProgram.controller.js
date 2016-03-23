@@ -10,7 +10,7 @@
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
                 console.log($scope.programData);
-                $scope.getAgencyName($scope.programData.agencyId);
+                $scope.getAgencyName($scope.programData.organizationId);
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
                     angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {

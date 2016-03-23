@@ -34,7 +34,7 @@
                 vm.program = data;
                 vm.originalTitle = vm.program.title;
                 //reload contacts when object is available
-                vm.choices.contacts = Contacts.query({ agencyId: vm.program.agencyId });
+                vm.choices.contacts = Contacts.query({ agencyId: vm.program.organizationId });
 
                 if (vm.program.status === 'Pending') {
                     var oApiParam = {
@@ -95,7 +95,7 @@
             },
             choices: angular.extend({
                 programs: ProgramFactory.query({ limit: 2500, status: 'Published' }),
-                contacts: (typeof vm.program.agencyId !== 'undefined') ? Contacts.query({ agencyId: vm.program.agencyId}) : {},
+                contacts: (typeof vm.program.organizationId !== 'undefined') ? Contacts.query({ agencyId: vm.program.organizationId}) : {},
                 offices: [
                     {
                         id: 1,
