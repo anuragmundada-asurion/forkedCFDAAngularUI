@@ -34,7 +34,9 @@
         <td>
             <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
         </td>
-        <td>{{row.data.agencyId}}</td>
+        <td>
+            <federal-hierarchy-label organization-id="{{row.data.agencyId}}"></federal-hierarchy-label>
+        </td>
         <td>{{row.publishedDate}}</td>
         <td class="action-row">
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>

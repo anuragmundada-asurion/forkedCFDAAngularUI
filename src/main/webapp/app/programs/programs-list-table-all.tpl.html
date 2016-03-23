@@ -51,7 +51,9 @@
                     <a ui-sref="reviewProgram({ id: row.id })">{{row.data.title}}</a>
                 </div>
             </td>
-            <td>{{row.data.agencyId}}</td>
+            <td>
+                <federal-hierarchy-label organization-id="{{row.data.agencyId}}"></federal-hierarchy-label>
+            </td>
             <td>{{row.publishedDate | date:'medium' }}</td>
             <td class="action-row">
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="(row.status.code === 'draft' || row.status.code === 'rejected') && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id, section: 'review' })"><span class="fa fa-pencil"></span></button>
