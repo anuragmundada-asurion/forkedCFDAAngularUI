@@ -15,7 +15,7 @@
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
         <th style="width:25%" st-sort="title" st-skip-natural="true">Listing Title</th>
         <th style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-        <th st-sort="publishedDate" st-skip-natural="true">Archived Date</th>
+        <th st-sort="modifiedDate" st-skip-natural="true">Archived Date</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -32,7 +32,7 @@
         <td>
             <federal-hierarchy-label organization-id="{{row.data.organizationId}}"></federal-hierarchy-label>
         </td>
-        <td>{{row.publishedDate}}</td>
+        <td>{{ row.modifiedDate | date:'medium' }}</td>
         <td class="action-row">
             <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
         </td>

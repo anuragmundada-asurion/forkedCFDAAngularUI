@@ -16,9 +16,10 @@
     <tr>
         <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
-        <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
-        <th style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-        <th st-sort="publishedDate" st-skip-natural="true">Date Submitted</th>
+        <th style="width:20%" st-sort="title" st-skip-natural="true">Title</th>
+        <th style="width:20%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
+        <th st-sort="submittedDate" st-skip-natural="true">Date Submitted</th>
+        <th st-sort="publishedDate" st-skip-natural="true">Date Published</th>
         <th>Actions</th>
         <th st-sort="status" st-skip-natural="true">Status</th>
     </tr>
@@ -54,6 +55,7 @@
             <td>
                 <federal-hierarchy-label organization-id="{{row.data.organizationId}}"></federal-hierarchy-label>
             </td>
+            <td>{{row.submittedDate | date:'medium' }}</td>
             <td>{{row.publishedDate | date:'medium' }}</td>
             <td class="action-row">
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="(row.status.code === 'draft' || row.status.code === 'rejected') && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id, section: 'review' })"><span class="fa fa-pencil"></span></button>
@@ -68,12 +70,12 @@
             <td>{{row.archived ? 'Archived' : row.status.value}}</td>
         </tr>
         <tr ng-show="!programs || programs.length == 0">
-            <td colspan="7" class="text-center">No Results Found</td>
+            <td colspan="8" class="text-center">No Results Found</td>
         </tr>
     </tbody>
     <tbody ng-show="isLoading">
     <tr>
-        <td colspan="7" class="text-center">Loading ...</td>
+        <td colspan="8" class="text-center">Loading ...</td>
     </tr>
     </tbody>
 </table>
