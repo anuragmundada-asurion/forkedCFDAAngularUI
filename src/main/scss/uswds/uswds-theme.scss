@@ -1,0 +1,44 @@
+// Vendor -------------- //
+
+@import '../../webapp/bower_components/uswds/assets/_scss/lib/bourbon/bourbon';
+@import '../../webapp/bower_components/uswds/assets/_scss/lib/neat/neat';
+
+/*
+  Disabling normalize because we are already
+  including it in cfda theme  
+*/
+
+// @import '../../webapp/bower_components/uswds/assets/_scss/lib/normalize'; 
+
+// Core -------------- //
+
+@import '../../webapp/bower_components/uswds/assets/_scss/core/defaults';
+@import '../../webapp/bower_components/uswds/assets/_scss/core/variables';
+@import '../../webapp/bower_components/uswds/assets/_scss/core/base';
+@import '../../webapp/bower_components/uswds/assets/_scss/core/grid-settings';
+@import '../../webapp/bower_components/uswds/assets/_scss/core/grid';
+@import '../../webapp/bower_components/uswds/assets/_scss/core/utilities';
+
+
+// Elements -------------- //
+// Styles basic HTML elements
+
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/buttons';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/figure';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/inputs';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/labels';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/list';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/table';
+@import '../../webapp/bower_components/uswds/assets/_scss/elements/typography';
+
+
+// Components -------------- //
+
+@import '../../webapp/bower_components/uswds/assets/_scss/components/accordions';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/alerts';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/disclaimer';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/footer';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/forms';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/search';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/sidenav';
+@import '../../webapp/bower_components/uswds/assets/_scss/components/skipnav';

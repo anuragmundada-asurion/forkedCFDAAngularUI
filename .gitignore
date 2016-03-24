@@ -38,3 +38,6 @@ build/Release
 node_modules
 node
 bower_components
+
+#sass
+.sass-cache

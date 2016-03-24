@@ -51,14 +51,14 @@ gulp.task('ie', ['index'], function() {
 });
 
 gulp.task('base', ['index'], function() {
-    var baseCss = gulp.src(mainBowerFiles('**/*.scss'), {base: 'src/main/webapp/bower_components/uswds'})
-        .pipe(sass().on('error', sass.logError))
-        .pipe(cleanCss())
-        .pipe(rename('base.min.css'))
-        .pipe(gulp.dest('target/classes/static/css'));
+    
+    // var baseCss = gulp.src('src/main/scss/uswds/all.scss')
+    //     .pipe(sass().on('error', sass.logError))
+    //     .pipe(rename('base.css'))
+    //     .pipe(gulp.dest('target/classes/static/css'));
 
-    index.pipe(inject(baseCss, { name: 'base', addRootSlash: true, relative: true }))
-        .pipe(gulp.dest('target/classes/static'));
+    // index.pipe(inject(baseCss, { name: 'base', addRootSlash: true, relative: true }))
+    //     .pipe(gulp.dest('target/classes/static'));
 });
 
 gulp.task('vendor', ['index'], function() {
@@ -109,9 +109,10 @@ gulp.task('iae', ['index'], function() {
 
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
-        
-    var allCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all.css')
-        .pipe(cssPrefix({parentClass: 'theme-iae'}))
+                
+    var allCss = gulp.src(['src/main/scss/uswds/uswds-theme.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
+        .pipe(sass().on('error', sass.logError))
+        // .pipe(cssPrefix({parentClass: 'theme-iae'}))        
         .pipe(gulp.dest('target/classes/static/css'));
 
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
