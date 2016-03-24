@@ -403,17 +403,10 @@ public class ApiController {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        System.out.println("going to: \n" + getHistoricalIndexApiUrl() + "/" + id);
-        System.out.println("query parameter, (programNumber): \n" + programNumber);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getHistoricalIndexApiUrl() + "/" + id).queryParam("programNumber", programNumber);
-        System.out.println("toUri... : " + builder.build().encode().toUri());
-
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
 
-
-        System.out.println("got this response: " + response.getBody());
         return response.getBody();
     }
 
