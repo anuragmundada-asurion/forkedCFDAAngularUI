@@ -9,9 +9,9 @@
             link: function(scope, element, attributes) {
                 var permissionsRequired = angular.fromJson(attributes['hasAccess']);
                 if (AuthorizationService.authorize(permissionsRequired)) {
-                    element.removeClass('ng-hide');
+                    element.removeClass('hidden');
                 } else {
-                    element.addClass('ng-hide');
+                    element.addClass('hidden');
                 }
             }
         }

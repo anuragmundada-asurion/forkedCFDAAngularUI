@@ -9,9 +9,9 @@
             link: function(scope, element, attributes) {
                 var rolesRequired = angular.fromJson(attributes['hasRole']);
                 if (AuthorizationService.authorizeByRole(rolesRequired)) {
-                    element.removeClass('ng-hide');
+                    element.removeClass('hidden');
                 } else {
-                    element.addClass('ng-hide');
+                    element.addClass('hidden');
                 }
             }
         }
