@@ -32,22 +32,12 @@
                 .state('searchPrograms', {
                     url: "/search?keyword",
                     templateUrl: "search/results.tpl.html",
-                    controller: "ProgramSearchCtrl",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
-                        ]
-                    }
+                    controller: "ProgramSearchCtrl"
                 })
                 .state('advancedSearch', {
                     url: "/advanced-search",
                     templateUrl: "search/_AdvancedSearch.tpl.html",
-                    controller: "ProgramSearchCtrl",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
-                        ]
-                    }
+                    controller: "ProgramSearchCtrl"
                 })
                 .state('addProgram', {
                     url: "/programs/add/:section",

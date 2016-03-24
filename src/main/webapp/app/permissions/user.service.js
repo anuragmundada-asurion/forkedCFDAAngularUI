@@ -44,13 +44,7 @@
                 uid: uname,
                 phone: phone,
                 roles: roleList,
-                permissions: permissions,
-                getPermissions: function() {
-                    return this.permissions ? this.permissions : [];
-                },
-                getRoles: function() {
-                    return this.roles ? this.roles : [];
-                }
+                permissions: permissions
             };
         }
 
@@ -59,10 +53,6 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
         this.getUser = function() {
-            if (!$rootScope.user) {
-                $rootScope.user = new User();
-            }
-
             return $rootScope.user;
         };
 
@@ -75,9 +65,14 @@
             }
         };
 
+        this.getUserRoles = function() {
+            var user = this.getUser();
+            return user ? user.roles : [ROLES.ANONYMOUS];
+        };
+
         this.getUserPermissions = function() {
             var user = this.getUser();
-            return user ? user.getPermissions() : ROLES.ANONYMOUS.permissions;
+            return user ? user.permissions : ROLES.ANONYMOUS.permissions;
         };
 
         this.changeUser = function(iamUser) {
