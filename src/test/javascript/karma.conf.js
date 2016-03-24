@@ -57,6 +57,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
+            'main/webapp/bower_components/angular-multi-select/dist/prod/angular-multi-select.js',
             'main/webapp/app/**/*.html',
             'main/webapp/app/app.module.js',
             'main/webapp/app/app.config.js',
