@@ -5,7 +5,7 @@
 
     myApp.factory('User', ['RoleService', 'ROLES', function(RoleService, ROLES) {
         function User(IamUser) {
-            var uname, email, fname, roles, lname, fullName, phone;
+            var uname, email, fname, roles, lname, fullName, phone, orgId;
             var roleList = [];
             var permissions = [];
 
@@ -17,6 +17,7 @@
                 lname = IamUser['lastName'];
                 fullName = IamUser['fullName'];
                 phone = IamUser['phoneNumber'];
+                orgId = IamUser['orgId'];
             }
 
             if (roles) {
@@ -43,6 +44,7 @@
                 fullName: fullName,
                 uid: uname,
                 phone: phone,
+                orgId: orgId,
                 roles: roleList,
                 permissions: permissions
             };
