@@ -59,8 +59,6 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
         this.getUser = function() {
-            this.refreshUser();
-
             if (!$rootScope.user) {
                 $rootScope.user = new User();
             }

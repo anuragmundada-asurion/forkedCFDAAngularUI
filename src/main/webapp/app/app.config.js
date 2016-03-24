@@ -71,7 +71,7 @@
                 'request': function(config) {
                     var user = UserService.getUser();
                     if (user) {
-                        config['headers']['X-Auth-Token'] = user.token;
+                        config['headers']['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
                     }
                     return config;
                 }

@@ -1,10 +1,7 @@
 <section st-pipe="loadPrograms" st-table="programs">
     <div class="usa-grid-full page-heading">
         <div class="usa-width-one-half">
-            <h1 style="width:99%;">Federal Assistance Listing Archived</h1>
-        </div>
-        <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <a class="usa-button" ui-sref="addProgram">Create a new listing</a>
+            <h1 style="width:99%;">My Archived Listings</h1>
         </div>
         <div class="usa-width-one-fourth" style="margin-top:25px;">
             <input type="search" class="bold-border" st-search placeholder="Search Listings" aria-controls="listings-table">
@@ -16,11 +13,10 @@
     <tr>
         <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
-        <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
+        <th style="width:25%" st-sort="title" st-skip-natural="true">Listing Title</th>
         <th style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-        <th st-sort="publishedDate" st-skip-natural="true">Date Submitted</th>
+        <th st-sort="publishedDate" st-skip-natural="true">Archived Date</th>
         <th>Actions</th>
-        <th st-sort="status" st-skip-natural="true">Status</th>
     </tr>
     </thead>
     <tbody ng-show="!isLoading">
@@ -40,15 +36,14 @@
         <td class="action-row">
             <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" title="Request Unarchive" ng-click="showProgramRequestModal(row, 'program_request', 'unarchive_request')"><span class="fa fa-folder-open"></span></button>
         </td>
-        <td>{{row.archived ? 'Archived' : row.status.value}}</td>
     </tr>
     <tr ng-show="!programs || programs.length == 0">
-        <td colspan="7" class="text-center">No Results Found</td>
+        <td colspan="6" class="text-center">No Results Found</td>
     </tr>
     </tbody>
     <tbody ng-show="isLoading">
     <tr>
-        <td colspan="7" class="text-center">Loading ...</td>
+        <td colspan="6" class="text-center">Loading ...</td>
     </tr>
     </tbody>
 </table>
