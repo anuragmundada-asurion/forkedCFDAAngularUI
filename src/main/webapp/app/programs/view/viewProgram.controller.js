@@ -12,7 +12,7 @@
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                console.log($scope.programData);
+                //console.log($scope.programData);
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
                     angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {
@@ -33,11 +33,9 @@
                     method: 'GET'
                 };
 
-                console.log(params);
-
                 ApiService.call(params).then(function (data) {
                     $scope.historicalIndex = data;
-                    console.log(data);
+                    //console.log(data);
                 });
 
 
