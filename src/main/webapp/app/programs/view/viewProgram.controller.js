@@ -3,14 +3,16 @@
 
     var app = angular.module('app');
 
-    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q',
-        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q) {
+    app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'appConstants', 'SearchFactory', 'ProgramFactory', 'Dictionary', 'appUtil', 'Contact', 'FederalHierarchyService', '$q', '$log', 'ApiService',
+        function ($state, $scope, $stateParams, $filter, $parse, appConstants, SearchFactory, ProgramFactory, Dictionary, appUtil, Contacts, FederalHierarchyService, $q, $log, ApiService) {
             $scope.appUtil = appUtil;
+            $scope.$log = $log;
+            $scope.programId = $stateParams.id;
+
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                console.log($scope.programData);
-                $scope.getAgencyName($scope.programData.organizationId);
+                //console.log($scope.programData);
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
                     angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {
@@ -21,6 +23,22 @@
                         $scope.relatedPrograms = values;
                     });
                 }
+
+                //get historical index data
+                var params = {
+                    apiName: 'historicalIndex',
+                    apiSuffix: '/' + $scope.programId,
+                    oParams: {programNumber: $scope.programData.programNumber},
+                    oData: {},
+                    method: 'GET'
+                };
+
+                ApiService.call(params).then(function (data) {
+                    $scope.historicalIndex = data;
+                    //console.log(data);
+                });
+
+
             });
 
             Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
@@ -44,15 +62,6 @@
                     return selected ? selected.$original : null;
                 };
             });
-
-            $scope.getAgencyName = function (id) {
-                console.log('trying to getAgencyName.. id is:' + id);
-                if (id) {
-                    FederalHierarchyService.getFederalHierarchyById(id, function (data) {
-                        $scope.agencyName = data.name;
-                    });
-                }
-            };
 
 
         }
