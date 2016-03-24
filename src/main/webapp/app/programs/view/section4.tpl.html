@@ -66,7 +66,7 @@
 
                 <p class="vp-field-label"> How is the assistance awarded and/or released? </p>
 
-                <p class="vp-field-value" ng-bind="programData.assistance.limitation.awarded"></p>
+                <p class="vp-field-value"> {{traverseTree(programData.assistance.limitation.awarded, 'phasing_assistance').value}}</p>
             </div>
         </div>
 

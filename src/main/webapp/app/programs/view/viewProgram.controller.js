@@ -41,13 +41,15 @@
 
             });
 
-            Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na']}, function (data) {
+            Dictionary.query({ids: ['assistance_type', 'applicant_types', 'assistance_usage_types', 'beneficiary_types', 'yes_no_na', 'phasing_assistance']}, function (data) {
                 $scope.allTypes = {
                     assistance_type: data['assistance_type'],
                     applicant_types: data['applicant_types'],
                     assistance_usage_types: data['assistance_usage_types'],
                     beneficiary_types: data['beneficiary_types'],
-                    yes_no_na: data['yes_no_na']
+                    yes_no_na: data['yes_no_na'],
+                    phasing_assistance: data['phasing_assistance']
+
                 };
 
                 $scope.traverseTree = function (value, dictionaryName) {
