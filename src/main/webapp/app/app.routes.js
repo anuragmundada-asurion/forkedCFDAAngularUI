@@ -149,21 +149,11 @@
                 .state('regionalOfficeList', {
                     url: "/regionalOffice",
                     templateUrl: "office/office-list.tpl.html",
-                    controller: "RegionalOfficeListController",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
-                        ]
-                    }
+                    controller: "RegionalOfficeListController"
                 }).state('viewRegionalOffice', {
                     url: "/regionalOffice/:id",
                     templateUrl: "agency/office-view.tpl.html",
-                    controller: "RegionalOfficeViewController",
-                access: {
-                    requiredPermissions: [
-                        PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
-                    ]
-                }
+                    controller: "RegionalOfficeViewController"
                 }).state('createRegionalOffice', {
                     url: "/regionalOffice/create",
                     templateUrl: "agency/office-form.tpl.html",
