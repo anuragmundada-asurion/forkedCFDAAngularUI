@@ -85,12 +85,7 @@
                 .state('viewProgram', {
                     url: "/programs/:id/view",
                     templateUrl: "programs/view/viewProgram.tpl.html",
-                    controller: "ViewProgramCtrl as viewCtrl",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_VIEW_PROGRAM
-                        ]
-                    }
+                    controller: "ViewProgramCtrl as viewCtrl"
                 })
                 .state('programList', {
                     url: "/programs/main",
