@@ -13,11 +13,11 @@
                 method: 'GET'
             };
 
-            if(includeParentLevels) {
+            if (includeParentLevels) {
                 oApiParam.oParams['parentLevels'] = 'all';
             }
 
-            if(includeChildrenLevels) {
+            if (includeChildrenLevels) {
                 oApiParam.oParams['childrenLevels'] = 'all';
             }
 
@@ -33,5 +33,26 @@
                 }
             );
         };
+
+
+        this.getParentPath = function (id, success) {
+            this.getFederalHierarchyById(id, true, false, function (fhData) {
+                var levels = {};
+                while (fhData.name) {
+                    levels[fhData.type] = fhData.name;
+                    if (fhData.hierarchy) {
+                        fhData = fhData.hierarchy[0];
+                    }
+                    else {
+                        break;
+                    }
+                }
+                success(levels);
+            }, function (error) {
+                console.log("Error occured: ", error);
+            });
+        };
+
+
     }]);
 })();

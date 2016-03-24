@@ -12,7 +12,9 @@
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                //console.log($scope.programData);
+                console.log($scope.programData);
+
+                //getting names of related programs
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
                     var promises = [];
                     angular.forEach($scope.programData['relatedPrograms']['relatedTo'], function (item, key) {
@@ -32,12 +34,15 @@
                     oData: {},
                     method: 'GET'
                 };
-
                 ApiService.call(params).then(function (data) {
                     $scope.historicalIndex = data;
-                    //console.log(data);
                 });
 
+
+                //make call to federalHierarchy
+                FederalHierarchyService.getParentPath($scope.programData.organizationId, function (data) {
+                    $scope.hierarchyLevels = data;
+                });
 
             });
 

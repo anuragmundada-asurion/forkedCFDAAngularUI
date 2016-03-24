@@ -8,12 +8,9 @@
 
         <div><span class="popularName">{{programData.alternativeNames[0]}}</span></div>
         <div><span class="programNumber">Program Number: {{programData.programNumber}} </span></div>
-        <federal-hierarchy-label organization-id="{{ programData.organizationId }}"></federal-hierarchy-label>
-
-        <!--<div><span class="agencyName">Department: {{departmentName}}</span></div>-->
-        <!--<div><span class="agencyName">Sub-tier Agency: {{agencyName}}</span></div>-->
-        <!--<div><span class="agencyName">Office: {{officeName}}</span></div>-->
-
+        <div><span>Department: {{hierarchyLevels.DEPARTMENT}} </span></div>
+        <div><span>Agency: {{hierarchyLevels.AGENCY}} </span></div>
+        <div><span>Office: {{hierarchyLevels.OFFICE}}</span></div>
 
     </div>
 </div>
