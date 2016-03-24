@@ -244,12 +244,12 @@ public class ApiController {
         params.put("offset", offset);
         params.put("sortBy", sortBy);
         params.put("includeCount", includeCount);
-        return getsCall("", getRegionalOfficeApiUrl(), params);
+        return getsCall(null, getRegionalOfficeApiUrl(), params);
     }
 
     @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRegionalOffice(@PathVariable("id") String officeId) {
-        return getCall("", getRegionalOfficeApiUrl() + "/" + officeId);
+        return getCall(null, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
     @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
