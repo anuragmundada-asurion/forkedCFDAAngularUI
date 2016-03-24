@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-    ['$stateParams', '$scope','$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact',
-    function($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts) {
+    ['$stateParams', '$scope','$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService',
+    function($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService) {
 
         var vm = this,
             CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -28,6 +28,7 @@
         if($state.current['name'] === 'createProgram') { // Create Program
             vm.program = new ProgramFactory();
             vm.program._id = null;
+            vm.program.organizationId = UserService.getUser().orgId;
         } else { // Edit/Review program
             vm.program = {};
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function(data){

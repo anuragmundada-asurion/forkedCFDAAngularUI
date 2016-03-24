@@ -5,7 +5,7 @@
 
     myApp.factory('User', ['RoleService', 'ROLES', function(RoleService, ROLES) {
         function User(IamUser) {
-            var uname, email, fname, roles, lname, fullName, phone;
+            var uname, email, fname, roles, lname, fullName, phone, orgId;
             var roleList = [];
             var permissions = [];
 
@@ -17,6 +17,7 @@
                 lname = IamUser['lastName'];
                 fullName = IamUser['fullName'];
                 phone = IamUser['phoneNumber'];
+                orgId = IamUser['orgId'];
             }
 
             if (roles) {
@@ -43,14 +44,9 @@
                 fullName: fullName,
                 uid: uname,
                 phone: phone,
+                orgId: orgId,
                 roles: roleList,
-                permissions: permissions,
-                getPermissions: function() {
-                    return this.permissions ? this.permissions : [];
-                },
-                getRoles: function() {
-                    return this.roles ? this.roles : [];
-                }
+                permissions: permissions
             };
         }
 
@@ -59,10 +55,6 @@
 
     myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
         this.getUser = function() {
-            if (!$rootScope.user) {
-                $rootScope.user = new User();
-            }
-
             return $rootScope.user;
         };
 
@@ -75,9 +67,14 @@
             }
         };
 
+        this.getUserRoles = function() {
+            var user = this.getUser();
+            return user ? user.roles : [ROLES.ANONYMOUS];
+        };
+
         this.getUserPermissions = function() {
             var user = this.getUser();
-            return user ? user.getPermissions() : ROLES.ANONYMOUS.permissions;
+            return user ? user.permissions : ROLES.ANONYMOUS.permissions;
         };
 
         this.changeUser = function(iamUser) {

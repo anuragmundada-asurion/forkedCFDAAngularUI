@@ -28,7 +28,7 @@
          * @returns Boolean
          */
         this.authorizeByRole = function(aRequiredRoles) {
-            var oUserRoles = UserService.getUser().getRoles();
+            var oUserRoles = UserService.getUserRoles();
             var aUserRoles = [];
             var hasRole = false;
 

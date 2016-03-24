@@ -19,7 +19,7 @@
         <th style="width:10%" st-sort="programNumber" st-sort-default="true" st-skip-natural="true">FAL #</th>
         <th style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
         <th style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office</th>
-        <th st-sort="publishedDate" st-skip-natural="true">Date Submitted</th>
+        <th st-sort="publishedDate" st-skip-natural="true">Date Published</th>
         <th>Actions</th>
         <th st-sort="status" st-skip-natural="true">Status</th>
     </tr>
@@ -37,7 +37,7 @@
         <td>
             <federal-hierarchy-label organization-id="{{row.data.organizationId}}"></federal-hierarchy-label>
         </td>
-        <td>{{row.publishedDate}}</td>
+        <td>{{ row.publishedDate | date:'medium' }}</td>
         <td class="action-row">
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>

@@ -32,22 +32,12 @@
                 .state('searchPrograms', {
                     url: "/search?keyword",
                     templateUrl: "search/results.tpl.html",
-                    controller: "ProgramSearchCtrl",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
-                        ]
-                    }
+                    controller: "ProgramSearchCtrl"
                 })
                 .state('advancedSearch', {
                     url: "/advanced-search",
                     templateUrl: "search/_AdvancedSearch.tpl.html",
-                    controller: "ProgramSearchCtrl",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_QUERY_PUBLISHED_PROGRAMS
-                        ]
-                    }
+                    controller: "ProgramSearchCtrl"
                 })
                 .state('addProgram', {
                     url: "/programs/add/:section",
@@ -159,21 +149,11 @@
                 .state('regionalOfficeList', {
                     url: "/regionalOffice",
                     templateUrl: "office/office-list.tpl.html",
-                    controller: "RegionalOfficeListController",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
-                        ]
-                    }
+                    controller: "RegionalOfficeListController"
                 }).state('viewRegionalOffice', {
                     url: "/regionalOffice/:id",
                     templateUrl: "agency/office-view.tpl.html",
-                    controller: "RegionalOfficeViewController",
-                access: {
-                    requiredPermissions: [
-                        PERMISSIONS.CAN_VIEW_REGIONAL_OFFICE
-                    ]
-                }
+                    controller: "RegionalOfficeViewController"
                 }).state('createRegionalOffice', {
                     url: "/regionalOffice/create",
                     templateUrl: "agency/office-form.tpl.html",

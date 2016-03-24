@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('TestingController', ['ngDialog', '$scope', 'UserService', '$state', function(ngDialog, $scope, UserService, $state) {
+    myApp.controller('TestingController', ['ngDialog', '$scope', 'UserService', '$state', '$document', function(ngDialog, $scope, UserService, $state, $document) {
         $scope.roleChange = '';
 
         $scope.signInAsPopup = function() {
@@ -18,6 +18,7 @@
                 "roles": [
                     $scope.roleChange
                 ],
+                'fullName': $scope.roleChange,
                 'username': $scope.roleChange,
                 'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
             };
