@@ -2,8 +2,9 @@
     "use strict";
 
     var myApp = angular.module('app');
+
     myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
-        this.getFederalHierarchyById = function (id, callbackFnSuccess) {
+        this.getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: '/' + id,
@@ -11,6 +12,14 @@
                 oData: {},
                 method: 'GET'
             };
+
+            if(includeParentLevels) {
+                oApiParam.oParams['parentLevels'] = 'all';
+            }
+
+            if(includeChildrenLevels) {
+                oApiParam.oParams['childrenLevels'] = 'all';
+            }
 
             //make api call to get federalHierarchy by id
             ApiService.call(oApiParam).then(
@@ -21,9 +30,8 @@
                 },
                 function (error) {
                     return false;
-                });
+                }
+            );
         };
-
-
     }]);
 })();

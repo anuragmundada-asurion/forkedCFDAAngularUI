@@ -13,7 +13,8 @@
             "programSubmit": "/api/programs", // /:program_id
             "programCountByYear": "/api/listingcount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
-            "regionalAgencyEntity": "/api/regionalAgencies",
+            "regionalOfficeEntity": "/api/regionalOffices/:id",
+            "regionalOfficeList": "/api/regionalOffices",
             "programCount": "/api/programCount",
             "federalHierarchyList": "/api/federalHierarchies",
             "historicalIndex": "/api/historicalIndex" //:programNumber

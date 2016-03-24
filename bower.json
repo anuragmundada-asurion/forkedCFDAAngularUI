@@ -34,7 +34,9 @@
     "c3": "*",
     "pathseg": "~1.0.2",
     "angular-nvd3": "~1.0.5",
-    "angular-multi-select": "https://github.com/isteven/angular-multi-select.git",
+    "isteven-multi-select": "https://github.com/isteven/angular-multi-select.git",
+    "angular-multi-select": "https://github.com/alexandernst/angular-multi-select.git",
+    "lokijs": "*",
     "uswds": "https://github.com/18F/web-design-standards.git#0.8.3",
     "lodash": "^4.6.1"
   },

@@ -1,0 +1,107 @@
+<primary-nav-bar></primary-nav-bar>
+
+<section st-pipe="loadAgencies" st-table="aAgency">
+    <div class="usa-grid-full page-heading">
+        <div class="usa-width-three-fourths">
+            <h1>Regional Agency Offices</h1>
+        </div>
+        <div class="usa-width-one-fourth" >
+             <a ui-sref="agencyDetails({id: -1, action: 'create'})" class="usa-button" >Create a New Address</a>
+        </div>
+    </div>
+    <div class="usa-grid-full">
+        <div class="usa-width-one-third" >
+            <input type="search" class="bold-border" st-search="keyword" placeholder="Search" aria-controls="agency-table">
+        </div>
+        <div class="usa-width-one-third">
+            <div
+                angular-multi-select
+                input-model="dictionary.aAgency"
+                output-model="filter.aAgency"
+
+                dropdown-label="<[
+                        <# angularMultiSelectConstants.INTERNAL_STATS_TOTAL_LEAFS #> === undefined ? 'No available items' :
+                                <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 0 ? 'No checked items' :
+                                        <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> + ' checked ' + (<# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 1 ? 'item': 'items')
+                ]>"
+                node-label="<[ name ]> (checked
+                        <# angularMultiSelectConstants.INTERNAL_KEY_CHECKED_CHILDREN #> /
+                        <# angularMultiSelectConstants.INTERNAL_KEY_CHILDREN_LEAFS #>)"
+                leaf-label="<[ name ]>"
+
+                search-field="name"
+                id-property = "elementId"
+                children-property = "hierarchy"
+                checked-property = "selected"
+                open-property = "marked"
+                >
+            </div>
+        </div>
+        <div class="usa-width-one-third">
+            <isteven-multi-select
+              max-labels="1"
+              input-model="dictionary.aDivision"    
+              output-model="filter.aDivision"
+              button-label="displayValue"
+              item-label="displayValue"
+              tick-property="ticked"
+              max-height="250px"
+            >
+            </isteven-multi-select>
+        </div>
+
+    </div>
+
+    <div class="usa-grid-full">
+        <table class="listing-table cfda-table">
+            <thead>
+            <tr>
+                <th style="width:21%" st-sort="agency" st-sort-default="true">Department/Sub-Tier Agency & Office</th>
+                <th style="width:21%">Street</th>
+                <th st-sort="city" >City</th>
+                <th st-sort="state" >State</th>
+                <th st-sort="zip">Zip</th>
+                <th>Phone</th>
+                <th style="width:7%">Action</th>
+
+            </tr>
+            </thead>
+            <tbody ng-show="!isLoading">
+            <tr ng-repeat="row in aAgency">
+                <td>
+                    <federal-hierarchy-label organization-id="{{ row.agencyId }}"></federal-hierarchy-label>
+                </td>
+                <td>{{row.address.street}}</td>
+                <td>{{row.address.city}}</td>
+                <td>{{row.address.state}}</td>
+                <td>{{row.address.zip}}</td>
+                <td>{{row.phone}}</td>
+                <td class="action-row" style="text-align: right !important">
+                    <a  ui-sref="agencyDetails({id: row.id, action: 'edit'})"><button type="button"><span class="fa fa-pencil"></span></button></a>
+                    <a  ui-sref="agencyDetails({id: row.id, action: 'review'})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
+                </td>
+            </tr>
+            <tr ng-show="!aAgency || aAgency.length == 0">
+                <td colspan="5" class="text-center">No Agencies Found</td>
+            </tr>
+            </tbody>
+            <tbody ng-show="isLoading">
+            <tr>
+                <td colspan="7" class="text-center">Loading ...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-panel">
+        <div class="pagination-controls usa-grid-full">
+            <div class="pagination-item-count-control">
+                <span>Showing </span>
+                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
+                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
+                </select>
+                <span> Per Page</span>
+            </div>
+            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+        </div>
+    </div>
+</section>

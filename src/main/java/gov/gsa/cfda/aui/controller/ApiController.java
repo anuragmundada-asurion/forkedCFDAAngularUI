@@ -387,11 +387,22 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
-    public String getFederalHierarchyById(@PathVariable("id") String id) throws SQLException, RuntimeException {
+    public String getFederalHierarchyById(@PathVariable("id") String id,
+                                          @RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
+                                          @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaTypes.HAL_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getFederalHierarchiesApiUrl() + "/" + id);
+
+        if(parentLevels.equalsIgnoreCase("all")){
+            builder.queryParam("parentLevels", "all");
+        }
+
+        if(childrenLevels.equalsIgnoreCase("all")){
+            builder.queryParam("childrenLevels", "all");
+        }
+
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
