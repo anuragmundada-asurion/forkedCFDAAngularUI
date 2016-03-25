@@ -35,7 +35,7 @@
         };
 
 
-        this.getParentPath = function (id, success) {
+        var getParentPath = function (id, success) {
             this.getFederalHierarchyById(id, true, false, function (fhData) {
                 var levels = {};
                 while (fhData.name) {
@@ -98,7 +98,8 @@
 
         return {
             getFederalHierarchyById: getFederalHierarchyById,
-            dropdownDataStructure: dropdownDataStructure
+            dropdownDataStructure: dropdownDataStructure,
+            getParentPath: getParentPath
         };
     }]);
 })();
