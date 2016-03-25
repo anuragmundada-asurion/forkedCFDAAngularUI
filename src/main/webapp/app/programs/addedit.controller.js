@@ -24,16 +24,18 @@
                     ],
                     originalTitle; //original title is stored because Published programs cannot have title changed.
 
+                if($state.current['name'] === 'addProgram'){
+                    vm.isCreateProgram = true;
+                }else{
+                    vm.isCreateProgram = false;
+                }
+
                 //initialize program object
                 if ($state.current['name'] === 'createProgram') { // Create Program
-                    //vm.isCreateProgram = true;
-                    //console.log("in create " + vm.isCreateProgram);
                     vm.program = new ProgramFactory();
                     vm.program._id = null;
                     vm.program.organizationId = UserService.getUser().orgId;
                 } else { // Edit/Review program
-                    //vm.isCreateProgram = false;
-                    //console.log(vm.isCreateProgram);
                     vm.program = {};
                     ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                         vm.program = data;
