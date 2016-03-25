@@ -109,7 +109,7 @@
                         axis: {
                             x: {
                                 type: 'category',
-                                height: 75,
+                                height: 65,
                                 label: {
                                     text: 'Listing Category',
                                     position: 'outer-center',
