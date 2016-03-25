@@ -59,11 +59,13 @@
 
                 if (tableState.search.predicateObject) {
                     oApiParam.oParams['keyword'] = tableState.search.predicateObject.keyword;
+                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply agency custom search
                 if($scope.filter.aAgency.length > 0 || $scope.filter.aDivision.length > 0) {
-                     oApiParam.oParams['oFilterParam'] = $scope.prepareDataStructure($scope.filter);
+                    oApiParam.oParams['oFilterParam'] = $scope.prepareDataStructure($scope.filter);
+                    oApiParam.oParams.offset = 0;
                 }
 
                 if(tableState.sort.predicate) {
