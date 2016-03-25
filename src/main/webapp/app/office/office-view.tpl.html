@@ -1,12 +1,12 @@
 <primary-nav-bar></primary-nav-bar>
 <global-search-box></global-search-box>
 
-<div ng-show="oAgencyName" class="usa-grid-full">
+<div ng-show="oRegionalOffice" class="usa-grid-full">
     <h2>View Regional Agency Office</h2>
-    <div class="usa-width-three-fourths vp-section">
+    <div class="usa-width-three-fourths vp-section" style="width: 60%;">
         <div>
             <p class="vp-field-label-big">Agency: </p>
-            <p class="vp-field-value">{{oAgencyName}}</p>
+            <p class="vp-field-value"><federal-hierarchy-label organization-id="{{ oRegionalOffice.agencyId }}"></federal-hierarchy-label></p>
         </div>
         <div>
             <p class="vp-field-label-big">State/Region: </p>
@@ -27,8 +27,25 @@
             <p class="vp-field-value">{{oRegionalOffice.address.country}}</p>
         </div>
     </div>
+    <div class="usa-width-one-third sub-form" id="historyDiv">
+        <h4>Regional Agency Office Info</h4>
+        <table style="border: none !important;">
+            <tr>
+                <td style="border: none !important; text-align: right">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate  | date:'medium' }}</td>
+            </tr>
+            <tr>
+                <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.createdBy}}</td>
+            </tr>
+            <tr>
+                <td style="border: none !important; text-align: right">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate  | date:'medium' }}</td>
+            </tr>
+            <tr>
+                <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
-<div ng-show="!oAgencyName" class="usa-grid-full loading">
+<div ng-show="!oRegionalOffice" class="usa-grid-full loading">
     <!-- loading icon -->
     <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
 </div>

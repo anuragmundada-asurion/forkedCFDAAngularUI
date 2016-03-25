@@ -40,6 +40,7 @@
                             children-property = "hierarchy"
                             checked-property = "selected"
                             open-property = "marked"
+                            max-checked-leafs="1"
                             >
                         </div>
 
@@ -114,10 +115,13 @@
                 <h4>Regional Agency Office Info</h4>
                 <table style="border: none !important;">
                     <tr>
-                        <td style="border: none !important; text-align: right">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate}}</td>
+                        <td style="border: none !important; text-align: right">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate | date:'medium' }}</td>
                     </tr>
                     <tr>
-                        <td style="border: none !important; text-align: right">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate}}</td>
+                        <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.createdBy}}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none !important; text-align: right">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate | date:'medium' }}</td>
                     </tr>
                     <tr>
                         <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>

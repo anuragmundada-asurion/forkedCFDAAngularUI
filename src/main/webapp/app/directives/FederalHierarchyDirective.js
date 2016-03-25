@@ -13,10 +13,8 @@
                 attributes.$observe('organizationId', function(value){
                     if(value) {
                         //Call FederalHierarchy API and get Label of the organization
-                        FederalHierarchyService.getFederalHierarchyById(scope.organizationId, false, false, function (oOrganization) {
-                            if (oOrganization && oOrganization.hasOwnProperty('name')) {
-                                scope.organizationName = oOrganization.name;
-                            }
+                        FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.organizationId, true, false, function (organizationNames) {
+                            scope.organizationName = organizationNames;
                         }, function (error) {
                             scope.organizationName = "An error has occurred, Please try again !";
                         });

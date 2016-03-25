@@ -5,6 +5,13 @@
 
     myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
 
+        /**
+         * @param String id
+         * @param Boolean includeParentLevels
+         * @param Boolean includeChildrenLevels
+         * @param Function callbackFnSuccess
+         * @returns Void
+         */
         var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
@@ -35,6 +42,20 @@
             );
         };
 
+        /**
+         * @param String id
+         * @param Boolean includeParentLevels
+         * @param Boolean includeChildrenLevels
+         * @param function callbackFnSuccess
+         * @returns Void
+         */
+        var getFullLabelPathFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
+            getFederalHierarchyById(id, includeParentLevels, includeChildrenLevels, function(oData){
+                if (typeof callbackFnSuccess === 'function') {
+                    callbackFnSuccess(getFullNameFederalHierarchy(oData));
+                }
+            });
+        };
 
         var getParentPath = function (id, success) {
             this.getFederalHierarchyById(id, true, false, function (fhData) {
@@ -54,9 +75,8 @@
             });
         };
 
-
         /**
-         * 
+         * for angular-multi-select (Angular Plugin)
          * @param Object oData
          * @param Array aSelectedIDs
          * @returns Object
@@ -97,10 +117,26 @@
             return oResults;
         };
 
+        /**
+         * @param Object oData
+         * @returns String
+         */
+        var getFullNameFederalHierarchy = function (oData) {
+            var name = oData.name;
+
+            if (oData.hasOwnProperty('hierarchy')) {
+                name += ' / ' + getFullNameFederalHierarchy(oData['hierarchy'][0]);
+            }
+
+            return name;
+        };
+
         return {
+            getFullLabelPathFederalHierarchyById: getFullLabelPathFederalHierarchyById,
             getFederalHierarchyById: getFederalHierarchyById,
             dropdownDataStructure: dropdownDataStructure,
-            getParentPath: getParentPath
+            getParentPath: getParentPath,
+            getFullNameFederalHierarchy: getFullNameFederalHierarchy
         };
     }]);
 })();

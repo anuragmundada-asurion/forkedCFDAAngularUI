@@ -2,8 +2,8 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('RegionalOfficeListController', ['$scope', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService',
-        function($scope, appConstants, ApiService, Dictionary, FederalHierarchyService) {
+     myApp.controller('RegionalOfficeListController', ['$scope', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService',
+        function($scope, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService) {
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
             $scope.dictionary = {};
@@ -14,8 +14,7 @@
             $scope.previousState = null;
             var aDictionay = [ 'regional_office_division', 'states' ];
 
-            //FIXME: Hardcode GSA Organization ID to pull 
-            FederalHierarchyService.getFederalHierarchyById('9eb645ae12f3ff6f0eaa94b8ee10d7c2', true, true, function(oData){
+            FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
                 $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
             });
 
