@@ -164,12 +164,6 @@
                     templateUrl: "office/office-list.tpl.html",
                     controller: "RegionalOfficeListController",
                     title: 'Regional Agency Offices - CFDA: Regional Agency Offices',
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE,
-                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
-                        ]
-                    }
                 })
                 .state('addRegionalOffice', {
                     url: "/regionalOffice/create",
