@@ -14,9 +14,12 @@
             $scope.previousState = null;
             var aDictionay = [ 'regional_office_division', 'states' ];
 
-            FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
-                $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
-            });
+            var userOrgId = UserService.getUserOrgId();
+            if (userOrgId) {
+                FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
+                    $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
+                });
+            }
 
             Dictionary.toDropdown({ ids: aDictionay.join(',') }).$promise.then(function(data){
                 $scope.dictionary.aDivision = data.regional_office_division;
