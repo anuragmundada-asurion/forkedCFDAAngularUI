@@ -144,30 +144,19 @@
                 .state('regionalOfficeList', {
                     url: "/regionalOffice",
                     templateUrl: "office/office-list.tpl.html",
-                    controller: "RegionalOfficeListController"
-                }).state('viewRegionalOffice', {
-                    url: "/regionalOffice/:id",
-                    templateUrl: "agency/office-view.tpl.html",
-                    controller: "RegionalOfficeViewController"
-                }).state('createRegionalOffice', {
+                    controller: "RegionalOfficeListController",
+                })
+                .state('addRegionalOffice', {
                     url: "/regionalOffice/create",
-                    templateUrl: "agency/office-form.tpl.html",
-                    controller: "RegionalOfficeEditController",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE
-                        ]
-                    }
-                }).state('editRegionalOffice', {
+                    templateUrl: "office/office-form.tpl.html",
+                    controller: "RegionalOfficeFormCtrl",
+                })
+                .state('editRegionalOffice', {
                     url: "/regionalOffice/:id/edit",
                     templateUrl: "office/office-form.tpl.html",
-                    controller: "RegionalOfficeEditController",
-                    access: {
-                        requiredPermissions: [
-                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
-                        ]
-                    }
-                });
+                    controller: "RegionalOfficeFormCtrl",
+                })
+                ;
 
             // the known route
             $urlRouterProvider.when('', '/');

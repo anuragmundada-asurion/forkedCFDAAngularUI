@@ -16,7 +16,7 @@
 
             //FIXME: Hardcode GSA Organization ID to pull 
             FederalHierarchyService.getFederalHierarchyById('9eb645ae12f3ff6f0eaa94b8ee10d7c2', true, true, function(oData){
-                $scope.dictionary.aAgency = [$scope.dropdownDataStructure(oData, [])];
+                $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
                 console.log($scope.dictionary.aAgency);
             });
 
@@ -93,42 +93,6 @@
             }, true);
 
             /**
-             * 
-             * @param Object oData
-             * @param Array aSelectedData
-             * @param boolean isGrouped
-             * @returns array
-             */
-            $scope.dropdownDataStructure = function(oData, aSelectedData) {
-                var oResults = {}, aSelectedIDs = [];
-                var oRow = oData;
-
-                //add attribute
-                oRow.selected = false;
-
-                //delete unsued attribute
-                delete oRow._links;
-                delete oRow.parentElementId;
-
-                //get all selected item ids
-                angular.forEach(aSelectedData, function(item){
-                    aSelectedIDs.push(item.elementId);
-                });
-
-                if(oData.hasOwnProperty("hierarchy")) {
-                    angular.forEach(oData.hierarchy, function(oItem){
-                        angular.extend(oResults, $scope.dropdownDataStructure(oItem, aSelectedData));
-                    });
-
-                    angular.extend(oResults, oRow);
-                } else {
-                    angular.extend(oResults, oRow);
-                }
-
-                return oResults;
-            };
-            
-            /**
              * prepare  data structure to send to regionalOffices API as parameters
              * @param Object oData
              * @returns Object
@@ -147,53 +111,10 @@
                                 oResult[element] = [(row.hasOwnProperty('elementId')) ? row.elementId : row.element_id];
                             }
                         });
-
-                        //delete treated object
-                        //delete advancedSearchData[element];
                     }
                 });
 
                 return oResult;
             };
-
-//            $scope.dropdownDataStructure = function(oData, aSelectedData) {
-//                var oResults = {}, aSelectedIDs = [];
-//                var oRow = oData;
-//
-//                //delete unsued attribute
-//                delete oRow._links;
-//                delete oRow.parentElementId;
-//                delete oRow.elementId;
-//                delete oRow.id;
-//                delete oRow.marked;
-//
-//                //add attribute
-//                oRow.checked = false;
-//                oRow.open = true;
-//                oRow.text = oRow.name;
-//                oRow.value = oRow.name;
-//
-//                //get all selected item ids
-//                angular.forEach(aSelectedData, function(item){
-//                    aSelectedIDs.push(item.elementId);
-//                });
-//
-//                if(oData.hasOwnProperty("hierarchy")) {
-//                    var aSubHierarchy = oData.hierarchy;
-//                    delete oRow.hierarchy;
-//
-//                    oRow.children = aSubHierarchy;
-//
-//                    angular.forEach(aSubHierarchy, function(oItem){
-//                        angular.extend(oResults, $scope.dropdownDataStructure(oItem, aSelectedData));
-//                    });
-//
-//                    angular.extend(oResults, oRow);
-//                } else {
-//                    angular.extend(oResults, oRow);
-//                }
-//
-//                return oResults;
-//            };
     }]);
 })();

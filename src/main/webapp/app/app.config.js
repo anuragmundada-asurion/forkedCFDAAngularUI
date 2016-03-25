@@ -4,14 +4,12 @@
     var myApp = angular.module('app');
 
     //PATCH: https://github.com/alexandernst/angular-multi-select/issues/84
-    var angular_multi_select=angular.module("angular-multi-select");angular_multi_select.run(["$templateCache",function(a){var b=a.get("angular-multi-select.tpl");b=b.replace(/(class="(?:.*?)ams-item-text(?:.*?)")/gi,'$1 ng-click="amse.toggle_check_node(item)"'),a.put("angular-multi-select.tpl",b)}]);
-
-//    var angular_multi_select=angular.module("angular-multi-select");angular_multi_select.run(["$templateCache","$compile",function(a,b){
-//        var c=a.get("angular-multi-select.tpl");
-//        jQuery(c, '.ams-item.node').find('.ams-item-text').attr('ng-click', 'amse.toggle_open_node(item)');
-//        jQuery(c, '.ams-item.leaf').find('.ams-item-text').attr('ng-click', 'amse.toggle_check_node(item)');
-//        a.put("angular-multi-select.tpl",b(jQuery(c).contents()));
-//    }]);
+    var angular_multi_select = angular.module('angular-multi-select');
+    angular_multi_select.run(['$templateCache', function ($templateCache) {
+            var tpl = $templateCache.get('angular-multi-select.tpl');
+            tpl = tpl.replace(/(class="(?:.*?)ams-item-text(?:.*?)")/gi, '$1 ng-click="item[amsc.INTERNAL_KEY_CHILDREN_LEAFS] === 0 && amse.toggle_check_node(item) || amse.toggle_open_node(item)"');
+            $templateCache.put('angular-multi-select.tpl', tpl);
+    }]);
 
     myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory',
         function ($rootScope, $document, $state, ngDialog, SearchFactory) {

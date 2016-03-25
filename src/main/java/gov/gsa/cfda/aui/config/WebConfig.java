@@ -29,8 +29,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/agency/edit/{id:\\w+}",
                 "/agency/review/{id:\\w+}",
                 "/agency/create",
-                
+
                 "/regionalOffice",
+                "/regionalOffice/create",
+                "/regionalOffice/{id:\\w+}/edit",
+                "/regionalOffice/{id:\\w+}/view",
 
                 "/unauthorized",
                 "/forbidden",

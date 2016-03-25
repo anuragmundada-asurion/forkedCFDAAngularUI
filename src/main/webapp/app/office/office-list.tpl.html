@@ -6,7 +6,7 @@
             <h1>Regional Agency Offices</h1>
         </div>
         <div class="usa-width-one-fourth" >
-             <a ui-sref="agencyDetails({id: -1, action: 'create'})" class="usa-button" >Create a New Address</a>
+             <a ui-sref="addRegionalOffice" class="usa-button" >Create a New Address</a>
         </div>
     </div>
     <div class="usa-grid-full">
@@ -77,8 +77,8 @@
                 <td>{{row.address.zip}}</td>
                 <td>{{row.phone}}</td>
                 <td class="action-row" style="text-align: right !important">
-                    <a  ui-sref="agencyDetails({id: row.id, action: 'edit'})"><button type="button"><span class="fa fa-pencil"></span></button></a>
-                    <a  ui-sref="agencyDetails({id: row.id, action: 'review'})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
+                    <a  ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a>
+                    <a  ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
                 </td>
             </tr>
             <tr ng-show="!aAgency || aAgency.length == 0">

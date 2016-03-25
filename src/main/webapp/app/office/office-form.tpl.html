@@ -1,0 +1,134 @@
+<primary-nav-bar></primary-nav-bar>
+<section>
+<div class="usa-grid-full">
+    <div class="usa-width-three-fourths">
+        <h1>{{ (action === 'create') ? 'Create' : 'Edit' }} Regional Agency Office</h1>
+    </div>
+
+    <section class="sub-section">
+        <div id="container" class="usa-grid-full">
+
+            <div class="usa-grid-full" style="clear: both;">
+                <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+                    <div class="usa-alert-body">
+                        <p class="usa-alert-text">{{ flash.message }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="formDiv" class="usa-width-two-thirds">
+                <form name='agencyForm'>
+                    <div class="input-field">
+                        <label>Agency<span class="required" >*</span></label>
+                        <div
+                            angular-multi-select
+                            input-model="dictionary.aAgency"
+                            output-model="formHolder.aAgency"
+
+                            dropdown-label="<[
+                                    <# angularMultiSelectConstants.INTERNAL_STATS_TOTAL_LEAFS #> === undefined ? 'No available items' :
+                                            <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 0 ? 'No checked items' :
+                                                    <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> + ' checked ' + (<# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 1 ? 'item': 'items')
+                            ]>"
+                            node-label="<[ name ]> (checked
+                                    <# angularMultiSelectConstants.INTERNAL_KEY_CHECKED_CHILDREN #> /
+                                    <# angularMultiSelectConstants.INTERNAL_KEY_CHILDREN_LEAFS #>)"
+                            leaf-label="<[ name ]>"
+
+                            search-field="name"
+                            id-property = "elementId"
+                            children-property = "hierarchy"
+                            checked-property = "selected"
+                            open-property = "marked"
+                            >
+                        </div>
+
+                        <label for="division">Division</label>
+                        <isteven-multi-select
+                            max-labels="1"
+                            input-model="dictionary.aDivision"    
+                            output-model="formHolder.oDivision"
+                            button-label="displayValue"
+                            item-label="displayValue"
+                            tick-property="ticked"
+                            max-height="250px"
+                            selection-mode="single"
+                          >
+                        </isteven-multi-select>
+
+                        <label for="branch">Branch</label>
+                        <input type="text" id="branch" ng-model="oRegionalOffice.branch" />
+
+                        <label for="region">State/Region</label>
+                        <input type="text" id="region" ng-model="oRegionalOffice.region" />
+
+                        <label for="subbranch">Sub-branch</label>
+                        <input type="text" id="subbranch" ng-model="oRegionalOffice.subBranch" />
+
+                        <label for="phone" required>Phone<span class="required" >*</span></label>
+                        <input type="text" id="phone" ng-model="oRegionalOffice.phone" />
+                        <div ng-show="form.error || agencyForm.phone.$dirty">
+                            <span ng-show="agencyForm.phone.$error.required">You must provide phone number.</span>
+                        </div>
+
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" ng-model="oRegionalOffice.fax" />
+
+                        <label>Address:</label>
+                        <div class="sub-form">
+                            <label for="address">Street</label>
+                            <textarea id="address" ng-model="oRegionalOffice.address.street" ></textarea>
+                            <label for="city">City</label>
+                            <input type="text" id="city" ng-model="oRegionalOffice.address.city" />
+                            <label for="state">State</label>
+                            <isteven-multi-select
+                                max-labels="1"
+                                input-model="dictionary.aState"    
+                                output-model="formHolder.oState"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                selection-mode="single"
+                              >
+                            </isteven-multi-select>
+                            <label for="zip">Zip</label>
+                            <input type="text" id="zip" ng-model="oRegionalOffice.address.zip" />
+                            <label for="country">Country</label>
+                            <isteven-multi-select
+                                max-labels="1"
+                                input-model="dictionary.aCountry"    
+                                output-model="formHolder.oCountry"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                selection-mode="single"
+                              >
+                            </isteven-multi-select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="usa-width-one-third sub-form" ng-show='action === "edit"' id="historyDiv">
+                <h4>Regional Agency Office Info</h4>
+                <table style="border: none !important;">
+                    <tr>
+                        <td style="border: none !important; text-align: right">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate}}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none !important; text-align: right">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate}}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section class="usa-grid-full">
+        <a ui-sref="regionalOfficeList"><button type="button">Cancel</button></a>
+        <button type="button" ng-click="saveRegionalOffice()">Save</button>
+    </section>
+</div>
+</section>
