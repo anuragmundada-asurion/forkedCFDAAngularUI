@@ -27,7 +27,7 @@
             <p class="vp-field-value">{{oRegionalOffice.address.country}}</p>
         </div>
     </div>
-    <div class="usa-width-one-third sub-form" id="historyDiv">
+    <div class="usa-width-one-third sub-form" id="historyDiv" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
         <h4>Regional Agency Office Info</h4>
         <table style="border: none !important;">
             <tr>
