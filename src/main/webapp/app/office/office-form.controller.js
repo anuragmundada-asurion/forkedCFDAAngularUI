@@ -107,5 +107,17 @@
 
                 return aData;
             };
+
+            /**
+             * delete regional office
+             * @returns void
+             */
+            $scope.deleteRegionalOffice = function(){
+                $scope.oRegionalOffice.$delete({id: $scope.oRegionalOffice.id}).then(function(data){
+                    console.log(data);
+                }, function(error){
+                    console.log(error);
+                });
+            };
     }]);
 })();
