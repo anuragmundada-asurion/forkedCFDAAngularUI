@@ -60,7 +60,7 @@
             };
 
             this.refreshUser = function() {
-                if (Cookies.get('iPlanetDirectoryPro') && window.iaeHeader) {
+                if (Cookies.get('iplanetDirectoryPro') && window.iaeHeader) {
                     var self = this;
                     window.iaeHeader.getUser(function(u) {
                         self.changeUser(u);
@@ -85,7 +85,7 @@
 
             this.changeUser = function(iamUser) {
                 $rootScope.user = new User(iamUser);
-                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
+                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
             };
 
             var self = this;
