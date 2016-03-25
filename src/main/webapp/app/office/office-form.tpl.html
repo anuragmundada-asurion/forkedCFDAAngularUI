@@ -20,7 +20,7 @@
                 <form name='agencyForm'>
                     <div class="input-field">
                         <label>Agency<span class="required" >*</span></label>
-                        <div
+<!--                        <div
                             angular-multi-select
                             input-model="dictionary.aAgency"
                             output-model="formHolder.aAgency"
@@ -42,7 +42,9 @@
                             open-property = "marked"
                             max-checked-leafs="1"
                             >
-                        </div>
+                        </div>-->
+                        <federal-hierarchy-label organization-id="{{ tempAgencyId }}"></federal-hierarchy-label>
+                        <input type="hidden" ng-value='tempAgencyId' ng-model="oRegionalOffice.agencyId" />
 
                         <label for="division">Division</label>
                         <isteven-multi-select

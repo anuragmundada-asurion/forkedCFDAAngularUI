@@ -30,12 +30,14 @@
             if($scope.action === 'create') { // Create Program
                 $scope.oRegionalOffice = new RegionalOfficeFactory();
                 $scope.oRegionalOffice.address = {};
+                $scope.tempAgencyId = '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
 
                 //load dictionaries
                 $scope.loadDictionaries();
             } else {
                 RegionalOfficeFactory.get({id: $stateParams.id}).$promise.then(function(data){
                     $scope.oRegionalOffice = data;
+                    $scope.tempAgencyId = $stateParams.id;
 
                     //load dictionaries with preselected values (Preselected values must be loaded first)
                     $scope.loadDictionaries();
