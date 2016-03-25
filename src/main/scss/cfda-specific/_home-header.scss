@@ -7,4 +7,26 @@
     color:white;
     margin:0px;
     width:100%;
+    
+    button[type="submit"]{
+      border-radius: 0 !important;
+    }
+    
+    select{
+      border:2px solid #0071bc !important;
+      padding:1.4rem 0.7rem !important;
+    }
+    
+    @media screen and (min-width: 481px) {
+      .usa-search.usa-search-big [type="search"],
+      .usa-search.usa-search-big .usa-search-input {
+        height: 6rem;
+        width: calc(100% - 14rem);
+      }
+      .usa-search.usa-search-big [type="submit"],
+      .usa-search.usa-search-big .usa-search-submit {
+        height: 6rem;
+        width: 14rem;
+      } 
+    }
 }

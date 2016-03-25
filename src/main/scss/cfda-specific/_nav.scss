@@ -23,8 +23,12 @@
       &:hover {
         background-color: $color-primary-alt;
         text-decoration: none;
-
+        color: #fff;
       }
+    }
+    
+    a.green:hover{
+      background-color: #2dac0b !important;
     }
   }
 
