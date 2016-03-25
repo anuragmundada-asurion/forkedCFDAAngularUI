@@ -22,7 +22,7 @@
                 'username': $scope.roleChange,
                 'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
             };
-            Cookies.set('iPlanetDirectoryPro', $scope.roleChange);
+            Cookies.set('iplanetDirectoryPro', $scope.roleChange);
             UserService.changeUser(user);
             ngDialog.close();
             $state.reload();
