@@ -140,8 +140,9 @@
                                     nameFormat = config.tooltip_format_name || function (name) {
                                             return name;
                                         },
-                                    valueFormat = config.tooltip_format_value || defaultValueFormat,
+                                    valueFormat = d3.format("d"),
                                     text, i, title, value, name, bgcolor;
+
                                 for (i = 0; i < d.length; i++) {
                                     if (!(d[i] && (d[i].value || d[i].value === 0))) {
                                         continue;
@@ -171,7 +172,7 @@
                 };
 
                 //Dashboard feature
-                if($scope.user && AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
+                if ($scope.user && AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
                     var oApiParam = {
                         apiName: 'programCount',
                         apiSuffix: '',
