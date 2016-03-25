@@ -30,14 +30,14 @@
             if($scope.action === 'create') { // Create Program
                 $scope.oRegionalOffice = new RegionalOfficeFactory();
                 $scope.oRegionalOffice.address = {};
-                $scope.tempAgencyId = '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
+                //Fixme Temp for demo
+                $scope.oRegionalOffice.agencyId = '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
 
                 //load dictionaries
                 $scope.loadDictionaries();
             } else {
                 RegionalOfficeFactory.get({id: $stateParams.id}).$promise.then(function(data){
                     $scope.oRegionalOffice = data;
-                    $scope.tempAgencyId = $stateParams.id;
 
                     //load dictionaries with preselected values (Preselected values must be loaded first)
                     $scope.loadDictionaries();
@@ -57,7 +57,8 @@
                 //empty message error
                 $scope.flash = {};
 
-                if(!$scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') || !$scope.oRegionalOffice.phone){
+//                if(!$scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') || !$scope.oRegionalOffice.phone){
+                if(!$scope.oRegionalOffice.phone){
                     $scope.flash = {
                         type: "error",
                         message: "Please provide all required fields before submitting the form."
@@ -66,7 +67,7 @@
                     //scroll up in order for user to see the error message
                     $window.scrollTo(0, 0);
                 } else {
-                    $scope.oRegionalOffice.agencyId = $scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId');
+                    //$scope.oRegionalOffice.agencyId = $scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId');
                     $scope.oRegionalOffice.division = $scope.prepareDataStructure($scope.formHolder.oDivision, 'element_id');
                     $scope.oRegionalOffice.address.country = $scope.prepareDataStructure($scope.formHolder.oCountry, 'element_id');
                     $scope.oRegionalOffice.address.state = $scope.prepareDataStructure($scope.formHolder.oState, 'element_id');
