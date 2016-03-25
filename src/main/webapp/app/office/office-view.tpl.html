@@ -1,6 +1,7 @@
 <primary-nav-bar></primary-nav-bar>
 <global-search-box></global-search-box>
 
+<section class="usa-grid-full">
 <div ng-show="oRegionalOffice" class="usa-grid-full">
     <h2>View Regional Agency Office</h2>
     <div class="usa-width-three-fourths vp-section" style="width: 60%;">
@@ -49,3 +50,9 @@
     <!-- loading icon -->
     <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
 </div>
+</section>
+<section class="usa-grid-full">
+    <a ui-sref="regionalOfficeList"><button type="button">Return</button></a>
+    <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}"><button type="button">Edit</button></a>
+    <button type="button" has-access="{{ [PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}" ng-click="deleteRegionalOffice()">Delete</button>
+</section>

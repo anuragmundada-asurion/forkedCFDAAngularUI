@@ -78,7 +78,7 @@
                 <td>{{row.phone}}</td>
                 <td class="action-row" style="text-align: right !important">
                     <a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a>
-                    <a has-access="{{[PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}"  ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
+                    <a ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
                 </td>
             </tr>
             <tr ng-show="!aAgency || aAgency.length == 0">
