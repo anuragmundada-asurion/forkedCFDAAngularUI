@@ -124,6 +124,19 @@ gulp.task('iae', ['index'], function() {
         .pipe(gulp.dest('target/classes/static'));
 });
 
+gulp.task('semantic', ['index'], function(){
+  
+  gulp.src(['src/main/semantic/dist/**/*','!src/main/semantic/dist/semantic.css','!src/main/semantic/dist/semantic.js' ])
+      .pipe(gulp.dest('target/classes/static/semantic'));
+      
+  var sources = gulp.src(['src/main/semantic/dist/semantic.css', 'src/main/semantic/dist/semantic.js'])
+      .pipe(gulp.dest('target/classes/static/semantic'));
+  
+  index.pipe(inject(sources, { addRootSlash: true, name: 'semantic', relative: true }))
+    .pipe(gulp.dest('target/classes/static'));
+  
+});
+
 gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
@@ -152,7 +165,7 @@ gulp.task('cfda', ['index'], function() {
         .pipe(gulp.dest('target/classes/static'));
 });
 
-gulp.task('package', ['assets', 'ie', 'base', 'vendor', 'plugins', 'cfda', 'iae'], function() {
+gulp.task('package', ['assets', 'ie', 'base', 'vendor', 'plugins', 'cfda', 'iae', 'semantic'], function() {
 });
 
 gulp.task('test-dependencies', function() {
