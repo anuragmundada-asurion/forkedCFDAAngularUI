@@ -1,0 +1,33 @@
+/*--------------
+      Menu
+---------------*/
+
+
+/* Light Blue */
+.ui.inverted.lightblue.menu .item{
+  color: @textColor;
+}
+.ui.inverted.menu .lightblue.active.item,
+.ui.inverted.lightblue.menu {
+  background-color: @lightBlue;
+}
+.ui.inverted.lightblue.menu .item:before {
+  background-color: @invertedColoredDividerBackground;
+}
+.ui.inverted.lightblue.menu .active.item {
+  background-color: @invertedColoredActiveBackground !important;
+}
+
+
+/*--------------
+     Sizes
+---------------*/
+
+
+/* Big */
+.ui.big.menu {
+  font-size: @big;
+}
+.ui.big.vertical.menu {
+  width: @bigWidth;
+}
