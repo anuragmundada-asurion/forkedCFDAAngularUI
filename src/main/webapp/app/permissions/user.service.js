@@ -103,6 +103,8 @@
                     $state.reload();
                 }
             });
+
+            $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
         }
     ]);
 }();

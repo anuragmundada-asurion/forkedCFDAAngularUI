@@ -36,7 +36,7 @@
         <div>
             <p class="vp-field-label-big">Address: </p>
             <p class="vp-field-value">{{oRegionalOffice.address.street}}</p>
-            <p class="vp-field-value">{{oRegionalOffice.address.city + ', ' + oRegionalOffice.address.state + ' ' + oRegionalOffice.address.zip}}</p>
+            <p class="vp-field-value">{{oRegionalOffice.address.city + (oRegionalOffice.address.city && oRegionalOffice.address.state ? ', ' : '') + oRegionalOffice.address.state + ' ' + oRegionalOffice.address.zip}}</p>
             <p class="vp-field-value">{{oRegionalOffice.address.country}}</p>
         </div>
     </div>

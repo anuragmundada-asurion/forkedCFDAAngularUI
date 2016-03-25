@@ -14,9 +14,12 @@
             $scope.previousState = null;
             var aDictionay = [ 'regional_office_division', 'states' ];
 
-            FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
-                $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
-            });
+            var userOrgId = UserService.getUserOrgId();
+            if (userOrgId) {
+                FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
+                    $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
+                });
+            }
 
             Dictionary.toDropdown({ ids: aDictionay.join(',') }).$promise.then(function(data){
                 $scope.dictionary.aDivision = data.regional_office_division;
@@ -56,11 +59,13 @@
 
                 if (tableState.search.predicateObject) {
                     oApiParam.oParams['keyword'] = tableState.search.predicateObject.keyword;
+                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply agency custom search
                 if($scope.filter.aAgency.length > 0 || $scope.filter.aDivision.length > 0) {
-                     oApiParam.oParams['oFilterParam'] = $scope.prepareDataStructure($scope.filter);
+                    oApiParam.oParams['oFilterParam'] = $scope.prepareDataStructure($scope.filter);
+                    oApiParam.oParams.offset = 0;
                 }
 
                 if(tableState.sort.predicate) {
