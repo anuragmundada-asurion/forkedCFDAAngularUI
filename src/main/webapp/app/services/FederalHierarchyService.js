@@ -4,10 +4,11 @@
     var myApp = angular.module('app');
 
     myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
+
         var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
-                apiSuffix: '/' + id,
+                apiSuffix: id ? ('/' + id) : '',
                 oParams: {},
                 oData: {},
                 method: 'GET'
