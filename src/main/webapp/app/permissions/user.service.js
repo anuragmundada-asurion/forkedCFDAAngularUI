@@ -80,7 +80,7 @@
 
             this.getUserOrgId = function() {
                 var user = this.getUser();
-                return user ? user.orgId : '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
+                return user ? user.orgId : null;
             };
 
             this.changeUser = function(iamUser) {
