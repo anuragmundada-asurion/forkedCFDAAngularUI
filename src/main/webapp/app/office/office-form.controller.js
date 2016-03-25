@@ -2,8 +2,8 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog',
-        function($scope, $state, $stateParams, $timeout, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog) {
+     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$window', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog',
+        function($scope, $state, $stateParams, $timeout, $window, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog) {
             $scope.dictionary = {};
             $scope.formHolder = {
                 aAgency: [],
@@ -52,11 +52,17 @@
              * @returns void
              */
             $scope.saveRegionalOffice = function() {
+                //empty message error
+                $scope.flash = {};
+
                 if($scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') === false || !$scope.oRegionalOffice.phone){
                     $scope.flash = {
                         type: "error",
                         message: "Please provide all required fields before submitting the form."
                     };
+
+                    //scroll up in order for user to see the error message
+                    $window.scrollTo(0, 0);
 
                     return false;
                 } else {
@@ -66,10 +72,22 @@
                     $scope.oRegionalOffice.address.state = $scope.prepareDataStructure($scope.formHolder.oState, 'element_id');
 
                     $scope.oRegionalOffice[($scope.action === 'create') ? '$save' : '$update'](($scope.action === 'create') ? '' : ({id: $scope.oRegionalOffice.id})).then(function(data) {
-                        $scope.flash = {
-                            type: "success",
-                            message: "The Regional Agency Office has been saved successfully !"
-                        };
+                        ngDialog.open({
+                            template: '<div class="usa-alert usa-alert-success" role="alert">'+
+                                        '<div class="usa-alert-body">'+
+                                          '<p class="usa-alert-text">The Regional Agency Office has been saved successfully !</p>'+
+                                        '</div>'+
+                                      '</div>',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
+                        });
+
+                        //go to list page after 2 seconds
+                        $timeout(function() {
+                            ngDialog.closeAll();
+                            $state.go('regionalOfficeList');
+                        }, 3000);
                     });
                 }
             };
