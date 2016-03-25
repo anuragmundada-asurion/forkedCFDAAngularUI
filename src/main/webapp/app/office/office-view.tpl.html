@@ -1,0 +1,34 @@
+<primary-nav-bar></primary-nav-bar>
+<global-search-box></global-search-box>
+
+<div ng-show="oAgencyName" class="usa-grid-full">
+    <h2>View Regional Agency Office</h2>
+    <div class="usa-width-three-fourths vp-section">
+        <div>
+            <p class="vp-field-label-big">Agency: </p>
+            <p class="vp-field-value">{{oAgencyName}}</p>
+        </div>
+        <div>
+            <p class="vp-field-label-big">State/Region: </p>
+            <p class="vp-field-value">{{oRegionalOffice.region}}</p>
+        </div>
+        <div>
+            <p class="vp-field-label-big">Phone: </p>
+            <p class="vp-field-value">{{oRegionalOffice.phone}}</p>
+        </div>
+        <div>
+            <p class="vp-field-label-big">Fax: </p>
+            <p class="vp-field-value">{{oRegionalOffice.fax}}</p>
+        </div>
+        <div>
+            <p class="vp-field-label-big">Address: </p>
+            <p class="vp-field-value">{{oRegionalOffice.address.street}}</p>
+            <p class="vp-field-value">{{oRegionalOffice.address.city + ', ' + oRegionalOffice.address.state + ' ' + oRegionalOffice.address.zip}}</p>
+            <p class="vp-field-value">{{oRegionalOffice.address.country}}</p>
+        </div>
+    </div>
+</div>
+<div ng-show="!oAgencyName" class="usa-grid-full loading">
+    <!-- loading icon -->
+    <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
+</div>

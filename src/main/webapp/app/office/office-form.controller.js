@@ -2,8 +2,8 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService',
-        function($scope, $state, $stateParams, RegionalOfficeFactory, Dictionary, FederalHierarchyService) {
+     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService',
+        function($scope, $state, $stateParams, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService) {
             $scope.dictionary = {};
             $scope.formHolder = {
                 aAgency: [],
@@ -43,8 +43,7 @@
             }
 
             //Loading Federal Hierarchy
-            //FIXME: Hardcode GSA Organization ID to pull 
-            FederalHierarchyService.getFederalHierarchyById('9eb645ae12f3ff6f0eaa94b8ee10d7c2', true, true, function(oData){
+            FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
                 $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [{ elementId: $scope.oRegionalOffice.agencyId }])];
             });
 

@@ -17,7 +17,6 @@
             //FIXME: Hardcode GSA Organization ID to pull 
             FederalHierarchyService.getFederalHierarchyById('9eb645ae12f3ff6f0eaa94b8ee10d7c2', true, true, function(oData){
                 $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
-                console.log($scope.dictionary.aAgency);
             });
 
             Dictionary.toDropdown({ ids: aDictionay.join(',') }).$promise.then(function(data){
@@ -57,7 +56,6 @@
                 };
 
                 if (tableState.search.predicateObject) {
-                    console.log(tableState.search.predicateObject)
                     oApiParam.oParams['keyword'] = tableState.search.predicateObject.keyword;
                 }
 

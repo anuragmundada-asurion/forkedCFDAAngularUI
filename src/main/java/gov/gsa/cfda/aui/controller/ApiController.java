@@ -386,14 +386,16 @@ public class ApiController {
         restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
     }
 
-    @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
-    public String getFederalHierarchyById(@PathVariable("id") String id,
-                                          @RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
-                                          @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
+    private String federalHierarchyCall(String id, String childrenLevels, String parentLevels) {
+        String url = getFederalHierarchiesApiUrl();
+        if (id != null && !id.isEmpty()) {
+            url += '/' + id;
+        }
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaTypes.HAL_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getFederalHierarchiesApiUrl() + "/" + id);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
         if(parentLevels.equalsIgnoreCase("all")){
             builder.queryParam("parentLevels", "all");
@@ -408,17 +410,25 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
+    public String getFederalHierarchy(@RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
+                                      @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
+        return federalHierarchyCall(null, childrenLevels, parentLevels);
+    }
+
+    @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
+    public String getFederalHierarchyById(@PathVariable("id") String id,
+                                          @RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
+                                          @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
+        return federalHierarchyCall(id, childrenLevels, parentLevels);
+    }
+
     @RequestMapping(value = "/api/historicalIndex/{id}", method = RequestMethod.GET)
     public String getHistoricalIndex(@PathVariable("id") String id,
                                      @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getHistoricalIndexApiUrl() + "/" + id).queryParam("programNumber", programNumber);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-
-        return response.getBody();
+        Map<String, Object> params = new HashMap<>();
+        params.put("programNumber", programNumber);
+        return getsCall(null, getHistoricalIndexApiUrl() + "/" + id, params);
     }
 
     private String getProgramRequestsApiUrl() {
