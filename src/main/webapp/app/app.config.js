@@ -11,8 +11,8 @@
             $templateCache.put('angular-multi-select.tpl', tpl);
     }]);
 
-    myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory',
-        function ($rootScope, $document, $state, ngDialog, SearchFactory) {
+    myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory', 'Page',
+        function ($rootScope, $document, $state, ngDialog, SearchFactory, Page) {
             $rootScope.$on('$stateChangeSuccess', function() {
                 $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
             });
@@ -57,6 +57,17 @@
                 if (stateConfig.name === "programList") { 
                     event.preventDefault();
                     $state.go('programList.status', {status: 'all'});
+                }
+            });
+
+            $rootScope.Page = Page;
+
+            /**
+             * change page title based on state config
+             */
+            $rootScope.$on('$stateChangeSuccess', function(event, stateConfig) {
+                if (stateConfig['title']) {
+                    Page.setTitle(stateConfig['title']);
                 }
             });
         }

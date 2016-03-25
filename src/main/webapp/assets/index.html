@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title ng-bind="Page.title()">CFDA</title>
     <!-- base:css -->
     <!-- endinject -->
     <!-- plugins:css -->
@@ -35,7 +35,7 @@
     <!-- cfda:js -->
     <!-- endinject -->
 </head>
-<body ng-app="app">
+<body>
     <header class="header theme-iae" role="banner">
         <section id="iae-authentication-modal" class="gsa-authentication-modal hidden"></section>
         <section id="iae-header"></section>

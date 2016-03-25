@@ -11,38 +11,46 @@
                 .state('home', {
                     url: "/",
                     templateUrl: "main/home.tpl.html",
-                    controller: "HomeController"
+                    controller: "HomeController",
+                    title: 'Home - CFDA: Home'
                 })
                 .state('401', {
                     url: "/unauthorized",
-                    templateUrl: "httpcode/401.tpl.html"
+                    templateUrl: "httpcode/401.tpl.html",
+                    title: 'Unauthorized - CFDA: Unauthorized'
                 })
                 .state('403', {
                     url: "/forbidden",
-                    templateUrl: "httpcode/403.tpl.html"
+                    templateUrl: "httpcode/403.tpl.html",
+                    title: 'Forbidden - CFDA: Forbidden'
                 })
                 .state('404', {
                     url: "/404",
-                    templateUrl: "httpcode/404.tpl.html"
+                    templateUrl: "httpcode/404.tpl.html",
+                    title: 'Page Not Found - CFDA: Page Not Found'
                 })
                 .state('500', {
                     url: "/error",
-                    templateUrl: "httpcode/500.tpl.html"
+                    templateUrl: "httpcode/500.tpl.html",
+                    title: 'Server Error - CFDA: Server Error'
                 })
                 .state('searchPrograms', {
                     url: "/search?keyword",
                     templateUrl: "search/results.tpl.html",
-                    controller: "ProgramSearchCtrl"
+                    controller: "ProgramSearchCtrl",
+                    title: 'Search Programs - CFDA: Search Programs'
                 })
                 .state('advancedSearch', {
                     url: "/advanced-search",
                     templateUrl: "search/_AdvancedSearch.tpl.html",
-                    controller: "ProgramSearchCtrl"
+                    controller: "ProgramSearchCtrl",
+                    title: 'Search Programs - CFDA: Search Programs'
                 })
                 .state('addProgram', {
                     url: "/programs/add/:section",
                     templateUrl: "programs/addedit.tpl.html",
                     controller: "AddEditProgram as gsavm",
+                    title: 'Create Program - CFDA: Create Program',
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_CREATE_PROGRAMS
@@ -53,6 +61,7 @@
                     url: "/programs/:id/preview",
                     templateUrl: "programs/view/viewProgram.tpl.html",
                     controller: "ViewProgramCtrl as viewCtrl",
+                    title: 'Preview Program - CFDA: Preview Program',
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_CREATE_PROGRAMS,
@@ -65,6 +74,7 @@
                     url: "/programs/:id/edit/:section",
                     templateUrl: "programs/addedit.tpl.html",
                     controller: "AddEditProgram as gsavm",
+                    title: 'Edit Program - CFDA: Edit Program',
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
@@ -76,6 +86,7 @@
                     url: "/programs/:id/review",
                     templateUrl: "programs/review.tpl.html",
                     controller: "AddEditProgram as gsavm",
+                    title: 'Review Program - CFDA: Review Program',
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_REVIEW_PROGRAMS
@@ -145,18 +156,34 @@
                     url: "/regionalOffice",
                     templateUrl: "office/office-list.tpl.html",
                     controller: "RegionalOfficeListController",
+                    title: 'Regional Agency Offices - CFDA: Regional Agency Offices'
                 })
                 .state('addRegionalOffice', {
                     url: "/regionalOffice/create",
                     templateUrl: "office/office-form.tpl.html",
                     controller: "RegionalOfficeFormCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE
+                        ]
+                    }
                 })
                 .state('editRegionalOffice', {
                     url: "/regionalOffice/:id/edit",
                     templateUrl: "office/office-form.tpl.html",
                     controller: "RegionalOfficeFormCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
+                        ]
+                    }
                 })
-                ;
+                .state('viewRegionalOffice', {
+                    url: "/regionalOffice/:id/view",
+                    templateUrl: "office/office-view.tpl.html",
+                    controller: "RegionalOfficeViewCtrl",
+                    title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
+                });
 
             // the known route
             $urlRouterProvider.when('', '/');
