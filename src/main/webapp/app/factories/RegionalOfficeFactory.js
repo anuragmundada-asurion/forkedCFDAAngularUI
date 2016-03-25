@@ -15,6 +15,12 @@
                 params: {
                     id: '@_id'
                 }
+            },
+            delete:{
+                method: 'DELETE',
+                params: {
+                    id: '@_id'
+                }
             }
         });
     }]);
