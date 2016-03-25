@@ -134,3 +134,13 @@ footer {
       }
   }
 }
+
+.fix-alignment{
+  div[angular-multi-select]{
+    .ams-button{
+      width: 100% !important;
+      padding: 10px !important;
+      margin-top: 5px !important;
+    }
+  }
+}
