@@ -55,7 +55,7 @@
                 //empty message error
                 $scope.flash = {};
 
-                if($scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') === false || !$scope.oRegionalOffice.phone){
+                if(!$scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') || !$scope.oRegionalOffice.phone){
                     $scope.flash = {
                         type: "error",
                         message: "Please provide all required fields before submitting the form."
@@ -63,8 +63,6 @@
 
                     //scroll up in order for user to see the error message
                     $window.scrollTo(0, 0);
-
-                    return false;
                 } else {
                     $scope.oRegionalOffice.agencyId = $scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId');
                     $scope.oRegionalOffice.division = $scope.prepareDataStructure($scope.formHolder.oDivision, 'element_id');
@@ -105,7 +103,7 @@
                     }
                 }
 
-                return false;
+                return null;
             };
 
             /**
