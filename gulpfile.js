@@ -128,8 +128,11 @@ gulp.task('semantic', ['index'], function(){
   
   gulp.src(['src/main/semantic/dist/**/*','!src/main/semantic/dist/semantic.css','!src/main/semantic/dist/semantic.js' ])
       .pipe(gulp.dest('target/classes/static/semantic'));
-      
-  var sources = gulp.src(['src/main/semantic/dist/semantic.css', 'src/main/semantic/dist/semantic.js'])
+  
+  // var sources = gulp.src(['src/main/semantic/dist/semantic.css', 'src/main/semantic/dist/semantic.js'])
+  //     .pipe(gulp.dest('target/classes/static/semantic'));    
+  
+  var sources = gulp.src(['src/main/semantic/dist/semantic.js'])
       .pipe(gulp.dest('target/classes/static/semantic'));
   
   index.pipe(inject(sources, { addRootSlash: true, name: 'semantic', relative: true }))
