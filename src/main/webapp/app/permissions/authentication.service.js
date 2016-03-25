@@ -3,9 +3,9 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('AuthenticationService', ['UserService', function(UserService) {
+    myApp.service('AuthenticationService', [function() {
         this.authenticate = function() {
-            return Cookies.get('iPlanetDirectoryPro') ? true : false;
+            return Cookies.get('iplanetDirectoryPro') ? true : false;
         };
     }]);
 }();
