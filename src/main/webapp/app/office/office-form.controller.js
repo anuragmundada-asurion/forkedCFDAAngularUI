@@ -2,8 +2,8 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService',
-        function($scope, $state, $stateParams, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService) {
+     myApp.controller('RegionalOfficeFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog',
+        function($scope, $state, $stateParams, $timeout, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog) {
             $scope.dictionary = {};
             $scope.formHolder = {
                 aAgency: [],
@@ -114,9 +114,35 @@
              */
             $scope.deleteRegionalOffice = function(){
                 $scope.oRegionalOffice.$delete({id: $scope.oRegionalOffice.id}).then(function(data){
-                    console.log(data);
-                }, function(error){
-                    console.log(error);
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-success" role="alert">'+
+                                    '<div class="usa-alert-body">'+
+                                      '<p class="usa-alert-text">This Regional agency office has been successfully deleted.</p>'+
+                                    '</div>'+
+                                  '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+
+                    //go to list page after 2 seconds
+                    $timeout(function() {
+                        ngDialog.closeAll();
+                        $state.go('regionalOfficeList');
+                    }, 3000);
+                }, 
+                function(error){
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-error" role="alert">'+
+                                    '<div class="usa-alert-body">'+
+                                      '<h3 class="usa-alert-heading">Error Status</h3>'+
+                                      '<p class="usa-alert-text">An error has occurred, please try again!</p>'+
+                                    '</div>'+
+                                  '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
                 });
             };
     }]);
