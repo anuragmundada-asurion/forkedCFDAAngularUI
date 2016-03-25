@@ -63,6 +63,12 @@
 
                 ApiService.call(eligbParams).then(function (data) {
                     $scope.chartData = data;
+
+                    //sort data descending order
+                    $scope.chartData.sort(function (obj1, obj2) {
+                        return (obj2.count - obj1.count);
+                    });
+
                     $scope.makeHomePageChart();
                 });
 
