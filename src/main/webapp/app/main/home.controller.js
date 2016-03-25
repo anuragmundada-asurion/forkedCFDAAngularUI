@@ -63,6 +63,12 @@
 
                 ApiService.call(eligbParams).then(function (data) {
                     $scope.chartData = data;
+
+                    //sort data descending order
+                    $scope.chartData.sort(function (obj1, obj2) {
+                        return (obj2.count - obj1.count);
+                    });
+
                     $scope.makeHomePageChart();
                 });
 
@@ -72,14 +78,12 @@
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
-                    var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
                             type: 'bar',
                             json: $scope.chartData,
                             onclick: function (d) {
-
                                 //Set advanced search criteria
                                 SearchFactory.setSearchCriteria('', {
                                     aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
@@ -95,9 +99,6 @@
                             keys: {
                                 x: 'label',
                                 value: ['count']
-                            },
-                            color: function (color, d) {
-                                return d.id ? extraColors[d.index] : color;
                             }
                         },
                         bar: {
@@ -155,8 +156,8 @@
 
                                     name = nameFormat(d[i].name);
                                     value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
-                                    // bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
-                                    bgcolor = d[i].id ? extraColors[d[i].index] : color;
+                                     bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
+                                    //bgcolor = d[i].id ? extraColors[d[i].index] : color;
 
                                     text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
                                     text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + "</td>";
