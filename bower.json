@@ -38,7 +38,8 @@
     "angular-multi-select": "https://github.com/alexandernst/angular-multi-select.git",
     "lokijs": "*",
     "uswds": "https://github.com/18F/web-design-standards.git#0.8.3",
-    "lodash": "^4.6.1"
+    "lodash": "^4.6.1",
+    "trmix": "^1.1.0"
   },
   "resolutions": {
     "angular": "~1.5.0",
@@ -49,9 +50,9 @@
   },
   "overrides": {
     "xdomain": {
-        "main": [
-          "dist/xdomain.min.js"
-        ]
+      "main": [
+        "dist/xdomain.min.js"
+      ]
     },
     "font-awesome": {
       "main": [

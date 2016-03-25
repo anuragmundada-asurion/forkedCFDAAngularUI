@@ -664,6 +664,11 @@ input::selection {
 /*******************************
          Site Overrides
 *******************************/
+
+html.tr-coretext {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 /*!
  * # Semantic UI 2.1.8 - Button
  * http://github.com/semantic-org/semantic-ui/
