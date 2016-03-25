@@ -21736,6 +21736,12 @@ Floated Menu / Item
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
+/*--- Hover ---*/
+
+.ui.inverted.lightblue.menu a.item:hover {
+  background: #9de2f5;
+}
+
 /*--------------
      Sizes
 ---------------*/

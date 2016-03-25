@@ -18,6 +18,10 @@
   background-color: @invertedColoredActiveBackground !important;
 }
 
+/*--- Hover ---*/
+.ui.inverted.lightblue.menu a.item:hover {
+  background: darken(saturate(@lightBlue, 20), 15, relative);
+}
 
 /*--------------
      Sizes
