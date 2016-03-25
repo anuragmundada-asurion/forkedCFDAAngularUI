@@ -72,14 +72,12 @@
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
-                    var extraColors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
                             type: 'bar',
                             json: $scope.chartData,
                             onclick: function (d) {
-
                                 //Set advanced search criteria
                                 SearchFactory.setSearchCriteria('', {
                                     aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
@@ -95,9 +93,6 @@
                             keys: {
                                 x: 'label',
                                 value: ['count']
-                            },
-                            color: function (color, d) {
-                                return d.id ? extraColors[d.index] : color;
                             }
                         },
                         bar: {
