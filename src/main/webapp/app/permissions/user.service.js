@@ -62,9 +62,17 @@
             this.refreshUser = function() {
                 if (Cookies.get('iplanetDirectoryPro') && window.iaeHeader) {
                     var self = this;
-                    window.iaeHeader.getUser(function(u) {
-                        self.changeUser(u);
+                    self.changeUser({
+                        "roles": [
+                            Cookies.get('iplanetDirectoryPro')
+                        ],
+                        'fullName': Cookies.get('iplanetDirectoryPro'),
+                        'username': Cookies.get('iplanetDirectoryPro'),
+                        'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
                     });
+                    //window.iaeHeader.getUser(function(u) {
+                    //    self.changeUser(u);
+                    //});
                 }
             };
 
