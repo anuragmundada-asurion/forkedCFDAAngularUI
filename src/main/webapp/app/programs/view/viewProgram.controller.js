@@ -8,7 +8,7 @@
             $scope.appUtil = appUtil;
             $scope.$log = $log;
             $scope.programId = $stateParams.id;
-
+            $scope.onPreviewPage = $state.current.data.onPreviewPage;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;

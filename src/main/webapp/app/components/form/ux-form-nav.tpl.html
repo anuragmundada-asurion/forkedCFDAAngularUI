@@ -1,16 +1,20 @@
 <section class="section-navigator">
     <div class="steps-dashboard">
         <ul class="steps usa-grid-full"><!--
-		 --><li class="step steps-{{uxForm.sections.length}}" ng-repeat-start="step in uxForm.sections">
-            <a ng-click="step.go();" tabindex="0" trigger-click-on-enter>
-                <span class="step-num completed" ng-class="{ current: step.selected, review: $last && step.selected }">{{$index + 1}}</span>
-                <span class="step-title">{{step.sectionTitle}}</span>
-            </a>
-        </li><!--
-		 --><li class="step-progress" ng-repeat-end>
-            <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-        </li><!--
-	 --></ul>
+		 -->
+            <li class="step steps-{{uxForm.sections.length}}" ng-repeat-start="step in uxForm.sections">
+                <a ng-click="step.go();" tabindex="0" trigger-click-on-enter>
+                    <span class="step-num completed" ng-class="{ current: step.selected, review: $last && step.selected }">{{$index + 1}}</span>
+                    <span class="step-title">{{step.sectionTitle}}</span>
+                </a>
+            </li>
+            <!--
+                     -->
+            <li class="step-progress" ng-repeat-end>
+                <div class="steps-progress-bar" ng-if="!$last"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            </li>
+            <!--
+                 --></ul>
     </div>
     <div class="field-finder-navigator">
         <div class="usa-grid-full">
@@ -21,8 +25,11 @@
             </ul>
             <div class="usa-width-one-half">
                 <div class="navigator-button-group">
-                    <a target="_blank" ui-sref="previewProgram({id: gsavm.program._id})"><button class="usa-button">Preview</button></a>
+                    <!--<a target="_blank" ui-sref="previewProgram({id: gsavm.program._id})"><button class="usa-button">Preview</button></a>-->
+                    <a  ui-sref="previewProgram({id: gsavm.program._id})"><button class="usa-button">Preview</button></a>
                     <button type="button" class="usa-button-unstyled button-circle action-button"  ng-disabled="uxForm.isOnFirstSection" ng-click="uxForm.goToPreviousSection()" trigger-click-on-enter><span class="fa fa-arrow-left"></span></button>
+
+
                     <button type="button" class="usa-button-unstyled button-circle action-button" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
                 </div>
             </div>

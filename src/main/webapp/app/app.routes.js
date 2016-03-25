@@ -59,6 +59,9 @@
                             PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                             PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
                         ]
+                    },
+                    data: {
+                        onPreviewPage: true
                     }
                 })
                 .state('editProgram', {
@@ -90,6 +93,9 @@
                         requiredPermissions: [
                             PERMISSIONS.CAN_VIEW_PROGRAM
                         ]
+                    },
+                    data: {
+                        onPreviewPage: false
                     }
                 })
                 .state('programList', {
