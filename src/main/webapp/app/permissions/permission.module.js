@@ -10,18 +10,22 @@
             //    event.preventDefault();
             //    return $state.go('error');
             //}
-            if (stateConfig['access']) {
-                var authenticated = AuthenticationService.authenticate();
-                if (!authenticated) {
-                    event.preventDefault();
-                    return $state.go('401');
-                } else {
-                    var authorized = AuthorizationService.authorize(stateConfig['access']['requiredPermissions']);
-                    if (!authorized) {
+            if (window.iaeHeader) {
+                if (stateConfig['access']) {
+                    var authenticated = AuthenticationService.authenticate();
+                    if (!authenticated) {
                         event.preventDefault();
-                        return $state.go('403');
+                        return $state.go('401');
+                    } else {
+                        var authorized = AuthorizationService.authorize(stateConfig['access']['requiredPermissions']);
+                        if (!authorized) {
+                            event.preventDefault();
+                            return $state.go('403');
+                        }
                     }
                 }
+            } else {
+                window.skippedInitialCheck = true;
             }
         });
     }]);

@@ -84,17 +84,5 @@
         //  extra
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-
-        $httpProvider.interceptors.push(function(UserService) {
-            return {
-                'request': function(config) {
-                    var user = UserService.getUser();
-                    if (user) {
-                        config['headers']['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
-                    }
-                    return config;
-                }
-            };
-        });
     }]);
 })();

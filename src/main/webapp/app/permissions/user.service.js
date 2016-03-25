@@ -17,7 +17,7 @@
                 lname = IamUser['lastName'];
                 fullName = IamUser['fullName'];
                 phone = IamUser['phoneNumber'];
-                orgId = IamUser['orgId'];
+                orgId = IamUser['orgId'] ? IamUser['orgId'] : '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
             }
 
             if (roles) {
@@ -53,42 +53,48 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', function($rootScope, User, ROLES, $document) {
-        this.getUser = function() {
-            return $rootScope.user;
-        };
+    myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', '$state', '$http',
+        function($rootScope, User, ROLES, $document, $state, $http) {
+            this.getUser = function() {
+                return $rootScope.user;
+            };
 
-        this.refreshUser = function() {
-            if (Cookies.get('iPlanetDirectoryPro') && window.iaeHeader) {
-                var self = this;
-                window.iaeHeader.getUser(function(u) {
-                    self.changeUser(u);
-                });
-            }
-        };
+            this.refreshUser = function() {
+                if (Cookies.get('iPlanetDirectoryPro') && window.iaeHeader) {
+                    var self = this;
+                    window.iaeHeader.getUser(function(u) {
+                        self.changeUser(u);
+                    });
+                }
+            };
 
-        this.getUserRoles = function() {
-            var user = this.getUser();
-            return user ? user.roles : [ROLES.ANONYMOUS];
-        };
+            this.getUserRoles = function() {
+                var user = this.getUser();
+                return user ? user.roles : [ROLES.ANONYMOUS];
+            };
 
-        this.getUserPermissions = function() {
-            var user = this.getUser();
-            return user ? user.permissions : ROLES.ANONYMOUS.permissions;
-        };
+            this.getUserPermissions = function() {
+                var user = this.getUser();
+                return user ? user.permissions : ROLES.ANONYMOUS.permissions;
+            };
 
-        this.getUserOrgId = function() {
-            var user = this.getUser();
-            return user ? user.orgId : '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
-        };
+            this.getUserOrgId = function() {
+                var user = this.getUser();
+                return user ? user.orgId : '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
+            };
 
-        this.changeUser = function(iamUser) {
-            $rootScope.user = new User(iamUser);
-        };
+            this.changeUser = function(iamUser) {
+                $rootScope.user = new User(iamUser);
+                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
+            };
 
-        var self = this;
-        $document.ready(function() {
-             self.refreshUser();
-        });
-    }]);
+            var self = this;
+            $document.ready(function() {
+                 self.refreshUser();
+                if (window.skippedInitialCheck && !$state.current.abstract) {
+                    $state.reload();
+                }
+            });
+        }
+    ]);
 }();
