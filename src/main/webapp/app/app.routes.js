@@ -68,6 +68,9 @@
                             PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
                             PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
                         ]
+                    },
+                    data: {
+                        onPreviewPage: true
                     }
                 })
                 .state('editProgram', {
@@ -96,7 +99,11 @@
                 .state('viewProgram', {
                     url: "/programs/:id/view",
                     templateUrl: "programs/view/viewProgram.tpl.html",
-                    controller: "ViewProgramCtrl as viewCtrl"
+                    controller: "ViewProgramCtrl as viewCtrl",
+                    data: {
+                        onPreviewPage: false
+                    }
+
                 })
                 .state('programList', {
                     url: "/programs/main",
