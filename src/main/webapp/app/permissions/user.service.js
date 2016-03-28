@@ -53,13 +53,12 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['User', 'ROLES', '$document', '$state', '$http',
-        function(User, ROLES, $document, $state, $http) {
+    myApp.service('UserService', ['User', 'ROLES', '$document', '$state', '$http', '$rootScope',
+        function(User, ROLES, $document, $state, $http, $rootScope) {
             this.loadingUser = false;
-            this.user = null;
 
             this.getUser = function() {
-                return this.user;
+                return $rootScope.user;
             };
 
             this.getUserRoles = function() {
@@ -78,7 +77,7 @@
             };
 
             this.changeUser = function(iamUser) {
-                this.user = new User(iamUser);
+                $rootScope.user = new User(iamUser);
                 $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
             };
 
