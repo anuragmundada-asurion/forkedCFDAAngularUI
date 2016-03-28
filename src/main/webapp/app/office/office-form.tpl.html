@@ -43,21 +43,22 @@
                             max-checked-leafs="1"
                             >
                         </div>-->
-                        <federal-hierarchy-label organization-id="{{ tempAgencyId }}"></federal-hierarchy-label>
-                        <input type="hidden" ng-value='tempAgencyId' ng-model="oRegionalOffice.agencyId" />
-
+                        <federal-hierarchy-label organization-id="{{ oRegionalOffice.agencyId }}"></federal-hierarchy-label>
+                        
                         <label for="division">Division</label>
-                        <isteven-multi-select
-                            max-labels="1"
-                            input-model="dictionary.aDivision"    
-                            output-model="formHolder.oDivision"
-                            button-label="displayValue"
-                            item-label="displayValue"
-                            tick-property="ticked"
-                            max-height="250px"
-                            selection-mode="single"
-                          >
-                        </isteven-multi-select>
+                        <div class="fix-select" style="max-width: 450px;">
+                            <isteven-multi-select
+                                max-labels="1"
+                                input-model="dictionary.aDivision"    
+                                output-model="formHolder.oDivision"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                selection-mode="single"
+                              >
+                            </isteven-multi-select>
+                        </div>
 
                         <label for="branch">Branch</label>
                         <input type="text" id="branch" ng-model="oRegionalOffice.branch" />
