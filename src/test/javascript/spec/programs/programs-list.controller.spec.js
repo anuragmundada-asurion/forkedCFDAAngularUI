@@ -10,7 +10,8 @@ describe("Unit Tests for Programs List Controller", function () {
         ApiService,
         appConstants,
         oApiParam,
-        totalCount;
+        totalCount,
+        UserService;
 
     beforeEach(function() {
         var env = {'pub.api.programs': '/api'};
@@ -32,7 +33,7 @@ describe("Unit Tests for Programs List Controller", function () {
         };
 
         totalCount = 1000;
-        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _ProgramFactory_,_ApiService_, _$rootScope_, _User_){
+        inject(function(_$controller_, _$state_, _appConstants_, _$httpBackend_, _ProgramFactory_,_ApiService_, _$rootScope_, _User_, _UserService_){
             $controller = _$controller_;
             $state = _$state_;
             appConstants = _appConstants_;
@@ -41,6 +42,7 @@ describe("Unit Tests for Programs List Controller", function () {
             ApiService = _ApiService_;
             $rootScope = _$rootScope_;
             User = _User_;
+            UserService = _UserService_;
         });
 
         $httpBackend
@@ -71,7 +73,7 @@ describe("Unit Tests for Programs List Controller", function () {
             .whenDELETE('/api/programs')
             .respond(200);
 
-        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
+        UserService.changeUser({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
     });
 
     describe("Default Programs List Controller", function() {

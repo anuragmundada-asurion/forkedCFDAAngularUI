@@ -53,27 +53,13 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['$rootScope', 'User', 'ROLES', '$document', '$state', '$http',
-        function($rootScope, User, ROLES, $document, $state, $http) {
-            this.getUser = function() {
-                return $rootScope.user;
-            };
+    myApp.service('UserService', ['User', 'ROLES', '$document', '$state', '$http',
+        function(User, ROLES, $document, $state, $http) {
+            this.loadingUser = false;
+            this.user = null;
 
-            this.refreshUser = function() {
-                if (Cookies.get('iplanetDirectoryPro') && window.iaeHeader) {
-                    var self = this;
-                    self.changeUser({
-                        "roles": [
-                            Cookies.get('iplanetDirectoryPro')
-                        ],
-                        'fullName': Cookies.get('iplanetDirectoryPro'),
-                        'username': Cookies.get('iplanetDirectoryPro'),
-                        'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
-                    });
-                    //window.iaeHeader.getUser(function(u) {
-                    //    self.changeUser(u);
-                    //});
-                }
+            this.getUser = function() {
+                return this.user;
             };
 
             this.getUserRoles = function() {
@@ -92,15 +78,47 @@
             };
 
             this.changeUser = function(iamUser) {
-                $rootScope.user = new User(iamUser);
+                this.user = new User(iamUser);
                 $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
+            };
+
+            this.loadCLPUser = function() {
+                if (Cookies.get('iplanetDirectoryPro')) {
+                    if (window.iaeHeader) {
+                        window.skipInitialCheck = false;
+                        this.loadingUser = true;
+                        var self = this;
+                        setTimeout(function() {
+                            self.changeUser({
+                                "roles": [
+                                    Cookies.get('iplanetDirectoryPro')
+                                ],
+                                'fullName': Cookies.get('iplanetDirectoryPro'),
+                                'username': Cookies.get('iplanetDirectoryPro'),
+                                'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
+                            });
+                            self.loadingUser = false;
+                            $state.reload();
+                        }, 3000);
+                        //window.iaeHeader.getUser(function(u) {
+                        //    self.changeUser(u);
+                        //    self.loadingUser = false;
+                        //    $state.reload();
+                        //});
+                    } else {
+                        window.skipInitialCheck = true;
+                    }
+                }
+            };
+
+            this.isLoadingIamUser = function() {
+                return this.loadingUser;
             };
 
             var self = this;
             $document.ready(function() {
-                 self.refreshUser();
-                if (window.skippedInitialCheck && !$state.current.abstract) {
-                    $state.reload();
+                if (window.skipInitialCheck) {
+                    self.loadCLPUser();
                 }
             });
 

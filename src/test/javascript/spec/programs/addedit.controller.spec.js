@@ -8,7 +8,8 @@ describe("Unit Tests for Add Edit Controller", function () {
         ProgramFactory,
         util,
         id = '3a98d8c8e9c9',
-        User;
+        User,
+        UserService;
 
     beforeEach(function() {
         var coreChoices = {"yes_no":{"yes":{"element_id":"yes","description":"Yes","value":"Yes","code":"yes","elements":null},"no":{"element_id":"no","description":"No","value":"No","code":"no","elements":null}},"yes_na":{"yes":{"element_id":"yes","description":null,"value":"Yes","code":"yes","elements":null},"na":{"element_id":"na","description":"Not Applicable","value":"Not Applicable","code":"na","elements":null}},"yes_no_na":{"yes":{"element_id":"yes","description":"Yes","value":"Yes","code":"yes","elements":null},"no":{"element_id":"no","description":"No","value":"No","code":"no","elements":null},"na":{"element_id":"na","description":"Not Applicable","value":"Not Applicable","code":"na","elements":null}},"authorization_type":{"act":{"element_id":"act","description":null,"value":"Act","code":"act","elements":null},"eo":{"element_id":"eo","description":null,"value":"Executive Order","code":"eo","elements":null},"publiclaw":{"element_id":"publiclaw","description":null,"value":"Public Law","code":"publiclaw","elements":null},"statute":{"element_id":"statute","description":null,"value":"Statute","code":"statute","elements":null},"usc":{"element_id":"usc","description":null,"value":"USC","code":"usc","elements":null}},"$promise":{},"$resolved":true};
@@ -25,7 +26,7 @@ describe("Unit Tests for Add Edit Controller", function () {
             $provide.value('program', new Program());
         });
 
-        inject(function(_$controller_, _$httpBackend_, _$rootScope_, _util_, _$state_, _ProgramFactory_, _User_){
+        inject(function(_$controller_, _$httpBackend_, _$rootScope_, _util_, _$state_, _ProgramFactory_, _User_, _UserService_) {
             $controller = _$controller_;
             $httpBackend = _$httpBackend_;
             $rootScope = _$rootScope_;
@@ -33,9 +34,10 @@ describe("Unit Tests for Add Edit Controller", function () {
             util = _util_;
             $state = _$state_;
             User = _User_;
+            UserService = _UserService_;
         });
 
-        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
+        UserService.changeUser({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
 
         $httpBackend
             .whenGET('/api/contacts')

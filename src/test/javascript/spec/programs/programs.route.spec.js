@@ -11,7 +11,8 @@ describe("Unit Tests for Program Routes", function () {
         appConstants,
         coreChoices,
         program,
-        User;
+        User,
+        UserService;
 
     function changeState(state, params) {
         $state.go(state, params);
@@ -37,7 +38,7 @@ describe("Unit Tests for Program Routes", function () {
             };
             $provide.value("Program", Program);
         });
-        inject(function(_$state_, _$stateParams_, _$rootScope_, _$location_, _$injector_, _$timeout_, _$httpBackend_, _appConstants_, _User_){
+        inject(function(_$state_, _$stateParams_, _$rootScope_, _$location_, _$injector_, _$timeout_, _$httpBackend_, _appConstants_, _User_, _UserService_){
             $state = _$state_;
             $stateParams = _$stateParams_;
             $rootScope = _$rootScope_;
@@ -47,9 +48,10 @@ describe("Unit Tests for Program Routes", function () {
             $httpBackend = _$httpBackend_;
             appConstants = _appConstants_;
             User = _User_;
+            UserService = _UserService_;
         });
 
-        $rootScope.user = new User({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
+        UserService.changeUser({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
     });
 
     it("should have the proper 'home' url", function(){
