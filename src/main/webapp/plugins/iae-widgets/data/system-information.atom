@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>GSA IAE System Alerts</title>
+  <link href="/" rel="self"/>
+  <link href="/"/>
+  <updated>2016-03-24T17:26:48-04:00</updated>
+  <id>/</id>
+  <author>
+    <name>GSA IAE Administrator</name>
+  </author>
+  <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
+  <entry>
+		<id>C5272EBB-6002-4358-9547-98769F1D8D75</id>
+    <title>System Maintenance</title>
+		<updated>2016-03-24T08:00:00-05:00</updated>
+    <link href="#"/>
+		<summary>This website will be down at 1AM EST for scheduled maintenance.</summary>
+    <content>This website will be down at 1AM EST for scheduled maintenance.</content>
+		<category>System Info</category>
+		<severity>info</severity>
+  </entry>
+	<entry>
+		<id>371055BF-572E-4E8A-B3C4-E1473DDBDB95</id>
+    <title>Search Bar Outage</title>
+		<updated>2016-03-24T08:00:00-05:00</updated>
+    <link href="#"/>
+		<summary>We are currently fixing the search bar, and expect it back up and running by 2pm EST.</summary>
+    <content>We are currently fixing the search bar, and expect it back up and running by 2pm EST.</content>
+		<category>System Info</category>
+		<severity>warning</severity>
+  </entry>
+	<entry>
+		<id>E852EFB7-01B8-41EB-B439-C1E7097F4FA7</id>
+    <title>System Down</title>
+		<updated>2016-03-24T08:00:00-05:00</updated>
+    <link href="#"/>
+		<summary>This website is experiencing an unexpected problem.  Stay tuned.</summary>
+    <content>
+			This website is experiencing an unexpected problem.
+
+			Stay tuned.
+		</content>
+		<category>System Info</category>
+		<severity>critical</severity>
+  </entry>
+</feed>
