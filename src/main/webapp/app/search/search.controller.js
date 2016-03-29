@@ -96,11 +96,6 @@
 
             var lastTime;
             $scope.getSearchResults = function(tableState) {
-
-                $scope.sayHello = function(){
-                    alert('hello');
-                };
-
                 if (lastTime && ((new Date()).getTime() - lastTime) < 500) {
                     return;
                 }
