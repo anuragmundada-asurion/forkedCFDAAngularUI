@@ -48,11 +48,11 @@ html {
 .show {
   display: block; }
 
-.inline {
-  display: inline; }
-
 .hide {
   display: none; }
+
+.inline {
+  display: inline; }
 
 .relative {
   position: relative; }
@@ -254,7 +254,8 @@ p.alertTitle {
       font-size: 2rem;
       font-weight: 700; }
 
-button.fbo, button.cfda {
+button.fbo,
+button.cfda {
   margin: 10px 0 10px 0; }
 
 @font-face {
@@ -457,10 +458,12 @@ button.fbo, button.cfda {
 .m_All-4x {
   margin: 20px !important; }
 
-.m_T-4x {
+.m_T-4x,
+.m_V-4x {
   margin-top: 20px !important; }
 
-.m_B-4x {
+.m_B-4x,
+.m_V-4x {
   margin-bottom: 20px !important; }
 
 .m_L-4x {
@@ -486,10 +489,12 @@ button.fbo, button.cfda {
 .p_H-4x {
   padding-right: 20px !important; }
 
-.m_T-5x {
+.m_T-5x,
+.m_V-5x {
   margin-top: 25px !important; }
 
-.m_B-5x {
+.m_B-5x,
+.m_V-5x {
   margin-bottom: 25px !important; }
 
 .m_L-5x {
@@ -543,6 +548,9 @@ button.fbo, button.cfda {
 .m_T-0 {
   margin-top: 0px !important; }
 
+.m_B-0 {
+  margin-bottom: 0px !important; }
+
 .m_auto {
   margin-left: auto;
   margin-right: auto; }
@@ -558,35 +566,18 @@ button.fbo, button.cfda {
   width: 100%;
   font-size: 17px; }
   .iae-alert .iae-alert-cont {
-    float: left;
-    display: inline-block;
-    vertical-align: middle;
-    min-height: 2em;
     max-width: 930px;
-    padding-top: 5px; }
+    padding: 5px 0px;
+    line-height: 1.2em; }
     .iae-alert .iae-alert-cont i {
-      display: inline-block; }
-    .iae-alert .iae-alert-cont p {
-      display: inline-block;
-      margin: 0px;
-      line-height: 1.2em; }
-    .iae-alert .iae-alert-cont h3 {
-      margin-top: 0;
-      margin-bottom: 0px;
-      vertical-align: middle;
-      text-transform: capitalize; }
-  .iae-alert i {
-    font-size: 1.75em;
-    margin-top: 3px;
-    margin-right: 15px;
-    float: left; }
+      font-size: 17px; }
   .iae-alert.none {
     display: none; }
-  .iae-alert.error {
+  .iae-alert.error, .iae-alert.critical {
     background-color: #F9DEDE;
     border-top: 1px solid #f5c8c8;
     border-bottom: 1px solid #f5c8c8; }
-    .iae-alert.error i::before {
+    .iae-alert.error i::before, .iae-alert.critical i::before {
       content: "\f06a"; }
   .iae-alert.success {
     background-color: #E5FCDE;
@@ -617,48 +608,48 @@ button.fbo, button.cfda {
   text-align: center;
   cursor: pointer; }
 
-div.dropdown-container .fa.fa-chevron-down {
-  font-size: .9em;
-  position: relative;
-  top: -1px;
-  left: 4px; }
-
-div.dropdown-container div.dropdown-list {
-  float: left;
-  position: relative;
+.iae-transient-message-list {
   width: 100%;
-  transform: scale(1, 0);
-  -ms-transform: scale(1, 0);
-  -webkit-transform: scale(1, 0);
-  -o-transform: scale(1, 0);
-  -moz-transform: scale(1, 0);
-  -webkit-transition: transform ease 200ms;
-  -moz-transition: transform ease 200ms;
-  -ms-transition: transform ease 200ms;
-  -o-transition: transform ease 200ms;
-  transition: transform ease 200ms; }
-  div.dropdown-container div.dropdown-list .dropdown-list-container {
-    position: absolute;
-    width: 100%;
-    z-index: 2;
-    cursor: pointer;
-    background: white; }
-    div.dropdown-container div.dropdown-list .dropdown-list-container .dropdown-list-item {
-      float: left;
-      width: 100%;
-      padding: 0 10px;
-      font-size: 14px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      border: solid 1px #dddddd;
-      border-top: none; }
+  font-size: 17px; }
+  .iae-transient-message-list .iae-transient-message {
+    max-width: 930px;
+    padding: 5px 8px;
+    background-color: #E8F5FA;
+    border: 1px solid #d3ecf5;
+    margin-top: 8px; }
+    .iae-transient-message-list .iae-transient-message p {
+      margin: 0px;
+      line-height: 1.2em; }
 
-div.dropdown-container.show div.dropdown-list {
-  transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
-  -webkit-transform: scale(1, 1);
-  -o-transform: scale(1, 1);
-  -moz-transform: scale(1, 1); }
+div.dropdown-container {
+  -webkit-transition: height 200ms ease;
+  -moz-transition: height 200ms ease;
+  -ms-transition: height 200ms ease;
+  -o-transition: height 200ms ease;
+  transition: height 200ms ease; }
+  div.dropdown-container .fa.fa-chevron-down {
+    font-size: .9em;
+    position: relative;
+    top: -1px;
+    left: 4px; }
+  div.dropdown-container div.dropdown-list {
+    float: left;
+    position: relative;
+    width: 100%; }
+    div.dropdown-container div.dropdown-list .dropdown-list-container {
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+      cursor: pointer; }
+      div.dropdown-container div.dropdown-list .dropdown-list-container .dropdown-list-item {
+        float: left;
+        width: 100%;
+        padding: 0 10px;
+        font-size: 14px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        border: solid 1px #dddddd;
+        border-top: none; }
 
 .iae-inline-confirmation {
   display: table-cell;
@@ -961,26 +952,28 @@ body {
     cursor: pointer;
     display: inline-block;
     color: #0071bc; }
-  .iae-header-login-bar .iae-signed-in-bar .notification-circle {
-    background-color: #cd2026;
-    color: white;
-    font-size: 0.8em;
-    margin: 0 1em;
-    height: 1.3em;
-    width: 1.3em;
-    line-height: 1.3em;
-    border-radius: 50%;
-    padding-top: .1em;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    cursor: pointer; }
-  .iae-header-login-bar .iae-signed-in-bar i {
-    display: inline-block;
-    vertical-align: middle;
-    color: #0071bc;
-    font-size: 1.3em;
-    cursor: pointer; }
+  .iae-header-login-bar .iae-signed-in-bar {
+    position: relative; }
+    .iae-header-login-bar .iae-signed-in-bar .notification-circle {
+      background-color: #cd2026;
+      color: white;
+      font-size: 0.8em;
+      margin: 0 1em;
+      height: 1.3em;
+      width: 1.3em;
+      line-height: 1.3em;
+      border-radius: 50%;
+      padding-top: .1em;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      cursor: pointer; }
+    .iae-header-login-bar .iae-signed-in-bar i {
+      display: inline-block;
+      vertical-align: middle;
+      color: #0071bc;
+      font-size: 1.3em;
+      cursor: pointer; }
   .iae-header-login-bar .iae-sign-in-modal {
     position: fixed;
     top: 0;
@@ -1076,9 +1069,11 @@ body {
   font-size: 1.2em;
   border-top: 1px solid #e0e2e5;
   border-bottom: none;
-  height: auto; }
+  height: 42px;
+  position: relative; }
   .takeme.dropdown-container.show {
-    height: 200px; }
+    height: 198px;
+    overflow: hidden; }
   @media screen and (max-width: 850px) {
     .takeme.dropdown-container {
       display: none; } }
@@ -1087,48 +1082,52 @@ body {
     width: 11.6em;
     background-color: #0071bc;
     color: white;
-    padding-top: .65em;
-    padding-bottom: .65em;
-    padding-left: 1.5em;
-    padding-right: 2.5em;
-    margin: -1px 0px; }
+    padding: 0.8em 2.5em 0.85em 1.5em;
+    margin: -1px 0px;
+    border-radius: 0px;
+    position: absolute; }
   .takeme.dropdown-container .dropdown-list {
     font-size: 0.8em;
-    background-color: white;
     width: 100%; }
-    .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item {
-      padding: 0px;
-      border: none; }
-      .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a {
-        display: inline;
-        color: #494440;
-        letter-spacing: .02em;
-        padding: 2em 1em;
-        text-align: center;
-        font-size: .9em;
-        line-height: 1.1em;
-        display: block;
-        min-height: 155px; }
-        .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-text {
-          margin: 0px auto;
-          max-width: 120px;
-          line-height: 1.2em; }
-        .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon {
+    .takeme.dropdown-container .dropdown-list .dropdown-list-container {
+      top: 42px; }
+      .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item {
+        padding: 0px;
+        border: none; }
+        .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a {
+          display: inline;
+          color: #494440;
+          letter-spacing: .02em;
+          padding: 2em 1em;
+          text-align: center;
+          font-size: .9em;
+          line-height: 1.1em;
           display: block;
-          font-size: 2.5em;
-          color: #4d8208;
-          min-height: 50px; }
-          .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-business, .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-registration, .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-catalog {
-            font-size: 3em; }
-        .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a:hover {
-          text-decoration: none;
-          background: white; }
+          min-height: 155px; }
+          .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-text {
+            margin: 0px auto;
+            max-width: 120px;
+            line-height: 1.2em; }
+          .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon {
+            display: block;
+            font-size: 2.5em;
+            color: #4d8208;
+            min-height: 50px; }
+            .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-business, .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-registration, .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a .dropdown-icon.iae-catalog {
+              font-size: 3em; }
+          .takeme.dropdown-container .dropdown-list .dropdown-list-container .dropdown-list-item a:hover {
+            text-decoration: none;
+            background: #f1f1f1; }
 
 .hidden {
   display: none !important; }
 
 .auth-error {
-  color: #cd2026; }
+  color: #cd2026;
+  display: block; }
+
+.auth-error:visited, .auth-error:focus {
+  color: #981b1e; }
 
 .iae-auth-error input {
   border: 3px solid #cd2026; }
