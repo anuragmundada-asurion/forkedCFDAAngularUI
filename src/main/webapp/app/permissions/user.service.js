@@ -104,8 +104,11 @@
                         //    self.loadingUser = false;
                         //    $state.reload();
                         //});
+                    } else if (window.skipInitialCheck) {
+                        window.skipInitialCheck = false;
+                        $state.reload();
                     } else {
-                        window.skipInitialCheck = !window.skipInitialCheck;
+                        window.skipInitialCheck = true;
                     }
                 }
             };
