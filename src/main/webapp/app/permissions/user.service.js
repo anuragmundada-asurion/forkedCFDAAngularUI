@@ -105,7 +105,7 @@
                         //    $state.reload();
                         //});
                     } else {
-                        window.skipInitialCheck = true;
+                        window.skipInitialCheck = !window.skipInitialCheck;
                     }
                 }
             };
