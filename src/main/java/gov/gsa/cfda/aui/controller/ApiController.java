@@ -168,7 +168,6 @@ public class ApiController {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getSearchApiUrl())
                 .queryParam("keyword", keyword)
                 .queryParam("includeCount", true)
@@ -239,7 +238,7 @@ public class ApiController {
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                                      @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
                                      @RequestParam(value = "sortBy", required = false, defaultValue = "-agencyId") String sortBy,
-                                     @RequestParam(value = "oFilterParam", required=false, defaultValue="{}") String oFilterParams) {
+                                     @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);
         params.put("limit", limit);
@@ -400,11 +399,11 @@ public class ApiController {
         headers.set("Accept", MediaTypes.HAL_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
-        if(parentLevels.equalsIgnoreCase("all")){
+        if (parentLevels.equalsIgnoreCase("all")) {
             builder.queryParam("parentLevels", "all");
         }
 
-        if(childrenLevels.equalsIgnoreCase("all")){
+        if (childrenLevels.equalsIgnoreCase("all")) {
             builder.queryParam("childrenLevels", "all");
         }
 
@@ -414,15 +413,15 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
-    public String getFederalHierarchy(@RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
-                                      @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
+    public String getFederalHierarchy(@RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
+                                      @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         return federalHierarchyCall(null, childrenLevels, parentLevels);
     }
 
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public String getFederalHierarchyById(@PathVariable("id") String id,
-                                          @RequestParam(value="childrenLevels", required=false, defaultValue="") String childrenLevels,
-                                          @RequestParam(value="parentLevels", required=false, defaultValue="") String parentLevels) throws SQLException, RuntimeException {
+                                          @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
+                                          @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         return federalHierarchyCall(id, childrenLevels, parentLevels);
     }
 
