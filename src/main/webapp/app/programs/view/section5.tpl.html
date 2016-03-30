@@ -14,13 +14,12 @@
 
             <p class="vp-field-label">Obligations (122):</p>
 
-            <div ng-repeat="obligation in programData.financial.obligations">
-                <div class="tabover" ng-repeat="(key, value) in obligation.values">
-                    <p class="vp-field-label">Is this a Recovery and Reinvestment Act Obligation?</p>
+            <div class="tabover" ng-repeat="obligation in programData.financial.obligations">
+                <p class="vp-field-label">Is this a Recovery and Reinvestment Act Obligation?</p>
 
-                    <p class="vp-field-value">{{traverseTree(obligation.questions.recovery.flag, 'yes_no_na').value}}</p>
+                <p class="vp-field-value">{{traverseTree(obligation.questions.recovery.flag, 'yes_no_na').value}}</p>
 
-
+                <div ng-repeat="(key, value) in obligation.values">
                     <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
 
                     <div class="tabover">
@@ -33,7 +32,7 @@
                         <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation | currency}}</span></p>
                     </div>
                 </div>
-                <div class="tabover">
+                <div>
                     <p class="vp-field-label">Additional Info: </p>
 
                     <p class="vp-field-value"> {{obligation.additionalInfo.content}}</p>
