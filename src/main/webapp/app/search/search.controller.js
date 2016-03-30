@@ -212,7 +212,6 @@
              * @returns Object
              */
             $scope.prepareAdvancedSearchDataStructure = function (advancedSearchData) {
-                console.log(advancedSearchData);
                 var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aAssistanceUsageType'];
                 var oResult = {};
 
@@ -247,7 +246,6 @@
                 if (advancedSearchData.hasOwnProperty('recovery')) {
                     oResult['recovery'] = advancedSearchData.recovery;
                 }
-                console.log("oResult: ", oResult);
                 return oResult;
             };
         }
