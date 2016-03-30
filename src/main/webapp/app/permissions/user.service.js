@@ -17,7 +17,7 @@
                 lname = IamUser['lastName'];
                 fullName = IamUser['fullName'];
                 phone = IamUser['phoneNumber'];
-                orgId = IamUser['orgId'] ? IamUser['orgId'] : '9eb645ae12f3ff6f0eaa94b8ee10d7c2';
+                orgId = IamUser['orgId'] ? IamUser['orgId'] : '100500255';
             }
 
             if (roles) {
@@ -94,7 +94,7 @@
                                 ],
                                 'fullName': Cookies.get('iplanetDirectoryPro'),
                                 'username': Cookies.get('iplanetDirectoryPro'),
-                                'orgId': '9eb645ae12f3ff6f0eaa94b8ee10d7c2'
+                                'orgId': '100500255'
                             });
                             self.loadingUser = false;
                             $state.reload();

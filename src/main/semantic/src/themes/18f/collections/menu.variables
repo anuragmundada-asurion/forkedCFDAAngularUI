@@ -21,7 +21,7 @@
 @minHeight: (@itemVerticalPadding * 2) + 1em;
 
 /* Menu Item */
-@itemVerticalPadding: @relativeSmall;
+@itemVerticalPadding: @relativeLarge;
 @itemHorizontalPadding: @relativeLarge;
 @itemTextTransform: none;
 @itemTransition:
@@ -169,7 +169,7 @@
 /* Active Item */
 @activeItemBackground: @transparentBlack;
 @activeItemTextColor: @selectedTextColor;
-@activeItemFontWeight: normal;
+@activeItemFontWeight: 700;
 @activeIconOpacity: 1;
 @activeItemBoxShadow: none;
 

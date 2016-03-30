@@ -14,13 +14,16 @@
 .ui.inverted.lightblue.menu .item:before {
   background-color: @invertedColoredDividerBackground;
 }
-.ui.inverted.lightblue.menu .active.item {
+.ui.inverted.lightblue.menu .active.item:not(.green) {
   background-color: @invertedColoredActiveBackground !important;
 }
-
-/*--- Hover ---*/
 .ui.inverted.lightblue.menu a.item:hover {
-  background: darken(saturate(@lightBlue, 20), 15, relative);
+  background: @darkBlue;
+}
+
+/* Green */
+.ui.inverted.menu a.active.green.item:hover {
+  background: @lightGreen;
 }
 
 /*--------------

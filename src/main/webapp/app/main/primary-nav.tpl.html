@@ -1,32 +1,15 @@
-<div class="primary-nav">
-  <div class="nav-bar">
-    <a has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS, PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS, PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS, PERMISSIONS.CAN_REVIEW_PROGRAMS, PERMISSIONS.CAN_REQUEST_TITLE_CHANGE, PERMISSIONS.CAN_PERFORM_TITLE_CHANGE, PERMISSIONS.CAN_REQUEST_ARCHIVE, PERMISSIONS.CAN_PERFORM_ARCHIVE, PERMISSIONS.CAN_REQUEST_UNARCHIVE, PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}"
-    ui-sref="programList.status({status: 'all'})">Program List</a>
-    <a ui-sref="searchPrograms">Listings</a>
-    <a ui-sref="advancedSearch">Advanced Search</a>
-    <a has-access="{{ [PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}"
-    ui-sref="regionalOfficeList">Regional Agency Offices</a>
-    <a ng-controller="TestingController" ng-click="signInAsPopup()">Sign In As</a>
-    <a class="green" ui-sref="home" style="float:right;background-color:#3FCC19;color:#FFF;padding-left:30px;padding-right:30px;">Help</a>
-  </div>
-</div>
-
-<!--<div ng-if="$state.current.name === 'home'">
-  <div class="ui big inverted lightblue borderless stackable menu">
+<div class="ui big inverted lightblue borderless stackable menu">
     <div class="ui container">
-      <a class="item" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS, PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS, PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS, PERMISSIONS.CAN_REVIEW_PROGRAMS, PERMISSIONS.CAN_REQUEST_TITLE_CHANGE, PERMISSIONS.CAN_PERFORM_TITLE_CHANGE, PERMISSIONS.CAN_REQUEST_ARCHIVE, PERMISSIONS.CAN_PERFORM_ARCHIVE, PERMISSIONS.CAN_REQUEST_UNARCHIVE, PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}"
-      ui-sref="programList.status({status: 'all'})">
-    Program List
-  </a>
-      <a class="item" ui-sref="searchPrograms">Listings</a>
-      <a class="item" ui-sref="advancedSearch">Advanced Search</a>
-      <a has-access="{{ [PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}"
-      class="item" ui-sref="regionalOfficeList">Regional Agency Offices</a>
-      <a class="item" ng-controller="TestingController" ng-click="signInAsPopup()">Sign In As</a>
+        <a class="item" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS, PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS, PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS, PERMISSIONS.CAN_REVIEW_PROGRAMS, PERMISSIONS.CAN_REQUEST_TITLE_CHANGE, PERMISSIONS.CAN_PERFORM_TITLE_CHANGE, PERMISSIONS.CAN_REQUEST_ARCHIVE, PERMISSIONS.CAN_PERFORM_ARCHIVE, PERMISSIONS.CAN_REQUEST_UNARCHIVE, PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}"
+        ui-sref="programList.status({status: 'all'})">Program List</a>
+        <a class="item" ui-sref="searchPrograms">Listings</a>
+        <a class="item" ui-sref="advancedSearch">Advanced Search</a>
+        <a has-access="{{ [PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}"
+        class="item" ui-sref="regionalOfficeList">Regional Agency Offices</a>
+        <a class="item" ng-controller="TestingController" ng-click="signInAsPopup()">Sign In As</a>
 
-      <div class="right menu">
-        <a class="item" ui-sref="home">Help</a>
-      </div>
+        <div class="right menu">
+            <a class="green active item" ui-sref="home">Help</a>
+        </div>
     </div>
-  </div>
-</div>-->
+</div>
