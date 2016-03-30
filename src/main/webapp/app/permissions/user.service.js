@@ -106,6 +106,7 @@
                         //});
                     } else if (window.skipInitialCheck) {
                         window.skipInitialCheck = false;
+                        this.changeUser(null);
                         $state.reload();
                     } else {
                         window.skipInitialCheck = true;
