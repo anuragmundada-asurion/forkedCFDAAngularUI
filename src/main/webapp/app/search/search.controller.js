@@ -1,10 +1,10 @@
-!function() {
+!function () {
     'use strict';
 
     var app = angular.module('app');
 
     app.controller('ProgramSearchCtrl', ['$state', '$scope', '$stateParams', 'appConstants', 'SearchFactory', 'Dictionary',
-        function($state, $scope, $stateParams, appConstants, SearchFactory, Dictionary) {
+        function ($state, $scope, $stateParams, appConstants, SearchFactory, Dictionary) {
             $scope.globalSearchValue = $scope.globalSearchValue || $stateParams['keyword'] || SearchFactory.getSearchCriteria().keyword || '';
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -12,17 +12,17 @@
             $scope.dictionary = {};
 
             //loading dictionary: assistance_type
-            Dictionary.query({ ids: 'assistance_type' }, function(data) {
+            Dictionary.query({ids: 'assistance_type'}, function (data) {
                 //Assistance Types
                 $scope.dictionary.aAssistanceType = $scope.dropdownDataStructure(data.assistance_type, $scope.advancedSearch.aAssistanceType, true);
             });
 
             //initialize advanced search fields criterias
-            if($state.current['name'] === 'advancedSearch') {
+            if ($state.current['name'] === 'advancedSearch') {
                 //loading dictionaries
                 //var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes', 'program_subject_terms'];
                 var aDictionaries = ['applicant_types', 'beneficiary_types', 'functional_codes', 'assistance_usage_types'];
-                Dictionary.query({ ids: aDictionaries.join(',') }, function(data) {
+                Dictionary.query({ids: aDictionaries.join(',')}, function (data) {
                     //Functional Code
                     $scope.dictionary.aFunctionalCode = $scope.dropdownDataStructure(data.functional_codes, $scope.advancedSearch.aFunctionalCode, true);
 
@@ -39,7 +39,7 @@
                 });
 
                 //function for setting the popup when opened to it's field input
-                $scope.openDatepicker = function($event, openedInput) {
+                $scope.openDatepicker = function ($event, openedInput) {
                     $event.preventDefault();
                     $event.stopPropagation();
 
@@ -57,14 +57,14 @@
                  * clear all advanced search form inputs
                  * @returns Void
                  */
-                $scope.clearAdvancedSearchForm = function(){
+                $scope.clearAdvancedSearchForm = function () {
                     //var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aSubjectTerm'];
                     var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aAssistanceUsageType'];
                     $scope.advancedSearch = {};
 
-                    angular.forEach(aArray, function(element){
-                        angular.forEach($scope.dictionary[element], function(row, key){
-                            if($scope.dictionary[element][key].hasOwnProperty('ticked')) {
+                    angular.forEach(aArray, function (element) {
+                        angular.forEach($scope.dictionary[element], function (row, key) {
+                            if ($scope.dictionary[element][key].hasOwnProperty('ticked')) {
                                 delete $scope.dictionary[element][key].ticked;
                             }
                         });
@@ -78,7 +78,7 @@
                 };
             }
 
-            $scope.searchKeyUp = function(keyCode) {
+            $scope.searchKeyUp = function (keyCode) {
                 if (keyCode === 13) {
                     $scope.searchPrograms();
                 }
@@ -88,24 +88,24 @@
              * Perform Search
              * @returns Void
              */
-            $scope.searchPrograms = function() {
+            $scope.searchPrograms = function () {
                 //set the search criteria into factory and store them
                 SearchFactory.setSearchCriteria($scope.globalSearchValue, $scope.advancedSearch);
                 $state.go('searchPrograms', {keyword: $scope.globalSearchValue}, {reload: true, inherit: false});
             };
 
             var lastTime;
-            $scope.getSearchResults = function(tableState) {
+            $scope.getSearchResults = function (tableState) {
                 if (lastTime && ((new Date()).getTime() - lastTime) < 500) {
                     return;
                 }
                 lastTime = (new Date()).getTime();
 
                 tableState = tableState || {
-                    search: {},
-                    pagination: {},
-                    sort: {}
-                };
+                        search: {},
+                        pagination: {},
+                        sort: {}
+                    };
 
                 $scope.isLoading = true;
 
@@ -118,7 +118,7 @@
                 //advanced seach
                 var advancedSearch = $scope.prepareAdvancedSearchDataStructure(SearchFactory.getSearchCriteria().advancedSearch);
                 //check if we have criteria set from advanced search
-                if(!_.isEmpty(advancedSearch)) {
+                if (!_.isEmpty(advancedSearch)) {
                     angular.extend(queryObj, {oFilterParam: JSON.stringify(advancedSearch)});
                     //console.log(queryObj);
                 }
@@ -133,7 +133,7 @@
                     queryObj.sortBy = ( isDescending ? '-' : '' ) + sortingProperty;
                 }
 
-                SearchFactory.search().get(queryObj, function(data) {
+                SearchFactory.search().get(queryObj, function (data) {
                     $scope.searchResults = data.results;
                     $scope.isLoading = false;
                     tableState.pagination.numberOfPages = Math.ceil(data.totalCount / $scope.itemsByPage);
@@ -142,45 +142,45 @@
             };
 
             /**
-             * 
+             *
              * @param Array aData Source Data
              * @param Array aSelectedData selected data
              * @param Boolean isGrouped crrate nested categories
              * @returns Array
              */
-            $scope.dropdownDataStructure = function(aData, aSelectedData, isGrouped) {
+            $scope.dropdownDataStructure = function (aData, aSelectedData, isGrouped) {
                 var results = [];
                 var selectedIDs = [];
 
                 //get all selected item ids
-                angular.forEach(aSelectedData, function(item){
+                angular.forEach(aSelectedData, function (item) {
                     selectedIDs.push(item.element_id);
                 });
 
                 if (isGrouped === true) { //generate nested dropdown list elements
-                    angular.forEach(aData, function(oRow) {
+                    angular.forEach(aData, function (oRow) {
                         var aElement = oRow.elements;
 
                         //make sure this item has children before creating nested categories
-                        if(typeof aElement === 'object' && aElement !== null && aElement.length > 0) {
+                        if (typeof aElement === 'object' && aElement !== null && aElement.length > 0) {
                             delete oRow.elements; //remove attribute that has array of element otherwise will trigger an error
 
                             oRow.msGroup = true;
                             results.push(oRow);
 
-                            angular.forEach(aElement, function(oSubRow){
+                            angular.forEach(aElement, function (oSubRow) {
                                 //pre-select item in dropdown
-                                if($.inArray(oSubRow.element_id, selectedIDs) !== -1) {
+                                if ($.inArray(oSubRow.element_id, selectedIDs) !== -1) {
                                     oSubRow.ticked = true;
                                 }
-                            
+
                                 results.push(oSubRow);
                             });
 
                             results.push({msGroup: false});
                         } else {
                             //pre-select item in dropdown
-                            if($.inArray(oRow.element_id, selectedIDs) !== -1) {
+                            if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
                                 oRow.ticked = true;
                             }
 
@@ -188,11 +188,11 @@
                         }
                     });
                 } else { //generate single dropdown list elements
-                    if(aSelectedData !== null) { 
+                    if (aSelectedData !== null) {
                         //selected data
-                        angular.forEach(aData, function(oRow) {
+                        angular.forEach(aData, function (oRow) {
                             //pre-select item in dropdown
-                            if($.inArray(oRow.element_id, selectedIDs) !== -1) {
+                            if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
                                 oRow.ticked = true;
                             }
 
@@ -211,16 +211,17 @@
              * @param Object advancedSearchData
              * @returns Object
              */
-            $scope.prepareAdvancedSearchDataStructure = function(advancedSearchData){
+            $scope.prepareAdvancedSearchDataStructure = function (advancedSearchData) {
+                console.log(advancedSearchData);
                 var aArray = ['aAssistanceType', 'aFunctionalCode', 'aApplicantEligibility', 'aBeneficiaryEligibility', 'aAssistanceUsageType'];
                 var oResult = {};
 
                 //loop through each filter
-                angular.forEach(aArray, function(element){
+                angular.forEach(aArray, function (element) {
 //                    if(advancedSearchData.hasOwnProperty(element) && advancedSearchData[element].length > 0){
-                    if(advancedSearchData.hasOwnProperty(element)){
-                        angular.forEach(advancedSearchData[element], function(row){
-                            if(oResult.hasOwnProperty(element)) {
+                    if (advancedSearchData.hasOwnProperty(element)) {
+                        angular.forEach(advancedSearchData[element], function (row) {
+                            if (oResult.hasOwnProperty(element)) {
                                 oResult[element].push(row.element_id);
                             } else {
                                 oResult[element] = [row.element_id];
@@ -234,16 +235,19 @@
 
                 //include whatever left into oResult Object
                 //angular.extend(oResult, advancedSearchData);
-                if(advancedSearchData.hasOwnProperty('datePublishedStart')) {
+                if (advancedSearchData.hasOwnProperty('datePublishedStart')) {
                     oResult['datePublishedStart'] = advancedSearchData.datePublishedStart;
                 }
-                if(advancedSearchData.hasOwnProperty('datePublishedEnd')) {
+                if (advancedSearchData.hasOwnProperty('datePublishedEnd')) {
                     oResult['datePublishedEnd'] = advancedSearchData.datePublishedEnd;
                 }
-                if(advancedSearchData.hasOwnProperty('executiveOrder12372')) {
+                if (advancedSearchData.hasOwnProperty('executiveOrder12372')) {
                     oResult['executiveOrder12372'] = advancedSearchData.executiveOrder12372;
                 }
-
+                if (advancedSearchData.hasOwnProperty('recovery')) {
+                    oResult['recovery'] = advancedSearchData.recovery;
+                }
+                console.log("oResult: ", oResult);
                 return oResult;
             };
         }
