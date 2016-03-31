@@ -85,38 +85,32 @@
 
     <div class="ui very relaxed stackable grid container">
 
-        <div class="two column row ui segment">
+        <div class="two column row ui segment borderless">
 
             <!-- New in 2015 -->
             <div class="column">
                 <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.new">
-                    {{ aProgramCount.new }}
-                </span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.new">
-                    <img src="/img/img_cfda/loading.svg" />
-                </span>
+                    <div class="ui circular label yellow outline massive" ng-show="aProgramCount.new">
+                        {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
+                    </div>
+                    <span class="info-widget-value" ng-show="!aProgramCount.new"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">New Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="New Listings" />
                 </div>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.archived">
-                    {{ aProgramCount.archived }}
-                </span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.archived">
-                    <img src="/img/img_cfda/loading.svg" />
-                </span>
+                    <div class="ui circular label yellow outline massive" ng-show="aProgramCount.archived">
+                        {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
+                    </div>
+                    <span class="info-widget-value" ng-show="!aProgramCount.archived"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">Archived Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="Archived Listings" />
                 </div>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.updated">
-                    {{ aProgramCount.updated }}
-                </span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.updated">
-                    <img src="/img/img_cfda/loading.svg" />
-                </span>
+                    <div class="ui circular label yellow outline massive" ng-show="aProgramCount.updated">
+                        {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
+                    </div>
+                    <span class="info-widget-value" ng-show="!aProgramCount.updated"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">Updated Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="Updated Listings" />
                 </div>

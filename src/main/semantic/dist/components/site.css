@@ -14,7 +14,7 @@
              Page
 *******************************/
 
-@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:400,700,400italic|Merriweather:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:300,400,400italic,700|Merriweather:300,400,700');
 html,
 body {
   height: 100%;
@@ -165,6 +165,10 @@ html.tr-coretext {
 .hidden {
   display: none !important;
 }
+.borderless {
+  border: none !important;
+  box-shadow: none !important;
+}
 
 /*--------------
    Background
@@ -191,6 +195,17 @@ html.tr-coretext {
 
 .font.bold {
   font-weight: 700;
+}
+.font.light {
+  font-weight: 300;
+}
+
+/*--------------
+ Font Transformation
+---------------*/
+
+.font.uppercase {
+  text-transform: uppercase;
 }
 
 /*--------------

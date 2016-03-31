@@ -14,8 +14,8 @@
 @pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
 @importGoogleFonts : true;
-@googleFontSizes   : '400,700,400italic';
-@googleHeaderFontSizes   : '400,700';
+@googleFontSizes   : '300,400,400italic,700';
+@googleHeaderFontSizes   : '300,400,700';
 
 @googleProtocol    : 'https://';
 @googleFontRequest : '@{fontName}:@{googleFontSizes}|@{fontHeader}:@{googleHeaderFontSizes}';
@@ -105,7 +105,7 @@
 @largeSize       : (16 / 10);
 @bigSize         : (18 / 10);
 @hugeSize        : (20 / 10);
-@massiveSize     : (24 / 10);
+@massiveSize     : (30 / 10);
 
 
 /*-------------------
