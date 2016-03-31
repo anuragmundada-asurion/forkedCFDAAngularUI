@@ -17,12 +17,12 @@
 @borderWidth: 1px;
 @border: @borderWidth solid @borderColor;
 @boxShadow: @subtleShadow;
-@borderRadius: @defaultBorderRadius;
+@borderRadius: 0rem;
 @minHeight: (@itemVerticalPadding * 2) + 1em;
 
 /* Menu Item */
-@itemVerticalPadding: @relativeLarge;
-@itemHorizontalPadding: @relativeLarge;
+@itemVerticalPadding: @relativeSmall;
+@itemHorizontalPadding: @relativeSmall;
 @itemTextTransform: none;
 @itemTransition:
   background @defaultDuration @defaultEasing,

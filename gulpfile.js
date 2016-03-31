@@ -112,7 +112,7 @@ gulp.task('iae', ['index'], function() {
                 
     var allCss = gulp.src(['src/main/scss/uswds/uswds-theme.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
         .pipe(sass().on('error', sass.logError))
-        // .pipe(cssPrefix({parentClass: 'theme-iae'}))        
+        .pipe(cssPrefix({parentClass: 'theme-iae'}))        
         .pipe(gulp.dest('target/classes/static/css'));
 
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
@@ -160,8 +160,8 @@ gulp.task('cfda', ['index'], function() {
         .pipe(concat('cfda.js'))
         .pipe(gulp.dest('target/classes/static/js'));
 
-    index.pipe(inject(cfdaCss, { addRootSlash: true, name: 'cfda', relative: true }))
-        .pipe(inject(cfdaJs, { addRootSlash: true, name: 'cfda', relative: true }))
+    //index.pipe(inject(cfdaCss, { addRootSlash: true, name: 'cfda', relative: true }))
+    index.pipe(inject(cfdaJs, { addRootSlash: true, name: 'cfda', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 

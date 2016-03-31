@@ -1,22 +1,26 @@
 <primary-nav-bar></primary-nav-bar>
 
-<div class="home-header">
-    <div style="width:600px;margin: 0px auto 0px auto;padding-top:30px;text-align:center;font-size:18px;">
-        Federal Assistance Searching - Simplified
-        <div style="font-weight:700;margin-top:12px">
-            Search here for information about federal assistance listings including grants, loans, scholarships,
-            insurance, and more. Whether you are searching on behalf of a government entity, a nonprofit or educational
-            institution, or any other sector, this site will help you determine eligibility, show availability, and
-            provide relevant contact information.
-        </div>
+<div class="background darkblue">
+    <div class="ui text container very padded basic segment">
+        <h2 class="ui center aligned inverted header">
+            Federal Assistance Searching - Simplified
+            <div class="sub header">
+                Search here for information about federal assistance listings including grants, loans, scholarships, 
+                insurance, and more. Whether you are searching on behalf of a government entity, a nonprofit or educational 
+                institution, or any other sector, this site will help you determine eligibility, show availability, and 
+                provide relevant contact information.
+            </div>
+        </h2>
     </div>
-    <global-search-box style="font-weight:400"></global-search-box>
 </div>
 
-<div style="background-color:#112e51;position:relative;top:-35px;margin-bottom:-35px">
+<global-search-box></global-search-box>
+
+<div>
     <!-- search options are another grid -->
 
-    <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}" class="usa-grid-full home-dashboard">
+    <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
+    class="usa-grid-full home-dashboard">
         <div class="usa-grid-full">
             <div class="user-dashboard-label">{{ user.fullName }}'s Dashboard</div>
             <div class="user-dashboard-request">
@@ -35,7 +39,7 @@
             </a>
         </div>
         <div class="count-box">
-                <a ui-sref="programList.status({status: 'draft'})">
+            <a ui-sref="programList.status({status: 'draft'})">
                 <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
                 <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
                 <h4>Draft Listings</h4>
@@ -62,7 +66,7 @@
                 <h4>Rejected Listings</h4>
             </a>
         </div>
-        
+
         <div class="usa-grid-full text-center">
             <a class="usa-button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}"><span class="fa fa-plus-circle"></span> Create a new listing</a>
         </div>
@@ -81,19 +85,19 @@
                     <span class="info-widget-value" ng-show="aProgramCount.new">{{ aProgramCount.new }}</span>
                     <span class="info-widget-value" ng-show="!aProgramCount.new"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">New Listings</span>
-                    <img class="info-widget-flag" src="/img/links/flag.png" alt="New Listings"/>
+                    <img class="info-widget-flag" src="/img/links/flag.png" alt="New Listings" />
                 </div>
                 <div class="info-widget">
                     <span class="info-widget-value" ng-show="aProgramCount.archived">{{ aProgramCount.archived }}</span>
                     <span class="info-widget-value" ng-show="!aProgramCount.archived"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">Archived Listings</span>
-                    <img class="info-widget-flag" src="/img/links/flag.png" alt="Archived Listings"/>
+                    <img class="info-widget-flag" src="/img/links/flag.png" alt="Archived Listings" />
                 </div>
                 <div class="info-widget">
                     <span class="info-widget-value" ng-show="aProgramCount.updated">{{ aProgramCount.updated }}</span>
                     <span class="info-widget-value" ng-show="!aProgramCount.updated"><img src="/img/img_cfda/loading.svg" /></span>
                     <span class="info-widget-label">Updated Listings</span>
-                    <img class="info-widget-flag" src="/img/links/flag.png" alt="Updated Listings"/>
+                    <img class="info-widget-flag" src="/img/links/flag.png" alt="Updated Listings" />
                 </div>
             </div>
         </div>
@@ -105,113 +109,100 @@
     <div style="min-height:50px"></div>
 </div>
 
-<div class="home-quick-links">
-    <h3 style="font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">Quick Links</h3>
 
-    <div class="main">
-        <table>
-            <tr>
-                <td class="image">
-                    <img src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"/>
-                </td>
-                <td class="image">
-                    <a href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank"><img
-                            src="/img/links/PrintEdition.png" alt="Print Edition"/></a>
-                </td>
-                <td class="image">
-                    <img src="/img/links/FTPDownloads.png" alt="FTP Downloads"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="content">
-                    CFDA Public User Guide
-                </td>
-                <td class="content">
-                    2015 Print Edition<label for="printedition" style="display:none">Print Edition</label><br/><br/>
-                    <select id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
-                        <option selected value="">Download Previous Editions</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
-                        <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
-                    </select>
-                </td>
-                <td class="content">
-                    FTP Downloads
-                </td>
-            </tr>
-        </table>
+<h3 class="ui centered aligned header" style="margin-bottom: 30px">Quick Links</h3>
+
+<div class="ui very relaxed stackable grid container" style="padding: 20px 0px 90px 0px;">
+    
+    <div class="three column row">
+        <div class="column center aligned">
+            <a href="" target="_blank">
+                <img class="ui centered image" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide" />
+                <strong style="font-size: 20px;">CFDA Public User Guide</strong>
+            </a>
+        </div>
+        <div class="column center aligned">
+            <a href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
+                <img class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />
+                <strong style="font-size: 20px;">2015 Print Edition</strong>
+            </a>
+            <select id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
+                <option selected value="">Download Previous Editions</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
+                <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
+            </select>
+        </div>
+        <div class="column center aligned">
+            <a href="" target="_blank">
+                <img class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />
+                <strong style="font-size: 20px;">FTP Downloads</strong>
+            </a>
+        </div>
     </div>
-    <div style="min-height:30px"></div>
+
 </div>
 
-<div class="home-related-links">
-    <h3 style="font-weight:bold;font-family: 'Merriweather', 'Georgia', 'Times New Roman', serif;">Related Links</h3>
 
-    <div class="main">
-        <table>
-            <tr>
-                <td class="image">
-                    <a href="http://www.grants.gov/" target="_blank"><img src="/img/links/grants.png" alt="Grants.gov"/></a>
-                </td>
-                <td class="image">
-                    <a href="http://www.benefits.gov/" target="_blank"><img src="/img/links/benefits.png"
-                                                                            alt="Benefits.gov"/></a>
-                </td>
-                <td class="image">
-                    <a href="http://www.govloans.gov/" target="_blank"><img src="/img/links/govloans.png"
-                                                                            alt="GovLoans.gov"/></a>
-                </td>
-            </tr>
-            <tr>
-                <td class="content">
-                    <a href="http://www.grants.gov/" target="_blank">Grants.gov is your gateway to finding information
-                        about and applying for grant opportunities from over 1000 federal programs.</a>
-                </td>
-                <td class="content">
-                    <a href="http://www.benefits.gov/" target="_blank">Benefits.gov offers information on more than
-                        1,000 Federal and state benefit programs. Simply complete the free and confidential
-                        questionnaire and our prescreening tool will generate a tailored list of programs just for
-                        you.</a>
-                </td>
-                <td class="content">
-                    <a href="http://www.govloans.gov/" target="_blank">GovLoans.gov is your first stop for Federal loan
-                        information and is specifically designed to help you determine which loans may be right for
-                        you.</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="image">
-                    <a href="http://www.data.gov/" target="_blank"><img src="/img/links/data.png" alt="Data.gov"/></a>
-                </td>
-                <td class="image">
-                    <a href="https://www.whitehouse.gov/omb" target="_blank"><img src="/img/links/omb.png"
-                                                                                  alt="Whitehouse.gov/OMB"/></a>
-                </td>
-                <td class="image">
-                    <a href="https://www.usaspending.gov/" target="_blank"><img src="/img/links/usaspending.png"
-                                                                                alt="UsaSpending.gov"/></a>
-                </td>
-            </tr>
-            <tr>
-                <td class="content">
-                    <a href="http://www.data.gov/" target="_blank">Data.gov is the home of the U.S. government's open
-                        data. Here you will find open data sets, tools, and resources to conduct.</a>
-                </td>
-                <td class="content">
-                    <a href="https://www.whitehouse.gov/omb" target="_blank">The Compliance Supplement from the Office
-                        of Management and Budget (OMB) provides annual guidance designed to help.</a>
-                </td>
-                <td class="content">
-                    <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov is a searchable website that
-                        shows the public how their tax dollars are spent through federal contracts, grants, and
-                        loans.</a>
-                </td>
-            </tr>
-        </table>
+<div class="background gray" style="padding: 80px 0px 120px 0px;">
+
+    <h3 class="ui centered aligned header" style="margin-bottom: 30px">Related Links</h3>
+
+    <div class="ui very relaxed stackable grid container">
+
+        <div class="three column row">
+            <div class="column center aligned">
+                <a href="http://www.grants.gov/" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/grants.png" alt="Grants.gov" />
+                    Grants.gov is your gateway to finding information about and applying for grant opportunities from over
+                    1000 federal programs.
+                </a>
+            </div>
+            <div class="column center aligned">
+                <a href="http://www.benefits.gov/" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/benefits.png" alt="Benefits.gov" />
+                    Benefits.gov offers information on more than 1,000 Federal and state benefit programs. Simply complete
+                    the free and confidential questionnaire and our prescreening tool will generate a tailored list of programs
+                    just for you.
+                </a>
+            </div>
+            <div class="column center aligned">
+                <a href="http://www.govloans.gov/" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/govloans.png" alt="GovLoans.gov" />
+                    GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you
+                    determine which loans may be right for you.
+                </a>
+            </div>
+        </div>
+
+        <div class="three column row">
+            <div class="column center aligned">
+                <a href="http://www.data.gov/" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/data.png" alt="Data.gov" />
+                    Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and
+                    resources to conduct.
+                </a>
+            </div>
+            <div class="column center aligned">
+                <a href="https://www.whitehouse.gov/omb" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/omb.png" alt="Whitehouse.gov/OMB" />
+                    The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed
+                    to help.
+                </a>
+            </div>
+            <div class="column center aligned">
+                <a href="https://www.usaspending.gov/" target="_blank">
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/usaspending.png" alt="UsaSpending.gov"
+                    /> USASpending.gov is a searchable website that shows the public how their tax dollars
+                    are spent through federal contracts, grants, and loans.
+                </a>
+            </div>
+        </div>
+        
     </div>
-    <div style="min-height:10px"></div>
+
 </div>

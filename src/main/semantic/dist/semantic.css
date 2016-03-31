@@ -520,7 +520,7 @@ body {
 }
 
 html {
-  font-size: 14px;
+  font-size: 10px;
 }
 
 body {
@@ -530,8 +530,8 @@ body {
   min-width: 320px;
   background: #FFFFFF;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.4285em;
+  font-size: 17px;
+  line-height: 1.5em;
   color: rgba(0, 0, 0, 0.87);
   font-smoothing: antialiased;
 }
@@ -554,23 +554,23 @@ h5 {
 
 h1 {
   min-height: 1rem;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 h2 {
-  font-size: 1.714rem;
+  font-size: 3rem;
 }
 
 h3 {
-  font-size: 1.28rem;
+  font-size: 2rem;
 }
 
 h4 {
-  font-size: 1.071rem;
+  font-size: 1.7rem;
 }
 
 h5 {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 h1:first-child,
@@ -595,7 +595,7 @@ h5:last-child {
 
 p {
   margin: 0em 0em 1em;
-  line-height: 1.4285em;
+  line-height: 1.5em;
 }
 
 p:first-child {
@@ -668,6 +668,34 @@ input::selection {
 html.tr-coretext {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/*--------------
+   Utilities
+---------------*/
+
+.hidden {
+  display: none !important;
+}
+
+/*--------------
+   Background
+---------------*/
+
+.background.darkblue {
+  background-color: #112e51;
+}
+
+.background.gray {
+  background-color: #eeeeee;
+}
+
+/*--------------
+      IAE
+---------------*/
+
+.theme-iae #iae-footer {
+  margin-top: .1em !important;
 }
 /*!
  * # Semantic UI 2.1.8 - Button
@@ -6188,7 +6216,7 @@ i.flag.zimbabwe:before {
   border: none;
   margin: calc(2rem -  0.14285em ) 0em 1rem;
   padding: 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   line-height: 1.2857em;
   text-transform: none;
@@ -6212,7 +6240,7 @@ i.flag.zimbabwe:before {
   font-weight: normal;
   padding: 0em;
   margin: 0em;
-  font-size: 1rem;
+  font-size: 1.4rem;
   line-height: 1.2em;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -6305,45 +6333,45 @@ i.flag.zimbabwe:before {
 ---------------*/
 
 h1.ui.header {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 h2.ui.header {
-  font-size: 1.714rem;
+  font-size: 3rem;
 }
 
 h3.ui.header {
-  font-size: 1.28rem;
+  font-size: 2rem;
 }
 
 h4.ui.header {
-  font-size: 1.071rem;
+  font-size: 1.7rem;
 }
 
 h5.ui.header {
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 /* Sub Header */
 
 h1.ui.header .sub.header {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 h2.ui.header .sub.header {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 h3.ui.header .sub.header {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 h4.ui.header .sub.header {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 h5.ui.header .sub.header {
-  font-size: 0.92857143rem;
+  font-size: 1.3rem;
 }
 
 /*--------------
@@ -6352,45 +6380,45 @@ h5.ui.header .sub.header {
 
 .ui.huge.header {
   min-height: 1em;
-  font-size: 2em;
+  font-size: 4em;
 }
 
 .ui.large.header {
-  font-size: 1.714em;
+  font-size: 3em;
 }
 
 .ui.medium.header {
-  font-size: 1.28em;
+  font-size: 2em;
 }
 
 .ui.small.header {
-  font-size: 1.071em;
+  font-size: 1.7em;
 }
 
 .ui.tiny.header {
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 /* Sub Header */
 
 .ui.huge.header .sub.header {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 .ui.large.header .sub.header {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 .ui.header .sub.header {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .ui.small.header .sub.header {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .ui.tiny.header .sub.header {
-  font-size: 0.92857143rem;
+  font-size: 1.3rem;
 }
 
 /*--------------
@@ -6399,27 +6427,27 @@ h5.ui.header .sub.header {
 
 .ui.sub.header {
   padding: 0em;
-  margin-bottom: 0.14285714rem;
+  margin-bottom: 0.2rem;
   font-weight: bold;
-  font-size: 0.85714286em;
+  font-size: 1.2em;
   text-transform: uppercase;
   color: '';
 }
 
 .ui.small.sub.header {
-  font-size: 0.71428571em;
+  font-size: 1em;
 }
 
 .ui.sub.header {
-  font-size: 0.85714286em;
+  font-size: 1.2em;
 }
 
 .ui.large.sub.header {
-  font-size: 0.92857143em;
+  font-size: 1.3em;
 }
 
 .ui.huge.sub.header {
-  font-size: 1em;
+  font-size: 1.4em;
 }
 
 /*-------------------
@@ -6622,25 +6650,25 @@ a.ui.inverted.yellow.header:hover {
 /*--- Green ---*/
 
 .ui.green.header {
-  color: #21BA45 !important;
+  color: #2e8540 !important;
 }
 
 a.ui.green.header:hover {
-  color: #16ab39 !important;
+  color: #247635 !important;
 }
 
 .ui.green.dividing.header {
-  border-bottom: 2px solid #21BA45;
+  border-bottom: 2px solid #2e8540;
 }
 
 /* Inverted */
 
 .ui.inverted.green.header {
-  color: #2ECC40 !important;
+  color: #4aa564 !important;
 }
 
 a.ui.inverted.green.header:hover {
-  color: #22be34 !important;
+  color: #3e9758 !important;
 }
 
 /*--- Teal ---*/
@@ -6670,25 +6698,25 @@ a.ui.inverted.teal.header:hover {
 /*--- Blue ---*/
 
 .ui.blue.header {
-  color: #2185D0 !important;
+  color: #0071bc !important;
 }
 
 a.ui.blue.header:hover {
-  color: #1678c2 !important;
+  color: #0062a3 !important;
 }
 
 .ui.blue.dividing.header {
-  border-bottom: 2px solid #2185D0;
+  border-bottom: 2px solid #0071bc;
 }
 
 /* Inverted */
 
 .ui.inverted.blue.header {
-  color: #54C8FF !important;
+  color: #E1F3F8 !important;
 }
 
 a.ui.inverted.blue.header:hover {
-  color: #3ac0ff !important;
+  color: #caecf5 !important;
 }
 
 /*--- Violet ---*/
@@ -6868,12 +6896,12 @@ a.ui.inverted.grey.header:hover {
 --------------------*/
 
 .ui.dividing.header {
-  padding-bottom: 0.21428571rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
 }
 
 .ui.dividing.header .sub.header {
-  padding-bottom: 0.21428571rem;
+  padding-bottom: 0.3rem;
 }
 
 .ui.dividing.header .icon {
@@ -6890,30 +6918,30 @@ a.ui.inverted.grey.header:hover {
 
 .ui.block.header {
   background: #F3F4F5;
-  padding: 0.71428571rem 1rem;
+  padding: 1rem 1.4rem;
   box-shadow: none;
   border: 1px solid #D4D4D5;
-  border-radius: 0.28571429rem;
+  border-radius: 0.4rem;
 }
 
 .ui.tiny.block.header {
-  font-size: 0.85714286rem;
+  font-size: 1.2rem;
 }
 
 .ui.small.block.header {
-  font-size: 0.92857143rem;
+  font-size: 1.3rem;
 }
 
 .ui.block.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .ui.large.block.header {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 .ui.huge.block.header {
-  font-size: 1.42857143rem;
+  font-size: 2rem;
 }
 
 /*-------------------
@@ -6922,7 +6950,7 @@ a.ui.inverted.grey.header:hover {
 
 .ui.attached.header {
   background: #FFFFFF;
-  padding: 0.71428571rem 1rem;
+  padding: 1rem 1.4rem;
   margin-left: -1px;
   margin-right: -1px;
   box-shadow: none;
@@ -6942,35 +6970,35 @@ a.ui.inverted.grey.header:hover {
 
 .ui.top.attached.header {
   margin-bottom: 0em;
-  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+  border-radius: 0.4rem 0.4rem 0em 0em;
 }
 
 .ui.bottom.attached.header {
   margin-top: 0em;
   border-top: none;
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0.4rem 0.4rem;
 }
 
 /* Attached Sizes */
 
 .ui.tiny.attached.header {
-  font-size: 0.85714286em;
+  font-size: 1.2em;
 }
 
 .ui.small.attached.header {
-  font-size: 0.92857143em;
+  font-size: 1.3em;
 }
 
 .ui.attached.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1em;
+  font-size: 1.4em;
 }
 
 .ui.large.attached.header {
-  font-size: 1.14285714em;
+  font-size: 1.6em;
 }
 
 .ui.huge.attached.header {
-  font-size: 1.42857143em;
+  font-size: 2em;
 }
 
 /*-------------------
@@ -6978,7 +7006,7 @@ a.ui.inverted.grey.header:hover {
 --------------------*/
 
 .ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1.28em;
+  font-size: 2em;
 }
 
 /*******************************
@@ -19532,14 +19560,14 @@ ol.ui.horizontal.list li:before,
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 1rem 0em;
+  margin: 1.4rem 0em;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #FFFFFF;
   font-weight: normal;
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
-  border-radius: 0.28571429rem;
-  min-height: 3.28571429em;
+  border-radius: 0rem;
+  min-height: 3.6em;
 }
 
 .ui.menu:after {
@@ -19603,7 +19631,7 @@ ol.ui.horizontal.list li:before,
   -ms-user-select: none;
   user-select: none;
   background: none;
-  padding: 1.14285714em 1.14285714em;
+  padding: 1.3em 1.3em;
   text-transform: none;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 700;
@@ -19612,7 +19640,7 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.menu > .item:first-child {
-  border-radius: 0.28571429rem 0px 0px 0.28571429rem;
+  border-radius: 0rem 0px 0px 0rem;
 }
 
 /* Border */
@@ -19656,7 +19684,7 @@ ol.ui.horizontal.list li:before,
 .ui.menu .item > i.icon {
   opacity: 0.9;
   float: none;
-  margin: 0em 0.35714286em 0em 0em;
+  margin: 0em 0.5em 0em 0em;
 }
 
 /*--------------
@@ -19667,9 +19695,9 @@ ol.ui.horizontal.list li:before,
   position: relative;
   top: 0em;
   margin: -0.5em 0em;
-  padding-bottom: 0.71428571em;
-  padding-top: 0.71428571em;
-  font-size: 1em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  font-size: 1.4em;
 }
 
 /*----------------
@@ -19708,9 +19736,9 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.menu .item > .input input {
-  font-size: 1em;
-  padding-top: 0.57142857em;
-  padding-bottom: 0.57142857em;
+  font-size: 1.4em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
 }
 
 /*--------------
@@ -19727,7 +19755,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.vertical.menu .item > .header:not(.ui) {
   margin: 0em 0em 0.5em;
-  font-size: 1em;
+  font-size: 1.4em;
   font-weight: bold;
 }
 
@@ -19760,7 +19788,7 @@ ol.ui.horizontal.list li:before,
 .ui.menu .dropdown.item .menu {
   left: 0px;
   min-width: calc(100% - 1px);
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0rem 0rem;
   background: #FFFFFF;
   margin: 0em 0px 0px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
@@ -19776,8 +19804,8 @@ ol.ui.horizontal.list li:before,
 .ui.menu .ui.dropdown .menu > .item {
   margin: 0;
   text-align: left;
-  font-size: 1em !important;
-  padding: 0.71428571em 1.14285714em !important;
+  font-size: 1.4em !important;
+  padding: 1em 1.6em !important;
   background: transparent !important;
   color: rgba(0, 0, 0, 0.87) !important;
   text-transform: none !important;
@@ -19809,7 +19837,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.menu .ui.dropdown .menu > .item .icon:not(.dropdown) {
   display: inline-block;
-  font-size: 1em !important;
+  font-size: 1.4em !important;
   float: none;
   margin: 0em 0.75em 0em 0em;
 }
@@ -19818,8 +19846,8 @@ ol.ui.horizontal.list li:before,
 
 .ui.secondary.menu .dropdown.item > .menu,
 .ui.text.menu .dropdown.item > .menu {
-  border-radius: 0.28571429rem;
-  margin-top: 0.35714286em;
+  border-radius: 0rem;
+  margin-top: 0.5em;
 }
 
 /* Pointing */
@@ -19849,7 +19877,7 @@ ol.ui.horizontal.list li:before,
   min-width: 0;
   margin: 0em 0em 0em 0em;
   box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.08);
-  border-radius: 0em 0.28571429rem 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0rem 0rem 0rem;
 }
 
 .ui.vertical.menu .active.dropdown.item {
@@ -19875,7 +19903,7 @@ ol.ui.horizontal.list li:before,
   background: #999999;
   color: #FFFFFF;
   margin-left: 1em;
-  padding: 0.3em 0.71428571em;
+  padding: 0.3em 1em;
 }
 
 .ui.vertical.menu .item > .label {
@@ -19883,11 +19911,11 @@ ol.ui.horizontal.list li:before,
   color: #FFFFFF;
   margin-top: -0.15em;
   margin-bottom: -0.15em;
-  padding: 0.3em 0.71428571em;
+  padding: 0.3em 1em;
 }
 
 .ui.menu .item > .floating.label {
-  padding: 0.3em 0.71428571em;
+  padding: 0.3em 1em;
 }
 
 /*--------------
@@ -20071,11 +20099,11 @@ Floated Menu / Item
 }
 
 .ui.vertical.menu > .item:first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0px 0px;
+  border-radius: 0rem 0rem 0px 0px;
 }
 
 .ui.vertical.menu > .item:last-child {
-  border-radius: 0px 0px 0.28571429rem 0.28571429rem;
+  border-radius: 0px 0px 0rem 0rem;
 }
 
 /*--- Label ---*/
@@ -20117,13 +20145,13 @@ Floated Menu / Item
 /*--- Sub Menu ---*/
 
 .ui.vertical.menu .item > .menu {
-  margin: 0.5em -1.14285714em 0em;
+  margin: 0.5em -1.3em 0em;
 }
 
 .ui.vertical.menu .menu .item {
   background: none;
-  padding: 0.5em 1.33333333em;
-  font-size: 0.85714286em;
+  padding: 0.5em 1.08333333em;
+  font-size: 1.2em;
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -20145,15 +20173,15 @@ Floated Menu / Item
 }
 
 .ui.vertical.menu > .active.item:first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+  border-radius: 0rem 0rem 0em 0em;
 }
 
 .ui.vertical.menu > .active.item:last-child {
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0rem 0rem;
 }
 
 .ui.vertical.menu > .active.item:only-child {
-  border-radius: 0.28571429rem;
+  border-radius: 0rem;
 }
 
 .ui.vertical.menu .active.item .menu .active.item {
@@ -20188,7 +20216,7 @@ Floated Menu / Item
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   border-top: 2px solid transparent;
-  padding: 1.14285714em 1.42857143em;
+  padding: 1.3em 2em;
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -20213,7 +20241,7 @@ Floated Menu / Item
   font-weight: bold;
   margin-bottom: -1px;
   box-shadow: none;
-  border-radius: 0.28571429rem 0.28571429rem 0px 0px !important;
+  border-radius: 0.4rem 0.4rem 0px 0px !important;
 }
 
 /* Coupling with segment for attachment */
@@ -20254,7 +20282,7 @@ Floated Menu / Item
   color: rgba(0, 0, 0, 0.95);
   border-color: #D4D4D5;
   margin: -1px 0px 0px 0px;
-  border-radius: 0px 0px 0.28571429rem 0.28571429rem !important;
+  border-radius: 0px 0px 0.4rem 0.4rem !important;
 }
 
 /* Vertical Tabular (Left) */
@@ -20280,7 +20308,7 @@ Floated Menu / Item
   color: rgba(0, 0, 0, 0.95);
   border-color: #D4D4D5;
   margin: 0px -1px 0px 0px;
-  border-radius: 0.28571429rem 0px 0px 0.28571429rem !important;
+  border-radius: 0.4rem 0px 0px 0.4rem !important;
 }
 
 /* Vertical Right Tabular */
@@ -20307,7 +20335,7 @@ Floated Menu / Item
   color: rgba(0, 0, 0, 0.95);
   border-color: #D4D4D5;
   margin: 0px 0px 0px -1px;
-  border-radius: 0px 0.28571429rem 0.28571429rem 0px !important;
+  border-radius: 0px 0.4rem 0.4rem 0px !important;
 }
 
 /* Dropdown */
@@ -20334,11 +20362,11 @@ Floated Menu / Item
 }
 
 .ui.pagination.menu .item:last-child {
-  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border-radius: 0em 0rem 0rem 0em;
 }
 
 .ui.compact.menu .item:last-child {
-  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border-radius: 0em 0rem 0rem 0em;
 }
 
 .ui.pagination.menu .item:last-child:before {
@@ -20358,7 +20386,7 @@ Floated Menu / Item
 
 .ui.pagination.menu .active.item {
   border-top: none;
-  padding-top: 1.14285714em;
+  padding-top: 1.3em;
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
   box-shadow: none;
@@ -20370,8 +20398,8 @@ Floated Menu / Item
 
 .ui.secondary.menu {
   background: none;
-  margin-left: -0.35714286em;
-  margin-right: -0.35714286em;
+  margin-left: -0.5em;
+  margin-right: -0.5em;
   border-radius: 0em;
   border: none;
   box-shadow: none;
@@ -20385,12 +20413,12 @@ Floated Menu / Item
   align-self: center;
   box-shadow: none;
   border: none;
-  padding: 0.71428571em 0.92857143em;
-  margin: 0em 0.35714286em;
+  padding: 1em 1.3em;
+  margin: 0em 0.5em;
   background: none;
   -webkit-transition: color 0.35s ease;
   transition: color 0.35s ease;
-  border-radius: 0.28571429rem;
+  border-radius: 0.4rem;
 }
 
 /* No Divider */
@@ -20428,7 +20456,7 @@ Floated Menu / Item
   box-shadow: none;
   background: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
-  border-radius: 0.28571429rem;
+  border-radius: 0.4rem;
 }
 
 /* Active Hover */
@@ -20476,12 +20504,12 @@ Floated Menu / Item
 /* Sub Menu */
 
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu {
-  margin: 0em -0.92857143em;
+  margin: 0em -1.3em;
 }
 
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu > .item {
   margin: 0em;
-  padding: 0.5em 1.33333333em;
+  padding: 0.7em 1.08333333em;
 }
 
 /*---------------------
@@ -20490,8 +20518,8 @@ Floated Menu / Item
 
 .ui.secondary.vertical.menu > .item {
   border: none;
-  margin: 0em 0em 0.35714286em;
-  border-radius: 0.28571429rem !important;
+  margin: 0em 0em 0.5em;
+  border-radius: 0.4rem !important;
 }
 
 .ui.secondary.vertical.menu > .header.item {
@@ -20528,7 +20556,7 @@ Floated Menu / Item
   -ms-flex-item-align: end;
   align-self: flex-end;
   margin: 0em 0em -2px;
-  padding: 0.85714286em 1.14285714em;
+  padding: 1.2em 1.6em;
   border-bottom-width: 2px;
   -webkit-transition: color 0.35s ease;
   transition: color 0.35s ease;
@@ -20654,7 +20682,7 @@ Floated Menu / Item
   border-radius: 0px;
   box-shadow: none;
   border: none;
-  margin: 1em -0.5em;
+  margin: 1.4em -0.7em;
 }
 
 .ui.text.menu .item {
@@ -20664,7 +20692,7 @@ Floated Menu / Item
   -ms-flex-item-align: center;
   align-self: center;
   margin: 0em 0em;
-  padding: 0.35714286em 0.5em;
+  padding: 0.5em 0.7em;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.6);
   -webkit-transition: opacity 0.35s ease;
@@ -20684,7 +20712,7 @@ Floated Menu / Item
   background-color: transparent;
   opacity: 1;
   color: rgba(0, 0, 0, 0.85);
-  font-size: 0.92857143em;
+  font-size: 1.3em;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -20704,7 +20732,7 @@ Floated Menu / Item
 /*--- vertical text ---*/
 
 .ui.vertical.text.menu {
-  margin: 1em 0em;
+  margin: 1.4em 0em;
 }
 
 .ui.vertical.text.menu:first-child {
@@ -20716,16 +20744,16 @@ Floated Menu / Item
 }
 
 .ui.vertical.text.menu .item {
-  margin: 0.57142857em 0em;
+  margin: 0.8em 0em;
 }
 
 .ui.vertical.text.menu .item > i.icon {
   float: none;
-  margin: 0em 0.35714286em 0em 0em;
+  margin: 0em 0.5em 0em 0em;
 }
 
 .ui.vertical.text.menu .header.item {
-  margin: 0.57142857em 0em 0.71428571em;
+  margin: 0.8em 0em 1em;
 }
 
 /* Vertical Sub Menu */
@@ -20736,7 +20764,7 @@ Floated Menu / Item
 
 .ui.vertical.text.menu .item:not(.dropdown) > .menu > .item {
   margin: 0em;
-  padding: 0.5em 0em;
+  padding: 0.7em 0em;
 }
 
 /*--- hover ---*/
@@ -20868,7 +20896,7 @@ Floated Menu / Item
 .ui.labeled.icon.menu .item > .icon:not(.dropdown) {
   height: 1em;
   display: block;
-  font-size: 1.71428571em !important;
+  font-size: 2.4em !important;
   margin: 0em auto 0.5rem !important;
 }
 
@@ -21313,15 +21341,15 @@ Floated Menu / Item
 .ui.horizontally.fitted.menu .item,
 .ui.horizontally.fitted.menu .item .menu .item,
 .ui.menu .horizontally.fitted.item {
-  padding-top: 1.14285714em;
-  padding-bottom: 1.14285714em;
+  padding-top: 1.3em;
+  padding-bottom: 1.3em;
 }
 
 .ui.vertically.fitted.menu .item,
 .ui.vertically.fitted.menu .item .menu .item,
 .ui.menu .vertically.fitted.item {
-  padding-left: 1.14285714em;
-  padding-right: 1.14285714em;
+  padding-left: 1.3em;
+  padding-right: 1.3em;
 }
 
 /*--------------
@@ -21352,7 +21380,7 @@ Floated Menu / Item
 }
 
 .ui.compact.menu .item:last-child {
-  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border-radius: 0em 0rem 0rem 0em;
 }
 
 .ui.compact.menu .item:last-child:before {
@@ -21527,8 +21555,8 @@ Floated Menu / Item
   transform: translateX(-50%) translateY(-50%) rotate(45deg);
   background: none;
   margin: 0.5px 0em 0em;
-  width: 0.57142857em;
-  height: 0.57142857em;
+  width: 0.8em;
+  height: 0.8em;
   border: none;
   border-bottom: 1px solid #D4D4D5;
   border-right: 1px solid #D4D4D5;
@@ -21620,8 +21648,8 @@ Floated Menu / Item
   bottom: 0px;
   margin-bottom: 0em;
   top: 0px;
-  margin-top: 1rem;
-  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+  margin-top: 1.4rem;
+  border-radius: 0rem 0rem 0em 0em;
 }
 
 .ui.menu[class*="top attached"]:first-child {
@@ -21634,9 +21662,9 @@ Floated Menu / Item
   bottom: 0px;
   margin-top: 0em;
   top: 0px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), none;
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0rem 0rem;
 }
 
 .ui[class*="bottom attached"].menu:last-child {
@@ -21646,11 +21674,11 @@ Floated Menu / Item
 /* Attached Menu Item */
 
 .ui.top.attached.menu > .item:first-child {
-  border-radius: 0.28571429rem 0em 0em 0em;
+  border-radius: 0rem 0em 0em 0em;
 }
 
 .ui.bottom.attached.menu > .item:first-child {
-  border-radius: 0em 0em 0em 0.28571429rem;
+  border-radius: 0em 0em 0em 0rem;
 }
 
 /* Tabular Attached */
@@ -21676,7 +21704,7 @@ Floated Menu / Item
 /* Small */
 
 .ui.small.menu {
-  font-size: 0.92857143rem;
+  font-size: 1.3rem;
 }
 
 .ui.small.vertical.menu {
@@ -21686,7 +21714,7 @@ Floated Menu / Item
 /* Medium */
 
 .ui.menu {
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .ui.vertical.menu {
@@ -21696,7 +21724,7 @@ Floated Menu / Item
 /* Large */
 
 .ui.large.menu {
-  font-size: 1.14285714rem;
+  font-size: 1.6rem;
 }
 
 .ui.large.vertical.menu {
@@ -21706,7 +21734,7 @@ Floated Menu / Item
 /* Huge */
 
 .ui.huge.menu {
-  font-size: 1.42857143rem;
+  font-size: 2rem;
 }
 
 .ui.huge.vertical.menu {
@@ -21753,7 +21781,7 @@ Floated Menu / Item
 /* Big */
 
 .ui.big.menu {
-  font-size: 1.28571429rem;
+  font-size: 1.8rem;
 }
 
 .ui.big.vertical.menu {

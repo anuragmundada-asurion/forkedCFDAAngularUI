@@ -25,10 +25,10 @@
 --------------------*/
 
 /* This is the single variable that controls them all */
-@emSize   : 14px;
+@emSize   : 10px;
 
 /* The size of page text  */
-@fontSize : 14px;
+@fontSize : 17px;
 
 
 /*-------------------
@@ -60,11 +60,11 @@
 @headerFontWeight : bold;
 @headerLineHeight : 1.2857em;
 
-@h1 : 2rem;
-@h2 : 1.714rem;
-@h3 : 1.28rem;
-@h4 : 1.071rem;
-@h5 : 1rem;
+@h1 : 4rem;
+@h2 : 3rem;
+@h3 : 2rem;
+@h4 : 1.7rem;
+@h5 : 1.5rem;
 
 /*--------------
    Form Input
@@ -98,14 +98,14 @@
   This ensures these "ratios" remain constant despite changes in EM
 */
 
-@miniSize        : (10 / 14);
-@tinySize        : (12 / 14);
-@smallSize       : (13 / 14);
-@mediumSize      : (14 / 14);
-@largeSize       : (16 / 14);
-@bigSize         : (18 / 14);
-@hugeSize        : (20 / 14);
-@massiveSize     : (24 / 14);
+@miniSize        : (10 / 10);
+@tinySize        : (12 / 10);
+@smallSize       : (13 / 10);
+@mediumSize      : (14 / 10);
+@largeSize       : (16 / 10);
+@bigSize         : (18 / 10);
+@hugeSize        : (20 / 10);
+@massiveSize     : (24 / 10);
 
 
 /*-------------------
@@ -115,7 +115,7 @@
 @pageBackground      : #FFFFFF;
 @pageOverflowX       : hidden;
 
-@lineHeight          : 1.4285em;
+@lineHeight          : 1.5em;
 @textColor           : rgba(0, 0, 0, 0.87);
 
 /*-------------------
