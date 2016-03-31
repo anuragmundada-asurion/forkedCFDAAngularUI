@@ -24,13 +24,13 @@
                  */
                 $scope.formatNumber = function (number) {
                     if (number <= 9) {
-                        return '.1s';
+                        return '02.1r';
                     } else if (number <= 99) {
-                        return '.2s';
+                        return '.2r';
                     } else if (number >= 100 && number <= 999) {
-                        return '.3s';
+                        return '.3r';
                     } else if (number > 999) {
-                        return '.2s';
+                        return '.2r';
                     }
                 };
 
@@ -44,10 +44,18 @@
 
                 //make api call to get count of programs
                 ApiService.call(oApiParam).then(function (data) {
+                    
+                    var newSymbol = d3.formatPrefix(data.new);
+                    var archivedSymbol = d3.formatPrefix(data.archived);
+                    var updatedSymbol = d3.formatPrefix(data.updated);
+                    
                     $scope.aProgramCount = {
-                        'new': d3.format($scope.formatNumber(parseInt(data.new)))(data.new),
-                        'archived': d3.format($scope.formatNumber(parseInt(data.archived)))(data.archived),
-                        'updated': d3.format($scope.formatNumber(parseInt(data.updated)))(data.updated)
+                        'new': d3.format($scope.formatNumber(parseInt(data.new)))(newSymbol.scale(data.new)),
+                        'newsymbol' : newSymbol.symbol,
+                        'archived': d3.format($scope.formatNumber(parseInt(data.archived)))(archivedSymbol.scale(data.archived)),
+                        'archivedsymbol': archivedSymbol.symbol,
+                        'updated': d3.format($scope.formatNumber(parseInt(data.updated)))(updatedSymbol.scale(data.updated)),
+                        'updatedsymbol' : updatedSymbol.symbol
                     };
                 });
 

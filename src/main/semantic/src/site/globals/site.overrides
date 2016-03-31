@@ -15,6 +15,11 @@ html.tr-coretext{
     display: none !important;
 }
 
+.borderless{
+    border: none !important;
+    box-shadow: none !important;
+}
+
 /*--------------
    Background
 ---------------*/
@@ -40,7 +45,16 @@ html.tr-coretext{
 .font.bold{
     font-weight: 700;
 }
+.font.light{
+    font-weight: 300;
+}
 
+/*--------------
+ Font Transformation
+---------------*/
+.font.uppercase{
+    text-transform: uppercase;
+}
 
 /*--------------
       IAE
