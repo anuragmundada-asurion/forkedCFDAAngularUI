@@ -28,6 +28,21 @@ html.tr-coretext{
 }
 
 /*--------------
+   Font Size
+---------------*/
+.font.huge{
+    font-size: @absoluteHuge;
+}
+
+/*--------------
+   Font Style
+---------------*/
+.font.bold{
+    font-weight: 700;
+}
+
+
+/*--------------
       IAE
 ---------------*/
 

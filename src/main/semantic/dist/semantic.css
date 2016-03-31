@@ -691,6 +691,22 @@ html.tr-coretext {
 }
 
 /*--------------
+   Font Size
+---------------*/
+
+.font.huge {
+  font-size: 2rem;
+}
+
+/*--------------
+   Font Style
+---------------*/
+
+.font.bold {
+  font-weight: 700;
+}
+
+/*--------------
       IAE
 ---------------*/
 
