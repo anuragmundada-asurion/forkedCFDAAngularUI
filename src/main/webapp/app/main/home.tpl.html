@@ -77,53 +77,80 @@
         </div>
     </div>
 
-    <div class="usa-grid-full home-info" style="background-color:#FFF;padding:1px 8px 8px 8px;text-align:left">
-        <div class="usa-width-one-half">
-            <h3>New in {{ currentYear }}</h3>
-            <div class="usa-grid-full">
+</div>
+
+
+
+<div class="background gray" style="padding: 40px 0px;">
+
+    <div class="ui very relaxed stackable grid container">
+
+        <div class="two column row ui segment">
+
+            <!-- New in 2015 -->
+            <div class="column">
+                <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.new">{{ aProgramCount.new }}</span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.new"><img src="/img/img_cfda/loading.svg" /></span>
+                    <span class="info-widget-value" ng-show="aProgramCount.new">
+                    {{ aProgramCount.new }}
+                </span>
+                    <span class="info-widget-value" ng-show="!aProgramCount.new">
+                    <img src="/img/img_cfda/loading.svg" />
+                </span>
                     <span class="info-widget-label">New Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="New Listings" />
                 </div>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.archived">{{ aProgramCount.archived }}</span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.archived"><img src="/img/img_cfda/loading.svg" /></span>
+                    <span class="info-widget-value" ng-show="aProgramCount.archived">
+                    {{ aProgramCount.archived }}
+                </span>
+                    <span class="info-widget-value" ng-show="!aProgramCount.archived">
+                    <img src="/img/img_cfda/loading.svg" />
+                </span>
                     <span class="info-widget-label">Archived Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="Archived Listings" />
                 </div>
                 <div class="info-widget">
-                    <span class="info-widget-value" ng-show="aProgramCount.updated">{{ aProgramCount.updated }}</span>
-                    <span class="info-widget-value" ng-show="!aProgramCount.updated"><img src="/img/img_cfda/loading.svg" /></span>
+                    <span class="info-widget-value" ng-show="aProgramCount.updated">
+                    {{ aProgramCount.updated }}
+                </span>
+                    <span class="info-widget-value" ng-show="!aProgramCount.updated">
+                    <img src="/img/img_cfda/loading.svg" />
+                </span>
                     <span class="info-widget-label">Updated Listings</span>
                     <img class="info-widget-flag" src="/img/links/flag.png" alt="Updated Listings" />
                 </div>
             </div>
+
+            <!-- Who can apply chart -->
+            <div class="column">
+                <h3 class="ui centered aligned header">Who Can Apply</h3>
+                <div id="listingsChart"></div>
+            </div>
+
         </div>
-        <div class="usa-width-one-half">
-            <h3> Who Can Apply</h3>
-            <div id="listingsChart"></div>
-        </div>
+
     </div>
-    <div style="min-height:50px"></div>
+
 </div>
 
 
-<h3 class="ui centered aligned header" style="margin-bottom: 30px">Quick Links</h3>
+<!-- Quick Links -->
+
+<h3 class="ui centered aligned header" style="margin-bottom: 30px; margin-top: 80px;">Quick Links</h3>
 
 <div class="ui very relaxed stackable grid container" style="padding: 20px 0px 90px 0px;">
-    
+
     <div class="three column row">
         <div class="column center aligned">
             <a class="font huge bold" href="" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide" />
-                CFDA Public User Guide
+                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"
+                /> CFDA Public User Guide
             </a>
         </div>
         <div class="column center aligned">
             <a class="font huge bold" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />
+                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />                
                 2015 Print Edition
             </a>
             <select style="margin-top: 30px;" id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
@@ -139,7 +166,7 @@
         </div>
         <div class="column center aligned">
             <a class="font huge bold" href="" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />
+                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />                
                 FTP Downloads
             </a>
         </div>
@@ -147,6 +174,8 @@
 
 </div>
 
+
+<!-- Related Links -->
 
 <div class="background gray" style="padding: 80px 0px 120px 0px;">
 
@@ -157,14 +186,14 @@
         <div class="three column row">
             <div class="column center aligned">
                 <a href="http://www.grants.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/grants.png" alt="Grants.gov" />
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/grants.png" alt="Grants.gov" />                    
                     Grants.gov is your gateway to finding information about and applying for grant opportunities from over
                     1000 federal programs.
                 </a>
             </div>
             <div class="column center aligned">
                 <a href="http://www.benefits.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/benefits.png" alt="Benefits.gov" />
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/benefits.png" alt="Benefits.gov" />                    
                     Benefits.gov offers information on more than 1,000 Federal and state benefit programs. Simply complete
                     the free and confidential questionnaire and our prescreening tool will generate a tailored list of programs
                     just for you.
@@ -172,7 +201,7 @@
             </div>
             <div class="column center aligned">
                 <a href="http://www.govloans.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/govloans.png" alt="GovLoans.gov" />
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/govloans.png" alt="GovLoans.gov" />                    
                     GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you
                     determine which loans may be right for you.
                 </a>
@@ -182,14 +211,14 @@
         <div class="three column row">
             <div class="column center aligned">
                 <a href="http://www.data.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/data.png" alt="Data.gov" />
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/data.png" alt="Data.gov" />                    
                     Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and
                     resources to conduct.
                 </a>
             </div>
             <div class="column center aligned">
                 <a href="https://www.whitehouse.gov/omb" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/omb.png" alt="Whitehouse.gov/OMB" />
+                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/omb.png" alt="Whitehouse.gov/OMB" />                    
                     The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed
                     to help.
                 </a>
@@ -202,7 +231,7 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
 
 </div>
