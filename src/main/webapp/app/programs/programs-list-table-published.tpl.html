@@ -39,6 +39,7 @@
         </td>
         <td>{{ row.publishedDate | date:'medium' }}</td>
         <td class="action-row">
+            <button has-access="{{ [PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS] }}" type="button" title="Revise FAL" ng-click="reviseProgram(row.id)"><span class="fa fa-pencil"></span></button>
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" type="button" title="Request Archive" ng-click="showProgramRequestModal(row, 'program_request', 'archive_request')"><span class="fa fa-folder"></span></button>
             <button has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" type="button" title="Request Title Change" ng-click="showProgramRequestModal(row, 'program_request', 'title_request')"><span class="fa fa-i-cursor"></span></button>
         </td>

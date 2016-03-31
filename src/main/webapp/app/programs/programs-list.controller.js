@@ -33,6 +33,34 @@
         }
 
         /**
+         * Function revise program
+         * @param {type} programId
+         * @returns Void
+         */
+        $scope.reviseProgram = function(programId) {
+            var oApiParam = {
+                apiName: 'programAction',
+                apiSuffix: '/' + programId + '/revise',
+                method: 'POST'
+            };
+
+            ApiService.call(oApiParam).then(
+                function(data){
+                    var msg = 'A draft version for this listing already exists. Please click ok to proceed to this draft version.';
+                    if (data['created']) {
+                        msg = 'A draft version for this listing was successfully created. Please click ok to proceed to this draft version.';
+                    }
+
+                    var result = confirm(msg);
+                    if (result) {
+                        $state.go('editProgram', {id : data['id'], section: 'review'});
+                    }
+
+                }
+            );
+        };
+
+        /**
          * Function loading programs
          * @param {type} tableState
          * @returns Void
@@ -229,7 +257,7 @@
                     };
                 } else if ($scope.ngDialogData.typeEntity === 'program_submit') {
                     //set API Name to call
-                    oApiParam.apiName = 'programSubmit';
+                    oApiParam.apiName = 'programAction';
                     //define success message
                     message.success = 'This program has been submitted for review!';
 

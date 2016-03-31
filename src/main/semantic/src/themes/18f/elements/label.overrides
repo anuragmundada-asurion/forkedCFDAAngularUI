@@ -1,0 +1,36 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+/*-------------------
+       Outline
+--------------------*/
+
+.ui.outline.label{
+    background-color: transparent !important;
+    color: @textColor !important;
+    border-width: @2px;
+}
+
+.ui.outline.massive.label{
+    border-width: @3px;
+}
+
+/*-------------------
+      Circular
+--------------------*/
+.ui.massive.circular.label{
+    min-width: 2.8em;
+    min-height: 2.7em;
+    padding: 0.7em 0.5em !important;
+}
+
+
+/*-------------------
+        Sizes
+--------------------*/
+.ui.massive.labels .label,
+.ui.massive.label {
+  letter-spacing: -@2px;
+}

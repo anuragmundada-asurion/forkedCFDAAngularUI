@@ -6,13 +6,14 @@
     myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
 
         /**
-         * @param String id
-         * @param Boolean includeParentLevels
-         * @param Boolean includeChildrenLevels
-         * @param Function callbackFnSuccess
          * @returns Void
+         * @param id
+         * @param includeParentLevels
+         * @param includeChildrenLevels
+         * @param callbackFnSuccess
+         * @param callbackFnError
          */
-        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
+        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: id ? ('/' + id) : '',
@@ -37,22 +38,31 @@
                     }
                 },
                 function (error) {
+                    if (typeof callbackFnError === 'function') {
+                        callbackFnError(error);
+                    }
                     return false;
                 }
             );
         };
 
         /**
-         * @param String id
-         * @param Boolean includeParentLevels
-         * @param Boolean includeChildrenLevels
-         * @param function callbackFnSuccess
+         *
          * @returns Void
+         * @param id
+         * @param includeParentLevels
+         * @param includeChildrenLevels
+         * @param callbackFnSuccess
+         * @param callbackFnError
          */
-        var getFullLabelPathFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess) {
+        var getFullLabelPathFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
             getFederalHierarchyById(id, includeParentLevels, includeChildrenLevels, function(oData){
                 if (typeof callbackFnSuccess === 'function') {
                     callbackFnSuccess(getFullNameFederalHierarchy(oData));
+                }
+            }, function(error) {
+                if (typeof callbackFnError === 'function') {
+                    callbackFnError(error);
                 }
             });
         };
@@ -77,8 +87,8 @@
 
         /**
          * for angular-multi-select (Angular Plugin)
-         * @param Object oData
-         * @param Array aSelectedIDs
+         * @param oData
+         * @param aSelectedData
          * @returns Object
          */
         var dropdownDataStructure = function(oData, aSelectedData) {
@@ -118,7 +128,7 @@
         };
 
         /**
-         * @param Object oData
+         * @param oData
          * @returns String
          */
         var getFullNameFederalHierarchy = function (oData) {

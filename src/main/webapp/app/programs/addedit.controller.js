@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program) {
 
                 var vm = this,
                     CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -27,14 +27,14 @@
                 //initialize program object
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
-                    vm.program = new ProgramFactory();
+                    vm.program = new Program();
                     vm.program._id = null;
                     vm.program.organizationId = UserService.getUser().orgId;
                 } else { // Edit/Review program
                     //vm.isCreateProgram = false;
                     vm.program = {};
                     ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                        vm.program = data;
+                        vm.program = new Program(data);
                         vm.originalTitle = vm.program.title;
                         //reload contacts when object is available
                         vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});

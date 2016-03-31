@@ -81,7 +81,8 @@
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS,
-                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS
+                            PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS,
+                            PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS
                         ]
                     }
                 })

@@ -48,7 +48,10 @@
         //  Submitting/Publishing
         'CAN_EDIT_PENDING_PROGRAMS': 'CanEditPendingPrograms',
         'CAN_REQUEST_SUBMISSION': 'CanRequestSubmission',
-        'CAN_PERFORM_SUBMISSION': 'CanPerformSubmission'
+        'CAN_PERFORM_SUBMISSION': 'CanPerformSubmission',
+
+        //  Create Revision
+        'CAN_EDIT_PUBLISHED_PROGRAMS' : 'CanEditPublishedPrograms'
     });
 
     myApp.run(['$rootScope', 'PERMISSIONS', function($rootScope, PERMISSIONS) {
