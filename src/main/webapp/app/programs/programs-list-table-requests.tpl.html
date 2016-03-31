@@ -62,7 +62,7 @@
             </div>
 
             <div ng-show="row.requestType.value === 'submit'">
-                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" type="button" title="Review Program" ng-click="editProgram({ id: row.programId, section: 'review' })"><span class="fa fa-eye"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" type="button" title="Review Program" ng-click="editProgram({ id: row.programId }, 'review')"><span class="fa fa-eye"></span></button>
             </div>
         </td>
         <td>{{ row.entryDate | amDateFormat:'MMMM, Do YYYY h:mm a' }}</td>

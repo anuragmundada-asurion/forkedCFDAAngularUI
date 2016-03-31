@@ -39,7 +39,7 @@
             </td>
             <td>{{row.submittedDate | date:'medium' }}</td>
             <td class="action-row">
-                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" type="button" ng-click="editProgram(row)"><span class="fa fa-pencil"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" type="button" ng-click="editProgram(row, 'review')"><span class="fa fa-pencil"></span></button>
             </td>
             <td>{{row.archived ? 'Archived' : row.status.value}}</td>
         </tr>

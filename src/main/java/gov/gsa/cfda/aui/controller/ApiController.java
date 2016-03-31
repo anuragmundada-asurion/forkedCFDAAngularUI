@@ -188,6 +188,12 @@ public class ApiController {
         return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/submit", jsonData);
     }
 
+    @RequestMapping(value = "/api/programs/{id}/revise", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String reviseProgram(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                @PathVariable("id") String programId) throws Exception {
+        return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/revise", null);
+    }
+
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
@@ -454,7 +460,7 @@ public class ApiController {
     }
 
     private String getFederalHierarchiesApiUrl() {
-        return environment.getProperty(API_FEDERAL_HIERARCHY_ENV) + "/fh";
+        return environment.getProperty(API_FEDERAL_HIERARCHY_ENV);
     }
 
     private String getHistoricalIndexApiUrl() {
