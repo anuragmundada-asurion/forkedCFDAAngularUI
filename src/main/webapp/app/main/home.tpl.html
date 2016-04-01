@@ -93,34 +93,34 @@
                 
                 <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
                 
-                <div class="ui items">
+                <div class="ui items lightblue padded">
                     <div class="item">
-                        <div class="ui circular label yellow outline massive" ng-show="aProgramCount.new">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.new">
                             {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                         </div>                        
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
-                            <span class="font lighter h1 size">New Listings</span>
+                            <span class="blue font lighter h1 size">New Listings</span>
                             <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                         </div>
                     </div>
                     <div class="item">
-                        <div class="ui circular label yellow outline massive" ng-show="aProgramCount.archived">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.archived">
                             {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                         </div>
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
-                            <span class="font lighter h1 size">Archived Listings</span>
+                            <span class="blue font lighter h1 size">Archived Listings</span>
                             <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                         </div>
                     </div>
                     <div class="item">
-                        <div class="ui circular label yellow outline massive" ng-show="aProgramCount.updated">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.updated">
                             {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                         </div>
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
-                            <span class="font lighter h1 size">Updated Listings</span>
+                            <span class="blue font lighter h1 size">Updated Listings</span>
                             <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                         </div>
                     </div>

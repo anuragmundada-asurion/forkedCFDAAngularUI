@@ -13,6 +13,10 @@
     border-width: @2px;
 }
 
+.ui.outline.filled.label{
+    background-color: @white !important;
+}
+
 .ui.outline.massive.label{
     border-width: @3px;
 }

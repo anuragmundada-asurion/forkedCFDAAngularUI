@@ -730,6 +730,14 @@ html.tr-coretext {
 }
 
 /*--------------
+   Font Color
+---------------*/
+
+.font.blue {
+  color: #0071bc;
+}
+
+/*--------------
  Font Transformation
 ---------------*/
 
@@ -12692,6 +12700,10 @@ a.ui.basic.label:hover {
   background-color: transparent !important;
   color: rgba(0, 0, 0, 0.87) !important;
   border-width: 0.2rem;
+}
+
+.ui.outline.filled.label {
+  background-color: #FFFFFF !important;
 }
 
 .ui.outline.massive.label {
@@ -26112,6 +26124,10 @@ a.ui.card:hover,
          Theme Overrides
 *******************************/
 
+/*******************************
+           Variations
+*******************************/
+
 /*-------------------
        Aligned
 --------------------*/
@@ -26120,6 +26136,22 @@ a.ui.card:hover,
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
+}
+
+/*--------------
+     Padded
+---------------*/
+
+.ui.padded.items > .item {
+  padding: .7em;
+}
+
+/*--------------
+     Colored
+---------------*/
+
+.ui.padded.items > .item {
+  background-color: #E1F3F8;
 }
 
 /*******************************

@@ -475,6 +475,12 @@
 *******************************/
 
 
+
+/*******************************
+           Variations
+*******************************/
+
+
 /*-------------------
        Aligned
 --------------------*/
@@ -483,6 +489,22 @@
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
+}
+
+/*--------------
+     Padded
+---------------*/
+
+.ui.padded.items > .item {
+  padding: .7em;
+}
+
+/*--------------
+     Colored
+---------------*/
+
+.ui.padded.items > .item {
+  background-color: #E1F3F8;
 }
 
 

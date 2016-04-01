@@ -63,6 +63,13 @@ html.tr-coretext{
 }
 
 /*--------------
+   Font Color
+---------------*/
+.font.blue{
+    color: @blue;
+}
+
+/*--------------
  Font Transformation
 ---------------*/
 .font.uppercase{

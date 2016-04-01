@@ -214,6 +214,14 @@ html.tr-coretext {
 }
 
 /*--------------
+   Font Color
+---------------*/
+
+.font.blue {
+  color: #0071bc;
+}
+
+/*--------------
  Font Transformation
 ---------------*/
 

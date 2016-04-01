@@ -1309,6 +1309,9 @@ a.ui.basic.label:hover {
   color: rgba(0, 0, 0, 0.87) !important;
   border-width: 0.2rem;
 }
+.ui.outline.filled.label {
+  background-color: #FFFFFF !important;
+}
 .ui.outline.massive.label {
   border-width: 0.3rem;
 }
