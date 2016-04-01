@@ -1885,7 +1885,7 @@
                     <div ng-repeat="taf in gsavm.program.financial.treasury.tafs" ng-show="gsavm.program.financial.accounts || !gsavm.program.financial.accounts.length==0
                     || gsavm.program.financial.treasury.tafs || !gsavm.program.financial.treasury.tafs.length==0
                     || gsavm.program.postAward.accomplishments.flag">
-                        <h4 ng-show="!taf.departmentCode || !taf.accountCode" style="background-color: red;">Financial Information and Accomplishments</h4>
+                        <h4 ng-show="!taf.departmentCode || !taf.accountCode" >Financial Information and Accomplishments</h4>
                         <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Department Code field is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Account Code field is required<br/></a>
                     </div>
