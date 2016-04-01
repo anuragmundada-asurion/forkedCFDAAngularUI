@@ -27,7 +27,7 @@
                 //initialize program object
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
-                    vm.program  = new ProgramFactory();
+                    vm.program = new ProgramFactory();
                     vm.program._id = null;
                     vm.program.organizationId = UserService.getUser().orgId;
                 } else { // Edit/Review program
@@ -457,24 +457,17 @@
 
                 //returns true if some required fields are missing.
                 $scope.isVisible = function (sectionName) {
-                    console.log("inside the isVisible function.. ");
-                    console.log(sectionName);
-
-                    var bool = checkMissingRequiredFields(sectionName);
-                    console.log('are some required fields missing??: ' + bool);
-                    return bool;
-
+                    return checkMissingRequiredFields(sectionName);
                 };
 
 
                 function checkMissingRequiredFields(sectionName) {
-                    console.log("inside checkRequiredFieldsFilled");
+
                     if (sectionName === 'financialSection') {
-                        console.log(vm.program);
 
                         //upper level validation
                         var requiredFieldsMissing = (!vm.program || !vm.program.financial || !vm.program.postAward
-                        ||  !vm.program.financial.accounts || vm.program.financial.accounts.length == 0
+                        || !vm.program.financial.accounts || vm.program.financial.accounts.length == 0
                         || !vm.program.financial.treasury
                         || !vm.program.financial.treasury.tafs || vm.program.financial.treasury.tafs.length == 0
                         || !vm.program.postAward.accomplishments.flag);
@@ -486,49 +479,35 @@
 
                             //check things in accounts array
                             vm.program.financial.accounts.forEach(function (account, index, array) {
-                                console.log('accounts[' + index + '] = ', account);
                                 if (!account.code) {
                                     requiredFieldsMissing2 = true;
-                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
-
                             });
 
                             //check things in obligations array
                             vm.program.financial.obligations.forEach(function (obligation, index, array) {
-                                console.log('obligations[' + index + '] = ', obligation);
                                 if (!obligation.questions.recovery) {
                                     requiredFieldsMissing2 = true;
-                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
                                 if (!obligation.questions.salary_or_expense) {
                                     requiredFieldsMissing2 = true;
-                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
                             });
 
                             //check things in tafs array
                             vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
-                                console.log('tafs[' + index + '] = ', taf);
                                 if (!taf.departmentCode) {
                                     requiredFieldsMissing2 = true;
-                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
+
                                 if (!taf.accountCode) {
                                     requiredFieldsMissing2 = true;
-                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
                             });
-
-
                         }
 
-
-                        console.log(requiredFieldsMissing + " " + requiredFieldsMissing2);
                         return requiredFieldsMissing || requiredFieldsMissing2;
                     }
-
-
 
 
                     return false;
