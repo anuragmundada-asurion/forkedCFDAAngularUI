@@ -23,6 +23,9 @@
                  * @returns {String}
                  */
                 $scope.formatNumber = function (number) {
+                    if(number === 0)
+                        return '';
+
                     if (number <= 9) {
                         return '02.1r';
                     } else if (number <= 99) {
