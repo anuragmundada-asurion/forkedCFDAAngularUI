@@ -85,7 +85,7 @@ a.ui.label {
   cursor: pointer;
   margin-right: 0em;
   margin-left: 0.5em;
-  font-size: 1.3em;
+  font-size: 1.5em;
   opacity: 0.5;
   -webkit-transition: background 0.35s ease;
   transition: background 0.35s ease;
@@ -254,7 +254,7 @@ a.ui.label {
   position: relative;
   top: 0.9em;
   left: 1.1em;
-  font-size: 1.7em;
+  font-size: 2em;
   margin: 0em;
 }
 
@@ -1052,7 +1052,7 @@ a.ui.basic.black.label:hover {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #1e70bf;
+  color: #205493;
   box-shadow: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: none;
 }
@@ -1279,19 +1279,19 @@ a.ui.basic.label:hover {
 }
 .ui.large.labels .label,
 .ui.large.label {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 .ui.big.labels .label,
 .ui.big.label {
-  font-size: 1.8rem;
+  font-size: 3rem;
 }
 .ui.huge.labels .label,
 .ui.huge.label {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 .ui.massive.labels .label,
 .ui.massive.label {
-  font-size: 3rem;
+  font-size: 5.2rem;
 }
 
 
@@ -1312,7 +1312,7 @@ a.ui.basic.label:hover {
 .ui.outline.filled.label {
   background-color: #FFFFFF !important;
 }
-.ui.outline.massive.label {
+.ui.outline.big.label {
   border-width: 0.3rem;
 }
 
@@ -1320,7 +1320,7 @@ a.ui.basic.label:hover {
       Circular
 --------------------*/
 
-.ui.massive.circular.label {
+.ui.big.circular.label {
   min-width: 2.8em;
   min-height: 2.7em;
   padding: 0.7em 0.5em !important;
@@ -1330,8 +1330,8 @@ a.ui.basic.label:hover {
         Sizes
 --------------------*/
 
-.ui.massive.labels .label,
-.ui.massive.label {
+.ui.big.labels .label,
+.ui.big.label {
   letter-spacing: -0.2rem;
 }
 

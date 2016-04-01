@@ -103,12 +103,12 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #4183C4;
+  color: #0071bc;
   text-decoration: none;
 }
 a:hover {
-  color: #1e70bf;
-  text-decoration: none;
+  color: #205493;
+  text-decoration: underline;
 }
 
 
@@ -186,6 +186,12 @@ html.tr-coretext {
 ---------------*/
 
 .font.huge {
+  font-size: 4rem;
+}
+.font.big {
+  font-size: 3rem;
+}
+.font.large {
   font-size: 2rem;
 }
 

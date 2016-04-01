@@ -1,3 +1,5 @@
+<!-- Main Navigation -->
+
 <primary-nav-bar></primary-nav-bar>
 
 <div class="background darkblue" style="padding-bottom: 50px;">
@@ -33,17 +35,19 @@
                 
                 <div class="ui items lightblue padded">
                     <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.new">
+                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.new">
                             {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                         </div>                        
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">New Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            <a ng-click="searchByListingPublication('new')">
+                                <span class="blue font lighter h1 size">New Listings</span>
+                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.archived">
+                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.archived">
                             {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                         </div>
                         <div class="middle aligned content">
@@ -53,13 +57,15 @@
                         </div>
                     </div>
                     <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.updated">
+                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.updated">
                             {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                         </div>
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">Updated Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            <a ng-click="searchByListingPublication('updated')">
+                                <span class="blue font lighter h1 size">Updated Listings</span>
+                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -132,14 +138,20 @@
             </a>
         </div>
 
-        <div class="usa-grid-full text-center">
-            <a class="usa-button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}"><span class="fa fa-plus-circle"></span> Create a new listing</a>
-        </div>
-        <hr>
-        <div class="usa-grid-full text-center">
-            <a class="usa-button usa-button-gray" ui-sref="programList.status({status: 'archived'})"><span class="fa fa-archive"></span> Archived Listing</a>
-            <a class="usa-button usa-button-gray"><span class="fa fa-server"></span> Historical Index</a>
-        </div>
+        <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
+            <span class="fa fa-plus-circle"></span> Create a new listing
+        </a>
+        
+        <div class="ui divider"></div>
+        
+        <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
+            <span class="fa fa-archive"></span> Archived Listing
+        </a>
+        
+        <a class="ui large button">
+            <span class="fa fa-server"></span> Historical Index
+        </a>
+        
     </div>
 
 </div>
@@ -153,13 +165,13 @@
 
     <div class="three column row">
         <div class="column center aligned">
-            <a class="font huge bold" href="" target="_blank">
+            <a class="font large bold" href="" target="_blank">
                 <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"
                 /> CFDA Public User Guide
             </a>
         </div>
         <div class="column center aligned">
-            <a class="font huge bold" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
+            <a class="font large bold" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
                 <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />                
                 2015 Print Edition
             </a>
@@ -175,7 +187,7 @@
             </select>
         </div>
         <div class="column center aligned">
-            <a class="font huge bold" href="" target="_blank">
+            <a class="font large bold" href="" target="_blank">
                 <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />                
                 FTP Downloads
             </a>

@@ -8,7 +8,7 @@
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
                     itemsByPageNumbers: appConstants.PAGE_ITEM_NUMBERS,
-                    currentYear: new moment().subtract(1, 'year').format('YYYY'),
+                    currentYear: new moment().format('YYYY'),
 
                     data: {
                         singleSelect: null,
@@ -80,6 +80,21 @@
                     $scope.makeHomePageChart();
                 });
 
+                /**
+                 * Go to search result prefiltered with Publication (New or Updated) of this year
+                 * @returns void
+                 */
+                $scope.searchByListingPublication = function(type) {
+                    //Set advanced search criteria
+                    SearchFactory.setSearchCriteria('', {
+                        publicationListingType: type
+                    });
+
+                    $state.go('searchPrograms', {}, {
+                        reload: true,
+                        inherit: false
+                    });
+                };
 
                 /**
                  * Generate chart

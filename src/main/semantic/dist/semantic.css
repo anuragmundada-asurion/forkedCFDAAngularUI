@@ -611,13 +611,13 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #4183C4;
+  color: #0071bc;
   text-decoration: none;
 }
 
 a:hover {
-  color: #1e70bf;
-  text-decoration: none;
+  color: #205493;
+  text-decoration: underline;
 }
 
 /*******************************
@@ -700,6 +700,14 @@ html.tr-coretext {
 ---------------*/
 
 .font.huge {
+  font-size: 4rem;
+}
+
+.font.big {
+  font-size: 3rem;
+}
+
+.font.large {
   font-size: 2rem;
 }
 
@@ -783,10 +791,10 @@ html.tr-coretext {
   border: none;
   vertical-align: baseline;
   background: #E0E1E2 none;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: #0071bc;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0em 0.25em 0em 0em;
-  padding: 0.78571429em 1.5em 0.78571429em;
+  padding: 1.1em 1.5em 1.1em;
   text-transform: none;
   text-shadow: none;
   font-weight: bold;
@@ -794,14 +802,14 @@ html.tr-coretext {
   font-style: normal;
   text-align: center;
   text-decoration: none;
-  border-radius: 0.28571429rem;
+  border-radius: 0rem;
   box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
-  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+  -webkit-transition: opacity 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition: opacity 0.35s ease, background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
   will-change: '';
   -webkit-tap-highlight-color: transparent;
 }
@@ -887,8 +895,8 @@ html.tr-coretext {
   color: transparent !important;
   opacity: 1;
   pointer-events: auto;
-  -webkit-transition: all 0s linear, opacity 0.1s ease;
-  transition: all 0s linear, opacity 0.1s ease;
+  -webkit-transition: all 0s linear, opacity 0.35s ease;
+  transition: all 0s linear, opacity 0.35s ease;
 }
 
 .ui.loading.button:before {
@@ -896,9 +904,9 @@ html.tr-coretext {
   content: '';
   top: 50%;
   left: 50%;
-  margin: -0.64285714em 0em 0em -0.64285714em;
-  width: 1.28571429em;
-  height: 1.28571429em;
+  margin: -1.5em 0em 0em -1.5em;
+  width: 3em;
+  height: 3em;
   border-radius: 500rem;
   border: 0.2em solid rgba(0, 0, 0, 0.15);
 }
@@ -908,9 +916,9 @@ html.tr-coretext {
   content: '';
   top: 50%;
   left: 50%;
-  margin: -0.64285714em 0em 0em -0.64285714em;
-  width: 1.28571429em;
-  height: 1.28571429em;
+  margin: -1.5em 0em 0em -1.5em;
+  width: 3em;
+  height: 3em;
   -webkit-animation: button-spin 0.6s linear;
   animation: button-spin 0.6s linear;
   -webkit-animation-iteration-count: infinite;
@@ -1213,7 +1221,7 @@ html.tr-coretext {
   align-items: center;
   margin: 0px 0px 0px -1px !important;
   padding: '';
-  font-size: 1em;
+  font-size: 1.7em;
   border-color: rgba(34, 36, 38, 0.15);
 }
 
@@ -1428,17 +1436,17 @@ html.tr-coretext {
 ---------------*/
 
 .ui.button > .icon:not(.button) {
-  height: 0.85714286em;
+  height: 1.3em;
   opacity: 0.8;
-  margin: 0em 0.42857143em 0em -0.21428571em;
-  -webkit-transition: opacity 0.1s ease;
-  transition: opacity 0.1s ease;
+  margin: 0em 0.6em 0em -0.3em;
+  -webkit-transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease;
   vertical-align: '';
   color: '';
 }
 
 .ui.button > .right.icon:not(.button) {
-  margin: 0em -0.21428571em 0em 0.42857143em;
+  margin: 0em -0.3em 0em 0.6em;
 }
 
 /*******************************
@@ -1469,17 +1477,17 @@ html.tr-coretext {
 
 .ui.compact.buttons .button,
 .ui.compact.button {
-  padding: 0.58928571em 1.125em 0.58928571em;
+  padding: 0.825em 1.125em 0.825em;
 }
 
 .ui.compact.icon.buttons .button,
 .ui.compact.icon.button {
-  padding: 0.58928571em 0.58928571em 0.58928571em;
+  padding: 0.825em 0.825em 0.825em;
 }
 
 .ui.compact.labeled.icon.buttons .button,
 .ui.compact.labeled.icon.button {
-  padding: 0.58928571em 3.69642857em 0.58928571em;
+  padding: 0.825em 4.325em 0.825em;
 }
 
 /*-------------------
@@ -1489,49 +1497,49 @@ html.tr-coretext {
 .ui.mini.buttons .button,
 .ui.mini.buttons .or,
 .ui.mini.button {
-  font-size: 0.71428571rem;
+  font-size: 1rem;
 }
 
 .ui.tiny.buttons .button,
 .ui.tiny.buttons .or,
 .ui.tiny.button {
-  font-size: 0.85714286rem;
+  font-size: 1.3rem;
 }
 
 .ui.small.buttons .button,
 .ui.small.buttons .or,
 .ui.small.button {
-  font-size: 0.92857143rem;
+  font-size: 1.5rem;
 }
 
 .ui.buttons .button,
 .ui.buttons .or,
 .ui.button {
-  font-size: 1rem;
+  font-size: 1.7rem;
 }
 
 .ui.large.buttons .button,
 .ui.large.buttons .or,
 .ui.large.button {
-  font-size: 1.14285714rem;
+  font-size: 2rem;
 }
 
 .ui.big.buttons .button,
 .ui.big.buttons .or,
 .ui.big.button {
-  font-size: 1.28571429rem;
+  font-size: 3rem;
 }
 
 .ui.huge.buttons .button,
 .ui.huge.buttons .or,
 .ui.huge.button {
-  font-size: 1.42857143rem;
+  font-size: 4rem;
 }
 
 .ui.massive.buttons .button,
 .ui.massive.buttons .or,
 .ui.massive.button {
-  font-size: 1.71428571rem;
+  font-size: 5.2rem;
 }
 
 /*--------------
@@ -1540,7 +1548,7 @@ html.tr-coretext {
 
 .ui.icon.buttons .button,
 .ui.icon.button {
-  padding: 0.78571429em 0.78571429em 0.78571429em;
+  padding: 1.1em 1.1em 1.1em;
 }
 
 .ui.icon.buttons .button > .icon,
@@ -1557,9 +1565,9 @@ html.tr-coretext {
 .ui.basic.buttons .button,
 .ui.basic.button {
   background: transparent none !important;
-  color: rgba(0, 0, 0, 0.6) !important;
+  color: #0071bc !important;
   font-weight: normal;
-  border-radius: 0.28571429rem;
+  border-radius: 0rem;
   text-transform: none;
   text-shadow: none !important;
   box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset;
@@ -1568,7 +1576,7 @@ html.tr-coretext {
 .ui.basic.buttons {
   box-shadow: none;
   border: 1px solid rgba(34, 36, 38, 0.15);
-  border-radius: 0.28571429rem;
+  border-radius: 0rem;
 }
 
 .ui.basic.buttons .button {
@@ -1692,7 +1700,7 @@ html.tr-coretext {
 .ui.labeled.icon.buttons .button,
 .ui.labeled.icon.button {
   position: relative;
-  padding-left: 4.07142857em !important;
+  padding-left: 4.7em !important;
   padding-right: 1.5em !important;
 }
 
@@ -1708,7 +1716,7 @@ html.tr-coretext {
   border-bottom-left-radius: inherit;
   text-align: center;
   margin: 0em;
-  width: 2.57142857em;
+  width: 3.2em;
   background-color: rgba(0, 0, 0, 0.05);
   color: '';
   box-shadow: -1px 0px 0px 0px transparent inset;
@@ -1725,7 +1733,7 @@ html.tr-coretext {
 /* Right Labeled */
 
 .ui[class*="right labeled"].icon.button {
-  padding-right: 4.07142857em !important;
+  padding-right: 4.7em !important;
   padding-left: 1.5em !important;
 }
 
@@ -1756,23 +1764,23 @@ html.tr-coretext {
 }
 
 .ui.labeled.icon.buttons .button:first-child > .icon {
-  border-top-left-radius: 0.28571429rem;
-  border-bottom-left-radius: 0.28571429rem;
+  border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem;
 }
 
 .ui.labeled.icon.buttons .button:last-child > .icon {
-  border-top-right-radius: 0.28571429rem;
-  border-bottom-right-radius: 0.28571429rem;
+  border-top-right-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 .ui.vertical.labeled.icon.buttons .button:first-child > .icon {
   border-radius: 0em;
-  border-top-left-radius: 0.28571429rem;
+  border-top-left-radius: 0rem;
 }
 
 .ui.vertical.labeled.icon.buttons .button:last-child > .icon {
   border-radius: 0em;
-  border-bottom-left-radius: 0.28571429rem;
+  border-bottom-left-radius: 0rem;
 }
 
 /* Fluid Labeled */
@@ -1792,14 +1800,14 @@ html.tr-coretext {
 .ui.toggle.buttons .active.button,
 .ui.buttons .button.toggle.active,
 .ui.button.toggle.active {
-  background-color: #21BA45 !important;
+  background-color: #2e8540 !important;
   box-shadow: none !important;
   text-shadow: none;
   color: #FFFFFF !important;
 }
 
 .ui.button.toggle.active:hover {
-  background-color: #16ab39 !important;
+  background-color: #247635 !important;
   text-shadow: none;
   color: #FFFFFF !important;
 }
@@ -1824,7 +1832,7 @@ html.tr-coretext {
 .ui.buttons .or {
   position: relative;
   width: 0.3em;
-  height: 2.57142857em;
+  height: 3.2em;
   z-index: 3;
 }
 
@@ -1837,11 +1845,11 @@ html.tr-coretext {
   left: 50%;
   background-color: #FFFFFF;
   text-shadow: none;
-  margin-top: -0.89285714em;
-  margin-left: -0.89285714em;
-  width: 1.78571429em;
-  height: 1.78571429em;
-  line-height: 1.78571429em;
+  margin-top: -1.05em;
+  margin-left: -1.05em;
+  width: 2.1em;
+  height: 2.1em;
+  line-height: 2.1em;
   color: rgba(0, 0, 0, 0.4);
   font-style: normal;
   font-weight: bold;
@@ -1879,11 +1887,11 @@ html.tr-coretext {
 /* Top / Bottom */
 
 .ui.attached.top.button {
-  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+  border-radius: 0rem 0rem 0em 0em;
 }
 
 .ui.attached.bottom.button {
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0rem 0rem;
 }
 
 /* Left / Right */
@@ -1893,14 +1901,14 @@ html.tr-coretext {
   border-left: none;
   text-align: right;
   padding-right: 0.75em;
-  border-radius: 0.28571429rem 0em 0em 0.28571429rem;
+  border-radius: 0rem 0em 0em 0rem;
 }
 
 .ui.right.attached.button {
   display: inline-block;
   text-align: left;
   padding-left: 0.75em;
-  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border-radius: 0em 0rem 0rem 0em;
 }
 
 /* Plural */
@@ -1934,28 +1942,28 @@ html.tr-coretext {
 
 .ui[class*="top attached"].buttons {
   margin-bottom: -1px;
-  border-radius: 0.28571429rem 0.28571429rem 0em 0em;
+  border-radius: 0rem 0rem 0em 0em;
 }
 
 .ui[class*="top attached"].buttons .button:first-child {
-  border-radius: 0.28571429rem 0em 0em 0em;
+  border-radius: 0rem 0em 0em 0em;
 }
 
 .ui[class*="top attached"].buttons .button:last-child {
-  border-radius: 0em 0.28571429rem 0em 0em;
+  border-radius: 0em 0rem 0em 0em;
 }
 
 .ui[class*="bottom attached"].buttons {
   margin-top: -1px;
-  border-radius: 0em 0em 0.28571429rem 0.28571429rem;
+  border-radius: 0em 0em 0rem 0rem;
 }
 
 .ui[class*="bottom attached"].buttons .button:first-child {
-  border-radius: 0em 0em 0em 0.28571429rem;
+  border-radius: 0em 0em 0em 0rem;
 }
 
 .ui[class*="bottom attached"].buttons .button:last-child {
-  border-radius: 0em 0em 0.28571429rem 0em;
+  border-radius: 0em 0em 0rem 0em;
 }
 
 /* Left / Right */
@@ -1967,17 +1975,17 @@ html.tr-coretext {
   display: inline-flex;
   margin-right: 0em;
   margin-left: -1px;
-  border-radius: 0em 0.28571429rem 0.28571429rem 0em;
+  border-radius: 0em 0rem 0rem 0em;
 }
 
 .ui[class*="left attached"].buttons .button:first-child {
   margin-left: -1px;
-  border-radius: 0em 0.28571429rem 0em 0em;
+  border-radius: 0em 0rem 0em 0em;
 }
 
 .ui[class*="left attached"].buttons .button:last-child {
   margin-left: -1px;
-  border-radius: 0em 0em 0.28571429rem 0em;
+  border-radius: 0em 0em 0rem 0em;
 }
 
 .ui[class*="right attached"].buttons {
@@ -1987,17 +1995,17 @@ html.tr-coretext {
   display: inline-flex;
   margin-left: 0em;
   margin-right: -1px;
-  border-radius: 0.28571429rem 0em 0em 0.28571429rem;
+  border-radius: 0rem 0em 0em 0rem;
 }
 
 .ui[class*="right attached"].buttons .button:first-child {
   margin-left: -1px;
-  border-radius: 0.28571429rem 0em 0em 0em;
+  border-radius: 0rem 0em 0em 0em;
 }
 
 .ui[class*="right attached"].buttons .button:last-child {
   margin-left: -1px;
-  border-radius: 0em 0em 0em 0.28571429rem;
+  border-radius: 0em 0em 0em 0rem;
 }
 
 /*-------------------
@@ -2423,7 +2431,7 @@ html.tr-coretext {
 .ui.inverted.grey.buttons .button:active,
 .ui.inverted.grey.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #0071bc;
 }
 
 .ui.inverted.grey.buttons .button:hover,
@@ -2650,7 +2658,7 @@ html.tr-coretext {
 
 .ui.blue.buttons .button,
 .ui.blue.button {
-  background-color: #2185D0;
+  background-color: #0071bc;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;
@@ -2662,21 +2670,21 @@ html.tr-coretext {
 
 .ui.blue.buttons .button:hover,
 .ui.blue.button:hover {
-  background-color: #1678c2;
+  background-color: #0062a3;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.blue.buttons .button:focus,
 .ui.blue.button:focus {
-  background-color: #0d71bb;
+  background-color: #005893;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.blue.buttons .button:active,
 .ui.blue.button:active {
-  background-color: #1a69a4;
+  background-color: #005289;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2685,7 +2693,7 @@ html.tr-coretext {
 .ui.blue.buttons .active.button:active,
 .ui.blue.active.button,
 .ui.blue.button .active.button:active {
-  background-color: #1279c6;
+  background-color: #0062a3;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2694,35 +2702,35 @@ html.tr-coretext {
 
 .ui.basic.blue.buttons .button,
 .ui.basic.blue.button {
-  box-shadow: 0px 0px 0px 1px #2185D0 inset !important;
-  color: #2185D0 !important;
+  box-shadow: 0px 0px 0px 1px #0071bc inset !important;
+  color: #0071bc !important;
 }
 
 .ui.basic.blue.buttons .button:hover,
 .ui.basic.blue.button:hover {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #1678c2 inset !important;
-  color: #1678c2 !important;
+  box-shadow: 0px 0px 0px 1px #0062a3 inset !important;
+  color: #0062a3 !important;
 }
 
 .ui.basic.blue.buttons .button:focus,
 .ui.basic.blue.button:focus {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #0d71bb inset !important;
-  color: #1678c2 !important;
+  box-shadow: 0px 0px 0px 1px #005893 inset !important;
+  color: #0062a3 !important;
 }
 
 .ui.basic.blue.buttons .active.button,
 .ui.basic.blue.active.button {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #1279c6 inset !important;
-  color: #1a69a4 !important;
+  box-shadow: 0px 0px 0px 1px #0062a3 inset !important;
+  color: #005289 !important;
 }
 
 .ui.basic.blue.buttons .button:active,
 .ui.basic.blue.button:active {
-  box-shadow: 0px 0px 0px 1px #1a69a4 inset !important;
-  color: #1a69a4 !important;
+  box-shadow: 0px 0px 0px 1px #005289 inset !important;
+  color: #005289 !important;
 }
 
 .ui.buttons:not(.vertical) > .basic.blue.button:not(:first-child) {
@@ -2734,8 +2742,8 @@ html.tr-coretext {
 .ui.inverted.blue.buttons .button,
 .ui.inverted.blue.button {
   background-color: transparent;
-  box-shadow: 0px 0px 0px 2px #54C8FF inset !important;
-  color: #54C8FF;
+  box-shadow: 0px 0px 0px 2px #E1F3F8 inset !important;
+  color: #E1F3F8;
 }
 
 .ui.inverted.blue.buttons .button:hover,
@@ -2752,22 +2760,22 @@ html.tr-coretext {
 
 .ui.inverted.blue.buttons .button:hover,
 .ui.inverted.blue.button:hover {
-  background-color: #3ac0ff;
+  background-color: #caecf5;
 }
 
 .ui.inverted.blue.buttons .button:focus,
 .ui.inverted.blue.button:focus {
-  background-color: #2bbbff;
+  background-color: #bbe9f5;
 }
 
 .ui.inverted.blue.buttons .active.button,
 .ui.inverted.blue.active.button {
-  background-color: #3ac0ff;
+  background-color: #c9ecf6;
 }
 
 .ui.inverted.blue.buttons .button:active,
 .ui.inverted.blue.button:active {
-  background-color: #21b8ff;
+  background-color: #b8e2ee;
 }
 
 /* Inverted Basic */
@@ -2783,36 +2791,36 @@ html.tr-coretext {
 .ui.inverted.blue.basic.buttons .button:hover,
 .ui.inverted.blue.buttons .basic.button:hover,
 .ui.inverted.blue.basic.button:hover {
-  box-shadow: 0px 0px 0px 2px #3ac0ff inset !important;
-  color: #54C8FF !important;
+  box-shadow: 0px 0px 0px 2px #caecf5 inset !important;
+  color: #E1F3F8 !important;
 }
 
 .ui.inverted.blue.basic.buttons .button:focus,
 .ui.inverted.blue.basic.buttons .button:focus,
 .ui.inverted.blue.basic.button:focus {
-  box-shadow: 0px 0px 0px 2px #2bbbff inset !important;
-  color: #54C8FF !important;
+  box-shadow: 0px 0px 0px 2px #bbe9f5 inset !important;
+  color: #E1F3F8 !important;
 }
 
 .ui.inverted.blue.basic.buttons .active.button,
 .ui.inverted.blue.buttons .basic.active.button,
 .ui.inverted.blue.basic.active.button {
-  box-shadow: 0px 0px 0px 2px #3ac0ff inset !important;
-  color: #54C8FF !important;
+  box-shadow: 0px 0px 0px 2px #c9ecf6 inset !important;
+  color: #E1F3F8 !important;
 }
 
 .ui.inverted.blue.basic.buttons .button:active,
 .ui.inverted.blue.buttons .basic.button:active,
 .ui.inverted.blue.basic.button:active {
-  box-shadow: 0px 0px 0px 2px #21b8ff inset !important;
-  color: #54C8FF !important;
+  box-shadow: 0px 0px 0px 2px #b8e2ee inset !important;
+  color: #E1F3F8 !important;
 }
 
 /*--- Green ---*/
 
 .ui.green.buttons .button,
 .ui.green.button {
-  background-color: #21BA45;
+  background-color: #2e8540;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;
@@ -2824,21 +2832,21 @@ html.tr-coretext {
 
 .ui.green.buttons .button:hover,
 .ui.green.button:hover {
-  background-color: #16ab39;
+  background-color: #247635;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.green.buttons .button:focus,
 .ui.green.button:focus {
-  background-color: #0ea432;
+  background-color: #1d6d2d;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.green.buttons .button:active,
 .ui.green.button:active {
-  background-color: #198f35;
+  background-color: #215f2e;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2847,7 +2855,7 @@ html.tr-coretext {
 .ui.green.buttons .active.button:active,
 .ui.green.active.button,
 .ui.green.button .active.button:active {
-  background-color: #13ae38;
+  background-color: #227834;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2856,35 +2864,35 @@ html.tr-coretext {
 
 .ui.basic.green.buttons .button,
 .ui.basic.green.button {
-  box-shadow: 0px 0px 0px 1px #21BA45 inset !important;
-  color: #21BA45 !important;
+  box-shadow: 0px 0px 0px 1px #2e8540 inset !important;
+  color: #2e8540 !important;
 }
 
 .ui.basic.green.buttons .button:hover,
 .ui.basic.green.button:hover {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #16ab39 inset !important;
-  color: #16ab39 !important;
+  box-shadow: 0px 0px 0px 1px #247635 inset !important;
+  color: #247635 !important;
 }
 
 .ui.basic.green.buttons .button:focus,
 .ui.basic.green.button:focus {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #0ea432 inset !important;
-  color: #16ab39 !important;
+  box-shadow: 0px 0px 0px 1px #1d6d2d inset !important;
+  color: #247635 !important;
 }
 
 .ui.basic.green.buttons .active.button,
 .ui.basic.green.active.button {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #13ae38 inset !important;
-  color: #198f35 !important;
+  box-shadow: 0px 0px 0px 1px #227834 inset !important;
+  color: #215f2e !important;
 }
 
 .ui.basic.green.buttons .button:active,
 .ui.basic.green.button:active {
-  box-shadow: 0px 0px 0px 1px #198f35 inset !important;
-  color: #198f35 !important;
+  box-shadow: 0px 0px 0px 1px #215f2e inset !important;
+  color: #215f2e !important;
 }
 
 .ui.buttons:not(.vertical) > .basic.green.button:not(:first-child) {
@@ -2896,8 +2904,8 @@ html.tr-coretext {
 .ui.inverted.green.buttons .button,
 .ui.inverted.green.button {
   background-color: transparent;
-  box-shadow: 0px 0px 0px 2px #2ECC40 inset !important;
-  color: #2ECC40;
+  box-shadow: 0px 0px 0px 2px #4aa564 inset !important;
+  color: #4aa564;
 }
 
 .ui.inverted.green.buttons .button:hover,
@@ -2914,22 +2922,22 @@ html.tr-coretext {
 
 .ui.inverted.green.buttons .button:hover,
 .ui.inverted.green.button:hover {
-  background-color: #22be34;
+  background-color: #3e9758;
 }
 
 .ui.inverted.green.buttons .button:focus,
 .ui.inverted.green.button:focus {
-  background-color: #19b82b;
+  background-color: #369050;
 }
 
 .ui.inverted.green.buttons .active.button,
 .ui.inverted.green.active.button {
-  background-color: #1fc231;
+  background-color: #3c9957;
 }
 
 .ui.inverted.green.buttons .button:active,
 .ui.inverted.green.button:active {
-  background-color: #25a233;
+  background-color: #3a824f;
 }
 
 /* Inverted Basic */
@@ -2945,29 +2953,29 @@ html.tr-coretext {
 .ui.inverted.green.basic.buttons .button:hover,
 .ui.inverted.green.buttons .basic.button:hover,
 .ui.inverted.green.basic.button:hover {
-  box-shadow: 0px 0px 0px 2px #22be34 inset !important;
-  color: #2ECC40 !important;
+  box-shadow: 0px 0px 0px 2px #3e9758 inset !important;
+  color: #4aa564 !important;
 }
 
 .ui.inverted.green.basic.buttons .button:focus,
 .ui.inverted.green.basic.buttons .button:focus,
 .ui.inverted.green.basic.button:focus {
-  box-shadow: 0px 0px 0px 2px #19b82b inset !important;
-  color: #2ECC40 !important;
+  box-shadow: 0px 0px 0px 2px #369050 inset !important;
+  color: #4aa564 !important;
 }
 
 .ui.inverted.green.basic.buttons .active.button,
 .ui.inverted.green.buttons .basic.active.button,
 .ui.inverted.green.basic.active.button {
-  box-shadow: 0px 0px 0px 2px #1fc231 inset !important;
-  color: #2ECC40 !important;
+  box-shadow: 0px 0px 0px 2px #3c9957 inset !important;
+  color: #4aa564 !important;
 }
 
 .ui.inverted.green.basic.buttons .button:active,
 .ui.inverted.green.buttons .basic.button:active,
 .ui.inverted.green.basic.button:active {
-  box-shadow: 0px 0px 0px 2px #25a233 inset !important;
-  color: #2ECC40 !important;
+  box-shadow: 0px 0px 0px 2px #3a824f inset !important;
+  color: #4aa564 !important;
 }
 
 /*--- Orange ---*/
@@ -3881,7 +3889,7 @@ html.tr-coretext {
 .ui.inverted.teal.buttons .button:active,
 .ui.inverted.teal.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #0071bc;
 }
 
 .ui.inverted.teal.buttons .button:hover,
@@ -4043,7 +4051,7 @@ html.tr-coretext {
 .ui.inverted.olive.buttons .button:active,
 .ui.inverted.olive.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #0071bc;
 }
 
 .ui.inverted.olive.buttons .button:hover,
@@ -4205,7 +4213,7 @@ html.tr-coretext {
 .ui.inverted.yellow.buttons .button:active,
 .ui.inverted.yellow.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #0071bc;
 }
 
 .ui.inverted.yellow.buttons .button:hover,
@@ -4272,7 +4280,7 @@ html.tr-coretext {
 
 .ui.primary.buttons .button,
 .ui.primary.button {
-  background-color: #2185D0;
+  background-color: #0071bc;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;
@@ -4284,28 +4292,28 @@ html.tr-coretext {
 
 .ui.primary.buttons .button:hover,
 .ui.primary.button:hover {
-  background-color: #1678c2;
+  background-color: #0062a3;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.primary.buttons .button:focus,
 .ui.primary.button:focus {
-  background-color: #0d71bb;
+  background-color: #005893;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.primary.buttons .button:active,
 .ui.primary.button:active {
-  background-color: #1a69a4;
+  background-color: #005289;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.primary.buttons .active.button,
 .ui.primary.active.button {
-  background-color: #1279c6;
+  background-color: #0062a3;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -4360,7 +4368,7 @@ html.tr-coretext {
 
 .ui.positive.buttons .button,
 .ui.positive.button {
-  background-color: #21BA45 !important;
+  background-color: #2e8540 !important;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;
@@ -4372,21 +4380,21 @@ html.tr-coretext {
 
 .ui.positive.buttons .button:hover,
 .ui.positive.button:hover {
-  background-color: #16ab39 !important;
+  background-color: #247635 !important;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.positive.buttons .button:focus,
 .ui.positive.button:focus {
-  background-color: #0ea432 !important;
+  background-color: #1d6d2d !important;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.positive.buttons .button:active,
 .ui.positive.button:active {
-  background-color: #198f35 !important;
+  background-color: #215f2e !important;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -4394,7 +4402,7 @@ html.tr-coretext {
 .ui.positive.buttons .active.button,
 .ui.positive.active.button,
 .ui.positive.buttons .active.button:active {
-  background-color: #13ae38;
+  background-color: #227834;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -4497,13 +4505,13 @@ html.tr-coretext {
 .ui.buttons .button:first-child {
   border-left: none;
   margin-left: 0em;
-  border-top-left-radius: 0.28571429rem;
-  border-bottom-left-radius: 0.28571429rem;
+  border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem;
 }
 
 .ui.buttons .button:last-child {
-  border-top-right-radius: 0.28571429rem;
-  border-bottom-right-radius: 0.28571429rem;
+  border-top-right-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 /* Vertical  Style */
@@ -4534,7 +4542,7 @@ html.tr-coretext {
 .ui.vertical.buttons .small.button:first-child,
 .ui.vertical.buttons .massive.button:first-child,
 .ui.vertical.buttons .huge.button:first-child {
-  border-radius: 0.28571429rem 0.28571429rem 0px 0px;
+  border-radius: 0rem 0rem 0px 0px;
 }
 
 .ui.vertical.buttons .button:last-child,
@@ -4545,7 +4553,7 @@ html.tr-coretext {
 .ui.vertical.buttons .huge.button:last-child,
 .ui.vertical.buttons .gigantic.button:last-child {
   margin-bottom: 0px;
-  border-radius: 0px 0px 0.28571429rem 0.28571429rem;
+  border-radius: 0px 0px 0rem 0rem;
 }
 
 /*******************************
@@ -6307,7 +6315,7 @@ i.flag.zimbabwe:before {
   font-weight: normal;
   padding: 0em;
   margin: 0em;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   line-height: 1.2em;
   color: rgba(0, 0, 0, 0.6);
 }
@@ -6422,23 +6430,23 @@ h5.ui.header {
 /* Sub Header */
 
 h1.ui.header .sub.header {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 h2.ui.header .sub.header {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 h3.ui.header .sub.header {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 h4.ui.header .sub.header {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 h5.ui.header .sub.header {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 /*--------------
@@ -6469,23 +6477,23 @@ h5.ui.header .sub.header {
 /* Sub Header */
 
 .ui.huge.header .sub.header {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .ui.large.header .sub.header {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .ui.header .sub.header {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .ui.small.header .sub.header {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .ui.tiny.header .sub.header {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 /*--------------
@@ -6496,7 +6504,7 @@ h5.ui.header .sub.header {
   padding: 0em;
   margin-bottom: 0.2rem;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.3em;
   text-transform: uppercase;
   color: '';
 }
@@ -6506,15 +6514,15 @@ h5.ui.header .sub.header {
 }
 
 .ui.sub.header {
-  font-size: 1.2em;
-}
-
-.ui.large.sub.header {
   font-size: 1.3em;
 }
 
+.ui.large.sub.header {
+  font-size: 1.5em;
+}
+
 .ui.huge.sub.header {
-  font-size: 1.4em;
+  font-size: 1.7em;
 }
 
 /*-------------------
@@ -6985,30 +6993,30 @@ a.ui.inverted.grey.header:hover {
 
 .ui.block.header {
   background: #F3F4F5;
-  padding: 1rem 1.4rem;
+  padding: 1rem 1.7rem;
   box-shadow: none;
   border: 1px solid #D4D4D5;
   border-radius: 0.4rem;
 }
 
 .ui.tiny.block.header {
-  font-size: 1.2rem;
-}
-
-.ui.small.block.header {
   font-size: 1.3rem;
 }
 
-.ui.block.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1.4rem;
+.ui.small.block.header {
+  font-size: 1.5rem;
 }
 
-.ui.large.block.header {
+.ui.block.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   font-size: 1.7rem;
 }
 
-.ui.huge.block.header {
+.ui.large.block.header {
   font-size: 2rem;
+}
+
+.ui.huge.block.header {
+  font-size: 4rem;
 }
 
 /*-------------------
@@ -7017,7 +7025,7 @@ a.ui.inverted.grey.header:hover {
 
 .ui.attached.header {
   background: #FFFFFF;
-  padding: 1rem 1.4rem;
+  padding: 1rem 1.7rem;
   margin-left: -1px;
   margin-right: -1px;
   box-shadow: none;
@@ -7049,23 +7057,23 @@ a.ui.inverted.grey.header:hover {
 /* Attached Sizes */
 
 .ui.tiny.attached.header {
-  font-size: 1.2em;
-}
-
-.ui.small.attached.header {
   font-size: 1.3em;
 }
 
-.ui.attached.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1.4em;
+.ui.small.attached.header {
+  font-size: 1.5em;
 }
 
-.ui.large.attached.header {
+.ui.attached.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   font-size: 1.7em;
 }
 
-.ui.huge.attached.header {
+.ui.large.attached.header {
   font-size: 2em;
+}
+
+.ui.huge.attached.header {
+  font-size: 4em;
 }
 
 /*-------------------
@@ -11366,7 +11374,7 @@ a.ui.label {
   cursor: pointer;
   margin-right: 0em;
   margin-left: 0.5em;
-  font-size: 1.3em;
+  font-size: 1.5em;
   opacity: 0.5;
   -webkit-transition: background 0.35s ease;
   transition: background 0.35s ease;
@@ -11548,7 +11556,7 @@ a.ui.label {
   position: relative;
   top: 0.9em;
   left: 1.1em;
-  font-size: 1.7em;
+  font-size: 2em;
   margin: 0em;
 }
 
@@ -12430,7 +12438,7 @@ a.ui.basic.black.label:hover {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #1e70bf;
+  color: #205493;
   box-shadow: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: none;
 }
@@ -12670,22 +12678,22 @@ a.ui.basic.label:hover {
 
 .ui.large.labels .label,
 .ui.large.label {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .ui.big.labels .label,
 .ui.big.label {
-  font-size: 1.8rem;
+  font-size: 3rem;
 }
 
 .ui.huge.labels .label,
 .ui.huge.label {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 .ui.massive.labels .label,
 .ui.massive.label {
-  font-size: 3rem;
+  font-size: 5.2rem;
 }
 
 /*******************************
@@ -12706,7 +12714,7 @@ a.ui.basic.label:hover {
   background-color: #FFFFFF !important;
 }
 
-.ui.outline.massive.label {
+.ui.outline.big.label {
   border-width: 0.3rem;
 }
 
@@ -12714,7 +12722,7 @@ a.ui.basic.label:hover {
       Circular
 --------------------*/
 
-.ui.massive.circular.label {
+.ui.big.circular.label {
   min-width: 2.8em;
   min-height: 2.7em;
   padding: 0.7em 0.5em !important;
@@ -12724,8 +12732,8 @@ a.ui.basic.label:hover {
         Sizes
 --------------------*/
 
-.ui.massive.labels .label,
-.ui.massive.label {
+.ui.big.labels .label,
+.ui.big.label {
   letter-spacing: -0.2rem;
 }
 
@@ -19664,14 +19672,14 @@ ol.ui.horizontal.list li:before,
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 1.4rem 0em;
+  margin: 1.7rem 0em;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #FFFFFF;
   font-weight: normal;
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   border-radius: 0rem;
-  min-height: 3.6em;
+  min-height: 4em;
 }
 
 .ui.menu:after {
@@ -19735,7 +19743,7 @@ ol.ui.horizontal.list li:before,
   -ms-user-select: none;
   user-select: none;
   background: none;
-  padding: 1.3em 1.3em;
+  padding: 1.5em 1.5em;
   text-transform: none;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 700;
@@ -19801,7 +19809,7 @@ ol.ui.horizontal.list li:before,
   margin: -0.5em 0em;
   padding-bottom: 1em;
   padding-top: 1em;
-  font-size: 1.4em;
+  font-size: 1.7em;
 }
 
 /*----------------
@@ -19840,7 +19848,7 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.menu .item > .input input {
-  font-size: 1.4em;
+  font-size: 1.7em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
 }
@@ -19859,7 +19867,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.vertical.menu .item > .header:not(.ui) {
   margin: 0em 0em 0.5em;
-  font-size: 1.4em;
+  font-size: 1.7em;
   font-weight: bold;
 }
 
@@ -19908,8 +19916,8 @@ ol.ui.horizontal.list li:before,
 .ui.menu .ui.dropdown .menu > .item {
   margin: 0;
   text-align: left;
-  font-size: 1.4em !important;
-  padding: 1em 1.7em !important;
+  font-size: 1.7em !important;
+  padding: 1em 2em !important;
   background: transparent !important;
   color: rgba(0, 0, 0, 0.87) !important;
   text-transform: none !important;
@@ -19941,7 +19949,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.menu .ui.dropdown .menu > .item .icon:not(.dropdown) {
   display: inline-block;
-  font-size: 1.4em !important;
+  font-size: 1.7em !important;
   float: none;
   margin: 0em 0.75em 0em 0em;
 }
@@ -20249,13 +20257,13 @@ Floated Menu / Item
 /*--- Sub Menu ---*/
 
 .ui.vertical.menu .item > .menu {
-  margin: 0.5em -1.3em 0em;
+  margin: 0.5em -1.5em 0em;
 }
 
 .ui.vertical.menu .menu .item {
   background: none;
-  padding: 0.5em 1.08333333em;
-  font-size: 1.2em;
+  padding: 0.5em 1.15384615em;
+  font-size: 1.3em;
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -20320,7 +20328,7 @@ Floated Menu / Item
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   border-top: 2px solid transparent;
-  padding: 1.3em 2em;
+  padding: 1.5em 4em;
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -20490,7 +20498,7 @@ Floated Menu / Item
 
 .ui.pagination.menu .active.item {
   border-top: none;
-  padding-top: 1.3em;
+  padding-top: 1.5em;
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
   box-shadow: none;
@@ -20517,7 +20525,7 @@ Floated Menu / Item
   align-self: center;
   box-shadow: none;
   border: none;
-  padding: 1em 1.3em;
+  padding: 1em 1.5em;
   margin: 0em 0.5em;
   background: none;
   -webkit-transition: color 0.35s ease;
@@ -20608,12 +20616,12 @@ Floated Menu / Item
 /* Sub Menu */
 
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu {
-  margin: 0em -1.3em;
+  margin: 0em -1.5em;
 }
 
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu > .item {
   margin: 0em;
-  padding: 0.7em 1.08333333em;
+  padding: 0.7em 1.15384615em;
 }
 
 /*---------------------
@@ -20660,7 +20668,7 @@ Floated Menu / Item
   -ms-flex-item-align: end;
   align-self: flex-end;
   margin: 0em 0em -2px;
-  padding: 1.2em 1.7em;
+  padding: 1.3em 2em;
   border-bottom-width: 2px;
   -webkit-transition: color 0.35s ease;
   transition: color 0.35s ease;
@@ -20786,7 +20794,7 @@ Floated Menu / Item
   border-radius: 0px;
   box-shadow: none;
   border: none;
-  margin: 1.4em -0.7em;
+  margin: 1.7em -0.7em;
 }
 
 .ui.text.menu .item {
@@ -20816,7 +20824,7 @@ Floated Menu / Item
   background-color: transparent;
   opacity: 1;
   color: rgba(0, 0, 0, 0.85);
-  font-size: 1.3em;
+  font-size: 1.5em;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -20836,7 +20844,7 @@ Floated Menu / Item
 /*--- vertical text ---*/
 
 .ui.vertical.text.menu {
-  margin: 1.4em 0em;
+  margin: 1.7em 0em;
 }
 
 .ui.vertical.text.menu:first-child {
@@ -21000,7 +21008,7 @@ Floated Menu / Item
 .ui.labeled.icon.menu .item > .icon:not(.dropdown) {
   height: 1em;
   display: block;
-  font-size: 3em !important;
+  font-size: 5.2em !important;
   margin: 0em auto 0.5rem !important;
 }
 
@@ -21445,15 +21453,15 @@ Floated Menu / Item
 .ui.horizontally.fitted.menu .item,
 .ui.horizontally.fitted.menu .item .menu .item,
 .ui.menu .horizontally.fitted.item {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
 }
 
 .ui.vertically.fitted.menu .item,
 .ui.vertically.fitted.menu .item .menu .item,
 .ui.menu .vertically.fitted.item {
-  padding-left: 1.3em;
-  padding-right: 1.3em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 /*--------------
@@ -21752,7 +21760,7 @@ Floated Menu / Item
   bottom: 0px;
   margin-bottom: 0em;
   top: 0px;
-  margin-top: 1.4rem;
+  margin-top: 1.7rem;
   border-radius: 0rem 0rem 0em 0em;
 }
 
@@ -21766,7 +21774,7 @@ Floated Menu / Item
   bottom: 0px;
   margin-top: 0em;
   top: 0px;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.7rem;
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), none;
   border-radius: 0em 0em 0rem 0rem;
 }
@@ -21808,7 +21816,7 @@ Floated Menu / Item
 /* Small */
 
 .ui.small.menu {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .ui.small.vertical.menu {
@@ -21818,7 +21826,7 @@ Floated Menu / Item
 /* Medium */
 
 .ui.menu {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .ui.vertical.menu {
@@ -21828,7 +21836,7 @@ Floated Menu / Item
 /* Large */
 
 .ui.large.menu {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .ui.large.vertical.menu {
@@ -21838,7 +21846,7 @@ Floated Menu / Item
 /* Huge */
 
 .ui.huge.menu {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 .ui.huge.vertical.menu {
@@ -21885,7 +21893,7 @@ Floated Menu / Item
 /* Big */
 
 .ui.big.menu {
-  font-size: 1.8rem;
+  font-size: 3rem;
 }
 
 .ui.big.vertical.menu {
@@ -25771,7 +25779,7 @@ a.ui.card:hover,
 /* Default Header Size */
 
 .ui.items > .item > .content > .header:not(.ui) {
-  font-size: 1.8em;
+  font-size: 3em;
 }
 
 /*--------------
@@ -25875,7 +25883,7 @@ a.ui.card:hover,
 }
 
 .ui.items > .item > .content > a.header:hover {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /* Meta */
@@ -26109,7 +26117,7 @@ a.ui.card:hover,
 
 .ui.items a.item:hover .content .header,
 .ui.link.items > .item:hover .content .header {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /*--------------
