@@ -40,8 +40,10 @@
                         </div>                        
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">New Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            <a ng-click="searchByListingPublication('new')">
+                                <span class="blue font lighter h1 size">New Listings</span>
+                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="item">
@@ -60,8 +62,10 @@
                         </div>
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">Updated Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            <a ng-click="searchByListingPublication('updated')">
+                                <span class="blue font lighter h1 size">Updated Listings</span>
+                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
