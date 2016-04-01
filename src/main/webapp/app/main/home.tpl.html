@@ -88,6 +88,7 @@
 
     <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
     class="usa-grid-full home-dashboard">
+    
         <div class="usa-grid-full">
             <div class="user-dashboard-label">{{ user.fullName }}'s Dashboard</div>
             <div class="user-dashboard-request">
@@ -131,6 +132,29 @@
                 <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
                 <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
                 <h4>Rejected Listings</h4>
+            </a>
+        </div>
+        
+        <div class="ui labeled icon fluid five item menu">
+            <a class="item">
+                <i class="video play icon"></i>
+                Total Active Listings
+            </a>
+            <a class="item">
+                <i class="video play icon"></i>
+                Draft Listing
+            </a>
+            <a class="item">
+                <i class="video play icon"></i>
+                Pending Listings
+            </a>
+            <a class="item">
+                <i class="video play icon"></i>
+                Published Listings
+            </a>
+            <a class="item">
+                <i class="video play icon"></i>
+                Rejected Listings
             </a>
         </div>
 
