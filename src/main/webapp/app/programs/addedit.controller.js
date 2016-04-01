@@ -483,20 +483,52 @@
                         //go into the arrays and check their elements also
                         var requiredFieldsMissing2 = false;
                         if (!requiredFieldsMissing) {
-                            vm.program.financial.accounts.forEach(function (accountObj, index, array) {
-                                console.log('accounts[' + index + '] = ', accountObj);
-                                if (!accountObj.code) {
+
+                            //check things in accounts array
+                            vm.program.financial.accounts.forEach(function (account, index, array) {
+                                console.log('accounts[' + index + '] = ', account);
+                                if (!account.code) {
                                     requiredFieldsMissing2 = true;
                                     console.log("setting bool2 to true " + requiredFieldsMissing2);
                                 }
 
                             });
+
+                            //check things in obligations array
+                            vm.program.financial.obligations.forEach(function (obligation, index, array) {
+                                console.log('obligations[' + index + '] = ', obligation);
+                                if (!obligation.questions.recovery) {
+                                    requiredFieldsMissing2 = true;
+                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
+                                }
+                                if (!obligation.questions.salary_or_expense) {
+                                    requiredFieldsMissing2 = true;
+                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
+                                }
+                            });
+
+                            //check things in tafs array
+                            vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
+                                console.log('tafs[' + index + '] = ', taf);
+                                if (!taf.departmentCode) {
+                                    requiredFieldsMissing2 = true;
+                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
+                                }
+                                if (!taf.accountCode) {
+                                    requiredFieldsMissing2 = true;
+                                    console.log("setting bool2 to true " + requiredFieldsMissing2);
+                                }
+                            });
+
+
                         }
 
 
                         console.log(requiredFieldsMissing + " " + requiredFieldsMissing2);
                         return requiredFieldsMissing || requiredFieldsMissing2;
                     }
+
+
 
 
                     return false;
