@@ -24,14 +24,14 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 1.4rem 0em;
+  margin: 1.7rem 0em;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #FFFFFF;
   font-weight: normal;
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   border-radius: 0rem;
-  min-height: 3.6em;
+  min-height: 4em;
 }
 .ui.menu:after {
   content: '';
@@ -90,7 +90,7 @@
       -ms-user-select: none;
           user-select: none;
   background: none;
-  padding: 1.3em 1.3em;
+  padding: 1.5em 1.5em;
   text-transform: none;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 700;
@@ -152,7 +152,7 @@
   margin: -0.5em 0em;
   padding-bottom: 1em;
   padding-top: 1em;
-  font-size: 1.4em;
+  font-size: 1.7em;
 }
 
 /*----------------
@@ -189,7 +189,7 @@
   margin: -0.5em 0em;
 }
 .ui.menu .item > .input input {
-  font-size: 1.4em;
+  font-size: 1.7em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
 }
@@ -207,7 +207,7 @@
 }
 .ui.vertical.menu .item > .header:not(.ui) {
   margin: 0em 0em 0.5em;
-  font-size: 1.4em;
+  font-size: 1.7em;
   font-weight: bold;
 }
 
@@ -253,8 +253,8 @@
 .ui.menu .ui.dropdown .menu > .item {
   margin: 0;
   text-align: left;
-  font-size: 1.4em !important;
-  padding: 1em 1.7em !important;
+  font-size: 1.7em !important;
+  padding: 1em 2em !important;
   background: transparent !important;
   color: rgba(0, 0, 0, 0.87) !important;
   text-transform: none !important;
@@ -281,7 +281,7 @@
 }
 .ui.menu .ui.dropdown .menu > .item .icon:not(.dropdown) {
   display: inline-block;
-  font-size: 1.4em !important;
+  font-size: 1.7em !important;
   float: none;
   margin: 0em 0.75em 0em 0em;
 }
@@ -575,12 +575,12 @@ Floated Menu / Item
 /*--- Sub Menu ---*/
 
 .ui.vertical.menu .item > .menu {
-  margin: 0.5em -1.3em 0em;
+  margin: 0.5em -1.5em 0em;
 }
 .ui.vertical.menu .menu .item {
   background: none;
-  padding: 0.5em 1.08333333em;
-  font-size: 1.2em;
+  padding: 0.5em 1.15384615em;
+  font-size: 1.3em;
   color: rgba(0, 0, 0, 0.5);
 }
 .ui.vertical.menu .item .menu a.item:hover,
@@ -635,7 +635,7 @@ Floated Menu / Item
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   border-top: 2px solid transparent;
-  padding: 1.3em 2em;
+  padding: 1.5em 4em;
   color: rgba(0, 0, 0, 0.87);
 }
 .ui.tabular.menu .item:before {
@@ -784,7 +784,7 @@ Floated Menu / Item
 /* Active */
 .ui.pagination.menu .active.item {
   border-top: none;
-  padding-top: 1.3em;
+  padding-top: 1.5em;
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
   box-shadow: none;
@@ -810,7 +810,7 @@ Floated Menu / Item
           align-self: center;
   box-shadow: none;
   border: none;
-  padding: 1em 1.3em;
+  padding: 1em 1.5em;
   margin: 0em 0.5em;
   background: none;
   -webkit-transition: color 0.35s ease;
@@ -888,11 +888,11 @@ Floated Menu / Item
 
 /* Sub Menu */
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu {
-  margin: 0em -1.3em;
+  margin: 0em -1.5em;
 }
 .ui.vertical.secondary.menu .item:not(.dropdown) > .menu > .item {
   margin: 0em;
-  padding: 0.7em 1.08333333em;
+  padding: 0.7em 1.15384615em;
 }
 
 /*---------------------
@@ -935,7 +935,7 @@ Floated Menu / Item
       -ms-flex-item-align: end;
           align-self: flex-end;
   margin: 0em 0em -2px;
-  padding: 1.2em 1.7em;
+  padding: 1.3em 2em;
   border-bottom-width: 2px;
   -webkit-transition: color 0.35s ease;
   transition: color 0.35s ease;
@@ -1044,7 +1044,7 @@ Floated Menu / Item
   border-radius: 0px;
   box-shadow: none;
   border: none;
-  margin: 1.4em -0.7em;
+  margin: 1.7em -0.7em;
 }
 .ui.text.menu .item {
   border-radius: 0px;
@@ -1071,7 +1071,7 @@ Floated Menu / Item
   background-color: transparent;
   opacity: 1;
   color: rgba(0, 0, 0, 0.85);
-  font-size: 1.3em;
+  font-size: 1.5em;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -1090,7 +1090,7 @@ Floated Menu / Item
 /*--- vertical text ---*/
 
 .ui.vertical.text.menu {
-  margin: 1.4em 0em;
+  margin: 1.7em 0em;
 }
 .ui.vertical.text.menu:first-child {
   margin-top: 0rem;
@@ -1235,7 +1235,7 @@ Floated Menu / Item
 .ui.labeled.icon.menu .item > .icon:not(.dropdown) {
   height: 1em;
   display: block;
-  font-size: 3em !important;
+  font-size: 5.2em !important;
   margin: 0em auto 0.5rem !important;
 }
 
@@ -1621,14 +1621,14 @@ Floated Menu / Item
 .ui.horizontally.fitted.menu .item,
 .ui.horizontally.fitted.menu .item .menu .item,
 .ui.menu .horizontally.fitted.item {
-  padding-top: 1.3em;
-  padding-bottom: 1.3em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
 }
 .ui.vertically.fitted.menu .item,
 .ui.vertically.fitted.menu .item .menu .item,
 .ui.menu .vertically.fitted.item {
-  padding-left: 1.3em;
-  padding-right: 1.3em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 /*--------------
@@ -1891,7 +1891,7 @@ Floated Menu / Item
   bottom: 0px;
   margin-bottom: 0em;
   top: 0px;
-  margin-top: 1.4rem;
+  margin-top: 1.7rem;
   border-radius: 0rem 0rem 0em 0em;
 }
 .ui.menu[class*="top attached"]:first-child {
@@ -1903,7 +1903,7 @@ Floated Menu / Item
   bottom: 0px;
   margin-top: 0em;
   top: 0px;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.7rem;
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), none;
   border-radius: 0em 0em 0rem 0rem;
 }
@@ -1939,7 +1939,7 @@ Floated Menu / Item
 
 /* Small */
 .ui.small.menu {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .ui.small.vertical.menu {
   width: 13rem;
@@ -1947,7 +1947,7 @@ Floated Menu / Item
 
 /* Medium */
 .ui.menu {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 .ui.vertical.menu {
   width: 15rem;
@@ -1955,7 +1955,7 @@ Floated Menu / Item
 
 /* Large */
 .ui.large.menu {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 .ui.large.vertical.menu {
   width: 18rem;
@@ -1963,7 +1963,7 @@ Floated Menu / Item
 
 /* Huge */
 .ui.huge.menu {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 .ui.huge.vertical.menu {
   width: 20rem;
@@ -2004,7 +2004,7 @@ Floated Menu / Item
 
 /* Big */
 .ui.big.menu {
-  font-size: 1.8rem;
+  font-size: 3rem;
 }
 .ui.big.vertical.menu {
   width: 19rem;

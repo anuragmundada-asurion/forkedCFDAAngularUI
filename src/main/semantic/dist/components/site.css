@@ -186,6 +186,12 @@ html.tr-coretext {
 ---------------*/
 
 .font.huge {
+  font-size: 4rem;
+}
+.font.big {
+  font-size: 3rem;
+}
+.font.large {
   font-size: 2rem;
 }
 

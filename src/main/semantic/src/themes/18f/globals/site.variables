@@ -99,13 +99,13 @@
 */
 
 @miniSize        : (10 / 10);
-@tinySize        : (12 / 10);
-@smallSize       : (13 / 10);
-@mediumSize      : (14 / 10);
-@largeSize       : (17 / 10);
-@bigSize         : (18 / 10);
-@hugeSize        : (20 / 10);
-@massiveSize     : (30 / 10);
+@tinySize        : (13 / 10);
+@smallSize       : (15 / 10);
+@mediumSize      : (17 / 10);
+@largeSize       : (20 / 10);
+@bigSize         : (30 / 10);
+@hugeSize        : (40 / 10);
+@massiveSize     : (52 / 10);
 
 
 /*-------------------

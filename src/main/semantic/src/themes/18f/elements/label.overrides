@@ -17,14 +17,14 @@
     background-color: @white !important;
 }
 
-.ui.outline.massive.label{
+.ui.outline.big.label{
     border-width: @3px;
 }
 
 /*-------------------
       Circular
 --------------------*/
-.ui.massive.circular.label{
+.ui.big.circular.label{
     min-width: 2.8em;
     min-height: 2.7em;
     padding: 0.7em 0.5em !important;
@@ -34,7 +34,7 @@
 /*-------------------
         Sizes
 --------------------*/
-.ui.massive.labels .label,
-.ui.massive.label {
+.ui.big.labels .label,
+.ui.big.label {
   letter-spacing: -@2px;
 }

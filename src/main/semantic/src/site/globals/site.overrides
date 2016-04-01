@@ -38,6 +38,12 @@ html.tr-coretext{
 .font.huge{
     font-size: @absoluteHuge;
 }
+.font.big{
+    font-size: @absoluteBig;
+}
+.font.large{
+    font-size: @absoluteLarge;
+}
 
 /*--------------
   Header Sizes
