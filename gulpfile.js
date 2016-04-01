@@ -112,7 +112,7 @@ gulp.task('iae', ['index'], function() {
                 
     var allCss = gulp.src(['src/main/scss/uswds/uswds-theme.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
         .pipe(sass().on('error', sass.logError))
-        .pipe(cssPrefix({parentClass: 'theme-iae'}))        
+        // .pipe(cssPrefix({parentClass: 'theme-iae'}))        
         .pipe(gulp.dest('target/classes/static/css'));
 
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')

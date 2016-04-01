@@ -1,0 +1,11 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+/*-------------------
+       Aligned
+--------------------*/
+
+.ui.items > .item > .label + [class*="middle aligned"].content {
+  align-self: center;
+}

@@ -11,10 +11,8 @@
     <!-- endinject -->
     <!-- iae:css -->
     <!-- endinject -->
-    <!-- cfda:css -->
-    <!-- endinject -->
-    <!-- semantic:css -->
-    <!-- endinject -->
+    
+
 
     <!--[if lte IE 9]>
     <script type="text/javascript">
@@ -41,7 +39,14 @@
 </head>
 <body>
     <div ng-if="$state.current.name === 'home'">
-      <!--<link rel="stylesheet" href="/semantic/semantic.css">-->
+      <link rel="stylesheet" href="/semantic/semantic.css">
+    </div>
+    <div ng-if="$state.current.name !== 'home'">
+      <link rel="stylesheet" href="/semantic/components/reset.css">
+      <link rel="stylesheet" href="/semantic/components/site.css">
+      <link rel="stylesheet" href="/semantic/components/menu.css">
+      <link rel="stylesheet" href="/semantic/components/container.css">
+      <link rel="stylesheet" href="/css/cfda.min.css">
     </div>
 
     <header class="header theme-iae" role="banner">

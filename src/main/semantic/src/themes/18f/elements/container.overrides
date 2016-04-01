@@ -1,0 +1,7 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+.ui.text.container .inverted{
+    color: @white;
+}
