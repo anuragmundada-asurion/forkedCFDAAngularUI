@@ -1,6 +1,9 @@
 <primary-nav-bar></primary-nav-bar>
 
-<div class="background darkblue">
+<div class="background darkblue" style="padding-bottom: 50px;">
+    
+    <!-- Intro text -->
+    
     <div class="ui center aligned text container very padded basic segment">
         <h4 class="ui inverted header">
             Federal Assistance Searching - Simplified            
@@ -12,12 +15,74 @@
             provide relevant contact information.
         </p>
     </div>
+    
+    <!-- Search box -->
+    
+    <global-search-box></global-search-box>
+    
+    
+    <div class="ui very relaxed stackable grid container">
+
+        <div class="two column row ui segment borderless">
+
+            <!-- New in 2015 -->
+            
+            <div class="column">
+                
+                <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
+                
+                <div class="ui items lightblue padded">
+                    <div class="item">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.new">
+                            {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
+                        </div>                        
+                        <div class="middle aligned content">
+                            <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
+                            <span class="blue font lighter h1 size">New Listings</span>
+                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.archived">
+                            {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
+                        </div>
+                        <div class="middle aligned content">
+                            <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
+                            <span class="blue font lighter h1 size">Archived Listings</span>
+                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.updated">
+                            {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
+                        </div>
+                        <div class="middle aligned content">
+                            <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
+                            <span class="blue font lighter h1 size">Updated Listings</span>
+                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Who can apply chart -->
+            
+            <div class="column">
+                <h3 class="ui centered aligned header">Who Can Apply</h3>
+                <div id="listingsChart"></div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    
 </div>
 
-<global-search-box></global-search-box>
 
-<div>
-    <!-- search options are another grid -->
+
+<div class="background gray" style="padding: 40px 0px;">
 
     <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
     class="usa-grid-full home-dashboard">
@@ -75,68 +140,6 @@
             <a class="usa-button usa-button-gray" ui-sref="programList.status({status: 'archived'})"><span class="fa fa-archive"></span> Archived Listing</a>
             <a class="usa-button usa-button-gray"><span class="fa fa-server"></span> Historical Index</a>
         </div>
-    </div>
-
-</div>
-
-
-
-<div class="background gray" style="padding: 40px 0px;">
-
-    <div class="ui very relaxed stackable grid container">
-
-        <div class="two column row ui segment borderless">
-
-            <!-- New in 2015 -->
-            
-            <div class="column">
-                
-                <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
-                
-                <div class="ui items lightblue padded">
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.new">
-                            {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
-                        </div>                        
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">New Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.archived">
-                            {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
-                        </div>
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">Archived Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled massive" ng-show="aProgramCount.updated">
-                            {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
-                        </div>
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">Updated Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-
-            <!-- Who can apply chart -->
-            
-            <div class="column">
-                <h3 class="ui centered aligned header">Who Can Apply</h3>
-                <div id="listingsChart"></div>
-            </div>
-
-        </div>
-
     </div>
 
 </div>
