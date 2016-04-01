@@ -40,6 +40,16 @@ html.tr-coretext{
 }
 
 /*--------------
+  Header Sizes
+---------------*/
+
+.h1.size{
+    font-size: @h1 !important;
+    line-height: 3.5rem;
+    letter-spacing: -2px;
+}
+
+/*--------------
    Font Style
 ---------------*/
 .font.bold{
@@ -48,12 +58,22 @@ html.tr-coretext{
 .font.light{
     font-weight: 300;
 }
+.font.lighter{
+    font-weight: 200;
+}
 
 /*--------------
  Font Transformation
 ---------------*/
 .font.uppercase{
     text-transform: uppercase;
+}
+
+/*--------------
+      Image
+---------------*/
+.align.top{
+    vertical-align: top;
 }
 
 /*--------------

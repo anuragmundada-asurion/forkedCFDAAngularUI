@@ -1190,7 +1190,7 @@
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
                             <multi-entry-header>
-                                <h4>121 Account Identification</h4>
+                                <h4>121 Account Identification<span class="required" >*</span></h4>
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1852,9 +1852,12 @@
                         <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="!gsavm.program.application.selectionCriteria.flag" trigger-click-on-enter>180 Criteria for Selecting Proposals is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content" trigger-click-on-enter>180 Criteria for Selecting Proposals - describe criteria is required<br/></a>
                     </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag)
-                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag)
-                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag)
+                    <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag) || (gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.program.flag==='yes') && (!gsavm.program.postAward.reports.list.program.content)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag) || (gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.cash.flag==='yes') && (!gsavm.program.postAward.reports.list.cash.content)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag) || (gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.progress.flag==='yes') && (!gsavm.program.postAward.reports.list.progress.content)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag) || (gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes') && (!gsavm.program.postAward.reports.list.expenditure.content)
+                        || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag) || (gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes') && (!gsavm.program.postAward.reports.list.performanceMonitoring.content)
                         || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
                         || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)">
                         <h4>Post Award Requirements</h4>
@@ -1874,11 +1877,32 @@
                         <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="!gsavm.program.postAward.documents.flag" trigger-click-on-enter>140 Regulations, Guidelines, and Literature is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content" trigger-click-on-enter>140 Regulations, Guidelines, and Literature - description is required<br/></a>
                     </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag">
+                    <div style="padding-top:15px" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0
+                    || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0
+                    || !gsavm.program.postAward.accomplishments.flag" >
+
+
                         <h4>Financial Information and Accomplishments</h4>
+                        <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0 " trigger-click-on-enter>121 Account Identification is required<br/></a>
+                        <div ng-repeat="account in gsavm.program.financial.accounts">
+                            <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for an account<br/></a>
+                        </div>
+                        <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
+                        <div ng-repeat="obligation in gsavm.program.financial.obligations">
+                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required<br/></a>
+                        </div>
+
                         <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
+                        <div ng-repeat="taf in gsavm.program.financial.treasury.tafs">
+                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Department Code field is required<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Account Code field is required<br/></a>
+                        </div>
+
+
                         <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
                     </div>
+
                     <div style="padding-top:15px" ng-show="!gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
                         <h4>Contact Information</h4>
                         <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>

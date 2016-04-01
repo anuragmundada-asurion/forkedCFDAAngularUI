@@ -8,7 +8,7 @@
  * http://opensource.org/licenses/MIT
  *
  */
-@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:300,400,400italic,700|Merriweather:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400,400italic,700|Merriweather:300,400,700');
 /*!
  * # Semantic UI 2.1.8 - Reset
  * http://github.com/semantic-org/semantic-ui/
@@ -704,6 +704,16 @@ html.tr-coretext {
 }
 
 /*--------------
+  Header Sizes
+---------------*/
+
+.h1.size {
+  font-size: 4rem !important;
+  line-height: 3.5rem;
+  letter-spacing: -2px;
+}
+
+/*--------------
    Font Style
 ---------------*/
 
@@ -715,12 +725,24 @@ html.tr-coretext {
   font-weight: 300;
 }
 
+.font.lighter {
+  font-weight: 200;
+}
+
 /*--------------
  Font Transformation
 ---------------*/
 
 .font.uppercase {
   text-transform: uppercase;
+}
+
+/*--------------
+      Image
+---------------*/
+
+.align.top {
+  vertical-align: top;
 }
 
 /*--------------
@@ -4573,21 +4595,21 @@ html.tr-coretext {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ui.container {
-    width: 723px;
+    width: 731px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 723px  +  2rem ) !important;
+    width: calc( 731px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 723px  +  3rem ) !important;
+    width: calc( 731px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 723px  +  5rem ) !important;
+    width: calc( 731px  +  5rem ) !important;
   }
 }
 
@@ -4595,21 +4617,21 @@ html.tr-coretext {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .ui.container {
-    width: 933px;
+    width: 945px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 933px  +  2rem ) !important;
+    width: calc( 945px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 933px  +  3rem ) !important;
+    width: calc( 945px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 933px  +  5rem ) !important;
+    width: calc( 945px  +  5rem ) !important;
   }
 }
 
@@ -4617,21 +4639,21 @@ html.tr-coretext {
 
 @media only screen and (min-width: 1200px) {
   .ui.container {
-    width: 1127px;
+    width: 1143px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 1127px  +  2rem ) !important;
+    width: calc( 1143px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 1127px  +  3rem ) !important;
+    width: calc( 1143px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 1127px  +  5rem ) !important;
+    width: calc( 1143px  +  5rem ) !important;
   }
 }
 
@@ -4642,13 +4664,13 @@ html.tr-coretext {
 /* Text Container */
 
 .ui.text.container {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   max-width: 700px !important;
   line-height: 1.5;
 }
 
 .ui.text.container {
-  font-size: 1.14285714rem;
+  font-size: 1.7rem;
 }
 
 /* Fluid */
@@ -4683,6 +4705,10 @@ html.tr-coretext {
 /*******************************
          Theme Overrides
 *******************************/
+
+.ui.text.container .inverted {
+  color: #FFFFFF;
+}
 
 /*******************************
          Site Overrides
@@ -6388,11 +6414,11 @@ h5.ui.header {
 /* Sub Header */
 
 h1.ui.header .sub.header {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 h2.ui.header .sub.header {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 h3.ui.header .sub.header {
@@ -6435,11 +6461,11 @@ h5.ui.header .sub.header {
 /* Sub Header */
 
 .ui.huge.header .sub.header {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .ui.large.header .sub.header {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .ui.header .sub.header {
@@ -6970,7 +6996,7 @@ a.ui.inverted.grey.header:hover {
 }
 
 .ui.large.block.header {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .ui.huge.block.header {
@@ -7027,7 +7053,7 @@ a.ui.inverted.grey.header:hover {
 }
 
 .ui.large.attached.header {
-  font-size: 1.6em;
+  font-size: 1.7em;
 }
 
 .ui.huge.attached.header {
@@ -11514,7 +11540,7 @@ a.ui.label {
   position: relative;
   top: 0.9em;
   left: 1.1em;
-  font-size: 1.6em;
+  font-size: 1.7em;
   margin: 0em;
 }
 
@@ -19871,7 +19897,7 @@ ol.ui.horizontal.list li:before,
   margin: 0;
   text-align: left;
   font-size: 1.4em !important;
-  padding: 1em 1.6em !important;
+  padding: 1em 1.7em !important;
   background: transparent !important;
   color: rgba(0, 0, 0, 0.87) !important;
   text-transform: none !important;
@@ -20622,7 +20648,7 @@ Floated Menu / Item
   -ms-flex-item-align: end;
   align-self: flex-end;
   margin: 0em 0em -2px;
-  padding: 1.2em 1.6em;
+  padding: 1.2em 1.7em;
   border-bottom-width: 2px;
   -webkit-transition: color 0.35s ease;
   transition: color 0.35s ease;
@@ -21790,7 +21816,7 @@ Floated Menu / Item
 /* Large */
 
 .ui.large.menu {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
 }
 
 .ui.large.vertical.menu {
@@ -25605,8 +25631,8 @@ a.ui.card:hover,
   border: none;
   border-radius: 0rem;
   box-shadow: none;
-  -webkit-transition: box-shadow 0.1s ease;
-  transition: box-shadow 0.1s ease;
+  -webkit-transition: box-shadow 0.35s ease;
+  transition: box-shadow 0.35s ease;
   z-index: '';
 }
 
@@ -25724,8 +25750,8 @@ a.ui.card:hover,
 
 .ui.items > .item > .content > .header {
   display: inline-block;
-  margin: -0.21425em 0em 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: -0.25em 0em 0em;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.85);
 }
@@ -25733,7 +25759,7 @@ a.ui.card:hover,
 /* Default Header Size */
 
 .ui.items > .item > .content > .header:not(.ui) {
-  font-size: 1.28571429em;
+  font-size: 1.8em;
 }
 
 /*--------------
@@ -25774,7 +25800,7 @@ a.ui.card:hover,
   margin-top: 0.6em;
   max-width: auto;
   font-size: 1em;
-  line-height: 1.4285em;
+  line-height: 1.5em;
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -25822,8 +25848,8 @@ a.ui.card:hover,
 
 .ui.items > .item > .content a:not(.ui) {
   color: '';
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 .ui.items > .item > .content a:not(.ui):hover {
@@ -25861,8 +25887,8 @@ a.ui.card:hover,
 .ui.items > .item > .content .favorite.icon {
   cursor: pointer;
   opacity: 0.75;
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 .ui.items > .item > .content .favorite.icon:hover {
@@ -25881,8 +25907,8 @@ a.ui.card:hover,
 .ui.items > .item > .content .like.icon {
   cursor: pointer;
   opacity: 0.75;
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 .ui.items > .item > .content .like.icon:hover {
@@ -25909,8 +25935,8 @@ a.ui.card:hover,
   left: 0em;
   color: rgba(0, 0, 0, 0.4);
   box-shadow: none;
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
   border-top: none;
 }
 
@@ -26085,6 +26111,16 @@ a.ui.card:hover,
 /*******************************
          Theme Overrides
 *******************************/
+
+/*-------------------
+       Aligned
+--------------------*/
+
+.ui.items > .item > .label + [class*="middle aligned"].content {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
 
 /*******************************
     User Variable Overrides
