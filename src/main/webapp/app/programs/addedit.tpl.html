@@ -1897,14 +1897,36 @@
                         <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
                     </div>
 
+                    <!--<div style="padding-top:15px" ng-show="!gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">-->
+                        <!--<h4>Contact Information</h4>-->
+                        <!--<a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>-->
+                        <!--<a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>-->
+                    <!--</div>-->
 
 
-
-                    <div style="padding-top:15px" ng-show="!gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
+                    <div style="padding-top:15px" ng-show="isVisible('contactSection')">
                         <h4>Contact Information</h4>
                         <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>
+
+                        <div ng-repeat="hqContact in gsavm.program.contacts.list">
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.city" trigger-click-on-enter>152 Headquarters Office, City is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.zip" trigger-click-on-enter>152 Headquarters Office, Zip is missing for HQ Contact # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.state" trigger-click-on-enter>152 Headquarters Office, State is missing for HQ Contact # {{$index + 1}}<br/></a>
+                        </div>
                     </div>
+
+
+
+
+
+
+
+
                 </td>
                 <td style="vertical-align:top;border:none">
                     <span class="fa fa-minus-square-o" style="position:relative;top:35px;" ng-click="gsavm.IsVisible = !gsavm.IsVisible"></span>

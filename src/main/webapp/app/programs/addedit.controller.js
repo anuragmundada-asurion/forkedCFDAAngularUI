@@ -463,49 +463,66 @@
 
 
                 function checkMissingRequiredFields(sectionName) {
-                    if (sectionName === 'financialSection') {
+                    var requiredFieldsMissing = false;
+                    switch (sectionName) {
+                        case 'financialSection':
+                            //upper level validation
+                            requiredFieldsMissing = (!vm.program || !vm.program.financial || !vm.program.postAward
+                            || !vm.program.financial.accounts || vm.program.financial.accounts.length == 0
+                            || !vm.program.financial.treasury
+                            || !vm.program.financial.treasury.tafs || vm.program.financial.treasury.tafs.length == 0
+                            || !vm.program.postAward.accomplishments.flag);
 
-                        //upper level validation
-                        var requiredFieldsMissing = (!vm.program || !vm.program.financial || !vm.program.postAward
-                        || !vm.program.financial.accounts || vm.program.financial.accounts.length == 0
-                        || !vm.program.financial.treasury
-                        || !vm.program.financial.treasury.tafs || vm.program.financial.treasury.tafs.length == 0
-                        || !vm.program.postAward.accomplishments.flag);
+                            //go into the arrays and check their elements also
+                            if (!requiredFieldsMissing) {
+
+                                //check things in accounts array
+                                vm.program.financial.accounts.forEach(function (account, index, array) {
+                                    if (!account.code) {
+                                        requiredFieldsMissing = true;
+                                    }
+                                });
+
+                                //check things in obligations array
+                                vm.program.financial.obligations.forEach(function (obligation, index, array) {
+                                    if (!obligation.questions.recovery) {
+                                        requiredFieldsMissing = true;
+                                    }
+                                    if (!obligation.questions.salary_or_expense) {
+                                        requiredFieldsMissing = true;
+                                    }
+                                });
+
+                                //check things in tafs array
+                                vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
+                                    if (!taf.departmentCode) {
+                                        requiredFieldsMissing = true;
+                                    }
+
+                                    if (!taf.accountCode) {
+                                        requiredFieldsMissing = true;
+                                    }
+                                });
+                            }
+                            return requiredFieldsMissing;
+                        case 'contactSection':
+
+                            requiredFieldsMissing = (!vm.program.contacts || !vm.program.contacts['local'].flag || !vm.program.contacts.list || vm.program.contacts.list.length == 0);
+
+                            //if still false, then check hq address's required fields;
+                            if (!requiredFieldsMissing) {
+
+                                vm.program.contacts.list.forEach(function (hqContact, index, array) {
+
+                                    requiredFieldsMissing = !(hqContact.fullName && hqContact.email && hqContact.phone
+                                    && hqContact.address && hqContact.city && hqContact.zip && hqContact.state);
+
+                                });
 
 
-                        //go into the arrays and check their elements also
-                        if (!requiredFieldsMissing) {
-
-                            //check things in accounts array
-                            vm.program.financial.accounts.forEach(function (account, index, array) {
-                                if (!account.code) {
-                                    requiredFieldsMissing = true;
-                                }
-                            });
-
-                            //check things in obligations array
-                            vm.program.financial.obligations.forEach(function (obligation, index, array) {
-                                if (!obligation.questions.recovery) {
-                                    requiredFieldsMissing = true;
-                                }
-                                if (!obligation.questions.salary_or_expense) {
-                                    requiredFieldsMissing = true;
-                                }
-                            });
-
-                            //check things in tafs array
-                            vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
-                                if (!taf.departmentCode) {
-                                    requiredFieldsMissing = true;
-                                }
-
-                                if (!taf.accountCode) {
-                                    requiredFieldsMissing = true;
-                                }
-                            });
-                        }
-
-                        return requiredFieldsMissing;
+                            }
+                            return requiredFieldsMissing;
+                            break;
                     }
 
 
