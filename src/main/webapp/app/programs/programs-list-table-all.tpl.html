@@ -60,6 +60,7 @@
             <td class="action-row">
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS] }}" ng-show="(row.status.code === 'draft' || row.status.code === 'rejected') && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id }, 'review')"><span class="fa fa-pencil"></span></button>
                 <button has-access="{{ [PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS] }}" ng-show="row.status.code === 'pending' && !row.archived" type="button" title="Edit FAL" ng-click="editProgram({ id: row.id }, 'review')"><span class="fa fa-pencil"></span></button>
+                <button has-access="{{ [PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS] }}" ng-show="row.status.code === 'published' && !row.archived" type="button" title="Revise FAL" ng-click="reviseProgram(row.id)"><span class="fa fa-pencil"></span></button>
 
                 <button has-access="{{ [PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS] }}" ng-show="row.status.code === 'draft' && !row.data.programNumber && !row.archived" type="button" title="Delete FAL" ng-click="deleteProgram(row)"><span class="fa fa-trash-o"></span></button>
 
