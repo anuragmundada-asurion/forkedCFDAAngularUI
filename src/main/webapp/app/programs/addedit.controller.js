@@ -475,15 +475,36 @@
                         //go into the arrays and check their elements also
                         var requiredFieldsMissing2 = false;
                         if (!requiredFieldsMissing) {
-                            vm.program.financial.accounts.forEach(function (accountObj, index, array) {
-                                if (!accountObj.code) {
+
+                            //check things in accounts array
+                            vm.program.financial.accounts.forEach(function (account, index, array) {
+                                if (!account.code) {
+                                    requiredFieldsMissing2 = true;
+                                }
+                            });
+
+                            //check things in obligations array
+                            vm.program.financial.obligations.forEach(function (obligation, index, array) {
+                                if (!obligation.questions.recovery) {
+                                    requiredFieldsMissing2 = true;
+                                }
+                                if (!obligation.questions.salary_or_expense) {
+                                    requiredFieldsMissing2 = true;
+                                }
+                            });
+
+                            //check things in tafs array
+                            vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
+                                if (!taf.departmentCode) {
                                     requiredFieldsMissing2 = true;
                                 }
 
+                                if (!taf.accountCode) {
+                                    requiredFieldsMissing2 = true;
+                                }
                             });
                         }
 
-                        //if either is true, return true;
                         return requiredFieldsMissing || requiredFieldsMissing2;
                     }
 
