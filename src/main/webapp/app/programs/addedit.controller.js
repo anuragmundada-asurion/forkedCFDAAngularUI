@@ -457,6 +457,7 @@
 
                 //returns true if some required fields are missing.
                 $scope.isVisible = function (sectionName) {
+                    //console.log(vm.program);
                     return checkMissingRequiredFields(sectionName);
                 };
 
@@ -473,39 +474,38 @@
 
 
                         //go into the arrays and check their elements also
-                        var requiredFieldsMissing2 = false;
                         if (!requiredFieldsMissing) {
 
                             //check things in accounts array
                             vm.program.financial.accounts.forEach(function (account, index, array) {
                                 if (!account.code) {
-                                    requiredFieldsMissing2 = true;
+                                    requiredFieldsMissing = true;
                                 }
                             });
 
                             //check things in obligations array
                             vm.program.financial.obligations.forEach(function (obligation, index, array) {
                                 if (!obligation.questions.recovery) {
-                                    requiredFieldsMissing2 = true;
+                                    requiredFieldsMissing = true;
                                 }
                                 if (!obligation.questions.salary_or_expense) {
-                                    requiredFieldsMissing2 = true;
+                                    requiredFieldsMissing = true;
                                 }
                             });
 
                             //check things in tafs array
                             vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
                                 if (!taf.departmentCode) {
-                                    requiredFieldsMissing2 = true;
+                                    requiredFieldsMissing = true;
                                 }
 
                                 if (!taf.accountCode) {
-                                    requiredFieldsMissing2 = true;
+                                    requiredFieldsMissing = true;
                                 }
                             });
                         }
 
-                        return requiredFieldsMissing || requiredFieldsMissing2;
+                        return requiredFieldsMissing;
                     }
 
 
