@@ -41,7 +41,7 @@
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
                             <a ng-click="searchByListingPublication('new')">
-                                <span class="blue font lighter h1 size">New Listings</span>
+                                <span class="font lighter h1 size">New Listings</span>
                                 <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                             </a>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
-                            <span class="blue font lighter h1 size">Archived Listings</span>
+                            <span class="font lighter h1 size">Archived Listings</span>
                             <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
                             <a ng-click="searchByListingPublication('updated')">
-                                <span class="blue font lighter h1 size">Updated Listings</span>
+                                <span class="font lighter h1 size">Updated Listings</span>
                                 <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
                             </a>
                         </div>
@@ -87,11 +87,13 @@
 </div>
 
 
+<!-- User Dashboard -->
 
 <div class="background gray" style="padding: 40px 0px;">
 
     <div has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
     class="usa-grid-full home-dashboard">
+    
         <div class="usa-grid-full">
             <div class="user-dashboard-label">{{ user.fullName }}'s Dashboard</div>
             <div class="user-dashboard-request">
@@ -102,39 +104,52 @@
                 </a>
             </div>
         </div>
-        <div class="count-box">
-            <a ui-sref="programList.status({status: 'all'})">
-                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
-                <h4>Total Active Listings</h4>
+        
+        <div class="ui stackable fluid five item menu">
+            <a class="item" ui-sref="programList.status({status: 'all'})">
+                <div class="ui statistic">
+                    <div class="value">
+                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                        <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
+                    </div>
+                    <div class="label">Total Active Listings</div>
+                </div>
             </a>
-        </div>
-        <div class="count-box">
-            <a ui-sref="programList.status({status: 'draft'})">
-                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
-                <h4>Draft Listings</h4>
+            <a class="item" ui-sref="programList.status({status: 'draft'})">
+                <div class="ui statistic">
+                    <div class="value">
+                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                        <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
+                    </div>
+                    <div class="label">Draft Listing</div>
+                </div>
             </a>
-        </div>
-        <div class="count-box">
-            <a ui-sref="programList.status({status: 'pending'})">
-                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
-                <h4>Pending Listings</h4>
+            <a class="item" ui-sref="programList.status({status: 'pending'})">
+                <div class="ui statistic">
+                    <div class="value">
+                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                        <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
+                    </div>
+                    <div class="label">Pending Listings</div>
+                </div>
             </a>
-        </div>
-        <div class="count-box">
-            <a ui-sref="programList.status({status: 'published'})">
-                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
-                <h4>Published Listings</h4>
+            <a class="item" ui-sref="programList.status({status: 'published'})">
+                <div class="ui statistic">
+                    <div class="value">
+                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                        <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
+                    </div>
+                    <div class="label">Published Listings</div>
+                </div>
             </a>
-        </div>
-        <div class="count-box">
-            <a ui-sref="programList.status({status: 'rejected'})">
-                <span class="userDashboardCount" ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span class="userDashboardCount" ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
-                <h4>Rejected Listings</h4>
+            <a class="item" ui-sref="programList.status({status: 'rejected'})">
+                <div class="ui statistic">
+                    <div class="value">
+                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                        <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
+                    </div>
+                    <div class="label">Rejected Listings</div>
+                </div>
             </a>
         </div>
 
