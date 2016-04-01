@@ -38,6 +38,12 @@ html.tr-coretext{
 .font.huge{
     font-size: @absoluteHuge;
 }
+.font.big{
+    font-size: @absoluteBig;
+}
+.font.large{
+    font-size: @absoluteLarge;
+}
 
 /*--------------
   Header Sizes
@@ -60,6 +66,13 @@ html.tr-coretext{
 }
 .font.lighter{
     font-weight: 200;
+}
+
+/*--------------
+   Font Color
+---------------*/
+.font.blue{
+    color: @blue;
 }
 
 /*--------------

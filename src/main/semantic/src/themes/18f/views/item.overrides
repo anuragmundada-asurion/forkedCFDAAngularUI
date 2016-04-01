@@ -2,10 +2,29 @@
          Theme Overrides
 *******************************/
 
+
+/*******************************
+           Variations
+*******************************/
+
 /*-------------------
        Aligned
 --------------------*/
 
 .ui.items > .item > .label + [class*="middle aligned"].content {
   align-self: center;
+}
+
+/*--------------
+     Padded
+---------------*/
+.ui.padded.items > .item {
+  padding: .7em;
+}
+
+/*--------------
+     Colored
+---------------*/
+.ui.padded.items > .item {
+  background-color: @lightBlue;
 }

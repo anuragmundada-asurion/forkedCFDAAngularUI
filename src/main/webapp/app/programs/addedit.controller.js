@@ -27,14 +27,14 @@
                 //initialize program object
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
-                    vm.program = new Program();
+                    vm.program  = new ProgramFactory();
                     vm.program._id = null;
                     vm.program.organizationId = UserService.getUser().orgId;
                 } else { // Edit/Review program
                     //vm.isCreateProgram = false;
                     vm.program = {};
                     ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                        vm.program = new Program(data);
+                        vm.program = data;
                         vm.originalTitle = vm.program.title;
                         //reload contacts when object is available
                         vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});
@@ -384,7 +384,6 @@
                 }
 
                 function onSectionChange(prevSectionKey) {
-                    console.log(vm.program);
                     save();
                     revealValidations(prevSectionKey);
                 }

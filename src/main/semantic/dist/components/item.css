@@ -149,7 +149,7 @@
 
 /* Default Header Size */
 .ui.items > .item > .content > .header:not(.ui) {
-  font-size: 1.8em;
+  font-size: 3em;
 }
 
 /*--------------
@@ -244,7 +244,7 @@
   color: rgba(0, 0, 0, 0.85);
 }
 .ui.items > .item > .content > a.header:hover {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /* Meta */
@@ -458,7 +458,7 @@
 }
 .ui.items a.item:hover .content .header,
 .ui.link.items > .item:hover .content .header {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /*--------------
@@ -475,6 +475,12 @@
 *******************************/
 
 
+
+/*******************************
+           Variations
+*******************************/
+
+
 /*-------------------
        Aligned
 --------------------*/
@@ -483,6 +489,22 @@
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
+}
+
+/*--------------
+     Padded
+---------------*/
+
+.ui.padded.items > .item {
+  padding: .7em;
+}
+
+/*--------------
+     Colored
+---------------*/
+
+.ui.padded.items > .item {
+  background-color: #E1F3F8;
 }
 
 
