@@ -16,11 +16,14 @@
             getStatus: function(){
                 return this.status ? this.status : '';
             },
+            getId: function() {
+                return this._id;
+            },
             isArchived: function() {
                 return this.archived;
             },
             isDraft: function() {
-                return this.getStatus().toLowerCase() === 'draft' && !this.isArchived();
+                return (this.getStatus().toLowerCase() === 'draft' && !this.isArchived()) || !this.getId();
             },
             isRejected: function() {
                 return this.getStatus().toLowerCase() === 'rejected' && !this.isArchived();
