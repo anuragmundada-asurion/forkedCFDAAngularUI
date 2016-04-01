@@ -968,6 +968,8 @@ body {
       vertical-align: middle;
       text-align: center;
       cursor: pointer; }
+    .iae-header-login-bar .iae-signed-in-bar span + span, .iae-header-login-bar .iae-signed-in-bar span + button {
+      margin-left: 8px; }
     .iae-header-login-bar .iae-signed-in-bar i {
       display: inline-block;
       vertical-align: middle;
