@@ -129,10 +129,10 @@
        Links
 --------------------*/
 
-@linkColor           : #4183C4;
+@linkColor           : @blue;
 @linkUnderline       : none;
-@linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
-@linkHoverUnderline  : @linkUnderline;
+@linkHoverColor      : #205493;
+@linkHoverUnderline  : underline;
 
 /*-------------------
   Highlighted Text

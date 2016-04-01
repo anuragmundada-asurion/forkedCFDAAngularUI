@@ -23,7 +23,7 @@
 @tapColor: transparent;
 @fontFamily: @pageFont;
 @fontWeight: bold;
-@textColor: rgba(0, 0, 0, 0.6);
+@textColor: @linkColor;
 @textShadow: none;
 @invertedTextShadow: @textShadow;
 @borderRadius: 0rem;
