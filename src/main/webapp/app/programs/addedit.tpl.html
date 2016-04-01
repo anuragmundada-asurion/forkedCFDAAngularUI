@@ -1190,7 +1190,7 @@
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
                             <multi-entry-header>
-                                <h4>121 Account Identification</h4>
+                                <h4>121 Account Identification <span class="required" >*</span></h4>
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1212,7 +1212,7 @@
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
                             <multi-entry-header>
-                                <h4>122 Obligations</h4>
+                                <h4>122 Obligations <span class="required" >*</span></h4>
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='obligations'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1874,11 +1874,32 @@
                         <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="!gsavm.program.postAward.documents.flag" trigger-click-on-enter>140 Regulations, Guidelines, and Literature is required<br/></a>
                         <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content" trigger-click-on-enter>140 Regulations, Guidelines, and Literature - description is required<br/></a>
                     </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag">
+
+
+                    <div style="padding-top:15px" ng-show="isVisible('financialSection')" >
                         <h4>Financial Information and Accomplishments</h4>
+                        <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0 " trigger-click-on-enter>121 Account Identification is required<br/></a>
+                        <div ng-repeat="account in gsavm.program.financial.accounts">
+                            <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for Account # {{$index + 1}}<br/></a>
+                        </div>
+                        <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
+                        <div ng-repeat="obligation in gsavm.program.financial.obligations">
+                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required for Obligation # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
+                        </div>
+
                         <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
+                        <div ng-repeat="taf in gsavm.program.financial.treasury.tafs">
+                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field is required for TAF # {{$index + 1}}<br/></a>
+                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field is required for TAF # {{$index + 1}}<br/></a>
+                        </div>
+
                         <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
                     </div>
+
+
+
+
                     <div style="padding-top:15px" ng-show="!gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
                         <h4>Contact Information</h4>
                         <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>

@@ -17,6 +17,14 @@
                 $scope.dictionary.aAssistanceType = $scope.dropdownDataStructure(data.assistance_type, $scope.advancedSearch.aAssistanceType, true);
             });
 
+            //remove custom search fields out of advanced search fields criteria
+            if($state.current['name'] === 'advancedSearch' || ($stateParams.hasOwnProperty('removeCustomSearchFields') && $stateParams.removeCustomSearchFields)) {
+                //remove pre-filtered Publication Listing (Coming from home "New in 2016" section)
+                if($scope.advancedSearch.hasOwnProperty('publicationListingType')) {
+                    delete $scope.advancedSearch.publicationListingType;
+                }
+            }
+
             //initialize advanced search fields criterias
             if ($state.current['name'] === 'advancedSearch') {
                 //loading dictionaries
@@ -245,6 +253,9 @@
                 }
                 if (advancedSearchData.hasOwnProperty('recovery')) {
                     oResult['recovery'] = advancedSearchData.recovery;
+                }
+                if (advancedSearchData.hasOwnProperty('publicationListingType')) {
+                    oResult['publicationListingType'] = advancedSearchData.publicationListingType;
                 }
                 return oResult;
             };
