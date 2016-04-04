@@ -17,15 +17,17 @@
             <h2><span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark title="000 Intro" style="display:none" class="sub-section">
                 <h3>Intro</h3>
+
                 <div class="input-field usa-width-one-fourth">
                     <label for="agency">Agency</label>
-                    <span type="text" id="agency"  ng-bind="gsavm.program.organizationId"></span>
+                    <span type="text" id="agency" ng-bind="gsavm.program.organizationId"></span>
                 </div>
                 <div class="input-field usa-width-one-fourth">
                     <label for="sub-tier-agency">Sub-Tier Agency</label>
                     <select id="sub-tier-agency" name="subTierAgency" class="usa-form-medium" ng-model="gsavm.$program.subTierAgency" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
                         <option value='' disabled style="display:none">Please select a Sub-Tier Agency</option>
                     </select>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.subTierAgency.$dirty">
                         <span ng-show="gsavm.form.subTierAgency.$error.required">You must select a Sub-Tier Agency.</span>
                     </div>
@@ -35,15 +37,18 @@
                     <select id="office" name="office" class="usa-form-medium" ng-model="gsavm.$program.office" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
                         <option value='' disabled style="display:none">Please select an Office</option>
                     </select>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.office.$dirty">
                         <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
                     </div>
                 </div>
             </section>
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
-                <h3><label for="title">010 Program Title<span class="required" >*</span></label></h3>
-                <div class="input-field" >
+                <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>
+
+                <div class="input-field">
                     <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="!((!gsavm.program.status || gsavm.program.status == 'draft') && !gsavm.program.programNumber)">
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.title.$dirty">
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                     </div>
@@ -51,8 +56,10 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="020 Popular Name">
                 <h3><label for="alternativeName">020 Popular Name</label></h3>
+
                 <div class="input-field">
                     <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.alternativeName.$dirty">
                         <span ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
                     </div>
@@ -62,7 +69,7 @@
                 <div class="input-field">
                     <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="+ Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>040 Authorization<span class="required" >*</span></h3>
+                            <h3>040 Authorization<span class="required">*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">None. You must add at least one authorization.</span>
@@ -75,7 +82,7 @@
                                 <section class="usa-grid">
                                     <ul class="usa-unstyled-list radio-button-group">
                                         <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
-                                            <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType"  ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
+                                            <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType" ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
                                             <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
                                         </li>
                                     </ul>
@@ -100,10 +107,12 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="050 Objectives">
-                <h3><label for="objective">050 Objectives<span class="required" >*</span></label></h3>
+                <h3><label for="objective">050 Objectives<span class="required">*</span></label></h3>
+
                 <div class="input-field">
                     <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                     <textarea id="objective" name="objective" class="usa-input-large" ng-model="gsavm.program.objective" required></textarea>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
                         <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                     </div>
@@ -117,9 +126,9 @@
                     </p>-->
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">
                     </div>
-                    <multi-entry ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" new-entry-btn-name="+ Add Assistance Types" delete-btn-label="Remove Assistance Type"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" new-entry-btn-name="+ Add Assistance Types" delete-btn-label="Remove Assistance Type" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>060 Types of Assistance<span class="required" >*</span></h3>
+                            <h3>060 Types of Assistance<span class="required">*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>
@@ -134,7 +143,7 @@
                                     ux-multiple
                                     ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
                                     ux-branch-1="has label 'Category'"
-                            >
+                                    >
                             </ux-hierarchy-dropdown>
                         </multi-entry-select>
                     </multi-entry>
@@ -142,19 +151,20 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="070 Uses and Use Restrictions">
                 <h3>070 Uses and Use Restrictions</h3>
+
                 <div class="input-field">
                     <label for="usageRulesContent">Select "Not Applicable" if the requested information does not apply to your program. If "Yes" is selected, users are required to provide more details in text fields.</label>
                     <textarea id="usageRulesContent" name="usageRulesContent" class="usa-input-large" ng-model="gsavm.program.usage.rules.content" required></textarea>
                 </div>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label>Are there specific restrictions place upon the use of the assistance?<span class="required" >*</span></label>
+                        <label>Are there specific restrictions place upon the use of the assistance?<span class="required">*</span></label>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input type="radio" name="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag" id="restrictionsFlagYes" value="yes" required/>
                                 <label for="restrictionsFlagYes">Yes</label>
                             </li>
-                            <li >
+                            <li>
                                 <input type="radio" name="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag" id="restrictionsFlagNA" value="na" required/>
                                 <label for="restrictionsFlagNA">Not Applicable</label>
                             </li>
@@ -162,21 +172,22 @@
                     </fieldset>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
-                    <label for="restrictions">Please provide the restrictions:<span class="required" >*</span></label>
-                    <textarea id="restrictions" name="restrictions" class="usa-input-large" ng-model="gsavm.program.usage.restrictions.content"  ng-required="gsavm.program.usage.restrictions.flag ==='yes'"></textarea>
+                    <label for="restrictions">Please provide the restrictions:<span class="required">*</span></label>
+                    <textarea id="restrictions" name="restrictions" class="usa-input-large" ng-model="gsavm.program.usage.restrictions.content" ng-required="gsavm.program.usage.restrictions.flag ==='yes'"></textarea>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.restrictions.$dirty">
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                     </div>
                 </div>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
-                        <label for="discretionaryFundFlag">Are there discretionary funds available?<span class="required" >*</span></label>
+                        <label for="discretionaryFundFlag">Are there discretionary funds available?<span class="required">*</span></label>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input type="radio" name="discretionaryFundFlag" ng-model="gsavm.program.usage.discretionaryFund.flag" id="discretionaryFundFlagYes" value="yes" required/>
                                 <label for="discretionaryFundFlagYes">Yes</label>
                             </li>
-                            <li >
+                            <li>
                                 <input type="radio" name="discretionaryFundFlag" ng-model="gsavm.program.usage.discretionaryFund.flag" id="discretionaryFundFlagNA" value="na" required/>
                                 <label for="discretionaryFundFlagNA">Not Applicable</label>
                             </li>
@@ -184,21 +195,22 @@
                     </fieldset>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code">
-                    <label for="discretionaryFund">Please describe the discretionary funds:<span class="required" >*</span></label>
-                    <textarea id="discretionaryFund" name="discretionaryFund" class="usa-input-large" ng-model="gsavm.program.usage.discretionaryFund.content"  ng-required="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+                    <label for="discretionaryFund">Please describe the discretionary funds:<span class="required">*</span></label>
+                    <textarea id="discretionaryFund" name="discretionaryFund" class="usa-input-large" ng-model="gsavm.program.usage.discretionaryFund.content" ng-required="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.discretionaryFund.$dirty">
                         <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                     </div>
                 </div>
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
-                        <label for="loanTermsFlag">Are loans a type of assistance in this program?<span class="required" >*</span></label>
+                        <label for="loanTermsFlag">Are loans a type of assistance in this program?<span class="required">*</span></label>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input type="radio" name="loanTermsFlag" ng-model="gsavm.program.usage.loanTerms.flag" id="loanTermsFlagYes" value="yes" required/>
                                 <label for="loanTermsFlagYes">Yes</label>
                             </li>
-                            <li >
+                            <li>
                                 <input type="radio" name="loanTermsFlag" ng-model="gsavm.program.usage.loanTerms.flag" id="loanTermsFlagNA" value="na" required/>
                                 <label for="loanTermsFlagNA">Not Applicable</label>
                             </li>
@@ -206,15 +218,17 @@
                     </fieldset>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code">
-                    <label for="loanTerms">Please describe the loan terms:<span class="required" >*</span></label>
-                    <textarea id="loanTerms"  name="loanTerms" class="usa-input-large" ng-model="gsavm.program.usage.loanTerms.content"  ng-required="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+                    <label for="loanTerms">Please describe the loan terms:<span class="required">*</span></label>
+                    <textarea id="loanTerms" name="loanTerms" class="usa-input-large" ng-model="gsavm.program.usage.loanTerms.content" ng-required="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code"></textarea>
+
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.loanTerms.$dirty">
                         <span ng-show="gsavm.form.loanTerms.$error.required">You must provide the loan terms.</span>
                     </div>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="160 Related Programs">
-                <h3>160 Related Programs<span class="required" >*</span></h3>
+                <h3>160 Related Programs<span class="required">*</span></h3>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
                         <label for="relatedProgramsFlag">Are there any related programs?</label>
@@ -223,7 +237,7 @@
                                 <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagYes" value="yes" required/>
                                 <label for="relatedProgramsFlagYes">Yes</label>
                             </li>
-                            <li >
+                            <li>
                                 <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagNA" value="na" required/>
                                 <label for="relatedProgramsFlagNA">Not Applicable</label>
                             </li>
@@ -242,9 +256,9 @@
                     <hr/-->
                 </div>
                 <div class="input-field" ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
-                    <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo"  new-entry-btn-name="+ Add Related Programs" delete-btn-label="Remove Related Program"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="+ Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <label>Select any related programs below:<span class="required" >*</span></label>
+                            <label>Select any related programs below:<span class="required">*</span></label>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
@@ -261,7 +275,7 @@
                                     ux-items-per-page="25"
                                     ux-displayed-pages="5"
                                     ux-search-filter="searchRelatedPrograms:srchText"
-                            >
+                                    >
                             </ux-adv-multi-select>
                         </multi-entry-select>
                     </multi-entry>
@@ -278,7 +292,8 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="170 Examples of Funded Projects">
-                <h3>170 Examples of Funded Projects<span class="required" >*</span></h3>
+                <h3>170 Examples of Funded Projects<span class="required">*</span></h3>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label>Are there examples of funded projects?</label>
@@ -300,7 +315,7 @@
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.program.projects.list[fyTpl.year].flag" >
+                                               ng-model="gsavm.program.projects.list[fyTpl.year].flag">
                                         <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
@@ -319,9 +334,9 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="190 Functional Codes">
                 <div class="input-field">
-                    <multi-entry ng-model="gsavm.program.functionalCodes" name="functionalCodes"  new-entry-btn-name="+ Add Functional Codes" delete-btn-label="Remove Functional Code"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.functionalCodes" name="functionalCodes" new-entry-btn-name="+ Add Functional Codes" delete-btn-label="Remove Functional Code" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>190 Functional Codes<span class="required" >*</span></h3>
+                            <h3>190 Functional Codes<span class="required">*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
@@ -336,7 +351,7 @@
                                     ux-multiple
                                     ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Functional Code'"
                                     ux-branch-1="item.element_id as item.value for item in uxTree with children item.elements track by item.element_id has label 'Category'"
-                            >
+                                    >
                             </ux-hierarchy-dropdown>
                         </multi-entry-select>
                     </multi-entry>
@@ -344,9 +359,9 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="300 Subject Terms">
                 <div class="input-field">
-                    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
-                            <h3>300 Subject Terms<span class="required" >*</span></h3>
+                            <h3>300 Subject Terms<span class="required">*</span></h3>
                         </multi-entry-header>
                         <div>
                             <span ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">You need to select at least one Subject Term.</span>
@@ -356,13 +371,13 @@
                         </multi-entry-list>
                         <multi-entry-select>
                             <ux-adv-multi-select
-                                ng-model="_multiEntrySelect.current"
-                                ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
-                                ux-choice-value="element_id"
-                                ux-choice-title="displayValue"
-                                ux-items-per-page="25"
-                                ux-displayed-pages="5"
-                                ux-search-filter="filter: {displayValue: srchText }">
+                                    ng-model="_multiEntrySelect.current"
+                                    ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
+                                    ux-choice-value="element_id"
+                                    ux-choice-title="displayValue"
+                                    ux-items-per-page="25"
+                                    ux-displayed-pages="5"
+                                    ux-search-filter="filter: {displayValue: srchText }">
                             </ux-adv-multi-select>
                         </multi-entry-select>
                     </multi-entry>
@@ -381,10 +396,11 @@
                 <h3>080 Eligibility Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark title="081 Applicant Eligibility">
                     <h4>081 Applicant Eligibility</h4>
+
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.applicant.types" name="eligibleApplicants"  new-entry-btn-name="+ Add Eligible Applicants" delete-btn-label="Remove Eligible Applicant"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry ng-model="gsavm.program.eligibility.applicant.types" name="eligibleApplicants" new-entry-btn-name="+ Add Eligible Applicants" delete-btn-label="Remove Eligible Applicant" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                             <multi-entry-header>
-                                <label for="eligibleApplicants">Eligible Applicants<span class="required" >*</span></label>
+                                <label for="eligibleApplicants">Eligible Applicants<span class="required">*</span></label>
                             </multi-entry-header>
                             <div>
                                 <span ng-show="$ctrl.parentVm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
@@ -399,15 +415,15 @@
                                         ux-tree="$ctrl.parentVm.trees['applicant_types']"
                                         ux-multiple
                                         ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Applicant Type'"
-                                >
+                                        >
                                 </ux-hierarchy-dropdown>
                             </multi-entry-select>
                         </multi-entry>
                     </div>
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" name="useOfAssistance"  new-entry-btn-name="+ Add Use Of Assistances" delete-btn-label="Remove Use Of Assistance"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" name="useOfAssistance" new-entry-btn-name="+ Add Use Of Assistances" delete-btn-label="Remove Use Of Assistance" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                             <multi-entry-header>
-                                <label for="useOfAssistance">Use Of Assistance<span class="required" >*</span></label>
+                                <label for="useOfAssistance">Use Of Assistance<span class="required">*</span></label>
                             </multi-entry-header>
                             <div>
                                 <span ng-show="$ctrl.parentVm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
@@ -422,25 +438,27 @@
                                         ux-tree="$ctrl.parentVm.trees['assistance_usage_types']"
                                         ux-multiple
                                         ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                >
+                                        >
                                 </ux-hierarchy-dropdown>
                             </multi-entry-select>
                         </multi-entry>
-                        </div>
-                        <label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
+                    </div>
+                    <label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
                         <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
                         </textarea>
-                        <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
-                            <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
-                        </div>
+
+                    <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
+                        <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
+                    </div>
                     </div>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="082 Beneficiary Eligibility">
                     <h4>082 Beneficiary Eligibility</h4>
+
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.beneficiary.types" name="beneficiaryEligibility"  new-entry-btn-name="+ Add Beneficiary Eligibilities" delete-btn-label="Remove Beneficiary Eligibility"  parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                        <multi-entry ng-model="gsavm.program.eligibility.beneficiary.types" name="beneficiaryEligibility" new-entry-btn-name="+ Add Beneficiary Eligibilities" delete-btn-label="Remove Beneficiary Eligibility" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                             <multi-entry-header>
-                                <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required" >*</span></label>
+                                <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required">*</span></label>
                             </multi-entry-header>
                             <div>
                                 <span ng-show="$ctrl.parentVm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
@@ -455,13 +473,14 @@
                                         ux-tree="$ctrl.parentVm.trees['beneficiary_types']"
                                         ux-multiple
                                         ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                >
+                                        >
                                 </ux-hierarchy-dropdown>
                             </multi-entry-select>
                         </multi-entry>
-                        <label for="beneficiaryAdditionalInfo">Additional Information<span class="required" >*</span></label>
+                        <label for="beneficiaryAdditionalInfo">Additional Information<span class="required">*</span></label>
                         <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.beneficiary.additionalInfo.content" required>
                         </textarea>
+
                         <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryAdditionalInfo.$dirty">
                             <span ng-show="gsavm.form.beneficiaryAdditionalInfo.$error.required">You must provide additional information.</span>
                         </div>
@@ -469,43 +488,45 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="083 Credentials/Documentation">
                     <h4>083 Credentials/Documentation</h4>
+
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="credentialsOrDocumentation">Are there credentials or documentation?<span class="required" >*</span></label>
+                            <label for="credentialsOrDocumentation">Are there credentials or documentation?<span class="required">*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="credentialsOrDocumentation" ng-model="gsavm.program.eligibility.documentation.flag" id="credentialsOrDocumentationYes" value="yes" required/>
                                     <label for="credentialsOrDocumentationYes">Yes</label>
                                 </li>
-                                <li >
+                                <li>
                                     <input type="radio" name="credentialsOrDocumentation" ng-model="gsavm.program.eligibility.documentation.flag" id="credentialsOrDocumentationNA" value="na" required/>
                                     <label for="credentialsOrDocumentationNA">Not Applicable</label>
                                 </li>
                             </ul>
                         </fieldset>
-                    <div ng-show="gsavm.program.eligibility.documentation.flag === 'yes'">
-                        <label for="credentialsAdditionalInfo">Please explain:<span class="required" >*</span></label>
+                        <div ng-show="gsavm.program.eligibility.documentation.flag === 'yes'">
+                            <label for="credentialsAdditionalInfo">Please explain:<span class="required">*</span></label>
                         <textarea id="credentialsAdditionalInfo" name="credentialsAdditionalInfo" ng-model="gsavm.program.eligibility.documentation.content" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'">
                         </textarea>
-                        <div ng-show="gsavm.program.eligibility.documentation.flag && (gsavm.form.$submitted || gsavm.form.credentialsAdditionalInfo.$dirty)">
-                            <span ng-show="gsavm.form.credentialsAdditionalInfo.$error.required">You must provide additional information.</span>
-                        </div>
 
-                        <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required" >*</span></label>
-                            <ul class="usa-unstyled-list">
-                                <li>
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
-                                    <label for="costPrincipalsAcceptableYes">Yes</label>
-                                </li>
-                                <li >
-                                    <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableNa" value="na" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
-                                    <label for="costPrincipalsAcceptableNa">Not Applicabble</label>
-                                </li>
-                            </ul>
-                        </fieldset>
+                            <div ng-show="gsavm.program.eligibility.documentation.flag && (gsavm.form.$submitted || gsavm.form.credentialsAdditionalInfo.$dirty)">
+                                <span ng-show="gsavm.form.credentialsAdditionalInfo.$error.required">You must provide additional information.</span>
+                            </div>
+
+                            <fieldset class="usa-fieldset-inputs usa-sans">
+                                <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required">*</span></label>
+                                <ul class="usa-unstyled-list">
+                                    <li>
+                                        <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableYes" value="yes" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                        <label for="costPrincipalsAcceptableYes">Yes</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" name="costPrincipalsAcceptable" ng-model="gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" id="costPrincipalsAcceptableNa" value="na" ng-required="gsavm.program.eligibility.documentation.flag === 'yes'"/>
+                                        <label for="costPrincipalsAcceptableNa">Not Applicabble</label>
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </div>
                     </div>
-                </div>
                 </section>
             </section>
         </ux-form-section>
@@ -518,13 +539,13 @@
                         <h4>091 Pre-application Coordination<span class="required">*</span></h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
                             <label>Is any prior coordination or approval required with governmental or nongovernmental units
-                                prior to the submission of a formal application to the Federal funding agency?<span class="required" >*</span></label>
+                                prior to the submission of a formal application to the Federal funding agency?<span class="required">*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="preappCoord3" ng-model="gsavm.program.preApplication.coordination.flag" id="preappCoord3Yes" value="yes" required/>
                                     <label for="preappCoord3Yes">Yes</label>
                                 </li>
-                                <li >
+                                <li>
                                     <input type="radio" name="preappCoord3" ng-model="gsavm.program.preApplication.coordination.flag" id="preappCoord3Na" value="na" required/>
                                     <label for="preappCoord3Na">Not Applicable</label>
                                 </li>
@@ -533,7 +554,7 @@
                     </div>
                     <div class="input-field" ng-show="gsavm.program.preApplication.coordination.flag === 'yes'">
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="environmentalImpact">Does this program require submission of environmental impact information?<span class="required" >*</span></label>
+                            <label for="environmentalImpact">Does this program require submission of environmental impact information?<span class="required">*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="environmentalImpact" ng-model="gsavm.program.preApplication.coordination.environmentalImpact.flag" id="preappCoord3question1yes" value="yes" ng-required="gsavm.program.preApplication.coordination.flag === 'yes'"/>
@@ -559,13 +580,13 @@
                             </div>
                         </div>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required" >*</span></label>
+                            <label for="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required">*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="preappCoord3question2" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2yes" value="yes" required/>
                                     <label for="preappCoord3question2yes">Yes</label>
                                 </li>
-                                <li >
+                                <li>
                                     <input type="radio" name="preappCoord3question2" ng-model="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" id="preappCoord3question2no" value="no" required/>
                                     <label for="preappCoord3question2no">No</label>
                                 </li>
@@ -577,6 +598,7 @@
                         <div class="input-field" ng-show="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag=='yes'">
                             <label for="preappCoord3question2info">Additional Information:</label>
                             <textarea id="preappCoord3question2info" name="preappCoord3question2info" ng-model="gsavm.program.preApplication.coordination.additionalInfo.content" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
+
                             <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                                 <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                             </div>
@@ -591,11 +613,11 @@
                                 for Federal Awards apply to this program?</label>
                             <ul class="usa-unstyled-list">
                                 <li>
-                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3yes" value="yes" required />
+                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3yes" value="yes" required/>
                                     <label for="applProc3yes">Yes</label>
                                 </li>
                                 <li>
-                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3na" value="no" required />
+                                    <input type="radio" name="applProc3" ng-model="gsavm.program.application.procedures.questions.OMBCircularA102.flag" id="applProc3na" value="no" required/>
                                     <label for="applProc3na">No</label>
                                 </li>
                             </ul>
@@ -604,6 +626,7 @@
                     <div class="input-field">
                         <label for="applProc3other">Other Application Procedures:</label>
                         <textarea id="applProc3other" name="applProc3other" class="usa-input-large" ng-model="gsavm.program.application.procedures.additionalInfo.content" ng-required="gsavm.program.application.procedures.questions.flag"></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                             <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                         </div>
@@ -611,9 +634,10 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="093 Award Procedure">
                     <div class="input-field">
-                        <h4><label for="awardProc3">093 Award Procedure<span class="required" >*</span></label></h4>
+                        <h4><label for="awardProc3">093 Award Procedure<span class="required">*</span></label></h4>
                         <label for="awardProc3">What are the basic procedural steps for awarding assistance?</label>
                         <textarea id="awardProc3" name="awardProc3" class="usa-input-large" ng-model="gsavm.program.award.procedures.content" required></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
                             <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                         </div>
@@ -623,7 +647,7 @@
                     <div class="input-field">
                         <h4>094 Deadlines</h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="deadline3">Is a deadline for submission of application available? <span class="required" >*</span></label>
+                            <label for="deadline3">Is a deadline for submission of application available? <span class="required">*</span></label>
                             <ul class="usa-unstyled-list">
                                 <li>
                                     <input type="radio" name="deadline3" ng-model="gsavm.program.application.deadlines.submission.flag" id="yes3" value="yes" required/>
@@ -657,12 +681,13 @@
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='deadlines'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.{{formPath}}">
                                     <p>Please enter the deadline start date or a fixed date. You may leave the end date blank if the deadline is a fixed date.</p>
+
                                     <div class="usa-grid-full">
                                         <div class="usa-width-one-half">
                                             <p class="input-group">
                                                 <label for="deadline-start">Deadline Start Date</label>
                                                 <input type="text" id="deadline-start" class="form-control" uib-datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineStart'].opened"
-                                                       ng-model="$subForm.current.start" ng-required="true" close-text="Close" />
+                                                       ng-model="$subForm.current.start" ng-required="true" close-text="Close"/>
                                                  <span class="input-group-btn">
                                                     <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineStart')"><i class="fa fa-calendar"></i></button>
                                                 </span>
@@ -672,7 +697,7 @@
                                             <p class="input-group">
                                                 <label for="deadline-end">Deadline End Date</label>
                                                 <input id="deadline-end" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" is-open="$ctrl.parentVm.datepickers['deadlineEnd'].opened"
-                                                       ng-model="$subForm.current.end"  close-text="Close" />
+                                                       ng-model="$subForm.current.end" close-text="Close"/>
                                                  <span class="input-group-btn">
                                                     <button type="button" class="btn btn-default" ng-click="$ctrl.parentVm.openDatepicker($event, 'deadlineEnd')"><i class="fa fa-calendar"></i></button>
                                                 </span>
@@ -681,14 +706,18 @@
                                     </div>
                                     <div class="usa-grid-full">
                                         <label for="deadline-desc">Description</label>
-                                        <p>Optionally provide a description for this deadline<p>
-                                        <input type="text" id="deadline-desc" name="deadlineDesc" ng-model="$subForm.current.description">
+
+                                        <p>Optionally provide a description for this deadline
+
+                                        <p>
+                                            <input type="text" id="deadline-desc" name="deadlineDesc" ng-model="$subForm.current.description">
                                     </div>
                                 </div>
                             </multi-entry-sub-form>
                         </multi-entry>
                         <label for="deadlineAdditionalInfo">Other Deadline Information:</label>
                         <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo.content" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                             <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
                         </div>
@@ -696,7 +725,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="095 Range of Approval/Disapproval Time">
                     <div class="input-field">
-                        <h4>095 Range of Approval/Disapproval Time<span class="required" >*</span></h4>
+                        <h4>095 Range of Approval/Disapproval Time<span class="required">*</span></h4>
                         <ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2" style="width:250px" required>
                             <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -707,6 +736,7 @@
                     <div class="input-field">
                         <label for="approvalTime3other">Other Approval Information:</label>
                         <textarea id="approvalTime3other" name="approvalTime3other" class="usa-input-large" ng-model="gsavm.program.application.deadlines.approval.otherInfo.content" ng-required="gsavm.program.application.deadlines.approval.otherInfo.content"></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                             <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                         </div>
@@ -714,7 +744,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="096 Appeals">
                     <div class="input-field">
-                        <h4>096 Appeals<span class="required" >*</span></h4>
+                        <h4>096 Appeals<span class="required">*</span></h4>
                         <ui-select id="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" name="appeals3" theme="select2" style="width:250px" required>
                             <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -728,6 +758,7 @@
                     <div class="input-field">
                         <label for="appealsTime3other">Other Appeals Information:</label>
                         <textarea id="appealsTime3other" name="appealsTime3other" class="usa-input-large" ng-model="gsavm.program.application.deadlines.appeal.otherInfo.content" ng-required="gsavm.program.application.deadlines.appeal.otherInfo.content"></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.appealsTime3other.$dirty">
                             <span ng-show="gsavm.form.appealsTime3other.$error.required">You must provide input.</span>
                         </div>
@@ -735,7 +766,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="097 Renewals">
                     <div class="input-field">
-                        <h4>097 Renewals<span class="required" >*</span></h4>
+                        <h4>097 Renewals<span class="required">*</span></h4>
                         <ui-select id="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" name="renewals3" theme="select2" style="width:250px" required>
                             <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
                             <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -749,6 +780,7 @@
                     <div class="input-field">
                         <label for="renewalTime3other">Other Renewals Information:</label>
                         <textarea id="renewalTime3other" name="renewalTime3other" class="usa-input-large" ng-model="gsavm.program.application.deadlines.renewal.otherInfo.content" ng-required="gsavm.program.application.deadlines.renewal.otherInfo.content"></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.renewalTime3other.$dirty">
                             <span ng-show="gsavm.form.renewalTime3other.$error.required">You must provide input.</span>
                         </div>
@@ -761,7 +793,7 @@
                     <div class="input-field">
                         <h4>101 Formula and Matching Requirements</h4>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required" >*</span></label>
+                            <label for="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required">*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -796,7 +828,7 @@
                             <textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo.content"></textarea>
                         </div>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="matchingRequirements3">Does this program have matching requirements? <span class="required" >*</span></label>
+                            <label for="matchingRequirements3">Does this program have matching requirements? <span class="required">*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -817,7 +849,7 @@
                             <span ng-show="gsavm.form.matchingRequirements3.$error.required">You must provide an answer.</span>
                         </div>
                         <div class="input-field" ng-show="gsavm.program.assistance.matching.flag=='yes'">
-                            <label for="matchingPercent3">Select the Percentage Below<span class="required" >*</span>:</label>
+                            <label for="matchingPercent3">Select the Percentage Below<span class="required">*</span>:</label>
                             <ui-select id="matchingPercent3" ng-model="gsavm.program.assistance.matching.percent" name="matchingPercent3" theme="select2" required>
                                 <ui-select-match placeholder="Please select a percentage">{{$select.selected.value}}</ui-select-match>
                                 <ui-select-choices repeat="item.element_id as item in gsavm.choices['match_percent'] | propsFilter: {value: $select.search}">
@@ -827,13 +859,14 @@
                             <div class="input-field">
                                 <label for="matchingOtherInfo3">Other Matching Requirements Information:</label>
                                 <textarea id="matchingOtherInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.matching.otherInfo.content" ng-required="gsavm.program.assistance.matching.otherInfo.content"></textarea>
+
                                 <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                                     <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                                 </div>
                             </div>
                         </div>
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="MOErequirements3">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required" >*</span></label>
+                            <label for="MOErequirements3">Does this program have MOE requirements AND total allocations over $100 million (current FY)? <span class="required">*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -856,7 +889,8 @@
                         <div class="input-field" ng-show="gsavm.program.assistance.moe.flag=='yes'">
                             <div class="input-field">
                                 <label for="MOEAddInfo3">Please enter any additional information below:</label>
-                                <textarea id="MOEAddInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.moe.additionalInfo.content"  ng-required="gsavm.program.assistance.moe.additionalInfo.content"></textarea>
+                                <textarea id="MOEAddInfo3" name="renewalTime3other" ng-model="gsavm.program.assistance.moe.additionalInfo.content" ng-required="gsavm.program.assistance.moe.additionalInfo.content"></textarea>
+
                                 <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
                                     <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                                 </div>
@@ -865,14 +899,15 @@
                     </div>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="102 Length and Time Phasing of Assistance">
-                    <div class="input-field" >
+                    <div class="input-field">
                         <h4>102 Length and Time Phasing of Assistance</h4>
-                        <label for="assistLimit3">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required" >*</span></label>
-                        <textarea id="assistLimit3" name="assistLimit3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.content"  required></textarea>
+                        <label for="assistLimit3">What period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded?<span class="required">*</span></label>
+                        <textarea id="assistLimit3" name="assistLimit3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.content" required></textarea>
+
                         <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
                             <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
                         </div>
-                        <label for="assistanceAwarded3">How is the assistance awarded and/or released?<span class="required" >*</span></label>
+                        <label for="assistanceAwarded3">How is the assistance awarded and/or released?<span class="required">*</span></label>
                         <select id="assistanceAwarded3" name="assistanceAwarded3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.awarded">
                             <option value=''></option>
                             <option value='Lump Sum'>Lump Sum</option>
@@ -884,7 +919,8 @@
                 </section>
             </section>
             <section class="sub-section" field-finder-bookmark title="180 Criteria for Selecting Proposals">
-                <h3>180 Criteria for Selecting Proposals<span class="required" >*</span></h3>
+                <h3>180 Criteria for Selecting Proposals<span class="required">*</span></h3>
+
                 <div class="input-field">
 
                     <fieldset class="usa-fieldset-inputs usa-sans">
@@ -911,8 +947,9 @@
                     </div>
                 </div>
                 <div class="input-field" ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
-                    <label for="criteriaProposals3Info">Please describe criteria for selecting proposals<span class="required" >*</span>:</label>
-                    <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content"  ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
+                    <label for="criteriaProposals3Info">Please describe criteria for selecting proposals<span class="required">*</span>:</label>
+                    <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content" ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
+
                     <div ng-show="gsavm.program.application.selectionCriteria.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.criteriaProposals3Info.$dirty)">
                         <span ng-show="gsavm.form.criteriaProposals3Info.$error.required">You must provide restrictions.</span>
                     </div>
@@ -922,12 +959,13 @@
         <ux-form-section state-key="awards" section-title="Post Award Requirements" field-finder-section>
             <h2><span class="section-circle">4</span> Post Award Requirements</h2>
             <section class="sub-section">
-                <h3  field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">110 Post Assistance Requirements</h3>
+                <h3 field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">110 Post Assistance Requirements</h3>
                 <section class="sub-minor-section" field-finder-bookmark title="111 Reports">
                     <h4>111 Reports</h4>
+
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="reports">Are reports required by the funding agency?<span class="required" >*</span></label>
+                            <label for="reports">Are reports required by the funding agency?<span class="required">*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -948,9 +986,9 @@
                             </div>
                         </fieldset>
                         <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
-                            <div class="input-field" >
+                            <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="programReports">Are program reports required?<span class="required" >*</span></label>
+                                    <label for="programReports">Are program reports required?<span class="required">*</span></label>
                                     <ul class="usa-unstyled-list">
                                         <li>
                                             <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
@@ -970,16 +1008,17 @@
                                     </div>
                                 </fieldset>
                                 <div ng-show="gsavm.program.postAward.reports.list.program.flag === 'yes'">
-                                    <label for="programReportsInfo">Please describe the program reports required.<span class="required" >*</span></label>
-                                    <textarea id="programReportsInfo" name="programReportsInfo" ng-model="gsavm.program.postAward.reports.list.program.content"  ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.program.flag==='yes'"></textarea>
+                                    <label for="programReportsInfo">Please describe the program reports required.<span class="required">*</span></label>
+                                    <textarea id="programReportsInfo" name="programReportsInfo" ng-model="gsavm.program.postAward.reports.list.program.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.program.flag==='yes'"></textarea>
+
                                     <div ng-show="gsavm.program.postAward.reports.list.program.flag==='yes' && (gsavm.form.$submitted || gsavm.form.programReportsInfo.$dirty)">
                                         <span ng-show="gsavm.form.programReportsInfo.$error.required">You must provide an answer.</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-field"  >
+                            <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="cashReports">Are cash reports required?<span class="required" >*</span></label>
+                                    <label for="cashReports">Are cash reports required?<span class="required">*</span></label>
                                     <ul class="usa-unstyled-list">
                                         <li>
                                             <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
@@ -999,16 +1038,17 @@
                                     </div>
                                 </fieldset>
                                 <div ng-show="gsavm.program.postAward.reports.list.cash.flag === 'yes'">
-                                    <label for="cashReportsInfo">Please describe the cash reports required.<span class="required" >*</span></label>
-                                    <textarea id="cashReportsInfo" name="cashReportsInfo" ng-model="gsavm.program.postAward.reports.list.cash.content"   ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.cash.flag==='yes'"></textarea>
+                                    <label for="cashReportsInfo">Please describe the cash reports required.<span class="required">*</span></label>
+                                    <textarea id="cashReportsInfo" name="cashReportsInfo" ng-model="gsavm.program.postAward.reports.list.cash.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.cash.flag==='yes'"></textarea>
+
                                     <div ng-show="gsavm.program.postAward.reports.list.cash.flag==='yes' && (gsavm.form.$submitted || gsavm.form.cashReportsInfo.$dirty)">
                                         <span ng-show="gsavm.form.cashReportsInfo.$error.required">You must provide an answer.</span>
                                     </div>
                                 </div>
-                            </div >
-                            <div class="input-field"  >
+                            </div>
+                            <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="progressReports">Are progress reports required?<span class="required" >*</span></label>
+                                    <label for="progressReports">Are progress reports required?<span class="required">*</span></label>
                                     <ul class="usa-unstyled-list">
                                         <li>
                                             <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
@@ -1028,16 +1068,17 @@
                                     </div>
                                 </fieldset>
                                 <div ng-show="gsavm.program.postAward.reports.list.progress.flag === 'yes'">
-                                    <label for="progressReportsInfo">Please describe the progress reports required.<span class="required" >*</span></label>
+                                    <label for="progressReportsInfo">Please describe the progress reports required.<span class="required">*</span></label>
                                     <textarea id="progressReportsInfo" name="progressReportsInfo" ng-model="gsavm.program.postAward.reports.list.progress.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.progress.flag==='yes'"></textarea>
+
                                     <div ng-show="gsavm.program.postAward.reports.list.progress.flag==='yes' && (gsavm.form.$submitted || gsavm.form.progressReportsInfo.$dirty)">
                                         <span ng-show="gsavm.form.progressReportsInfo.$error.required">You must provide an answer.</span>
                                     </div>
                                 </div>
-                            </div >
-                            <div class="input-field"  >
+                            </div>
+                            <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="expenditureReports">Are expenditure reports required?<span class="required" >*</span></label>
+                                    <label for="expenditureReports">Are expenditure reports required?<span class="required">*</span></label>
                                     <ul class="usa-unstyled-list">
                                         <li>
                                             <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
@@ -1057,16 +1098,17 @@
                                     </div>
                                 </fieldset>
                                 <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag === 'yes'">
-                                    <label for="expenditureReportsInfo">Please describe the expenditure reports required.<span class="required" >*</span></label>
+                                    <label for="expenditureReportsInfo">Please describe the expenditure reports required.<span class="required">*</span></label>
                                     <textarea id="expenditureReportsInfo" name="expenditureReportsInfo" ng-model="gsavm.program.postAward.reports.list.expenditure.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes'"></textarea>
+
                                     <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag==='yes' && (gsavm.form.$submitted || gsavm.form.expenditureReportsInfo.$dirty)">
                                         <span ng-show="gsavm.form.expenditureReportsInfo.$error.required">You must provide an answer.</span>
                                     </div>
                                 </div>
-                            </div >
-                            <div class="input-field"  >
+                            </div>
+                            <div class="input-field">
                                 <fieldset class="usa-fieldset-inputs usa-sans">
-                                    <label for="performanceMonitoring">Is performance monitoring required?<span class="required" >*</span></label>
+                                    <label for="performanceMonitoring">Is performance monitoring required?<span class="required">*</span></label>
                                     <ul class="usa-unstyled-list">
                                         <li>
                                             <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
@@ -1086,21 +1128,23 @@
                                     </div>
                                 </fieldset>
                                 <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag === 'yes'">
-                                    <label for="performanceMonitoringInfo">Please describe the performance monitoring required.<span class="required" >*</span></label>
+                                    <label for="performanceMonitoringInfo">Please describe the performance monitoring required.<span class="required">*</span></label>
                                     <textarea id="performanceMonitoringInfo" name="performanceMonitoringInfo" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes'"></textarea>
+
                                     <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes' && (gsavm.form.$submitted || gsavm.form.performanceMonitoringInfo.$dirty)">
                                         <span ng-show="gsavm.form.performanceMonitoringInfo.$error.required">You must provide an answer.</span>
                                     </div>
                                 </div>
-                            </div >
+                            </div>
                         </div>
                     </div>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="112 Audits">
                     <h4>112 Audits</h4>
+
                     <div class="input-field">
                         <fieldset class="usa-fieldset-inputs usa-sans">
-                            <label for="audits">Are audits required for the program?<span class="required" >*</span></label>
+                            <label for="audits">Are audits required for the program?<span class="required">*</span></label>
 
                             <ul class="usa-unstyled-list">
                                 <li>
@@ -1122,7 +1166,7 @@
                             <span ng-show="gsavm.form.audits.$error.required">You must provide an answer.</span>
                         </div>
                         <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
-                            <label for="auditRequirements">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required" >*</span></label>
+                            <label for="auditRequirements">Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?<span class="required">*</span></label>
                             <fieldset class="usa-fieldset-inputs usa-sans">
                                 <ul class="usa-unstyled-list">
                                     <li>
@@ -1135,8 +1179,9 @@
                                     </li>
                                 </ul>
                             </fieldset>
-                            <label for="auditRequirementsInfo">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'" >*</span></label>
-                            <textarea id="auditRequirementsInfo" name="auditRequirementsInfo"  ng-model="gsavm.program.postAward.audit.content"  ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
+                            <label for="auditRequirementsInfo">What audit procedures have been mandated for the program?<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'">*</span></label>
+                            <textarea id="auditRequirementsInfo" name="auditRequirementsInfo" ng-model="gsavm.program.postAward.audit.content" ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
+
                             <div ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no' && (gsavm.form.$submitted || gsavm.form.auditRequirementsInfo.$dirty)">
                                 <span ng-show="gsavm.form.auditRequirementsInfo.$error.required">You must describe audit procedures.</span>
                             </div>
@@ -1147,6 +1192,7 @@
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="113 Records">
                     <h4>113 Records</h4>
+
                     <div class="input-field">
                         <label for="recordContent">Describe what records the Federal agency requires the recipient to maintain and the time periods.</label>
                         <textarea id="recordContent" name="records" class="usa-input-large" ng-model="gsavm.program.postAward.records.content"></textarea>
@@ -1155,9 +1201,10 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="140 Regulations, Guidelines, and Literature">
                 <h3>140 Regulations, Guidelines, and Literature</h3>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <label for="documents">Are there any regulations, guidelines or literature?<span class="required" >*</span></label>
+                        <label for="documents">Are there any regulations, guidelines or literature?<span class="required">*</span></label>
 
                         <ul class="usa-unstyled-list">
                             <li>
@@ -1173,8 +1220,9 @@
                     </fieldset>
 
                     <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
-                        <label for="documentsAdditionalInfo">Please describe regulations, guidelines, and literature.<span class="required" >*</span></label>
-                        <textarea id="documentsAdditionalInfo" name="documentsAdditionalInfo"  ng-model="gsavm.program.postAward.documents.content" ng-required="gsavm.program.postAward.documents.flag==='yes'"></textarea>
+                        <label for="documentsAdditionalInfo">Please describe regulations, guidelines, and literature.<span class="required">*</span></label>
+                        <textarea id="documentsAdditionalInfo" name="documentsAdditionalInfo" ng-model="gsavm.program.postAward.documents.content" ng-required="gsavm.program.postAward.documents.flag==='yes'"></textarea>
+
                         <div ng-show="gsavm.program.postAward.documents.flag ==='yes' && (gsavm.form.$submitted || gsavm.form.documentsAdditionalInfo.$dirty)">
                             <span ng-show="gsavm.form.documentsAdditionalInfo.$error.required">You must provide an answer.</span>
                         </div>
@@ -1186,11 +1234,12 @@
             <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
             <section class="sub-section">
                 <h3 field-finder-bookmark title="120 Financial Information" data-bookmark-parent="true">120 Financial Information</h3>
+
                 <div class="sub-minor-section" field-finder-bookmark title="121 Account Identification">
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
                             <multi-entry-header>
-                                <h4>121 Account Identification <span class="required" >*</span></h4>
+                                <h4>121 Account Identification <span class="required">*</span></h4>
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1212,14 +1261,14 @@
                     <div class="input-field">
                         <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
                             <multi-entry-header>
-                                <h4>122 Obligations <span class="required" >*</span></h4>
+                                <h4>122 Obligations <span class="required">*</span></h4>
                             </multi-entry-header>
                             <multi-entry-sub-form class="input-field">
                                 <div ng-init="formPath='obligations'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                                     <section>
                                         <div class="input-field">
                                             <fieldset class="usa-fieldset-inputs usa-sans">
-                                                <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required" >*</span></label>
+                                                <label for="{{ 'recovery-flag-' + idPath }}">Is this a Recovery and Reinvestment Act Obligation?<span class="required">*</span></label>
                                                 <ul class="usa-unstyled-list">
                                                     <li>
                                                         <input name="{{ 'recovery-flag-' + idPath }}" ng-model="$subForm.current.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
@@ -1234,7 +1283,7 @@
                                         </div>
                                         <div class="input-field">
                                             <fieldset class="usa-fieldset-inputs usa-sans">
-                                                <label for="{{ 'salary-or-expense-' + idPath }}">Is this for Federal salaries and expenses?<span class="required" >*</span></label>
+                                                <label for="{{ 'salary-or-expense-' + idPath }}">Is this for Federal salaries and expenses?<span class="required">*</span></label>
 
                                                 <ul class="usa-unstyled-list">
                                                     <li>
@@ -1249,7 +1298,7 @@
                                             </fieldset>
                                         </div>
                                         <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
-                                            <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required" >*</span></label>
+                                            <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required">*</span></label>
                                             <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!$ctrl.parentVm.uiLogic.salaryOrExpenseFlag[formPath]">
                                                 <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
                                                 <ui-select-choices group-by="$ctrl.parentVm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in $ctrl.parentVm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
@@ -1269,7 +1318,7 @@
                                                 <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
                                                 <ul class="usa-unstyled-list" ng-init="$subForm.current.values[fyTpl.year].flag = $subForm.current.values[fyTpl.year].flag || $ctrl.parentVm.choices['yes_no_na'].yes.code">
                                                     <li>
-                                                        <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].yes.code" ng-model="$subForm.current.values[fyTpl.year].flag" >
+                                                        <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].yes.code" ng-model="$subForm.current.values[fyTpl.year].flag">
                                                         <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
                                                     </li>
                                                     <li>
@@ -1313,57 +1362,61 @@
                         <textarea id="financialAdditionalInfo" name="financialAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.financial.additionalInfo.content"></textarea>
                     </div>
                 </section>
-                <section class="sub-minor-section" field-finder-bookmark title="124 TAFS Codes - Unique Treasury Appropriation Fund Symbols"><div class="input-field">
-                    <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
-                        <multi-entry-header>
-                            <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required" >*</span></h4>
-                        </multi-entry-header>
-                        <multi-entry-sub-form class="input-field">
-                            <div ng-init="formPath='tafscode'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.treasury.{{formPath}}">
-                                <div class="input-field ">
-                                    <section class="usa-grid">
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
-                                            <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="$subForm.current.departmentCode" required>
-                                            <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
-                                                <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                <section class="sub-minor-section" field-finder-bookmark title="124 TAFS Codes - Unique Treasury Appropriation Fund Symbols">
+                    <div class="input-field">
+                        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
+                            <multi-entry-header>
+                                <h4>124 TAFS Codes - Unique Treasury Appropriation Fund Symbols<span class="required">*</span></h4>
+                            </multi-entry-header>
+                            <multi-entry-sub-form class="input-field">
+                                <div ng-init="formPath='tafscode'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.treasury.{{formPath}}">
+                                    <div class="input-field ">
+                                        <section class="usa-grid">
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'dept-code-' + idPath }}">Treasury Dept Code<span class="required">*</span></label>
+                                                <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="$subForm.current.departmentCode" required>
+
+                                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
+                                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
-                                            <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-model="$subForm.current.allocationTransferAgency" >
-                                        </div>
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'fy1-' + idPath }}">FY 1</label>
-                                            <input type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-model="$subForm.current.fy1" >
-                                        </div>
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'fy2-' + idPath }}">FY 2</label>
-                                            <input type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-model="$subForm.current.fy2" >
-                                        </div>
-                                    </section>
-                                    <section class="usa-grid">
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
-                                            <input type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-model="$subForm.current.accountCode" required>
-                                            <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
-                                                <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'allocation-transfer-agency-' + idPath }}">Allocation Transfer Agency</label>
+                                                <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-model="$subForm.current.allocationTransferAgency">
                                             </div>
-                                        </div>
-                                        <div class="input-field usa-width-one-fourth">
-                                            <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
-                                            <input type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-model="$subForm.current.subAccountCode" >
-                                        </div>
-                                    </section>
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'fy1-' + idPath }}">FY 1</label>
+                                                <input type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-model="$subForm.current.fy1">
+                                            </div>
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'fy2-' + idPath }}">FY 2</label>
+                                                <input type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-model="$subForm.current.fy2">
+                                            </div>
+                                        </section>
+                                        <section class="usa-grid">
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'account-code-' + idPath }}">Treasury Account Main Code<span class="required">*</span></label>
+                                                <input type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-model="$subForm.current.accountCode" required>
+
+                                                <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
+                                                    <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
+                                                </div>
+                                            </div>
+                                            <div class="input-field usa-width-one-fourth">
+                                                <label for="{{ 'tafs-sub-account-' + idPath }}">TAFS Sub-Account</label>
+                                                <input type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-model="$subForm.current.subAccountCode">
+                                            </div>
+                                        </section>
+                                    </div>
                                 </div>
-                            </div>
-                        </multi-entry-sub-form>
-                    </multi-entry>
-                </div>
+                            </multi-entry-sub-form>
+                        </multi-entry>
+                    </div>
                 </section>
             </section>
             <section class="sub-section" field-finder-bookmark title="130 Program Accomplishments">
-                <h3>130 Program Accomplishments<span class="required" >*</span></h3>
+                <h3>130 Program Accomplishments<span class="required">*</span></h3>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label>Are there program accomplishments?</label>
@@ -1385,7 +1438,7 @@
                                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                                     <li>
                                         <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag" >
+                                               ng-model="gsavm.program.postAward.accomplishments.list[fyTpl.year].flag">
                                         <label for="programAccomplishmentYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
                                     </li>
                                 </div>
@@ -1404,10 +1457,10 @@
         <ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
             <h2><span class="section-circle">6</span> Contact Information</h2>
             <section class="sub-section">
-                <h3 field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">150 Information Contacts<span class="required" >*</span></h3>
+                <h3 field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">150 Information Contacts<span class="required">*</span></h3>
                 <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
                     <fieldset class="usa-fieldset-inputs usa-sans">
-                        <h4>151 Regional or Local Office<span class="required" >*</span></h4>
+                        <h4>151 Regional or Local Office<span class="required">*</span></h4>
                         <ul class="usa-unstyled-list">
                             <li>
                                 <input type="radio" name="office6" ng-model="gsavm.program.contacts['local'].flag" id="office6regional" value="regional"/>
@@ -1429,7 +1482,7 @@
                 <section class="sub-minor-section" field-finder-bookmark title="152 Headquarters Office">
                     <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
                         <multi-entry-header>
-                            <h4>152 Headquarters Office<span class="required" >*</span></h4>
+                            <h4>152 Headquarters Office<span class="required">*</span></h4>
                         </multi-entry-header>
                         <div ng-hide="$ctrl.parentVm.program.contacts.list">At least one POC is required.</div>
                         <div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one POC is required.</div>
@@ -1458,20 +1511,23 @@
                                 <label for="title6">Title:</label>
                                 <input type="text" id="title6" name="title6" ng-model="$subForm.current.title">
 
-                                <label for="{{ 'contact-fullname-' + idPath }}">Full Name<span class="required" >*</span>:</label>
+                                <label for="{{ 'contact-fullname-' + idPath }}">Full Name<span class="required">*</span>:</label>
                                 <input type="text" id="{{ 'contact-fullname-' + idPath }}" name="fullname" ng-model="$subForm.current.fullName" required>
+
                                 <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.fullname.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
                                 </div>
 
-                                <label for="email6">Email<span class="required" >*</span>:</label>
+                                <label for="email6">Email<span class="required">*</span>:</label>
                                 <input type="text" id="email6" name="email6" ng-model="$subForm.current.email">
+
                                 <div>
                                     <span ng-show="emailDuplicateError">Email address already exists. Use a different email address.</span>
                                 </div>
 
-                                <label for="phone6">Phone<span class="required" >*</span>:</label>
+                                <label for="phone6">Phone<span class="required">*</span>:</label>
                                 <input type="text" id="phone6" name="phone6" ng-model="$subForm.current.phone" required>
+
                                 <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.phone6.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.phone6.$error.required">You must provide a phone number.</span>
                                 </div>
@@ -1480,16 +1536,17 @@
                                 <input type="text" id="fax6" name="fax6" ng-model="$subForm.current.fax">
                                 <br/>
                                 Address:
-                                <label for="address6">Street<span class="required" >*</span>:</label>
+                                <label for="address6">Street<span class="required">*</span>:</label>
                                 <textarea id="address6" name="address6" ng-model="$subForm.current.address" required></textarea>
+
                                 <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.address6.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.address6.$error.required">You must provide an address.</span>
                                 </div>
 
-                                <label for="city6">City<span class="required" >*</span>:</label>
+                                <label for="city6">City<span class="required">*</span>:</label>
                                 <input type="text" id="city6" name="city6" ng-model="$subForm.current.city" required>
 
-                                <label for="state6">State<span class="required" >*</span>:</label>
+                                <label for="state6">State<span class="required">*</span>:</label>
                                 <select id="state6" name="state6" ng-model="$subForm.current.state" required>
                                     <option value=''></option>
                                     <option value='nonUS'>Non-U.S.</option>
@@ -1549,7 +1606,7 @@
                                     <option value='VI'>Virgin Islands</option>
                                 </select>
 
-                                <label for="zip6">Zip<span class="required" >*</span>:</label>
+                                <label for="zip6">Zip<span class="required">*</span>:</label>
                                 <input type="text" id="zip6" name="zip6" class="usa-input-medium" ng-model="$subForm.current.zip" required>
 
                                 <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.city6.$dirty">
@@ -1721,6 +1778,7 @@
                                     <option value='ZMB'>Zambia</option>
                                     <option value='ZWE'>Zimbabwe</option>
                                 </select>
+
                                 <div ng-show="$ctrl.parentVm.form.$submitted || $ctrl.parentVm.form.country6.$dirty">
                                     <span ng-show="$ctrl.parentVm.form.country6.$error.required">You must provide a country.</span>
                                 </div>
@@ -1780,152 +1838,149 @@
                 </table>
 
                 <table ng-show="gsavm.IsVisible">
-                <tr>
-                <td style="vertical-align:top;border:none">
-                    <img src="/img/alerts/exclamation.png" style="position:relative;top:35px;" alt="Warning"/>
-                </td>
-                <td style="vertical-align:top;border:none">
-                    <h3>Required Fields Missing</h3>
-                    The following required fields have not been filled out on previous steps.
-                    Please go back and fill out all required fields before you can submit.
-                    <div style="padding-top:15px" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
+                    <tr>
+                        <td style="vertical-align:top;border:none">
+                            <img src="/img/alerts/exclamation.png" style="position:relative;top:35px;" alt="Warning"/>
+                        </td>
+                        <td style="vertical-align:top;border:none">
+                            <h3>Required Fields Missing</h3>
+                            The following required fields have not been filled out on previous steps.
+                            Please go back and fill out all required fields before you can submit.
+                            <div style="padding-top:15px" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
                         || !gsavm.program.objective || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0 || !gsavm.program.usage.restrictions.flag
                         || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag
                         || (gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content)
                         || !gsavm.program.usage.loanTerms.flag || (gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content)
                         || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
                         || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0">
-                        <h4>General Information</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('060 Types of Assistance')" ng-show="!gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0" trigger-click-on-enter>060 Types of Assistance is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for  specific restrictions is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.discretionaryFund.flag" trigger-click-on-enter>070 Uses and Use Restrictions - discretionary funds available is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for discretionary funds is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.loanTerms.flag" trigger-click-on-enter>070 Uses and Use Restrictions - loans a type of assistance is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for loan terms is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('160 Related Programs')" ng-show="!gsavm.program.relatedPrograms.flag" trigger-click-on-enter>160 Related Programs is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('160 Related Programs')" ng-show="gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo" trigger-click-on-enter>160 Related Programs - Please select at least one related program<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('170 Examples of Funded Projects')" ng-show="!gsavm.program.projects.flag" trigger-click-on-enter>170 Examples of Funded Projects is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('190 Functional Codes')" ng-show="!gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0" trigger-click-on-enter>190 Functional Codes is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('300 Subject Terms')" ng-show="!gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0" trigger-click-on-enter>300 Subject Terms is required<br/></a>
-                    </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0
+                                <h4>General Information</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('060 Types of Assistance')" ng-show="!gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0" trigger-click-on-enter>060 Types of Assistance is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for specific restrictions is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.discretionaryFund.flag" trigger-click-on-enter>070 Uses and Use Restrictions - discretionary funds available is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for discretionary funds is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.loanTerms.flag" trigger-click-on-enter>070 Uses and Use Restrictions - loans a type of assistance is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for loan terms is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('160 Related Programs')" ng-show="!gsavm.program.relatedPrograms.flag" trigger-click-on-enter>160 Related Programs is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('160 Related Programs')" ng-show="gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo" trigger-click-on-enter>160 Related Programs - Please select at least one related program<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('170 Examples of Funded Projects')" ng-show="!gsavm.program.projects.flag" trigger-click-on-enter>170 Examples of Funded Projects is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('190 Functional Codes')" ng-show="!gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0" trigger-click-on-enter>190 Functional Codes is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('300 Subject Terms')" ng-show="!gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0" trigger-click-on-enter>300 Subject Terms is required<br/></a>
+                            </div>
+                            <div style="padding-top:15px" ng-show="!gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0
                         || !gsavm.program.eligibility.applicant.assistanceUsageTypes || gsavm.program.eligibility.applicant.assistanceUsageTypes.length==0 || !gsavm.program.eligibility.applicant.additionalInfo
                         || !gsavm.program.eligibility.beneficiary.types || gsavm.program.eligibility.beneficiary.types.length==0 || !gsavm.program.eligibility.beneficiary.additionalInfo.content
                         || !gsavm.program.eligibility.documentation.flag || (gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.content)
                         || gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag">
-                        <h4>Eligibility / Qualifications</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0" trigger-click-on-enter>081 Applicant Eligibility - Eligible Applicants is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.assistanceUsageTypes || gsavm.program.eligibility.applicant.assistanceUsageTypes.length==0" trigger-click-on-enter>081 Applicant Eligibility - Use of Assistance is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.additionalInfo" trigger-click-on-enter>081 Applicant Eligibility - Additional Information is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('082 Beneficiary Eligibility')" ng-show="!gsavm.program.eligibility.beneficiary.types || gsavm.program.eligibility.beneficiary.types.length==0" trigger-click-on-enter>082 Beneficiary Eligibility - Beneficiary Eligibility is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('082 Beneficiary Eligibility')" ng-show="!gsavm.program.eligibility.beneficiary.additionalInfo.content" trigger-click-on-enter>082 Beneficiary Eligibility - Additional Information is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="!gsavm.program.eligibility.documentation.flag" trigger-click-on-enter>083 Credentials/Documentation is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.content" trigger-click-on-enter>083 Credentials/Documentation - explain is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" trigger-click-on-enter>083 Credentials/Documentation - 2 CFR 200 is required<br/></a>
-                    </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.preApplication.coordination.flag || (gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.environmentalImpact.flag)
+                                <h4>Eligibility / Qualifications</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0" trigger-click-on-enter>081 Applicant Eligibility - Eligible Applicants is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.assistanceUsageTypes || gsavm.program.eligibility.applicant.assistanceUsageTypes.length==0" trigger-click-on-enter>081 Applicant Eligibility - Use of Assistance is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('081 Applicant Eligibility')" ng-show="!gsavm.program.eligibility.applicant.additionalInfo" trigger-click-on-enter>081 Applicant Eligibility - Additional Information is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('082 Beneficiary Eligibility')" ng-show="!gsavm.program.eligibility.beneficiary.types || gsavm.program.eligibility.beneficiary.types.length==0" trigger-click-on-enter>082 Beneficiary Eligibility - Beneficiary Eligibility is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('082 Beneficiary Eligibility')" ng-show="!gsavm.program.eligibility.beneficiary.additionalInfo.content" trigger-click-on-enter>082 Beneficiary Eligibility - Additional Information is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="!gsavm.program.eligibility.documentation.flag" trigger-click-on-enter>083 Credentials/Documentation is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.content" trigger-click-on-enter>083 Credentials/Documentation - explain is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('083 Credentials/Documentation')" ng-show="gsavm.program.eligibility.documentation.flag==='yes' && !gsavm.program.eligibility.documentation.questions['OMBCircularA87'].flag" trigger-click-on-enter>083 Credentials/Documentation - 2 CFR 200 is required<br/></a>
+                            </div>
+                            <div style="padding-top:15px" ng-show="!gsavm.program.preApplication.coordination.flag || (gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.environmentalImpact.flag)
                         || (gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag) || !gsavm.program.application.procedures.questions.OMBCircularA102.flag
                         || !gsavm.program.award.procedures.content || !gsavm.program.application.deadlines.submission.flag || !gsavm.program.application.deadlines.approval.interval || !gsavm.program.application.deadlines.appeal.interval
                         || !gsavm.program.application.deadlines.renewal.interval || !gsavm.program.assistance.formula.flag || !gsavm.program.assistance.matching.flag || (gsavm.program.assistance.matching.flag=='yes' && !gsavm.program.assistance.matching.percent)
                         || !gsavm.program.assistance.moe.flag || !gsavm.program.assistance.limitation.content || !gsavm.program.assistance.limitation.awarded || !gsavm.program.application.selectionCriteria.flag
                         || (gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content)">
-                        <h4>How to Apply</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="!gsavm.program.preApplication.coordination.flag" trigger-click-on-enter>091 Pre-application Coordination is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.environmentalImpact.flag" trigger-click-on-enter>091 Pre-application Coordination - environmental impact is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" trigger-click-on-enter>091 Pre-application Coordination - Executive Order 12372 is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('092 Application Procedures')" ng-show="!gsavm.program.application.procedures.questions.OMBCircularA102.flag" trigger-click-on-enter>092 Application Procedures is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('093 Award Procedure')" ng-show="!gsavm.program.award.procedures.content" trigger-click-on-enter>093 Award Procedure is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('094 Deadlines')" ng-show="!gsavm.program.application.deadlines.submission.flag" trigger-click-on-enter>094 Deadlines is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('095 Range of Approval/Disapproval Time')" ng-show="!gsavm.program.application.deadlines.approval.interval" trigger-click-on-enter>095 Range of Approval/Disapproval Time is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('096 Appeals')" ng-show="!gsavm.program.application.deadlines.appeal.interval" trigger-click-on-enter>096 Appeals is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('097 Renewals')" ng-show="!gsavm.program.application.deadlines.renewal.interval" trigger-click-on-enter>097 Renewals is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.formula.flag" trigger-click-on-enter>101 Formula and Matching Requirements - statutory formula is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.matching.flag" trigger-click-on-enter>101 Formula and Matching Requirements - matching requirements is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="gsavm.program.assistance.matching.flag=='yes' && !gsavm.program.assistance.matching.percent" trigger-click-on-enter>101 Formula and Matching Requirements - matching requirements percentage is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.moe.flag" trigger-click-on-enter>101 Formula and Matching Requirements - MOE requirements is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('102 Length and Time Phasing of Assistance')" ng-show="!gsavm.program.assistance.limitation.content" trigger-click-on-enter>102 Length and Time Phasing of Assistance - available is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('102 Length and Time Phasing of Assistance')" ng-show="!gsavm.program.assistance.limitation.awarded" trigger-click-on-enter>102 Length and Time Phasing of Assistance - assistance awarded is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="!gsavm.program.application.selectionCriteria.flag" trigger-click-on-enter>180 Criteria for Selecting Proposals is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content" trigger-click-on-enter>180 Criteria for Selecting Proposals - describe criteria is required<br/></a>
-                    </div>
-                    <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag)
+                                <h4>How to Apply</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="!gsavm.program.preApplication.coordination.flag" trigger-click-on-enter>091 Pre-application Coordination is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.environmentalImpact.flag" trigger-click-on-enter>091 Pre-application Coordination - environmental impact is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('091 Pre-application Coordination')" ng-show="gsavm.program.preApplication.coordination.flag==='yes' && !gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag" trigger-click-on-enter>091 Pre-application Coordination - Executive Order 12372 is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('092 Application Procedures')" ng-show="!gsavm.program.application.procedures.questions.OMBCircularA102.flag" trigger-click-on-enter>092 Application Procedures is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('093 Award Procedure')" ng-show="!gsavm.program.award.procedures.content" trigger-click-on-enter>093 Award Procedure is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('094 Deadlines')" ng-show="!gsavm.program.application.deadlines.submission.flag" trigger-click-on-enter>094 Deadlines is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('095 Range of Approval/Disapproval Time')" ng-show="!gsavm.program.application.deadlines.approval.interval" trigger-click-on-enter>095 Range of Approval/Disapproval Time is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('096 Appeals')" ng-show="!gsavm.program.application.deadlines.appeal.interval" trigger-click-on-enter>096 Appeals is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('097 Renewals')" ng-show="!gsavm.program.application.deadlines.renewal.interval" trigger-click-on-enter>097 Renewals is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.formula.flag" trigger-click-on-enter>101 Formula and Matching Requirements - statutory formula is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.matching.flag" trigger-click-on-enter>101 Formula and Matching Requirements - matching requirements is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="gsavm.program.assistance.matching.flag=='yes' && !gsavm.program.assistance.matching.percent" trigger-click-on-enter>101 Formula and Matching Requirements - matching requirements percentage is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('101 Formula and Matching Requirements')" ng-show="!gsavm.program.assistance.moe.flag" trigger-click-on-enter>101 Formula and Matching Requirements - MOE requirements is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('102 Length and Time Phasing of Assistance')" ng-show="!gsavm.program.assistance.limitation.content" trigger-click-on-enter>102 Length and Time Phasing of Assistance - available is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('102 Length and Time Phasing of Assistance')" ng-show="!gsavm.program.assistance.limitation.awarded" trigger-click-on-enter>102 Length and Time Phasing of Assistance - assistance awarded is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="!gsavm.program.application.selectionCriteria.flag" trigger-click-on-enter>180 Criteria for Selecting Proposals is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('180 Criteria for Selecting Proposals')" ng-show="gsavm.program.application.selectionCriteria.flag=='yes' && !gsavm.program.application.selectionCriteria.content" trigger-click-on-enter>180 Criteria for Selecting Proposals - describe criteria is required<br/></a>
+                            </div>
+                            <div style="padding-top:15px" ng-show="!gsavm.program.postAward.reports.flag || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag)
                         || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag)
                         || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag) || (gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag)
                         || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
                         || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)">
-                        <h4>Post Award Requirements</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="!gsavm.program.postAward.reports.flag" trigger-click-on-enter>111 Reports is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag" trigger-click-on-enter>111 Reports - program reports is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.program.flag==='yes' && !gsavm.program.postAward.reports.list.program.content" trigger-click-on-enter>111 Reports - program reports description is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag" trigger-click-on-enter>111 Reports - cash reports is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.cash.flag==='yes' && !gsavm.program.postAward.reports.list.cash.content" trigger-click-on-enter>111 Reports - cash reports description is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag" trigger-click-on-enter>111 Reports - progress reports is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.progress.flag==='yes' && !gsavm.program.postAward.reports.list.progress.content" trigger-click-on-enter>111 Reports - progress reports description is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag" trigger-click-on-enter>111 Reports - expenditure reports is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.content" trigger-click-on-enter>111 Reports - expenditure reports description is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag" trigger-click-on-enter>111 Reports - performance monitoring is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.content" trigger-click-on-enter>111 Reports - performance monitoring description is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('112 Audits')" ng-show="!gsavm.program.postAward.audit.flag" trigger-click-on-enter>112 Audits is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('112 Audits')" ng-show="gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" trigger-click-on-enter>112 Audits - 2 CFR 200, Subpart F is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="!gsavm.program.postAward.documents.flag" trigger-click-on-enter>140 Regulations, Guidelines, and Literature is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content" trigger-click-on-enter>140 Regulations, Guidelines, and Literature - description is required<br/></a>
-                    </div>
+                                <h4>Post Award Requirements</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="!gsavm.program.postAward.reports.flag" trigger-click-on-enter>111 Reports is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.program.flag" trigger-click-on-enter>111 Reports - program reports is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.program.flag==='yes' && !gsavm.program.postAward.reports.list.program.content" trigger-click-on-enter>111 Reports - program reports description is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.cash.flag" trigger-click-on-enter>111 Reports - cash reports is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.cash.flag==='yes' && !gsavm.program.postAward.reports.list.cash.content" trigger-click-on-enter>111 Reports - cash reports description is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.progress.flag" trigger-click-on-enter>111 Reports - progress reports is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.progress.flag==='yes' && !gsavm.program.postAward.reports.list.progress.content" trigger-click-on-enter>111 Reports - progress reports description is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.flag" trigger-click-on-enter>111 Reports - expenditure reports is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes' && !gsavm.program.postAward.reports.list.expenditure.content" trigger-click-on-enter>111 Reports - expenditure reports description is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.flag" trigger-click-on-enter>111 Reports - performance monitoring is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('111 Reports')" ng-show="gsavm.program.postAward.reports.flag==='yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes' && !gsavm.program.postAward.reports.list.performanceMonitoring.content" trigger-click-on-enter>111 Reports - performance monitoring description is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('112 Audits')" ng-show="!gsavm.program.postAward.audit.flag" trigger-click-on-enter>112 Audits is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('112 Audits')" ng-show="gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" trigger-click-on-enter>112 Audits - 2 CFR 200, Subpart F is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="!gsavm.program.postAward.documents.flag" trigger-click-on-enter>140 Regulations, Guidelines, and Literature is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('140 Regulations, Guidelines, and Literature')" ng-show="gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content" trigger-click-on-enter>140 Regulations, Guidelines, and Literature - description is required<br/></a>
+                            </div>
 
 
-                    <div style="padding-top:15px" ng-show="isVisible('financialSection')" >
-                        <h4>Financial Information and Accomplishments</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0 " trigger-click-on-enter>121 Account Identification is required<br/></a>
-                        <div ng-repeat="account in gsavm.program.financial.accounts">
-                            <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for Account # {{$index + 1}}<br/></a>
-                        </div>
-                        <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
-                        <div ng-repeat="obligation in gsavm.program.financial.obligations">
-                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required for Obligation # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
-                        </div>
+                            <div style="padding-top:15px" ng-show="isVisible('financialSection')">
+                                <h4>Financial Information and Accomplishments</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0 " trigger-click-on-enter>121 Account Identification is required<br/></a>
 
-                        <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
-                        <div ng-repeat="taf in gsavm.program.financial.treasury.tafs">
-                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field is required for TAF # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field is required for TAF # {{$index + 1}}<br/></a>
-                        </div>
+                                <div ng-repeat="account in gsavm.program.financial.accounts">
+                                    <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for Account # {{$index + 1}}<br/></a>
+                                </div>
+                                <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
 
-                        <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
-                    </div>
+                                <div ng-repeat="obligation in gsavm.program.financial.obligations">
+                                    <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required for Obligation # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
+                                </div>
 
+                                <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
 
-                    <div style="padding-top:15px" ng-show="isVisible('contactSection')">
-                        <h4>Contact Information</h4>
-                        <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>
-                        <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>
+                                <div ng-repeat="taf in gsavm.program.financial.treasury.tafs">
+                                    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field is required for TAF # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field is required for TAF # {{$index + 1}}<br/></a>
+                                </div>
 
-                        <div ng-repeat="hqContact in gsavm.program.contacts.list">
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.city" trigger-click-on-enter>152 Headquarters Office, City is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.zip" trigger-click-on-enter>152 Headquarters Office, Zip is missing for HQ Contact # {{$index + 1}}<br/></a>
-                            <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.state" trigger-click-on-enter>152 Headquarters Office, State is missing for HQ Contact # {{$index + 1}}<br/></a>
-                        </div>
-                    </div>
+                                <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
+                            </div>
 
 
+                            <div style="padding-top:15px" ng-show="isVisible('contactSection')">
+                                <h4>Contact Information</h4>
+                                <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>
+
+                                <div ng-repeat="hqContact in gsavm.program.contacts.list">
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.city" trigger-click-on-enter>152 Headquarters Office, City is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.zip" trigger-click-on-enter>152 Headquarters Office, Zip is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.state" trigger-click-on-enter>152 Headquarters Office, State is missing for HQ Contact # {{$index + 1}}<br/></a>
+                                </div>
+                            </div>
 
 
-
-
-
-
-                </td>
-                <td style="vertical-align:top;border:none">
-                    <span class="fa fa-minus-square-o" style="position:relative;top:35px;" ng-click="gsavm.IsVisible = !gsavm.IsVisible"></span>
-                </td>
-                </tr>
+                        </td>
+                        <td style="vertical-align:top;border:none">
+                            <span class="fa fa-minus-square-o" style="position:relative;top:35px;" ng-click="gsavm.IsVisible = !gsavm.IsVisible"></span>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div ng-include="'programs/view-section1.tpl.html'"></div>
@@ -1949,7 +2004,8 @@
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_ARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'archive_request')">Archive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_UNARCHIVE] }}" ng-show="uxForm.isSection('review') && gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'unarchive_request')">Unarchive</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_TITLE_CHANGE] }}" ng-show="uxForm.isSection('review') && gsavm.program.status === 'Published' && !gsavm.program.archived" ng-click="showProgramRequestModal(gsavm.program, 'program_request', 'title_request')">Request Change Title</button>
-        <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button><span class="divider"></span>
+        <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button>
+        <span class="divider"></span>
         <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
         <!--field-finder-searchbox></field-finder-searchbox-->
