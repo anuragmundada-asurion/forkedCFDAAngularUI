@@ -92,101 +92,107 @@
 <div class="background gray" style="padding: 40px 0px;" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
 
    
-   <div class="ui container">
+   <div class="ui very relaxed stackable grid container">
        
-       <div class="ui segment borderless">
+       <div class="one column row ui segment borderless">
+           
+           <div class="column">
             
-            {{ user.fullName }}'s Dashboard
-            
-            <!-- Alerts -->
-            
-            <a ui-sref="programList.status({status: 'requests'})">
-                <span class="fa fa-bell"></span>
-                <span ng-show="!oDashboardReport"><img src="/img/img_cfda/loading.svg" /></span>
-                <span ng-show="oDashboardReport">{{ oDashboardReport.request }}</span> Request(s)
-            </a>
-            
-            <!-- Menu of Statistics -->
-            
-            <div class="ui stackable fluid five item inverted lightblue menu">
-                <a class="item" ui-sref="programList.status({status: 'all'})">
-                    <div class="ui statistic">
-                        <div class="value font bold big">
-                            <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                            <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
-                        </div>
-                        <div class="label page font huge lighter no transformation">Total Active Listings</div>
-                    </div>
-                </a>
-                <a class="item" ui-sref="programList.status({status: 'draft'})">
-                    <div class="ui statistic">
-                        <div class="value font bold big">
-                            <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                            <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
-                        </div>
-                        <div class="label page font huge lighter no transformation">Draft<br>Listing</div>
-                    </div>
-                </a>
-                <a class="item" ui-sref="programList.status({status: 'pending'})">
-                    <div class="ui statistic">
-                        <div class="value font bold big">
-                            <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                            <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
-                        </div>
-                        <div class="label page font huge lighter no transformation">Pending Listings</div>
-                    </div>
-                </a>
-                <a class="item" ui-sref="programList.status({status: 'published'})">
-                    <div class="ui statistic">
-                        <div class="value font bold big">
-                            <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                            <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
-                        </div>
-                        <div class="label page font huge lighter no transformation">Published Listings</div>
-                    </div>
-                </a>
-                <a class="item" ui-sref="programList.status({status: 'rejected'})">
-                    <div class="ui statistic">
-                        <div class="value font bold big">
-                            <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                            <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
-                        </div>
-                        <div class="label page font huge lighter no transformation">Rejected Listings</div>
-                    </div>
-                </a>
-            </div>
-            
-            <!-- Options -->
-            
-            <div class="ui three column centered grid">
+                <strong>{{ user.fullName }}'s Dashboard</strong>
                 
-                <div class="column center aligned">
-                    <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
-                        <span class="fa fa-plus"></span> Create a New Listing
+                <!-- Alerts -->
+                
+                <div class="ui green label">
+                    <i class="alarm icon"></i>
+                    <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
+                    {{ oDashboardReport.request }}
+                    <a class="detail" ui-sref="programList.status({status: 'requests'})" ng-show="oDashboardReport">Request(s)</a>
+                </div>
+                
+
+                <!-- Menu of Statistics -->
+                
+                <div class="ui stackable fluid five item inverted lightblue menu">
+                    <a class="item" ui-sref="programList.status({status: 'all'})">
+                        <div class="ui statistic">
+                            <div class="value font bold big">
+                                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                                <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
+                            </div>
+                            <div class="label page font huge lighter no transformation">Total Active Listings</div>
+                        </div>
+                    </a>
+                    <a class="item" ui-sref="programList.status({status: 'draft'})">
+                        <div class="ui statistic">
+                            <div class="value font bold big">
+                                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                                <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
+                            </div>
+                            <div class="label page font huge lighter no transformation">Draft<br>Listing</div>
+                        </div>
+                    </a>
+                    <a class="item" ui-sref="programList.status({status: 'pending'})">
+                        <div class="ui statistic">
+                            <div class="value font bold big">
+                                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                                <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
+                            </div>
+                            <div class="label page font huge lighter no transformation">Pending Listings</div>
+                        </div>
+                    </a>
+                    <a class="item" ui-sref="programList.status({status: 'published'})">
+                        <div class="ui statistic">
+                            <div class="value font bold big">
+                                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                                <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
+                            </div>
+                            <div class="label page font huge lighter no transformation">Published Listings</div>
+                        </div>
+                    </a>
+                    <a class="item" ui-sref="programList.status({status: 'rejected'})">
+                        <div class="ui statistic">
+                            <div class="value font bold big">
+                                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                                <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
+                            </div>
+                            <div class="label page font huge lighter no transformation">Rejected Listings</div>
+                        </div>
                     </a>
                 </div>
                 
-                <div class="one column row">
-                    <div class="column">
-                        <div class="ui divider"></div>
-                    </div>
-                </div>    
+                <!-- Options -->
                 
-                <div class="four column centered row">
-                    <div class="column">
-                        <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
-                            <span class="fa fa-archive"></span><br>
-                            Archived Listing
+                <div class="ui three column centered grid">
+                    
+                    <div class="column center aligned">
+                        <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
+                            <span class="fa fa-plus"></span> Create a New Listing
                         </a>
                     </div>
-                    <div class="column">
-                        <a class="ui large button">
-                            <span class="fa fa-server"></span><br>
-                            Historical Index
-                        </a>
+                    
+                    <div class="one column row">
+                        <div class="column">
+                            <div class="ui divider"></div>
+                        </div>
+                    </div>    
+                    
+                    <div class="four column centered row">
+                        <div class="column">
+                            <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
+                                <span class="fa fa-archive"></span><br>
+                                Archived Listing
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a class="ui large button">
+                                <span class="fa fa-server"></span><br>
+                                Historical Index
+                            </a>
+                        </div>
                     </div>
+                    
                 </div>
-                
+            
             </div>
 
        </div>
