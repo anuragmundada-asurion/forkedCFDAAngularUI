@@ -89,7 +89,8 @@
             onSectionChange: angular.noop,
             addBookmark: addBookmark,
             goToBookmark: goToBookmark,
-            goToBookmarkByText: goToBookmarkByText
+            goToBookmarkByText: goToBookmarkByText,
+            removeAllHighlights: removeAllHighlights
         });
 
         //////////////////

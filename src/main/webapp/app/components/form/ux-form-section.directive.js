@@ -55,6 +55,7 @@
 
             function go() {
                 self.uxForm.current = self;
+                self.uxForm.removeAllHighlights();
                 $document.scrollToElementAnimated($document.findAll(self.uxForm.scrollAnchor), 188);
             }
         }
