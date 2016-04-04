@@ -36,10 +36,11 @@ html.tr-coretext{
    Font Size
 ---------------*/
 .font.huge{
-    font-size: @absoluteHuge;
+    font-size: @absoluteHuge !important;
+    line-height: 3.5rem !important;
 }
 .font.big{
-    font-size: @absoluteBig;
+    font-size: @absoluteBig !important;
 }
 .font.large{
     font-size: @absoluteLarge;
@@ -56,16 +57,23 @@ html.tr-coretext{
 }
 
 /*--------------
+   Font Family
+---------------*/
+.font.page{
+    font-family: @pageFont !important;
+}
+
+/*--------------
    Font Style
 ---------------*/
 .font.bold{
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 .font.light{
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 .font.lighter{
-    font-weight: 200;
+    font-weight: 200 !important;
 }
 
 /*--------------
@@ -80,6 +88,9 @@ html.tr-coretext{
 ---------------*/
 .font.uppercase{
     text-transform: uppercase;
+}
+.font.no.transformation{
+    text-transform: none !important;
 }
 
 /*--------------

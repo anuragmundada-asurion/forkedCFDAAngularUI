@@ -186,10 +186,11 @@ html.tr-coretext {
 ---------------*/
 
 .font.huge {
-  font-size: 4rem;
+  font-size: 4rem !important;
+  line-height: 3.5rem !important;
 }
 .font.big {
-  font-size: 3rem;
+  font-size: 3rem !important;
 }
 .font.large {
   font-size: 2rem;
@@ -206,17 +207,25 @@ html.tr-coretext {
 }
 
 /*--------------
+   Font Family
+---------------*/
+
+.font.page {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+}
+
+/*--------------
    Font Style
 ---------------*/
 
 .font.bold {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 .font.light {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 .font.lighter {
-  font-weight: 200;
+  font-weight: 200 !important;
 }
 
 /*--------------
@@ -233,6 +242,9 @@ html.tr-coretext {
 
 .font.uppercase {
   text-transform: uppercase;
+}
+.font.no.transformation {
+  text-transform: none !important;
 }
 
 /*--------------
