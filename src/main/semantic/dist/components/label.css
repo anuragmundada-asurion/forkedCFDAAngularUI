@@ -959,16 +959,16 @@ a.ui.basic.brown.label:hover {
 
 .ui.grey.labels .label,
 .ui.grey.label {
-  background-color: #767676 !important;
-  border-color: #767676 !important;
+  background-color: #7c7c7c !important;
+  border-color: #7c7c7c !important;
   color: #FFFFFF !important;
 }
 
 /* Link */
 .ui.grey.labels .label:hover,
 a.ui.grey.label:hover {
-  background-color: #838383 !important;
-  border-color: #838383 !important;
+  background-color: #898989 !important;
+  border-color: #898989 !important;
   color: #FFFFFF !important;
 }
 
@@ -986,14 +986,14 @@ a.ui.grey.label:hover {
 /* Basic */
 .ui.basic.grey.label {
   background-color: #FFFFFF !important;
-  color: #767676 !important;
-  border-color: #767676 !important;
+  color: #7c7c7c !important;
+  border-color: #7c7c7c !important;
 }
 .ui.basic.grey.labels a.label:hover,
 a.ui.basic.grey.label:hover {
   background-color: #FFFFFF !important;
-  color: #838383 !important;
-  border-color: #838383 !important;
+  color: #898989 !important;
+  border-color: #898989 !important;
 }
 
 /*--- Black ---*/
@@ -1333,6 +1333,18 @@ a.ui.basic.label:hover {
 .ui.big.labels .label,
 .ui.big.label {
   letter-spacing: -0.2rem;
+}
+.ui.large.labels .label,
+.ui.large.label {
+  letter-spacing: -0.5px;
+}
+
+/*-------------------
+        Link
+--------------------*/
+
+a.ui.label:hover {
+  text-decoration: none;
 }
 
 

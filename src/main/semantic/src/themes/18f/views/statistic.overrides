@@ -10,3 +10,13 @@
 .inverted a:hover .ui.statistic > .label {
     color: @white;
 }
+
+/*--------------
+     Label
+---------------*/
+
+/* Bottom Label */
+.ui.statistics .statistic > .value ~ .label.font.huge,
+.ui.statistic > .value ~ .label.font.huge {
+  margin-top: 1.5rem;
+}

@@ -683,6 +683,10 @@ html.tr-coretext {
   box-shadow: none !important;
 }
 
+.squared {
+  border-radius: 0 !important;
+}
+
 /*--------------
    Background
 ---------------*/
@@ -702,6 +706,7 @@ html.tr-coretext {
 .font.huge {
   font-size: 4rem !important;
   line-height: 3.5rem !important;
+  letter-spacing: -0.1rem;
 }
 
 .font.big {
@@ -754,12 +759,16 @@ html.tr-coretext {
   color: #0071bc;
 }
 
+.font.grey {
+  color: #7c7c7c;
+}
+
 /*--------------
  Font Transformation
 ---------------*/
 
 .font.uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .font.no.transformation {
@@ -977,7 +986,7 @@ html.tr-coretext {
 }
 
 .ui.basic.loading.button:not(.inverted):after {
-  border-top-color: #767676;
+  border-top-color: #7c7c7c;
 }
 
 /*-------------------
@@ -2347,7 +2356,7 @@ html.tr-coretext {
 
 .ui.grey.buttons .button,
 .ui.grey.button {
-  background-color: #767676;
+  background-color: #7c7c7c;
   color: #FFFFFF;
   text-shadow: none;
   background-image: none;
@@ -2359,21 +2368,21 @@ html.tr-coretext {
 
 .ui.grey.buttons .button:hover,
 .ui.grey.button:hover {
-  background-color: #838383;
+  background-color: #898989;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.grey.buttons .button:focus,
 .ui.grey.button:focus {
-  background-color: #8a8a8a;
+  background-color: #909090;
   color: #FFFFFF;
   text-shadow: none;
 }
 
 .ui.grey.buttons .button:active,
 .ui.grey.button:active {
-  background-color: #909090;
+  background-color: #969696;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2382,7 +2391,7 @@ html.tr-coretext {
 .ui.grey.buttons .active.button:active,
 .ui.grey.active.button,
 .ui.grey.button .active.button:active {
-  background-color: #696969;
+  background-color: #6f6f6f;
   color: #FFFFFF;
   text-shadow: none;
 }
@@ -2391,35 +2400,35 @@ html.tr-coretext {
 
 .ui.basic.grey.buttons .button,
 .ui.basic.grey.button {
-  box-shadow: 0px 0px 0px 1px #767676 inset !important;
-  color: #767676 !important;
+  box-shadow: 0px 0px 0px 1px #7c7c7c inset !important;
+  color: #7c7c7c !important;
 }
 
 .ui.basic.grey.buttons .button:hover,
 .ui.basic.grey.button:hover {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #838383 inset !important;
-  color: #838383 !important;
+  box-shadow: 0px 0px 0px 1px #898989 inset !important;
+  color: #898989 !important;
 }
 
 .ui.basic.grey.buttons .button:focus,
 .ui.basic.grey.button:focus {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #8a8a8a inset !important;
-  color: #838383 !important;
+  box-shadow: 0px 0px 0px 1px #909090 inset !important;
+  color: #898989 !important;
 }
 
 .ui.basic.grey.buttons .active.button,
 .ui.basic.grey.active.button {
   background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #696969 inset !important;
-  color: #909090 !important;
+  box-shadow: 0px 0px 0px 1px #6f6f6f inset !important;
+  color: #969696 !important;
 }
 
 .ui.basic.grey.buttons .button:active,
 .ui.basic.grey.button:active {
-  box-shadow: 0px 0px 0px 1px #909090 inset !important;
-  color: #909090 !important;
+  box-shadow: 0px 0px 0px 1px #969696 inset !important;
+  color: #969696 !important;
 }
 
 .ui.buttons:not(.vertical) > .basic.grey.button:not(:first-child) {
@@ -4573,6 +4582,16 @@ html.tr-coretext {
          Theme Overrides
 *******************************/
 
+/*-------------------
+        Sizes
+--------------------*/
+
+.ui.large.buttons .button,
+.ui.large.buttons .or,
+.ui.large.button {
+  letter-spacing: -0.5px;
+}
+
 /*******************************
          Site Overrides
 *******************************/
@@ -4734,6 +4753,20 @@ html.tr-coretext {
 /*******************************
          Theme Overrides
 *******************************/
+
+/*******************************
+             Types
+*******************************/
+
+/* Fixed */
+
+.ui.fixed.container {
+  width: 980px !important;
+  min-width: 980px !important;
+  max-width: 980px !important;
+}
+
+/* Inverted Text Container */
 
 .ui.text.container .inverted {
   color: #FFFFFF;
@@ -6906,15 +6939,15 @@ a.ui.inverted.brown.header:hover {
 /*--- Grey ---*/
 
 .ui.grey.header {
-  color: #767676 !important;
+  color: #7c7c7c !important;
 }
 
 a.ui.grey.header:hover {
-  color: #838383 !important;
+  color: #898989 !important;
 }
 
 .ui.grey.dividing.header {
-  border-bottom: 2px solid #767676;
+  border-bottom: 2px solid #7c7c7c;
 }
 
 /* Inverted */
@@ -12347,8 +12380,8 @@ a.ui.basic.brown.label:hover {
 
 .ui.grey.labels .label,
 .ui.grey.label {
-  background-color: #767676 !important;
-  border-color: #767676 !important;
+  background-color: #7c7c7c !important;
+  border-color: #7c7c7c !important;
   color: #FFFFFF !important;
 }
 
@@ -12356,8 +12389,8 @@ a.ui.basic.brown.label:hover {
 
 .ui.grey.labels .label:hover,
 a.ui.grey.label:hover {
-  background-color: #838383 !important;
-  border-color: #838383 !important;
+  background-color: #898989 !important;
+  border-color: #898989 !important;
   color: #FFFFFF !important;
 }
 
@@ -12378,15 +12411,15 @@ a.ui.grey.label:hover {
 
 .ui.basic.grey.label {
   background-color: #FFFFFF !important;
-  color: #767676 !important;
-  border-color: #767676 !important;
+  color: #7c7c7c !important;
+  border-color: #7c7c7c !important;
 }
 
 .ui.basic.grey.labels a.label:hover,
 a.ui.basic.grey.label:hover {
   background-color: #FFFFFF !important;
-  color: #838383 !important;
-  border-color: #838383 !important;
+  color: #898989 !important;
+  border-color: #898989 !important;
 }
 
 /*--- Black ---*/
@@ -12748,6 +12781,19 @@ a.ui.basic.label:hover {
 .ui.big.labels .label,
 .ui.big.label {
   letter-spacing: -0.2rem;
+}
+
+.ui.large.labels .label,
+.ui.large.label {
+  letter-spacing: -0.5px;
+}
+
+/*-------------------
+        Link
+--------------------*/
+
+a.ui.label:hover {
+  text-decoration: none;
 }
 
 /*******************************
@@ -15032,7 +15078,7 @@ ol.ui.horizontal.list li:before,
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   border-radius: 500rem;
-  border-color: #767676 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+  border-color: #7c7c7c rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
   border-style: solid;
   border-width: 0.2em;
   box-shadow: 0px 0px 0px 1px transparent;
@@ -15219,11 +15265,11 @@ ol.ui.horizontal.list li:before,
 /* Grey */
 
 .ui.grey.segment:not(.inverted) {
-  border-top: 2px solid #767676;
+  border-top: 2px solid #7c7c7c;
 }
 
 .ui.inverted.grey.segment {
-  background-color: #767676 !important;
+  background-color: #7c7c7c !important;
   color: #FFFFFF !important;
 }
 
@@ -21138,8 +21184,8 @@ Floated Menu / Item
 
 .ui.menu .grey.active.item,
 .ui.grey.menu .active.item {
-  border-color: #767676 !important;
-  color: #767676 !important;
+  border-color: #7c7c7c !important;
+  color: #7c7c7c !important;
 }
 
 /*--------------
@@ -21442,7 +21488,7 @@ Floated Menu / Item
 
 .ui.inverted.menu .grey.active.item,
 .ui.inverted.grey.menu {
-  background-color: #767676;
+  background-color: #7c7c7c;
 }
 
 .ui.inverted.grey.menu .item:before {
@@ -21898,6 +21944,18 @@ Floated Menu / Item
 
 .ui.inverted.menu a.active.green.item:hover {
   background: #4aa564;
+}
+
+/*--------------
+      Item
+---------------*/
+
+.ui.menu.top.aligned .item {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  -ms-grid-row-align: flex-start;
+  align-items: flex-start;
 }
 
 /*--------------
@@ -26612,7 +26670,7 @@ a.ui.card:hover,
 .ui.grey.statistics .statistic > .value,
 .ui.statistics .grey.statistic > .value,
 .ui.grey.statistic > .value {
-  color: #767676;
+  color: #7c7c7c;
 }
 
 /*--------------
@@ -26836,6 +26894,17 @@ a.ui.card:hover,
 .inverted a:hover .ui.statistic > .value,
 .inverted a:hover .ui.statistic > .label {
   color: #FFFFFF;
+}
+
+/*--------------
+     Label
+---------------*/
+
+/* Bottom Label */
+
+.ui.statistics .statistic > .value ~ .label.font.huge,
+.ui.statistic > .value ~ .label.font.huge {
+  margin-top: 1.5rem;
 }
 
 /*******************************

@@ -140,6 +140,21 @@
          Theme Overrides
 *******************************/
 
+
+
+/*******************************
+             Types
+*******************************/
+
+
+/* Fixed */
+.ui.fixed.container {
+  width: 980px !important;
+  min-width: 980px !important;
+  max-width: 980px !important;
+}
+
+/* Inverted Text Container */
 .ui.text.container .inverted {
   color: #FFFFFF;
 }

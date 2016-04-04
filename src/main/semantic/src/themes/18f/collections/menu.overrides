@@ -28,9 +28,16 @@
 }
 
 /*--------------
-     Sizes
+      Item
 ---------------*/
 
+.ui.menu.top.aligned .item {
+  align-items: flex-start;
+}
+
+/*--------------
+     Sizes
+---------------*/
 
 /* Big */
 .ui.big.menu {

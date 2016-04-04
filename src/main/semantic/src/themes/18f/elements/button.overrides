@@ -1,3 +1,13 @@
 /*******************************
          Theme Overrides
 *******************************/
+
+/*-------------------
+        Sizes
+--------------------*/
+
+.ui.large.buttons .button,
+.ui.large.buttons .or,
+.ui.large.button {
+  letter-spacing: -0.5px;
+}

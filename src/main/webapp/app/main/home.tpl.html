@@ -22,7 +22,7 @@
     <global-search-box></global-search-box>
 
 
-    <div class="ui very relaxed stackable grid container">
+    <div class="ui very relaxed grid fixed container">
 
         <div class="two column row ui segment borderless">
 
@@ -91,22 +91,23 @@
 <div class="background gray" style="padding: 40px 0px;" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
 
 
-    <div class="ui very relaxed stackable grid container">
+    <div class="ui very relaxed grid fixed container">
 
         <div class="one column row ui segment borderless" style="margin-bottom: 0;">
 
             <div class="column">
-
-                <strong>{{ user.fullName }}'s Dashboard</strong>
-
+                
                 <!-- Alerts -->
-
-                <div class="ui green label">
-                    <i class="alarm icon"></i>
+                
+                <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared" style="margin-top: -8px; padding-left: 40px;">
+                    <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
                     <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
-                    {{ oDashboardReport.request }}
-                    <a class="detail" ui-sref="programList.status({status: 'requests'})" ng-show="oDashboardReport">Request(s)</a>
-                </div>
+                    {{ oDashboardReport.request }} Request(s)
+                </a>
+                
+                <!-- User name -->
+                
+                <strong class="font grey" style="letter-spacing: -.5px;">{{ user.fullName }}'s Dashboard</strong>
 
             </div>
 
@@ -115,7 +116,7 @@
 
         <!-- Menu of Statistics -->
 
-        <div class="ui stackable fluid five item inverted lightblue menu" style="margin-bottom: 0; margin-top: 0;">
+        <div class="ui fluid five item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top: 0;">
             <a class="item" ui-sref="programList.status({status: 'all'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
@@ -186,15 +187,15 @@
                     </div>
 
                     <div class="four column centered row">
-                        <div class="column">
+                        <div class="column center aligned">
                             <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
-                                <span class="fa fa-archive"></span>
+                                <span class="fa fa-archive" style="margin-bottom: 5px;"></span>
                                 <br> Archived Listing
                             </a>
                         </div>
-                        <div class="column">
+                        <div class="column center aligned">
                             <a class="ui large button">
-                                <span class="fa fa-server"></span>
+                                <span class="fa fa-server" style="margin-bottom: 5px;"></span>
                                 <br> Historical Index
                             </a>
                         </div>
@@ -215,7 +216,7 @@
 
 <h3 class="ui centered aligned header" style="margin-bottom: 30px; margin-top: 80px;">Quick Links</h3>
 
-<div class="ui very relaxed stackable grid container" style="padding: 20px 0px 90px 0px;">
+<div class="ui very relaxed grid fixed container" style="padding: 20px 0px 90px 0px;">
 
     <div class="three column row">
         <div class="column center aligned">
@@ -255,7 +256,7 @@
 
     <h3 class="ui centered aligned header" style="margin-bottom: 30px">Related Links</h3>
 
-    <div class="ui very relaxed stackable grid container">
+    <div class="ui very relaxed grid fixed container">
 
         <div class="three column row">
             <div class="column center aligned">

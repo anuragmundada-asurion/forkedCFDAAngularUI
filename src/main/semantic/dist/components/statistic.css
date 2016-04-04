@@ -392,7 +392,7 @@
 .ui.grey.statistics .statistic > .value,
 .ui.statistics .grey.statistic > .value,
 .ui.grey.statistic > .value {
-  color: #767676;
+  color: #7c7c7c;
 }
 
 /*--------------
@@ -587,6 +587,17 @@
 .inverted a:hover .ui.statistic > .value,
 .inverted a:hover .ui.statistic > .label {
   color: #FFFFFF;
+}
+
+/*--------------
+     Label
+---------------*/
+
+
+/* Bottom Label */
+.ui.statistics .statistic > .value ~ .label.font.huge,
+.ui.statistic > .value ~ .label.font.huge {
+  margin-top: 1.5rem;
 }
 
 

@@ -1,5 +1,5 @@
 <div class="ui inverted lightblue borderless stackable menu">
-    <div class="ui container">
+    <div class="ui fixed container">
         <a class="item" ui-sref="home">Home</a>
         <a class="item" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS, PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS, PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS, PERMISSIONS.CAN_REVIEW_PROGRAMS, PERMISSIONS.CAN_REQUEST_TITLE_CHANGE, PERMISSIONS.CAN_PERFORM_TITLE_CHANGE, PERMISSIONS.CAN_REQUEST_ARCHIVE, PERMISSIONS.CAN_PERFORM_ARCHIVE, PERMISSIONS.CAN_REQUEST_UNARCHIVE, PERMISSIONS.CAN_PERFORM_UNARCHIVE] }}"
         ui-sref="programList.status({status: 'all'})">Program List</a>

@@ -51,6 +51,9 @@
        Types
 --------------------*/
 
+/* Fixed */
+@fixedWidth: 980px;
+
 /* Text */
 @textWidth: 700px;
 @textFontFamily: @pageFont;

@@ -38,3 +38,16 @@
 .ui.big.label {
   letter-spacing: -@2px;
 }
+
+.ui.large.labels .label,
+.ui.large.label {
+  letter-spacing: -.5px;
+}
+
+
+/*-------------------
+        Link
+--------------------*/
+a.ui.label:hover {
+    text-decoration: none;
+}

@@ -20,6 +20,10 @@ html.tr-coretext{
     box-shadow: none !important;
 }
 
+.squared{
+    border-radius: 0 !important;
+}
+
 /*--------------
    Background
 ---------------*/
@@ -38,6 +42,7 @@ html.tr-coretext{
 .font.huge{
     font-size: @absoluteHuge !important;
     line-height: 3.5rem !important;
+    letter-spacing: -@1px;
 }
 .font.big{
     font-size: @absoluteBig !important;
@@ -82,12 +87,15 @@ html.tr-coretext{
 .font.blue{
     color: @blue;
 }
+.font.grey{
+    color: @grey;
+}
 
 /*--------------
  Font Transformation
 ---------------*/
 .font.uppercase{
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
 .font.no.transformation{
     text-transform: none !important;

@@ -169,6 +169,9 @@ html.tr-coretext {
   border: none !important;
   box-shadow: none !important;
 }
+.squared {
+  border-radius: 0 !important;
+}
 
 /*--------------
    Background
@@ -188,6 +191,7 @@ html.tr-coretext {
 .font.huge {
   font-size: 4rem !important;
   line-height: 3.5rem !important;
+  letter-spacing: -0.1rem;
 }
 .font.big {
   font-size: 3rem !important;
@@ -235,13 +239,16 @@ html.tr-coretext {
 .font.blue {
   color: #0071bc;
 }
+.font.grey {
+  color: #7c7c7c;
+}
 
 /*--------------
  Font Transformation
 ---------------*/
 
 .font.uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 .font.no.transformation {
   text-transform: none !important;
