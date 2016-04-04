@@ -21882,7 +21882,8 @@ Floated Menu / Item
 }
 
 .ui.inverted.lightblue.menu .item:before {
-  background-color: rgba(34, 36, 38, 0.1);
+  background-color: #FFFFFF;
+  width: 0.2rem;
 }
 
 .ui.inverted.lightblue.menu .active.item:not(.green) {
@@ -26827,6 +26828,15 @@ a.ui.card:hover,
 /*******************************
          Theme Overrides
 *******************************/
+
+/*******************************
+            Content
+*******************************/
+
+.inverted a:hover .ui.statistic > .value,
+.inverted a:hover .ui.statistic > .label {
+  color: #FFFFFF;
+}
 
 /*******************************
     User Variable Overrides

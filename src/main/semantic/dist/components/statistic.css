@@ -581,6 +581,16 @@
 
 
 /*******************************
+            Content
+*******************************/
+
+.inverted a:hover .ui.statistic > .value,
+.inverted a:hover .ui.statistic > .label {
+  color: #FFFFFF;
+}
+
+
+/*******************************
     User Variable Overrides
 *******************************/
 

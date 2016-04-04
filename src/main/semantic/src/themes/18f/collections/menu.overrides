@@ -12,7 +12,8 @@
   background-color: @lightBlue;
 }
 .ui.inverted.lightblue.menu .item:before {
-  background-color: @invertedColoredDividerBackground;
+  background-color: @white;
+  width: @2px;
 }
 .ui.inverted.lightblue.menu .active.item:not(.green) {
   background-color: @invertedColoredActiveBackground !important;

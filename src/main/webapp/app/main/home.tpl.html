@@ -42,7 +42,7 @@
                             <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
                             <a ng-click="searchByListingPublication('new')">
                                 <span class="font lighter h1 size">New Listings</span>
-                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                                <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
                             </a>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <div class="middle aligned content">
                             <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
                             <span class="font lighter h1 size">Archived Listings</span>
-                            <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                            <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
                         </div>
                     </div>
                     <div class="item">
@@ -64,7 +64,7 @@
                             <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
                             <a ng-click="searchByListingPublication('updated')">
                                 <span class="font lighter h1 size">Updated Listings</span>
-                                <i class="circular blue flag icon" style="vertical-align: bottom; margin-left: 10px;"></i>
+                                <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
                             </a>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
             
             <!-- Menu of Statistics -->
             
-            <div class="ui stackable fluid five item menu">
+            <div class="ui stackable fluid five item inverted lightblue menu">
                 <a class="item" ui-sref="programList.status({status: 'all'})">
                     <div class="ui statistic">
                         <div class="value font bold big">
@@ -124,7 +124,7 @@
                             <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
                             <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
                         </div>
-                        <div class="label page font huge lighter no transformation">Draft Listing</div>
+                        <div class="label page font huge lighter no transformation">Draft<br>Listing</div>
                     </div>
                 </a>
                 <a class="item" ui-sref="programList.status({status: 'pending'})">
@@ -162,7 +162,7 @@
                 
                 <div class="column center aligned">
                     <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
-                        <span class="fa fa-plus-circle"></span> Create a New Listing
+                        <span class="fa fa-plus"></span> Create a New Listing
                     </a>
                 </div>
                 
@@ -188,15 +188,7 @@
                 </div>
                 
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-        
+
        </div>
     
     </div>
