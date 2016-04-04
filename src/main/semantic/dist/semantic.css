@@ -700,11 +700,12 @@ html.tr-coretext {
 ---------------*/
 
 .font.huge {
-  font-size: 4rem;
+  font-size: 4rem !important;
+  line-height: 3.5rem !important;
 }
 
 .font.big {
-  font-size: 3rem;
+  font-size: 3rem !important;
 }
 
 .font.large {
@@ -722,19 +723,27 @@ html.tr-coretext {
 }
 
 /*--------------
+   Font Family
+---------------*/
+
+.font.page {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+}
+
+/*--------------
    Font Style
 ---------------*/
 
 .font.bold {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .font.light {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 .font.lighter {
-  font-weight: 200;
+  font-weight: 200 !important;
 }
 
 /*--------------
@@ -751,6 +760,10 @@ html.tr-coretext {
 
 .font.uppercase {
   text-transform: uppercase;
+}
+
+.font.no.transformation {
+  text-transform: none !important;
 }
 
 /*--------------
@@ -12791,8 +12804,8 @@ ol.ui.list li,
   table-layout: fixed;
   list-style-type: none;
   list-style-position: outside;
-  padding: 0.21428571em 0em;
-  line-height: 1.14285714em;
+  padding: 0.3em 0em;
+  line-height: 2em;
 }
 
 ul.ui.list > li:first-child:after,
@@ -12835,7 +12848,7 @@ ol.ui.list ol,
 ul.ui.list ul li,
 ol.ui.list ol li,
 .ui.list .list > .item {
-  padding: 0.14285714em 0em;
+  padding: 0.2em 0em;
   line-height: inherit;
 }
 
@@ -12845,11 +12858,11 @@ ol.ui.list ol li,
 .ui.list > .item > i.icon {
   display: table-cell;
   margin: 0em;
-  padding-top: 0.07142857em;
-  padding-right: 0.28571429em;
+  padding-top: 0.5em;
+  padding-right: 0.4em;
   vertical-align: top;
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 .ui.list .list > .item > i.icon:only-child,
@@ -12889,7 +12902,7 @@ ol.ui.list ol li,
 
 .ui.list .list > .item > .content,
 .ui.list > .item > .content {
-  line-height: 1.14285714em;
+  line-height: 2em;
 }
 
 .ui.list .list > .item > .image + .content,
@@ -12918,7 +12931,7 @@ ol.ui.list ol li,
 .ui.list > .item .header {
   display: block;
   margin: 0em;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -12943,12 +12956,12 @@ ol.ui.list ol li,
 .ui.list .list > a.item,
 .ui.list > a.item {
   cursor: pointer;
-  color: #4183C4;
+  color: #0071bc;
 }
 
 .ui.list .list > a.item:hover,
 .ui.list > a.item:hover {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /* Linked Item Icons */
@@ -12963,12 +12976,12 @@ ol.ui.list ol li,
 .ui.list .list > .item a.header,
 .ui.list > .item a.header {
   cursor: pointer;
-  color: #4183C4 !important;
+  color: #0071bc !important;
 }
 
 .ui.list .list > .item a.header:hover,
 .ui.list > .item a.header:hover {
-  color: #1e70bf !important;
+  color: #205493 !important;
 }
 
 /* Floated Content */
@@ -13004,8 +13017,8 @@ ol.ui.list ol li,
   background-color: transparent;
   list-style-type: none;
   list-style-position: outside;
-  padding: 0.21428571em 0em;
-  line-height: 1.14285714em;
+  padding: 0.3em 0em;
+  line-height: 2em;
 }
 
 .ui.menu .ui.list .list > .item:before,
@@ -13066,8 +13079,8 @@ ol.ui.list ol li,
 
 .ui.horizontal.list > .item:first-child,
 .ui.horizontal.list > .item:last-child {
-  padding-top: 0.21428571em;
-  padding-bottom: 0.21428571em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
 }
 
 /* Horizontal List */
@@ -13144,7 +13157,7 @@ ol.ui.list ol li,
 
 .ui.inverted.list .list > a.item:hover,
 .ui.inverted.list > a.item:hover {
-  color: #1e70bf;
+  color: #205493;
 }
 
 /* Linking Content */
@@ -13154,7 +13167,7 @@ ol.ui.list ol li,
 }
 
 .ui.inverted.list .item a:not(.ui):hover {
-  color: #1e70bf !important;
+  color: #205493 !important;
 }
 
 /*-------------------
@@ -13187,8 +13200,8 @@ ol.ui.list ol li,
 .ui.link.list a.item,
 .ui.link.list .item a:not(.ui) {
   color: rgba(0, 0, 0, 0.4);
-  -webkit-transition: 0.1s color ease;
-  transition: 0.1s color ease;
+  -webkit-transition: 0.35s color ease;
+  transition: 0.35s color ease;
 }
 
 .ui.link.list a.item:hover,
@@ -13241,8 +13254,8 @@ ol.ui.list ol li,
   margin: 0em;
   color: rgba(0, 0, 0, 0.4);
   border-radius: 0.5em;
-  -webkit-transition: 0.1s color ease, 0.1s padding-left ease, 0.1s background-color ease;
-  transition: 0.1s color ease, 0.1s padding-left ease, 0.1s background-color ease;
+  -webkit-transition: 0.35s color ease, 0.35s padding-left ease, 0.35s background-color ease;
+  transition: 0.35s color ease, 0.35s padding-left ease, 0.35s background-color ease;
 }
 
 .ui.selection.list .list > .item:last-child,
@@ -13533,7 +13546,7 @@ ol.ui.horizontal.list li:before,
 .ui.divided.ordered.list .item .list {
   margin-left: 0em;
   margin-right: 0em;
-  padding-bottom: 0.21428571em;
+  padding-bottom: 0.3em;
 }
 
 .ui.divided.ordered.list .item .list > .item {
@@ -13594,8 +13607,8 @@ ol.ui.horizontal.list li:before,
 
 .ui.celled.list > .item:first-child,
 .ui.celled.list > .item:last-child {
-  padding-top: 0.21428571em;
-  padding-bottom: 0.21428571em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
 }
 
 /* Sub Menu */
@@ -13622,7 +13635,7 @@ ol.ui.horizontal.list li:before,
 .ui.celled.bulleted.list .item .list {
   margin-left: -1.25rem;
   margin-right: -1.25rem;
-  padding-bottom: 0.21428571em;
+  padding-bottom: 0.3em;
 }
 
 /* Celled Ordered */
@@ -13639,7 +13652,7 @@ ol.ui.horizontal.list li:before,
 .ui.celled.ordered.list .item .list {
   margin-left: 0em;
   margin-right: 0em;
-  padding-bottom: 0.21428571em;
+  padding-bottom: 0.3em;
 }
 
 .ui.celled.ordered.list .list > .item {
@@ -13685,13 +13698,13 @@ ol.ui.horizontal.list li:before,
 --------------------*/
 
 .ui.relaxed.list:not(.horizontal) > .item {
-  padding-top: 0.42857143em;
-  padding-bottom: 0.42857143em;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
 }
 
 .ui.relaxed.list:not(.horizontal) .list > .item {
-  padding-top: 0.21428571em;
-  padding-bottom: 0.21428571em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
 }
 
 .ui.horizontal.relaxed.list > .item {
@@ -13702,13 +13715,13 @@ ol.ui.horizontal.list li:before,
 /* Very Relaxed */
 
 .ui[class*="very relaxed"].list:not(.horizontal) > .item {
-  padding-top: 0.85714286em;
-  padding-bottom: 0.85714286em;
+  padding-top: 1.2em;
+  padding-bottom: 1.2em;
 }
 
 .ui[class*="very relaxed"].list:not(.horizontal) .list > .item {
-  padding-top: 0.28571429em;
-  padding-bottom: 0.28571429em;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
 }
 
 .ui.horizontal[class*="very relaxed"].list .list > .item,
@@ -13722,75 +13735,75 @@ ol.ui.horizontal.list li:before,
 --------------------*/
 
 .ui.mini.list {
-  font-size: 0.71428571em;
-}
-
-.ui.tiny.list {
-  font-size: 0.85714286em;
-}
-
-.ui.small.list {
-  font-size: 0.92857143em;
-}
-
-.ui.list {
   font-size: 1em;
 }
 
+.ui.tiny.list {
+  font-size: 1.3em;
+}
+
+.ui.small.list {
+  font-size: 1.5em;
+}
+
+.ui.list {
+  font-size: 1.7em;
+}
+
 .ui.large.list {
-  font-size: 1.14285714em;
+  font-size: 2em;
 }
 
 .ui.big.list {
-  font-size: 1.28571429em;
+  font-size: 3em;
 }
 
 .ui.huge.list {
-  font-size: 1.42857143em;
+  font-size: 4em;
 }
 
 .ui.massive.list {
-  font-size: 1.71428571em;
+  font-size: 5.2em;
 }
 
 .ui.mini.horizontal.list .list > .item,
 .ui.mini.horizontal.list > .item {
-  font-size: 0.71428571rem;
+  font-size: 1rem;
 }
 
 .ui.tiny.horizontal.list .list > .item,
 .ui.tiny.horizontal.list > .item {
-  font-size: 0.85714286rem;
+  font-size: 1.3rem;
 }
 
 .ui.small.horizontal.list .list > .item,
 .ui.small.horizontal.list > .item {
-  font-size: 0.92857143rem;
+  font-size: 1.5rem;
 }
 
 .ui.horizontal.list .list > .item,
 .ui.horizontal.list > .item {
-  font-size: 1rem;
+  font-size: 1.7rem;
 }
 
 .ui.large.horizontal.list .list > .item,
 .ui.large.horizontal.list > .item {
-  font-size: 1.14285714rem;
+  font-size: 2rem;
 }
 
 .ui.big.horizontal.list .list > .item,
 .ui.big.horizontal.list > .item {
-  font-size: 1.28571429rem;
+  font-size: 3rem;
 }
 
 .ui.huge.horizontal.list .list > .item,
 .ui.huge.horizontal.list > .item {
-  font-size: 1.42857143rem;
+  font-size: 4rem;
 }
 
 .ui.massive.horizontal.list .list > .item,
 .ui.massive.horizontal.list > .item {
-  font-size: 1.71428571rem;
+  font-size: 5.2rem;
 }
 
 /*******************************
@@ -26283,7 +26296,7 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .value,
 .ui.statistic > .value {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 4rem;
   font-weight: normal;
   line-height: 1em;
@@ -26298,8 +26311,8 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .label,
 .ui.statistic > .label {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 1em;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 1.7em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
   text-transform: uppercase;
@@ -26556,7 +26569,7 @@ a.ui.card:hover,
 .ui.green.statistics .statistic > .value,
 .ui.statistics .green.statistic > .value,
 .ui.green.statistic > .value {
-  color: #21BA45;
+  color: #2e8540;
 }
 
 .ui.teal.statistics .statistic > .value,
@@ -26568,7 +26581,7 @@ a.ui.card:hover,
 .ui.blue.statistics .statistic > .value,
 .ui.statistics .blue.statistic > .value,
 .ui.blue.statistic > .value {
-  color: #2185D0;
+  color: #0071bc;
 }
 
 .ui.violet.statistics .statistic > .value,
@@ -26642,7 +26655,7 @@ a.ui.card:hover,
 .ui.inverted.green.statistics .statistic > .value,
 .ui.statistics .inverted.green.statistic > .value,
 .ui.inverted.green.statistic > .value {
-  color: #2ECC40;
+  color: #4aa564;
 }
 
 .ui.inverted.teal.statistics .statistic > .value,
@@ -26654,7 +26667,7 @@ a.ui.card:hover,
 .ui.inverted.blue.statistics .statistic > .value,
 .ui.statistics .inverted.blue.statistic > .value,
 .ui.inverted.blue.statistic > .value {
-  color: #54C8FF;
+  color: #E1F3F8;
 }
 
 .ui.inverted.violet.statistics .statistic > .value,

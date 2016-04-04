@@ -149,3 +149,9 @@ html.tr-coretext{
         max-width: 90%;
     }
 }
+
+.items{
+    .item a:hover{
+        text-decoration: none;
+    }
+}
