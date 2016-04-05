@@ -6,7 +6,7 @@
             restrict: 'E',
             templateUrl: 'search/search-box.tpl.html',
             link: function(scope, element, attr, controllers){
-                console.log("enable accordion");
+                $('.ui.dropdown').dropdown();
                 $('.ui.accordion').accordion();
             }
         };
