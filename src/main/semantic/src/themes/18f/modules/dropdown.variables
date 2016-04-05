@@ -150,9 +150,9 @@
 @selectionTextUnderlayColor: @unselectedTextColor;
 
 @selectionBoxShadow: none;
-@selectionBorderColor: @borderColor;
-@selectionBorder: 1px solid @selectionBorderColor;
-@selectionBorderRadius: @borderRadius;
+@selectionBorderColor: @blue;
+@selectionBorder: 2px solid @selectionBorderColor;
+@selectionBorderRadius: 0;
 
 @selectionIconOpacity: 0.8;
 @selectionIconZIndex: 3;
@@ -187,7 +187,7 @@
 @selectionWidescreenMaxMenuHeight: (@selectionItemHeight * @selectionWidescreenMaxItems);
 
 /* Hover */
-@selectionHoverBorderColor: @selectedBorderColor;
+@selectionHoverBorderColor: @darkBlue;
 @selectionHoverBoxShadow: none;
 
 /* Focus */

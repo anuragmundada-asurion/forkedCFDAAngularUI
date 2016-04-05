@@ -28494,8 +28494,8 @@ body.dimmable > .dimmer {
   padding: 1.1em 3em 1.1em 1.4em;
   color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  border-radius: 0.4rem;
+  border: 2px solid #0071bc;
+  border-radius: 0;
   -webkit-transition: box-shadow 0.35s ease, width 0.35s ease;
   transition: box-shadow 0.35s ease, width 0.35s ease;
 }
@@ -28603,7 +28603,7 @@ select.ui.dropdown {
 /* Hover */
 
 .ui.selection.dropdown:hover {
-  border-color: rgba(34, 36, 38, 0.35);
+  border-color: #112e51;
   box-shadow: none;
 }
 
