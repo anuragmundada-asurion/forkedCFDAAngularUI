@@ -11,3 +11,46 @@
 .ui.large.button {
   letter-spacing: -0.5px;
 }
+
+/*-------------------
+       Colors
+--------------------*/
+
+
+/*--- Light Blue ---*/
+.ui.lightblue.buttons .button,
+.ui.lightblue.button {
+  background-color: @lightBlue;
+  color: rgba(0, 0, 0, 0.87);
+  text-shadow: @blueTextShadow;
+  background-image: @coloredBackgroundImage;
+}
+.ui.lightblue.button {
+  box-shadow: @coloredBoxShadow;
+}
+.ui.lightblue.buttons .button:hover,
+.ui.lightblue.button:hover {
+  background-color: @darkBlue;
+  color: @white;
+  text-shadow: @blueTextShadow;
+}
+.ui.lightblue.buttons .button:focus,
+.ui.lightblue.button:focus {
+  background-color: @blueFocus;
+  color: @blueTextColor;
+  text-shadow: @blueTextShadow;
+}
+.ui.lightblue.buttons .button:active,
+.ui.lightblue.button:active {
+  background-color: @darkBlue;
+  color: @white;
+  text-shadow: @blueTextShadow;
+}
+.ui.lightblue.buttons .active.button,
+.ui.lightblue.buttons .active.button:active,
+.ui.lightblue.active.button,
+.ui.lightblue.button .active.button:active {
+  background-color: @darkBlue;
+  color: @white;
+  text-shadow: @blueTextShadow;
+}

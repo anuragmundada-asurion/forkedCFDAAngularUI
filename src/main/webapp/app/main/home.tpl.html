@@ -28,52 +28,45 @@
 
             <!-- New in 2015 -->
 
-            <div class="column">
+            <div class="six wide column">
 
                 <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
-
-                <div class="ui items lightblue padded">
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.new">
-                            {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
-                        </div>
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.new" class="ui active small inline loader"></div>
-                            <a ng-click="searchByListingPublication('new')">
-                                <span class="font lighter h1 size">New Listings</span>
-                                <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
-                            </a>
-                        </div>
+                
+                <!-- New Listings -->
+                <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
+                        {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                     </div>
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.archived">
-                            {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
-                        </div>
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.archived" class="ui active small inline loader"></div>
-                            <span class="font lighter h1 size">Archived Listings</span>
-                            <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
-                        </div>
+                    <span class="font lighter h1 size">New Listings</span>
+                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
+                </a>
+                
+                <!-- Archived Listings -->
+                <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
+                        {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                     </div>
-                    <div class="item">
-                        <div class="ui circular label yellow outline filled big" ng-show="aProgramCount.updated">
-                            {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
-                        </div>
-                        <div class="middle aligned content">
-                            <div ng-show="!aProgramCount.updated" class="ui active small inline loader"></div>
-                            <a ng-click="searchByListingPublication('updated')">
-                                <span class="font lighter h1 size">Updated Listings</span>
-                                <i class="blue flag icon" style="vertical-align: super; margin-left: 10px;"></i>
-                            </a>
-                        </div>
+                    <span class="font lighter h1 size">Archived Listings</span>
+                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
+                </a>
+                
+                <!-- Updated Listings -->
+                <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
+                        {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                     </div>
-                </div>
+                    <span class="font lighter h1 size">Updated Listings</span>
+                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
+                </a>
 
             </div>
 
             <!-- Who can apply chart -->
 
-            <div class="column">
+            <div class="ten wide column">
                 <h3 class="ui centered aligned header">Who Can Apply</h3>
                 <div id="listingsChart"></div>
             </div>
@@ -96,17 +89,18 @@
         <div class="one column row ui segment borderless" style="margin-bottom: 0;">
 
             <div class="column">
-                
+
                 <!-- Alerts -->
-                
-                <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared" style="margin-top: -8px; padding-left: 40px;">
+
+                <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared"
+                style="margin-top: -8px; padding-left: 40px;">
                     <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
                     <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
                     {{ oDashboardReport.request }} Request(s)
                 </a>
-                
+
                 <!-- User name -->
-                
+
                 <strong class="font grey" style="letter-spacing: -.5px;">{{ user.fullName }}'s Dashboard</strong>
 
             </div>
