@@ -17,7 +17,7 @@
     <div>
         <p class="vp-field-label-big"> Types of Assistance (060):</p>
 
-        <p class="vp-field-value" ng-repeat="item in programData.assistanceTypes">{{traverseTree(item, 'assistance_type').displayValue}} </p>
+        <p class="vp-field-value" ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
 
     </div>
 

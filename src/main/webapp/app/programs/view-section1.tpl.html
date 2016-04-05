@@ -61,13 +61,9 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3>060 Types of Assistance<span class="required" >*</span></h3>
-        <!--<p>
-            Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the
-            picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."
-        </p>-->
-        <div ng-repeat="item in gsavm.program.assistanceTypes">
-            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').code}} - {{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').value}}</span>
+        <h3>060 Types of Assistance</h3>
+        <div ng-repeat="obligation in gsavm.program.financial.obligations">
+            <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</p>
         </div>
     </div>
 </section>

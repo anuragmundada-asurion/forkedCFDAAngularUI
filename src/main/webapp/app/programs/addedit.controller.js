@@ -408,7 +408,7 @@
                  */
                 function validateProgramFields(oProgram) {
                     return !(!oProgram.title || !oProgram.authorizations || oProgram.authorizations.length == 0
-                    || !oProgram.objective || !oProgram.assistanceTypes || oProgram.assistanceTypes.length == 0 || !oProgram.usage.restrictions.flag
+                    || !oProgram.objective || !oProgram.usage.restrictions.flag
                     || (oProgram.usage.restrictions.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
                     || (oProgram.usage.discretionaryFund.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.discretionaryFund.content)
                     || !oProgram.usage.loanTerms.flag || (oProgram.usage.loanTerms.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.loanTerms.content)
