@@ -47,7 +47,7 @@
                 <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>
 
                 <div class="input-field">
-                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="!((!gsavm.program.status || gsavm.program.status == 'draft') && !gsavm.program.programNumber)">
+                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber)">
 
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.title.$dirty">
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
