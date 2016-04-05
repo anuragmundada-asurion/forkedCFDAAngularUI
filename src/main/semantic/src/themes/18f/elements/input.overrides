@@ -1,0 +1,31 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+/*--------------------
+        Inputs
+---------------------*/
+.ui.input {
+  font-weight: 700;
+}
+
+/*--------------------
+        Action
+---------------------*/
+
+.ui.action.input > .button,
+.ui.action.input > .buttons > .button {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+/*--------------------
+    Absolute Size
+---------------------*/
+
+.ui.input.absolute {
+  font-size: @absoluteMedium;
+}
+.ui.large.input.absolute {
+  font-size: @absoluteLarge;
+}

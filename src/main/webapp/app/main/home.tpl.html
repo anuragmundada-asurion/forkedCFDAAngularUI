@@ -30,7 +30,7 @@
             <div class="six wide column">
 
                 <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
-                
+
                 <!-- New Listings -->
                 <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
                     <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
@@ -38,19 +38,17 @@
                         {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                     </div>
                     <span class="font lighter h1 size">New Listings</span>
-                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
                 </a>
-                
+
                 <!-- Archived Listings -->
-                <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                <a class="ui fluid large light lightblue disabled button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
                     <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
                         <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
                         {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                     </div>
                     <span class="font lighter h1 size">Archived Listings</span>
-                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
                 </a>
-                
+
                 <!-- Updated Listings -->
                 <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
                     <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
@@ -58,7 +56,6 @@
                         {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                     </div>
                     <span class="font lighter h1 size">Updated Listings</span>
-                    <i class="blue flag icon" style="vertical-align: middle; margin-left: 3px;"></i>
                 </a>
 
             </div>
@@ -179,17 +176,15 @@
                         </div>
                     </div>
 
-                    <div class="four column centered row">
-                        <div class="column center aligned">
+                    <div class="two column row">
+                        <div class="column right aligned">
                             <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
-                                <span class="fa fa-archive" style="margin-bottom: 5px;"></span>
-                                <br> Archived Listing
+                                <span class="fa fa-archive"></span> Archived Listing
                             </a>
                         </div>
-                        <div class="column center aligned">
+                        <div class="column left aligned">
                             <a class="ui large button">
-                                <span class="fa fa-server" style="margin-bottom: 5px;"></span>
-                                <br> Historical Index
+                                <span class="fa fa-server"></span> Historical Index
                             </a>
                         </div>
                     </div>
@@ -222,7 +217,17 @@
             <a class="font large bold" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
                 <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />                2015 Print Edition
             </a>
-            <select style="margin-top: 30px;" id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
+        </div>
+        <div class="column center aligned">
+            <a class="font large bold" href="" target="_blank">
+                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />                FTP Downloads
+            </a>
+        </div>
+    </div>
+
+    <div class="two column centered row">
+        <div class="column center aligned">
+            <select class="ui dropdown" id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
                 <option selected value="">Download Previous Editions</option>
                 <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
                 <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
@@ -232,11 +237,6 @@
                 <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
                 <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
             </select>
-        </div>
-        <div class="column center aligned">
-            <a class="font large bold" href="" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />                FTP Downloads
-            </a>
         </div>
     </div>
 
