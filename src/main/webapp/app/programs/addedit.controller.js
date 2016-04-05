@@ -7,6 +7,13 @@
         ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program',
             function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program) {
 
+
+
+                this.assistanceTypeCategory = '';
+                this.showATC = function(){
+                    console.log('assistanceType category is: ' , this.assistanceTypeCategory);
+                    console.log('elements are: ' , this.assistanceTypeCategory['elements']);
+                };
                 var vm = this,
                     CURRENT_FISCAL_YEAR = util.getFiscalYear(),
                     AUTH_VERSION_BASELINE = 1,

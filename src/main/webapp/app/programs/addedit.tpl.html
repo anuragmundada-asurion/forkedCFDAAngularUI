@@ -119,44 +119,11 @@
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="060 Types of Assistance">
-
                 <h3>060 Types of Assistance</h3>
 
                 <div ng-repeat="obligation in gsavm.program.financial.obligations">
                     <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</p>
                 </div>
-
-
-                <!--<span> todo: read only values for assistance types..</span>-->
-
-                <!--<div class="input-field">-->
-                    <!--&lt;!&ndash;<p>-->
-                        <!--Select one or more Assistance Types for your Program using the hierarchical picklist. For the complete set of options available in the-->
-                        <!--picklist, see the "Catalog of Federal Domestic Assitance Reference Manual for Agency Liaisons and Staff."-->
-                    <!--</p>&ndash;&gt;-->
-                    <!--<div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">-->
-                    <!--</div>-->
-                    <!--<multi-entry ng-model="gsavm.program.assistanceTypes" name="assistanceTypes" new-entry-btn-name="+ Add Assistance Types" delete-btn-label="Remove Assistance Type" parent-vm="gsavm" required-Length='{ "min": 1 }'>-->
-                        <!--<multi-entry-header>-->
-                            <!--<h3>060 Types of Assistance<span class="required">*</span></h3>-->
-                        <!--</multi-entry-header>-->
-                        <!--<div>-->
-                            <!--<span ng-show="$ctrl.parentVm.form.assistanceTypes.$error.requiredLength">You need to select at least one Assistance Type for your Program.</span>-->
-                        <!--</div>-->
-                        <!--<multi-entry-list editable="false">-->
-                            <!--<span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>-->
-                        <!--</multi-entry-list>-->
-                        <!--<multi-entry-select>-->
-                            <!--<ux-hierarchy-dropdown-->
-                                    <!--ng-model="_multiEntrySelect.current"-->
-                                    <!--ux-tree="$ctrl.parentVm.trees['assistance_type']"-->
-                                    <!--ux-multiple-->
-                                    <!--ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"-->
-                                    <!--ux-branch-1="has label 'Category'">-->
-                            <!--</ux-hierarchy-dropdown>-->
-                        <!--</multi-entry-select>-->
-                    <!--</multi-entry>-->
-                <!--</div>-->
             </section>
             <section class="sub-section" field-finder-bookmark title="070 Uses and Use Restrictions">
                 <h3>070 Uses and Use Restrictions</h3>
@@ -1306,17 +1273,33 @@
                                                 </ul>
                                             </fieldset>
                                         </div>
-                                        <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='yes'">
-                                            <label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required">*</span></label>
-                                            <ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!$ctrl.parentVm.uiLogic.salaryOrExpenseFlag[formPath]">
-                                                <ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>
-                                                <ui-select-choices group-by="$ctrl.parentVm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in $ctrl.parentVm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">
-                                                    <div ng-bind-html="item.value | highlight: $select.search"></div>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                            <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$dirty">
-                                                <span ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>
-                                            </div>
+                                        <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='na'">
+
+
+                                            <!--<multi-entry-list editable="false">-->
+                                            <!--<span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>-->
+                                            <!--</multi-entry-list>-->
+
+
+                                            <select ng-model="$ctrl.parentVm.assistanceTypeCategory" ng-change="$ctrl.parentVm.showATC()" ng-options="category.displayValue for (key, category) in $ctrl.parentVm.trees['assistance_type'] track by key">
+                                            </select>
+                                            <select ng-show="$ctrl.parentVm.assistanceTypeCategory" ng-model="$ctrl.parentVm.assistanceType" ng-options="option.displayValue for option in $ctrl.parentVm.assistanceTypeCategory['elements'] track by option.element_id">
+                                            </select>
+
+                                            <!--<div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">-->
+                                            <!--</div>-->
+                                            <!--<label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required">*</span></label>-->
+                                            <!--<ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!$ctrl.parentVm.uiLogic.salaryOrExpenseFlag[formPath]">-->
+                                            <!--<ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>-->
+                                            <!--<ui-select-choices group-by="$ctrl.parentVm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in $ctrl.parentVm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">-->
+                                            <!--<div ng-bind-html="item.value | highlight: $select.search"></div>-->
+                                            <!--</ui-select-choices>-->
+                                            <!--</ui-select>-->
+                                            <!--<div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$dirty">-->
+                                            <!--<span ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>-->
+                                            <!--</div>-->
+
+
                                         </div>
                                     </section>
                                     <hr>
