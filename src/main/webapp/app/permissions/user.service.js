@@ -17,7 +17,7 @@
                 lname = IamUser['lastName'];
                 fullName = IamUser['fullName'];
                 phone = IamUser['phoneNumber'];
-                orgId = IamUser['orgId'] ? IamUser['orgId'] : '100500255';
+                orgId = IamUser['orgId'] ? IamUser['orgId'] : '100011942';
             }
 
             if (roles) {
@@ -94,7 +94,7 @@
                                 ],
                                 'fullName': Cookies.get('iplanetDirectoryPro'),
                                 'username': Cookies.get('iplanetDirectoryPro'),
-                                'orgId': '100500255'
+                                'orgId': '100011942'
                             });
                             self.loadingUser = false;
                             $state.reload();

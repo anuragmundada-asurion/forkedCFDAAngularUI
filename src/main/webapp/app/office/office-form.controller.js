@@ -31,7 +31,7 @@
                 $scope.oRegionalOffice = new RegionalOfficeFactory();
                 $scope.oRegionalOffice.address = {};
                 //Fixme Temp for demo
-                $scope.oRegionalOffice.agencyId = '100500255';
+                $scope.oRegionalOffice.agencyId = '100011942';
 
                 //load dictionaries
                 $scope.loadDictionaries();
