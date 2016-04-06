@@ -16,7 +16,7 @@
   width: @2px;
 }
 .ui.inverted.lightblue.menu .active.item:not(.green) {
-  background-color: @invertedColoredActiveBackground !important;
+  background-color: @darkBlue !important;
 }
 .ui.inverted.lightblue.menu a.item:hover {
   background: @darkBlue;

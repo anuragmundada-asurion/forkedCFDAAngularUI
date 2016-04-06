@@ -11,6 +11,12 @@
   font-style: normal;
 }
 
+/* Title */
+.ui.accordion .title,
+.ui.accordion .accordion .title {
+  font-weight: 700;
+}
+
 /* Dropdown Icon */
 .ui.accordion .title .dropdown.icon,
 .ui.accordion .accordion .title .dropdown.icon {
@@ -20,6 +26,7 @@
   font-weight: normal;
   font-style: normal;
   text-align: center;
+  vertical-align: middle;
 }
 
 .ui.accordion .title .dropdown.icon:before,

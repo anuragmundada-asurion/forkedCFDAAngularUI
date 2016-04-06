@@ -4,8 +4,10 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program) {
+
+                $scope.$log = $log;
 
                 var vm = this,
                     CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -384,6 +386,7 @@
                 }
 
                 function onSectionChange(prevSectionKey) {
+                    //console.log(vm.program);
                     save();
                     revealValidations(prevSectionKey);
                 }

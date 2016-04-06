@@ -15455,7 +15455,7 @@ ol.ui.horizontal.list li:before,
 /* Secondary */
 
 .ui.secondary.segment {
-  background: #F3F4F5;
+  background: #eeeeee;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -22035,7 +22035,7 @@ Floated Menu / Item
 }
 
 .ui.inverted.lightblue.menu .active.item:not(.green) {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  background-color: #112e51 !important;
 }
 
 .ui.inverted.lightblue.menu a.item:hover {
@@ -27047,10 +27047,10 @@ a.ui.card:hover,
 /* Default Styling */
 
 .ui.accordion .title:not(.ui) {
-  padding: 0.5em 0em;
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 1em 0em;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1em;
-  color: rgba(0, 0, 0, 0.87);
+  color: #0071bc;
 }
 
 /* Content */
@@ -27089,8 +27089,8 @@ a.ui.card:hover,
   transition: transform 0.35s ease, opacity 0.35s ease;
   transition: transform 0.35s ease, opacity 0.35s ease, -webkit-transform 0.35s ease;
   vertical-align: baseline;
-  -webkit-transform: none;
-  transform: none;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 /*--------------
@@ -27254,6 +27254,13 @@ a.ui.card:hover,
   font-style: normal;
 }
 
+/* Title */
+
+.ui.accordion .title,
+.ui.accordion .accordion .title {
+  font-weight: 700;
+}
+
 /* Dropdown Icon */
 
 .ui.accordion .title .dropdown.icon,
@@ -27265,6 +27272,7 @@ a.ui.card:hover,
   font-weight: normal;
   font-style: normal;
   text-align: center;
+  vertical-align: middle;
 }
 
 .ui.accordion .title .dropdown.icon:before,

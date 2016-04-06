@@ -1987,7 +1987,7 @@ Floated Menu / Item
   width: 0.2rem;
 }
 .ui.inverted.lightblue.menu .active.item:not(.green) {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  background-color: #112e51 !important;
 }
 .ui.inverted.lightblue.menu a.item:hover {
   background: #112e51;
