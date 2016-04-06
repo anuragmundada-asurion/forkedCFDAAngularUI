@@ -40,7 +40,6 @@
     
     .semantic .multiSelectGroup{
         font-weight: 700;
-        font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
     
     .semantic .multiSelectItem{
@@ -67,7 +66,7 @@
 <span class="semantic ui fluid dropdown">
     
     <!-- main button-->
-    <button id="{{directiveId}}" class="ui fluid blue basic button" style="text-align: left; position: relative; padding-left: 40px;" type="button" 
+    <button id="{{directiveId}}" class="ui fluid blue basic button" style="text-align: left; position: relative; padding-left: 40px; color:rgba(0, 0, 0, 0.87) !important;" type="button" 
         ng-click="toggleCheckboxes( $event ); refreshSelectedItems(); refreshButton(); prepareGrouping; prepareIndex();" 
         ng-bind-html="varButtonLabel" 
         ng-disabled="disable-button" >
