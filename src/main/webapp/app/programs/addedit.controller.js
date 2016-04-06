@@ -386,7 +386,7 @@
                 }
 
                 function onSectionChange(prevSectionKey) {
-                    console.log(vm.program);
+                    //console.log(vm.program);
                     save();
                     revealValidations(prevSectionKey);
                 }
