@@ -21,52 +21,54 @@
 
     <search-box></search-box>
 
-    <div class="ui very relaxed grid fixed container">
+    <div class="ui fixed container">
 
-        <div class="two column row ui segment borderless">
+        <div class="ui segment borderless">
+            <div class="ui grid">
+                <div class="two column row">
+                    <!-- New in 2015 -->
 
-            <!-- New in 2015 -->
+                    <div class="six wide column">
 
-            <div class="six wide column">
+                        <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
 
-                <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
+                        <!-- New Listings -->
+                        <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                                <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
+                                {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
+                            </div>
+                            <span class="font lighter h1 size">New Listings</span>
+                        </a>
 
-                <!-- New Listings -->
-                <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
-                        <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
-                        {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
+                        <!-- Archived Listings -->
+                        <a class="ui fluid large light lightblue disabled button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                                <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
+                                {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
+                            </div>
+                            <span class="font lighter h1 size">Archived Listings</span>
+                        </a>
+
+                        <!-- Updated Listings -->
+                        <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
+                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                                <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
+                                {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
+                            </div>
+                            <span class="font lighter h1 size">Updated Listings</span>
+                        </a>
+
                     </div>
-                    <span class="font lighter h1 size">New Listings</span>
-                </a>
 
-                <!-- Archived Listings -->
-                <a class="ui fluid large light lightblue disabled button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
-                        <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
-                        {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
+                    <!-- Who can apply chart -->
+
+                    <div class="ten wide column">
+                        <h3 class="ui centered aligned header">Who Can Apply</h3>
+                        <div id="listingsChart"></div>
                     </div>
-                    <span class="font lighter h1 size">Archived Listings</span>
-                </a>
-
-                <!-- Updated Listings -->
-                <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                    <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
-                        <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
-                        {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
-                    </div>
-                    <span class="font lighter h1 size">Updated Listings</span>
-                </a>
-
+                </div>
             </div>
-
-            <!-- Who can apply chart -->
-
-            <div class="ten wide column">
-                <h3 class="ui centered aligned header">Who Can Apply</h3>
-                <div id="listingsChart"></div>
-            </div>
-
         </div>
 
     </div>
@@ -80,29 +82,30 @@
 <div class="background gray" style="padding: 40px 0px;" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
 
 
-    <div class="ui very relaxed grid fixed container">
+    <div class="ui fixed container">
 
-        <div class="one column row ui segment borderless" style="margin-bottom: 0;">
+        <div class="ui top attached segment borderless">
+            <div class="ui grid">
+                <div class="one column row">
+                    <div class="column">
 
-            <div class="column">
+                        <!-- Alerts -->
 
-                <!-- Alerts -->
+                        <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared"
+                        style="margin-top: -8px; margin-right: -21px; padding-left: 40px;">
+                            <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
+                            <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
+                            {{ oDashboardReport.request }} Request(s)
+                        </a>
 
-                <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared"
-                style="margin-top: -8px; padding-left: 40px;">
-                    <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
-                    <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
-                    {{ oDashboardReport.request }} Request(s)
-                </a>
+                        <!-- User name -->
 
-                <!-- User name -->
+                        <strong class="font grey" style="letter-spacing: -.5px;">{{ user.fullName }}'s Dashboard</strong>
 
-                <strong class="font grey" style="letter-spacing: -.5px;">{{ user.fullName }}'s Dashboard</strong>
-
+                    </div>
+                </div>
             </div>
-
         </div>
-
 
         <!-- Menu of Statistics -->
 
@@ -156,42 +159,41 @@
         </div>
 
 
-        <div class="one column row ui segment borderless" style="margin-top: 0;">
+        <div class="ui bottom attached segment borderless">
 
-            <div class="column">
+            <!-- Options -->
 
-                <!-- Options -->
+            <div class="ui grid">
 
-                <div class="ui three column centered grid">
-
-                    <div class="column center aligned">
+                <div class="row">
+                    <div class="sixteen wide column center aligned">
                         <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
                             <span class="fa fa-plus"></span> Create a New Listing
                         </a>
                     </div>
+                </div>
 
-                    <div class="one column row">
-                        <div class="column">
-                            <div class="ui divider"></div>
-                        </div>
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <div class="ui divider"></div>
                     </div>
+                </div>
 
-                    <div class="two column row">
-                        <div class="column right aligned">
-                            <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
-                                <span class="fa fa-archive"></span> Archived Listing
-                            </a>
-                        </div>
-                        <div class="column left aligned">
-                            <a class="ui large button">
-                                <span class="fa fa-server"></span> Historical Index
-                            </a>
-                        </div>
+                <div class="two column row">
+                    <div class="column right aligned">
+                        <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
+                            <span class="fa fa-archive"></span> Archived Listing
+                        </a>
                     </div>
-
+                    <div class="column left aligned">
+                        <a class="ui large button">
+                            <span class="fa fa-server"></span> Historical Index
+                        </a>
+                    </div>
                 </div>
 
             </div>
+
 
         </div>
 

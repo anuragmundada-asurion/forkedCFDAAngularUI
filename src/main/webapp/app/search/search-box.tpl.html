@@ -7,30 +7,32 @@
         </div>
     </div>
     <div class="ui attached secondary segment borderless">
-        <div class="ui equal width relaxed grid" style="margin-bottom: 7px;">
-            <div class="column">
-                <div class="ui form">
-                    <div class="field">
-                        <label>By Agency</label>
-                        <select class="ui fluid dropdown">
-                            <option selected value="">By Agency</option>
-                        </select>
+        <div class="ui equal width grid">
+            <div class="three column row">
+                <div class="column">
+                    <div class="ui form">
+                        <div class="field">
+                            <label>By Agency</label>
+                            <select class="ui fluid dropdown">
+                                <option selected value="">By Agency</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="column">
-                <div class="ui form">
-                    <div class="field">
-                        <label>By Assistance Type</label>
-                        <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                        output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                        tick-property="ticked" max-height="250px" group-property="msGroup">
-                        </isteven-multi-select>
+                <div class="column">
+                    <div class="ui form">
+                        <div class="field">
+                            <label>By Assistance Type</label>
+                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                            tick-property="ticked" max-height="250px" group-property="msGroup">
+                            </isteven-multi-select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="column">
-                <button class="ui fluid blue basic button" style="margin-top: 29px;">Historical Index</button>
+                <div class="column">
+                    <button class="ui fluid blue basic button" style="margin-top: 29px;">Historical Index</button>
+                </div>
             </div>
         </div>
     </div>
@@ -42,7 +44,7 @@
                 Advanced Search <i class="dropdown icon"></i>
             </div>
             <div class="content" style="border-top: 1px solid rgba(34, 36, 38, 0.15)">
-                
+
                 <div class="ui form" style="text-align: left; font-size: 1rem;">
                     <div class="two fields" style="margin-top: 30px;">
                         <div class="field">
