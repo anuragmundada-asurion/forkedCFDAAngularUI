@@ -20,7 +20,7 @@
                 ],
                 'fullName': $scope.roleChange,
                 'username': $scope.roleChange,
-                'orgId': '100500255'
+                'orgId': '100011942'
             };
             Cookies.set('iplanetDirectoryPro', $scope.roleChange);
             UserService.changeUser(user);
