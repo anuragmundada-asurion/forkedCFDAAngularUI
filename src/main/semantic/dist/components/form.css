@@ -760,8 +760,8 @@
   -webkit-flex: 0 1 auto;
       -ms-flex: 0 1 auto;
           flex: 0 1 auto;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: 1.8em;
+  padding-right: 1.8em;
 }
 .ui.form .fields > .field:first-child {
   border-left: none;
@@ -847,8 +847,8 @@
 /* Sizing Combinations */
 .ui.form .fields .wide.field {
   width: 6.25%;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-left: 1.8em;
+  padding-right: 1.8em;
 }
 .ui.form .fields .wide.field:first-child {
   padding-left: 0%;
@@ -999,7 +999,7 @@
   margin-top: 0em;
   margin-bottom: 0em;
   vertical-align: middle;
-  font-size: 1.7em;
+  font-size: 1em;
 }
 
 /* Label */

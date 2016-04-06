@@ -45,54 +45,80 @@
             </div>
             <div class="content" style="border-top: 1px solid rgba(34, 36, 38, 0.15)">
 
-                <div class="ui form" style="text-align: left; font-size: 1rem;">
-                    <div class="two fields" style="margin-top: 30px;">
-                        <div class="field">
-                            <label>Use of Assistance</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
+                <div class="ui segment borderless">
+                    
+                    <div class="ui form" style="text-align: left;">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Use of Assistance</label>
+                                <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                                output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                                tick-property="ticked" max-height="250px" group-property="msGroup">
+                                </isteven-multi-select>
+                            </div>
+                            <div class="field">
+                                <label>Applicant Eligibility</label>
+                                <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                                output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                                tick-property="ticked" max-height="250px" group-property="msGroup">
+                                </isteven-multi-select>
+                            </div>
                         </div>
-                        <div class="field">
-                            <label>Applicant Eligibility</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
+                        <div class="two fields" style="margin-top: 30px;">
+                            <div class="field">
+                                <label>Beneficiary Eligibility</label>
+                                <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                                output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                                tick-property="ticked" max-height="250px" group-property="msGroup">
+                                </isteven-multi-select>
+                            </div>
+                            <div class="field">
+                                <label>Functional Codes</label>
+                                <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                                output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                                tick-property="ticked" max-height="250px" group-property="msGroup">
+                                </isteven-multi-select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="two fields" style="margin-top: 30px;">
-                        <div class="field">
-                            <label>Beneficiary Eligibility</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
-                        </div>
-                        <div class="field">
-                            <label>Functional Codes</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
-                        </div>
-                    </div>
-                    <div class="two fields" style="margin-top: 30px; margin-bottom: 30px;">
-                        <div class="field">
-                            <label>Date Published</label>
-                            <div class="inline fields">
-                                <div class="eight wide field">
-                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                        <div class="two fields" style="margin-top: 30px; margin-bottom: 30px;">
+                            <div class="field">
+                                <label>Date Published</label>
+                                <div class="inline fields">
+                                    <div class="eight wide field">
+                                        <input type="text" name="" placeholder="mm/dd/yyyy">
+                                    </div>
+                                    <div class="eight wide field">
+                                        <label>to</label>
+                                        <input type="text" name="" placeholder="mm/dd/yyyy">
+                                    </div>
                                 </div>
-                                <div class="eight wide field">
-                                    <label>to</label>
-                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                            </div>
+                            <div class="field">
+                                <label style="margin-bottom: 20px;">Executive Order 12372</label>
+                                <div class="inline fields">
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="" checked="" tabindex="0" class="hidden">
+                                            <label style="font-size: 17px; font-weight: 700;">Yes</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="" tabindex="0" class="hidden">
+                                            <label style="font-size: 17px; font-weight: 700;">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="" tabindex="0" class="hidden">
+                                            <label style="font-size: 17px; font-weight: 700;">Not Selected</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="field">
-                            <label style="margin-bottom: 20px;">Executive Order 12372</label>
+                            <label style="margin-bottom: 20px;">Has Recovery and Reinvestment Act Obligations</label>
                             <div class="inline fields">
                                 <div class="field">
                                     <div class="ui radio checkbox">
@@ -103,45 +129,23 @@
                                 <div class="field">
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="" tabindex="0" class="hidden">
-                                        <label style="font-size: 17px; font-weight: 700;">No</label>
+                                        <label style="font-size: 17px; font-weight: 700;">Not Applicable</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui radio checkbox">
                                         <input type="radio" name="" tabindex="0" class="hidden">
-                                        <label style="font-size: 17px; font-weight: 700;">Not Selected</label>
+                                        <label style="font-size: 17px; font-weight: 700;">All listings</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label style="margin-bottom: 20px;">Has Recovery and Reinvestment Act Obligations</label>
-                        <div class="inline fields">
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="" checked="" tabindex="0" class="hidden">
-                                    <label style="font-size: 17px; font-weight: 700;">Yes</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="" tabindex="0" class="hidden">
-                                    <label style="font-size: 17px; font-weight: 700;">Not Applicable</label>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="ui radio checkbox">
-                                    <input type="radio" name="" tabindex="0" class="hidden">
-                                    <label style="font-size: 17px; font-weight: 700;">All listings</label>
-                                </div>
-                            </div>
+                        <div class="field" style="text-align: right;">
+                            <div class="ui submit large button">Clear All</div>
+                            <div class="ui primary large button">Search</div>
                         </div>
                     </div>
-                    <div class="field" style="text-align: right;">
-                        <div class="ui submit large button">Clear All</div>
-                        <div class="ui primary large button">Search</div>
-                    </div>
+                    
                 </div>
 
             </div>

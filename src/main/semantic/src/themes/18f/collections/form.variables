@@ -7,7 +7,7 @@
 --------------------*/
 
 /* Form */
-@gutterWidth: 1em;
+@gutterWidth: 3.6em;
 @rowDistance: 1em;
 
 /* Text */
@@ -179,7 +179,7 @@
 
 
 /* Inline */
-@inlineInputSize: @relativeMedium;
+@inlineInputSize: 1em;
 
 @inlineLabelDistance: @relativeTiny;
 @inlineLabelColor: @labelColor;
