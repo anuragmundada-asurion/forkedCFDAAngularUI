@@ -5,10 +5,10 @@
 @boxShadow: none;
 
 /* Title */
-@titleFont: @headerFont;
-@titlePadding: 0.5em 0em;
+@titleFont: @pageFont;
+@titlePadding: 1em 0em;
 @titleFontSize: 1em;
-@titleColor: @textColor;
+@titleColor: @linkColor;
 
 /* Icon */
 @iconOpacity: 1;
@@ -24,7 +24,7 @@
   opacity @defaultDuration @defaultEasing
 ;
 @iconVerticalAlign: baseline;
-@iconTransform: none;
+@iconTransform: rotate(-90deg);
 
 /* Child Accordion */
 @childAccordionMargin: 1em 0em 0em;
