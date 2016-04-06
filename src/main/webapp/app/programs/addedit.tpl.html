@@ -1276,20 +1276,20 @@
                                         <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='na'">
 
                                             <p ng-show="$subForm.current.assistanceType"> Selected Assistance Type:
-                                                <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</b> </p>
+                                                <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</b></p>
 
                                             <div ng-show="!$subForm.current.assistanceType">
-                                                <label for="{{ 'assistance-type-' + idPath }}">Please select Assistance Type<span class="required">*</span></label>
-
-                                                <ux-hierarchy-dropdown
-                                                        ng-model="$subForm.current.assistanceType"
-                                                        ux-tree="$ctrl.parentVm.trees['assistance_type']"
-                                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                                        ux-branch-1="has label 'Category'"
-                                                        id="{{ 'assistance-type-' + idPath }}"
-                                                        >
-                                                </ux-hierarchy-dropdown>
+                                                <span>Please select Assistance Type<span class="required">*</span></span>
                                             </div>
+                                            <ux-hierarchy-dropdown
+                                                    ng-model="$subForm.current.assistanceType"
+                                                    ux-tree="$ctrl.parentVm.trees['assistance_type']"
+                                                    ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                                    ux-branch-1="has label 'Category'"
+                                                    id="{{ 'assistance-type-' + idPath }}"
+                                                    >
+                                            </ux-hierarchy-dropdown>
+
                                         </div>
                                         <div class="input-field" ng-if="$subForm.current.questions.salary_or_expense.flag=='yes'">
                                             <div ng-init="$subForm.current.assistanceType = ''"></div>
