@@ -459,7 +459,7 @@
 
 
                 //returns true if some required fields are missing.
-                $scope.isVisible = function (sectionName) {
+                $scope.requiredFieldsMissing = function (sectionName) {
                     //console.log(vm.program);
                     return checkMissingRequiredFields(sectionName);
                 };
@@ -494,6 +494,11 @@
                                     if (!obligation.questions.salary_or_expense) {
                                         requiredFieldsMissing = true;
                                     }
+                                    //assistance type validation
+                                    if (obligation.questions.salary_or_expense.flag == 'na' && (!obligation.assistanceType || obligation.assistanceType == '')) {
+                                        requiredFieldsMissing = true;
+                                    }
+
                                 });
 
                                 //check things in tafs array
