@@ -1275,32 +1275,26 @@
                                         </div>
                                         <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='na'">
 
+                                            <p ng-show="$subForm.current.assistanceType"> Selected Assistance Type:
+                                                <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</b> </p>
 
-                                            <!--<multi-entry-list editable="false">-->
-                                            <!--<span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_type').displayValue}}</span>-->
-                                            <!--</multi-entry-list>-->
+                                            <div ng-show="!$subForm.current.assistanceType">
+                                                <label for="{{ 'assistance-type-' + idPath }}">Please select Assistance Type<span class="required">*</span></label>
 
-
-                                            <select ng-model="$ctrl.parentVm.assistanceTypeCategory" ng-change="$ctrl.parentVm.showATC()" ng-options="category.displayValue for (key, category) in $ctrl.parentVm.trees['assistance_type'] track by key">
-                                            </select>
-                                            <select ng-show="$ctrl.parentVm.assistanceTypeCategory" ng-model="$ctrl.parentVm.assistanceType" ng-options="option.displayValue for option in $ctrl.parentVm.assistanceTypeCategory['elements'] track by option.element_id">
-                                            </select>
-
-                                            <!--<div ng-show="gsavm.validationFlag.info || gsavm.form.assistanceTypes.$dirty">-->
-                                            <!--</div>-->
-                                            <!--<label id="{{ 'assistance-types-' + idPath }}">Assistance Type<span class="required">*</span></label>-->
-                                            <!--<ui-select id="{{ 'assistance-types-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.assistanceType" name="assistanceTypes" theme="select2" ng-required="!$ctrl.parentVm.uiLogic.salaryOrExpenseFlag[formPath]">-->
-                                            <!--<ui-select-match placeholder="Please select an assistance type...">{{$select.selected.value}}</ui-select-match>-->
-                                            <!--<ui-select-choices group-by="$ctrl.parentVm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in $ctrl.parentVm.choices['assistance_type'] | propsFilter: {value: $select.search, 'parent.value': $select.search}">-->
-                                            <!--<div ng-bind-html="item.value | highlight: $select.search"></div>-->
-                                            <!--</ui-select-choices>-->
-                                            <!--</ui-select>-->
-                                            <!--<div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$dirty">-->
-                                            <!--<span ng-show="$ctrl.parentVm.form.financial.{{formPath}}.assistanceTypes.$error.requiredLength">You need to select an Assistance Type.</span>-->
-                                            <!--</div>-->
-
-
+                                                <ux-hierarchy-dropdown
+                                                        ng-model="$subForm.current.assistanceType"
+                                                        ux-tree="$ctrl.parentVm.trees['assistance_type']"
+                                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
+                                                        ux-branch-1="has label 'Category'"
+                                                        id="{{ 'assistance-type-' + idPath }}"
+                                                        >
+                                                </ux-hierarchy-dropdown>
+                                            </div>
                                         </div>
+                                        <div class="input-field" ng-if="$subForm.current.questions.salary_or_expense.flag=='yes'">
+                                            <div ng-init="$subForm.current.assistanceType = ''"></div>
+                                        </div>
+
                                     </section>
                                     <hr>
                                     <div ng-repeat="fyTpl in $ctrl.parentVm.fyTpls track by fyTpl.year">
