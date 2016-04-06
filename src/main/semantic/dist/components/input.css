@@ -41,7 +41,7 @@
   text-align: left;
   line-height: 1.2142em;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  padding: 0.9929em 1.4em;
+  padding: 0.8929em 1.4em;
   background: #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.87);
@@ -248,7 +248,7 @@
   right: 0px;
   margin: 0em;
   height: 100%;
-  width: 3.3em;
+  width: 3.1em;
   opacity: 0.5;
   border-radius: 0em 0 0 0em;
   -webkit-transition: opacity 0.3s ease;
@@ -258,7 +258,7 @@
   pointer-events: none;
 }
 .ui.icon.input input {
-  padding-right: 3.3em !important;
+  padding-right: 3.1em !important;
 }
 .ui.icon.input > i.icon:before,
 .ui.icon.input > i.icon:after {
@@ -288,7 +288,7 @@
   left: 0.5em;
 }
 .ui[class*="left icon"].input > input {
-  padding-left: 3.3em !important;
+  padding-left: 3.1em !important;
   padding-right: 1.4em !important;
 }
 
@@ -312,8 +312,8 @@
   font-size: 1.7em;
 }
 .ui.labeled.input > .label:not(.corner) {
-  padding-top: 1.1em;
-  padding-bottom: 1.1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 /* Regular Label on Left */
@@ -405,8 +405,8 @@
 }
 .ui.action.input > .button,
 .ui.action.input > .buttons > .button {
-  padding-top: 1.1em;
-  padding-bottom: 1.1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   margin: 0;
 }
 

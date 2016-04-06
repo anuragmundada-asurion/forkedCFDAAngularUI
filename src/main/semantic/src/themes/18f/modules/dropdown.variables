@@ -125,9 +125,9 @@
 --------------*/
 
 @selectionMinWidth: 14em;
-@selectionVerticalPadding: @inputVerticalPadding;
+@selectionVerticalPadding: @inputVerticalPadding - 0.115em;
 @selectionHorizontalPadding: @inputHorizontalPadding;
-@selectionBorderEmWidth:  @relative1px;
+@selectionBorderEmWidth:  @relative2px;
 @selectionMinHeight: @inputLineHeight + (@selectionVerticalPadding * 2) - @selectionBorderEmWidth;
 @selectionBackground: @inputBackground;
 @selectionDisplay: inline-block;

@@ -60,3 +60,12 @@
   content: "\f0da";
 }
 */
+
+
+/*--------------
+      Text
+---------------*/
+
+.ui.dropdown > .text {
+  font-weight: 700;
+}

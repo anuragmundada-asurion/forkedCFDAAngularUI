@@ -1,13 +1,13 @@
-<div class="ui fixed container">
+<div class="ui fixed container" ng-controller="ProgramSearchCtrl" style="margin-bottom: 50px;">
 
     <div class="ui top attached borderless segment" style="padding: 0; border-bottom: 3px solid #cbcbcb !important;">
         <div class="ui fluid large action input absolute">
             <input type="text" placeholder="Keyword/FAL#">
-            <div class="ui primary button">Search</div>
+            <div class="ui primary large button">Search</div>
         </div>
     </div>
     <div class="ui attached secondary segment">
-        <div class="ui equal width grid">
+        <div class="ui equal width relaxed grid">
             <div class="column">
                 <div class="ui form">
                     <div class="field">
@@ -22,79 +22,181 @@
                 <div class="ui form">
                     <div class="field">
                         <label>By Assistance Type</label>
-                        <select class="ui fluid dropdown">
-                            <option selected value="">None Selected</option>
-                        </select>
+                        <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                        output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                        tick-property="ticked" max-height="250px" group-property="msGroup">
+                        </isteven-multi-select>
                     </div>
                 </div>
             </div>
             <div class="column">
-                <div class="ui form">
-                    <div class="field">
-                        <label>Historical Index</label>
-                        <select class="ui fluid dropdown">
-                            <option selected value="">Historical Index</option>
-                        </select>
-                    </div>
-                </div>
+                <button class="ui fluid blue basic button" style="margin-top: 29px;">Historical Index</button>
             </div>
         </div>
     </div>
-    <div class="ui bottom attached button" tabindex="0">
-        <!--Advanced Search-->
+    <div class="ui bottom attached borderless segment center aligned">
+
+        <!-- Advanced Search -->
         <div class="ui accordion">
             <div class="title">
                 Advanced Search <i class="dropdown icon"></i>
             </div>
             <div class="content">
-                <p>Form Fields</p>
+
+                <div class="ui form" style="text-align: left; font-size: 1rem;">
+                    <div class="two fields" style="margin-top: 30px;">
+                        <div class="field">
+                            <label>Use of Assistance</label>
+                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                            tick-property="ticked" max-height="250px" group-property="msGroup">
+                            </isteven-multi-select>
+                        </div>
+                        <div class="field">
+                            <label>Applicant Eligibility</label>
+                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                            tick-property="ticked" max-height="250px" group-property="msGroup">
+                            </isteven-multi-select>
+                        </div>
+                    </div>
+                    <div class="two fields" style="margin-top: 30px;">
+                        <div class="field">
+                            <label>Beneficiary Eligibility</label>
+                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                            tick-property="ticked" max-height="250px" group-property="msGroup">
+                            </isteven-multi-select>
+                        </div>
+                        <div class="field">
+                            <label>Functional Codes</label>
+                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
+                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
+                            tick-property="ticked" max-height="250px" group-property="msGroup">
+                            </isteven-multi-select>
+                        </div>
+                    </div>
+                    <div class="two fields" style="margin-top: 30px; margin-bottom: 30px;">
+                        <div class="field">
+                            <label>Date Published</label>
+                            <div class="inline fields">
+                                <div class="eight wide field">
+                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                                </div>
+                                <div class="eight wide field">
+                                    <label>to</label>
+                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label style="margin-bottom: 20px;">Executive Order 12372</label>
+                            <div class="inline fields">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" checked="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px; font-weight: 700;">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px; font-weight: 700;">No</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px; font-weight: 700;">Not Selected</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label style="margin-bottom: 20px;">Has Recovery and Reinvestment Act Obligations</label>
+                        <div class="inline fields">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" checked="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px; font-weight: 700;">Yes</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px; font-weight: 700;">Not Applicable</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px; font-weight: 700;">All listings</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field" style="text-align: right;">
+                        <div class="ui submit large button">Clear All</div>
+                        <div class="ui primary large button">Search</div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 
 
+    <!-- OLD CODE: START -->
 
-</div>
+    <!--<div class="search-box">
+        <div class="usa-grid">
+            <div class="usa-grid search-bar">
 
+                <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
+                <input id="filterYearVal" type="hidden" name="filterYear" value="0">
 
+                <div role="search" class="usa-width-one-whole usa-search usa-search-big center">
 
-<div class="search-box" ng-controller="ProgramSearchCtrl">
-    <div class="usa-grid">
-        <div class="usa-grid search-bar">
-            <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
-            <input id="filterYearVal" type="hidden" name="filterYear" value="0">
-            <div role="search" class="usa-width-one-whole usa-search usa-search-big center">
-                <label class="usa-sr-only" for="search-field-big">Search big</label>
-                <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue" type="search" id="search-field-big" required="required"
-                placeholder="Keyword / FAL#" name="text">
-                <button type="submit" ng-click="searchPrograms()">
-                    <span class="usa-search-submit-text">Search</span>
-                </button>
+                    <label class="usa-sr-only" for="search-field-big">Search big</label>
+                    <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue" type="search" id="search-field-big" required="required"
+                    placeholder="Keyword / FAL#" name="text">
+                    <button type="submit" ng-click="searchPrograms()">
+                        <span class="usa-search-submit-text">Search</span>
+                    </button>
+
+                </div>
+
             </div>
         </div>
-    </div>
 
-    <div class="usa-grid-full">
-        <div class="usa-width-one-fourth" style="padding:0px 0px 0px 8px;">
-            <label for="qs-posted">By Agency</label>
-            <select size="1" id="qs-posted" style="font-weight:bold">
-                <option selected value="">By Agency</option>
-            </select>
+        <div class="usa-grid-full">
+            <div class="usa-width-one-fourth" style="padding:0px 0px 0px 8px;">
+                <label for="qs-posted">By Agency</label>
+                <select size="1" id="qs-posted" style="font-weight:bold">
+                    <option selected value="">By Agency</option>
+                </select>
+            </div>
+            <div class="usa-width-one-fourth" style="padding:0px 0px 0px 0px;">
+                <label>By Assistance Type</label>
+                <isteven-multi-select max-labels="1" input-model="dictionary.aAssistanceType" output-model="advancedSearch.aAssistanceType"
+                button-label="displayValue" item-label="displayValue" tick-property="ticked" max-height="250px" group-property="msGroup">
+                </isteven-multi-select>
+            </div>
+            <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
+                <label for="agency-search-field">By Historical Index</label>
+                <select size="1" id="agency-search-field" style="font-weight:bold">
+                    <option selected value="">Historical Index</option>
+                </select>
+            </div>
+            <div class="usa-width-one-fourth usa-search usa-search-big" style="padding-top: 47px;">
+                <a style="padding: 18px;" ui-sref="advancedSearch" class="usa-button">Advanced Search</a>
+            </div>
         </div>
-        <div class="usa-width-one-fourth" style="padding:0px 0px 0px 0px;">
-            <label>By Assistance Type</label>
-            <isteven-multi-select max-labels="1" input-model="dictionary.aAssistanceType" output-model="advancedSearch.aAssistanceType"
-            button-label="displayValue" item-label="displayValue" tick-property="ticked" max-height="250px" group-property="msGroup">
-            </isteven-multi-select>
-        </div>
-        <div class="usa-width-one-fourth" style="padding:0px 0px 28px 8px;">
-            <label for="agency-search-field">By Historical Index</label>
-            <select size="1" id="agency-search-field" style="font-weight:bold">
-                <option selected value="">Historical Index</option>
-            </select>
-        </div>
-        <div class="usa-width-one-fourth usa-search usa-search-big" style="padding-top: 47px;">
-            <a style="padding: 18px;" ui-sref="advancedSearch" class="usa-button">Advanced Search</a>
-        </div>
-    </div>
+    </div>-->
+
+    <!-- OLD CODE: END -->
+
+
 </div>
