@@ -43,7 +43,7 @@
             </div>
             <div class="content">
 
-                <div class="ui form" style="text-align: left;">
+                <div class="ui form" style="text-align: left; font-size: 1rem;">
                     <div class="two fields" style="margin-top: 30px;">
                         <div class="field">
                             <label>Use of Assistance</label>
@@ -79,25 +79,66 @@
                     <div class="two fields" style="margin-top: 30px; margin-bottom: 30px;">
                         <div class="field">
                             <label>Date Published</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
+                            <div class="inline fields">
+                                <div class="eight wide field">
+                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                                </div>
+                                <div class="eight wide field">
+                                    <label>to</label>
+                                    <input type="text" name="" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
                         </div>
                         <div class="field">
                             <label>Executive Order 12372</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
+                            <div class="inline fields">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" checked="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px;">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px;">No</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="" tabindex="0" class="hidden">
+                                        <label style="font-size: 17px;">Not Selected</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="field">
-                            <label>Has Recovery and Reinvestment Act Obligations</label>
-                            <isteven-multi-select helper-elements="all none filter" template-url="search/dropdown.tpl.html" max-labels="1" input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType" button-label="displayValue" item-label="displayValue"
-                            tick-property="ticked" max-height="250px" group-property="msGroup">
-                            </isteven-multi-select>
+                        <label>Has Recovery and Reinvestment Act Obligations</label>
+                        <div class="inline fields">
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" checked="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px;">Yes</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px;">Not Applicable</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="" tabindex="0" class="hidden">
+                                    <label style="font-size: 17px;">All listings</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field" style="text-align: right;">
+                        <div class="ui submit large button">Clear All</div>
+                        <div class="ui primary large button">Search</div>
                     </div>
                 </div>
 
