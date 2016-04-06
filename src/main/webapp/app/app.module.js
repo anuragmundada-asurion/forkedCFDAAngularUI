@@ -119,10 +119,10 @@
         });
     };
     
-    // Temporary adding this to theme only home page
-    angular.module('app').run(function($rootScope, $state) {
-      $rootScope.$state = $state;
-    });
+    // Temporary adding this to theme some pages
+    angular.module('app').run( function($rootScope, $state) {
+        $rootScope.$state = $state;
+    } );
     
     
 })();

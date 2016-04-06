@@ -189,12 +189,12 @@
 
 /* Basic */
 @basicBorderRadius: @borderRadius;
-@basicBorderSize: 1px;
+@basicBorderSize: 2px;
 @basicTextColor: @textColor;
-@basicColoredBorderSize: 1px;
+@basicColoredBorderSize: 2px;
 
 @basicBackground: transparent none;
-@basicFontWeight: normal;
+@basicFontWeight: 700;
 @basicBorder: 1px solid @borderColor;
 @basicBoxShadow: 0px 0px 0px @basicBorderSize @borderColor inset;
 @basicLoadingColor: @offWhite;

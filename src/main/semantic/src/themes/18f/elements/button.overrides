@@ -16,7 +16,6 @@
        Colors
 --------------------*/
 
-
 /*--- Light Blue ---*/
 .ui.lightblue.buttons .button,
 .ui.lightblue.button {
@@ -53,4 +52,23 @@
   background-color: @darkBlue;
   color: @white;
   text-shadow: @blueTextShadow;
+}
+
+/*--- Blue ---*/
+/* Basic */
+.ui.basic.blue.buttons .button,
+.ui.basic.blue.button {
+  background: @white !important;
+}
+.ui.basic.blue.buttons .button:hover,
+.ui.basic.blue.button:hover {
+  background: @white !important;
+}
+.ui.basic.blue.buttons .button:focus,
+.ui.basic.blue.button:focus {
+  background: @white !important;
+}
+.ui.basic.blue.buttons .active.button,
+.ui.basic.blue.active.button {
+  background: @white !important;
 }
