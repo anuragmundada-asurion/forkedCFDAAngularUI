@@ -19,7 +19,7 @@
   background: #FFFFFF;
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   margin: 1rem 0em;
-  padding: 1em 1em;
+  padding: 2em 3em;
   border-radius: 0rem;
   border: 1px solid rgba(34, 36, 38, 0.15);
 }
@@ -77,8 +77,8 @@
 .ui.page.grid.segment,
 .ui.grid > .row > .ui.segment.column,
 .ui.grid > .ui.segment.column {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 4em;
+  padding-bottom: 4em;
 }
 .ui.grid.segment {
   margin: 1rem 0em;
@@ -92,7 +92,7 @@
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
 }
 .ui[class*="very basic"].table.segment {
-  padding: 1em 1em;
+  padding: 2em 3em;
 }
 
 
@@ -168,7 +168,7 @@
 --------------------*/
 
 .ui.stacked.segment {
-  padding-bottom: 1.4em;
+  padding-bottom: 2.4em;
 }
 .ui.stacked.segments:before,
 .ui.stacked.segments:after,
@@ -678,7 +678,7 @@
 
 /* Secondary */
 .ui.secondary.segment {
-  background: #F3F4F5;
+  background: #eeeeee;
   color: rgba(0, 0, 0, 0.6);
 }
 .ui.secondary.inverted.segment {

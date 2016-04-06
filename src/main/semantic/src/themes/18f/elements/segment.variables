@@ -11,8 +11,8 @@
 @border: @borderWidth solid @borderColor;
 
 @boxShadow: @subtleShadow;
-@verticalPadding: 1em;
-@horizontalPadding: 1em;
+@verticalPadding: 2em;
+@horizontalPadding: 3em;
 @padding: @verticalPadding @horizontalPadding;
 
 @verticalMargin: 1rem;
@@ -112,7 +112,7 @@
 @coloredBorderSize: 2px;
 
 /* Ordinality */
-@secondaryBackground: @darkWhite;
+@secondaryBackground: #eeeeee;
 @secondaryColor: @mutedTextColor;
 
 @tertiaryBackground:  @midWhite;
