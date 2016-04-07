@@ -35,19 +35,27 @@
                 "organizationId": "=" // ngModel var passed by reference (two-way) 
             },
             controller: ['$scope', function($scope) {
+                //store program organization id if the program has it otherwise store user's organization id
+                if(typeof $scope.programOrganizationId === 'undefined' ) {
+                    $scope.programOrganizationId = (typeof $scope.organizationId === 'undefined' || $scope.organizationId === '' || $scope.organizationId === null) ? UserService.getUserOrgId() : $scope.organizationId;
+                }
+
+                console.log('Original orgID: '+$scope.programOrganizationId)
+
                 /**
                  * Function to set the organizationId scope from dropdowns (Department/Agency/Office)
                  * @param string type
                  * @returns void
                  */
                 $scope.setOrganizationId = function(type) {
+                    console.log('Before: '+ $scope.organizationId);
                     switch(type){
                         case 'department':
                             if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
                                     && $scope.selectedDeptId !== null && $scope.selectedDeptId.hasOwnProperty('elementId')) {
                                 $scope.organizationId = $scope.selectedDeptId.elementId;
                             } else { //if department is not selected then set user's organization id
-                                $scope.organizationId = UserService.getUserOrgId();
+                                $scope.organizationId = $scope.programOrganizationId;
                             }
 
                             //empty agency & office dropdowns
@@ -73,7 +81,7 @@
                                 if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
                                     $scope.organizationId = $scope.selectedDeptId.elementId;
                                 } else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
-                                    $scope.organizationId = UserService.getUserOrgId();
+                                    $scope.organizationId = $scope.programOrganizationId;
                                 }
                             }
 
@@ -98,6 +106,8 @@
                             }
                             break;
                     }
+                    
+                    console.log('After: '+ $scope.organizationId);
                 };
 
                 /**
@@ -134,18 +144,19 @@
                 scope.departmentLabel = '';
                 scope.error = '';
 
+                console.log('Original orgID: '+scope.programOrganizationId);
                 //Case if user is an AGENCY USER
                 if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
-                    FederalHierarchyService.getFullLabelPathFederalHierarchyById(UserService.getUserOrgId(), true, false, function (organizationNames) {
+                    FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.programOrganizationId, true, false, function (organizationNames) {
                         scope.departmentLabel = organizationNames;
-                        scope.organizationId = UserService.getUserOrgId();
+                        scope.organizationId = scope.programOrganizationId;
                     }, function (error) {
                         scope.error = "An error has occurred, Please try again !";
                     });
                 } //Case if user is an AGENCY COORDINATOR
                 else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
                     //get Department level of user's organizationId
-                    scope.initDictionaries(UserService.getUserOrgId(), true, true, function (oData) {
+                    scope.initDictionaries(scope.programOrganizationId, true, true, function (oData) {
                         if(oData.type === 'DEPARTMENT') {
                             //initialize Department "Label" and Agency dropdown
                             scope.dictionary = {
