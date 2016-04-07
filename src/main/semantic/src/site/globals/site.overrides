@@ -115,3 +115,25 @@ html.tr-coretext{
 .theme-iae #iae-footer{
     margin-top: .1em !important;
 }
+
+/*--------------
+    Calendar
+---------------*/
+.uib-datepicker-popup.dropdown-menu{
+    padding: 20px;
+    background-color: @white;
+    position: absolute !important;
+    border: 1px solid #ccc;
+    
+    li{
+        list-style: none;
+    }
+}
+
+/*--------------
+   C3 Chart
+---------------*/
+.c3 svg {
+    font-family: @pageFont !important;
+    font-size: 11px;
+}
