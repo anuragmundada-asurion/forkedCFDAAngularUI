@@ -37,11 +37,8 @@
                  * @returns void
                  */
                 $scope.setOrganizationId = function(type) {
-                    console.log('Before: '+$scope.organizationId)
-
                     switch(type){
                         case 'department':
-                            console.log($scope.selectedDeptId);
                             if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
                                     && $scope.selectedDeptId !== null && $scope.selectedDeptId.hasOwnProperty('elementId')) {
                                 $scope.organizationId = $scope.selectedDeptId.elementId;
@@ -64,7 +61,6 @@
                             });
                             break;
                         case 'agency':
-                            console.log($scope.selectedAgencyId);
                             if(typeof $scope.selectedAgencyId !== 'undefined' && $scope.selectedAgencyId !== '' 
                                     && $scope.selectedAgencyId !== null && $scope.selectedAgencyId.hasOwnProperty('elementId')) {
                                 $scope.organizationId = $scope.selectedAgencyId.elementId;
@@ -90,7 +86,6 @@
                             });
                             break;
                         case 'office':
-                            console.log($scope.selectedOfficeId);
                             if(typeof $scope.selectedOfficeId !== 'undefined' && $scope.selectedOfficeId !== '' 
                                 && $scope.selectedOfficeId !== null && $scope.selectedOfficeId.hasOwnProperty('elementId')) {
                                 $scope.organizationId = $scope.selectedOfficeId.elementId;
@@ -99,8 +94,6 @@
                             }
                             break;
                     }
-
-                    console.log('After: '+$scope.organizationId)
                 };
 
                 /**
@@ -115,7 +108,6 @@
                 $scope.initDictionaries = function(ordId, includeParent, includeChildren, fnCallbackSuccess, fnCallbackError){
                     //get Department level of user's organizationId
                     FederalHierarchyService.getFederalHierarchyById(ordId, includeParent, includeChildren, function (oData) {
-                        console.log(oData);
                         if(typeof fnCallbackSuccess === 'function') {
                             fnCallbackSuccess(oData);
                         }
@@ -138,8 +130,6 @@
                 scope.departmentLabel = '';
                 scope.error = '';
 
-                console.log(UserService.getUserOrgId())
-
                 //Case if user is an AGENCY USER
                 if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
                     FederalHierarchyService.getFullLabelPathFederalHierarchyById(UserService.getUserOrgId(), true, false, function (organizationNames) {
@@ -152,7 +142,6 @@
                 else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
                     //get Department level of user's organizationId
                     scope.initDictionaries(UserService.getUserOrgId(), true, true, function (oData) {
-                        console.log(oData);
                         if(oData.type === 'DEPARTMENT') {
                             //initialize Department "Label" and Agency dropdown
                             scope.dictionary = {
@@ -166,7 +155,6 @@
                 else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
                     //get Department level of user's organizationId
                     scope.initDictionaries('', true, false, function (oData) {
-                        console.log(oData);
                         //initialize Department "Label" and Agency dropdown
                         scope.dictionary = {
                             aDepartment: oData._embedded.hierarchy,
