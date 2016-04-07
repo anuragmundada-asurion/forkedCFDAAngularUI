@@ -15,33 +15,8 @@
     <section class="usa-grid-full">
         <ux-form-section state-key="info" section-title="General Information" field-finder-section>
             <h2><span class="section-circle">1</span> General Information</h2>
-            <section field-finder-bookmark title="000 Intro" style="display:none" class="sub-section">
-                <h3>Intro</h3>
-
-                <div class="input-field usa-width-one-fourth">
-                    <label for="agency">Agency</label>
-                    <span type="text" id="agency" ng-bind="gsavm.program.organizationId"></span>
-                </div>
-                <div class="input-field usa-width-one-fourth">
-                    <label for="sub-tier-agency">Sub-Tier Agency</label>
-                    <select id="sub-tier-agency" name="subTierAgency" class="usa-form-medium" ng-model="gsavm.$program.subTierAgency" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
-                        <option value='' disabled style="display:none">Please select a Sub-Tier Agency</option>
-                    </select>
-
-                    <div ng-show="gsavm.validationFlag.info || gsavm.form.subTierAgency.$dirty">
-                        <span ng-show="gsavm.form.subTierAgency.$error.required">You must select a Sub-Tier Agency.</span>
-                    </div>
-                </div>
-                <div class="input-field usa-width-one-fourth">
-                    <label for="office">Office</label>
-                    <select id="office" name="office" class="usa-form-medium" ng-model="gsavm.$program.office" ng-options="office.name for office in gsavm.choices.offices track by office.id" required>
-                        <option value='' disabled style="display:none">Please select an Office</option>
-                    </select>
-
-                    <div ng-show="gsavm.validationFlag.info || gsavm.form.office.$dirty">
-                        <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
-                    </div>
-                </div>
+            <section field-finder-bookmark title="000 Intro" class="sub-section usa-grid-full">
+                <federal-hierarchy-inputs organization-id="gsavm.program.organizationId"></federal-hierarchy-inputs>
             </section>
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>

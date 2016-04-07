@@ -15,7 +15,7 @@
 
 @importGoogleFonts : true;
 @googleFontSizes   : '200,300,400,400italic,700';
-@googleHeaderFontSizes   : '300,400,700';
+@googleHeaderFontSizes   : '300,400,400italic,700,700italic';
 
 @googleProtocol    : 'https://';
 @googleFontRequest : '@{fontName}:@{googleFontSizes}|@{fontHeader}:@{googleHeaderFontSizes}';
