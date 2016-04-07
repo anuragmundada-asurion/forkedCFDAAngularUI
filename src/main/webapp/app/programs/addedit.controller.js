@@ -460,8 +460,7 @@
 
                 //returns true if some required fields are missing.
                 $scope.requiredFieldsMissing = function (sectionName) {
-                    //console.log(vm.program);
-                    return checkMissingRequiredFields(sectionName);
+                    return  checkMissingRequiredFields(sectionName);
                 };
 
 
@@ -472,9 +471,10 @@
                             //upper level validation
                             requiredFieldsMissing = (!vm.program || !vm.program.financial || !vm.program.postAward
                             || !vm.program.financial.accounts || vm.program.financial.accounts.length == 0
-                            || !vm.program.financial.treasury
-                            || !vm.program.financial.treasury.tafs || vm.program.financial.treasury.tafs.length == 0
+                            || !vm.program.financial.obligations || vm.program.financial.obligations.length == 0
+                            || !vm.program.financial.treasury || !vm.program.financial.treasury.tafs || vm.program.financial.treasury.tafs.length == 0
                             || !vm.program.postAward.accomplishments.flag);
+
 
                             //go into the arrays and check their elements also
                             if (!requiredFieldsMissing) {
@@ -488,29 +488,33 @@
 
                                 //check things in obligations array
                                 vm.program.financial.obligations.forEach(function (obligation, index, array) {
-                                    if (!obligation.questions.recovery) {
+                                    if (!obligation.questions) {
                                         requiredFieldsMissing = true;
+                                    } else {
+                                        if (!obligation.questions.recovery) {
+                                            requiredFieldsMissing = true;
+                                        }
+                                        if (!obligation.questions.salary_or_expense) {
+                                            requiredFieldsMissing = true;
+                                        }
+                                        //assistance type validation
+                                        if (obligation.questions.salary_or_expense.flag == 'na' && (!obligation.assistanceType || obligation.assistanceType == '')) {
+                                            requiredFieldsMissing = true;
+                                        }
                                     }
-                                    if (!obligation.questions.salary_or_expense) {
-                                        requiredFieldsMissing = true;
-                                    }
-                                    //assistance type validation
-                                    if (obligation.questions.salary_or_expense.flag == 'na' && (!obligation.assistanceType || obligation.assistanceType == '')) {
-                                        requiredFieldsMissing = true;
-                                    }
-
                                 });
+
 
                                 //check things in tafs array
                                 vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
                                     if (!taf.departmentCode) {
                                         requiredFieldsMissing = true;
                                     }
-
                                     if (!taf.accountCode) {
                                         requiredFieldsMissing = true;
                                     }
                                 });
+
                             }
                             return requiredFieldsMissing;
                         case 'contactSection':
@@ -527,10 +531,8 @@
 
                                 });
 
-
                             }
                             return requiredFieldsMissing;
-                            break;
                     }
 
 
