@@ -118,9 +118,6 @@
                         data: {
                             type: 'bar',
                             json: $scope.chartData,
-                            // columns: [
-                            //     ['count', 200, 100, 300, 400]
-                            // ],
                             onclick: function (d) {
                                 //Set advanced search criteria
                                 SearchFactory.setSearchCriteria('', {
@@ -138,25 +135,16 @@
                                 x: 'label',
                                 value: ['count']
                             },
-                            // colors: {
-                            //     data0: '#25A148',
-                            //     data1: '#F16B22',
-                            //     data2: '#1776B6',
-                            //     data3: '#FAB915',
-                            //     data4: '#8F65AA',
-                            //     data5: '#8D5649',
-                            // },
-                            // color: {
-                            //     pattern: ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649']
-                            // },
                             color: function (color, d) {
                                 return colors[d.index];
                             }
                         },
+                        legend: {
+                            show: true,
+                            position: 'bottom'
+                        },
                         bar: {
-                            width: {
-                                ratio: .8
-                            }
+                            width: 60
                         },
                         grid: {
                             focus: {
@@ -166,13 +154,9 @@
                         axis: {
                             x: {
                                 type: 'category',
-                                // height: 65,
-                                //categories: ['dataone', 'datatwo', 'datathree', 'datafour'],
-                                
                                 label: {
                                     text: 'Listing Category',
                                     position: 'outer-center',
-
                                 },
                                 tick: {
                                     culling: true,
@@ -180,13 +164,13 @@
                                 }
                             },
                             y: {
-                                height: 100,
+                                height: 200,
                                 label: {
                                     text: '# of Listings',
                                     position: 'outer-middle'
                                 },
                                 tick: {
-                                    count: 9,
+                                    count: 6,
                                     format: d3.format('.2s')
                                 }
 

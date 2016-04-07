@@ -14,7 +14,7 @@
              Page
 *******************************/
 
-@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400,400italic,700|Merriweather:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400,400italic,700|Merriweather:300,400,400italic,700,700italic');
 html,
 body {
   height: 100%;
@@ -294,4 +294,39 @@ html.tr-coretext {
 }
 .c3-axis .tick line {
   display: none;
+}
+.c3 line,
+.c3 path {
+  stroke: #ccc ;
+}
+.c3-event-rect {
+  fill: #F1F1F2;
+  fill-opacity: 1;
+  width: 61px !important;
+}
+.c3-event-rect.c3-event-rect-0 {
+  x: 9px !important;
+}
+.c3-event-rect.c3-event-rect-1 {
+  x: 88px !important;
+}
+.c3-event-rect.c3-event-rect-2 {
+  x: 164px !important;
+}
+.c3-event-rect.c3-event-rect-3 {
+  x: 242px !important;
+}
+.c3-event-rect.c3-event-rect-4 {
+  x: 319px !important;
+}
+.c3-event-rect.c3-event-rect-5 {
+  x: 396px !important;
+}
+.c3-axis-x-label,
+.c3-axis-y-label {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  color: #888888;
 }
