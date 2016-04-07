@@ -31,7 +31,6 @@
                     //vm.isCreateProgram = true;
                     vm.program = new ProgramFactory();
                     vm.program._id = null;
-                    vm.program.organizationId = UserService.getUser().orgId;
                 } else { // Edit/Review program
                     //vm.isCreateProgram = false;
                     vm.program = {};
@@ -100,7 +99,7 @@
                     },
                     choices: angular.extend({
                         programs: ProgramFactory.query({limit: 2500, status: 'Published'}),
-                        contacts: (typeof vm.program.organizationId !== 'undefined') ? Contacts.query({agencyId: vm.program.organizationId}) : {},
+                        contacts: vm.program.organizationId ? Contacts.query({agencyId: vm.program.organizationId}) : Contacts.query({agencyId: UserService.getUser().orgId}),
                         offices: [
                             {
                                 id: 1,
@@ -386,7 +385,6 @@
                 }
 
                 function onSectionChange(prevSectionKey) {
-                    //console.log(vm.program);
                     save();
                     revealValidations(prevSectionKey);
                 }
