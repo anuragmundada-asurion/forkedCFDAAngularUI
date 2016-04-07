@@ -5,7 +5,7 @@
 
     myApp.run(['$rootScope', 'AuthorizationService', 'AuthenticationService', '$state', 'UserService',
         function($rootScope, AuthorizationService, AuthenticationService, $state, UserService) {
-            if (Cookies.get("iplanetDirectoryPro")) {
+            if (Cookies.get("iPlanetDirectoryPro") || Cookies.get('Rei-Sign-In-As')) {
                 //  Toggle Loading Screen
                 UserService.loadCLPUser();
             }

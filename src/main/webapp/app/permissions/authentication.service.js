@@ -5,7 +5,7 @@
 
     myApp.service('AuthenticationService', ['UserService', function(UserService) {
         this.authenticate = function() {
-            return (UserService.getUser() || Cookies.get('iplanetDirectoryPro')) ? true : false;
+            return (UserService.getUser() || Cookies.get('iPlanetDirectoryPro') || Cookies.get('Rei-Sign-In-As')) ? true : false;
         };
     }]);
 }();

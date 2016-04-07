@@ -79,23 +79,23 @@
 
             this.changeUser = function(iamUser) {
                 $rootScope.user = new User(iamUser);
-                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
+                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
             };
 
             this.loadCLPUser = function() {
-                if (Cookies.get('iplanetDirectoryPro')) {
+                if (Cookies.get('iPlanetDirectoryPro') || Cookies.get('Rei-Sign-In-As')) {
                     if (window.iaeHeader) {
                         window.skipInitialCheck = false;
                         this.loadingUser = true;
                         var self = this;
-                        if (Cookies.get('iplanetDirectoryPro').indexOf('GSA_CFDA_R') !== -1) {
+                        if (Cookies.get('Rei-Sign-In-As')) {
                             setTimeout(function() {
                                 self.changeUser({
                                     "roles": [
-                                        Cookies.get('iplanetDirectoryPro')
+                                        Cookies.get('Rei-Sign-In-As')
                                     ],
-                                    'fullName': Cookies.get('iplanetDirectoryPro'),
-                                    'username': Cookies.get('iplanetDirectoryPro'),
+                                    'fullName': Cookies.get('Rei-Sign-In-As'),
+                                    'username': Cookies.get('Rei-Sign-In-As'),
                                     'orgId': '100011942'
                                 });
                                 self.loadingUser = false;
@@ -129,7 +129,7 @@
                 }
             });
 
-            $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iplanetDirectoryPro');
+            $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro') ? Cookies.get('iPlanetDirectoryPro') : Cookies.get('Rei-Sign-In-As');
         }
     ]);
 }();
