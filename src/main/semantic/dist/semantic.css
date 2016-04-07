@@ -16463,9 +16463,9 @@ ol.ui.horizontal.list li:before,
   padding: 0.8929em 1.4em;
   font-size: 1em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: 2px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   -webkit-transition: color 0.35s ease, border-color 0.35s ease;
   transition: color 0.35s ease, border-color 0.35s ease;
@@ -16479,10 +16479,10 @@ ol.ui.horizontal.list li:before,
   tap-highlight-color: rgba(255, 255, 255, 0);
   padding: 1em 1.4em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: 2px solid rgba(34, 36, 38, 0.15);
   outline: none;
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   -webkit-transition: color 0.35s ease, border-color 0.35s ease;
   transition: color 0.35s ease, border-color 0.35s ease;
@@ -16519,8 +16519,8 @@ ol.ui.horizontal.list li:before,
   height: auto;
   width: 100%;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  border-radius: 0.4rem;
+  border: 2px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   padding: 0.62em 1.4em;
   color: rgba(0, 0, 0, 0.87);
@@ -16742,7 +16742,7 @@ ol.ui.horizontal.list li:before,
 .ui.form input[type="url"]:focus {
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   background: #FFFFFF;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
 }
@@ -16750,7 +16750,7 @@ ol.ui.horizontal.list li:before,
 .ui.form textarea:focus {
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   background: #FFFFFF;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
   -webkit-appearance: none;
@@ -17509,6 +17509,24 @@ ol.ui.horizontal.list li:before,
 /*******************************
          Theme Overrides
 *******************************/
+
+/*--------------------
+    Standard Inputs
+---------------------*/
+
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="url"] {
+  font-weight: 700;
+}
 
 /*******************************
          Site Overrides
@@ -27311,7 +27329,7 @@ a.ui.card:hover,
   vertical-align: baseline;
   font-style: normal;
   min-height: 17px;
-  font-size: 1rem;
+  font-size: 1.7rem;
   line-height: 17px;
   min-width: 17px;
 }
@@ -27354,11 +27372,11 @@ a.ui.card:hover,
   height: 17px;
   content: '';
   background: #FFFFFF;
-  border-radius: 0.21428571rem;
-  -webkit-transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  border-radius: 0.3rem;
+  -webkit-transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
   border: 1px solid #D4D4D5;
 }
 
@@ -27377,10 +27395,10 @@ a.ui.card:hover,
   text-align: center;
   opacity: 0;
   color: rgba(0, 0, 0, 0.87);
-  -webkit-transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
 }
 
 /*--------------
@@ -27392,8 +27410,8 @@ a.ui.card:hover,
 .ui.checkbox label,
 .ui.checkbox + label {
   color: rgba(0, 0, 0, 0.87);
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 /* Outside */
@@ -27689,7 +27707,7 @@ a.ui.card:hover,
   top: 0.4rem;
   background-color: rgba(0, 0, 0, 0.05);
   width: 3.5rem;
-  height: 0.21428571rem;
+  height: 0.3rem;
   -webkit-transform: none;
   transform: none;
   border-radius: 500rem;
@@ -27866,7 +27884,7 @@ a.ui.card:hover,
 
 .ui.toggle.checkbox input:checked ~ .box:before,
 .ui.toggle.checkbox input:checked ~ label:before {
-  background-color: #2185D0 !important;
+  background-color: #0071bc !important;
 }
 
 .ui.toggle.checkbox input:checked ~ .box:after,
@@ -27883,7 +27901,7 @@ a.ui.card:hover,
 
 .ui.toggle.checkbox input:focus:checked ~ .box:before,
 .ui.toggle.checkbox input:focus:checked ~ label:before {
-  background-color: #0d71bb !important;
+  background-color: #005893 !important;
 }
 
 /*******************************
@@ -27945,6 +27963,15 @@ a.ui.card:hover,
 .dash:before  { content: '\e801'; }
 .plus:before { content: '\e802'; }
 */
+
+/*--------------
+      Box
+---------------*/
+
+.ui.checkbox .box,
+.ui.checkbox label {
+  font-weight: 700;
+}
 
 /*******************************
          Site Overrides

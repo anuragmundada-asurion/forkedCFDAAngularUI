@@ -28,7 +28,7 @@
   vertical-align: baseline;
   font-style: normal;
   min-height: 17px;
-  font-size: 1rem;
+  font-size: 1.7rem;
   line-height: 17px;
   min-width: 17px;
 }
@@ -69,11 +69,11 @@
   height: 17px;
   content: '';
   background: #FFFFFF;
-  border-radius: 0.21428571rem;
-  -webkit-transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  border-radius: 0.3rem;
+  -webkit-transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
   border: 1px solid #D4D4D5;
 }
 
@@ -92,10 +92,10 @@
   text-align: center;
   opacity: 0;
   color: rgba(0, 0, 0, 0.87);
-  -webkit-transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  transition: border 0.1s ease, opacity 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+  transition: border 0.35s ease, opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease, -webkit-transform 0.35s ease;
 }
 
 /*--------------
@@ -107,8 +107,8 @@
 .ui.checkbox label,
 .ui.checkbox + label {
   color: rgba(0, 0, 0, 0.87);
-  -webkit-transition: color 0.1s ease;
-  transition: color 0.1s ease;
+  -webkit-transition: color 0.35s ease;
+  transition: color 0.35s ease;
 }
 
 /* Outside */
@@ -384,7 +384,7 @@
   top: 0.4rem;
   background-color: rgba(0, 0, 0, 0.05);
   width: 3.5rem;
-  height: 0.21428571rem;
+  height: 0.3rem;
   -webkit-transform: none;
           transform: none;
   border-radius: 500rem;
@@ -542,7 +542,7 @@
 }
 .ui.toggle.checkbox input:checked ~ .box:before,
 .ui.toggle.checkbox input:checked ~ label:before {
-  background-color: #2185D0 !important;
+  background-color: #0071bc !important;
 }
 .ui.toggle.checkbox input:checked ~ .box:after,
 .ui.toggle.checkbox input:checked ~ label:after {
@@ -556,7 +556,7 @@
 }
 .ui.toggle.checkbox input:focus:checked ~ .box:before,
 .ui.toggle.checkbox input:focus:checked ~ label:before {
-  background-color: #0d71bb !important;
+  background-color: #005893 !important;
 }
 
 
@@ -615,6 +615,15 @@
 .dash:before  { content: '\e801'; }
 .plus:before { content: '\e802'; }
 */
+
+/*--------------
+      Box
+---------------*/
+
+.ui.checkbox .box,
+.ui.checkbox label {
+  font-weight: 700;
+}
 
 
 /*******************************

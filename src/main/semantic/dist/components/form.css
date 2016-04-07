@@ -107,9 +107,9 @@
   padding: 0.8929em 1.4em;
   font-size: 1em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: 2px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   -webkit-transition: color 0.35s ease, border-color 0.35s ease;
   transition: color 0.35s ease, border-color 0.35s ease;
@@ -122,10 +122,10 @@
   tap-highlight-color: rgba(255, 255, 255, 0);
   padding: 1em 1.4em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: 2px solid rgba(34, 36, 38, 0.15);
   outline: none;
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   -webkit-transition: color 0.35s ease, border-color 0.35s ease;
   transition: color 0.35s ease, border-color 0.35s ease;
@@ -160,8 +160,8 @@
   height: auto;
   width: 100%;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  border-radius: 0.4rem;
+  border: 2px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0rem;
   box-shadow: 0em 0em 0em 0em transparent inset;
   padding: 0.62em 1.4em;
   color: rgba(0, 0, 0, 0.87);
@@ -363,14 +363,14 @@
 .ui.form input[type="url"]:focus {
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   background: #FFFFFF;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
 }
 .ui.form textarea:focus {
   color: rgba(0, 0, 0, 0.95);
   border-color: #85B7D9;
-  border-radius: 0.4rem;
+  border-radius: 0rem;
   background: #FFFFFF;
   box-shadow: 0px 0em 0em 0em rgba(34, 36, 38, 0.35) inset;
   -webkit-appearance: none;
@@ -1058,6 +1058,24 @@
          Theme Overrides
 *******************************/
 
+
+/*--------------------
+    Standard Inputs
+---------------------*/
+
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="time"],
+.ui.form input[type="text"],
+.ui.form input[type="url"] {
+  font-weight: 700;
+}
 
 
 /*******************************
