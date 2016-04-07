@@ -862,6 +862,14 @@ html.tr-coretext {
   font-style: italic;
   color: #888888;
 }
+
+/*--------------
+    MISC
+---------------*/
+
+.ui.fixed.container {
+  box-shadow: none !important;
+}
 /*!
  * # Semantic UI 2.1.8 - Button
  * http://github.com/semantic-org/semantic-ui/

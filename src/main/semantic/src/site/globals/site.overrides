@@ -184,3 +184,11 @@ html.tr-coretext{
     font-style: italic;
     color: #888888;
 }
+
+/*--------------
+    MISC
+---------------*/
+// Remove when cfda.min.css is removed
+.ui.fixed.container{
+    box-shadow: none !important;
+}
