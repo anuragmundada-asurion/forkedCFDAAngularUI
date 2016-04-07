@@ -283,3 +283,12 @@ html.tr-coretext {
 .uib-datepicker-popup.dropdown-menu li {
   list-style: none;
 }
+
+/*--------------
+   C3 Chart
+---------------*/
+
+.c3 svg {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+  font-size: 11px;
+}

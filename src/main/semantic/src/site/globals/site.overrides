@@ -129,3 +129,11 @@ html.tr-coretext{
         list-style: none;
     }
 }
+
+/*--------------
+   C3 Chart
+---------------*/
+.c3 svg {
+    font-family: @pageFont !important;
+    font-size: 11px;
+}
