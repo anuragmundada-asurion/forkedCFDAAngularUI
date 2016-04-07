@@ -790,6 +790,21 @@ html.tr-coretext {
 .theme-iae #iae-footer {
   margin-top: .1em !important;
 }
+
+/*--------------
+    Calendar
+---------------*/
+
+.uib-datepicker-popup.dropdown-menu {
+  padding: 20px;
+  background-color: #FFFFFF;
+  position: absolute !important;
+  border: 1px solid #ccc;
+}
+
+.uib-datepicker-popup.dropdown-menu li {
+  list-style: none;
+}
 /*!
  * # Semantic UI 2.1.8 - Button
  * http://github.com/semantic-org/semantic-ui/
