@@ -9,6 +9,7 @@
                 $('.ui.dropdown').dropdown();
                 $('.ui.accordion').accordion();
                 $(".ui.radio").checkbox();
+                $('.ui.circular.label').popup();
             }
         };
     });

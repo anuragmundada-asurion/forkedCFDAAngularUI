@@ -34,7 +34,7 @@
 
                         <!-- New Listings -->
                         <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                            <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny"  class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
                                 <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                             </div>
@@ -43,7 +43,7 @@
 
                         <!-- Archived Listings -->
                         <a class="ui fluid large light lightblue disabled button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                            <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
                                 <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                             </div>
@@ -52,7 +52,7 @@
 
                         <!-- Updated Listings -->
                         <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                            <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
                                 <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                             </div>
