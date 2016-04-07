@@ -88,23 +88,26 @@
                         window.skipInitialCheck = false;
                         this.loadingUser = true;
                         var self = this;
-                        setTimeout(function() {
-                            self.changeUser({
-                                "roles": [
-                                    Cookies.get('iplanetDirectoryPro')
-                                ],
-                                'fullName': Cookies.get('iplanetDirectoryPro'),
-                                'username': Cookies.get('iplanetDirectoryPro'),
-                                'orgId': '100011942'
+                        if (Cookies.get('iplanetDirectoryPro').indexOf('GSA_CFDA_R') !== -1) {
+                            setTimeout(function() {
+                                self.changeUser({
+                                    "roles": [
+                                        Cookies.get('iplanetDirectoryPro')
+                                    ],
+                                    'fullName': Cookies.get('iplanetDirectoryPro'),
+                                    'username': Cookies.get('iplanetDirectoryPro'),
+                                    'orgId': '100011942'
+                                });
+                                self.loadingUser = false;
+                                $state.reload();
+                            }, 3000);
+                        } else {
+                            window.iaeHeader.getUser(function(u) {
+                                self.changeUser(u);
+                                self.loadingUser = false;
+                                $state.reload();
                             });
-                            self.loadingUser = false;
-                            $state.reload();
-                        }, 3000);
-                        //window.iaeHeader.getUser(function(u) {
-                        //    self.changeUser(u);
-                        //    self.loadingUser = false;
-                        //    $state.reload();
-                        //});
+                        }
                     } else if (window.skipInitialCheck) {
                         window.skipInitialCheck = false;
                         this.changeUser(null);
