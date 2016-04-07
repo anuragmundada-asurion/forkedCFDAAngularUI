@@ -814,6 +814,10 @@ html.tr-coretext {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
   font-size: 11px;
 }
+
+.c3-axis .tick line {
+  display: none;
+}
 /*!
  * # Semantic UI 2.1.8 - Button
  * http://github.com/semantic-org/semantic-ui/

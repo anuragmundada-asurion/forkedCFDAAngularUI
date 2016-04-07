@@ -133,7 +133,12 @@ html.tr-coretext{
 /*--------------
    C3 Chart
 ---------------*/
+
 .c3 svg {
     font-family: @pageFont !important;
     font-size: 11px;
+}
+
+.c3-axis .tick line {
+    display: none;
 }
