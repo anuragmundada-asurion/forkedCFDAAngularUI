@@ -1782,7 +1782,7 @@
             </section>
         </ux-form-section>
         <ux-form-section state-key="review" section-title="Review">
-            <div id="formErrorMessages" style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="!gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
+            <div id="formErrorMessages" style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="requiredFieldsMissing('financialSection') || requiredFieldsMissing('contactSection') || !gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
                         || !gsavm.program.objective || !gsavm.program.usage.restrictions.flag
                         || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag
                         || (gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content)
@@ -1919,7 +1919,7 @@
                             </div>
 
 
-                            <div style="padding-top:15px" ng-show="isVisible('financialSection')">
+                            <div style="padding-top:15px" ng-show="requiredFieldsMissing('financialSection')">
                                 <h4>Financial Information and Accomplishments</h4>
                                 <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!gsavm.program.financial.accounts || gsavm.program.financial.accounts.length==0 " trigger-click-on-enter>121 Account Identification is required<br/></a>
 
@@ -1931,6 +1931,7 @@
                                 <div ng-repeat="obligation in gsavm.program.financial.obligations">
                                     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required for Obligation # {{$index + 1}}<br/></a>
                                     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
+                                    <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="(obligation.questions.salary_or_expense.flag == 'na') && (!obligation.assistanceType)" trigger-click-on-enter>122 Obligations, Assistance Type Field is required for Obligation # {{$index + 1}}<br/></a>
                                 </div>
 
                                 <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
@@ -1944,7 +1945,7 @@
                             </div>
 
 
-                            <div style="padding-top:15px" ng-show="isVisible('contactSection')">
+                            <div style="padding-top:15px" ng-show="requiredFieldsMissing('contactSection')">
                                 <h4>Contact Information</h4>
                                 <a ng-click="uxForm.goToBookmarkByText('151 Regional or Local Office')" ng-show="!gsavm.program.contacts['local'].flag" trigger-click-on-enter>151 Regional or Local Office is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!gsavm.program.contacts.list || gsavm.program.contacts.list.length==0" trigger-click-on-enter>152 Headquarters Office is required<br/></a>

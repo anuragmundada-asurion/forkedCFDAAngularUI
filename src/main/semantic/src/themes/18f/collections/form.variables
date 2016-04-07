@@ -7,7 +7,7 @@
 --------------------*/
 
 /* Form */
-@gutterWidth: 1em;
+@gutterWidth: 3.6em;
 @rowDistance: 1em;
 
 /* Text */
@@ -29,8 +29,8 @@
 @inputWidth: 100%;
 @inputFontSize: 1em;
 @inputPadding: (@inputVerticalPadding + ((1em - @inputLineHeight) / 2)) @inputHorizontalPadding;
-@inputBorder: 1px solid @borderColor;
-@inputBorderRadius: @absoluteBorderRadius;
+@inputBorder: 2px solid @borderColor;
+@inputBorderRadius: 0rem;
 @inputColor: @textColor;
 @inputTransition:
   color @defaultDuration @defaultEasing,
@@ -179,7 +179,7 @@
 
 
 /* Inline */
-@inlineInputSize: @relativeMedium;
+@inlineInputSize: 1em;
 
 @inlineLabelDistance: @relativeTiny;
 @inlineLabelColor: @labelColor;

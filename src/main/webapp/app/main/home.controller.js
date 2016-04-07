@@ -47,6 +47,7 @@
 
                 //make api call to get count of programs
                 ApiService.call(oApiParam).then(function (data) {
+
                     
                     var newSymbol = d3.formatPrefix(data.new);
                     var archivedSymbol = d3.formatPrefix(data.archived);
@@ -55,10 +56,13 @@
                     $scope.aProgramCount = {
                         'new': d3.format($scope.formatNumber(parseInt(data.new)))(newSymbol.scale(data.new)),
                         'newsymbol' : newSymbol.symbol,
+                        'newNumber' : data.new,
                         'archived': d3.format($scope.formatNumber(parseInt(data.archived)))(archivedSymbol.scale(data.archived)),
                         'archivedsymbol': archivedSymbol.symbol,
+                        'archivedNumber': data.archived,
                         'updated': d3.format($scope.formatNumber(parseInt(data.updated)))(updatedSymbol.scale(data.updated)),
-                        'updatedsymbol' : updatedSymbol.symbol
+                        'updatedsymbol' : updatedSymbol.symbol,
+                        'updatedNumber': data.updated
                     };
                 });
 
