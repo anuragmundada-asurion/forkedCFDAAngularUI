@@ -84,10 +84,8 @@
                         return (obj2.count - obj1.count);
                     });
                     
-                    angular.forEach($scope.chartData, function(value, key){
-                        value.name = "data" + key;
-                    });
                     console.log($scope.chartData);
+                    
                     $scope.makeHomePageChart();
                 });
 
@@ -112,7 +110,9 @@
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
+                    
                     var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
+                    
                     $scope.chart = c3.generate({
                         bindto: document.getElementById('listingsChart'),
                         data: {
@@ -140,31 +140,21 @@
                             }
                         },
                         legend: {
-                            show: true,
-                            position: 'bottom'
+                            show: false
                         },
                         bar: {
                             width: 60
                         },
-                        grid: {
-                            focus: {
-                                show: false
-                            }
-                        },
                         axis: {
                             x: {
+                                height: 70,
                                 type: 'category',
                                 label: {
                                     text: 'Listing Category',
                                     position: 'outer-center',
-                                },
-                                tick: {
-                                    culling: true,
-                                    multiline: false
                                 }
                             },
                             y: {
-                                height: 200,
                                 label: {
                                     text: '# of Listings',
                                     position: 'outer-middle'
@@ -173,47 +163,47 @@
                                     count: 6,
                                     format: d3.format('.2s')
                                 }
-
-
                             }
-                        }//,
-                        // tooltip: {
-                        //     contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-                        //         var $$ = this,
-                        //             config = $$.config,
-                        //             titleFormat = config.tooltip_format_title || defaultTitleFormat,
-                        //             nameFormat = config.tooltip_format_name || function (name) {
-                        //                     return name;
-                        //                 },
-                        //             valueFormat = d3.format("d"),
-                        //             text, i, title, value, name, bgcolor;
+                        },
+                        tooltip: {
+                            contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                                
+                                
+                                
+                                
+                                var $$ = this,
+                                    config = $$.config,
+                                    titleFormat = config.tooltip_format_title || defaultTitleFormat,
+                                    nameFormat = config.tooltip_format_name || function (name) {
+                                            return name;
+                                        },
+                                    valueFormat = d3.format(".2s"),
+                                    text, i, title, value, name, bgcolor;
+                                    
+                                    
+                                for (i = 0; i < d.length; i++) {
+                                
+                                    if (!(d[i] && (d[i].value || d[i].value === 0))) {
+                                        continue;
+                                    }
+                                    
+                                    name = nameFormat(d[i].name);
+                                    value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+                                    bgcolor = colors[d[i].index];
 
-                        //         for (i = 0; i < d.length; i++) {
-                        //             if (!(d[i] && (d[i].value || d[i].value === 0))) {
-                        //                 continue;
-                        //             }
+                                    if (!text) {
+                                        title = titleFormat ? titleFormat(d[i].x) : d[i].x;
+                                        text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>"  + title + "</span></div>" : "");
+                                    }
 
-                        //             if (!text) {
-                        //                 title = titleFormat ? titleFormat(d[i].x) : d[i].x;
-                        //                 text = "<table class='" + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
-                        //             }
-
-                        //             name = nameFormat(d[i].name);
-                        //             value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
-                        //              bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
-                        //             //bgcolor = d[i].id ? extraColors[d[i].index] : color;
-
-                        //             text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
-                        //             text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + "</td>";
-                        //             text += "<td class='value'>" + value + "</td>";
-                        //             text += "</tr>";
-                        //         }
-                        //         return text + "</table>";
-                        //     }
-                        // }
+                                    // text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
+                                    //text += "<div>" + value + "</div>";
+                                }
+                                return text + "</div>";
+                            }
+                        }
                     });
-
-                    $scope.chart.legend.hide();
+                    
                 };
 
                 //Dashboard feature

@@ -159,7 +159,7 @@ html.tr-coretext{
         x: 9px !important;
     }
     &.c3-event-rect-1{
-        x: 88px !important;
+        x: 87px !important;
     }
     &.c3-event-rect-2{
         x: 164px !important;
