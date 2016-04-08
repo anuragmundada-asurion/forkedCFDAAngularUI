@@ -88,7 +88,7 @@
                                 $scope.organizationId = $scope.selectedAgencyId;
                             } else { //if agency is not selected then set department
                                 //if user is a root then set department from dropdown
-                                if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                                if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
                                     $scope.organizationId = $scope.selectedDeptId;
                                 } else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
                                     $scope.organizationId = $scope.programOrganizationId;
@@ -226,8 +226,8 @@
                         else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
                             //initialize Department/Agency/Office dropdowns (selected values)
                             scope.initFederalHierarchyDropdowns(ROLES.AGENCY_COORDINATOR.iamRoleId);
-                        } //Case if user is ROOT
-                        else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                        } //Case if user is ROOT or ROOT_RMO
+                        else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
                             //get Department level of user's organizationId
                             scope.initDictionaries('', true, false, function (oData) {
                                 //initialize Department
@@ -245,10 +245,10 @@
                     "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+"]'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
+                    "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
                         "<div class='input-field usa-width-one-fourth'>"+
                             "<h3><label for='jqDepartmentFH'>Department</label></h3>"+
-                            "<select id='jqDepartmentFH' name='department' class='usa-form-medium' has-role='["+JSON.stringify(ROLES.SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' name='department' class='usa-form-medium' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
