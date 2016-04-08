@@ -161,7 +161,6 @@
                 };
 
                 ApiService.call(oApiParam).then(function() {
-                    $scope.loadPrograms($scope.previousState);
                     ngDialog.open({
                         template: '<div class="usa-alert usa-alert-success" role="alert">'+
                                     '<div class="usa-alert-body">'+
@@ -175,6 +174,7 @@
 
                     $timeout(function() {
                         ngDialog.closeAll();
+                        $scope.loadPrograms($scope.previousState);
                     }, 3000);
                 }, function(error){
                     ngDialog.open({
@@ -191,6 +191,7 @@
 
                     $timeout(function() {
                         ngDialog.closeAll();
+                        $scope.loadPrograms($scope.previousState);
                     }, 3000);
                 });
             }
