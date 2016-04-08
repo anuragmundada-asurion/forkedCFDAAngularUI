@@ -5,17 +5,17 @@
     display: block;
     width: 12.5%; }
 
-#iae-footer .iae-links-list {
+#iae-footer .gsa-links-list {
   width: 100%;
   display: table; }
-  #iae-footer .iae-links-list li {
+  #iae-footer .gsa-links-list li {
     display: block;
     float: left;
-    margin-right: 2.5%;
-    margin-left: 2.5%;
+    margin-right: 3.5%;
+    margin-left: 3.5%;
     font-weight: bold; }
-    #iae-footer .iae-links-list li.iae-footer-li {
+    #iae-footer .gsa-links-list li.gsa-footer-li {
       margin-right: 0px;
       margin-left: 0px; }
-      #iae-footer .iae-links-list li.iae-footer-li a {
+      #iae-footer .gsa-links-list li.gsa-footer-li a {
         text-align: left; }
