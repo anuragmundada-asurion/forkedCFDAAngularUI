@@ -75,10 +75,12 @@
                 var levels = {};
                 while (fhData.name) {
                     //levels[fhData.type] = fhData.name;
+                    //first level
                     if (count == 0) {
                         levels['DEPARTMENT'] = fhData.name;
                     }
-                    else if (count == 1) {
+                    //second level
+                    if (count == 1) {
                         levels['AGENCY'] = fhData.name;
                     }
 
@@ -86,9 +88,12 @@
                     if (fhData.hierarchy) {
                         fhData = fhData.hierarchy[0];
                         count++;
-                    } else {
+                    }
+                    //last one
+                    else {
                         //have at least more than 2 levels.
-                        if (count > 2)
+
+                        if (count > 1)
                             levels['OFFICE'] = fhData.name;
                         break;
                     }
