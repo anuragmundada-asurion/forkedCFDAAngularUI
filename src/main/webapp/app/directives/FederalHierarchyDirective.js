@@ -17,7 +17,11 @@
                         FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.organizationId, true, false, function (organizationNames) {
                             scope.organizationName = organizationNames;
                         }, function (error) {
-                            scope.organizationName = "An error has occurred, Please try again !";
+                            if (error['code'] == '404') {
+                                scope.organizationName = "Organization Not Found";
+                            } else {
+                                scope.organizationName = "An error has occurred, Please try again !";
+                            }
                         });
                     }
                 });
