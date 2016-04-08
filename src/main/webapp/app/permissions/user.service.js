@@ -79,7 +79,7 @@
 
             this.changeUser = function(iamUser) {
                 $rootScope.user = new User(iamUser);
-                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro');
+                $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('Rei-Sign-In-As') ? Cookies.get('Rei-Sign-In-As') : Cookies.get('iPlanetDirectoryPro');
             };
 
             this.loadCLPUser = function() {
@@ -129,7 +129,7 @@
                 }
             });
 
-            $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('iPlanetDirectoryPro') ? Cookies.get('iPlanetDirectoryPro') : Cookies.get('Rei-Sign-In-As');
+            $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('Rei-Sign-In-As') ? Cookies.get('Rei-Sign-In-As') : Cookies.get('iPlanetDirectoryPro');
         }
     ]);
 }();
