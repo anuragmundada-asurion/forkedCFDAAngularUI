@@ -425,7 +425,7 @@ public class ApiController {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             obj.put("error", e.getMessage());
-            return ResponseEntity.badRequest().body(obj.toString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(obj.toString());
         }
 
     }
@@ -440,7 +440,7 @@ public class ApiController {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             obj.put("error", e.getMessage());
-            return ResponseEntity.badRequest().body(obj.toString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(obj.toString());
         }
     }
 
