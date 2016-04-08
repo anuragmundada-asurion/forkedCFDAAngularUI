@@ -88,15 +88,21 @@
                                 <label>Date Published</label>
                                 <div class="inline fields">
                                     <div class="eight wide field">
-                                        <input type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedStartOpened')" uib-datepicker-popup="MM/dd/yyyy"
-                                        ng-model="advancedSearch.datePublishedStart" is-open="advancedSearch.datePublishedStartOpened"
-                                        datepicker-options="dateOptions" close-text="Close" />
+                                        <div class="ui icon input" style="font-size: 1.7rem;">
+                                            <input datepicker-popup-template-url="search/calendar/popup.tpl.html" datepicker-template-url="search/calendar/datepicker.tpl.html" type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedStartOpened')" uib-datepicker-popup="MM/dd/yyyy"
+                                            ng-model="advancedSearch.datePublishedStart" is-open="advancedSearch.datePublishedStartOpened"
+                                            datepicker-options="dateOptions" close-text="Close" />
+                                            <i class="calendar icon"></i>
+                                        </div>
                                     </div>
                                     <div class="eight wide field">
-                                        <label>to</label>
-                                        <input type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedEndOpened')" uib-datepicker-popup="MM/dd/yyyy"
-                                        ng-model="advancedSearch.datePublishedEnd" is-open="advancedSearch.datePublishedEndOpened"
-                                        datepicker-options="dateOptions" close-text="Close" />
+                                        <div class="ui icon input" style="font-size: 1.7rem;">
+                                            <label style="margin-top: 15px;margin-right: 13px;">to</label>
+                                            <input datepicker-popup-template-url="search/calendar/popup.tpl.html" datepicker-template-url="search/calendar/datepicker.tpl.html" type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedEndOpened')" uib-datepicker-popup="MM/dd/yyyy"
+                                            ng-model="advancedSearch.datePublishedEnd" is-open="advancedSearch.datePublishedEndOpened"
+                                            datepicker-options="dateOptions" close-text="Close" />
+                                            <i class="calendar icon"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

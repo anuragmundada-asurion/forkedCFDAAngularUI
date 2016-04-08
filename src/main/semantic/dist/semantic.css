@@ -796,7 +796,7 @@ html.tr-coretext {
 ---------------*/
 
 .uib-datepicker-popup.dropdown-menu {
-  padding: 20px;
+  padding: 10px;
   background-color: #FFFFFF;
   position: absolute !important;
   border: 1px solid #ccc;
