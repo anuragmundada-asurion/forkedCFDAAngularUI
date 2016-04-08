@@ -172,6 +172,10 @@
                         closeByEscape: true,
                         showClose: true
                     });
+
+                    $timeout(function() {
+                        ngDialog.closeAll();
+                    }, 3000);
                 }, function(error){
                     ngDialog.open({
                         template: '<div class="usa-alert usa-alert-error" role="alert">'+
@@ -184,6 +188,10 @@
                         closeByEscape: true,
                         showClose: true
                     });
+
+                    $timeout(function() {
+                        ngDialog.closeAll();
+                    }, 3000);
                 });
             }
         };
