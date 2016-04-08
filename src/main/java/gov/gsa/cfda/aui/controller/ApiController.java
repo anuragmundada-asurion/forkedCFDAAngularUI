@@ -437,11 +437,10 @@ public class ApiController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
-            if (e.getStatusCode().value() == 404) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            } else {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-            }
+            JSONObject obj = new JSONObject();
+            obj.put("code", e.getStatusCode().value());
+            obj.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(obj.toString());
         }
     }
 
