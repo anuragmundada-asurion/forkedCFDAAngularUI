@@ -64,6 +64,10 @@
                         'updatedsymbol' : updatedSymbol.symbol,
                         'updatedNumber': data.updated
                     };
+                    
+                    // Enable popups
+                    $('.ui.circular.label').popup();
+                    
                 });
 
                 //make eligiblisting api call
