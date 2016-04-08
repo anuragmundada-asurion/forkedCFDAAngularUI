@@ -432,10 +432,18 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
-    public String getFederalHierarchyById(@PathVariable("id") String id,
+    public HttpEntity getFederalHierarchyById(@PathVariable("id") String id,
                                           @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
                                           @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
-        return federalHierarchyCall(id, childrenLevels, parentLevels);
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, childrenLevels, parentLevels));
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode().value() == 404) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            }
+        }
     }
 
     @RequestMapping(value = "/api/historicalIndex/{id}", method = RequestMethod.GET)
