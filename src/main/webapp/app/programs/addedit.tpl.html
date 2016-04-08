@@ -16,7 +16,8 @@
         <ux-form-section state-key="info" section-title="General Information" field-finder-section>
             <h2><span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark title="000 Intro" class="sub-section usa-grid-full">
-                <federal-hierarchy-inputs organization-id="gsavm.program.organizationId"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber))" organization-id="gsavm.program.organizationId"></federal-hierarchy-inputs>
+                <federal-hierarchy-label ng-if="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber)" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
             </section>
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>
