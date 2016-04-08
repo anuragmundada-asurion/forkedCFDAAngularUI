@@ -77,19 +77,19 @@
                     //levels[fhData.type] = fhData.name;
                     if (count == 0) {
                         levels['DEPARTMENT'] = fhData.name;
-                        count++;
                     }
                     else if (count == 1) {
                         levels['AGENCY'] = fhData.name;
-                        count++;
                     }
 
                     //last one
                     if (fhData.hierarchy) {
                         fhData = fhData.hierarchy[0];
-                    }
-                    else {
-                        levels['OFFICE'] = fhData.name;
+                        count++;
+                    } else {
+                        //have at least more than 2 levels.
+                        if (count > 2)
+                            levels['OFFICE'] = fhData.name;
                         break;
                     }
                 }
