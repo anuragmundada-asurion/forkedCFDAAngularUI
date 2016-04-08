@@ -8,7 +8,7 @@
             link: function(scope, element, attr, controllers){
                 $('.ui.dropdown').dropdown();
                 $('.ui.accordion').accordion();
-                $(".ui.radio").checkbox();
+                //$(".ui.radio").checkbox();
                 $('.ui.circular.label').popup();
             }
         };
