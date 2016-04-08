@@ -12,7 +12,7 @@
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
-                console.log($scope.programData);
+
 
                 //getting names of related programs
                 if ($scope.programData['relatedPrograms'] && $scope.programData['relatedPrograms']['flag'] === 'yes') {
@@ -40,8 +40,10 @@
 
 
                 //make call to federalHierarchy
+
                 FederalHierarchyService.getParentPath($scope.programData.organizationId, function (data) {
                     $scope.hierarchyLevels = data;
+
                 });
 
             });

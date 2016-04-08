@@ -56,11 +56,11 @@
          * @param callbackFnError
          */
         var getFullLabelPathFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
-            getFederalHierarchyById(id, includeParentLevels, includeChildrenLevels, function(oData){
+            getFederalHierarchyById(id, includeParentLevels, includeChildrenLevels, function (oData) {
                 if (typeof callbackFnSuccess === 'function') {
                     callbackFnSuccess(getFullNameFederalHierarchy(oData));
                 }
-            }, function(error) {
+            }, function (error) {
                 if (typeof callbackFnError === 'function') {
                     callbackFnError(error);
                 }
@@ -68,17 +68,33 @@
         };
 
         var getParentPath = function (id, success) {
+
+            var count = 0;
             this.getFederalHierarchyById(id, true, false, function (fhData) {
                 var levels = {};
                 while (fhData.name) {
-                    levels[fhData.type] = fhData.name;
+                    //levels[fhData.type] = fhData.name;
+                    if (count == 0) {
+
+                        levels['DEPARTMENT'] = fhData.name;
+
+                        count++;
+                    }
+                    if (count == 1) {
+                        levels['AGENCY'] = fhData.name;
+
+                        count++;
+                    }
                     if (fhData.hierarchy) {
                         fhData = fhData.hierarchy[0];
                     }
                     else {
+                        levels['OFFICE'] = fhData.name;
+
                         break;
                     }
                 }
+
                 success(levels);
             }, function (error) {
                 console.log("Error occured: ", error);
@@ -91,7 +107,7 @@
          * @param aSelectedData
          * @returns Object
          */
-        var dropdownDataStructure = function(oData, aSelectedData) {
+        var dropdownDataStructure = function (oData, aSelectedData) {
             var oResults = {}, aSelectedIDs = [];
 
             var oRow = oData;
@@ -104,21 +120,21 @@
             delete oRow.parentElementId;
 
             //get all selected item ids
-            angular.forEach(aSelectedData, function(item){
+            angular.forEach(aSelectedData, function (item) {
                 aSelectedIDs.push(item.elementId);
             });
 
-            if(oData.hasOwnProperty("hierarchy")) {
-                angular.forEach(oData.hierarchy, function(oItem){
+            if (oData.hasOwnProperty("hierarchy")) {
+                angular.forEach(oData.hierarchy, function (oItem) {
                     angular.extend(oResults, dropdownDataStructure(oItem, aSelectedData));
                 });
 
-                if($.inArray(oRow.elementId, aSelectedIDs) !== -1) {
+                if ($.inArray(oRow.elementId, aSelectedIDs) !== -1) {
                     oRow.selected = true;
                 }
                 angular.extend(oResults, oRow);
             } else {
-                if($.inArray(oRow.elementId, aSelectedIDs) !== -1) {
+                if ($.inArray(oRow.elementId, aSelectedIDs) !== -1) {
                     oRow.selected = true;
                 }
                 angular.extend(oResults, oRow);
