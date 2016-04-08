@@ -6,7 +6,6 @@
         function($scope, $state, $stateParams, $timeout, $window, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog) {
             $scope.dictionary = {};
             $scope.formHolder = {
-                aAgency: [],
                 oDivision: null,
                 oState: null,
                 oCountry: null
@@ -30,8 +29,7 @@
             if($scope.action === 'create') { // Create Program
                 $scope.oRegionalOffice = new RegionalOfficeFactory();
                 $scope.oRegionalOffice.address = {};
-                //Fixme Temp for demo
-                $scope.oRegionalOffice.agencyId = '100011942';
+                $scope.oRegionalOffice.agencyId = UserService.getUserOrgId();
 
                 //load dictionaries
                 $scope.loadDictionaries();
@@ -44,11 +42,6 @@
                 });
             }
 
-            //Loading Federal Hierarchy
-            FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function(oData){
-                $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [{ elementId: $scope.oRegionalOffice.agencyId }])];
-            });
-
             /**
              * Create or Edit Program
              * @returns void
@@ -57,8 +50,7 @@
                 //empty message error
                 $scope.flash = {};
 
-//                if(!$scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId') || !$scope.oRegionalOffice.phone){
-                if(!$scope.oRegionalOffice.phone){
+                if(!$scope.oRegionalOffice.phone || !$scope.oRegionalOffice.agencyId){
                     $scope.flash = {
                         type: "error",
                         message: "Please provide all required fields before submitting the form."
@@ -67,7 +59,6 @@
                     //scroll up in order for user to see the error message
                     $window.scrollTo(0, 0);
                 } else {
-                    //$scope.oRegionalOffice.agencyId = $scope.prepareDataStructure($scope.formHolder.aAgency, 'elementId');
                     $scope.oRegionalOffice.division = $scope.prepareDataStructure($scope.formHolder.oDivision, 'element_id');
                     $scope.oRegionalOffice.address.country = $scope.prepareDataStructure($scope.formHolder.oCountry, 'element_id');
                     $scope.oRegionalOffice.address.state = $scope.prepareDataStructure($scope.formHolder.oState, 'element_id');
