@@ -161,22 +161,21 @@
                 };
 
                 ApiService.call(oApiParam).then(function() {
+                    $scope.loadPrograms($scope.previousState);
                     ngDialog.open({
                         template: '<div class="usa-alert usa-alert-success" role="alert">'+
                                     '<div class="usa-alert-body">'+
                                       '<p class="usa-alert-text">This program has been successfully deleted.</p>'+
                                     '</div>'+
                                   '</div>',
-                        plain: true,
-                        closeByEscape: true,
-                        showClose: true
+                        className: 'ngdialog-theme-default'
                     });
 
                     $timeout(function() {
-                        ngDialog.closeAll();
-                        $scope.loadPrograms($scope.previousState);
+                        ngDialog.close();
                     }, 3000);
                 }, function(error){
+                    $scope.loadPrograms($scope.previousState);
                     ngDialog.open({
                         template: '<div class="usa-alert usa-alert-error" role="alert">'+
                                     '<div class="usa-alert-body">'+
@@ -184,14 +183,11 @@
                                       '<p class="usa-alert-text">An error has occurred, please try again!</p>'+
                                     '</div>'+
                                   '</div>',
-                        plain: true,
-                        closeByEscape: true,
-                        showClose: true
+                        className: 'ngdialog-theme-default'
                     });
 
                     $timeout(function() {
-                        ngDialog.closeAll();
-                        $scope.loadPrograms($scope.previousState);
+                        ngDialog.close();
                     }, 3000);
                 });
             }
