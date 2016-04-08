@@ -1,6 +1,12 @@
 <h2><span class="section-circle">1</span> General Information</h2>
 <section class="sub-section" >
     <div class="input-field" >
+        <h3>Federal Agency<span class="required" >*</span></h3>
+        <federal-hierarchy-label organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
+    </div>
+</section>
+<section class="sub-section" >
+    <div class="input-field" >
         <h3 for="title7">010 Program Title<span class="required" >*</span></h3>
         <span type="text" class="italic" id="title7"  ng-bind="gsavm.program.title"></span>
     </div>
