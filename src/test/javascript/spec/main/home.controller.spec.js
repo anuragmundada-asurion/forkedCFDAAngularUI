@@ -23,6 +23,10 @@ describe("Unit Tests for Home Controller", function () {
         $httpBackend
             .whenGET(/\/api\/listingcount(\?[\d=&]+)*/i)
             .respond(angular.toJson({ 'new': 100, 'updated': 10, 'archived': 100 }));
+
+        $httpBackend
+            .whenGET(/\/api\/eligibilitylistings/i)
+            .respond(angular.toJson([{"label":"Local","count":830,"ids":["0011"]},{"label":"State","count":1496,"ids":["0009","0040"]}]));
     });
 
     describe("Default Home Controller", function() {
@@ -45,36 +49,6 @@ describe("Unit Tests for Home Controller", function () {
             expect($scope.data).toBeDefined();
             expect($scope.formatNumber).toBeDefined();
         });
-
-//        it('should be able to query a count of programs', function(done){
-//            var vm = $scope;
-//            
-//            var oApiParam = {
-//                apiName: 'programCount',
-//                apiSuffix: '/'+vm.currentYear,
-//                oParams: {}, 
-//                oData: {}, 
-//                method: 'GET'
-//            };
-//
-//            spyOn(ApiService, 'call').and.callThrough();
-//
-////            vm.promise.finally(function() {
-////                expect(vm.isLoading).toBe(false);
-////                var pagination = tableState.pagination;
-////
-////                expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
-////                expect(pagination.numberOfPages).toEqual(200);
-////                expect(pagination.totalItemCount).toEqual(totalCount);
-////
-////                done();
-////            });
-//            
-//            expect(ApiService.call).toHaveBeenCalledWith(oApiParam);
-//
-//            $httpBackend.flush();
-//            done();
-//        });
 
     });
 });

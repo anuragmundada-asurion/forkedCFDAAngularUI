@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'ROLES',
-            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, ROLES) {
+        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'ROLES', '$timeout',
+            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, ROLES, $timeout) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -65,18 +65,16 @@
                         'updatedNumber': data.updated
                     };
                 });
-                
+
                 /**
                  * Generate chart
                  * @returns void
                  */
-                
+
                 $scope.makeHomePageChart = function () {
-                    
-                    setTimeout(function () {
-                        
+                    $timeout(function() {
                         var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
-                        
+
                         $scope.chart = c3.generate({
                             bindto: document.getElementById('listingsChart'),
                             transition: {
@@ -89,14 +87,6 @@
                                 type: 'bar',
                                 mimeType: 'json',
                                 url: '/api/eligibilitylistings',
-                                //json: [
-                                    // { "label":"Local", "count":0 },
-                                    // { "label":"State", "count":0 },
-                                    // { "label":"Nonprofit", "count":0 },
-                                    // { "label":"US Territories", "count":0 },
-                                    // { "label":"Individual", "count":0 },
-                                    // { "label":"Indian Tribal Organizations", "count":0 },
-                                //],
                                 onclick: function (d) {
                                     //Set advanced search criteria
                                     SearchFactory.setSearchCriteria('', {
@@ -135,7 +125,7 @@
                                     type: 'category',
                                     label: {
                                         text: 'Listing Category',
-                                        position: 'outer-center',
+                                        position: 'outer-center'
                                     },
                                     tick: {
                                         outer: false,
@@ -156,7 +146,7 @@
                             },
                             tooltip: {
                                 contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-                                    
+
                                     var $$ = this,
                                         config = $$.config,
                                         titleFormat = config.tooltip_format_title || defaultTitleFormat,
@@ -165,14 +155,14 @@
                                             },
                                         valueFormat = d3.format(".2s"),
                                         text, i, title, value, name, bgcolor;
-                                        
-                                        
+
+
                                     for (i = 0; i < d.length; i++) {
-                                    
+
                                         if (!(d[i] && (d[i].value || d[i].value === 0))) {
                                             continue;
                                         }
-                                        
+
                                         name = nameFormat(d[i].name);
                                         value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
                                         bgcolor = colors[d[i].index];
@@ -189,59 +179,8 @@
                                 }
                             }
                         });
-                                    
                     }, 1000);
-    
                 }();
-
-                //make eligiblisting api call
-                // var eligbParams = {
-                //     apiName: 'programEligibCount',
-                //     apiSuffix: '',
-                //     oParams: {},
-                //     oData: {},
-                //     method: 'GET'
-                // };
-                //$scope.eligibCount = {};
-
-                // ApiService.call(eligbParams).then(function (data) {
-                //     $scope.chartData = data;
-                    
-                    //sort data descending order
-                    // $scope.chartData.sort(function (obj1, obj2) {
-                    //     return (obj2.count - obj1.count);
-                    // });
-                    
-                    // setTimeout(function () {
-                    //     $scope.chart.load({
-                    //         json: [
-                    //                 { "label":"Local", "count":0 },
-                    //                 { "label":"State", "count":0 },
-                    //                 { "label":"Nonprofit", "count":0 },
-                    //                 { "label":"US Territories", "count":0 },
-                    //                 { "label":"Individual", "count":0 },
-                    //                 { "label":"Indian Tribal Organizations", "count":0 },
-                    //             ],
-                    //         keys: {
-                    //             x: 'label',
-                    //             value: ['count']
-                    //         }
-                    //     });
-                    // }, 1000);            
-                    
-                    // setTimeout(function () {
-                        
-                    //     $scope.chart.load({
-                    //         json: $scope.chartData,
-                    //         keys: {
-                    //             x: 'label',
-                    //             value: ['count']
-                    //         }
-                    //     });
-                        
-                    // }, 3000);
-
-                //});
 
                 /**
                  * Go to search result prefiltered with Publication (New or Updated) of this year
