@@ -65,29 +65,183 @@
                         'updatedNumber': data.updated
                     };
                 });
+                
+                /**
+                 * Generate chart
+                 * @returns void
+                 */
+                
+                $scope.makeHomePageChart = function () {
+                    
+                    setTimeout(function () {
+                        
+                        var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
+                        
+                        $scope.chart = c3.generate({
+                            bindto: document.getElementById('listingsChart'),
+                            transition: {
+                                duration: 400
+                            },
+                            size: {
+                                height: 260
+                            },
+                            data: {
+                                type: 'bar',
+                                mimeType: 'json',
+                                url: '/api/eligibilitylistings',
+                                //json: [
+                                    // { "label":"Local", "count":0 },
+                                    // { "label":"State", "count":0 },
+                                    // { "label":"Nonprofit", "count":0 },
+                                    // { "label":"US Territories", "count":0 },
+                                    // { "label":"Individual", "count":0 },
+                                    // { "label":"Indian Tribal Organizations", "count":0 },
+                                //],
+                                onclick: function (d) {
+                                    //Set advanced search criteria
+                                    SearchFactory.setSearchCriteria('', {
+                                        aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
+                                            return {element_id: i};
+                                        })
+                                    });
+
+                                    $state.go('searchPrograms', {}, {
+                                        reload: true,
+                                        inherit: false
+                                    });
+                                },
+                                keys: {
+                                    x: 'label',
+                                    value: ['count']
+                                },
+                                color: function (color, d) {
+                                    return colors[d.index];
+                                }
+                            },
+                            legend: {
+                                show: false
+                            },
+                            bar: {
+                                width: 50
+                            },
+                            grid:{
+                                focus:{
+                                    show: false
+                                }
+                            },
+                            axis: {
+                                x: {
+                                    height: 35,
+                                    type: 'category',
+                                    label: {
+                                        text: 'Listing Category',
+                                        position: 'outer-center',
+                                    },
+                                    tick: {
+                                        outer: false,
+                                        culling: true
+                                    }
+                                },
+                                y: {
+                                    label: {
+                                        text: '# of Listings',
+                                        position: 'outer-middle'
+                                    },
+                                    tick: {
+                                        outer: false,
+                                        count: 6,
+                                        format: d3.format('.2s')
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                                    
+                                    var $$ = this,
+                                        config = $$.config,
+                                        titleFormat = config.tooltip_format_title || defaultTitleFormat,
+                                        nameFormat = config.tooltip_format_name || function (name) {
+                                                return name;
+                                            },
+                                        valueFormat = d3.format(".2s"),
+                                        text, i, title, value, name, bgcolor;
+                                        
+                                        
+                                    for (i = 0; i < d.length; i++) {
+                                    
+                                        if (!(d[i] && (d[i].value || d[i].value === 0))) {
+                                            continue;
+                                        }
+                                        
+                                        name = nameFormat(d[i].name);
+                                        value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+                                        bgcolor = colors[d[i].index];
+
+                                        if (!text) {
+                                            title = titleFormat ? titleFormat(d[i].x) : d[i].x;
+                                            text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>"  + title + "</span></div>" : "");
+                                        }
+
+                                        // text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
+                                        //text += "<div>" + value + "</div>";
+                                    }
+                                    return text + "</div>";
+                                }
+                            }
+                        });
+                                    
+                    }, 1000);
+    
+                }();
 
                 //make eligiblisting api call
-                var eligbParams = {
-                    apiName: 'programEligibCount',
-                    apiSuffix: '',
-                    oParams: {},
-                    oData: {},
-                    method: 'GET'
-                };
-                $scope.eligibCount = {};
+                // var eligbParams = {
+                //     apiName: 'programEligibCount',
+                //     apiSuffix: '',
+                //     oParams: {},
+                //     oData: {},
+                //     method: 'GET'
+                // };
+                //$scope.eligibCount = {};
 
-                ApiService.call(eligbParams).then(function (data) {
-                    $scope.chartData = data;
+                // ApiService.call(eligbParams).then(function (data) {
+                //     $scope.chartData = data;
                     
                     //sort data descending order
-                    $scope.chartData.sort(function (obj1, obj2) {
-                        return (obj2.count - obj1.count);
-                    });
+                    // $scope.chartData.sort(function (obj1, obj2) {
+                    //     return (obj2.count - obj1.count);
+                    // });
                     
-                    console.log($scope.chartData);
+                    // setTimeout(function () {
+                    //     $scope.chart.load({
+                    //         json: [
+                    //                 { "label":"Local", "count":0 },
+                    //                 { "label":"State", "count":0 },
+                    //                 { "label":"Nonprofit", "count":0 },
+                    //                 { "label":"US Territories", "count":0 },
+                    //                 { "label":"Individual", "count":0 },
+                    //                 { "label":"Indian Tribal Organizations", "count":0 },
+                    //             ],
+                    //         keys: {
+                    //             x: 'label',
+                    //             value: ['count']
+                    //         }
+                    //     });
+                    // }, 1000);            
                     
-                    $scope.makeHomePageChart();
-                });
+                    // setTimeout(function () {
+                        
+                    //     $scope.chart.load({
+                    //         json: $scope.chartData,
+                    //         keys: {
+                    //             x: 'label',
+                    //             value: ['count']
+                    //         }
+                    //     });
+                        
+                    // }, 3000);
+
+                //});
 
                 /**
                  * Go to search result prefiltered with Publication (New or Updated) of this year
@@ -105,106 +259,6 @@
                     });
                 };
 
-                /**
-                 * Generate chart
-                 * @returns void
-                 */
-                $scope.makeHomePageChart = function () {
-                    
-                    var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
-                    
-                    $scope.chart = c3.generate({
-                        bindto: document.getElementById('listingsChart'),
-                        data: {
-                            type: 'bar',
-                            json: $scope.chartData,
-                            onclick: function (d) {
-                                //Set advanced search criteria
-                                SearchFactory.setSearchCriteria('', {
-                                    aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
-                                        return {element_id: i};
-                                    })
-                                });
-
-                                $state.go('searchPrograms', {}, {
-                                    reload: true,
-                                    inherit: false
-                                });
-                            },
-                            keys: {
-                                x: 'label',
-                                value: ['count']
-                            },
-                            color: function (color, d) {
-                                return colors[d.index];
-                            }
-                        },
-                        legend: {
-                            show: false
-                        },
-                        bar: {
-                            width: 60
-                        },
-                        axis: {
-                            x: {
-                                height: 70,
-                                type: 'category',
-                                label: {
-                                    text: 'Listing Category',
-                                    position: 'outer-center',
-                                }
-                            },
-                            y: {
-                                label: {
-                                    text: '# of Listings',
-                                    position: 'outer-middle'
-                                },
-                                tick: {
-                                    count: 6,
-                                    format: d3.format('.2s')
-                                }
-                            }
-                        },
-                        tooltip: {
-                            contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-                                
-                                
-                                
-                                
-                                var $$ = this,
-                                    config = $$.config,
-                                    titleFormat = config.tooltip_format_title || defaultTitleFormat,
-                                    nameFormat = config.tooltip_format_name || function (name) {
-                                            return name;
-                                        },
-                                    valueFormat = d3.format(".2s"),
-                                    text, i, title, value, name, bgcolor;
-                                    
-                                    
-                                for (i = 0; i < d.length; i++) {
-                                
-                                    if (!(d[i] && (d[i].value || d[i].value === 0))) {
-                                        continue;
-                                    }
-                                    
-                                    name = nameFormat(d[i].name);
-                                    value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
-                                    bgcolor = colors[d[i].index];
-
-                                    if (!text) {
-                                        title = titleFormat ? titleFormat(d[i].x) : d[i].x;
-                                        text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>"  + title + "</span></div>" : "");
-                                    }
-
-                                    // text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
-                                    //text += "<div>" + value + "</div>";
-                                }
-                                return text + "</div>";
-                            }
-                        }
-                    });
-                    
-                };
 
                 //Dashboard feature
                 if ($scope.user && AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])) {

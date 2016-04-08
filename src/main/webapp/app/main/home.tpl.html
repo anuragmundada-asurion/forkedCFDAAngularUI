@@ -28,13 +28,13 @@
                 <div class="two column row">
                     <!-- New in 2015 -->
 
-                    <div class="six wide column">
+                    <div class="eight wide column">
 
                         <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
 
                         <!-- New Listings -->
-                        <a ng-click="searchByListingPublication('new')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny"  class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <a ng-click="searchByListingPublication('new')" class="ui fluid big light lightblue button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
+                            <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny"  class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
                                 <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
                             </div>
@@ -42,8 +42,8 @@
                         </a>
 
                         <!-- Archived Listings -->
-                        <a class="ui fluid large light lightblue disabled button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <a class="ui fluid big light lightblue disabled button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
+                            <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
                                 <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
                             </div>
@@ -51,8 +51,8 @@
                         </a>
 
                         <!-- Updated Listings -->
-                        <a ng-click="searchByListingPublication('updated')" class="ui fluid large light lightblue button" style="text-align: left; position: relative; padding-left: 115px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 15px; left: 20px;">
+                        <a ng-click="searchByListingPublication('updated')" class="ui fluid big light lightblue button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
+                            <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
                                 <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
                                 {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
                             </div>
@@ -63,9 +63,37 @@
 
                     <!-- Who can apply chart -->
 
-                    <div class="ten wide column">
+                    <div class="eight wide column">
                         <h3 class="ui centered aligned header">Who Can Apply</h3>
                         <div id="listingsChart"></div>
+                        
+                        <div class="ui tiny horizontal list" style="margin-top:0;">
+                            <div class="item">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #25A148;"></div> 
+                                Local
+                            </div>
+                            <div class="item">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #F16B22;"></div> 
+                                State
+                            </div>
+                            <div class="item">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #1776B6;"></div> 
+                                Nonprofit
+                            </div>
+                            <div class="item">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #FAB915;"></div>
+                                US Territories
+                            </div>
+                            <div class="item">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #8F65AA;"></div>
+                                Individual
+                            </div>
+                            <div class="item" style="margin-left: 0;">
+                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #8D5649;"></div>
+                                Indian Tribal Origanizations
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

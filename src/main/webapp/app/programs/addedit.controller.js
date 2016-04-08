@@ -31,6 +31,8 @@
                     //vm.isCreateProgram = true;
                     vm.program = new ProgramFactory();
                     vm.program._id = null;
+                    //pre-set program's organization id by user's organization id
+                    vm.program.organizationId = UserService.getUserOrgId();
                 } else { // Edit/Review program
                     //vm.isCreateProgram = false;
                     vm.program = {};

@@ -144,6 +144,10 @@ html.tr-coretext{
     display: none;
 }
 
+.c3-axis-x .tick{
+    display: none;
+}
+
 // line color
 .c3 line, 
 .c3 path{
@@ -154,24 +158,24 @@ html.tr-coretext{
 .c3-event-rect{
     fill: #F1F1F2;
     fill-opacity: 1;
-    width: 61px !important;
+    width: 50px !important;
     &.c3-event-rect-0{
-        x: 9px !important;
+        x: 4px !important;
     }
     &.c3-event-rect-1{
-        x: 87px !important;
+        x: 62px !important;
     }
     &.c3-event-rect-2{
-        x: 164px !important;
+        x: 120px !important;
     }
     &.c3-event-rect-3{
-        x: 242px !important;
+        x: 178px !important;
     }
     &.c3-event-rect-4{
-        x: 319px !important;
+        x: 236px !important;
     }
     &.c3-event-rect-5{
-        x: 396px !important;
+        x: 294px !important;
     }
 }
 
