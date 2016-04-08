@@ -71,30 +71,29 @@
 
             var count = 0;
             this.getFederalHierarchyById(id, true, false, function (fhData) {
+                //console.log('recieved fh data: ', fhData);
                 var levels = {};
                 while (fhData.name) {
                     //levels[fhData.type] = fhData.name;
                     if (count == 0) {
-
                         levels['DEPARTMENT'] = fhData.name;
-
                         count++;
                     }
-                    if (count == 1) {
+                    else if (count == 1) {
                         levels['AGENCY'] = fhData.name;
-
                         count++;
                     }
+
+                    //last one
                     if (fhData.hierarchy) {
                         fhData = fhData.hierarchy[0];
                     }
                     else {
                         levels['OFFICE'] = fhData.name;
-
                         break;
                     }
                 }
-
+                //console.log('returning levels: ', levels);
                 success(levels);
             }, function (error) {
                 console.log("Error occured: ", error);
