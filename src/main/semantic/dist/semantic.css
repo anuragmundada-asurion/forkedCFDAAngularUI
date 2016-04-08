@@ -831,31 +831,6 @@ html.tr-coretext {
 .c3-event-rect {
   fill: #F1F1F2;
   fill-opacity: 1;
-  width: 50px !important;
-}
-
-.c3-event-rect.c3-event-rect-0 {
-  x: 7px !important;
-}
-
-.c3-event-rect.c3-event-rect-1 {
-  x: 70px !important;
-}
-
-.c3-event-rect.c3-event-rect-2 {
-  x: 133px !important;
-}
-
-.c3-event-rect.c3-event-rect-3 {
-  x: 195px !important;
-}
-
-.c3-event-rect.c3-event-rect-4 {
-  x: 258px !important;
-}
-
-.c3-event-rect.c3-event-rect-5 {
-  x: 321px !important;
 }
 
 .c3-axis-x-label,

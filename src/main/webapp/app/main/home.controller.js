@@ -84,6 +84,15 @@
 
                     //generate chart when data is loaded
                     $scope.makeHomePageChart();
+                    
+                    // Temporary fix to show gray bar behind color bar in ie11 and firefox
+                    // var chartRectLeftPadding = 7;
+                    // var chartRectWidth = 50;
+                    // $(".c3-event-rect").each(function(){ 
+                    //     $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
+                    //     $(this).attr("width", chartRectWidth); 
+                    // });
+                    
                 });
 
                 /**
@@ -163,6 +172,15 @@
                                         format: d3.format('.2s')
                                     }
                                 }
+                            },
+                            onrendered: function(){
+                                // Temporary fix to show gray bar behind color bar
+                                var chartRectLeftPadding = 7;
+                                var chartRectWidth = 50;
+                                $(".c3-event-rect").each(function(){ 
+                                    $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
+                                    $(this).attr("width", chartRectWidth); 
+                                });
                             },
                             tooltip: {
                                 contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
