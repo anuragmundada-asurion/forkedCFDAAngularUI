@@ -66,11 +66,26 @@
                     };
                 });
 
+                //make eligiblisting api call
+                var eligbParams = {
+                    apiName: 'programEligibCount',
+                    apiSuffix: '',
+                    oParams: {},
+                    oData: {},
+                    method: 'GET'
+                };
+
+                ApiService.call(eligbParams).then(function (data) {
+                    $scope.chartData = data;
+
+                    //generate chart when data is loaded
+                    $scope.makeHomePageChart();
+                });
+
                 /**
                  * Generate chart
                  * @returns void
                  */
-
                 $scope.makeHomePageChart = function () {
                     $timeout(function() {
                         var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
@@ -85,8 +100,9 @@
                             },
                             data: {
                                 type: 'bar',
-                                mimeType: 'json',
-                                url: '/api/eligibilitylistings',
+                                //mimeType: 'json',
+                                //url: '/api/eligibilitylistings',
+                                json: $scope.chartData,
                                 onclick: function (d) {
                                     //Set advanced search criteria
                                     SearchFactory.setSearchCriteria('', {
@@ -180,7 +196,7 @@
                             }
                         });
                     }, 1000);
-                }();
+                };
 
                 /**
                  * Go to search result prefiltered with Publication (New or Updated) of this year
