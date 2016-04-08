@@ -35,10 +35,20 @@
                 "organizationId": "=" // ngModel var passed by reference (two-way) 
             },
             controller: ['$scope', 'ROLES', function($scope, ROLES) {
-                //store program organization id if the program has it otherwise store user's organization id
-                if(typeof $scope.programOrganizationId === 'undefined' ) {
-                    $scope.programOrganizationId = (typeof $scope.organizationId === 'undefined' || $scope.organizationId === '' || $scope.organizationId === null) ? UserService.getUserOrgId() : $scope.organizationId;
-                }
+                $scope.isControllerLoaded = false;
+
+                /**
+                 * function to call when the organizationId passed from directive is bound (edit mode ajax)
+                 * @returns void
+                 */
+                $scope.initController = function() {
+                    //store program organization id if the program has it otherwise store user's organization id
+                    if(typeof $scope.programOrganizationId === 'undefined' ) {
+                        $scope.programOrganizationId = (typeof $scope.organizationId === 'undefined' || $scope.organizationId === '' || $scope.organizationId === null) ? UserService.getUserOrgId() : $scope.organizationId;
+                    }
+
+                    $scope.isControllerLoaded = true;
+                };
 
                 /**
                  * Function to set the organizationId scope from dropdowns (Department/Agency/Office)
@@ -190,37 +200,45 @@
                 };
             }],
             link: function(scope, element, attributes) {
-                scope.dictionary = {
-                    aDepartment: [],
-                    aAgency: [],
-                    aOffice: []
-                };
-                scope.departmentLabel = '';
-                scope.error = '';
+                scope.$watch('organizationId', function(value){
+                    //execute this only at the begining (Once)
+                    if(value && !scope.isControllerLoaded) {
+                        //initialize controller
+                        scope.initController();
 
-                //Case if user is an AGENCY USER
-                if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
-                    FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.programOrganizationId, true, false, function (organizationNames) {
-                        scope.departmentLabel = organizationNames;
-                        scope.organizationId = scope.programOrganizationId;
-                    }, function (error) {
-                        scope.error = "An error has occurred, Please try again !";
-                    });
-                } //Case if user is an AGENCY COORDINATOR
-                else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
-                    //initialize Department/Agency/Office dropdowns (selected values)
-                    scope.initFederalHierarchyDropdowns(ROLES.AGENCY_COORDINATOR.iamRoleId);
-                } //Case if user is ROOT
-                else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
-                    //get Department level of user's organizationId
-                    scope.initDictionaries('', true, false, function (oData) {
-                        //initialize Department
-                        scope.dictionary.aDepartment = oData._embedded.hierarchy;
+                        scope.dictionary = {
+                            aDepartment: [],
+                            aAgency: [],
+                            aOffice: []
+                        };
+                        scope.departmentLabel = '';
+                        scope.error = '';
 
-                        //initialize Department/Agency/Office dropdowns (selected values)
-                        scope.initFederalHierarchyDropdowns(ROLES.SUPER_USER.iamRoleId);
-                    });
-                }
+                        //Case if user is an AGENCY USER
+                        if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
+                            FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.programOrganizationId, true, false, function (organizationNames) {
+                                scope.departmentLabel = organizationNames;
+                                scope.organizationId = scope.programOrganizationId;
+                            }, function (error) {
+                                scope.error = "An error has occurred, Please try again !";
+                            });
+                        } //Case if user is an AGENCY COORDINATOR
+                        else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
+                            //initialize Department/Agency/Office dropdowns (selected values)
+                            scope.initFederalHierarchyDropdowns(ROLES.AGENCY_COORDINATOR.iamRoleId);
+                        } //Case if user is ROOT
+                        else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                            //get Department level of user's organizationId
+                            scope.initDictionaries('', true, false, function (oData) {
+                                //initialize Department
+                                scope.dictionary.aDepartment = oData._embedded.hierarchy;
+
+                                //initialize Department/Agency/Office dropdowns (selected values)
+                                scope.initFederalHierarchyDropdowns(ROLES.SUPER_USER.iamRoleId);
+                            });
+                        }
+                    }
+                });
             },
             template: 
                 "<div class='organization-container'>"+
