@@ -63,11 +63,11 @@
 
                     <!-- Who can apply chart -->
 
-                    <div class="eight wide column">
+                    <div class="eight wide column" style="padding-left: 0;">
                         <h3 class="ui centered aligned header">Who Can Apply</h3>
                         <div id="listingsChart"></div>
                         
-                        <div class="ui tiny horizontal list" style="margin-top:0;">
+                        <div class="ui tiny horizontal list" style="margin-top:0; margin-left: 17px;">
                             <div class="item">
                                 <div class="ui empty circular label" style="margin-right: 5px; background-color: #25A148;"></div> 
                                 Local
@@ -144,7 +144,7 @@
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
                         <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
                     </div>
-                    <div class="label page font huge lighter no transformation">Total Active Listings</div>
+                    <div class="label page font huge lighter no transformation">Total Active<br>Listings</div>
                 </div>
             </a>
             <a class="item" ui-sref="programList.status({status: 'draft'})">
@@ -163,7 +163,7 @@
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
                         <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
                     </div>
-                    <div class="label page font huge lighter no transformation">Pending Listings</div>
+                    <div class="label page font huge lighter no transformation">Pending<br>Listings</div>
                 </div>
             </a>
             <a class="item" ui-sref="programList.status({status: 'published'})">
@@ -172,7 +172,7 @@
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
                         <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
                     </div>
-                    <div class="label page font huge lighter no transformation">Published Listings</div>
+                    <div class="label page font huge lighter no transformation">Published<br>Listings</div>
                 </div>
             </a>
             <a class="item" ui-sref="programList.status({status: 'rejected'})">
@@ -181,7 +181,7 @@
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
                         <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
                     </div>
-                    <div class="label page font huge lighter no transformation">Rejected Listings</div>
+                    <div class="label page font huge lighter no transformation">Rejected<br>Listings</div>
                 </div>
             </a>
         </div>
