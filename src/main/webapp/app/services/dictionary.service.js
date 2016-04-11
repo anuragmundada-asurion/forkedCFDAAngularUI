@@ -1,8 +1,9 @@
 (function () {
     "use strict";
 
-    angular.module('app')
-        .factory('Dictionary', ['$resource', '$filter', 'appConstants', function ($resource, $filter, appConstants) {
+    var myApp = angular.module('app');
+
+    myApp.factory('Dictionary', ['$resource', '$filter', 'appConstants', function ($resource, $filter, appConstants) {
         return $resource('/api/dictionaries', {}, {
             query: {
                 transformResponse: function(data) {
@@ -85,5 +86,123 @@
             item.elements = undefined;
             return item;
         }
+    }]);
+
+    //Service
+    myApp.service('DictionaryService', [function(){
+
+        /**
+        * isteven plugin multi-select data structure 
+        * https://github.com/isteven/angular-multi-select.git
+        * 
+        * @param Array aData Source Data (Dictionary table)
+        * @param Array aSelectedData selected data
+        * @param Boolean isGrouped create nested categories
+        * @returns Array
+        */
+       this.istevenDropdownDataStructure = function(aData, aSelectedData, isGrouped) {
+            var results = [];
+            var selectedIDs = [];
+
+            //get all selected item ids
+            angular.forEach(aSelectedData, function (item) {
+               if(item.hasOwnProperty('element_id')) {
+                   selectedIDs.push(item.element_id);
+                } else {
+                   selectedIDs.push(item);
+               }
+            });
+
+            if (isGrouped === true) { //generate nested dropdown list elements
+                angular.forEach(aData, function (oRow) {
+                    var aElement = oRow.elements;
+
+                    //make sure this item has children before creating nested categories
+                    if (typeof aElement === 'object' && aElement !== null && aElement.length > 0) {
+                        delete oRow.elements; //remove attribute that has array of element otherwise will trigger an error
+
+                        oRow.msGroup = true;
+                        results.push(oRow);
+
+                        angular.forEach(aElement, function (oSubRow) {
+                            //pre-select item in dropdown
+                            if ($.inArray(oSubRow.element_id, selectedIDs) !== -1) {
+                                oSubRow.ticked = true;
+                            }
+
+                            results.push(oSubRow);
+                        });
+
+                        results.push({msGroup: false});
+                    } else {
+                        //pre-select item in dropdown
+                        if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
+                            oRow.ticked = true;
+                        }
+
+                        results.push(oRow);
+                    }
+                });
+            } else { //generate single dropdown list elements
+                if (aSelectedData !== null) {
+                    //selected data
+                    angular.forEach(aData, function (oRow) {
+                        //pre-select item in dropdown
+                        if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
+                            oRow.ticked = true;
+                        }
+
+                        results.push(oRow);
+                    });
+                } else { //return data
+                    return aData;
+                }
+            }
+
+            return results;
+        };
+
+       /**
+        * Reset isteven data structure form inputs
+        * @param {aData} data source
+        * @param {aAttributes} array of attributes to loop through the aData parameter
+        * @returns Array
+        */
+        this.istevenDropdownResetData = function (aData, aAttributes) {
+            angular.forEach(aAttributes, function (attribute) {
+                angular.forEach(aData[attribute], function (row, key) {
+                    if (aData[attribute][key].hasOwnProperty('ticked')) {
+                        delete aData[attribute][key].ticked;
+                    }
+                });
+            });
+
+            return aData;
+        };
+
+        /**
+        * get IDs from selected data (isteven dropdown structure)
+        * @param {aData} data source
+        * @param {aAttributes} array of attributes to loop through the aData parameter
+        * @returns Object
+        */
+        this.istevenDropdownGetIds = function (aData, aAttributes) {
+            var oResult = {};
+
+            //loop through each filter
+            angular.forEach(aAttributes, function (attribute) {
+                if (aData.hasOwnProperty(attribute)) {
+                    angular.forEach(aData[attribute], function (row) {
+                        if (oResult.hasOwnProperty(attribute)) {
+                            oResult[attribute].push(row.element_id);
+                        } else {
+                            oResult[attribute] = [row.element_id];
+                        }
+                    });
+                }
+            });
+
+            return oResult;
+        };
     }]);
 })();
