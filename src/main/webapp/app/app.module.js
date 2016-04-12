@@ -17,7 +17,8 @@
         'ngDialog',
         'angularMoment',
         'isteven-multi-select',
-        'angular-multi-select'
+        'angular-multi-select',
+        'datatables'
     ];
 
     /**
