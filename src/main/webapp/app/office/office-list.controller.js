@@ -156,7 +156,7 @@
                     .withTitle('Department/Sub-Tier Agency & Office')
                     .withOption('defaultContent', '')
                     .withOption('render', function(data) {
-                        return '<a href="'+data['id']+'">' + data['value'] + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/regionalOffice/' + data['id'] + '/view">' + data['value'] + '</a>';
                     }),
                 DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
