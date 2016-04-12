@@ -78,7 +78,8 @@
                         var tableData = [];
                         angular.forEach(results, function(r) {
                             var row = {
-                                'agency': {'id': r['agencyId']},
+                                'id': r['id'],
+                                'agency': {'id': r['agencyId'], 'officeId': r['id']},
                                 'street': r['address']['street'],
                                 'city': r['address']['city'],
                                 'state': r['address']['state'],
@@ -156,7 +157,7 @@
                     .withTitle('Department/Sub-Tier Agency & Office')
                     .withOption('defaultContent', '')
                     .withOption('render', function(data) {
-                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/regionalOffice/' + data['id'] + '/view">' + data['value'] + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/regionalOffice/' + data['officeId'] + '/view">' + data['value'] + '</a>';
                     }),
                 DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
