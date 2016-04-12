@@ -18,8 +18,60 @@
             if (userOrgId) {
                 FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function (oData) {
                     $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
+
                 });
+
+
+                FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
+                    console.log("got these children: after api call: ", oData);
+
+                    $scope.dictionary.aAgency2 = [FederalHierarchyService.dropdownDataStructure(oData, [])];
+                    console.log("agency2: " , $scope.dictionary.aAgency2);
+
+                    //ng-jsTree
+                    $scope.treeConfig2 = {
+                        core: {
+                            multiple: true,
+                            themes: {
+                                dots: true // no connecting dots between dots
+                            }
+                        },
+                        plugins: ["checkbox"]
+
+                    };
+                    $scope.treeData2 = angular.copy($scope.dictionary.aAgency2);
+                    console.log('passing in : ', $scope.treeData2);
+                    $scope.treeData2 = formatAgencyData($scope.treeData2);
+                    console.log('got back : ', $scope.treeData2);
+                });
+
+
             }
+
+            function formatAgencyData(dataArray) {
+                var keyMapping = {"hierarchy": "children", "name": "text", "sourceOrgId": "id"};
+
+                var formattedData = _.map(dataArray, function (currentObj) {
+                    var tmpObj = {};
+                    for (var property in currentObj) {
+                        //do recursion
+                        if (property == "hierarchy") {
+                            currentObj.hierarchy = formatAgencyData(currentObj.hierarchy);
+                        }
+
+                        //rename keys
+                        if (keyMapping.hasOwnProperty(property)) {
+                            console.log("property: ", property);
+                            tmpObj[keyMapping[property]] = currentObj[property];
+                        }
+                    }
+                    return tmpObj;
+                });
+
+
+                return formattedData;
+            }
+
 
             Dictionary.toDropdown({ids: aDictionay.join(',')}).$promise.then(function (data) {
                 $scope.dictionary.aDivision = data.regional_office_division;
@@ -119,21 +171,6 @@
                 });
 
                 return oResult;
-            };
-
-
-            //ng-jsTree
-            $scope.treeData2 = [
-                {id: 'ajson1', parent: '#', text: 'not so simple root node', state: {opened: true}},
-                {id: 'ajson2', parent: '#', text: 'Root node 2.0000', state: {opened: true}},
-                {id: 'ajson3', parent: 'ajson2', text: 'Childy 1', state: {opened: true}},
-                {id: 'ajson4', parent: 'ajson2', text: 'Childuy 2', state: {opened: true}}
-            ];
-            $scope.treeConfig2 = {
-                core: {
-                    multiple: true
-                }
-
             };
 
 

@@ -405,10 +405,14 @@ public class ApiController {
 
         if (parentLevels.equalsIgnoreCase("all")) {
             builder.queryParam("parentLevels", "all");
+        }else{
+            builder.queryParam("parentLevels", parentLevels);
         }
 
         if (childrenLevels.equalsIgnoreCase("all")) {
             builder.queryParam("childrenLevels", "all");
+        }else{
+            builder.queryParam("childrenLevels", childrenLevels);
         }
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
