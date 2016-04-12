@@ -78,16 +78,16 @@
                         var tableData = [];
                         angular.forEach(results, function(r) {
                             var row = {
-                                'agency': r['agencyId'],
+                                'agency': {'id': r['agencyId']},
                                 'street': r['address']['street'],
                                 'city': r['address']['city'],
                                 'state': r['address']['state'],
                                 'phone': r['phone']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['agencyId'], true, false, function(data) {
-                                row['agency'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
+                                row['agency']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
                             }, function() {
-                                row['agency'] = 'Organization Not Found';
+                                row['agency']['value'] = 'Organization Not Found';
                             }));
                             tableData.push(row);
                         });
@@ -152,7 +152,12 @@
                     'emptyTable': 'No Agencies Found'
                 });
             $scope.dtColumns = [
-                DTColumnBuilder.newColumn('agency').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('agency')
+                    .withTitle('Department/Sub-Tier Agency & Office')
+                    .withOption('defaultContent', '')
+                    .withOption('render', function(data) {
+                        return '<a href="'+data['id']+'">' + data['value'] + '</a>';
+                    }),
                 DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('state').withTitle('State').withOption('defaultContent', ''),
