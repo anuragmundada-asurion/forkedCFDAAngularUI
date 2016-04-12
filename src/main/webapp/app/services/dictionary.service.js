@@ -194,9 +194,9 @@
                 if (aData.hasOwnProperty(attribute)) {
                     angular.forEach(aData[attribute], function (row) {
                         if (oResult.hasOwnProperty(attribute)) {
-                            oResult[attribute].push(row.element_id);
+                            oResult[attribute].push((row.hasOwnProperty('element_id')) ? row.element_id : row);
                         } else {
-                            oResult[attribute] = [row.element_id];
+                            oResult[attribute] = [(row.hasOwnProperty('element_id')) ? row.element_id : row];
                         }
                     });
                 }
