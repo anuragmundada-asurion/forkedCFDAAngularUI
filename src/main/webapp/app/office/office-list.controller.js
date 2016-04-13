@@ -2,8 +2,8 @@
     "use strict";
 
      var myApp = angular.module('app');
-     myApp.controller('RegionalOfficeListController', ['$scope', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', '$q',
-        function($scope, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, $q) {
+     myApp.controller('RegionalOfficeListController', ['$scope', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder','DTColumnDefBuilder','$q',
+        function($scope, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers= appConstants.PAGE_ITEM_NUMBERS;
             $scope.dictionary = {};
@@ -143,6 +143,11 @@
             };
 
             $scope.dtInstance = {};
+            
+            $scope.dtColumnDefs = [
+                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth','20%')
+            ];
+
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('processing', true)
                 .withOption('serverSide', true)

@@ -1,34 +1,57 @@
 <primary-nav-bar></primary-nav-bar>
 
-<section>
-    <div class="usa-grid-full page-heading">
-        <div class="usa-width-three-fourths">
-            <h1>Regional Agency Offices</h1>
+<div class="ui fixed container">
+
+    <div class="ui grid" style="margin-top: 0;">
+        
+        <div class="one column row">
+            <div class="column"> 
+                <h1>Regional Agency Offices</h1>
+            </div>
         </div>
-        <div class="usa-width-one-fourth" >
-             <a has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" ui-sref="addRegionalOffice" class="usa-button" >Create a New Address</a>
+
+        <div class="three column row">
+            
+            <div class="column">
+                <a has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" ui-sref="addRegionalOffice" class="ui
+                    primary fluid button" >Create a New Address</a>
+            </div>
+            
+            <div class="column">
+                <isteven-multi-select
+                    helper-elements="all none filter"
+                    template-url="search/dropdown.tpl.html"
+                    max-labels="1"
+                    input-model="dictionary.aDivision"
+                    output-model="filter.aDivision"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                    >
+                </isteven-multi-select>
+            </div>
+            
+            <div class="column">
+                <div class="ui search"> 
+                    <div class="ui icon fluid input">
+                        <input ng-model="searchKeyword" type="text" class="prompt" placeholder="Search Listings"
+                            aria-controls="agency-table" >
+                        <i class="search icon"></i>
+                     </div>
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="usa-grid-full">
-        <div class="usa-width-one-third" >
-            <input ng-model="searchKeyword" type="search" class="bold-border" placeholder="Search" aria-controls="agency-table" style="margin-top: 24px;">
-        </div>
-        <div class="usa-width-one-third fix-select">
-          <label style="margin-top: 0;">Division</label>
-            <isteven-multi-select
-              max-labels="1"
-              input-model="dictionary.aDivision"    
-              output-model="filter.aDivision"
-              button-label="displayValue"
-              item-label="displayValue"
-              tick-property="ticked"
-              max-height="250px"
-            >
-            </isteven-multi-select>
+       
+        <div class="one column row">
+
+            <div class="column">
+                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs" dt-instance="dtInstance" class=""></table>
+            </div>
+
         </div>
 
     </div>
-    <div class="usa-grid-full">
-        <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="row-border hover cfda-table"></table>
-    </div>
-</section>
+
+</div>
