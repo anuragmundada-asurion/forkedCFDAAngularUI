@@ -24,9 +24,13 @@
                 FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function (oData) {
                     $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
 
+                });
 
-                    //START --- js tree stuff
-                    //------------------------------------------------------------------------------------
+
+                //START --- js tree stuff
+                //------------------------------------------------------------------------------------
+
+                FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
 
                     //format expects an array. thats why we converted the obj to an array
                     var formattedData = formatAgencyData([oData]);
@@ -36,9 +40,10 @@
                     console.log("instantiate Tree finished!");
 
 
-                    //------------------------------------------------------------------------------------
-                    //END --- js tree stuff
                 });
+
+                //------------------------------------------------------------------------------------
+                //END --- js tree stuff
 
 
             }
@@ -71,7 +76,7 @@
                     "sourceOrgId": "id"
                 };
 
-                var formattedData = _.map(dataArray, function(currentObj) {
+                var formattedData = _.map(dataArray, function (currentObj) {
                     var tmpObj = {};
                     for (var property in currentObj) {
                         //do recursion
@@ -92,8 +97,6 @@
 
                 return formattedData;
             }
-
-
 
 
             //callbacks --
@@ -170,7 +173,7 @@
                     core: {
                         multiple: true,
                         animation: true,
-                        error: function(error) {
+                        error: function (error) {
                             $log.error('treeCtrl: error from js tree - ' + angular.toJson(error));
                         },
                         check_callback: true,
@@ -198,9 +201,6 @@
                     plugins: ['types', 'checkbox', 'search']
                 };
             }
-
-
-
 
 
             //------------------------------------------------------------------------------------
