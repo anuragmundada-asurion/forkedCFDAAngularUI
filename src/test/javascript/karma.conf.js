@@ -58,6 +58,8 @@ module.exports = function(config) {
             'main/webapp/bower_components/uswds/assets/js/components.js',
             'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/trmix/dist/trmix.min.js',
+            'main/webapp/bower_components/jstree/dist/jstree.js',
+            'main/webapp/bower_components/ng-js-tree/dist/ngJsTree.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/bower_components/angular-multi-select/dist/prod/angular-multi-select.js',

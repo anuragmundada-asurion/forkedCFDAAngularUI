@@ -8,15 +8,21 @@
             var userPermissions = UserService.getUserPermissions();
 
             var hasPermission = false;
-            if (requiredPermissions && requiredPermissions.length) {
-                requiredPermissions.every(function(requiredPermission) {
-                    if (userPermissions.indexOf(requiredPermission) !== -1) {
-                        hasPermission = true;
-                        return false;
-                    }
+            if (requiredPermissions) {
+                if (!angular.isArray(requiredPermissions)) {
+                    requiredPermissions = [requiredPermissions];
+                }
 
-                    return true;
-                });
+                if (requiredPermissions.length) {
+                    requiredPermissions.every(function(requiredPermission) {
+                        if (userPermissions.indexOf(requiredPermission) !== -1) {
+                            hasPermission = true;
+                            return false;
+                        }
+
+                        return true;
+                    });
+                }
             }
 
             return hasPermission;

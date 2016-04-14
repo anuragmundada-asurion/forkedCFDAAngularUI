@@ -1,6 +1,7 @@
 (function(){
     'use strict';
 
+    //  TODO Refactor
     var appConstants = {
         AUTH_TYPE_KEYS: {
             "act": "act",

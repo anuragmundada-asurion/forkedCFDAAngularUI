@@ -150,12 +150,12 @@ ul {
                border-color: none !important;
                border-width: 1px 1px 3px 1px !important;
 
-               > a {
+               > span {
                     color: $color-gray !important;
                }
             }
 
-            > a {
+            > span {
                 text-decoration: none;
                 display: block;
                 height: 100%;

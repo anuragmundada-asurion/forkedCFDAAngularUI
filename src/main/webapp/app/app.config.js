@@ -13,8 +13,12 @@
 
     myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory', 'Page',
         function ($rootScope, $document, $state, ngDialog, SearchFactory, Page) {
-            $rootScope.$on('$stateChangeSuccess', function() {
-                $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+            $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+                //  Only scroll to the top if state changes
+                if (to['name'] !== from['name']) {
+                    $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+                }
+
             });
 
             /**
@@ -25,14 +29,15 @@
              * @param String action action to perform (Approve|Reject)
              * @returns Void
              */
-            $rootScope.showProgramRequestModal = function(oEntity, typeEntity, action) {
+            $rootScope.showProgramRequestModal = function(oEntity, typeEntity, action, callback) {
                 ngDialog.open({ 
                     template: 'programs/_ProgramRequestModal.tpl.html', 
                     className: 'ngdialog-theme-default',
                     data: {
                         oEntity: oEntity, 
                         typeEntity: typeEntity,
-                        action: action
+                        action: action,
+                        callback: callback
                     } 
                 });
             };
@@ -50,13 +55,6 @@
                     //empty Search criteria (keyword & advanced search criterias) 
                     //when user go to other pages rather then search
                     SearchFactory.setSearchCriteria(null, {});
-                }
-
-                //bugfix: angular-ui-router: 0.2.13+
-                //http://stackoverflow.com/questions/27120308/angular-ui-router-urlrouterprovider-when-not-working-when-i-click-a-ui-sref
-                if (stateConfig.name === "programList") { 
-                    event.preventDefault();
-                    $state.go('programList.status', {status: 'all'});
                 }
             });
 
