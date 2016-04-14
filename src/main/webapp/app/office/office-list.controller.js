@@ -152,10 +152,14 @@
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
+                .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
+                .withDOM('<"top">rt<"bottom"<"info"li><"paging"p>><"clear">')
                 .withOption('ajax', $scope.loadAgencies)
                 .withLanguage({
-                    'emptyTable': 'No Agencies Found'
+                    'emptyTable': 'No Agencies Found',
+                    'lengthMenu': 'Showing _MENU_ entries',
+                    'info': 'of _TOTAL_ entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('agency')
