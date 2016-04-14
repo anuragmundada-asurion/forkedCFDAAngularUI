@@ -1,0 +1,15 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+/*-------------------
+       Colors
+--------------------*/
+
+
+/* Dark Blue */
+.ui.darkblue.table thead th{
+  color: @white;
+  background-color: @darkBlue;
+}
