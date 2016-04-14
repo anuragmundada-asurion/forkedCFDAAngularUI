@@ -56,6 +56,11 @@
         "dist/xdomain.min.js"
       ]
     },
+    "datatables":{
+      "main": [
+        "media/js/jquery.dataTables.js"
+      ]
+    },
     "angular-datatables": {
       "main": [
         "dist/angular-datatables.js"
