@@ -105,6 +105,49 @@
             });
         };
 
+
+        /**
+         * Get a certain level depth of children
+         * @param id
+         * @param level
+         * @returns Object
+         */
+        var getChildren = function (id, level, callbackFnSuccess, callbackFnError) {
+
+            var oApiParam = {
+                apiName: 'federalHierarchyList',
+                apiSuffix: id ? ('/' + id) : '',
+                oParams: {},
+                oData: {},
+                method: 'GET'
+            };
+
+
+            if (level) {
+                oApiParam.oParams['childrenLevels'] = level;
+            }
+
+            //make api call to get federalHierarchy by id
+            ApiService.call(oApiParam).then(
+                function (data) {
+                    if (typeof callbackFnSuccess === 'function') {
+                        callbackFnSuccess(data);
+                    }
+                },
+                function (error) {
+                    if (typeof callbackFnError === 'function') {
+                        callbackFnError(error);
+                    }
+                    return false;
+                }
+            );
+
+        };
+
+
+
+
+
         /**
          * for angular-multi-select (Angular Plugin)
          * @param oData
@@ -166,7 +209,8 @@
             getFederalHierarchyById: getFederalHierarchyById,
             dropdownDataStructure: dropdownDataStructure,
             getParentPath: getParentPath,
-            getFullNameFederalHierarchy: getFullNameFederalHierarchy
+            getFullNameFederalHierarchy: getFullNameFederalHierarchy,
+            getChildren: getChildren
         };
     }]);
 })();
