@@ -136,51 +136,51 @@
                     var parentId = node.original.id;
 
 
-                    //make api call, get data, put it under the correct parent
-                    var gotoUrl = 'http://192.168.56.103:8080/api/federalHierarchies/' + elementId + '?childrenLevels=1';
-                    var params = {
-                        // url: 'http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh/100011942?childrenLevels=1',
-                        url: gotoUrl,
-                        apiSuffix: '',
-                        oParams: {},
-                        oData: {},
-                        method: 'GET'
-                    };
-                    //this data argument is local to this function
-                    $scope.call(params).then(function (data) {
-                        var parentId = node.original.id;
-                        if (data.hierarchy && data.hierarchy.length > 0) {
-                            //grab the children, already an array. so dont need to convert ot an array
-                            var formattedData = formatAgencyData(data.hierarchy);
-                            _.forEach(formattedData, function (value, key, collection) {
-                                value.parent = parentId;
-                                $scope.treeData.push(value);
-                            });
-
-                        } else {
-                            console.log("no children!!!! --");
-                        }
-
-                    });
-
-
-                    //FederalHierarchyService.getChildren(elementId, 1, function (oData) {
-                    //    if (oData.hierarchy && oData.hierarchy.length > 0) {
-                    //        console.log("called fh, clicked thing has children: ", oData);
+                    ////make api call, get data, put it under the correct parent
+                    //var gotoUrl = 'http://192.168.56.103:8080/api/federalHierarchies/' + elementId + '?childrenLevels=1';
+                    //var params = {
+                    //    // url: 'http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh/100011942?childrenLevels=1',
+                    //    url: gotoUrl,
+                    //    apiSuffix: '',
+                    //    oParams: {},
+                    //    oData: {},
+                    //    method: 'GET'
+                    //};
+                    ////this data argument is local to this function
+                    //$scope.call(params).then(function (data) {
+                    //    var parentId = node.original.id;
+                    //    if (data.hierarchy && data.hierarchy.length > 0) {
                     //        //grab the children, already an array. so dont need to convert ot an array
-                    //        var formattedData = formatAgencyData(oData.hierarchy);
-                    //        console.log("clicked thing formatted children: ", oData.hierarchy);
-                    //
+                    //        var formattedData = formatAgencyData(data.hierarchy);
                     //        _.forEach(formattedData, function (value, key, collection) {
                     //            value.parent = parentId;
                     //            $scope.treeData.push(value);
-                    //            console.log("child pushed onto scope: $scope.treeData:", $scope.treeData.);
                     //        });
                     //
                     //    } else {
                     //        console.log("no children!!!! --");
                     //    }
+                    //
                     //});
+
+
+                    FederalHierarchyService.getChildren(elementId, 1, function (oData) {
+                        if (oData.hierarchy && oData.hierarchy.length > 0) {
+                            console.log("called fh, clicked thing has children: ", oData);
+                            //grab the children, already an array. so dont need to convert ot an array
+                            var formattedData = formatAgencyData(oData.hierarchy);
+                            console.log("clicked thing formatted children: ", formattedData);
+
+                            _.forEach(formattedData, function (value, key, collection) {
+                                value.parent = parentId;
+                                $scope.treeData.push(value);
+                                console.log("child pushed onto scope: $scope.treeData:", $scope.treeData);
+                            });
+
+                        } else {
+                            console.log("no children!!!! --");
+                        }
+                    });
 
 
                 } else {
