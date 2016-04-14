@@ -108,16 +108,16 @@
 
             function readyCB() {
                 console.log("readyCB fired!");
-                //$timeout(function() {
-                //
-                //    $scope.$watch('searchText', function() {
-                //        console.log('hey, searchText was changed', $scope.searchText);
-                //        console.log('$scope: ', $scope);
-                //        console.log('$scope treeInstance23: ', $scope.treeInstance23);
-                //        var q = ($scope.searchText) ? $scope.searchText : '';
-                //        vm.treeInstance23.jstree(true).search(q);
-                //    });
-                //});
+                $timeout(function() {
+
+                    $scope.$watch('searchText', function() {
+                        console.log('hey, searchText was changed', $scope.searchText);
+                        console.log('$scope: ', $scope);
+                        console.log('$scope treeInstance23: ', $scope.treeInstance23);
+                        var q = ($scope.searchText) ? $scope.searchText : '';
+                        vm.treeInstance23.jstree(true).search(q);
+                    });
+                });
             }
 
             function changedNodeCB(e, data) {
