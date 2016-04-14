@@ -127,12 +127,10 @@
                 oApiParam.oParams['childrenLevels'] = level;
             }
 
-            console.log("oApiParam: " ,oApiParam);
             //make api call to get federalHierarchy by id
             ApiService.call(oApiParam).then(
                 function (data) {
                     if (typeof callbackFnSuccess === 'function') {
-                        console.log("called fh: " , data);
                         callbackFnSuccess(data);
                     }
                 },

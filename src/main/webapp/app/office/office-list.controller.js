@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('RegionalOfficeListController', ['$scope', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService',
-        function ($scope, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService) {
+    myApp.controller('RegionalOfficeListController', ['$scope', '$log', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService',
+        function ($scope, $log, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService) {
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.dictionary = {};
@@ -21,31 +21,125 @@
 
                 });
 
+                //
+                //FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
+                //    console.log("got these children: after api call: ", oData);
+                //
+                //    $scope.dictionary.aAgency2 = [FederalHierarchyService.dropdownDataStructure(oData, [])];
+                //    console.log("agency2: " , $scope.dictionary.aAgency2);
+                //
+                //    //ng-jsTree
+                //    $scope.treeConfig2 = {
+                //        core: {
+                //            multiple: true,
+                //            themes: {
+                //                dots: true // no connecting dots between dots
+                //            }
+                //        },
+                //        plugins: ["checkbox"]
+                //
+                //    };
+                //    $scope.treeData2 = angular.copy($scope.dictionary.aAgency2);
+                //    console.log('passing in : ', $scope.treeData2);
+                //    $scope.treeData2 = formatAgencyData($scope.treeData2);
+                //    console.log('got back : ', $scope.treeData2);
+                //});
 
                 FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
-                    console.log("got these children: after api call: ", oData);
+                    console.log("fh data: ", oData);
 
                     $scope.dictionary.aAgency2 = [FederalHierarchyService.dropdownDataStructure(oData, [])];
-                    console.log("agency2: " , $scope.dictionary.aAgency2);
+                    console.log("agency2: ", $scope.dictionary.aAgency2);
 
                     //ng-jsTree
                     $scope.treeConfig2 = {
                         core: {
                             multiple: true,
+                            check_callback : true,
                             themes: {
                                 dots: true // no connecting dots between dots
                             }
                         },
+                        checkbox: {
+                            keep_selected_style: false
+                            //tie_selection: false
+                        },
                         plugins: ["checkbox"]
 
                     };
+
+                    $scope.applyModelChanges = function () {
+                        return true;
+                    };
+
                     $scope.treeData2 = angular.copy($scope.dictionary.aAgency2);
                     console.log('passing in : ', $scope.treeData2);
                     $scope.treeData2 = formatAgencyData($scope.treeData2);
                     console.log('got back : ', $scope.treeData2);
+                    //$scope.treeData2[0].text = 'hi1!!';
+
+
+
+                    //callbacks --
+                    $scope.treeEventsObj = {
+                        'changed': changedNodeCB
+                    };
+
+                    function changedNodeCB(e, data) {
+                        console.log("--------------");
+                        console.log("event fired e: ", e);
+                        console.log("event fired data: ", data);
+                        console.log("treeData2: ", $scope.treeData2);
+
+                        $log.info('check_node called');
+                        var node = data.node;
+                        console.log('node checked: ', node);
+                        $log.info('node checked: ', node);
+
+
+                        //only make ajax call if data currently does not have children, dont make calls for stuff thats already loaded
+                        if (!node.children || node.children.length == 0) {
+                            //make ajax call
+                            var elementId = node.original.elementId;
+                            console.log('about to call fh with this id:', elementId);
+                            FederalHierarchyService.getChildren(elementId, 1, function (oData) {
+                                console.log('node clicked, data received', oData);
+
+                                //format it..
+
+                                var children = formatAgencyData(oData.hierarchy);
+                                updateChildren($scope.treeData2, children, elementId);
+                                console.log('new children: ', children, ' under node: ', node);
+                                $scope.treeData2[0].text = 'hello world!!!';
+
+                                console.log("treeData2 after data recieved: ", $scope.treeData2);
+
+
+
+                                var selected_nodes = $scope.treeInstance.jstree(true).get_selected();
+                                console.log('selected nodes: ', selected_nodes);
+                            });
+                        }
+
+
+                        console.log("--------------");
+                    }
+
                 });
+            }
 
-
+            function updateChildren(data, children, elementId) {
+                console.log('hello from updateChildren');
+                //debugger;
+                //var foundObjects = _.filter(data, ['elementId', elementId]);
+                //
+                //var foundObjects = _.filter(data, ['elementId', elementId]);
+                //
+                //if (foundObjects.length > 0){
+                //    foundObjects[0].children = children;
+                //    consol.log('dddata-->>', data);
+                //}
+                //console.log('foundObjects ------>>>', foundObjects);
             }
 
             function formatAgencyData(dataArray) {
@@ -61,8 +155,9 @@
 
                         //rename keys
                         if (keyMapping.hasOwnProperty(property)) {
-                            console.log("property: ", property);
                             tmpObj[keyMapping[property]] = currentObj[property];
+                        } else {
+                            tmpObj[property] = currentObj[property];
                         }
                     }
                     return tmpObj;
