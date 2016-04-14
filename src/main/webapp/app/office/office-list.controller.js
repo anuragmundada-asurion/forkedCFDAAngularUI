@@ -26,24 +26,13 @@
 
                 });
 
-
-                //START --- js tree stuff
-                //------------------------------------------------------------------------------------
-
                 FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
-
                     //format expects an array. thats why we converted the obj to an array
                     var formattedData = formatAgencyData([oData]);
-                    console.log('fh data', formattedData);
                     $scope.treeData = formattedData;
                     instantiateTree();
-                    console.log("instantiate Tree finished!");
-
-
+                    console.log("instantiate Tree finished! treeData: ", $scope.treeData);
                 });
-
-                //------------------------------------------------------------------------------------
-                //END --- js tree stuff
 
 
             }
@@ -103,17 +92,11 @@
             $scope.treeEventsObj = {
                 'changed': changedNodeCB,
                 'ready': readyCB
-
             };
 
             function readyCB() {
-                console.log("readyCB fired!");
-                $timeout(function() {
-
-                    $scope.$watch('searchText', function() {
-                        console.log('hey, searchText was changed', $scope.searchText);
-                        console.log('$scope: ', $scope);
-                        console.log('$scope treeInstance23: ', $scope.treeInstance23);
+                $timeout(function () {
+                    $scope.$watch('searchText', function () {
                         var q = ($scope.searchText) ? $scope.searchText : '';
                         vm.treeInstance23.jstree(true).search(q);
                     });
