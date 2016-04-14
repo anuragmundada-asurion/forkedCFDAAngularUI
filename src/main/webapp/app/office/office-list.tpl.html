@@ -45,9 +45,8 @@
         </div>
 
         <!-- js tree-->
-       <div class="one column row">
-           <div ng-if="treeData" js-tree="vm.treeConfig" should-apply="vm.applyModelChanges()" ng-model="treeData" tree="vm.treeInstance23" tree-events-obj="treeEventsObj"></div>
-
+       <div class="one column row" style="background-color: lightgrey;">
+           <div ng-if="treeData" js-tree="treeConfig" ng-model="treeData" tree="officeListCtrl.treeInstance23" tree-events-obj="treeEventsObj"></div>
        </div>
 
 

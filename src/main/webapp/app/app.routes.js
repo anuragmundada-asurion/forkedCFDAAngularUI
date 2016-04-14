@@ -163,7 +163,7 @@
                 .state('regionalOfficeList', {
                     url: "/regionalOffice",
                     templateUrl: "office/office-list.tpl.html",
-                    controller: "RegionalOfficeListController",
+                    controller: "RegionalOfficeListController as officeListCtrl",
                     title: 'Regional Agency Offices - CFDA: Regional Agency Offices',
                     access: {
                         requiredPermissions: [
