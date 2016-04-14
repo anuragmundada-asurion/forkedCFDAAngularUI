@@ -31,7 +31,7 @@
             }
 
             //make api call to get federalHierarchy by id
-            ApiService.call(oApiParam).then(
+            return ApiService.call(oApiParam).then(
                 function (data) {
                     if (typeof callbackFnSuccess === 'function') {
                         callbackFnSuccess(data);

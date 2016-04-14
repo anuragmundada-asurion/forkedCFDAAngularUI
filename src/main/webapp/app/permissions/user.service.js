@@ -54,8 +54,8 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['User', 'ROLES', '$document', '$state', '$http', '$rootScope',
-        function(User, ROLES, $document, $state, $http, $rootScope) {
+    myApp.service('UserService', ['User', 'ROLES', '$window', '$state', '$http', '$rootScope',
+        function(User, ROLES, $window, $state, $http, $rootScope) {
             this.loadingUser = false;
 
             this.getUser = function() {
@@ -84,8 +84,8 @@
 
             this.loadCLPUser = function() {
                 if (Cookies.get('iPlanetDirectoryPro') || Cookies.get('Rei-Sign-In-As')) {
-                    if (window.iaeHeader) {
-                        window.skipInitialCheck = false;
+                    if ($window.iaeHeader) {
+                        $window.skipInitialCheck = false;
                         this.loadingUser = true;
                         var self = this;
                         if (Cookies.get('Rei-Sign-In-As')) {
@@ -102,18 +102,18 @@
                                 $state.reload();
                             }, 3000);
                         } else {
-                            window.iaeHeader.getUser(function(u) {
+                            $window.iaeHeader.getUser(function(u) {
                                 self.changeUser(u);
                                 self.loadingUser = false;
                                 $state.reload();
                             });
                         }
-                    } else if (window.skipInitialCheck) {
-                        window.skipInitialCheck = false;
+                    } else if ($window.skipInitialCheck) {
+                        $window.skipInitialCheck = false;
                         this.changeUser(null);
                         $state.reload();
                     } else {
-                        window.skipInitialCheck = true;
+                        $window.skipInitialCheck = true;
                     }
                 }
             };
@@ -123,8 +123,8 @@
             };
 
             var self = this;
-            $document.ready(function() {
-                if (window.skipInitialCheck) {
+            angular.element($window).bind('load', function() {
+                if ($window.skipInitialCheck) {
                     self.loadCLPUser();
                 }
             });

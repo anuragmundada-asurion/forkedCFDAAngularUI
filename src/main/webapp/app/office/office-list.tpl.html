@@ -1,126 +1,64 @@
 <primary-nav-bar></primary-nav-bar>
 
-<section st-pipe="loadAgencies" st-table="aAgency">
-    <div class="usa-grid-full page-heading">
-        <div class="usa-width-three-fourths">
-            <h1>Regional Agency Offices</h1>
-        </div>
-        <div class="usa-width-one-fourth" >
-             <a has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" ui-sref="addRegionalOffice" class="usa-button" >Create a New Address</a>
-        </div>
-    </div>
-    <div class="usa-grid-full">
-        <div class="usa-width-one-third" >
-            <input type="search" class="bold-border" st-search="keyword" placeholder="Search" aria-controls="agency-table" style="margin-top: 24px;">
-        </div>
-       <div class="usa-width-one-third">
-            <label style="margin-top: 0;">Agency</label>
-            <div
-                angular-multi-select
-                input-model="dictionary.aAgency"
-                output-model="filter.aAgency"
+<div class="ui fixed container">
 
-                dropdown-label="<[
-                        <# angularMultiSelectConstants.INTERNAL_STATS_TOTAL_LEAFS #> === undefined ? 'No available items' :
-                                <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 0 ? 'No checked items' :
-                                        <# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> + ' checked ' + (<# angularMultiSelectConstants.INTERNAL_STATS_CHECKED_LEAFS #> === 1 ? 'item': 'items')
-                ]>"
-                node-label="<[ name ]> (checked
-                        <# angularMultiSelectConstants.INTERNAL_KEY_CHECKED_CHILDREN #> /
-                        <# angularMultiSelectConstants.INTERNAL_KEY_CHILDREN_LEAFS #>)"
-                leaf-label="<[ name ]>"
-
-                search-field="name"
-                id-property = "elementId"
-                children-property = "hierarchy"
-                checked-property = "selected"
-                open-property = "marked"
-                >
+    <div class="ui grid" style="margin-top: 0;">
+        
+        <div class="one column row">
+            <div class="column"> 
+                <h1>Regional Agency Offices</h1>
             </div>
         </div>
-        <div class="usa-width-one-third fix-select">
-          <label style="margin-top: 0;">Division</label>
-            <isteven-multi-select
-              max-labels="1"
-              input-model="dictionary.aDivision"    
-              output-model="filter.aDivision"
-              button-label="displayValue"
-              item-label="displayValue"
-              tick-property="ticked"
-              max-height="250px"
-            >
-            </isteven-multi-select>
-        </div>
 
-    </div>
-
-
-    <div class="usa-grid-full" style="background-color:  lightgrey;">
-        <h3>JS tree... </h3>
-
-        <div js-tree="treeConfig2" should-apply="false" ng-model="treeData2" should-apply="applyModelChanges()" tree-events-obj="treeEventsObj" tree="treeInstance"></div>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="usa-grid-full">
-        <table class="listing-table cfda-table">
-            <thead>
-            <tr>
-                <th st-sort="agencyId" style="width:21%" st-sort-default="true">Department/Sub-Tier Agency & Office</th>
-                <th st-sort="street" style="width:21%">Street</th>
-                <th st-sort="city" >City</th>
-                <th st-sort="state" >State</th>
-                <th st-sort="zip">Zip</th>
-                <th st-sort="phone" >Phone</th>
-                <th style="width:7%">Action</th>
-
-            </tr>
-            </thead>
-            <tbody ng-show="!isLoading">
-            <tr ng-repeat="row in aAgency">
-                <td>
-                    <a ui-sref="viewRegionalOffice({id: row.id})"><federal-hierarchy-label organization-id="{{ row.agencyId }}"></federal-hierarchy-label></a>
-                </td>
-                <td>{{row.address.street}}</td>
-                <td>{{row.address.city}}</td>
-                <td>{{row.address.state}}</td>
-                <td>{{row.address.zip}}</td>
-                <td>{{row.phone}}</td>
-                <td class="action-row" style="text-align: right !important">
-                    <a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a>
-                    <a ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>
-                </td>
-            </tr>
-            <tr ng-show="!aAgency || aAgency.length == 0">
-                <td colspan="7" class="text-center">No Agencies Found</td>
-            </tr>
-            </tbody>
-            <tbody ng-show="isLoading">
-            <tr>
-                <td colspan="7" class="text-center">Loading ...</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="pagination-panel">
-        <div class="pagination-controls usa-grid-full">
-            <div class="pagination-item-count-control">
-                <span>Showing </span>
-                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
-                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
-                </select>
-                <span> Per Page</span>
+        <div class="three column row">
+            
+            <div class="column">
+                <a has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" ui-sref="addRegionalOffice" class="ui
+                    primary fluid button" >Create a New Address</a>
             </div>
-            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+            
+            <div class="column">
+                <isteven-multi-select
+                    helper-elements="all none filter"
+                    template-url="search/dropdown.tpl.html"
+                    max-labels="1"
+                    input-model="dictionary.aDivision"
+                    output-model="filter.aDivision"
+                    button-label="displayValue"
+                    item-label="displayValue"
+                    tick-property="ticked"
+                    max-height="250px"
+                    >
+                </isteven-multi-select>
+            </div>
+            
+            <div class="column">
+                <div class="ui search"> 
+                    <div class="ui icon fluid input">
+                        <input ng-model="searchKeyword" type="text" class="prompt" placeholder="Search Listings"
+                            aria-controls="agency-table" >
+                        <i class="search icon"></i>
+                     </div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- js tree-->
+       <div class="one column row">
+           <div ng-if="treeData" js-tree="vm.treeConfig" should-apply="vm.applyModelChanges()" ng-model="treeData" tree="vm.treeInstance23" tree-events-obj="treeEventsObj"></div>
+
+       </div>
+
+
+        <div class="one column row">
+
+            <div class="column">
+                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs" dt-instance="dtInstance" class=""></table>
+            </div>
+
+        </div>
+
     </div>
-</section>
+
+</div>

@@ -38,20 +38,20 @@ describe('Unit Tests for the maskedInput directive', function() {
     it("should set the proper model value upon input)", function() {
         var element = createElement();
 
-        angular.element(element.find('input')[0]).val('123').triggerHandler('input').triggerHandler('keydown');
+        angular.element(element.find('input')[0]).val('123').triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-____-__');
 
-        angular.element(element.find('input')[1]).val('456').triggerHandler('input').triggerHandler('keydown');
+        angular.element(element.find('input')[1]).val('456').triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-456_-__');
 
-        angular.element(element.find('input')[1]).val('4567').triggerHandler('input').triggerHandler('keydown');
+        angular.element(element.find('input')[1]).val('4567').triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
-        angular.element(element.find('input')[2]).val('89').triggerHandler('input').triggerHandler('keydown');
+        angular.element(element.find('input')[2]).val('89').triggerHandler('keydown');
         $timeout.flush();
         $rootScope.$digest();
         expect($rootScope.value).toBe('123-4567-89');

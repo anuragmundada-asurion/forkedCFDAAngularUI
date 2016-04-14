@@ -11,17 +11,18 @@
     "es5-shim": "~4.5.7",
     "es6-shim": "~0.35.0",
     "jquery": "<2.0",
+    "datatables": "~1.10.11",
     "angular": "~1.5.0",
     "angular-resource": "~1.5.0",
     "angular-touch": "~1.5.0",
     "angular-animate": "~1.5.0",
     "angular-sanitize": "~1.5.0",
     "angular-ui-router": "~0.2.18",
+    "angular-datatables": "~0.5.4",
     "angular-smart-table": "~2.1.7",
     "angular-scroll": "~1.0.0",
     "angular-wizard": "~0.6.1",
     "ui-select": "https://github.com/angular-ui/ui-select.git#0.14.9",
-
     "angular-bootstrap": "~1.2.1",
     "font-awesome": "~4.5.0",
     "xdomain": "~0.7.5",
@@ -54,6 +55,11 @@
     "xdomain": {
       "main": [
         "dist/xdomain.min.js"
+      ]
+    },
+    "angular-datatables": {
+      "main": [
+        "dist/angular-datatables.js"
       ]
     },
     "font-awesome": {
