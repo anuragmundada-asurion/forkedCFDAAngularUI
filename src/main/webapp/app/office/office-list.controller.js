@@ -50,7 +50,7 @@
 
             // START --- js tree stuff
             //------------------------------------------------------------------------------------
-            $scope.call = function(oApiParam) {
+            $scope.call = function (oApiParam) {
                 var deferred = $q.defer();
 
                 $http({
@@ -59,9 +59,9 @@
                     'params': oApiParam.oParams,
                     'data': oApiParam.oData
                 })
-                    .success(function(data) {
+                    .success(function (data) {
                         deferred.resolve(data);
-                    }).error(function(msg, code) {
+                    }).error(function (msg, code) {
                         deferred.reject(msg);
                         $log.error(msg, code);
                     });
@@ -125,7 +125,7 @@
                 console.log("--------------");
                 console.log("event fired e: ", e);
                 console.log("event fired data: ", data);
-                console.log("treeData2: ", $scope.treeData2);
+                console.log("treeData2: ", $scope.treeData);
 
 
                 var node = data.node;
@@ -133,6 +133,7 @@
                 //THIS MIGHT BE NOT CORRECT TO DO.. REVISIT THIS LATER..
                 if (!node.children || node.children.length == 0) {
                     var elementId = node.original.elementId;
+                    var parentId = node.original.id;
 
 
                     //make api call, get data, put it under the correct parent
@@ -146,12 +147,12 @@
                         method: 'GET'
                     };
                     //this data argument is local to this function
-                    $scope.call(params).then(function(data) {
+                    $scope.call(params).then(function (data) {
                         var parentId = node.original.id;
                         if (data.hierarchy && data.hierarchy.length > 0) {
                             //grab the children, already an array. so dont need to convert ot an array
                             var formattedData = formatAgencyData(data.hierarchy);
-                            _.forEach(formattedData, function(value, key, collection) {
+                            _.forEach(formattedData, function (value, key, collection) {
                                 value.parent = parentId;
                                 $scope.treeData.push(value);
                             });
@@ -161,6 +162,27 @@
                         }
 
                     });
+
+
+                    //FederalHierarchyService.getChildren(elementId, 1, function (oData) {
+                    //    if (oData.hierarchy && oData.hierarchy.length > 0) {
+                    //        console.log("called fh, clicked thing has children: ", oData);
+                    //        //grab the children, already an array. so dont need to convert ot an array
+                    //        var formattedData = formatAgencyData(oData.hierarchy);
+                    //        console.log("clicked thing formatted children: ", oData.hierarchy);
+                    //
+                    //        _.forEach(formattedData, function (value, key, collection) {
+                    //            value.parent = parentId;
+                    //            $scope.treeData.push(value);
+                    //            console.log("child pushed onto scope: $scope.treeData:", $scope.treeData.);
+                    //        });
+                    //
+                    //    } else {
+                    //        console.log("no children!!!! --");
+                    //    }
+                    //});
+
+
                 } else {
                     console.log("already have children loaded!!");
                 }
