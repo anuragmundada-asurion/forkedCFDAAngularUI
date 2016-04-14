@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('RegionalOfficeListController', ['$scope', '$log', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, $log, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('RegionalOfficeListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
+        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
             //needed for ng-jstree plugin
             var vm = this;
 
@@ -50,24 +50,24 @@
 
             // START --- js tree stuff
             //------------------------------------------------------------------------------------
-            //$scope.call = function(oApiParam) {
-            //    var deferred = $q.defer();
-            //
-            //    $http({
-            //        'method': oApiParam.method,
-            //        'url': oApiParam.url,
-            //        'params': oApiParam.oParams,
-            //        'data': oApiParam.oData
-            //    })
-            //        .success(function(data) {
-            //            deferred.resolve(data);
-            //        }).error(function(msg, code) {
-            //            deferred.reject(msg);
-            //            $log.error(msg, code);
-            //        });
-            //
-            //    return deferred.promise;
-            //};
+            $scope.call = function(oApiParam) {
+                var deferred = $q.defer();
+
+                $http({
+                    'method': oApiParam.method,
+                    'url': oApiParam.url,
+                    'params': oApiParam.oParams,
+                    'data': oApiParam.oData
+                })
+                    .success(function(data) {
+                        deferred.resolve(data);
+                    }).error(function(msg, code) {
+                        deferred.reject(msg);
+                        $log.error(msg, code);
+                    });
+
+                return deferred.promise;
+            };
 
             function formatAgencyData(dataArray) {
                 var keyMapping = {
@@ -122,48 +122,48 @@
 
             function changedNodeCB(e, data) {
                 console.log("changedNodeCB fired!");
-                //console.log("--------------");
-                //console.log("event fired e: ", e);
-                //console.log("event fired data: ", data);
-                //console.log("treeData2: ", $scope.treeData2);
-                //
-                //
-                //var node = data.node;
-                ////only make ajax call if data currently does not have children, dont make calls for stuff thats already loaded
-                ////THIS MIGHT BE NOT CORRECT TO DO.. REVISIT THIS LATER..
-                //if (!node.children || node.children.length == 0) {
-                //    var elementId = node.original.elementId;
-                //
-                //
-                //    //make api call, get data, put it under the correct parent
-                //    var gotoUrl = 'http://192.168.56.103:8080/api/federalHierarchies/' + elementId + '?childrenLevels=1';
-                //    params = {
-                //        // url: 'http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh/100011942?childrenLevels=1',
-                //        url: gotoUrl,
-                //        apiSuffix: '',
-                //        oParams: {},
-                //        oData: {},
-                //        method: 'GET'
-                //    };
-                //    //this data argument is local to this function
-                //    $scope.call(params).then(function(data) {
-                //        var parentId = node.original.id;
-                //        if (data.hierarchy && data.hierarchy.length > 0) {
-                //            //grab the children, already an array. so dont need to convert ot an array
-                //            var formattedData = formatAgencyData(data.hierarchy);
-                //            _.forEach(formattedData, function(value, key, collection) {
-                //                value.parent = parentId;
-                //                $scope.treeData.push(value);
-                //            });
-                //
-                //        } else {
-                //            console.log("no children!!!! --");
-                //        }
-                //
-                //    });
-                //} else {
-                //    console.log("already have children loaded!!");
-                //}
+                console.log("--------------");
+                console.log("event fired e: ", e);
+                console.log("event fired data: ", data);
+                console.log("treeData2: ", $scope.treeData2);
+
+
+                var node = data.node;
+                //only make ajax call if data currently does not have children, dont make calls for stuff thats already loaded
+                //THIS MIGHT BE NOT CORRECT TO DO.. REVISIT THIS LATER..
+                if (!node.children || node.children.length == 0) {
+                    var elementId = node.original.elementId;
+
+
+                    //make api call, get data, put it under the correct parent
+                    var gotoUrl = 'http://192.168.56.103:8080/api/federalHierarchies/' + elementId + '?childrenLevels=1';
+                    var params = {
+                        // url: 'http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh/100011942?childrenLevels=1',
+                        url: gotoUrl,
+                        apiSuffix: '',
+                        oParams: {},
+                        oData: {},
+                        method: 'GET'
+                    };
+                    //this data argument is local to this function
+                    $scope.call(params).then(function(data) {
+                        var parentId = node.original.id;
+                        if (data.hierarchy && data.hierarchy.length > 0) {
+                            //grab the children, already an array. so dont need to convert ot an array
+                            var formattedData = formatAgencyData(data.hierarchy);
+                            _.forEach(formattedData, function(value, key, collection) {
+                                value.parent = parentId;
+                                $scope.treeData.push(value);
+                            });
+
+                        } else {
+                            console.log("no children!!!! --");
+                        }
+
+                    });
+                } else {
+                    console.log("already have children loaded!!");
+                }
             }
 
 
