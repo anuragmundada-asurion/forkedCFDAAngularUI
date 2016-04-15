@@ -90,6 +90,44 @@
 
     //Service
     myApp.service('DictionaryService', [function(){
+        //FIXME: remove multi-entry BS
+        this.aDictionary = [];
+
+        /**
+         * 
+         * @param Array aData
+         * @returns void
+         */
+        this.setDictionary = function(aData) {
+            this.aDictionary = aData;
+        };
+
+        /**
+         * get stored dictionaries
+         * @returns {Array}
+         */
+        this.getDictionary = function() {
+            return this.aDictionary;
+        };
+
+        /**
+         * 
+         * @param {Array} aSelectedIDs
+         * @param {Boolean} isGrouped
+         * @returns {Array}
+         */
+        this.setSelectedDictionaryIDs = function(aSelectedIDs, isGrouped) {
+            return this.aDictionary.map(function(obj){
+                if(obj && obj.hasOwnProperty('ticked') && $.inArray(obj.element_id, aSelectedIDs) === -1) {
+                    delete obj.ticked;
+                } else if($.inArray(obj.element_id, aSelectedIDs) !== -1){
+                    obj.ticked = true;
+                }
+
+                return obj;
+            });
+        };
+        // END FIXME
 
         /**
         * isteven plugin multi-select data structure 
@@ -106,7 +144,7 @@
 
             //get all selected item ids
             angular.forEach(aSelectedData, function (item) {
-               if(item.hasOwnProperty('element_id')) {
+               if(item && item.hasOwnProperty('element_id')) {
                    selectedIDs.push(item.element_id);
                 } else {
                    selectedIDs.push(item);

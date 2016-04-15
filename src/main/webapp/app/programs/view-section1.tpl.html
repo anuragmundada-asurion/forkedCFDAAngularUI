@@ -14,7 +14,7 @@
 <section class="sub-section" >
     <div class="input-field">
         <h3 for="alternativeName7">020 Popular Name</h3>
-        <span type="text"class="italic"  id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
+        <span type="text" class="italic"  id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
     </div>
 </section>
 <section class="sub-section" >
@@ -69,7 +69,7 @@
     <div class="input-field">
         <h3>060 Types of Assistance</h3>
         <div ng-repeat="obligation in gsavm.program.financial.obligations">
-            <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</p>
+            <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</p>
         </div>
     </div>
 </section>
@@ -167,7 +167,7 @@
     <div class="input-field">
         <h3>190 Functional Codes<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.program.functionalCodes">
-            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
+            <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'aFunctionalCode').displayValue}}</span>
         </div>
     </div>
 </section>

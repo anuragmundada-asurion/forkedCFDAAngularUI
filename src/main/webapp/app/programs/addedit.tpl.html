@@ -98,7 +98,7 @@
                 <h3>060 Types of Assistance</h3>
 
                 <div ng-repeat="obligation in gsavm.program.financial.obligations">
-                    <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</p>
+                    <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</p>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="070 Uses and Use Restrictions">
@@ -286,27 +286,25 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="190 Functional Codes">
                 <div class="input-field">
-                    <multi-entry ng-model="gsavm.program.functionalCodes" name="functionalCodes" new-entry-btn-name="+ Add Functional Codes" delete-btn-label="Remove Functional Code" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-                        <multi-entry-header>
-                            <h3>190 Functional Codes<span class="required">*</span></h3>
-                        </multi-entry-header>
-                        <div>
+                    <div class="usa-grid-full">
+                        <h3>190 Functional Codes<span class="required">*</span></h3>
+                        <isteven-multi-select
+                            max-labels="6"
+                            input-model="dictionary.aFunctionalCode"    
+                            output-model="gsavm.program.functionalCodes"
+                            button-label="displayValue"
+                            item-label="displayValue"
+                            tick-property="ticked"
+                            max-height="250px"
+                            group-property="msGroup"
+                            output-properties="element_id"
+                        >
+                        </isteven-multi-select>
+                        
+<!--                        <div>
                             <span ng-show="$ctrl.parentVm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
-                        </div>
-                        <multi-entry-list editable="false">
-                            <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'functional_codes').displayValue}}</span>
-                        </multi-entry-list>
-                        <multi-entry-select>
-                            <ux-hierarchy-dropdown
-                                    ng-model="_multiEntrySelect.current"
-                                    ux-tree="$ctrl.parentVm.trees['functional_codes']"
-                                    ux-multiple
-                                    ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Functional Code'"
-                                    ux-branch-1="item.element_id as item.value for item in uxTree with children item.elements track by item.element_id has label 'Category'"
-                                    >
-                            </ux-hierarchy-dropdown>
-                        </multi-entry-select>
-                    </multi-entry>
+                        </div>-->
+                    </div>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="300 Subject Terms">
@@ -350,50 +348,46 @@
                     <h4>081 Applicant Eligibility</h4>
 
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.applicant.types" name="eligibleApplicants" new-entry-btn-name="+ Add Eligible Applicants" delete-btn-label="Remove Eligible Applicant" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-                            <multi-entry-header>
-                                <label for="eligibleApplicants">Eligible Applicants<span class="required">*</span></label>
-                            </multi-entry-header>
-                            <div>
+                        <div class="usa-grid-full">
+                            <label>Eligible Applicants<span class="required">*</span></label>
+
+                            <isteven-multi-select
+                                max-labels="6"
+                                input-model="dictionary.aApplicantEligibility"    
+                                output-model="gsavm.program.eligibility.applicant.types"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                output-properties="element_id"
+                            >
+                            </isteven-multi-select>
+
+<!--                            <div>
                                 <span ng-show="$ctrl.parentVm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
-                            </div>
-                            <multi-entry-list editable="false">
-                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'applicant_types').displayValue}}</span>
-                            </multi-entry-list>
-                            <multi-entry-select>
-                                <ux-hierarchy-dropdown
-                                        id="eligibleApplicants"
-                                        ng-model="_multiEntrySelect.current"
-                                        ux-tree="$ctrl.parentVm.trees['applicant_types']"
-                                        ux-multiple
-                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Applicant Type'"
-                                        >
-                                </ux-hierarchy-dropdown>
-                            </multi-entry-select>
-                        </multi-entry>
+                            </div>-->
+                        </div>
                     </div>
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.applicant.assistanceUsageTypes" name="useOfAssistance" new-entry-btn-name="+ Add Use Of Assistances" delete-btn-label="Remove Use Of Assistance" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-                            <multi-entry-header>
-                                <label for="useOfAssistance">Use Of Assistance<span class="required">*</span></label>
-                            </multi-entry-header>
-                            <div>
+                        <div class="usa-grid-full">
+                            <label>Use Of Assistance<span class="required">*</span></label>
+
+                            <isteven-multi-select
+                                max-labels="6"
+                                input-model="dictionary.aAssistanceUsageType"    
+                                output-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                output-properties="element_id"
+                            >
+                            </isteven-multi-select>
+
+<!--                            <div>
                                 <span ng-show="$ctrl.parentVm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
-                            </div>
-                            <multi-entry-list editable="false">
-                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'assistance_usage_types').displayValue}}</span>
-                            </multi-entry-list>
-                            <multi-entry-select>
-                                <ux-hierarchy-dropdown
-                                        id="useOfAssistance"
-                                        ng-model="_multiEntrySelect.current"
-                                        ux-tree="$ctrl.parentVm.trees['assistance_usage_types']"
-                                        ux-multiple
-                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                        >
-                                </ux-hierarchy-dropdown>
-                            </multi-entry-select>
-                        </multi-entry>
+                            </div>-->
+                        </div>
                     </div>
                     <label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
                         <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
@@ -402,33 +396,29 @@
                     <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
                         <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
                     </div>
-                    </div>
                 </section>
                 <section class="sub-minor-section" field-finder-bookmark title="082 Beneficiary Eligibility">
                     <h4>082 Beneficiary Eligibility</h4>
 
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.eligibility.beneficiary.types" name="beneficiaryEligibility" new-entry-btn-name="+ Add Beneficiary Eligibilities" delete-btn-label="Remove Beneficiary Eligibility" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-                            <multi-entry-header>
-                                <label for="beneficiaryEligibility">Beneficiary Eligibility<span class="required">*</span></label>
-                            </multi-entry-header>
-                            <div>
-                                <span ng-show="$ctrl.parentVm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
-                            </div>
-                            <multi-entry-list editable="false">
-                                <span class='text-nowrap'>{{$ctrl.parentVm.getTreeNodeModel(item, 'element_id', 'elements', 'beneficiary_types').displayValue}}</span>
-                            </multi-entry-list>
-                            <multi-entry-select>
-                                <ux-hierarchy-dropdown
-                                        id="beneficiaryEligibility"
-                                        ng-model="_multiEntrySelect.current"
-                                        ux-tree="$ctrl.parentVm.trees['beneficiary_types']"
-                                        ux-multiple
-                                        ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                        >
-                                </ux-hierarchy-dropdown>
-                            </multi-entry-select>
-                        </multi-entry>
+                        <div class="usa-grid-full">
+                            <label>Beneficiary Eligibility<span class="required">*</span></label>
+                            <isteven-multi-select
+                                max-labels="6"
+                                input-model="dictionary.aBeneficiaryEligibility"    
+                                output-model="gsavm.program.eligibility.beneficiary.types"
+                                button-label="displayValue"
+                                item-label="displayValue"
+                                tick-property="ticked"
+                                max-height="250px"
+                                output-properties="element_id"
+                            >
+                            </isteven-multi-select>
+
+    <!--                        <div>
+                                    <span ng-show="$ctrl.parentVm.form.beneficiaryEligibility.$error.requiredLength">You must select at least one Beneficiary Eligibility.</span>
+                                </div>-->
+                        </div>
                         <label for="beneficiaryAdditionalInfo">Additional Information<span class="required">*</span></label>
                         <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.beneficiary.additionalInfo.content" required>
                         </textarea>
@@ -1211,7 +1201,7 @@
                 </div>
                 <section class="sub-minor-section" field-finder-bookmark title="122 Obligations">
                     <div class="input-field">
-                        <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm">
+                        <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm" dictionary-items="{{ gsavm.getDictionary('aAssistanceType') }}">
                             <multi-entry-header>
                                 <h4>122 Obligations <span class="required">*</span></h4>
                             </multi-entry-header>
@@ -1251,21 +1241,35 @@
                                         </div>
                                         <div class="input-field" ng-show="$subForm.current.questions.salary_or_expense.flag=='na'">
 
-                                            <p ng-show="$subForm.current.assistanceType"> Selected Assistance Type:
-                                                <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'assistance_type').displayValue}}</b></p>
+<!--                                            <p ng-show="$subForm.current.assistanceType"> Selected Assistance Type:
+                                                <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</b></p>-->
 
                                             <div ng-show="!$subForm.current.assistanceType">
                                                 <span>Please select Assistance Type<span class="required">*</span></span>
                                             </div>
-                                            <ux-hierarchy-dropdown
-                                                    ng-model="$subForm.current.assistanceType"
-                                                    ux-tree="$ctrl.parentVm.trees['assistance_type']"
-                                                    ux-branch-x="item.element_id as item.displayValue for item in uxTree with children item.elements track by item.element_id has label 'Type'"
-                                                    ux-branch-1="has label 'Category'"
-                                                    id="{{ 'assistance-type-' + idPath }}"
-                                                    >
-                                            </ux-hierarchy-dropdown>
 
+                                            <div ng-init="selectedAssistanceType=(!selectedAssistanceType && $subForm.current.assistanceType) ? $subForm.current.assistanceType : null"></div>
+                                            <div ng-init="$subForm.current.assistanceType=$ctrl.setSelectedDictionaryItems(selectedAssistanceType, false)"></div>
+
+                                            <div class="usa-grid-full">
+                                                <isteven-multi-select
+                                                    max-labels="6"
+                                                    input-model="$ctrl.getDictionaryItems()"
+                                                    output-model="$subForm.current.assistanceType"
+                                                    button-label="displayValue"
+                                                    item-label="displayValue"
+                                                    tick-property="ticked"
+                                                    max-height="250px"
+                                                    group-property="msGroup"
+                                                    output-properties="element_id"
+                                                    selection-mode="single"
+                                                >
+                                                </isteven-multi-select>
+
+                <!--                        <div ng-show="!$subForm.current.assistanceType">
+                                                <span>Please select Assistance Type<span class="required">*</span></span>
+                                            </div>-->
+                                            </div>
                                         </div>
                                         <div class="input-field" ng-if="$subForm.current.questions.salary_or_expense.flag=='yes'">
                                             <div ng-init="$subForm.current.assistanceType = ''"></div>

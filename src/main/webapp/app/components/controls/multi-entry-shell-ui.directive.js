@@ -7,11 +7,11 @@
         .directive('multiEntryHeader', multiEntryHeaderDirective)
         .directive('multiEntryList', multiEntryListDirective);
 
-    multiEntryDirective.$inject = ['$parse', '$compile', 'appConstants'];
+    multiEntryDirective.$inject = ['$parse', '$compile', 'appConstants', 'DictionaryService'];
 
     //////////////////
 
-    function multiEntryDirective($parse, $compile, appConstants) {
+    function multiEntryDirective($parse, $compile, appConstants, DictionaryService) {
         return {
             restrict: 'E',
             controller: multiEntryController,
@@ -28,6 +28,7 @@
                 newEntryBtnName: "@",
                 deleteLabelName: "@",
                 parentVm: "=",
+                dictionaryItems: '@',
                 listTrackBy: "@",
                 listFilter: "=",
                 onAfterDialogOpen: "="
@@ -40,7 +41,7 @@
         function link(scope, element, attrs, ctrls) {
             var ctrl = ctrls[0],
                 model = ctrls[1];
-
+        
             ctrl.appConstants = appConstants;
             ctrl.model = model;
 
@@ -64,6 +65,39 @@
                 element.find('multi-entry-header').after(listElement);
                 $compile(listElement)(scope);
             }
+
+            //FIXME REMOVE BY RECODING ADD/EDIT PROGRAM DIRECTIVE BS
+            // Begin: isteven Dropdown Data Structure
+            attrs.$observe('dictionaryItems', function(value){
+                if(angular.isArray(JSON.parse(value)) && JSON.parse(value).length > 0 && (typeof scope.$ctrl.dictionaryItems === 'undefined' || !angular.isArray(scope.$ctrl.dictionaryItems))) {
+                    DictionaryService.setDictionary(JSON.parse(value));
+                }
+            });
+
+            scope.$ctrl.setSelectedDictionaryItems = function(aSelectedItems, isGrouped) {
+
+                if(!angular.isArray(aSelectedItems)) {
+                    aSelectedItems = [aSelectedItems];
+                } else {
+                    aSelectedItems = [aSelectedItems[0].element_id];
+                }
+
+                DictionaryService.setSelectedDictionaryIDs(aSelectedItems, isGrouped);
+
+                if(aSelectedItems.length > 0) {
+                    return aSelectedItems.map(function(item){
+                        return JSON.parse('{"element_id":"'+item+'"}');
+                    });
+                } else {
+                    return [];
+                }
+            };
+
+            scope.$ctrl.getDictionaryItems = function() {
+                return DictionaryService.getDictionary();
+            };
+            // End: isteven Dropdown Data Structure
+            //END FIXME
 
             scope.$ctrl.formatTitle = function(item) {
                 var strFormatter = scope.itemTitle;

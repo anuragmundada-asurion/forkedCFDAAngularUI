@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program', 'DictionaryService',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program, DictionaryService) {
 
                 $scope.$log = $log;
 
@@ -26,6 +26,33 @@
                     ],
                     originalTitle; //original title is stored because Published programs cannot have title changed.
 
+                //initialize dictionary container
+                $scope.dictionary = {};
+
+                /**
+                 * load dictionary
+                 * @param Object oProgram
+                 * @returns Void
+                 */
+                $scope.loadDictionaries = function(oProgram) {
+                    Dictionary.query({ids: TREES.join(',')}, function (data) {
+                        //Functional Code (async -> for edit mode set pre-selected one)
+                        $scope.dictionary.aFunctionalCode = DictionaryService.istevenDropdownDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : [], true);
+
+                        //Applicant Eligibility
+                        $scope.dictionary.aApplicantEligibility = DictionaryService.istevenDropdownDataStructure(data.applicant_types, (oProgram) ? oProgram.eligibility.applicant.types : [], false);
+
+                        //Beneficiary Eligibility
+                        $scope.dictionary.aBeneficiaryEligibility = DictionaryService.istevenDropdownDataStructure(data.beneficiary_types, (oProgram) ? oProgram.eligibility.beneficiary.types : [], false);
+
+                        //Use of Assistance
+                        $scope.dictionary.aAssistanceUsageType = DictionaryService.istevenDropdownDataStructure(data.assistance_usage_types, (oProgram) ? oProgram.eligibility.applicant.assistanceUsageTypes : [], false);
+
+                        //Assistance type
+                        $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, [], true);
+                    });
+                };
+
                 //initialize program object
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
@@ -33,12 +60,20 @@
                     vm.program._id = null;
                     //pre-set program's organization id by user's organization id
                     vm.program.organizationId = UserService.getUserOrgId();
+
+                    //load dictionaries
+                    $scope.loadDictionaries();
+
                 } else { // Edit/Review program
                     //vm.isCreateProgram = false;
                     vm.program = {};
                     ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                         vm.program = data;
                         vm.originalTitle = vm.program.title;
+
+                        //load dictionaries
+                        $scope.loadDictionaries(vm.program);
+
                         //reload contacts when object is available
                         vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});
 
@@ -117,7 +152,6 @@
                             }
                         ]
                     }),
-                    trees: {},
                     filters: {
                         traverseTree: $filter('traverseTree')
                     },
@@ -148,6 +182,7 @@
                     createContact: createContact,
                     submitProgram: submitProgram,
                     validateProgramFields: validateProgramFields,
+                    getDictionary: getDictionary,
                     getAuthorizationTitle: appUtil.getAuthorizationTitle,
                     getAmendmentTitle: appUtil.getAuthorizationTitle,
                     getAccountTitle: appUtil.getAccountTitle,
@@ -164,10 +199,6 @@
 
                 Dictionary.toDropdown({ids: DICTIONARIES.join(',')}).$promise.then(function (data) {
                     angular.extend(vm.choices, data);
-                });
-
-                Dictionary.query({ids: TREES.join(',')}, function (data) {
-                    angular.extend(vm.trees, data);
                 });
 
                 angular.forEach(vm.fyTpls, function (tpl) {
@@ -192,6 +223,21 @@
 
                 function save(cbFnSuccess) {
                     var copy = angular.copy(vm.program);
+
+                    //apply cleaning data for isteven dropdown selected data structure
+                    var oDictionaryApplicantEligibilityIDs = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.applicant, ['types', 'assistanceUsageTypes']);
+
+                    copy.functionalCodes = DictionaryService.istevenDropdownGetIds(vm.program, ['functionalCodes']).functionalCodes;
+                    copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
+                    copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
+                    copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
+                    angular.forEach(copy.financial.obligations, function(row, i){
+                        if(row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
+                            if(typeof row.assistanceType === 'object') {
+                                copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
+                            }
+                        }
+                    });
 
                     if (!copy._id || !copy.status) {
                         copy.status = "Draft";
@@ -352,7 +398,16 @@
                 }
 
                 function getTreeNodeModel(value, keyName, childrenName, dictionaryName) {
-                    var selected = vm.filters.traverseTree([value], vm.trees[dictionaryName], {
+                    //isteven data structure
+                    if(angular.isArray(value) && value.length > 0){
+                        value = value[0];
+                    }
+                    if(typeof value === 'object'){
+                        value = value.element_id;
+                    }
+                    //end isteven structure
+
+                    var selected = vm.filters.traverseTree([value], $scope.dictionary[dictionaryName], {
                         branches: {
                             X: {
                                 keyProperty: $parse(keyName),
@@ -539,6 +594,15 @@
                     return false;
                 }
 
+                function getDictionary(name, aSelectedIDs) {
+                    var aDictionary = [];
+                    if(angular.isArray(aSelectedIDs) && aSelectedIDs.length > 0 && $scope.dictionary.hasOwnProperty(name)) {
+                            aDictionary = DictionaryService.istevenDropdownDataStructure($scope.dictionary[name], aSelectedIDs, false);
+                    } else if($scope.dictionary.hasOwnProperty(name)) {
+                        aDictionary = $scope.dictionary[name];
+                    }
 
+                    return aDictionary;
+                }
             }]);
 })();
