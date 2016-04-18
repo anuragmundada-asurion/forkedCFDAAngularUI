@@ -37,10 +37,10 @@
     
 </head>
 <body>
-    <div ng-if="$state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms'">
+    <div ng-if="$state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms' || $state.current.name === 'programList'">
       <link rel="stylesheet" href="/semantic/semantic.css">
     </div>
-    <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms')">
+    <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms' || $state.current.name === 'programList')">
       <link rel="stylesheet" href="/semantic/components/reset.css">
       <link rel="stylesheet" href="/semantic/components/site.css">
       <link rel="stylesheet" href="/semantic/components/menu.css">

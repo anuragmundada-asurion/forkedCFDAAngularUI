@@ -1,39 +1,51 @@
 <primary-nav-bar></primary-nav-bar>
-<div class="usa-grid-full page-heading">
-    <div class="usa-width-one-half">
-        <h1 style="width:99%;">My <span ng-show="isProgramList">Listings</span><span ng-show="!isProgramList">Requests</span></h1>
+
+<div class="ui fixed container">
+    <div class="ui grid">
+        <div class="one column row">
+            <div class="column">
+
+                <h1>My <span ng-show="isProgramList">Listings</span><span ng-show="!isProgramList">Requests</span></h1>
+
+                <ul class="tab-menu">
+                    <li ng-class="listService.isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
+                    <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
+                    <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
+                </ul>
+
+                <ul class="tab-menu" ng-if="listService.isActiveList()">
+                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
+                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
+                    </li>
+                    <li ng-class="(listService.currentFilterId === 'draft') ? 'tab-selected' : '';" ng-click="changeFilter('draft')"><span>Draft <span ng-show="listService.currentFilterId === 'draft'">({{totalCount}})</span></span>
+                    </li>
+                    <li ng-class="(listService.currentFilterId === 'pending') ? 'tab-selected' : '';" ng-click="changeFilter('pending')"><span>Pending <span ng-show="listService.currentFilterId === 'pending'">({{totalCount}})</span></span>
+                    </li>
+                    <li ng-class="(listService.currentFilterId === 'published') ? 'tab-selected' : '';" ng-click="changeFilter('published')"><span>Published <span ng-show="listService.currentFilterId === 'published'">({{totalCount}})</span></span>
+                    </li>
+                    <li ng-class="(listService.currentFilterId === 'rejected') ? 'tab-selected' : '';" ng-click="changeFilter('rejected')"><span>Rejected <span ng-show="listService.currentFilterId === 'rejected'">({{totalCount}})</span></span>
+                    </li>
+                </ul>
+                
+                <ul class="tab-menu" ng-if="listService.isArchivedList()">
+                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
+                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
+                    </li>
+                </ul>
+                
+                <ul class="tab-menu" ng-if="listService.isRequestList()">
+                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
+                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
+                    </li>
+                </ul>
+
+                <a ng-if="listService.isActiveList()" class="ui primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
+
+                <input ng-model="listService.searchKeyword" type="search" class="bold-border" placeholder="Search Listings" aria-controls="listings-table">
+
+                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui darkblue table"></table>
+
+            </div>
+        </div>
     </div>
-    <div class="usa-width-one-half">
-        <ul class="tab-menu" >
-            <li ng-class="listService.isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
-            <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
-            <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
-        </ul>
-    </div>
-</div>
-<div class="usa-grid-full">
-    <ul class="tab-menu" ng-if="listService.isActiveList()">
-        <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';" ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span></li>
-        <li ng-class="(listService.currentFilterId === 'draft') ? 'tab-selected' : '';" ng-click="changeFilter('draft')"><span>Draft <span ng-show="listService.currentFilterId === 'draft'">({{totalCount}})</span></span></li>
-        <li ng-class="(listService.currentFilterId === 'pending') ? 'tab-selected' : '';" ng-click="changeFilter('pending')"><span>Pending <span ng-show="listService.currentFilterId === 'pending'">({{totalCount}})</span></span></li>
-        <li ng-class="(listService.currentFilterId === 'published') ? 'tab-selected' : '';" ng-click="changeFilter('published')"><span>Published <span ng-show="listService.currentFilterId === 'published'">({{totalCount}})</span></span></li>
-        <li ng-class="(listService.currentFilterId === 'rejected') ? 'tab-selected' : '';" ng-click="changeFilter('rejected')"><span>Rejected <span ng-show="listService.currentFilterId === 'rejected'">({{totalCount}})</span></span></li>
-    </ul>
-    <ul class="tab-menu" ng-if="listService.isArchivedList()">
-        <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';" ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span></li>
-    </ul>
-    <ul class="tab-menu" ng-if="listService.isRequestList()">
-        <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';" ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span></li>
-    </ul>
-    <section>
-        <div class="usa-width-one-fourth" style="margin-top:25px;" ng-if="listService.isActiveList()">
-            <a class="usa-button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
-        </div>
-        <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <input ng-model="listService.searchKeyword" type="search" class="bold-border" placeholder="Search Listings" aria-controls="listings-table">
-        </div>
-        <div class="usa-grid-full">
-            <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="row-border hover listing-table cfda-table"></table>
-        </div>
-    </section>
 </div>

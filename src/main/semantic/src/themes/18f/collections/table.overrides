@@ -13,3 +13,13 @@
   color: @white;
   background-color: @darkBlue;
 }
+
+/* Dark Blue Sorting */
+.ui.darkblue.table thead th.sorting_asc,
+.ui.darkblue.table thead th.sorting_desc{
+  background-color: @blue !important;
+}
+.ui.darkblue.table td.sorting_1{
+  background-color: #fffded;
+}
+

@@ -22739,7 +22739,7 @@ Floated Menu / Item
   background: #F9FAFB;
   text-align: inherit;
   color: rgba(0, 0, 0, 0.87);
-  padding: 1em 1em;
+  padding: 0.5em 1em;
   vertical-align: inherit;
   font-style: none;
   font-weight: bold;
@@ -23939,6 +23939,17 @@ Floated Menu / Item
 .ui.darkblue.table thead th {
   color: #FFFFFF;
   background-color: #112e51;
+}
+
+/* Dark Blue Sorting */
+
+.ui.darkblue.table thead th.sorting_asc,
+.ui.darkblue.table thead th.sorting_desc {
+  background-color: #0071bc !important;
+}
+
+.ui.darkblue.table td.sorting_1 {
+  background-color: #fffded;
 }
 
 /*******************************
