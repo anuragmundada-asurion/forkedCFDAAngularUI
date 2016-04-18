@@ -1,74 +1,75 @@
 <primary-nav-bar></primary-nav-bar>
 
-<div class="background darkblue" style="padding-bottom: 20px; padding-top: 40px;">
+<div class="background darkblue" style="padding-bottom: 10px; padding-top: 60px; margin-bottom: 20px;">
     <!-- Search box -->
     <search-box></search-box>
-    <!--<global-search-box></global-search-box>-->
 </div>
 
-<section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
-    <div class="usa-grid-full page-heading">
-        <div class="usa-width-one-half">
-            <i class="fa fa-info-circle search-info" style="color: #ffffff;"></i>
-        </div>
-        <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <a class="usa-button" ui-sref="exportToExcel">Save to Excel</a>
-        </div>
-        <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <!--<select title="Search Fields">
-                <option value="">More Search Fields</option>
-            </select>-->
-        </div>
-    </div>
-    <div class="usa-grid-full">
-        <table class="cfda-table search-table">
-            <thead>
-            <tr>
-                <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
-                <th class="sortable" style="width:15%" st-sort="programNumber" st-skip-natural="true">FAL #</th>
-                <th class="sortable" style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
-                <th class="sortable" style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier
-                    Agency & Office
-                </th>
-                <th class="sortable" st-sort="assistanceTypes">Types of Assistance</th>
-            </tr>
-            </thead>
-            <tbody ng-show="!isLoading">
-            <tr ng-repeat="row in searchResults">
-                <td>
-                    <input type="checkbox" id="program-{{$index}}">
-                    <label for="program-{{$index}}"></label>
-                </td>
-                <td>{{row.programNumber || '-'}}</td>
-                <td><a ui-sref="viewProgram({id: row.id})">{{row.title}}</a></td>
-                <td>
-                    <federal-hierarchy-label organization-id="{{ row.organizationId }}"></federal-hierarchy-label>
-                </td>
-                <td><span ng-bind-html="row.assistanceTypes"></span></td>
-            </tr>
-            <tr ng-show="!searchResults || searchResults.length == 0">
-                <td colspan="5" class="text-center">No Results Found</td>
-            </tr>
-            </tbody>
-            <tbody ng-show="isLoading">
-            <tr>
-                <td colspan="5" class="text-center">Loading ...</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="pagination-panel">
-        <div class="pagination-controls usa-grid-full">
-            <div class="pagination-item-count-control">
-                <span>Showing </span>
-                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
-                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage"
-                        ng-options="pageNum for pageNum in itemsByPageNumbers">
-                </select>
-                <span> Per Page</span>
+<div class="ui fixed container">
+    <div class="ui grid">
+        <div class="one column row">
+            <div class="column">
+                <a class="ui right floated primary button" ui-sref="exportToExcel">Save to Excel</a>
             </div>
-            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"
-                 st-template="programs/programs-list-pagination.tpl.html"></div>
+        </div>
+        <div class="one column row">
+            <div class="one column row">
+
+                 <!-- Table -->
+                <section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
+
+                    <table class="ui darkblue table">
+                        <thead>
+                            <tr>
+                                <th style="width:5%"><span class="usa-sr-only">Select FAL</span></th>
+                                <th class="sortable" style="width:15%" st-sort="programNumber" st-skip-natural="true">FAL #</th>
+                                <th class="sortable" style="width:25%" st-sort="title" st-skip-natural="true">Title</th>
+                                <th class="sortable" style="width:25%" st-sort="organizationId" st-skip-natural="true">Department/Sub-Tier Agency & Office
+                                </th>
+                                <th class="sortable" st-sort="assistanceTypes">Types of Assistance</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-show="!isLoading">
+                            <tr ng-repeat="row in searchResults">
+                                <td>
+                                    <input type="checkbox" id="program-{{$index}}">
+                                    <label for="program-{{$index}}"></label>
+                                </td>
+                                <td>{{row.programNumber || '-'}}</td>
+                                <td><a ui-sref="viewProgram({id: row.id})">{{row.title}}</a></td>
+                                <td>
+                                    <federal-hierarchy-label organization-id="{{ row.organizationId }}"></federal-hierarchy-label>
+                                </td>
+                                <td><span ng-bind-html="row.assistanceTypes"></span></td>
+                            </tr>
+                            <tr ng-show="!searchResults || searchResults.length == 0">
+                                <td colspan="5" class="text-center">No Results Found</td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-show="isLoading">
+                            <tr>
+                                <td colspan="5" class="text-center">Loading ...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination-panel">
+                        <div class="pagination-controls usa-grid-full">
+                            <div class="pagination-item-count-control">
+                                <span>Showing </span>
+                                <label class="usa-sr-only" for="items-by-page">Number of items to view per page</label>
+                                <select id="items-by-page" class="usa-form-medium bold-border" ng-model="itemsByPage" ng-options="pageNum for pageNum in itemsByPageNumbers">
+                                    </select>
+                                <span> Per Page</span>
+                            </div>
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10" st-template="programs/programs-list-pagination.tpl.html"></div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+            </div>
         </div>
     </div>
-</section>
+</div>
