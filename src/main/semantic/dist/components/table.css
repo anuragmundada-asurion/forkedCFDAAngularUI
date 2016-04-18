@@ -1104,6 +1104,7 @@
 .ui.darkblue.table thead th {
   color: #FFFFFF;
   background-color: #112e51;
+  line-height: 1.2em;
 }
 
 /* Dark Blue Sorting */
