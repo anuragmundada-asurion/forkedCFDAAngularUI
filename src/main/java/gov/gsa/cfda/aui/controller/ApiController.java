@@ -241,7 +241,7 @@ public class ApiController {
                                      @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                                      @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
-                                     @RequestParam(value = "sortBy", required = false, defaultValue = "-agencyId") String sortBy,
+                                     @RequestParam(value = "sortBy", required = false, defaultValue = "-organizationId") String sortBy,
                                      @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
         Map<String, Object> params = new HashMap<>();
         params.put("keyword", keyword);

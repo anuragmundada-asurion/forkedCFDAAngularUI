@@ -228,13 +228,13 @@
                         angular.forEach(results, function (r) {
                             var row = {
                                 'id': r['id'],
-                                'agency': {'id': r['agencyId'], 'officeId': r['id']},
+                                'agency': {'id': r['organizationId'], 'officeId': r['id']},
                                 'street': r['address']['street'],
                                 'city': r['address']['city'],
                                 'state': r['address']['state'],
                                 'phone': r['phone']
                             };
-                            promises.push(FederalHierarchyService.getFederalHierarchyById(r['agencyId'], true, false, function (data) {
+                            promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
                                 row['agency']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
                             }, function () {
                                 row['agency']['value'] = 'Organization Not Found';

@@ -29,7 +29,7 @@
             if($scope.action === 'create') { // Create Program
                 $scope.oRegionalOffice = new RegionalOfficeFactory();
                 $scope.oRegionalOffice.address = {};
-                $scope.oRegionalOffice.agencyId = UserService.getUserOrgId();
+                $scope.oRegionalOffice.organizationId = UserService.getUserOrgId();
 
                 //load dictionaries
                 $scope.loadDictionaries();
@@ -50,7 +50,7 @@
                 //empty message error
                 $scope.flash = {};
 
-                if(!$scope.oRegionalOffice.phone || !$scope.oRegionalOffice.agencyId){
+                if(!$scope.oRegionalOffice.phone || !$scope.oRegionalOffice.organizationId){
                     $scope.flash = {
                         type: "error",
                         message: "Please provide all required fields before submitting the form."
