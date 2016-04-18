@@ -1,5 +1,10 @@
 <primary-nav-bar></primary-nav-bar>
-<global-search-box></global-search-box>
+
+<div class="background darkblue" style="padding-bottom: 20px; padding-top: 40px;">
+    <!-- Search box -->
+    <search-box></search-box>
+    <!--<global-search-box></global-search-box>-->
+</div>
 
 <section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
     <div class="usa-grid-full page-heading">
@@ -10,9 +15,9 @@
             <a class="usa-button" ui-sref="exportToExcel">Save to Excel</a>
         </div>
         <div class="usa-width-one-fourth" style="margin-top:25px;">
-            <select title="Search Fields">
+            <!--<select title="Search Fields">
                 <option value="">More Search Fields</option>
-            </select>
+            </select>-->
         </div>
     </div>
     <div class="usa-grid-full">

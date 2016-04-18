@@ -18,7 +18,7 @@
             });
 
             //remove custom search fields out of advanced search fields criteria
-            if($state.current['name'] === 'advancedSearch' || $state.current['name'] === 'home' || ($stateParams.hasOwnProperty('removeCustomSearchFields') && $stateParams.removeCustomSearchFields)) {
+            if($state.current['name'] === 'advancedSearch' || $state.current['name'] === 'home' || $state.current['name'] === 'searchPrograms' || ($stateParams.hasOwnProperty('removeCustomSearchFields') && $stateParams.removeCustomSearchFields)) {
                 //remove pre-filtered Publication Listing (Coming from home "New in 2016" section)
                 if($scope.advancedSearch.hasOwnProperty('publicationListingType')) {
                     delete $scope.advancedSearch.publicationListingType;
@@ -26,7 +26,7 @@
             }
 
             //initialize advanced search fields criterias
-            if ($state.current['name'] === 'advancedSearch' || $state.current['name'] === 'home') {
+            if ($state.current['name'] === 'advancedSearch' || $state.current['name'] === 'home' || $state.current['name'] === 'searchPrograms') {
                 //loading dictionaries
                 //var aDictionaries = ['assistance_type', 'applicant_types', 'beneficiary_types', 'functional_codes', 'program_subject_terms'];
                 var aDictionaries = ['applicant_types', 'beneficiary_types', 'functional_codes', 'assistance_usage_types'];
