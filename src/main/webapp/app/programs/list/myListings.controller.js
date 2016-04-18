@@ -122,8 +122,21 @@
                 if (!$scope.dtInstance) {
                     $scope.dtInstance = {};
                 }
+                
+                
+                // $(document).ready( function() {
+                //     $('#example').dataTable( {
+                //         "fnHeaderCallback": function( nHead, aData, iStart, iEnd, aiDisplay ) {
+                //         nHead.getElementsByTagName('th')[0].innerHTML = "Displaying "+(iEnd-iStart)+" records";
+                //         }
+                //     } );
+                // } )
 
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
+                    // Adding header ascending/descending icon
+                    .withOption('headerCallback', function(thead, data, start, end, display){
+                        $(thead).find("th").append("<i style=\"position: absolute\" class=\"angle down icon\"></i>");
+                    })
                     .withOption('processing', true)
                     .withOption('serverSide', true)
                     .withOption('searching', false)
