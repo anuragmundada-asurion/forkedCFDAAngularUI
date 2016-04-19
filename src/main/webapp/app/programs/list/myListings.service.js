@@ -90,8 +90,8 @@
 
         this.getDateContent = function(data) {
             if (data) {
-                var date =  $filter('date')(r['entryDate'], 'MMM d, y');
-                var time = $filter('date')(r['entryDate'], 'h:mm:ss a');
+                var date =  $filter('date')(data, 'MMM d, y');
+                var time = $filter('date')(data, 'h:mm:ss a');
                 return '<span>' + date + '</span> <span>' + time + '</span>';
             } else {
                 return '';
