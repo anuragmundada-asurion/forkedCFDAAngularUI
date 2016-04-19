@@ -168,7 +168,7 @@
                     title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
                 })
                 .state('organizationList', {
-                    url: "/organizationList",
+                    url: "/organization",
                     templateUrl: "organization/organization-list.tpl.html",
                     controller: "OrganizationListController as orgListCtrl",
                     title: 'Organizations - CFDA: Organizations Listing',

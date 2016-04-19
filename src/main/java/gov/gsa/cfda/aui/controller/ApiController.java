@@ -277,8 +277,8 @@ public class ApiController {
         this.deleteCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
-    @RequestMapping(value = "/api/organizationList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getOrganizationList(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+    @RequestMapping(value = "/api/organization", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getOrganizations(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                      @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                      @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
