@@ -166,6 +166,21 @@
                     templateUrl: "office/office-view.tpl.html",
                     controller: "RegionalOfficeViewCtrl",
                     title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
+                })
+                .state('OrganizationList', {
+                    url: "/organizationList",
+                    templateUrl: "organization/organization-list.tpl.html",
+                    controller: "OrganizationListController as orgListCtrl",
+                    title: 'Organizations - CFDA: Organizations Listing',
+
+                    //TODO: update permissions
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE,
+                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE,
+                            PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE
+                        ]
+                    }
                 });
 
             // the known route

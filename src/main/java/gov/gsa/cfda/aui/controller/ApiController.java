@@ -277,6 +277,30 @@ public class ApiController {
         this.deleteCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
+    @RequestMapping(value = "/api/organizationList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getOrganizationList(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                     @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                                     @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
+                                     @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                                     @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                                     @RequestParam(value = "sortBy", required = false, defaultValue = "-organizationId") String sortBy,
+                                     @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("keyword", keyword);
+//        params.put("limit", limit);
+//        params.put("offset", offset);
+//        params.put("sortBy", sortBy);
+//        params.put("includeCount", includeCount);
+//        params.put("oFilterParam", oFilterParams);
+//        return getsCall(accessToken, getRegionalOfficeApiUrl(), params);
+        return "{hello:'world1'}";
+    }
+
+
+
+
+
+
     @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getActions(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,

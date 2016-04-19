@@ -17,7 +17,8 @@
             "regionalOfficeList": "/api/regionalOffices",
             "programCount": "/api/programCount",
             "federalHierarchyList": "/api/federalHierarchies",
-            "historicalIndex": "/api/historicalIndex" //:programNumber
+            "historicalIndex": "/api/historicalIndex", //:programNumber
+            "organizationList": "/api/organizationList"
         };
 
         this.APIs = APIs;
