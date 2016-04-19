@@ -2,7 +2,7 @@
 
 <div class="ui fixed container">
 
-    <div class="ui grid" style="margin-top: 0;">
+    <div class="ui grid" style="margin-top: 0; margin-bottom: 0;">
         
         <div class="one column row">
             <div class="column"> 
@@ -50,16 +50,9 @@
            <div ng-if="treeData" js-tree="treeConfig" ng-model="treeData" tree="officeListCtrl.treeInstance23" tree-events-obj="treeEventsObj"></div>
        </div>-->
 
-
-        <div class="one column row">
-
-            <div class="column">
-                <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs"
-                    dt-instance="dtInstance" class="ui darkblue table"></table>
-            </div>
-
-        </div>
-
     </div>
 
 </div>
+
+<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs"
+                    dt-instance="dtInstance" class="ui darkblue table"></table>
