@@ -316,11 +316,13 @@
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
                     .withOption('data', null)
+
                     .withOption('defaultContent',
                     '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/edit">' +
                     '<button type="button"><span class="fa fa-pencil"></span></button></a>' +
                     '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/view">' +
                     '<button type="button"><span class="fa fa-file-text-o"></span></button></a>')
+
                     .withOption('orderable', false),
 
                 DTColumnBuilder.newColumn('agency')
