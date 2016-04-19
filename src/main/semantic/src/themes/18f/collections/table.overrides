@@ -68,3 +68,6 @@
 .dataTables_wrapper .bottom .dataTables_paginate{
   margin-top: 14px;
 }
+.dataTables_wrapper table td span:first-child{
+  font-weight: 700;
+}

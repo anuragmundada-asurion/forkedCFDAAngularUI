@@ -24028,6 +24028,10 @@ Floated Menu / Item
   margin-top: 14px;
 }
 
+.dataTables_wrapper table td span:first-child {
+  font-weight: 700;
+}
+
 /*******************************
          Site Overrides
 *******************************/

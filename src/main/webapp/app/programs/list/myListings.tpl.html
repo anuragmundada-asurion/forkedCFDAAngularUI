@@ -1,7 +1,7 @@
 <primary-nav-bar></primary-nav-bar>
 
 <div class="ui fixed container">
-    <div class="ui grid">
+    <div class="ui grid" style="margin-bottom: 0;">
         <div class="one column row">
             <div class="column">
 
@@ -39,15 +39,19 @@
                     </li>
                 </ul>
 
-                <a ng-if="listService.isActiveList()" class="ui primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
-
-                <div class="ui search">
+            </div>
+        </div>
+        <div class="three column row">
+            <div class="column">
+            <a ng-if="listService.isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
+            </div>
+            <div class="column">
+            <div class="ui search">
                     <div class="ui icon fluid input">
                         <input ng-model="listService.searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
                         <i class="search icon"></i>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
