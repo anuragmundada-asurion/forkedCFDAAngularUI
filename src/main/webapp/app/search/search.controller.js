@@ -3,11 +3,9 @@
 
     var app = angular.module('app');
 
-    app.controller('ProgramSearchCtrl', ['$state', '$scope', '$stateParams', 'appConstants', 'SearchFactory', 'Dictionary', 'DictionaryService',
-        function ($state, $scope, $stateParams, appConstants, SearchFactory, Dictionary, DictionaryService) {
+    app.controller('ProgramSearchCtrl', ['$state', '$scope', '$stateParams', 'SearchFactory', 'Dictionary', 'DictionaryService', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', 'FederalHierarchyService', '$q',
+        function ($state, $scope, $stateParams, SearchFactory, Dictionary, DictionaryService, DTOptionsBuilder, DTColumnBuilder, $compile, FederalHierarchyService, $q) {
             $scope.globalSearchValue = $scope.globalSearchValue || $stateParams['keyword'] || SearchFactory.getSearchCriteria().keyword || '';
-            $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
-            $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.advancedSearch = SearchFactory.getSearchCriteria().advancedSearch;
             $scope.dictionary = {};
 
@@ -93,23 +91,14 @@
             };
 
             var lastTime;
-            $scope.getSearchResults = function (tableState) {
+            $scope.getSearchResults = function (data, callback, settings) {
                 if (lastTime && ((new Date()).getTime() - lastTime) < 500) {
                     return;
                 }
                 lastTime = (new Date()).getTime();
-
-                tableState = tableState || {
-                        search: {},
-                        pagination: {},
-                        sort: {}
-                    };
-
-                $scope.isLoading = true;
-
                 var queryObj = {
                     keyword: $scope.globalSearchValue,
-                    size: $scope.itemsByPage,
+                    size: data['length'] || 10,
                     includeCount: true
                 };
 
@@ -121,23 +110,78 @@
                     //console.log(queryObj);
                 }
 
-                if (tableState.pagination.start) {
-                    queryObj["page"] = Math.ceil(tableState.pagination.start / queryObj.size);
+                if (data['start']) {
+                    queryObj["page"] = Math.ceil(data['start'] / queryObj.size);
                 }
 
-                if (tableState.sort.predicate) {
-                    var isDescending = tableState.sort.reverse,
-                        sortingProperty = tableState.sort.predicate;
-                    queryObj.sortBy = ( isDescending ? '-' : '' ) + sortingProperty;
+                if (data['order']) {
+                    var order = data['order'][0];
+                    var columnName = data['columns'][order['column']]['data'];
+                    if (columnName) {
+                        queryObj['sortBy'] = ( angular.equals(order['dir'], 'asc') ? '' : '-' ) + columnName;
+                    }
                 }
 
-                SearchFactory.search().get(queryObj, function (data) {
-                    $scope.searchResults = data.results;
-                    $scope.isLoading = false;
-                    tableState.pagination.numberOfPages = Math.ceil(data.totalCount / $scope.itemsByPage);
-                    tableState.pagination.totalItemCount = data.totalCount;
+                SearchFactory.search().get(queryObj, function (d) {
+                    var results = d.results;
+                    var promises = [];
+                    var tableData = [];
+                    angular.forEach(results, function (r) {
+                        var row = {
+                            'programNumber': r['programNumber'],
+                            'title': {
+                                'id': r['id'],
+                                'value': r['title']
+                            },
+                            'organization': r['organizationId'],
+                            'assistanceTypes': r['assistanceTypes']
+                        };
+                        promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
+                            row['organization'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
+                        }, function () {
+                            row['organization'] = 'Organization Not Found';
+                        }));
+                        tableData.push(row);
+                    });
+                    $q.all(promises).then(function () {
+                        callback({
+                            "draw": parseInt(data['draw']) + 1,
+                            "recordsTotal": d['totalCount'],
+                            "recordsFiltered": d['totalCount'],
+                            "data": tableData
+                        });
+                    });
                 });
             };
+
+            $scope.dtOptions = DTOptionsBuilder.newOptions()
+                .withOption('initComplete', function(){
+                    $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                })
+                .withOption('processing', true)
+                .withOption('serverSide', true)
+                .withOption('searching', false)
+                .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
+                .withDataProp('data')
+                .withDOM('<"top">rt<"bottom"<"info"li><"paging"p>><"clear">')
+                .withOption('rowCallback', function(row) {
+                    $compile(row)($scope);
+                })
+                .withOption('ajax', $scope.getSearchResults)
+                .withLanguage({
+                    'emptyTable': 'No Results Found',
+                    'lengthMenu': 'Showing _MENU_ entries',
+                    'info': 'of _TOTAL_ entries'
+                });
+            $scope.dtColumns = [
+                DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', '')
+                    .withOption('render', function (data) {
+                        return '<a ui-sref="viewProgram({id: \'' + data['id'] + '\'})">' + data['value'] + '</a>';
+                    }),
+                DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('assistanceTypes').withTitle('Types of Assistance').withOption('defaultContent', '')
+            ];
 
             /**
              * prepare advanced search data structure to send to search API as parameters
