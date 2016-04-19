@@ -23942,6 +23942,14 @@ Floated Menu / Item
   line-height: 1.2em;
 }
 
+.ui.darkblue.table td {
+  line-height: 1.2em;
+}
+
+.ui.darkblue.table td a {
+  font-weight: 700;
+}
+
 /* Dark Blue Sorting */
 
 .ui.darkblue.table thead th.sorting_asc,
