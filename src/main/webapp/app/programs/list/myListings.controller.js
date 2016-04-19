@@ -138,12 +138,13 @@
                     .withOption('searching', false)
                     .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                     .withDataProp('data')
-                    .withDOM('<"top"> r <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
+                    .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                     .withOption('rowCallback', function(row) {
                         $compile(row)($scope);
                     })
                     .withOption('ajax', this.loadTableItems)
                     .withLanguage({
+                        'processing': '<div class="ui active small inline loader"></div> Loading',
                         'emptyTable': 'No ' + (MyListingsService.isRequestList() ? 'Requests' : 'Programs') +  ' Found',
                         'lengthMenu': 'Showing _MENU_ entries',
                         'info': ' of _TOTAL_ entries'
