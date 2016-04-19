@@ -2023,6 +2023,24 @@ Floated Menu / Item
   width: 19rem;
 }
 
+/*--------------
+   Pagination
+---------------*/
+
+.dataTables_paginate a {
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 15px;
+}
+.dataTables_paginate a.current {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFFFFF;
+}
+.dataTables_paginate a.current:hover {
+  text-decoration: none;
+}
+
 
 /*******************************
          Site Overrides

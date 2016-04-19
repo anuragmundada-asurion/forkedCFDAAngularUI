@@ -46,3 +46,25 @@
 .ui.big.vertical.menu {
   width: @bigWidth;
 }
+
+/*--------------
+   Pagination
+---------------*/
+// Datatables
+
+.dataTables_paginate a{
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 15px;
+}
+.dataTables_paginate a.current{
+  font-weight: 700;
+  color: @textColor;
+  background-color: @white;
+}
+.dataTables_paginate a.current:hover{
+  text-decoration: none;
+}
+
+
+

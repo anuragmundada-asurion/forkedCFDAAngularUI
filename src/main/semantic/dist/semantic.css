@@ -22151,6 +22151,26 @@ Floated Menu / Item
   width: 19rem;
 }
 
+/*--------------
+   Pagination
+---------------*/
+
+.dataTables_paginate a {
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 15px;
+}
+
+.dataTables_paginate a.current {
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFFFFF;
+}
+
+.dataTables_paginate a.current:hover {
+  text-decoration: none;
+}
+
 /*******************************
          Site Overrides
 *******************************/
@@ -23984,6 +24004,24 @@ Floated Menu / Item
   transition: -webkit-transform 0.35s ease;
   transition: transform 0.35s ease;
   transition: transform 0.35s ease, -webkit-transform 0.35s ease;
+}
+
+/*--------------
+  Datatables 
+---------------*/
+
+.dataTables_wrapper .bottom .grid {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.dataTables_wrapper .bottom .grid > .row {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.dataTables_wrapper .bottom .dataTables_paginate {
+  margin-top: 14px;
 }
 
 /*******************************
