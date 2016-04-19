@@ -7,7 +7,7 @@
         function ($scope, $state, $stateParams, $timeout, RegionalOfficeFactory, Dictionary, ngDialog) {
 
 
-            console.log("hello from the view controller");
+            console.log("hello from the view controller of organization");
             $scope.organization = true;
 
 

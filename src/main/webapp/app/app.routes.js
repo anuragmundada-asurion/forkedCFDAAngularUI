@@ -183,25 +183,25 @@
                     }
                 })
                 //.state('addRegionalOffice', {
-                //    url: "/regionalOffice/create",
-                //    templateUrl: "office/office-form.tpl.html",
-                //    controller: "RegionalOfficeFormCtrl",
+                //    url: "/organization/create",
+                //    templateUrl: "organization/organization-form.tpl.html",
+                //    controller: "OrganizationFormCtrl",
                 //    access: {
                 //        requiredPermissions: [
                 //            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE
                 //        ]
                 //    }
                 //})
-                //.state('editRegionalOffice', {
-                //    url: "/regionalOffice/:id/edit",
-                //    templateUrl: "office/office-form.tpl.html",
-                //    controller: "RegionalOfficeFormCtrl",
-                //    access: {
-                //        requiredPermissions: [
-                //            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
-                //        ]
-                //    }
-                //})
+                .state('editOrganization', {
+                    url: "/organization/:id/edit",
+                    templateUrl: "organization/organization-form.tpl.html",
+                    controller: "OrganizationFormCtrl",
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
+                        ]
+                    }
+                })
                 .state('viewOrganization', {
                     url: "/organization/:id/view",
                     templateUrl: "organization/organization-view.tpl.html",

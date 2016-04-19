@@ -295,7 +295,7 @@
             $scope.dtInstance = {};
 
             $scope.dtColumnDefs = [
-                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%')
+                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '50%')
             ];
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -312,17 +312,23 @@
                     'info': 'of _TOTAL_ entries'
                 });
             $scope.dtColumns = [
+
+                DTColumnBuilder.newColumn('action')
+                    .withTitle('Action')
+                    .withOption('data', null)
+                    .withOption('defaultContent',
+                    '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/edit">' +
+                    '<button type="button"><span class="fa fa-pencil"></span></button></a>' +
+                    '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/view">' +
+                    '<button type="button"><span class="fa fa-file-text-o"></span></button></a>')
+                    .withOption('orderable', false),
+
                 DTColumnBuilder.newColumn('agency')
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
                         return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['officeId'] + '/view">' + data['value'] + '</a>';
-                    }),
-
-                DTColumnBuilder.newColumn('action').withTitle('Action')
-                    .withOption('data', null)
-                    .withOption('defaultContent', '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a><a ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>')
-                    .withOption('orderable', false)
+                    })
             ];
         }]);
 
