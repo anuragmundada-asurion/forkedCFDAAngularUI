@@ -1115,6 +1115,29 @@
 .ui.darkblue.table td.sorting_1 {
   background-color: #fffded;
 }
+.ui.darkblue.table thead th.sorting_asc:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  margin-top: 4px;
+  margin-left: -4px !important;
+}
+.ui.darkblue.table thead th.sorting_asc:after,
+.ui.darkblue.table thead th.sorting_desc:after,
+.ui.darkblue.table thead th.sorting:after {
+  position: absolute;
+  font-family: 'Icons';
+  content: "\f107";
+  width: 1.18em;
+  height: 1em;
+  font-size: 1em;
+  margin-left: 5px;
+  font-weight: normal;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 0.35s ease;
+  transition: -webkit-transform 0.35s ease;
+  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, -webkit-transform 0.35s ease;
+}
 
 
 /*******************************
