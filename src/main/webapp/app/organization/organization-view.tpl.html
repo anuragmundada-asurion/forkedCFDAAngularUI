@@ -1,0 +1,62 @@
+<primary-nav-bar></primary-nav-bar>
+<global-search-box></global-search-box>
+
+<section class="usa-grid-full">
+    <div ng-show="oRegionalOffice" class="usa-grid-full">
+        <div>
+            <h2>Agency Information </h2>
+            <!-- STATIC CONTENT FOR NOW!-->
+            <div class="usa-width-three-fourths vp-section" style="width: 60%;">
+                <div>
+                    <p class="vp-field-label-big">Name: </p>
+
+                    <p class="vp-field-value">GENERAL SERVICES ADMINISTRATION</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Agency Code: </p>
+
+                    <p class="vp-field-value">4700</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Acronym/Shortname: </p>
+
+                    <p class="vp-field-value">GSA</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Agency Program Code: </p>
+
+                    <p class="vp-field-value">39</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Program Low Number: </p>
+
+                    <p class="vp-field-value">5</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Program High Number: </p>
+
+                    <p class="vp-field-value">100</p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Status: </p>
+
+                    <p class="vp-field-value">Active</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div ng-show="!oRegionalOffice" class="usa-grid-full loading">
+        <!-- loading icon -->
+        <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
+    </div>
+</section>
+<section class="usa-grid-full">
+    <a ui-sref="OrganizationList">
+        <button type="button">Return</button>
+    </a>
+    <!--<a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}">-->
+    <!--<button type="button">Edit</button>-->
+    <!--</a>-->
+</section>

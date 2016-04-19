@@ -313,15 +313,12 @@
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('agency')
-                    .withTitle('Department/Sub-Tier Agency & Office')
+                    .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/regionalOffice/' + data['officeId'] + '/view">' + data['value'] + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['officeId'] + '/view">' + data['value'] + '</a>';
                     }),
-                DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('state').withTitle('State').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('phone').withTitle('Phone').withOption('defaultContent', ''),
+
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
                     .withOption('defaultContent', '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a><a ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>')
