@@ -119,7 +119,7 @@
 
                         <!-- Alerts -->
 
-                        <a ui-sref="programList.status({status: 'requests'})" class="ui top right attached green label large font uppercase squared"
+                        <a ui-sref="programList({list: 'requests', filter: 'all'})" class="ui top right attached green label large font uppercase squared"
                         style="margin-top: -8px; margin-right: -21px; padding-left: 40px;">
                             <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
                             <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
@@ -138,7 +138,7 @@
         <!-- Menu of Statistics -->
 
         <div class="ui fluid five item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top: 0;">
-            <a class="item" ui-sref="programList.status({status: 'all'})">
+            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'all'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
@@ -147,7 +147,7 @@
                     <div class="label page font huge lighter no transformation">Total Active<br>Listings</div>
                 </div>
             </a>
-            <a class="item" ui-sref="programList.status({status: 'draft'})">
+            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'draft'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
@@ -157,7 +157,7 @@
                         <br>Listing</div>
                 </div>
             </a>
-            <a class="item" ui-sref="programList.status({status: 'pending'})">
+            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'pending'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
@@ -166,7 +166,7 @@
                     <div class="label page font huge lighter no transformation">Pending<br>Listings</div>
                 </div>
             </a>
-            <a class="item" ui-sref="programList.status({status: 'published'})">
+            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'published'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
@@ -175,7 +175,7 @@
                     <div class="label page font huge lighter no transformation">Published<br>Listings</div>
                 </div>
             </a>
-            <a class="item" ui-sref="programList.status({status: 'rejected'})">
+            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
                         <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
@@ -209,7 +209,7 @@
 
                 <div class="two column row">
                     <div class="column right aligned">
-                        <a class="ui large button" ui-sref="programList.status({status: 'archived'})">
+                        <a class="ui large button" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
                             <span class="fa fa-archive"></span> Archived Listing
                         </a>
                     </div>
