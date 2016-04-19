@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('MyListingsService', ['DTColumnBuilder', 'AuthorizationService', 'PERMISSIONS', function(DTColumnBuilder, AuthorizationService, PERMISSIONS) {
+    myApp.service('MyListingsService', ['DTColumnBuilder', 'AuthorizationService', 'PERMISSIONS', '$filter', function(DTColumnBuilder, AuthorizationService, PERMISSIONS, $filter) {
         this.getTitleAnchor = function(data) {
             var status = data['status']['code'];
             var archived = data['archived'];
@@ -88,6 +88,16 @@
             return buttons.join('');
         };
 
+        this.getDateContent = function(data) {
+            if (data) {
+                var date =  $filter('date')(r['entryDate'], 'MMM d, y');
+                var time = $filter('date')(r['entryDate'], 'h:mm:ss a');
+                return '<span>' + date + '</span> <span>' + time + '</span>';
+            } else {
+                return '';
+            }
+        };
+
         var self = this;
         this.lists = {
             'activePrograms': {
@@ -103,8 +113,14 @@
                                     return self.getTitleAnchor(data);
                                 }),
                             DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', ''),
+                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
+                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
                                 .withOption('width', '200px')
@@ -148,7 +164,10 @@
                                     return self.getTitleAnchor(data);
                                 }),
                             DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', ''),
+                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
                                 .withOption('defaultContent', '')
@@ -169,7 +188,10 @@
                                     return self.getTitleAnchor(data);
                                 }),
                             DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', ''),
+                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
                                 .withOption('defaultContent', '')
@@ -190,7 +212,10 @@
                                     return self.getTitleAnchor(data);
                                 }),
                             DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', ''),
+                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
                                 .withOption('defaultContent', '')
@@ -214,7 +239,10 @@
                                     return self.getTitleAnchor(data);
                                 }),
                             DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('archivedDate').withTitle('Date Archived').withOption('defaultContent', ''),
+                            DTColumnBuilder.newColumn('archivedDate').withTitle('Date Archived').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
                                 .withOption('defaultContent', '')
@@ -247,6 +275,9 @@
                                 })
                                 .withOption('orderable', false),
                             DTColumnBuilder.newColumn('requestDate').withTitle('Date Requested').withOption('defaultContent', '')
+                                .withOption('render', function(data) {
+                                    return self.getDateContent(data);
+                                })
                         ]
                     }
                 }

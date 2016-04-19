@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('MyListingsCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'AuthorizationService', 'ngDialog', 'MyListingsService', 'FederalHierarchyService', 'DTOptionsBuilder', '$compile', '$filter', '$q',
-        function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $filter, $q) {
+    myApp.controller('MyListingsCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'AuthorizationService', 'ngDialog', 'MyListingsService', 'FederalHierarchyService', 'DTOptionsBuilder', '$compile', '$q',
+        function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q) {
             var self = this;
             $scope.listService = MyListingsService;
 
@@ -59,9 +59,9 @@
                             status: r['status'],
                             archived: r['archived']
                         },
-                        'submittedDate': r['submittedDate'] ?  $filter('date')(r['submittedDate'], 'medium') : null,
-                        'publishedDate': r['publishedDate'] ?  $filter('date')(r['publishedDate'], 'medium') : null,
-                        'archivedDate': r['archived'] ? $filter('date')(r['modifiedDate'], 'medium') : null,
+                        'submittedDate': r['submittedDate'],
+                        'publishedDate': r['publishedDate'],
+                        'archivedDate': r['archived'],
                         'status': r['archived'] ? 'Archived' : r['status']['value']
                     };
                     promises.push(FederalHierarchyService.getFederalHierarchyById(resultData['organizationId'], true, false, function(data) {
@@ -98,7 +98,7 @@
                         'action': {
                             row: r
                         },
-                        'requestDate': r['entryDate'] ?  $filter('date')(r['entryDate'], 'medium') : null,
+                        'requestDate': r['entryDate']
                     };
                     tableData.push(row);
                 });
