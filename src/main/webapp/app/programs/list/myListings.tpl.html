@@ -41,7 +41,12 @@
 
                 <a ng-if="listService.isActiveList()" class="ui primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
 
-                <input ng-model="listService.searchKeyword" type="search" class="bold-border" placeholder="Search Listings" aria-controls="listings-table">
+                <div class="ui search">
+                    <div class="ui icon fluid input">
+                        <input ng-model="listService.searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
 
                 <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui
                     darkblue table"></table>
