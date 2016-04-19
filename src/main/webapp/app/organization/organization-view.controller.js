@@ -3,12 +3,12 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('RegionalOfficeViewCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'RegionalOfficeFactory', 'Dictionary', 'ngDialog',
+    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'RegionalOfficeFactory', 'Dictionary', 'ngDialog',
         function ($scope, $state, $stateParams, $timeout, RegionalOfficeFactory, Dictionary, ngDialog) {
 
 
             console.log("hello from the view controller");
-            $scope.oRegionalOffice = true;
+            $scope.organization = true;
 
 
         }

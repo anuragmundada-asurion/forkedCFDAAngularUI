@@ -167,7 +167,7 @@
                     controller: "RegionalOfficeViewCtrl",
                     title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
                 })
-                .state('OrganizationList', {
+                .state('organizationList', {
                     url: "/organizationList",
                     templateUrl: "organization/organization-list.tpl.html",
                     controller: "OrganizationListController as orgListCtrl",

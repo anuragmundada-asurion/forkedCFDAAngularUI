@@ -2,7 +2,7 @@
 <global-search-box></global-search-box>
 
 <section class="usa-grid-full">
-    <div ng-show="oRegionalOffice" class="usa-grid-full">
+    <div ng-show="organization" class="usa-grid-full">
         <div>
             <h2>Agency Information </h2>
             <!-- STATIC CONTENT FOR NOW!-->
@@ -47,16 +47,16 @@
         </div>
 
     </div>
-    <div ng-show="!oRegionalOffice" class="usa-grid-full loading">
+    <div ng-show="!organization" class="usa-grid-full loading">
         <!-- loading icon -->
         <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
     </div>
 </section>
 <section class="usa-grid-full">
-    <a ui-sref="OrganizationList">
+    <a ui-sref="organizationList">
         <button type="button">Return</button>
     </a>
     <!--<a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}">-->
-    <!--<button type="button">Edit</button>-->
+        <!--<button type="button">Edit</button>-->
     <!--</a>-->
 </section>
