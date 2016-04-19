@@ -298,17 +298,27 @@
             ];
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
+                .withOption('initComplete', function(settings, json){
+                    // Initialize semantic ui dropdown
+                    $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                    // Remove select to fix dropdown  double click bug
+                    $(".dataTables_length select").remove();
+                    // Append info text for easier theming
+                    $(".dataTables_info").appendTo(".dataTables_length label");
+                    $(".dataTables_info").contents().unwrap();
+                })
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
-                .withDOM('<"top">rt<"bottom"<"info"li><"paging"p>><"clear">')
+                .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                 .withOption('ajax', $scope.loadAgencies)
                 .withLanguage({
+                    'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
                     'lengthMenu': 'Showing _MENU_ entries',
-                    'info': 'of _TOTAL_ entries'
+                    'info': ' of _TOTAL_ entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('agency')

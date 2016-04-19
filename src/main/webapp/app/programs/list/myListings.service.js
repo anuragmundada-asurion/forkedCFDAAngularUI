@@ -37,24 +37,24 @@
             var buttons = [];
             if (!archived) {
                 if ((status === 'draft' || status === 'rejected') && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS)) {
-                    buttons.push('<button type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 } else if (status === 'pending' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
-                    buttons.push('<button type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 } else if (status === 'published' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS)) {
-                    buttons.push('<button type="button" title="Revise FAL" ng-click="reviseProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Revise FAL" ng-click="reviseProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 }
 
                 if (status === 'draft' && AuthorizationService.authorize(PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS)) {
-                    buttons.push('<button type="button" title="Delete FAL" ng-click="deleteProgram(\'' + data['id'] + '\')"><span class="fa fa-trash-o"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Delete FAL" ng-click="deleteProgram(\'' + data['id'] + '\')"><span class="fa fa-trash-o"></span></button>');
                 }
 
                 if (status === 'published' && AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_ARCHIVE)) {
-                    buttons.push('<button type="button" title="Request Archive" ng-click="requestArchive(\'' + data['id'] + '\')"><span class="fa fa-folder"></span></button>');
-                    buttons.push('<button type="button" title="Request Title Change" ng-click="requestTitleChange(\'' + data['id'] + '\')"><span class="fa fa-i-cursor"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Request Archive" ng-click="requestArchive(\'' + data['id'] + '\')"><span class="fa fa-folder"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Request Title Change" ng-click="requestTitleChange(\'' + data['id'] + '\')"><span class="fa fa-i-cursor"></span></button>');
                 }
             } else {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_UNARCHIVE)) {
-                    buttons.push('<button type="button" title="Request Unarchive" ng-click="requestUnarchive(\'' + data['id'] + '\')"><span class="fa fa-folder-open"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Request Unarchive" ng-click="requestUnarchive(\'' + data['id'] + '\')"><span class="fa fa-folder-open"></span></button>');
                 }
             }
 
@@ -66,22 +66,22 @@
             var buttons = [];
             if (row.requestType.value === 'archive_request') {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_ARCHIVE)) {
-                    buttons.push('<button type="button" title="Approve Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button type="button" title="Reject Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive_reject\')"><span class="fa fa-times-circle"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Approve Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive\')"><span class="fa fa-check-circle-o"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Reject Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive_reject\')"><span class="fa fa-times-circle"></span></button>');
                 }
             } else if (row.requestType.value === 'unarchive_request') {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_UNARCHIVE)) {
-                    buttons.push('<button type="button" title="Approve Unarchive Request"ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button type="button" title="Reject Unarchive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive_reject\')"><span class="fa fa-times-circle"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Approve Unarchive Request"ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive\')"><span class="fa fa-check-circle-o"></span></button>');
+                    buttons.push('<button class="ui mini primary button" type="button" title="Reject Unarchive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive_reject\')"><span class="fa fa-times-circle"></span></button>');
                 }
             } else if (row.requestType.value === 'title_request') {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_TITLE_CHANGE)) {
-                    buttons.push('<button type="button" title="Approve Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button type="button" title="Reject Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title_reject\')"><span class="fa fa-times-circle"></span></button>');
+                    buttons.push('<button type="button" class="ui mini primary button" title="Approve Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title\')"><span class="fa fa-check-circle-o"></span></button>');
+                    buttons.push('<button type="button" class="ui mini primary button" title="Reject Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title_reject\')"><span class="fa fa-times-circle"></span></button>');
                 }
             } else if (row.requestType.value === 'submit') {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_SUBMISSION)) {
-                    buttons.push('<button type="button" title="Review Program" ng-click="editProgram(\'' + row['programId'] + '\')"><span class="fa fa-eye"></span></button>');
+                    buttons.push('<button type="button" class="ui mini primary button" title="Review Program" ng-click="editProgram(\'' + row['programId'] + '\')"><span class="fa fa-eye"></span></button>');
                 }
             }
 
@@ -123,6 +123,8 @@
                                 }),
                             DTColumnBuilder.newColumn('action')
                                 .withTitle('Action')
+                                .withOption('width', '200px')
+                                .withOption('className', 'status')
                                 .withOption('defaultContent', '')
                                 .withOption('render', function(data) {
                                     return self.getActionContent(data);

@@ -6,22 +6,17 @@
 </div>
 
 <div class="ui fixed container">
-    <div class="ui grid">
+    <div class="ui grid" style="margin-bottom: 0px;">
         <div class="one column row">
             <div class="column">
                 <a class="ui right floated primary button" ui-sref="exportToExcel">Save to Excel</a>
             </div>
         </div>
-        <div class="one column row">
-            <div class="one column row">
-
-                 <!-- Table -->
-                <section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
-                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui
-                    darkblue table"></table>
-                </section>
-
-            </div>
-        </div>
     </div>
 </div>
+
+ <!-- Table -->
+<section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
+    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui
+    darkblue table"></table>
+</section>
