@@ -50,3 +50,18 @@
   display: inline-block;
   transition: transform @defaultDuration @defaultEasing;
 }
+
+/*--------------
+  Datatables 
+---------------*/
+.dataTables_wrapper .bottom .grid{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.dataTables_wrapper .bottom .grid > .row{
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+.dataTables_wrapper .bottom .dataTables_paginate{
+  margin-top: 14px;
+}
