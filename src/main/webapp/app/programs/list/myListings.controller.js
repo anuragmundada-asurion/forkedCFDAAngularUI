@@ -124,6 +124,9 @@
                 }
                 
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
+                    .withOption('initComplete', function(settings, json){
+                        $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                    })
                     .withOption('processing', true)
                     .withOption('serverSide', true)
                     .withOption('searching', false)
