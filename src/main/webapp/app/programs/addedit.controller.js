@@ -241,6 +241,11 @@
                         });
                     }
 
+                    //clear out program number if organization's number is auto generated
+                    if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+                        copy.programNumber = '';
+                    }
+
                     if (!copy._id || !copy.status) {
                         copy.status = "Draft";
                     }
@@ -491,7 +496,8 @@
                     || !oProgram.postAward.audit.flag || (oProgram.postAward.audit.flag === 'yes' && !oProgram.postAward.audit.questions['OMBCircularA133'].flag)
                     || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
                     || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
-                    || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0);
+                    || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
+                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= 0 && oProgram.programNumber<=999 && oProgram.programNumber.length === 3)));
                 }
 
                 /**

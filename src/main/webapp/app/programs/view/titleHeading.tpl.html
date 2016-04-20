@@ -17,7 +17,7 @@
         <h2 ng-bind="programData.title" style="margin-bottom: 0;"></h2>
 
         <div><span class="popularName">{{programData.alternativeNames[0]}}</span></div>
-        <div><span class="programNumber">Program Number: {{programData.programNumber}} </span></div>
+        <div><span class="programNumber" ng-show="programData.status !== 'Draft'">Program Number: {{programData.programNumber}} </span></div>
         <div><span>Department: {{hierarchyLevels.DEPARTMENT}} </span></div>
         <div><span>Agency: {{hierarchyLevels.AGENCY}} </span></div>
         <div><span>Office: {{hierarchyLevels.OFFICE}}</span></div>

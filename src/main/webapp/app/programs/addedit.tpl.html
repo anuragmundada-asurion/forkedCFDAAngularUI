@@ -16,17 +16,27 @@
         <ux-form-section state-key="info" section-title="General Information" field-finder-section>
             <h2><span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark title="000 Intro" class="sub-section usa-grid-full">
-                <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber))" organization-id="gsavm.program.organizationId"></federal-hierarchy-inputs>
-                <federal-hierarchy-label ng-if="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber)" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
+                <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration"></federal-hierarchy-inputs>
             </section>
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>
 
                 <div class="input-field">
-                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber)">
+                    <input type="text" id="title" name="title" class="usa-input-large" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
 
                     <div ng-show="gsavm.validationFlag.info || gsavm.form.title.$dirty">
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
+                    </div>
+                </div>
+                <div ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
+                    <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
+                    <span>Please enter a unique program number. Note: The agency number will automatically be set upon submission. <br/>Please provide the 3 digit code (i.e. for 10.244 you would enter 244)</span>
+                    <div class="input-field">
+                        <input type="text" id="programNumber" name="programNumber" class="usa-input-small" maxlength="3" ng-model="gsavm.program.programNumber" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+
+                        <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
+                            <span ng-show="gsavm.form.programNumber.$error.required">You must provide a program number.</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1786,7 +1796,8 @@
                         || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
                         || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)
                         || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag
-                        || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0">
+                        || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0 
+                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !(gsavm.program.programNumber >= 0 && gsavm.program.programNumber<=999 && gsavm.program.programNumber.length === 3))">
                 <table ng-hide="gsavm.IsVisible">
                     <tr>
                         <td style="vertical-align:top;border:none">
@@ -1818,9 +1829,11 @@
                         || (gsavm.program.usage.discretionaryFund.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.discretionaryFund.content)
                         || !gsavm.program.usage.loanTerms.flag || (gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content)
                         || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
-                        || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0">
+                        || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0
+                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !(gsavm.program.programNumber >= 0 && gsavm.program.programNumber<=999 && gsavm.program.programNumber.length === 3))">
                                 <h4>General Information</h4>
                                 <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !(gsavm.program.programNumber >= 0 && gsavm.program.programNumber<=999 && gsavm.program.programNumber.length === 3))" trigger-click-on-enter>Program Number is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>

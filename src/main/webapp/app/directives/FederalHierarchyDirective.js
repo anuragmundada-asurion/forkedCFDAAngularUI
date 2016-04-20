@@ -32,9 +32,10 @@
     .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'ROLES', function(FederalHierarchyService, UserService, AuthorizationService, ROLES){
         return {
             scope: {
-                "organizationId": "=" // ngModel var passed by reference (two-way) 
+                "organizationId": "=", // ngModel var passed by reference (two-way) 
+                "organizationConfiguration": "=" // ngModel var passed by reference (two-way) 
             },
-            controller: ['$scope', 'ROLES', function($scope, ROLES) {
+            controller: ['$scope', 'ROLES', 'ApiService', function($scope, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
 
                 /**
@@ -115,6 +116,34 @@
                                 $scope.organizationId = $scope.selectedAgencyId;
                             }
                             break;
+                    }
+
+                    //get federal hierarchy configuration 
+                    $scope.getFederalHierarchyConfiguration($scope.organizationId);
+                };
+
+                /**
+                 * get federal hierarchy configuration
+                 * @param String organizationId
+                 * @returns void
+                 */
+                $scope.getFederalHierarchyConfiguration = function(organizationId) {
+                    if(organizationId) {
+                        console.log('selected: '+organizationId);
+                        var oApiParam = {
+                            apiName: 'federalHierarchyConfiguration',
+                            apiSuffix: '/'+organizationId,
+                            oParams: {},
+                            oData: {},
+                            method: 'GET'
+                        };
+
+                        ApiService.call(oApiParam).then(function (data) {
+                            $scope.organizationConfiguration = data;
+
+                            console.log($scope.organizationConfiguration);
+                        }, function (error) {
+                        });
                     }
                 };
 
@@ -213,6 +242,9 @@
                         };
                         scope.departmentLabel = '';
                         scope.error = '';
+
+                        //get federal hierarchy configuration 
+                        scope.getFederalHierarchyConfiguration(scope.programOrganizationId);
 
                         //Case if user is an AGENCY USER
                         if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
