@@ -129,7 +129,6 @@
                  */
                 $scope.getFederalHierarchyConfiguration = function(organizationId) {
                     if(organizationId) {
-                        console.log('selected: '+organizationId);
                         var oApiParam = {
                             apiName: 'federalHierarchyConfiguration',
                             apiSuffix: '/'+organizationId,
@@ -140,8 +139,6 @@
 
                         ApiService.call(oApiParam).then(function (data) {
                             $scope.organizationConfiguration = data;
-
-                            console.log($scope.organizationConfiguration);
                         }, function (error) {
                         });
                     }
