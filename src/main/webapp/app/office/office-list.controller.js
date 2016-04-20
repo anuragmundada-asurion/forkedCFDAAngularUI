@@ -39,25 +39,6 @@
 
             // START --- js tree stuff
             //------------------------------------------------------------------------------------
-            $scope.call = function (oApiParam) {
-                var deferred = $q.defer();
-
-                $http({
-                    'method': oApiParam.method,
-                    'url': oApiParam.url,
-                    'params': oApiParam.oParams,
-                    'data': oApiParam.oData
-                })
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    }).error(function (msg, code) {
-                        deferred.reject(msg);
-                        $log.error(msg, code);
-                    });
-
-                return deferred.promise;
-            };
-
             function formatAgencyData(dataArray) {
                 var keyMapping = {
                     "hierarchy": "children",
