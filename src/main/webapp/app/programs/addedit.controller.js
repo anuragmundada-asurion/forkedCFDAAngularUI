@@ -231,13 +231,15 @@
                     copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
                     copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
                     copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
-                    angular.forEach(copy.financial.obligations, function(row, i){
-                        if(row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
-                            if(typeof row.assistanceType === 'object') {
-                                copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
+                    if(copy.financial && copy.financial.hasOwnProperty('obligations')) {
+                        angular.forEach(copy.financial.obligations, function(row, i){
+                            if(row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
+                                if(typeof row.assistanceType === 'object') {
+                                    copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
 
                     if (!copy._id || !copy.status) {
                         copy.status = "Draft";
