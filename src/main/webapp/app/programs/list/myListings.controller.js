@@ -61,7 +61,7 @@
                         },
                         'submittedDate': r['submittedDate'],
                         'publishedDate': r['publishedDate'],
-                        'archivedDate': r['archived'],
+                        'archivedDate': r['archived'] ? r['modifiedDate'] : null,
                         'status': r['archived'] ? 'Archived' : r['status']['value']
                     };
                     promises.push(FederalHierarchyService.getFederalHierarchyById(resultData['organizationId'], true, false, function(data) {
