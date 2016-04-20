@@ -480,6 +480,19 @@ public class ApiController {
         return getsCall(null, getHistoricalIndexApiUrl() + "/" + id, params);
     }
 
+    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.GET)
+    public String getFederalHierarchyConfiguration(@PathVariable("id") String id, 
+            @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Auth-Token", accessToken);
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getFederalHierarchyConfigurationApiUrl()+ "/" + id);
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     private String getProgramRequestsApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
     }
@@ -526,5 +539,9 @@ public class ApiController {
 
     private String getSearchApiUrl() {
         return environment.getProperty(API_SEARCH_ENV) + "/search";
+    }
+    
+    private String getFederalHierarchyConfigurationApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/federalHierarchyConfigurations";
     }
 }
