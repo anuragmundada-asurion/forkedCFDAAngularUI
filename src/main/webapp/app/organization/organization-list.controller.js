@@ -329,10 +329,10 @@
                     .withOption('data', null)
 
                     .withOption('defaultContent',
-                    '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/edit">' +
-                    '<button type="button"><span class="fa fa-pencil"></span></button></a>' +
-                    '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/view">' +
-                    '<button type="button"><span class="fa fa-file-text-o"></span></button></a>')
+                    '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/edit">' +
+                    '<span class="fa fa-pencil"></span></a>' +
+                    '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/view">' +
+                    '<span class="fa fa-file-text-o"></span></a>')
 
                     .withOption('orderable', false),
 

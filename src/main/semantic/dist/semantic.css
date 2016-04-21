@@ -24032,6 +24032,23 @@ Floated Menu / Item
   font-weight: 700;
 }
 
+/*--------------
+  Datatables Icons
+  TODO: Move this to icons section
+---------------*/
+
+.dataTables_wrapper td .ui.mini.primary.button {
+  width: 28px;
+  padding: 3px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.dataTables_wrapper td .ui.mini.primary.button span {
+  font-weight: normal;
+  font-size: 20px;
+}
+
 /*******************************
          Site Overrides
 *******************************/
