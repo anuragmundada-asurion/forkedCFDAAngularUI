@@ -38,10 +38,10 @@
 </head>
 <body>
     <div ng-if="$state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name
-        === 'searchPrograms' || $state.current.name === 'programList'|| $state.current.name === 'organizationList'">
+        === 'searchPrograms' || $state.current.name === 'programList' || $state.current.name === 'organizationList' || $state.current.name === 'viewOrganization'">
       <link rel="stylesheet" href="/semantic/semantic.css">
     </div>
-    <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms' || $state.current.name === 'programList'|| $state.current.name === 'organizationList')">
+    <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name === 'searchPrograms' || $state.current.name === 'programList'|| $state.current.name === 'organizationList' || $state.current.name === 'viewOrganization')">
       <link rel="stylesheet" href="/semantic/components/reset.css">
       <link rel="stylesheet" href="/semantic/components/site.css">
       <link rel="stylesheet" href="/semantic/components/menu.css">

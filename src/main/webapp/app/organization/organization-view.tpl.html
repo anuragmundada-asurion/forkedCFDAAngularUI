@@ -1,63 +1,103 @@
 <primary-nav-bar></primary-nav-bar>
 
-<section class="usa-grid-full">
-    <h1>View Organization</h1>
-    <div ng-show="organization" class="usa-grid-full">
-        <div>
-            <h2>Agency Information </h2>
-            <!-- STATIC CONTENT FOR NOW!-->
-            <div class="usa-width-three-fourths vp-section" style="width: 60%;">
-                <div>
-                    <p class="vp-field-label-big">Name: </p>
 
-                    <p class="vp-field-value">GENERAL SERVICES ADMINISTRATION</p>
+
+<div class="background gray" style="padding: 40px 40px;" >
+
+
+    <div class="ui fixed container" ng-show="organization" >
+        <div class="ui top attached segment borderless">
+            <div class="ui grid">
+                <div class="one column row">
+                    <div class="column">
+
+                        <!-- Status -->
+
+                        <span class="ui top right attached blue label large font uppercase squared" style="margin-top: -8px; margin-right: -21px;">
+                            Active
+                        </span>
+
+                        <!-- Agency name -->
+
+                        <strong class="font grey" style="letter-spacing: -.5px;">General Services Administration</strong>
+
+                    </div>
                 </div>
-                <div>
-                    <p class="vp-field-label-big">Agency Code: </p>
-
-                    <p class="vp-field-value">4700</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Acronym/Shortname: </p>
-
-                    <p class="vp-field-value">GSA</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Agency Program Code: </p>
-
-                    <p class="vp-field-value">39</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Program Low Number: </p>
-
-                    <p class="vp-field-value">5</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Program High Number: </p>
-
-                    <p class="vp-field-value">100</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Status: </p>
-
-                    <p class="vp-field-value">Active</p>
-                </div>
-
             </div>
         </div>
 
-    </div>
-    <div ng-show="!organization" class="usa-grid-full loading">
-        <!-- loading icon -->
-        <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
-    </div>
-</section>
 
-<section class="usa-grid-full">
-    <a ui-sref="editOrganization">
-        <button type="button">Edit</button>
-    </a>
-    <a ui-sref="organizationList">
-        <button type="button">Return</button>
-    </a>
-</section>
+        <div class="ui fluid five item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top:0;">
+            <span class="item">
+                <div class="ui statistic">
+                    <div class="value font bold big">
+                        <span>4700</span>
+                    </div>
+                    <div class="label page font huge lighter no transformation">Agency<br>Code</div>
+                </div>
+            </span>
+            <span class="item">
+                <div class="ui statistic">
+                    <div class="value font bold big">
+                        <span>GSA</span>
+                    </div>
+                    <div class="label page font huge lighter no transformation">Acronym<br>Shortname</div>
+                </div>
+            </span>
+            <span class="item">
+                <div class="ui statistic">
+                    <div class="value font bold big">
+                        <span>39</span>
+                    </div>
+                    <div class="label page font huge lighter no transformation">Agency<br>Program</div>
+                </div>
+            </span>
+            <span class="item">
+                <div class="ui statistic">
+                    <div class="value font bold big">
+                        <span>5</span>
+                    </div>
+                    <div class="label page font huge lighter no transformation">Program<br>Low<br>Number</div>
+                </div>
+            </span>
+            <span class="item">
+                <div class="ui statistic">
+                    <div class="value font bold big">
+                        <span>100</span>
+                    </div>
+                    <div class="label page font huge lighter no transformation">Program<br>High<br>Number</div>
+                </div>
+            </span>
+        </div>
+
+
+        <div class="ui bottom attached segment borderless">
+
+            <!-- Options -->
+
+            <div class="ui grid">
+
+                <div class="two column row">
+                    <div class="column right aligned">
+                        <a class="ui fluid large primary button" ui-sref="editOrganization">
+                            <i class="write icon"></i> Edit 
+                        </a>
+                    </div>
+                    <div class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="organizationList">
+                            <i class="arrow left icon"></i> Return 
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
