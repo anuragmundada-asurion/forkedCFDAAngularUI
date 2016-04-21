@@ -1,84 +1,90 @@
 <primary-nav-bar></primary-nav-bar>
-<global-search-box></global-search-box>
 
+<div class="ui fixed container">
 
-<section class="usa-grid-full">
-    <h1>Add/Edit Organization</h1>
+    <h1 style="margin-top:30px;">Edit Organization</h1>
+    
+    <div class="ui small horizontal list">
 
-    <div class="usa-grid-full">
-        <div class="usa-width-three-fourths">
-            <h2>Agency Information </h2>
-            <!-- STATIC CONTENT FOR NOW!-->
-            <div class="usa-width-three-fourths vp-section" style="width: 60%;">
-                <div>
-                    <p class="vp-field-label-big">Name: </p>
-
-                    <p class="vp-field-value">GENERAL SERVICES ADMINISTRATION</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Agency Code: </p>
-
-                    <p class="vp-field-value">4700</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Acronym/Shortname: </p>
-
-                    <input class="vp-field-value" value="GSA"/>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Summaries: </p>
-
-                    <button class="vp-field-value">Add New Summary</button>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Agency Program Code: </p>
-
-                    <p class="vp-field-value">39</p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Program Low Number: </p>
-
-                    <input class="vp-field-value" value="5"/>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Program High Number: </p>
-
-                    <input class="vp-field-value" value="100"/>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Status: </p>
-
-                    <select>
-                        <option value=""></option>
-                        <option value="Inactive">Inactive</option>
-                        <option value="Active">Active</option>
-                    </select>
-                </div>
-
+        <div class="item">
+            <div class="content">
+                <div class="header">Created</div>
+                April 20, 2009 12:48 pm
             </div>
         </div>
-        <div class="usa-width-one-fourth">
-            <h3>Agency Info</h3>
 
-            <p>Created: <span>April 20, 2009 12:48 pm</span></p>
-
-            <p>By: <span></span></p>
-
-            <p>Modified: <span>April 18, 2016 8:00 am</span></p>
-
-            <p>By: <span>	Michael Stephenson</span></p>
+        <div class="item">
+            <div class="content">
+                <div class="header">Modified</div>
+                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
+            </div>
         </div>
-    </div>
-</section>
-<section class="usa-grid-full">
-    <a ui-sref="">
-        <button type="button">Submit</button>
-    </a>
-    <a ui-sref="">
-        <button type="button">Save</button>
-    </a>
-    <a ui-sref="organizationList">
-        <button type="button">Return</button>
-    </a>
 
-</section>
+    </div>
+
+    <form class="ui form" style="margin-bottom: 50px;">
+        
+        <div class="three fields" style="margin-bottom: 30px;">
+
+            <div class="disabled field">
+            <label>Name</label>
+                <input type="text" name="agencyname" placeholder="" value="General Services Administration" disabled="" >
+            </div>
+            
+            <div class="disabled field">
+                <label>Agency Code</label>
+                <input type="text" name="agencycode" placeholder="" value="4700" disabled="" >
+            </div>
+            
+            <div class="field">
+                <label>Acronym/Shortname</label>
+                <input type="text" name="shortname" placeholder="" value="GSA" >
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Summaries</label>
+            <button class="ui tiny button"><i class="plus icon"></i>Add New Summary</button>
+        </div>
+        
+        <div class="four fields" style="margin:40px 0px 30px 0px;">
+
+            <div class="disabled field">
+                <label>Agency Program Code</label>
+                <input type="text" name="programcode" placeholder="" value="39" disabled="" >
+            </div>
+
+            <div class="field">
+                <label>Program Low Number</label>
+                <input type="text" name="low" placeholder="" value="5" >
+            </div>
+
+            <div class="field">
+                <label>Program High Number</label>
+                <input type="text" name="high" placeholder="" value="100" >
+            </div>
+
+            <div class="field">
+                <label>Status</label>
+                <select class="ui fluid dropdown">
+                    <option value=""></option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Active" selected>Active</option>
+                </select>
+            </div>
+
+        </div>
+        
+        <a ui-sref="organizationList" class="ui large button">Return</a>
+
+        <button class="ui primary large button">Save</button>
+
+        <button class="ui primary large button" type="submit">Submit</button>
+
+    </form>
+
+</div>
+
+
+

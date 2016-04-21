@@ -6,5 +6,10 @@
         function($scope, $state, $stateParams, $timeout, $window, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog) {
 
             console.log("hello from Organization Form Ctrl ");
+
+            angular.element(document).ready(function () {
+                $(".ui.dropdown").dropdown();
+            });
+
     }]);
 })();
