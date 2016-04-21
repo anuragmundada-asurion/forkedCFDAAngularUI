@@ -295,7 +295,7 @@
             $scope.dtInstance = {};
 
             $scope.dtColumnDefs = [
-                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '50%')
+                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '200px')
             ];
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
@@ -308,6 +308,7 @@
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
                 })
+                .withOption('order',[[1,'asc']])
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
