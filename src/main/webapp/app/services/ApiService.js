@@ -18,8 +18,7 @@
             "federalHierarchyConfiguration": "/api/federalHierarchyConfigurations",
             "programCount": "/api/programCount",
             "federalHierarchyList": "/api/federalHierarchies",
-            "historicalIndex": "/api/historicalIndex", //:programNumber
-            "organizationList": "/api/organization"
+            "historicalIndex": "/api/historicalIndex" //:programNumber
         };
 
         this.APIs = APIs;

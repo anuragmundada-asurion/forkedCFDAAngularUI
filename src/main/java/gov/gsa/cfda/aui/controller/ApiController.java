@@ -402,13 +402,13 @@ public class ApiController {
 
         if (parentLevels.equalsIgnoreCase("all")) {
             builder.queryParam("parentLevels", "all");
-        }else{
+        } else {
             builder.queryParam("parentLevels", parentLevels);
         }
 
         if (childrenLevels.equalsIgnoreCase("all")) {
             builder.queryParam("childrenLevels", "all");
-        }else{
+        } else {
             builder.queryParam("childrenLevels", childrenLevels);
         }
 
@@ -451,6 +451,24 @@ public class ApiController {
         Map<String, Object> params = new HashMap<>();
         params.put("programNumber", programNumber);
         return getsCall(null, getHistoricalIndexApiUrl() + "/" + id, params);
+    }
+
+    @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.GET)
+    public String getFederalHierarchyConfigurationsList(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                                        @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                                                        @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
+                                                        @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
+                                                        @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+                                                        @RequestParam(value = "sortBy", required = false, defaultValue = "-organizationId") String sortBy,
+                                                        @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("keyword", keyword);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("includeCount", includeCount);
+        params.put("oFilterParam", oFilterParams);
+        return getsCall(accessToken, getFederalHierarchyConfigurationApiUrl(), params);
     }
 
     @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.GET)
@@ -526,7 +544,7 @@ public class ApiController {
     private String getSearchApiUrl() {
         return environment.getProperty(API_SEARCH_ENV) + "/search";
     }
-    
+
     private String getFederalHierarchyConfigurationApiUrl() {
         return environment.getProperty(API_PROGRAMS_ENV) + "/federalHierarchyConfigurations";
     }
