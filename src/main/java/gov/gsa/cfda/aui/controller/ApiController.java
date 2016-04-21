@@ -40,23 +40,21 @@ public class ApiController {
                                         @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                                         @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
                                         @RequestParam(value = "sortBy", required = false, defaultValue = "-title") String sortBy,
-                                        @RequestParam(value = "status", required = false, defaultValue = "") String status) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Auth-Token", accessToken);
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl())
-                .queryParam("keyword", keyword)
-                .queryParam("includeCount", includeCount)
-                .queryParam("limit", limit)
-                .queryParam("offset", offset)
-                .queryParam("sortBy", sortBy)
-                .queryParam("status", status);
-
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
+                                        @RequestParam(value = "status", required = false, defaultValue = "") String status,
+                                        @RequestParam(value = "latest", required = false, defaultValue = "true") boolean latest,
+                                        @RequestParam(value = "organizationId", required = false, defaultValue = "") String organizationId,
+                                        @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("keyword", keyword);
+        params.put("includeCount", includeCount);
+        params.put("limit", limit);
+        params.put("offset", offset);
+        params.put("sortBy", sortBy);
+        params.put("status", status);
+        params.put("latest", latest);
+        params.put("organizationId", organizationId);
+        params.put("programNumber", programNumber);
+        return getsCall(accessToken, getProgramsApiUrl(), params);
     }
 
     @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.GET, produces = "application/json")
