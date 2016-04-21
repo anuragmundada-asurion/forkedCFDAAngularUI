@@ -13,7 +13,7 @@
 
 
             $scope.loadAgencies = function (data, callback, settings) {
-                console.log("orgList loadAgencies ---> data: ", data);
+
                 var oApiParam = {
                     apiName: 'federalHierarchyConfiguration',
                     apiSuffix: '',
@@ -27,27 +27,41 @@
 
                 ApiService.call(oApiParam).then(
                     function (d) {
+                        console.log("orgList called apiservice ---> d: ", d);
                         var results = d.results;
                         var tableData = [];
+                        var promises = [];
                         angular.forEach(results, function (r) {
                             var row = {
-                                'agency': r['organizationId'],
+                                'agency': {
+                                    'organizationId': r['organizationId'],
+                                },
                                 'programNumberAuto': r['programNumberAuto'],
                                 'programNumberHigh': r['programNumberHigh'],
                                 'programNumberLow': r['programNumberLow']
                             };
+                            //make call to fh to get name
+                            promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], false, false, function (data) {
+
+                                row['agency']['name'] = data.name;
+                            }, function () {
+                                row['agency']['name'] = 'Organization Not Found';
+                            }));
+
+
                             tableData.push(row);
                         });
 
-                        console.log("regOff -- about to call callback, data: ", data);
-                        console.log("regOff -- about to call callback, d: ", d);
-                        console.log("regOff -- about to call callback, tableData: ", tableData);
 
-                        callback({
-                            "draw": parseInt(data['draw']) + 1,
-                            "recordsTotal": d['totalCount'],
-                            "recordsFiltered": d['totalCount'],
-                            "data": tableData
+                        $q.all(promises).then(function () {
+                            callback({
+                                "draw": parseInt(data['draw']) + 1,
+                                "recordsTotal": d['totalCount'],
+                                "recordsFiltered": d['totalCount'],
+                                "data": tableData
+                            });
+
+
                         });
                     }
                 );
@@ -107,7 +121,7 @@
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data + '/view">' + data + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
                     })
             ];
         }]);
