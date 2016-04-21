@@ -1,105 +1,82 @@
 <primary-nav-bar></primary-nav-bar>
 
 
+<div class="ui fixed container">
 
-<div class="background gray" style="padding: 40px 40px;" >
+    <h1 style="margin-top:30px;">View Organization</h1>
+    
+    <div class="ui small horizontal list">
 
-
-    <div class="ui fixed container" ng-show="organization" >
-        <div class="ui top attached segment borderless">
-            <div class="ui grid">
-                <div class="one column row">
-                    <div class="column">
-
-                        <!-- Status -->
-
-                        <span class="ui top right attached blue label large font uppercase squared" style="margin-top: -8px; margin-right: -21px;">
-                            Active
-                        </span>
-
-                        <!-- Agency name -->
-
-                        <strong class="font grey" style="letter-spacing: -.5px;">General Services Administration</strong>
-
-                    </div>
-                </div>
+        <div class="item">
+            <div class="content">
+                <div class="header">Created</div>
+                April 20, 2009 12:48 pm
             </div>
         </div>
 
-
-        <div class="ui fluid five item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top:0;">
-            <span class="item">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <span>4700</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Agency<br>Code</div>
-                </div>
-            </span>
-            <span class="item">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <span>GSA</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Acronym<br>Shortname</div>
-                </div>
-            </span>
-            <span class="item">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <span>39</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Agency<br>Program</div>
-                </div>
-            </span>
-            <span class="item">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <span>5</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Program<br>Low<br>Number</div>
-                </div>
-            </span>
-            <span class="item">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <span>100</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Program<br>High<br>Number</div>
-                </div>
-            </span>
-        </div>
-
-
-        <div class="ui bottom attached segment borderless">
-
-            <!-- Options -->
-
-            <div class="ui grid">
-
-                <div class="two column row">
-
-                    <div class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="organizationList">
-                            <i class="arrow left icon"></i>Return 
-                        </a>
-                    </div>
-
-                    <div class="column right aligned">
-                        <a class="ui fluid large primary button" ui-sref="editOrganization">
-                            <i class="write icon"></i>Edit 
-                        </a>
-                    </div>
-
-                </div>
-
+        <div class="item">
+            <div class="content">
+                <div class="header">Modified</div>
+                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
             </div>
-
-
         </div>
 
     </div>
 
+    <div class="ui form" style="margin-bottom: 50px;">
+        
+        <div class="three fields" style="margin-bottom: 30px;">
+
+            <div class="field">
+                <label>Name</label>
+                <p>General Services Administration</p>
+            </div>
+            
+            <div class="field">
+                <label>Agency Code</label>
+                <p>4700</p>
+            </div>
+            
+            <div class="field">
+                <label>Acronym/Shortname</label>
+                <p>GSA</p>
+            </div>
+
+        </div>
+
+        <div class="four fields" style="margin:0px 0px 30px 0px;">
+
+            <div class="field">
+                <label>Agency Program Code</label>
+                <p>39</p>
+            </div>
+
+            <div class="field">
+                <label>Program Low Number</label>
+                <p>5</p>
+            </div>
+
+            <div class="field">
+                <label>Program High Number</label>
+                <p>100</p>
+            </div>
+
+            <div class="field">
+                <label>Status</label>
+                <p>Active</p>
+            </div>
+
+        </div>
+        
+        <a ui-sref="organizationList" class="ui large button">Return</a>
+
+        <a class="ui large primary button" ui-sref="editOrganization">Edit </a>
+
+    </div>
+
 </div>
+
+
+
 
 
