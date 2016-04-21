@@ -7,7 +7,7 @@
         function ($scope, $state, $stateParams, OrganizationFactory, FederalHierarchyService) {
 
             OrganizationFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                console.log('one org data: ', data);
+                //dummy data, will remove this later
                 $scope.oOrganization = {
                     'name': 'GENERAL SERVICES ADMINISTRATION',
                     'acronym': 'GSA',
@@ -18,11 +18,14 @@
                     'programNumberAuto': true
                 };
 
-                $scope.oOrganization2 = data;
-                console.log('$scope.oOrganization2: ', $scope.oOrganization2);
+                $scope.oOrganization = data;
 
+                //add more fields
                 FederalHierarchyService.getFederalHierarchyById(data.organizationId, false, false, function (d) {
-                    console.log('$scope.oOrganization2: ', $scope.oOrganization2);
+                    $scope.oOrganization.name = d.name;
+                    $scope.oOrganization.agencyProgramCode = d.cfdaCode;
+                    $scope.oOrganization.acronym = 'Not available';
+                    $scope.oOrganization.agencyCode = 'Not available';
                 });
 
 
