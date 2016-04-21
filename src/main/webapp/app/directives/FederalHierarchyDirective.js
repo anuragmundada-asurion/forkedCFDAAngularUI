@@ -33,7 +33,7 @@
         return {
             scope: {
                 "organizationId": "=", // ngModel var passed by reference (two-way) 
-                "organizationConfiguration": "=" // ngModel var passed by reference (two-way) 
+                "organizationConfiguration": "=?" // ngModel var passed by reference (two-way) 
             },
             controller: ['$scope', 'ROLES', 'ApiService', function($scope, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
@@ -244,7 +244,7 @@
                         scope.getFederalHierarchyConfiguration(scope.programOrganizationId);
 
                         //Case if user is an AGENCY USER
-                        if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER])) {
+                        if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST])) {
                             FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.programOrganizationId, true, false, function (organizationNames) {
                                 scope.departmentLabel = organizationNames;
                                 scope.organizationId = scope.programOrganizationId;
@@ -271,7 +271,7 @@
             },
             template: 
                 "<div class='organization-container'>"+
-                    "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+"]'>"+
+                    "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+", "+JSON.stringify(ROLES.OMB_ANALYST)+"]'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
                     "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
