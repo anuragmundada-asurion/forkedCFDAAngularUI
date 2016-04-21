@@ -3,13 +3,24 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'RegionalOfficeFactory', 'Dictionary', 'ngDialog',
-        function ($scope, $state, $stateParams, $timeout, RegionalOfficeFactory, Dictionary, ngDialog) {
+    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', 'OrganizationFactory', 'FederalHierarchyService',
+        function ($scope, $state, $stateParams, OrganizationFactory, FederalHierarchyService) {
+
+            OrganizationFactory.get({id: $stateParams.id}).$promise.then(function (data) {
+                console.log('one org data: ', data);
+                $scope.oOrganization = data;
 
 
-            console.log("hello from the view controller of organization");
-            $scope.organization = true;
+                FederalHierarchyService.getFederalHierarchyById(data.organizationId, false, false, function (d) {
+                    $scope.oOrganization.name = d.name;
+                });
 
+
+
+
+
+
+            });
 
         }
     ]);

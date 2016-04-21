@@ -16,6 +16,7 @@
             "regionalOfficeEntity": "/api/regionalOffices/:id",
             "regionalOfficeList": "/api/regionalOffices",
             "federalHierarchyConfiguration": "/api/federalHierarchyConfigurations",
+            "federalHierarchyConfigurationEntity": "/api/federalHierarchyConfigurations/:id",
             "programCount": "/api/programCount",
             "federalHierarchyList": "/api/federalHierarchies",
             "historicalIndex": "/api/historicalIndex" //:programNumber
