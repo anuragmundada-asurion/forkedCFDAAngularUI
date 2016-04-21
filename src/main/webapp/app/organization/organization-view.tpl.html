@@ -4,13 +4,13 @@
 <div class="ui fixed container">
 
     <h1 style="margin-top:30px;">View Organization</h1>
-    
+
     <div class="ui small horizontal list">
 
         <div class="item">
             <div class="content">
                 <div class="header">Created</div>
-                April 20, 2009 12:48 pm
+                April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
             </div>
         </div>
 
@@ -24,22 +24,22 @@
     </div>
 
     <div class="ui form" style="margin-bottom: 50px;">
-        
+
         <div class="three fields" style="margin-bottom: 30px;">
 
             <div class="field">
                 <label>Name</label>
-                <p>General Services Administration</p>
+                <p>{{oOrganization.name}}</p>
             </div>
-            
+
             <div class="field">
                 <label>Agency Code</label>
-                <p>4700</p>
+                <p>{{oOrganization.agencyCode}}</p>
             </div>
-            
+
             <div class="field">
                 <label>Acronym/Shortname</label>
-                <p>GSA</p>
+                <p>{{oOrganization.acronym}}</p>
             </div>
 
         </div>
@@ -48,26 +48,26 @@
 
             <div class="field">
                 <label>Agency Program Code</label>
-                <p>39</p>
+                <p>{{oOrganization.agencyProgramCode}}</p>
             </div>
 
             <div class="field">
                 <label>Program Low Number</label>
-                <p>5</p>
+                <p>{{oOrganization.programNumberLow}}</p>
             </div>
 
             <div class="field">
                 <label>Program High Number</label>
-                <p>100</p>
+                <p>{{oOrganization.programNumberHigh}}</p>
             </div>
 
             <div class="field">
-                <label>Status</label>
-                <p>Active</p>
+                <label>Use Manual FAL Number</label>
+                <p>{{(!oOrganization.programNumberAuto)? 'Yes': 'No'}}</p>
             </div>
 
         </div>
-        
+
         <a ui-sref="organizationList" class="ui large button">Return</a>
 
         <a class="ui large primary button" ui-sref="editOrganization">Edit </a>
