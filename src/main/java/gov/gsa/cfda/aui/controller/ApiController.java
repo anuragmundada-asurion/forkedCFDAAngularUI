@@ -162,7 +162,6 @@ public class ApiController {
                                 @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") int size,
                                 @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
-
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -276,30 +275,6 @@ public class ApiController {
                                      @PathVariable("id") String officeId) throws SQLException, RuntimeException {
         this.deleteCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId);
     }
-
-    @RequestMapping(value = "/api/organization", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getOrganizations(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                     @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-                                     @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
-                                     @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
-                                     @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
-                                     @RequestParam(value = "sortBy", required = false, defaultValue = "-organizationId") String sortBy,
-                                     @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
-//        Map<String, Object> params = new HashMap<>();
-//        params.put("keyword", keyword);
-//        params.put("limit", limit);
-//        params.put("offset", offset);
-//        params.put("sortBy", sortBy);
-//        params.put("includeCount", includeCount);
-//        params.put("oFilterParam", oFilterParams);
-//        return getsCall(accessToken, getRegionalOfficeApiUrl(), params);
-        return "{hello:'world1'}";
-    }
-
-
-
-
-
 
     @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getActions(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
@@ -446,7 +421,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchy(@RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
-                                      @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
+                                          @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
@@ -460,8 +435,8 @@ public class ApiController {
 
     @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchyById(@PathVariable("id") String id,
-                                          @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
-                                          @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
+                                              @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
+                                              @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
@@ -481,16 +456,29 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.GET)
-    public String getFederalHierarchyConfiguration(@PathVariable("id") String id, 
-            @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Auth-Token", accessToken);
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getFederalHierarchyConfigurationApiUrl()+ "/" + id);
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
-        return response.getBody();
+    public HttpEntity getFederalHierarchyConfiguration(@PathVariable("id") String id,
+                                                       @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        return ResponseEntity.status(HttpStatus.OK).body(getCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id));
+    }
+
+    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.PATCH)
+    public HttpEntity updateFederalHierarchyConfiguration(@PathVariable("id") String id,
+                                                          @RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                                          @RequestBody String jsonBody) {
+        return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody));
+    }
+
+    @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.POST)
+    public HttpEntity createFederalHierarchyConfiguration(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                                          @RequestBody String jsonBody) {
+        return ResponseEntity.status(HttpStatus.OK).body(createCall(accessToken, getFederalHierarchyConfigurationApiUrl(), jsonBody));
+    }
+
+    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.DELETE)
+    public HttpEntity deleteFederalHierarchyConfiguration(@PathVariable("id") String id,
+                                                          @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        this.deleteCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     private String getProgramRequestsApiUrl() {
