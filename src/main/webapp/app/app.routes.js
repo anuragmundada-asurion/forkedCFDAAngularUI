@@ -182,16 +182,6 @@
                         ]
                     }
                 })
-                //.state('addRegionalOffice', {
-                //    url: "/organization/create",
-                //    templateUrl: "organization/organization-form.tpl.html",
-                //    controller: "OrganizationFormCtrl",
-                //    access: {
-                //        requiredPermissions: [
-                //            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE
-                //        ]
-                //    }
-                //})
                 .state('editOrganization', {
                     url: "/organization/:id/edit",
                     templateUrl: "organization/organization-form.tpl.html",
