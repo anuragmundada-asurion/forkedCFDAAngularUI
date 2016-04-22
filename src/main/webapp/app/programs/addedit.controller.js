@@ -247,12 +247,10 @@
                     }
 
                     //Prepend 2 digits (ProgramCode) to programNumber
-                    if (copy.status === 'Draft') {
-                        copy.programNumber = vm.programCode+'.'+copy.programNumber;
-                    }
-
-                    //clear out program number if organization's number is auto generated
-                    if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+                    if (copy.status === 'Draft' && vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
+                        copy.programNumber = vm.programCode+'.'+((typeof copy.programNumber !== 'undefined') ? copy.programNumber : '');
+                    } else if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+                        //clear out program number if organization's number is auto generated
                         copy.programNumber = '';
                     }
 
