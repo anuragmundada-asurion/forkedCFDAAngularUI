@@ -248,16 +248,16 @@
                         });
                     }
 
+                    if (!copy._id || !copy.status) {
+                        copy.status = "Draft";
+                    }
+
                     //Prepend 2 digits (ProgramCode) to programNumber
                     if (copy.status === 'Draft' && vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
                         copy.programNumber = vm.programCode+'.'+((typeof copy.programNumber !== 'undefined') ? copy.programNumber : '');
                     } else if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
                         //clear out program number if organization's number is auto generated
                         copy.programNumber = '';
-                    }
-
-                    if (!copy._id || !copy.status) {
-                        copy.status = "Draft";
                     }
 
                     //title cannot be changed when the program is Published. Since the field
@@ -629,7 +629,7 @@
                     if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode &&
                         vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh && vm.program.programNumber.length === 3) {
 
-                        //get program by organizationID/ProgramNumber
+                        //get programs by organizationID/ProgramNumber
                         var oApiParam = {
                             apiName: 'programList',
                             apiSuffix: '',
@@ -650,7 +650,26 @@
                                 } else {
                                     vm.isProgramNumberUnique = false;
                                 }
-                            } else if(data.results.length > 1) {
+                            } else if(data.results.length === 2) { //make sure these 2 programs aren't the same/parent program (revision case)
+                                //get current program (parentProgramId) becuase it doesn't exist in vm.program
+                                var oApiParam = {
+                                    apiName: 'programList',
+                                    apiSuffix: '/'+vm.program._id,
+                                    oParams: {},
+                                    oData: {},
+                                    method: 'GET'
+                                };
+
+                                ApiService.call(oApiParam).then(function (oProgram) {
+                                    if ((data.results[0].data._id === vm.program._id || data.results[0].data._id === oProgram.parentProgramId) &&
+                                    (data.results[1].data._id === vm.program._id || data.results[1].data._id === oProgram.parentProgramId))
+                                    {
+                                        vm.isProgramNumberUnique = true;
+                                    } else {
+                                        vm.isProgramNumberUnique = false;
+                                    }
+                                });
+                            } else if(data.results.length > 2) {
                                 vm.isProgramNumberUnique = false;
                             }
                         }, function (error) {
