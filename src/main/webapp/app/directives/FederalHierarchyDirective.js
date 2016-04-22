@@ -33,9 +33,10 @@
         return {
             scope: {
                 "organizationId": "=", // ngModel var passed by reference (two-way) 
-                "organizationConfiguration": "=?" // ngModel var passed by reference (two-way) 
+                "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
+                "programCode": "=?" // ngModel var passed by reference (two-way) optional 
             },
-            controller: ['$scope', 'ROLES', 'ApiService', function($scope, ROLES, ApiService) {
+            controller: ['$scope', '$filter', 'ROLES', 'ApiService', function($scope, $filter, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
 
                 /**
@@ -71,7 +72,7 @@
                             $scope.selectedAgencyId = null;
                             $scope.dictionary.aOffice = [];
                             $scope.selectedOfficeId = null;
-
+                            
                             if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
                                     && $scope.selectedDeptId !== null) {
                                 //get agencies of the selected department
@@ -120,6 +121,25 @@
 
                     //get federal hierarchy configuration 
                     $scope.getFederalHierarchyConfiguration($scope.organizationId);
+
+                    //get program code (first 2 digits)
+                    $scope.getProgramCode($scope.organizationId, $scope.dictionary.aDepartment.concat($scope.dictionary.aAgency).concat($scope.dictionary.aOffice));
+                };
+
+                /**
+                 * get program code (First 2 digits)
+                 * @param String elementID
+                 * @param Array aData
+                 * @returns Void
+                 */
+                $scope.getProgramCode = function(elementID, aData){
+                    var aSelectedOrganization = $filter('filter')(aData, { "elementId": elementID });
+
+                    if($.isArray(aSelectedOrganization) && aSelectedOrganization.length === 1) {
+                        $scope.programCode = aSelectedOrganization[0].cfdaCode;
+                    } else {
+                        $scope.programCode = '';
+                    }
                 };
 
                 /**
@@ -201,6 +221,9 @@
                                         if(oAgency.hasOwnProperty('hierarchy')) {
                                             $scope.dictionary.aOffice = oAgency.hierarchy;
                                         }
+
+                                        //get program code (first 2 digits)
+                                        $scope.getProgramCode($scope.programOrganizationId, $scope.dictionary.aAgency);
                                         return;
                                     }
 
@@ -213,6 +236,9 @@
                                                 $scope.selectedAgencyId = oAgency.elementId;
                                                 $scope.selectedOfficeId = oOffice.elementId;
                                                 $scope.dictionary.aOffice = oAgency.hierarchy;
+
+                                                //get program code (first 2 digits)
+                                                $scope.getProgramCode($scope.programOrganizationId, $scope.dictionary.aOffice);
                                                 return;
                                             }
                                         });
@@ -221,6 +247,9 @@
                             });
                         } else if($scope.programOrganizationId == oData.elementId) { //if the program's organization id or user's organization id is the same then prepopulate agencies
                             $scope.dictionary.aAgency = oData.hierarchy;
+
+                            //get program code (first 2 digits)
+                            $scope.getProgramCode($scope.programOrganizationId, $scope.dictionary.aDepartment);
                         }
                     });
                 };

@@ -12,7 +12,8 @@
     </div>
     <div class="input-field" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
         <h3 for="title7">Program Number<span class="required" >*</span></h3>
-        <span type="text" class="italic" id="title7"  ng-bind="gsavm.program.programNumber"></span>
+        <span type="text" class="italic" id="title7" ng-show="(gsavm.program.status && gsavm.program.status !== 'Draft')" ng-bind="gsavm.program.programNumber"></span>
+        <span type="text" class="italic" id="title7" ng-show="(gsavm.program.status && gsavm.program.status === 'Draft')">{{ gsavm.programCode + '.'+ gsavm.program.programNumber }}</span>
     </div>
 </section>
 <section class="sub-section" >

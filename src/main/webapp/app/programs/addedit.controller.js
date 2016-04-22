@@ -98,6 +98,11 @@
                             }, function (error) {
                                 console.log(error);
                             });
+                        } else if (vm.program.status === 'Draft') {
+                            //remove first 2 digits (Program Code) from ProgramNumber
+                            if(vm.program.programNumber && vm.program.programNumber.indexOf('.') !== -1) {
+                                vm.program.programNumber = vm.program.programNumber.split('.')[1];
+                            }
                         }
                     });
                 }
@@ -239,6 +244,11 @@
                                 }
                             }
                         });
+                    }
+
+                    //Prepend 2 digits (ProgramCode) to programNumber
+                    if (copy.status === 'Draft') {
+                        copy.programNumber = vm.programCode+'.'+copy.programNumber;
                     }
 
                     //clear out program number if organization's number is auto generated
