@@ -3,44 +3,27 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', 'OrganizationFactory', 'FederalHierarchyService',
-        function ($scope, $state, $stateParams, OrganizationFactory, FederalHierarchyService) {
+    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', 'OrganizationFactory', 'FederalHierarchyService', 'FhConfigurationService',
+        function ($scope, $state, $stateParams, OrganizationFactory, FederalHierarchyService, FhConfigurationService) {
 
-            OrganizationFactory.get({id: $stateParams.id}).$promise.then(function (data) {
+            //OrganizationFactory.get({id: $stateParams.id}).$promise.then(function (data) {
+            //
+            //
+            //    console.log('got this data... : ', data);
+            //    $scope.oOrganization = data;
+            //
+            //
+            //});
 
 
-                console.log('got this data... : ', data);
+            FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function(data){
+
+                console.log('got this data from teh SERVICE, in the viewCtrl', data);
+
                 $scope.oOrganization = data;
-
-
-
-
-
-
-
-                ////dummy data, will remove this later
-                //$scope.oOrganization = {
-                //    'name': 'GENERAL SERVICES ADMINISTRATION',
-                //    'acronym': 'GSA',
-                //    'agencyCode': '4700',
-                //    'agencyProgramCode': '39',
-                //    'programNumberLow': '5',
-                //    'programNumberHigh': '100',
-                //    'programNumberAuto': true
-                //};
-                //
-                //$scope.oOrganization = data;
-                //
-                ////add more fields
-                //FederalHierarchyService.getFederalHierarchyById(data.organizationId, false, false, function (d) {
-                //    $scope.oOrganization.name = d.name;
-                //    $scope.oOrganization.agencyProgramCode = d.cfdaCode;
-                //    $scope.oOrganization.acronym = 'Not available';
-                //    $scope.oOrganization.agencyCode = 'Not available';
-                //});
-
-
             });
+
+
 
         }
     ]);
