@@ -27,7 +27,6 @@
 
                 ApiService.call(oApiParam).then(
                     function (d) {
-                        console.log("orgList called apiservice ---> d: ", d);
                         var results = d.results;
                         var tableData = [];
                         var promises = [];
@@ -54,6 +53,9 @@
 
 
                         $q.all(promises).then(function () {
+                            console.log('orgList -- about to call callback, d:', d);
+                            console.log('orgList -- about to call callback, data:', data);
+                            console.log('orgList -- about to call callback, tableData:', tableData);
                             callback({
                                 "draw": parseInt(data['draw']) + 1,
                                 "recordsTotal": d['totalCount'],
