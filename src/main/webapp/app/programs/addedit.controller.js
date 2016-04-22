@@ -101,6 +101,7 @@
                         } else if (vm.program.status === 'Draft') {
                             //remove first 2 digits (Program Code) from ProgramNumber
                             if(vm.program.programNumber && vm.program.programNumber.indexOf('.') !== -1) {
+                                vm.programCode = vm.program.programNumber.split('.')[0];
                                 vm.program.programNumber = vm.program.programNumber.split('.')[1];
                             }
                         }
@@ -188,6 +189,7 @@
                     submitProgram: submitProgram,
                     validateProgramFields: validateProgramFields,
                     getDictionary: getDictionary,
+                    verifyProgramNumber: verifyProgramNumber,
                     getAuthorizationTitle: appUtil.getAuthorizationTitle,
                     getAmendmentTitle: appUtil.getAuthorizationTitle,
                     getAccountTitle: appUtil.getAccountTitle,
@@ -505,7 +507,9 @@
                     || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
                     || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
                     || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
-                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= 0 && oProgram.programNumber<=999 && oProgram.programNumber.length === 3)));
+                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= 0 && oProgram.programNumber<=999 && oProgram.programNumber.length === 3))
+                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && vm.isProgramNumberUnique === false)
+                    );
                 }
 
                 /**
@@ -619,6 +623,41 @@
                     }
 
                     return aDictionary;
+                }
+
+                function verifyProgramNumber() {
+                    if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode &&
+                        vm.program.programNumber >= 0 && vm.program.programNumber<=999 && vm.program.programNumber.length === 3) {
+
+                        //get program by organizationID/ProgramNumber
+                        var oApiParam = {
+                            apiName: 'programList',
+                            apiSuffix: '',
+                            oParams: {
+                                organizationId: vm.program.organizationId,
+                                programNumber: vm.programCode+'.'+vm.program.programNumber
+                            },
+                            oData: {},
+                            method: 'GET'
+                        };
+
+                        ApiService.call(oApiParam).then(function (data) {
+                            if(data.results.length === 0) {
+                                vm.isProgramNumberUnique = true;
+                            } else if(data.results.length === 1) { //make sure this program is not the same as the one we're editing now
+                                if(data.results[0].data._id === vm.program._id) {
+                                    vm.isProgramNumberUnique = true;
+                                } else {
+                                    vm.isProgramNumberUnique = false;
+                                }
+                            } else if(data.results.length > 1) {
+                                vm.isProgramNumberUnique = false;
+                            }
+                        }, function (error) {
+                        });
+                    } else {
+                        vm.isProgramNumberUnique = true;
+                    }
                 }
             }]);
 })();
