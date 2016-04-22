@@ -29,16 +29,19 @@
 
             <div class="field">
                 <label>Name</label>
+
                 <p>{{oOrganization.name}}</p>
             </div>
 
             <div class="field">
                 <label>Agency Code</label>
+
                 <p>{{oOrganization.agencyCode}}</p>
             </div>
 
             <div class="field">
                 <label>Acronym/Shortname</label>
+
                 <p>{{oOrganization.acronym}}</p>
             </div>
 
@@ -48,21 +51,25 @@
 
             <div class="field">
                 <label>Agency Program Code</label>
+
                 <p>{{oOrganization.agencyProgramCode}}</p>
             </div>
 
             <div class="field">
                 <label>Program Low Number</label>
+
                 <p>{{oOrganization.programNumberLow}}</p>
             </div>
 
             <div class="field">
                 <label>Program High Number</label>
+
                 <p>{{oOrganization.programNumberHigh}}</p>
             </div>
 
             <div class="field">
                 <label>Use Manual FAL Number</label>
+
                 <p>{{(!oOrganization.programNumberAuto)? 'Yes': 'No'}}</p>
             </div>
 
@@ -70,7 +77,7 @@
 
         <a ui-sref="organizationList" class="ui large button">Return</a>
 
-        <a class="ui large primary button" ui-sref="editOrganization">Edit </a>
+        <a class="ui large primary button" ui-sref="editOrganization({id: id})">Edit </a>
 
     </div>
 

@@ -3,11 +3,12 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('OrganizationViewCtrl', ['$scope', '$state', '$stateParams', 'FhConfigurationService',
-        function ($scope, $state, $stateParams, FhConfigurationService) {
+    myApp.controller('OrganizationViewCtrl', ['$scope', '$stateParams', 'FhConfigurationService',
+        function ($scope, $stateParams, FhConfigurationService) {
 
+            $scope.id = $stateParams.id;
             //call on service to get the fully processed data, as we expect it
-            FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function (data) {
+            FhConfigurationService.getFhConfiguration({id: $scope.id}, function (data) {
                 $scope.oOrganization = data;
             });
 
