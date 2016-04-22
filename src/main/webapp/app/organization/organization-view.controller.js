@@ -10,6 +10,7 @@
             //call on service to get the fully processed data, as we expect it
             FhConfigurationService.getFhConfiguration({id: $scope.id}, function (data) {
                 $scope.oOrganization = data;
+                //console.log("organization view ctrl: got data: ", data);
             });
 
 

@@ -3,7 +3,7 @@
 <div class="ui fixed container">
 
     <h1 style="margin-top:30px;">Edit Organization</h1>
-    
+
     <div class="ui small horizontal list">
 
         <div class="item">
@@ -23,64 +23,59 @@
     </div>
 
     <form class="ui form" style="margin-bottom: 50px;">
-        
+
         <div class="three fields" style="margin-bottom: 30px;">
 
             <div class="disabled field">
-            <label>Name</label>
-                <input type="text" name="agencyname" placeholder="" value="General Services Administration" disabled="" >
+                <label for="name">Name</label>
+                <input type="text" id="name" ng-model="oOrganization.name">
             </div>
-            
+
             <div class="disabled field">
-                <label>Agency Code</label>
-                <input type="text" name="agencycode" placeholder="" value="4700" disabled="" >
+                <label for="agencycode">Agency Code</label>
+                <input type="text" id="agencycode" ng-model="oOrganization.agencyCode">
             </div>
-            
+
             <div class="field">
-                <label>Acronym/Shortname</label>
-                <input type="text" name="shortname" placeholder="" value="GSA" >
+                <label for="acronym">Acronym/Shortname</label>
+                <input type="text" id="acronym" ng-model="oOrganization.acronym" disabled="">
             </div>
 
         </div>
 
-        <div class="field">
-            <label>Summaries</label>
-            <button class="ui tiny button"><i class="plus icon"></i>Add New Summary</button>
-        </div>
-        
+
         <div class="four fields" style="margin:40px 0px 30px 0px;">
 
             <div class="disabled field">
-                <label>Agency Program Code</label>
-                <input type="text" name="programcode" placeholder="" value="39" disabled="" >
+                <label for="agencyProgramCode">Agency Program Code</label>
+                <input type="text" id="agencyProgramCode" ng-model="oOrganization.agencyProgramCode">
             </div>
 
             <div class="field">
-                <label>Program Low Number</label>
-                <input type="text" name="low" placeholder="" value="5" >
+                <label for="programNumberLow">Program Low Number</label>
+                <input type="text" id="programNumberLow"  ng-model="oOrganization.programNumberLow">
             </div>
 
             <div class="field">
-                <label>Program High Number</label>
-                <input type="text" name="high" placeholder="" value="100" >
+                <label for="programNumberHigh">Program High Number</label>
+                <input type="text" id="programNumberHigh" ng-model="oOrganization.programNumberHigh">
             </div>
 
             <div class="field">
-                <label>Status</label>
-                <select class="ui fluid dropdown">
+                <!-- note: have to switch the value. auto=!manual -->
+                <label for="programNumberAuto">Use Manual FAL Number</label>
+                <select id="programNumberAuto" class="ui fluid dropdown" ng-model="oOrganization.programNumberAuto">
                     <option value=""></option>
-                    <option value="Inactive">Inactive</option>
-                    <option value="Active" selected>Active</option>
+                    <option value="false">Yes</option>
+                    <option value="true" selected>No</option>
                 </select>
             </div>
 
         </div>
-        
-        <a ui-sref="organizationList" class="ui large button">Return</a>
 
+        <a ui-sref="organizationList" class="ui large button">Cancel</a>
         <button class="ui primary large button">Save</button>
 
-        <button class="ui primary large button" type="submit">Submit</button>
 
     </form>
 
