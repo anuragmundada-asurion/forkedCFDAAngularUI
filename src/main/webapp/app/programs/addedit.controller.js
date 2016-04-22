@@ -507,7 +507,7 @@
                     || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
                     || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
                     || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
-                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= 0 && oProgram.programNumber<=999 && oProgram.programNumber.length === 3))
+                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= vm.organizationConfiguration.programNumberLow && oProgram.programNumber <= vm.organizationConfiguration.programNumberHigh && oProgram.programNumber.length === 3))
                     || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && vm.isProgramNumberUnique === false)
                     );
                 }
@@ -627,7 +627,7 @@
 
                 function verifyProgramNumber() {
                     if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode &&
-                        vm.program.programNumber >= 0 && vm.program.programNumber<=999 && vm.program.programNumber.length === 3) {
+                        vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh && vm.program.programNumber.length === 3) {
 
                         //get program by organizationID/ProgramNumber
                         var oApiParam = {
