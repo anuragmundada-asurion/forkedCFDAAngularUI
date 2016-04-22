@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('MyListingsCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'AuthorizationService', 'ngDialog', 'MyListingsService', 'FederalHierarchyService', 'DTOptionsBuilder', '$compile', '$q',
-        function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q) {
+    myApp.controller('MyListingsCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'AuthorizationService', 'ngDialog', 'MyListingsService', 'FederalHierarchyService', 'DTOptionsBuilder', '$compile', '$q', '$timeout',
+        function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q, $timeout) {
             var self = this;
             $scope.listService = MyListingsService;
 
@@ -261,7 +261,9 @@
                             '<p class="usa-alert-text">This program has been successfully deleted.</p>'+
                             '</div>'+
                             '</div>',
-                            className: 'ngdialog-theme-default'
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
                         });
 
                         $timeout(function() {
@@ -276,7 +278,9 @@
                             '<p class="usa-alert-text">An error has occurred, please try again!</p>'+
                             '</div>'+
                             '</div>',
-                            className: 'ngdialog-theme-default'
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
                         });
 
                         $timeout(function() {
