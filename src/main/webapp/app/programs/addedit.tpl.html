@@ -17,6 +17,7 @@
             <h2><span class="section-circle">1</span> General Information</h2>
             <section field-finder-bookmark title="000 Intro" class="sub-section usa-grid-full">
                 <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode"></federal-hierarchy-inputs>
+                <federal-hierarchy-label ng-if="((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
             </section>
             <section field-finder-bookmark class="sub-section usa-grid-full" title="010 Program Title">
                 <h3><label for="title">010 Program Title<span class="required">*</span></label></h3>
@@ -38,6 +39,12 @@
                             <span ng-show="gsavm.form.programNumber.$error.required">You must provide a program number.</span>
                         </div>
                         <span ng-show="gsavm.isProgramNumberUnique === false">The program number is already been used.</span>
+                    </div>
+                </div>
+                <div ng-if="(gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft')">
+                    <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
+                    <div class="input-field" >
+                        <span ng-bind="gsavm.program.programNumber"></span>
                     </div>
                 </div>
             </section>

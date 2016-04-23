@@ -274,9 +274,12 @@
 
                         //Case if user is an AGENCY USER
                         if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST])) {
-                            FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.programOrganizationId, true, false, function (organizationNames) {
-                                scope.departmentLabel = organizationNames;
+                            FederalHierarchyService.getFederalHierarchyById(scope.programOrganizationId, true, false, function (oData) {
+                                scope.departmentLabel = FederalHierarchyService.getFullNameFederalHierarchy(oData);
                                 scope.organizationId = scope.programOrganizationId;
+
+                                //get program code (first 2 digits)
+                                scope.getProgramCode(scope.organizationId, [oData]);
                             }, function (error) {
                                 scope.error = "An error has occurred, Please try again !";
                             });
