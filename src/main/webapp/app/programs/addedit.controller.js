@@ -631,10 +631,11 @@
 
                         //verify program number uniqueness
                         var oApiParam = {
-                            apiName: 'programList',
-                            apiSuffix: '/'+vm.program._id+'/isProgramNumberUnique',
+                            apiName: 'programNumberUnique',
+                            apiSuffix: '',
                             oParams: {
-                                programNumber: vm.programCode+'.'+vm.program.programNumber
+                                programNumber: vm.programCode+'.'+vm.program.programNumber,
+                                id: vm.program._id
                             },
                             oData: {},
                             method: 'GET'

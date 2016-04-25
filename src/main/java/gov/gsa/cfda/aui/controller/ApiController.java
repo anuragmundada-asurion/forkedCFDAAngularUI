@@ -189,13 +189,14 @@ public class ApiController {
         return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/revise", null);
     }
 
-    @RequestMapping(value = "/api/programs/{id}/isProgramNumberUnique", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/api/programs/isProgramNumberUnique", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String isProgramNumberUnique(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                        @PathVariable("id") String programId,
+                                        @RequestParam(value = "id", required = true, defaultValue = "") String programId,
                                         @RequestParam(value = "programNumber", required = true, defaultValue = "") String programNumber) throws Exception {
         Map<String, Object> params = new HashMap<>();
+        params.put("id", programId);
         params.put("programNumber", programNumber);
-        return this.getsCall(accessToken, getProgramsApiUrl() + "/" + programId + "/isProgramNumberUnique", params);
+        return this.getsCall(accessToken, getProgramsApiUrl() + "/isProgramNumberUnique", params);
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

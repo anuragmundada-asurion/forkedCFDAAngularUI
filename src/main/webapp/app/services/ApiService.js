@@ -8,6 +8,7 @@
             "dictionaryList": "/api/dictionaries",
             "programEntity": "/api/programs/:id",
             "programList": "/api/programs",
+            "programNumberUnique": "/api/programs/isProgramNumberUnique",
             "programRequest": "/api/programRequests",
             "programRequestAction": "/api/programRequestActions",
             "programAction": "/api/programs", // /:program_id
