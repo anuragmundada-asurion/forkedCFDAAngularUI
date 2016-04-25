@@ -68,13 +68,10 @@
         };
 
         var getParentPath = function (id, success) {
-
             var count = 0;
             this.getFederalHierarchyById(id, true, false, function (fhData) {
-                //console.log('recieved fh data: ', fhData);
                 var levels = {};
                 while (fhData.name) {
-                    //levels[fhData.type] = fhData.name;
                     //first level
                     if (count == 0) {
                         levels['DEPARTMENT'] = fhData.name;
@@ -83,7 +80,6 @@
                     if (count == 1) {
                         levels['AGENCY'] = fhData.name;
                     }
-
                     //last one
                     if (fhData.hierarchy) {
                         fhData = fhData.hierarchy[0];
@@ -92,13 +88,11 @@
                     //last one
                     else {
                         //have at least more than 2 levels.
-
                         if (count > 1)
                             levels['OFFICE'] = fhData.name;
                         break;
                     }
                 }
-                //console.log('returning levels: ', levels);
                 success(levels);
             }, function (error) {
                 console.log("Error occured: ", error);
@@ -143,9 +137,6 @@
             );
 
         };
-
-
-
 
 
         /**
@@ -204,13 +195,53 @@
             return name;
         };
 
+        /**
+         * @param id
+         * @returns array of rows for datatable
+         */
+        var dtFormattedData = function (id, successCallback) {
+            var formattedData = [];
+
+            //call fh
+            getFederalHierarchyById(id, false, true, function (d) {
+                var data = [d];//need it as an array
+                //need recurssion, will put formatted data in formattedData var
+                formatData(data);
+                //execute callback
+                successCallback(formattedData);
+            });
+
+            //helper function; expects data as an array
+            var formatData = function (data, id) {
+                if (data) {
+                    data.forEach(function (currentObj, index, array) {
+                        var obj = {};
+                        obj.name = currentObj.name;
+                        obj.elementId = currentObj.elementId;
+                        obj.hasParent = (currentObj._links.parent) ? true : false;
+                        if (obj.hasParent) {
+                            obj.parentId = id;
+                        }
+                        formattedData.push(obj);
+                        var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;
+                        //recursion
+                        formatData(childrenData, currentObj.elementId);
+                    });
+                }
+            };
+
+
+        };
+
+
         return {
             getFullLabelPathFederalHierarchyById: getFullLabelPathFederalHierarchyById,
             getFederalHierarchyById: getFederalHierarchyById,
             dropdownDataStructure: dropdownDataStructure,
             getParentPath: getParentPath,
             getFullNameFederalHierarchy: getFullNameFederalHierarchy,
-            getChildren: getChildren
+            getChildren: getChildren,
+            dtFormattedData: dtFormattedData
         };
     }]);
 })();
