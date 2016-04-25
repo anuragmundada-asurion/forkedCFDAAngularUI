@@ -629,12 +629,11 @@
                     if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode &&
                         vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh && vm.program.programNumber.length === 3) {
 
-                        //get programs by organizationID/ProgramNumber
+                        //verify program number uniqueness
                         var oApiParam = {
                             apiName: 'programList',
-                            apiSuffix: '',
+                            apiSuffix: '/'+vm.program._id+'/isProgramNumberUnique',
                             oParams: {
-                                organizationId: vm.program.organizationId,
                                 programNumber: vm.programCode+'.'+vm.program.programNumber
                             },
                             oData: {},
@@ -642,37 +641,10 @@
                         };
 
                         ApiService.call(oApiParam).then(function (data) {
-                            if(data.results.length === 0) {
-                                vm.isProgramNumberUnique = true;
-                            } else if(data.results.length === 1) { //make sure this program is not the same as the one we're editing now
-                                if(data.results[0].data._id === vm.program._id) {
-                                    vm.isProgramNumberUnique = true;
-                                } else {
-                                    vm.isProgramNumberUnique = false;
-                                }
-                            } else if(data.results.length === 2) { //make sure these 2 programs aren't the same/parent program (revision case)
-                                //get current program (parentProgramId) becuase it doesn't exist in vm.program
-                                var oApiParam = {
-                                    apiName: 'programList',
-                                    apiSuffix: '/'+vm.program._id,
-                                    oParams: {},
-                                    oData: {},
-                                    method: 'GET'
-                                };
-
-                                ApiService.call(oApiParam).then(function (oProgram) {
-                                    if ((data.results[0].data._id === vm.program._id || data.results[0].data._id === oProgram.parentProgramId) &&
-                                    (data.results[1].data._id === vm.program._id || data.results[1].data._id === oProgram.parentProgramId))
-                                    {
-                                        vm.isProgramNumberUnique = true;
-                                    } else {
-                                        vm.isProgramNumberUnique = false;
-                                    }
-                                });
-                            } else if(data.results.length > 2) {
-                                vm.isProgramNumberUnique = false;
-                            }
+                            vm.isProgramNumberUnique = data.isProgramNumberUnique;
                         }, function (error) {
+                            vm.isProgramNumberUnique = false;
+                            console.log(error);
                         });
                     } else {
                         vm.isProgramNumberUnique = true;
