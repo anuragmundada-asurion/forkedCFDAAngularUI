@@ -4,6 +4,14 @@
 
     <h1 style="margin-top:30px;">Edit Organization</h1>
 
+    <div class="usa-grid-full" style="clear: both;">
+        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+            <div class="usa-alert-body">
+                <p class="usa-alert-text">{{ flash.message }}</p>
+            </div>
+        </div>
+    </div>
+
     <div class="ui small horizontal list">
 
         <div class="item">
@@ -74,7 +82,7 @@
         </div>
 
         <a ui-sref="organizationList" class="ui large button">Cancel</a>
-        <button class="ui primary large button">Save</button>
+        <button class="ui primary large button"  ng-click="saveFhConfiguration()" >Save</button>
 
 
     </form>
