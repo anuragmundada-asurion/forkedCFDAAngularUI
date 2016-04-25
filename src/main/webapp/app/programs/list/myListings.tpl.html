@@ -12,36 +12,11 @@
                     <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
                     <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
                 </ul>
-
-                <ul class="tab-menu" ng-if="listService.isActiveList()">
-                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
-                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
-                    </li>
-                    <li ng-class="(listService.currentFilterId === 'draft') ? 'tab-selected' : '';" ng-click="changeFilter('draft')"><span>Draft <span ng-show="listService.currentFilterId === 'draft'">({{totalCount}})</span></span>
-                    </li>
-                    <li ng-class="(listService.currentFilterId === 'pending') ? 'tab-selected' : '';" ng-click="changeFilter('pending')"><span>Pending <span ng-show="listService.currentFilterId === 'pending'">({{totalCount}})</span></span>
-                    </li>
-                    <li ng-class="(listService.currentFilterId === 'published') ? 'tab-selected' : '';" ng-click="changeFilter('published')"><span>Published <span ng-show="listService.currentFilterId === 'published'">({{totalCount}})</span></span>
-                    </li>
-                    <li ng-class="(listService.currentFilterId === 'rejected') ? 'tab-selected' : '';" ng-click="changeFilter('rejected')"><span>Rejected <span ng-show="listService.currentFilterId === 'rejected'">({{totalCount}})</span></span>
-                    </li>
-                </ul>
-                
-                <ul class="tab-menu" ng-if="listService.isArchivedList()">
-                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
-                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
-                    </li>
-                </ul>
-                
-                <ul class="tab-menu" ng-if="listService.isRequestList()">
-                    <li ng-class="(angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all') ? 'tab-selected' : '';"
-                        ng-click="changeFilter('all')"><span>All <span ng-show="angular.isUndefinedOrNull(listService.currentFilterId) || listService.currentFilterId === 'all'">({{totalCount}})</span></span>
-                    </li>
-                </ul>
-
             </div>
         </div>
-        <div class="three column row">
+        <div class="four column row">
+            <div class="column"></div>
+            <div class="column"></div>
             <div class="column">
             <a ng-if="listService.isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
             </div>
@@ -54,8 +29,29 @@
                 </div>
             </div>
         </div>
+        <div class="five column row" ng-if="listService.isActiveList()">
+            <div class="column">
+                <input id="allFilter" ng-click="toggleSelectAll()" type="checkbox" ng-checked="filters.draft && filters.pending && filters.published && filters.rejected">
+                <label for="allFilter">Select All</label>
+            </div>
+            <div class="column">
+                <input id="draftFilter" type="checkbox" ng-model="filters.draft">
+                <label for="draftFilter">Draft</label>
+            </div>
+            <div class="column">
+                <input id="pendingFilter" type="checkbox" ng-model="filters.pending">
+                <label for="pendingFilter">Pending</label>
+            </div>
+            <div class="column">
+                <input id="publishedFilter" type="checkbox" ng-model="filters.published">
+                <label for="publishedFilter">Published</label>
+            </div>
+            <div class="column">
+                <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected">
+                <label for="rejectedFilter">Rejected</label>
+            </div>
+        </div>
     </div>
 </div>
 
-<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui
-                    darkblue table"></table>
+<table id="programsTable" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui darkblue table"></table>

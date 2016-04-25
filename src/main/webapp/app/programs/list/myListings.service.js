@@ -101,191 +101,84 @@
         var self = this;
         this.lists = {
             'activePrograms': {
-                filters: {
-                    'all': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('width', '200px')
-                                .withOption('className', 'status')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false),
-                            DTColumnBuilder.newColumn('status').withTitle('Status').withOption('defaultContent', '')
-                        ]
-                    },
-                    'draft': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false)
-                        ]
-                    },
-                    'published': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false)
-                        ]
-                    },
-                    'pending': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false)
-                        ]
-                    },
-                    'rejected': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false)
-                        ]}
-                }
+                columns: [
+                    //  TODO Select FAL
+                    DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('title')
+                        .withTitle('Title')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getTitleAnchor(data);
+                        }),
+                    DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('submittedDate').withTitle('Date Submitted').withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getDateContent(data);
+                        }),
+                    DTColumnBuilder.newColumn('publishedDate').withTitle('Date Published').withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getDateContent(data);
+                        }),
+                    DTColumnBuilder.newColumn('action')
+                        .withTitle('Action')
+                        .withOption('width', '200px')
+                        .withOption('className', 'status')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getActionContent(data);
+                        })
+                        .withOption('orderable', false),
+                    DTColumnBuilder.newColumn('status').withTitle('Status').withOption('defaultContent', '')
+                ]
             },
             'archivedPrograms': {
-                filters: {
-                    'all': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('archivedDate').withTitle('Date Archived').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                }),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getActionContent(data);
-                                })
-                                .withOption('orderable', false)
-                        ]
-                    }
-                }
+                columns: [
+                    //  TODO Select FAL
+                    DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('title')
+                        .withTitle('Title')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getTitleAnchor(data);
+                        }),
+                    DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('archivedDate').withTitle('Date Archived').withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getDateContent(data);
+                        }),
+                    DTColumnBuilder.newColumn('action')
+                        .withTitle('Action')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getActionContent(data);
+                        })
+                        .withOption('orderable', false)
+                ]
             },
             'requests': {
-                filters: {
-                    'all': {
-                        columns: [
-                            //  TODO Select FAL
-                            DTColumnBuilder.newColumn('title')
-                                .withTitle('Title')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getRequestTitleAnchor(data);
-                                }),
-                            DTColumnBuilder.newColumn('requestType').withTitle('Request Type').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('reason').withTitle('Reason').withOption('defaultContent', ''),
-                            DTColumnBuilder.newColumn('action')
-                                .withTitle('Action')
-                                .withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getRequestActionContent(data);
-                                })
-                                .withOption('orderable', false),
-                            DTColumnBuilder.newColumn('requestDate').withTitle('Date Requested').withOption('defaultContent', '')
-                                .withOption('render', function(data) {
-                                    return self.getDateContent(data);
-                                })
-                        ]
-                    }
-                }
+                columns: [
+                    //  TODO Select FAL
+                    DTColumnBuilder.newColumn('title')
+                        .withTitle('Title')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getRequestTitleAnchor(data);
+                        }),
+                    DTColumnBuilder.newColumn('requestType').withTitle('Request Type').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('reason').withTitle('Reason').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('action')
+                        .withTitle('Action')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getRequestActionContent(data);
+                        })
+                        .withOption('orderable', false),
+                    DTColumnBuilder.newColumn('requestDate').withTitle('Date Requested').withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getDateContent(data);
+                        })
+                ]
             }
-        };
-
-        this.hasFilter = function(filter) {
-            return this.lists[this.currentListId].filters.hasOwnProperty(filter);
         };
 
         this.hasList = function(list) {
@@ -294,15 +187,10 @@
 
         this.setList = function(newList) {
             this.currentListId = newList;
-            this.setFilter('all');
-        };
-
-        this.setFilter = function(newFilter) {
-            this.currentFilterId = newFilter;
         };
 
         this.getCurrentColumns = function() {
-            return this.lists[this.currentListId].filters[this.currentFilterId].columns;
+            return this.lists[this.currentListId].columns;
         };
 
         this.isActiveList = function() {
@@ -319,6 +207,5 @@
 
         this.searchKeyword = '';
         this.currentListId = 'activePrograms';
-        this.currentFilterId = 'all';
     }]);
 }();

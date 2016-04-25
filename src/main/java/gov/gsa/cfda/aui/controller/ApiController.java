@@ -40,7 +40,7 @@ public class ApiController {
                                         @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                                         @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
                                         @RequestParam(value = "sortBy", required = false, defaultValue = "-title") String sortBy,
-                                        @RequestParam(value = "status", required = false, defaultValue = "") String status,
+                                        @RequestParam(value = "status", required = false, defaultValue = "") String statuses,
                                         @RequestParam(value = "latest", required = false, defaultValue = "true") boolean latest,
                                         @RequestParam(value = "organizationId", required = false, defaultValue = "") String organizationId,
                                         @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
@@ -50,7 +50,7 @@ public class ApiController {
         params.put("limit", limit);
         params.put("offset", offset);
         params.put("sortBy", sortBy);
-        params.put("status", status);
+        params.put("status", statuses);
         params.put("latest", latest);
         params.put("organizationId", organizationId);
         params.put("programNumber", programNumber);
@@ -106,7 +106,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/listingcount/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/listingCount/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getListingCountApiCall(@PathVariable("year") String year) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

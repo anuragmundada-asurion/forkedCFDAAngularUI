@@ -7,7 +7,6 @@
         function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q, $timeout) {
             var self = this;
             $scope.listService = MyListingsService;
-
             if ($stateParams.hasOwnProperty("list")) {
                 if (MyListingsService.hasList($stateParams.list)) {
                     MyListingsService.setList($stateParams.list);
@@ -15,9 +14,44 @@
             }
 
             if ($stateParams.hasOwnProperty("filter")) {
-                if (MyListingsService.hasFilter($stateParams.filter)) {
-                    MyListingsService.setFilter($stateParams.filter);
+                $scope.allFilters = false;
+                $scope.filters = {
+                    draft: false,
+                    pending: false,
+                    published: false,
+                    rejected: false
+                };
+                switch($stateParams.filter) {
+                    case 'draft':
+                        $scope.filters.draft = true;
+                        break;
+                    case 'pending':
+                        $scope.filters.pending = true;
+                        break;
+                    case 'published':
+                        $scope.filters.published= true;
+                        break;
+                    case 'rejected':
+                        $scope.filters.rejected = true;
+                        break;
+                    default:
+                        $scope.allFilters = true;
+                        $scope.filters = {
+                            draft: true,
+                            pending: true,
+                            published: true,
+                            rejected: true
+                        };
+                        break;
                 }
+            } else {
+                $scope.allFilters = true;
+                $scope.filters = {
+                    draft: true,
+                    pending: true,
+                    published: true,
+                    rejected: true
+                };
             }
 
             $scope.changeList = function(newList) {
@@ -26,17 +60,36 @@
                 }
             };
 
-            $scope.changeFilter = function(newFilter) {
-                if (MyListingsService.hasFilter(newFilter)) {
-                    MyListingsService.searchKeyword = '';
-                    $state.go('programList', {filter: newFilter});
-                }
-            };
-
             $scope.$watch(function() {
                 return MyListingsService.searchKeyword;
             }, function() {
                 self.reloadTable();
+            }, true);
+
+            $scope.toggleSelectAll = function() {
+                $scope.allFilters = !$scope.allFilters;
+                if ($scope.allFilters) {
+                    $scope.filters = {
+                        draft: true,
+                        pending: true,
+                        published: true,
+                        rejected: true
+                    };
+                } else {
+                    $scope.filters = {
+                        draft: false,
+                        pending: false,
+                        published: false,
+                        rejected: false
+                    };
+                }
+            };
+
+            $scope.$watch('filters', function(newValue, oldValue) {
+                $scope.allFilters = $scope.filters.draft && $scope.filters.pending && $scope.filters.published && $scope.filters.rejected;
+                if (newValue != oldValue) {
+                    self.reloadTable();
+                }
             }, true);
 
             this.parsePrograms = function(dtData, callback, d) {
@@ -118,27 +171,27 @@
                 }
             };
 
+            angular.element('#programsTable').on('draw.dt', function() {
+                // Initialize semantic ui dropdown
+                $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                // Remove select to fix dropdown  double click bug
+                $(".dataTables_length select").remove();
+                $compile(angular.element('.dataTables_length'))($scope);
+            });
+
             this.initializeTable = function() {
                 if (!$scope.dtInstance) {
                     $scope.dtInstance = {};
                 }
                 
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
-                    .withOption('initComplete', function(settings, json){
-                        // Initialize semantic ui dropdown
-                        $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
-                        // Remove select to fix dropdown  double click bug
-                        $(".dataTables_length select").remove();
-                        // Append info text for easier theming
-                        $(".dataTables_info").appendTo(".dataTables_length label");
-                        $(".dataTables_info").contents().unwrap();
-                    })
                     .withOption('processing', true)
                     .withOption('serverSide', true)
                     .withOption('searching', false)
+                    .withOption('info', false)
                     .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                     .withDataProp('data')
-                    .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
+                    .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"l> <"column"p> > > > > <"clear">')
                     .withOption('rowCallback', function(row) {
                         $compile(row)($scope);
                     })
@@ -146,8 +199,7 @@
                     .withLanguage({
                         'processing': '<div class="ui active small inline loader"></div> Loading',
                         'emptyTable': 'No ' + (MyListingsService.isRequestList() ? 'Requests' : 'Programs') +  ' Found',
-                        'lengthMenu': 'Showing _MENU_ entries',
-                        'info': ' of _TOTAL_ entries'
+                        'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
                     });
                 $scope.dtColumns = MyListingsService.getCurrentColumns();
             };
@@ -173,8 +225,25 @@
                 };
 
                 if (MyListingsService.isActiveList()) {
-                    if (MyListingsService.currentFilterId !== 'all') {
-                        oApiParam.oParams['status'] = MyListingsService.currentFilterId;
+                    if (!$scope.allFilters) {
+                        var statuses = [];
+                        if ($scope.filters.draft) {
+                            statuses.push('draft');
+                        }
+
+                        if ($scope.filters.pending) {
+                            statuses.push('pending');
+                        }
+
+                        if ($scope.filters.published) {
+                            statuses.push('published');
+                        }
+
+                        if ($scope.filters.rejected) {
+                            statuses.push('rejected');
+                        }
+
+                        oApiParam.oParams['status'] = statuses.join(',');
                     }
                 } else if (MyListingsService.isArchivedList()) {
                     oApiParam.oParams['status'] = 'Archived';
