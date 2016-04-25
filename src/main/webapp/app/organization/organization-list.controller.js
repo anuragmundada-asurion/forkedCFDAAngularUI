@@ -33,11 +33,14 @@
                         angular.forEach(results, function (r) {
                             var row = {
                                 'agency': {
-                                    'organizationId': r['organizationId'],
+                                    'organizationId': r['organizationId']
                                 },
                                 'programNumberAuto': r['programNumberAuto'],
                                 'programNumberHigh': r['programNumberHigh'],
-                                'programNumberLow': r['programNumberLow']
+                                'programNumberLow': r['programNumberLow'],
+                                'action': {
+                                    'organizationId': r['organizationId']
+                                }
                             };
                             //make call to fh to get name
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], false, false, function (data) {
@@ -75,7 +78,6 @@
             $scope.dtColumnDefs = [
                 DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '200px')
             ];
-
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function (settings, json) {
                     // Initialize semantic ui dropdown
@@ -91,7 +93,7 @@
                     $("table tr:nth-child(3)").html("<td colspan='2' style='padding: 0;'><table style='width: 100%;'><tr><td><a class='ui mini primary button' ><span class='fa fa-pencil'></span></a><a class='ui mini primary button' href='/organization/3999999/view'><span class='fa fa-file-text-o'></span></a><a style='margin-left: 100px;'>General Services Administration</a></td></tr><tr><td style='background-color: #e5e5e5;'><a class='ui mini primary button' style='margin-left: 38px;' ><span class='fa fa-pencil'></span></a><a class='ui mini primary button' href='/organization/3999999/view'><span class='fa fa-file-text-o'></span></a><a style='margin-left: 100px;'>CFDA Test Office</a></td></tr><tr><td style='background-color: #cccccc;'><a class='ui mini primary button' style='margin-left:75px;' ><span class='fa fa-pencil'></span></a><a class='ui mini primary button' href='/organization/3999999/view'><span class='fa fa-file-text-o'></span></a><a style='margin-left: 100px;'>EDS Test Location</a></td></tr></table></td>");
 
                 })
-                .withOption('order',[[1,'asc']])
+                .withOption('order', [[1, 'asc']])
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
@@ -109,14 +111,14 @@
 
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
-                    .withOption('data', null)
-
-                    .withOption('defaultContent',
-                    '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/edit">' +
-                    '<span class="fa fa-pencil"></span></a>' +
-                    '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + '3999999' + '/view">' +
-                    '<span class="fa fa-file-text-o"></span></a>')
-
+                    .withOption('defaultContent', '')
+                    .withOption('render', function (data) {
+                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/edit">' +
+                            '<span class="fa fa-pencil"></span></a>' +
+                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' +
+                            '<span class="fa fa-file-text-o"></span></a>';
+                        return htmlStr;
+                    })
                     .withOption('orderable', false),
 
                 DTColumnBuilder.newColumn('agency')
