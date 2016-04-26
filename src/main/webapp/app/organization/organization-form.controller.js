@@ -10,10 +10,6 @@
                 $(".ui.dropdown").dropdown();
             });
 
-            $scope.model = {
-                useManualNumbers: 0
-            };
-
             $scope.id = $stateParams.id;
             FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function (data) {
                 $scope.oOrganization = data;
@@ -22,16 +18,8 @@
 
 
 
-            $scope.$watch('model.useManualNumbers', function () {
-                console.log("model.useManualNumbers changeed!! ", $scope.model.useManualNumbers);
-                if ($scope.oOrganization) {
-
-                    //$scope.useManualNumbers === 1 -> means Auto -> False,
-                    $scope.oOrganization.programNumberAuto = ($scope.model.useManualNumbers == 1) ? false : true;
-                    console.log("updating orgObj ", $scope.oOrganization);
-                }
-
-
+            $scope.$watch('oOrganization.programNumberAuto', function () {
+                console.log("oOrganization.programNumberAuto changeed!! ", $scope.oOrganization.programNumberAuto);
             });
 
             /**
