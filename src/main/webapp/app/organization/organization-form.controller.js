@@ -13,14 +13,14 @@
             $scope.id = $stateParams.id;
             FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function (data) {
                 $scope.oOrganization = data;
-                console.log("called be, got this configuration:", data);
+                //console.log("called be, got this configuration:", data);
             });
 
 
 
-            $scope.$watch('oOrganization.programNumberAuto', function () {
-                console.log("oOrganization.programNumberAuto changeed!! ", $scope.oOrganization.programNumberAuto);
-            });
+            //$scope.$watch('oOrganization.programNumberAuto', function () {
+            //    console.log("oOrganization.programNumberAuto changeed!! ", $scope.oOrganization.programNumberAuto);
+            //});
 
             /**
              * Create or Edit Program
@@ -39,7 +39,7 @@
                     //scroll up in order for user to see the error message
                     $window.scrollTo(0, 0);
                 } else {
-                    console.log("about to save config", $scope.oOrganization);
+                    //console.log("about to save config", $scope.oOrganization);
                     $scope.oOrganization['$update']({id: $stateParams.id}).then(function (data) {
                         //show dialog
                         ngDialog.open({
