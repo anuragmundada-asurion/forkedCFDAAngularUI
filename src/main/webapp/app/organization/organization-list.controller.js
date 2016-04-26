@@ -11,7 +11,7 @@
 
 
             $scope.loadAgencies = function (data, callback, settings) {
-                console.log(data);
+                console.log('tableData', data);
 
                 //params for fh call
                 var oParams = {
@@ -28,7 +28,7 @@
 
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(userOrgId, oParams, function (d) {
-                    console.log('got thi sdata;;;;;', d);
+                    console.log('got this data from fh', d);
                     var tableData = [];
                     var results = d;
                     //make row obj for datatables
