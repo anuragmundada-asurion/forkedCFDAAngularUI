@@ -33,7 +33,6 @@
             //if extra params were passed in
             if (params) {
                 angular.extend(oApiParam.oParams, params);
-                console.log('extra params provided, oApiParam: ', oApiParam);
             }
 
             //make api call to get federalHierarchy by id
@@ -206,22 +205,21 @@
          * @returns array of rows for datatable
          */
         var dtFormattedData = function (id, oParams, successCallback) {
-
-            console.log("calling FH!!!!!-------!!!!!!");
             var formattedData = [];
             //call fh
             getFederalHierarchyById(id, false, true, function (d) {
-                console.log("called fh with id:", id, " got this data: ", d);
                 var data = [d];//need it as an array
+
                 //if id = null, data returned in embedded property
                 if (d._embedded) {
                     data = d._embedded.hierarchy;
                 }
 
+
                 //need recurssion, will put formatted data in formattedData var
                 formatData(data, id);
+
                 //execute callback
-                console.log(formattedData);
                 successCallback(formattedData);
             }, null, oParams);
 

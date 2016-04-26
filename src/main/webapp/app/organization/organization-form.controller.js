@@ -11,9 +11,34 @@
             });
 
 
+            //for select dropdown
+            $scope.items = [{
+                value: true,
+                label: 'Yes'
+            }, {
+                value: false,
+                label: 'No'
+            }];
+            $scope.selected = $scope.items[0];
+
+
             $scope.id = $stateParams.id;
             FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function (data) {
                 $scope.oOrganization = data;
+
+                //for select dropdown
+                if ($scope.oOrganization.programNumberAuto == true) {
+                    $scope.selected = $scope.items[1];
+                } else {
+                    $scope.selected = $scope.items[0];
+                }
+
+
+                //needs to happen after the GET call..
+                $scope.$watch('selected', function () {
+                    //switch! to auto = !manual
+                    $scope.oOrganization.programNumberAuto = !($scope.selected.value);
+                });
             });
 
 

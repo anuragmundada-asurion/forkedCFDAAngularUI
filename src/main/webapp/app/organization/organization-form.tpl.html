@@ -61,7 +61,7 @@
 
             <div class="field">
                 <label for="programNumberLow">Program Low Number</label>
-                <input type="text" id="programNumberLow"  ng-model="oOrganization.programNumberLow">
+                <input type="text" id="programNumberLow" ng-model="oOrganization.programNumberLow">
             </div>
 
             <div class="field">
@@ -70,19 +70,14 @@
             </div>
 
             <div class="field">
-                <!-- note: have to switch the value. auto=!manual -->
                 <label for="programNumberAuto">Use Manual FAL Number</label>
-                <select id="programNumberAuto" class="ui fluid dropdown" ng-model="oOrganization.programNumberAuto">
-                    <option value=""></option>
-                    <option value="false">Yes</option>
-                    <option value="true" selected>No</option>
-                </select>
+                <select id="programNumberAuto" ng-options="item as item.label for item in items track by item.value" ng-model="selected"></select>
             </div>
 
         </div>
 
         <a ui-sref="organizationList" class="ui large button">Cancel</a>
-        <button class="ui primary large button"  ng-click="saveFhConfiguration()" >Save</button>
+        <button class="ui primary large button" ng-click="saveFhConfiguration()">Save</button>
 
 
     </form>
