@@ -2308,13 +2308,6 @@ html.tr-coretext {
   color: #27292a !important;
 }
 
-.ui.basic.black.buttons .button:focus,
-.ui.basic.black.button:focus {
-  background: transparent !important;
-  box-shadow: 0px 0px 0px 2px #2f3032 inset !important;
-  color: #27292a !important;
-}
-
 .ui.basic.black.buttons .active.button,
 .ui.basic.black.active.button {
   background: transparent !important;
@@ -24026,6 +24019,7 @@ Floated Menu / Item
 
 .dataTables_wrapper .bottom .dataTables_paginate {
   margin-top: 14px;
+  float: right;
 }
 
 .dataTables_wrapper table td span:first-child {
@@ -35745,3 +35739,53 @@ html.ios body {
 /*******************************
          Site Overrides
 *******************************/
+ ul.tab-menu {
+   width: 100%;
+   list-style: none;
+   margin: 2.1em 0em 1em 0em;
+   border-bottom: 1px solid #f1f1f1;
+ }
+ ul.tab-menu>li {
+   line-height: 1 !important;
+   font-weight: bold;
+   text-align: center;
+   display: inline-block;
+   border-style: solid;
+   background-color: white;
+   border-color: #f1f1f1;
+   color: #0071bc;
+   height: 55px;
+   border-width: 1px 1px 1px 1px;
+   margin-right: -6px;
+   margin-bottom: 0px !important;
+ }
+ ul.tab-menu>li.tab-selected {
+   background-color: #e1f3f8!important;
+   color: #5b616b !important;
+   border-color: none !important;
+   border-width: 1px 1px 3px 1px !important;
+ }
+ ul.tab-menu>li.tab-selected> span {
+     color: #5b616b  !important;
+   }
+
+ ul.tab-menu>li> span {
+   text-decoration: none;
+   display: block;
+   height: 100%;
+   padding-top: 1em;
+   padding-left: 1.85em;
+   padding-right: 1.85em;
+   color: #0071bc;
+ }
+ ul.tab-menu>li:hover {
+    background-color: #d6d7d9;
+  }
+ ul.tab-menu li:before {
+   content: '';
+ }
+ ul.tab-menu li:after {
+   content: none;
+   display:block;
+   margin-bottom: .5em;
+ }
