@@ -4,21 +4,21 @@
     <div class="ui grid" style="margin-bottom: 0;">
         <div class="one column row">
             <div class="column">
-
-                <h1>My <span ng-show="isProgramList">Listings</span><span ng-show="!isProgramList">Requests</span></h1>
-
-                <ul class="tab-menu">
-                    <li ng-class="listService.isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
-                    <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
-                    <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
-                </ul>
+                <h1>My <span ng-show="isProgramList">Listings</span><span ng-show="!isProgramList">Requests</span><span style="font-style:italic; font-weight: normal;" ng-show="!angular.isUndefinedOrNull(totalCount)">({{totalCount}} Results)</span></h1>
             </div>
+        </div>
+        <div class="one column row">
+            <ul class="tab-menu">
+                <li ng-class="listService.isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
+                <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
+                <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
+            </ul>
         </div>
         <div class="four column row">
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-            <a ng-if="listService.isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
+                <a ng-if="listService.isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
             </div>
             <div class="column">
             <div class="ui search">
