@@ -11,8 +11,12 @@
             if (!archived) {
                 if ((status == 'draft' || status == 'rejected') && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS)) {
                     return '<a ui-sref="editProgram({ id: \'' + data['id'] + '\', section: \'review\' })">' + data['text'] + '</a>';
-                } else if (status == 'pending' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
-                    return '<a ui-sref="editProgram({ id: \'' + data['id'] + '\', section: \'review\' })">' + data['text'] + '</a>';
+                } else if (status == 'pending') {
+                    var isNew = data['parentProgramId'] ? false : true;
+                    if (AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
+                        return '<a ui-sref="editProgram({ id: \'' + data['id'] + '\', section: \'review\' })">' + data['text'] + (isNew ? '<img class="new" src="/img/img_cfda/new_icon.svg" />' : '') + '</a>';
+                    }
+                    return '<a ui-sref="reviewProgram({ id: \'' + data['id'] + '\' })">' + data['text'] + (isNew ? '<img class="new" src="/img/img_cfda/new_icon.svg" />' : '') + '</a>';
                 } else {
                     return '<a ui-sref="reviewProgram({ id: \'' + data['id'] + '\' })">' + data['text'] + '</a>';
                 }

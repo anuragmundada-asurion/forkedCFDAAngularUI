@@ -132,7 +132,8 @@
                             id: r['id'],
                             status: r['status'],
                             archived: r['archived'],
-                            text: resultData['title']
+                            text: resultData['title'],
+                            parentProgramId: r['parentProgramId']
                         },
                         'action': {
                             id: r['id'],

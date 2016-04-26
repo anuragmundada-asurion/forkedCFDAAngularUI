@@ -35788,3 +35788,9 @@ html.ios body {
    display:block;
    margin-bottom: .5em;
  }
+
+ img.new {
+   width: 40px;
+   float: right;
+   display: block;
+ }
