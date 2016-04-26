@@ -306,8 +306,20 @@
                 <div class="input-field">
                     <div class="usa-grid-full">
                         <h3>190 Functional Codes<span class="required">*</span></h3>
+
+                        <ul class="usa-unstyled-list action-list">
+                            <li class="action-list-item" ng-repeat="item in gsavm.program.functionalCodes">
+                                <div class="item-btn-group">
+                                    <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aFunctionalCode')">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+                                </div>
+                                <div class="item-title-group">{{ item.displayValue }}</div>
+                            </li>
+                        </ul>
+
                         <isteven-multi-select
-                            max-labels="6"
+                            max-labels="1"
                             input-model="dictionary.aFunctionalCode"    
                             output-model="gsavm.program.functionalCodes"
                             button-label="displayValue"
@@ -315,7 +327,7 @@
                             tick-property="ticked"
                             max-height="250px"
                             group-property="msGroup"
-                            output-properties="element_id"
+                            output-properties="element_id displayValue"
                             helper-elements="all none filter"
                         >
                         </isteven-multi-select>
@@ -370,15 +382,26 @@
                         <div class="usa-grid-full">
                             <label>Eligible Applicants<span class="required">*</span></label>
 
+                            <ul class="usa-unstyled-list action-list">
+                                <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.types">
+                                    <div class="item-btn-group">
+                                        <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aApplicantEligibility')">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </div>
+                                    <div class="item-title-group">{{ item.displayValue }}</div>
+                                </li>
+                            </ul>
+
                             <isteven-multi-select
-                                max-labels="6"
+                                max-labels="1"
                                 input-model="dictionary.aApplicantEligibility"    
                                 output-model="gsavm.program.eligibility.applicant.types"
                                 button-label="displayValue"
                                 item-label="displayValue"
                                 tick-property="ticked"
                                 max-height="250px"
-                                output-properties="element_id"
+                                output-properties="element_id displayValue"
                                 helper-elements="all none filter"
                             >
                             </isteven-multi-select>
@@ -392,15 +415,26 @@
                         <div class="usa-grid-full">
                             <label>Use Of Assistance<span class="required">*</span></label>
 
+                            <ul class="usa-unstyled-list action-list">
+                                <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.assistanceUsageTypes">
+                                    <div class="item-btn-group">
+                                        <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aAssistanceUsageType')">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </div>
+                                    <div class="item-title-group">{{ item.displayValue }}</div>
+                                </li>
+                            </ul>
+
                             <isteven-multi-select
-                                max-labels="6"
+                                max-labels="1"
                                 input-model="dictionary.aAssistanceUsageType"    
                                 output-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"
                                 button-label="displayValue"
                                 item-label="displayValue"
                                 tick-property="ticked"
                                 max-height="250px"
-                                output-properties="element_id"
+                                output-properties="element_id displayValue"
                                 helper-elements="all none filter"
                             >
                             </isteven-multi-select>
@@ -424,15 +458,27 @@
                     <div class="input-field">
                         <div class="usa-grid-full">
                             <label>Beneficiary Eligibility<span class="required">*</span></label>
+                            
+                            <ul class="usa-unstyled-list action-list">
+                                <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.beneficiary.types">
+                                    <div class="item-btn-group">
+                                        <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aBeneficiaryEligibility')">
+                                            <span class="fa fa-times"></span>
+                                        </button>
+                                    </div>
+                                    <div class="item-title-group">{{ item.displayValue }}</div>
+                                </li>
+                            </ul>
+
                             <isteven-multi-select
-                                max-labels="6"
+                                max-labels="1"
                                 input-model="dictionary.aBeneficiaryEligibility"    
                                 output-model="gsavm.program.eligibility.beneficiary.types"
                                 button-label="displayValue"
                                 item-label="displayValue"
                                 tick-property="ticked"
                                 max-height="250px"
-                                output-properties="element_id"
+                                output-properties="element_id displayValue"
                                 helper-elements="all none filter"
                             >
                             </isteven-multi-select>

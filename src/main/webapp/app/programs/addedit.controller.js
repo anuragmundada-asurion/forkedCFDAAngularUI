@@ -53,6 +53,22 @@
                     });
                 };
 
+                /**
+                 * unselect dictionary from dictionary scope
+                 * @param Object oItem
+                 * @param String dictionaryName
+                 * @returns void
+                 */
+                $scope.unselectDictionary = function(oItemRemove, dictionaryName) {
+                    if($scope.dictionary[dictionaryName]) {
+                        angular.forEach($scope.dictionary[dictionaryName], function(oItem, i) {
+                            if(oItem.element_id == oItemRemove.element_id) {
+                                $scope.dictionary[dictionaryName][i].ticked = false;
+                            }
+                        });
+                    }
+                };
+
                 //initialize program object
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
