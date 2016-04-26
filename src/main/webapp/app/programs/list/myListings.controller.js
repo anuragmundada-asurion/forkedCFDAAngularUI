@@ -21,28 +21,34 @@
                     published: false,
                     rejected: false
                 };
-                switch($stateParams.filter) {
-                    case 'draft':
-                        $scope.filters.draft = true;
-                        break;
-                    case 'pending':
-                        $scope.filters.pending = true;
-                        break;
-                    case 'published':
-                        $scope.filters.published= true;
-                        break;
-                    case 'rejected':
-                        $scope.filters.rejected = true;
-                        break;
-                    default:
-                        $scope.allFilters = true;
-                        $scope.filters = {
-                            draft: true,
-                            pending: true,
-                            published: true,
-                            rejected: true
-                        };
-                        break;
+                if (angular.isArray($stateParams.filter)) {
+                    angular.forEach($stateParams.filter, function(f) {
+                        $scope.filters[f] = true;
+                    });
+                } else {
+                    switch($stateParams.filter) {
+                        case 'draft':
+                            $scope.filters.draft = true;
+                            break;
+                        case 'pending':
+                            $scope.filters.pending = true;
+                            break;
+                        case 'published':
+                            $scope.filters.published= true;
+                            break;
+                        case 'rejected':
+                            $scope.filters.rejected = true;
+                            break;
+                        default:
+                            $scope.allFilters = true;
+                            $scope.filters = {
+                                draft: true,
+                                pending: true,
+                                published: true,
+                                rejected: true
+                            };
+                            break;
+                    }
                 }
             } else {
                 $scope.allFilters = true;
@@ -56,7 +62,23 @@
 
             $scope.changeList = function(newList) {
                 if (MyListingsService.hasList(newList)) {
-                    $state.go('programList', {list: newList});
+                    var currentFilters = [];
+                    if ($scope.filters.draft) {
+                        currentFilters.push('draft');
+                    }
+
+                    if ($scope.filters.pending) {
+                        currentFilters.push('pending');
+                    }
+
+                    if ($scope.filters.published) {
+                        currentFilters.push('published');
+                    }
+
+                    if ($scope.filters.rejected) {
+                        currentFilters.push('rejected');
+                    }
+                    $state.go('programList', {list: newList, filter: currentFilters});
                 }
             };
 
