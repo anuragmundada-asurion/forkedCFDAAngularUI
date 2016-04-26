@@ -7,6 +7,11 @@
         function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q, $timeout) {
             var self = this;
             $scope.listService = MyListingsService;
+
+            $scope.isProgramList = function() {
+                return MyListingsService.isActiveList() || MyListingsService.isArchivedList();
+            };
+
             if ($stateParams.hasOwnProperty("list")) {
                 if (MyListingsService.hasList($stateParams.list)) {
                     MyListingsService.setList($stateParams.list);
