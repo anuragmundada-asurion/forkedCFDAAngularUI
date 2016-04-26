@@ -12,7 +12,7 @@
             "programRequest": "/api/programRequests",
             "programRequestAction": "/api/programRequestActions",
             "programAction": "/api/programs", // /:program_id
-            "programCountByYear": "/api/listingcount", //  /:year
+            "programCountByYear": "/api/listingCount", //  /:year
             "programEligibCount": "/api/eligibilitylistings",
             "regionalOfficeEntity": "/api/regionalOffices/:id",
             "regionalOfficeList": "/api/regionalOffices",
