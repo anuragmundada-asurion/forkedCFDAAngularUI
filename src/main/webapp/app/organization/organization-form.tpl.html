@@ -72,10 +72,9 @@
             <div class="field">
                 <!-- note: have to switch the value. auto=!manual -->
                 <label for="programNumberAuto">Use Manual FAL Number</label>
-                <select id="programNumberAuto" class="ui fluid dropdown" ng-model="oOrganization.programNumberAuto">
-                    <option value=""></option>
-                    <option value="false">Yes</option>
-                    <option value="true" selected>No</option>
+                <select id="programNumberAuto" ng-model="model.useManualNumbers" >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
                 </select>
             </div>
 
