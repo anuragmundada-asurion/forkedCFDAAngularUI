@@ -376,8 +376,6 @@ public class ApiController {
     }
 
     private String updateCall(String accessToken, String url, String jsonBody) {
-        System.out.println("*********************************************");
-        System.out.println("accessToken: " + accessToken + " url: " + url + " jsonBody: " + jsonBody);
         RestTemplate restTemplate = new RestTemplate();
         //  Needed for PATCH calls
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
@@ -389,8 +387,6 @@ public class ApiController {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
 
-        System.out.println("update call, goiong to url: " + builder.build().encode().toUri());
-        System.out.println("*********************************************");
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
         return response.getBody();
     }
@@ -498,7 +494,6 @@ public class ApiController {
                                                           @RequestBody String jsonBody) {
 
 
-        System.out.println("reached the proxy1!");
         return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody));
     }
 

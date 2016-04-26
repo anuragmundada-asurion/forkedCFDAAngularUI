@@ -50,7 +50,7 @@
                         //go to list page after 2 seconds
                         $timeout(function () {
                             ngDialog.closeAll();
-                            $state.go('organizationList');
+                            $state.go('viewOrganization', {id: $scope.id});
                         }, 3000);
                     });
                 }
