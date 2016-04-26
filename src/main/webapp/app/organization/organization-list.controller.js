@@ -2,17 +2,35 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'AuthorizationService', 'ROLES',
+        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, AuthorizationService, ROLES) {
 
 
             //call on fh to get the list.. cuz cfda_fh table might not have all the rows needed
             var userOrgId = UserService.getUserOrgId();
 
+
             $scope.loadAgencies = function (data, callback, settings) {
-                //call on fh to get list of obj, formatted and in an array
-                FederalHierarchyService.dtFormattedData(userOrgId, function (results) {
+                console.log(data);
+
+                //params for fh call
+                var oParams = {
+                    limit: data['length'] || 10,
+                    offset: data['start'],
+                    includeCount: true
+                };
+
+
+                //no filter if rmo or super user
+                if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
+                    userOrgId = null;
+                }
+
+                //call on fh to get list of obj, formatted properly and in an array
+                FederalHierarchyService.dtFormattedData(userOrgId, oParams, function (d) {
+                    console.log('got thi sdata;;;;;', d);
                     var tableData = [];
+                    var results = d;
                     //make row obj for datatables
                     angular.forEach(results, function (r) {
                         var row = {
@@ -34,8 +52,8 @@
                     console.log('table daaata', tableData);
                     callback({
                         "draw": parseInt(data['draw']) + 1,
-                        //"recordsTotal": results.length,
-                        //"recordsFiltered": d['totalCount'],
+                        "recordsTotal": results.length,
+                        "recordsFiltered": results.length,
                         "data": tableData
                     });
 

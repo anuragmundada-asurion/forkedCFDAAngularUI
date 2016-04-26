@@ -13,7 +13,7 @@
          * @param callbackFnSuccess
          * @param callbackFnError
          */
-        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
+        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError, params) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: id ? ('/' + id) : '',
@@ -28,6 +28,12 @@
 
             if (includeChildrenLevels) {
                 oApiParam.oParams['childrenLevels'] = 'all';
+            }
+
+            //if extra params were passed in
+            if (params) {
+                angular.extend(oApiParam.oParams, params);
+                console.log('extra params provided, oApiParam: ', oApiParam);
             }
 
             //make api call to get federalHierarchy by id
@@ -199,17 +205,26 @@
          * @param id
          * @returns array of rows for datatable
          */
-        var dtFormattedData = function (id, successCallback) {
-            var formattedData = [];
+        var dtFormattedData = function (id, oParams, successCallback) {
 
+            console.log("calling FH!!!!!-------!!!!!!");
+            var formattedData = [];
             //call fh
             getFederalHierarchyById(id, false, true, function (d) {
+                console.log("called fh with id:", id, " got this data: ", d);
                 var data = [d];//need it as an array
+                //if id = null, data returned in embedded property
+                if (d._embedded) {
+                    data = d._embedded.hierarchy;
+                }
+
                 //need recurssion, will put formatted data in formattedData var
-                formatData(data);
+                formatData(data, id);
                 //execute callback
+                console.log(formattedData);
                 successCallback(formattedData);
-            });
+            }, null, oParams);
+
 
             //helper function; expects data as an array
             var formatData = function (data, id) {
