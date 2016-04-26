@@ -10,6 +10,9 @@
             var userOrgId = UserService.getUserOrgId();
 
 
+            $scope.searchKeyword = '';
+
+
             $scope.loadAgencies = function (data, callback, settings) {
                 //console.log('tableData', data);
 
@@ -20,6 +23,10 @@
                     includeCount: true
                 };
 
+                if ($scope.searchKeyword != '') {
+                    oParams['name'] = $scope.searchKeyword;
+                    console.log("updating oparams with keyword, keyword was not empty: ", oParams);
+                }
 
                 //no filter if rmo or super user
                 if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
@@ -59,7 +66,16 @@
 
                 });
 
+
             };
+
+
+            //reload dt if search keyword changes
+            $scope.$watch('searchKeyword', function () {
+                if ($scope.dtInstance.DataTable) {
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
+            }, true);
 
 
             $scope.dtInstance = {};

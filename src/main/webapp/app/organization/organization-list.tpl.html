@@ -4,9 +4,20 @@
 
     <div class="ui grid" style="margin-top: 0px; margin-bottom: 0px;">
 
-        <div class="one column row">
+        <div class="two column row">
+
             <div class="column">
                 <h1>Organizations List</h1>
+            </div>
+
+            <div class="column">
+                <div class="ui search">
+                    <div class="ui icon fluid input">
+                        <input ng-model="searchKeyword" type="text" class="prompt" placeholder="Search Listings"
+                               aria-controls="agency-table" >
+                        <i class="search icon"></i>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -17,6 +28,5 @@
 </div>
 
 
-
- <!--datatable-->
+<!--datatable-->
 <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs" dt-instance="dtInstance" class="ui darkblue table"></table>
