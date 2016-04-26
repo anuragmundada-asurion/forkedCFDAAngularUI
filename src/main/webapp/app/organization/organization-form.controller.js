@@ -10,17 +10,37 @@
                 $(".ui.dropdown").dropdown();
             });
 
+
+            //for select dropdown
+            $scope.items = [{
+                value: true,
+                label: 'Yes'
+            }, {
+                value: false,
+                label: 'No'
+            }];
+            $scope.selected = $scope.items[0];
+
+
             $scope.id = $stateParams.id;
             FhConfigurationService.getFhConfiguration({id: $stateParams.id}, function (data) {
                 $scope.oOrganization = data;
-                //console.log("called be, got this configuration:", data);
+
+                //for select dropdown
+                if ($scope.oOrganization.programNumberAuto == true) {
+                    $scope.selected = $scope.items[1];
+                } else {
+                    $scope.selected = $scope.items[0];
+                }
+
+
+                //needs to happen after the GET call..
+                $scope.$watch('selected', function () {
+                    //switch! to auto = !manual
+                    $scope.oOrganization.programNumberAuto = !($scope.selected.value);
+                });
             });
 
-
-
-            //$scope.$watch('oOrganization.programNumberAuto', function () {
-            //    console.log("oOrganization.programNumberAuto changeed!! ", $scope.oOrganization.programNumberAuto);
-            //});
 
             /**
              * Create or Edit Program
@@ -39,7 +59,6 @@
                     //scroll up in order for user to see the error message
                     $window.scrollTo(0, 0);
                 } else {
-                    //console.log("about to save config", $scope.oOrganization);
                     $scope.oOrganization['$update']({id: $stateParams.id}).then(function (data) {
                         //show dialog
                         ngDialog.open({
