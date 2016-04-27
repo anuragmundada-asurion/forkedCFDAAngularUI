@@ -5,68 +5,43 @@
     myApp.controller('OrganizationListController', ['$scope', '$timeout', 'appConstants', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile',
         function ($scope, $timeout, appConstants, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile) {
 
-
-            var dataMap = {
-                topLevel: {},
-
-                '100011942': [
-                    {
-                        action: {
-                            organizationId: "100012855"
-                        },
-                        organization: {
-                            hasParent: true,
-                            name: "U.S. COAST GUARD",
-                            organizationId: "100012855",
-                            parentId: "100011942"
-                        }
-                    },
-                    {
-                        action: {
-                            organizationId: "100011968"
-                        },
-                        organization: {
-                            hasParent: true,
-                            name: "U.S. CITIZENSHIP AND IMMIGRATION SERVICES",
-                            organizationId: "100011968",
-                            parentId: "100011942"
-                        }
-                    },
-                    {
-                        action: {
-                            organizationId: "100012967"
-                        },
-                        organization: {
-                            hasParent: true,
-                            name: "U.S. SECRET SERVICE",
-                            organizationId: "100012967",
-                            parentId: "100011942"
-                        }
-                    }
-
-                ]
-
-
-            };
-
-
-            $scope.data = {};
             //Load data from FH
             //------------------------------------------------------------------
-            $scope.dtData; //result of search filter will go into here also
-            $scope.dtData_original; // remains same
-            getDataFromFh();
 
+            getDataFromFh();
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(function (tableData) {
-                    console.log('tableData: ', tableData);
-                    $scope.dtData = tableData;
-                    $scope.dtData_original = tableData;
+                FederalHierarchyService.dtFormattedData(function (results) {
+                    console.log('Results: ', results);
+                    $scope.dtData = results.topLevelData;
+                    $scope.dtData_original = results.totalData;
+                    $scope.childrenMap = results.childrenMappingData;
                 });
             }
 
             $scope.searchKeyword = '';
+
+
+            function getChildren(rowId) {
+                debugger;
+
+                var children = $scope.childrenMap[rowId];
+                var childrenMarkup = '';
+                console.log("the children: ", children);
+                angular.forEach(children, function (child, index, array) {
+                    var childId = child.organization.organizationId;
+                    var childName = child.organization.name;
+                    var action = '<td><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
+                    var title = '<td><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
+                    var row = '<tr id="100500220" role="row" class="odd">' + action + title + '</tr>';
+
+                    childrenMarkup = childrenMarkup + row;
+                    console.log("current childrenMarkup: ", childrenMarkup);
+                });
+
+                console.log("returning this childrenMarkup:", childrenMarkup);
+                return childrenMarkup;
+            }
 
 
             //Watches
@@ -86,7 +61,7 @@
             });
 
 
-            //datatables stuff
+            // Datatables stuff
             //------------------------------------------------------------------
 
             $scope.loadOrganizations = function (data, callback, settings) {
@@ -106,7 +81,7 @@
 
             $scope.rowClicked = function () {
                 console.log("table was clicked");
-                $('table tbody').off().on('click', 'tr', function () {
+                $('table tbody').off('click').on('click', 'tr', function () {
                     console.log("click handler");
                     var data = $scope.dtInstance.DataTable.row(this).data();
                     var rowId = $scope.dtInstance.DataTable.row(this).id();
@@ -114,10 +89,8 @@
 
 
                     //append children after this row.
-                    var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
-                    var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD1</a>');
-                    var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
-                    $(row).insertAfter("#" + rowId);
+                    var childrenMarkup = getChildren(rowId);
+                    $(childrenMarkup).insertAfter("#" + rowId);
 
 
                 });
@@ -130,8 +103,8 @@
                 $(".dataTables_length select").remove();
                 $compile(angular.element('.dataTables_length'))($scope);
 
-                var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
-                var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD</a>');
+                var anchor = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>';
+                var title = '<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD</a>';
                 var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
                 $("table tbody").append(row);
                 $compile(row)($scope);
