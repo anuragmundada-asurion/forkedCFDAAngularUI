@@ -356,10 +356,9 @@
 
                     ApiService.call(oApiParam).then(function() {
                         ngDialog.open({
-                            template: '<div class="usa-alert usa-alert-success" role="alert">'+
-                            '<div class="usa-alert-body">'+
-                            '<p class="usa-alert-text">This program has been successfully deleted.</p>'+
-                            '</div>'+
+                            template:
+                            '<div class="ui ignored message positive">'+
+                            'This program has been successfully deleted.'+
                             '</div>',
                             plain: true,
                             closeByEscape: true,
@@ -372,11 +371,8 @@
                         }, 3000);
                     }, function(error){
                         ngDialog.open({
-                            template: '<div class="usa-alert usa-alert-error" role="alert">'+
-                            '<div class="usa-alert-body">'+
-                            '<h3 class="usa-alert-heading">Error Status</h3>'+
-                            '<p class="usa-alert-text">An error has occurred, please try again!</p>'+
-                            '</div>'+
+                            template: '<div class="ui ignored message error">'+
+                            'An error has occurred, please try again!'+
                             '</div>',
                             plain: true,
                             closeByEscape: true,
