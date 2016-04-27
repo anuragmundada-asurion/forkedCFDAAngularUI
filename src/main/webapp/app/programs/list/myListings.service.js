@@ -185,7 +185,7 @@
                             return self.getRequestActionContent(data);
                         })
                         .withOption('orderable', false),
-                    DTColumnBuilder.newColumn('requestDate').withTitle('Date Requested').withOption('defaultContent', '')
+                    DTColumnBuilder.newColumn('entryDate').withTitle('Date Requested').withOption('defaultContent', '')
                         .withOption('render', function(data) {
                             return self.getDateContent(data);
                         })
@@ -197,27 +197,8 @@
             return this.lists.hasOwnProperty(list);
         };
 
-        this.setList = function(newList) {
-            this.currentListId = newList;
+        this.getColumns = function(listId) {
+            return this.lists[listId].columns;
         };
-
-        this.getCurrentColumns = function() {
-            return this.lists[this.currentListId].columns;
-        };
-
-        this.isActiveList = function() {
-            return this.currentListId === 'activePrograms';
-        };
-
-        this.isArchivedList = function() {
-            return this.currentListId === 'archivedPrograms';
-        };
-
-        this.isRequestList = function() {
-            return this.currentListId === 'requests';
-        };
-
-        this.searchKeyword = '';
-        this.currentListId = 'activePrograms';
     }]);
 }();

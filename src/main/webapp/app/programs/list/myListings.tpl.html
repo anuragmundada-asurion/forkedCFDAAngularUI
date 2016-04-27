@@ -9,27 +9,27 @@
         </div>
         <div class="one column row">
             <ul class="tab-menu">
-                <li ng-class="listService.isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
-                <li ng-class="listService.isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
-                <li ng-class="listService.isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
+                <li ng-class="isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
+                <li ng-class="isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
+                <li ng-class="isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
             </ul>
         </div>
         <div class="four column row">
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-                <a ng-if="listService.isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
+                <a ng-if="isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
             </div>
             <div class="column">
             <div class="ui search">
                     <div class="ui icon fluid input">
-                        <input ng-model="listService.searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
+                        <input ng-model="searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
                         <i class="search icon"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="five column row" ng-if="listService.isActiveList()">
+        <div class="five column row" ng-if="isActiveList()">
             <div class="column">
                 <input id="allFilter" ng-click="toggleSelectAll()" type="checkbox" ng-checked="filters.draft && filters.pending && filters.published && filters.rejected">
                 <label for="allFilter">Select All</label>

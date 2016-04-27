@@ -7,14 +7,28 @@
         function($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q, $timeout) {
             var self = this;
             $scope.listService = MyListingsService;
+            $scope.searchKeyword = '';
+            $scope.currentListId = 'activePrograms';
+
+            $scope.isActiveList = function() {
+                return $scope.currentListId === 'activePrograms';
+            };
+
+            $scope.isArchivedList = function() {
+                return $scope.currentListId === 'archivedPrograms';
+            };
+
+            $scope.isRequestList = function() {
+                return $scope.currentListId === 'requests';
+            };
 
             $scope.isProgramList = function() {
-                return MyListingsService.isActiveList() || MyListingsService.isArchivedList();
+                return $scope.isActiveList() || $scope.isArchivedList();
             };
 
             if ($stateParams.hasOwnProperty("list")) {
                 if (MyListingsService.hasList($stateParams.list)) {
-                    MyListingsService.setList($stateParams.list);
+                    $scope.currentListId = $stateParams.list;
                 }
             }
 
@@ -67,29 +81,15 @@
 
             $scope.changeList = function(newList) {
                 if (MyListingsService.hasList(newList)) {
-                    var currentFilters = [];
-                    if ($scope.filters.draft) {
-                        currentFilters.push('draft');
-                    }
-
-                    if ($scope.filters.pending) {
-                        currentFilters.push('pending');
-                    }
-
-                    if ($scope.filters.published) {
-                        currentFilters.push('published');
-                    }
-
-                    if ($scope.filters.rejected) {
-                        currentFilters.push('rejected');
-                    }
-                    $state.go('programList', {list: newList, filter: currentFilters});
+                    $scope.currentListId = newList;
                 }
             };
 
-            $scope.$watch(function() {
-                return MyListingsService.searchKeyword;
-            }, function() {
+            $scope.$watch('currentListId', function() {
+                self.initializeTable();
+            }, true);
+
+            $scope.$watch('searchKeyword', function() {
                 self.reloadTable();
             }, true);
 
@@ -179,7 +179,7 @@
                         'action': {
                             row: r
                         },
-                        'requestDate': r['entryDate']
+                        'entryDate': r['entryDate']
                     };
                     tableData.push(row);
                 });
@@ -229,10 +229,10 @@
                     .withOption('ajax', this.loadTableItems)
                     .withLanguage({
                         'processing': '<div class="ui active small inline loader"></div> Loading',
-                        'emptyTable': 'No ' + (MyListingsService.isRequestList() ? 'Requests' : 'Programs') +  ' Found',
+                        'emptyTable': 'No ' + ($scope.isRequestList() ? 'Requests' : 'Programs') +  ' Found',
                         'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
                     });
-                $scope.dtColumns = MyListingsService.getCurrentColumns();
+                $scope.dtColumns = MyListingsService.getColumns($scope.currentListId);
             };
 
             /**
@@ -244,7 +244,7 @@
              */
             this.loadTableItems = function(data, callback, settings) {
                 var oApiParam = {
-                    apiName: MyListingsService.isActiveList() || MyListingsService.isArchivedList() ? 'programList' : 'programRequest',
+                    apiName: $scope.isActiveList() || $scope.isArchivedList() ? 'programList' : 'programRequest',
                     apiSuffix: '',
                     oParams: {
                         limit: data['length'] || 10,
@@ -255,7 +255,7 @@
                     method: 'GET'
                 };
 
-                if (MyListingsService.isActiveList()) {
+                if ($scope.isActiveList()) {
                     if (!$scope.allFilters) {
                         var statuses = [];
                         if ($scope.filters.draft) {
@@ -276,14 +276,14 @@
 
                         oApiParam.oParams['status'] = statuses.join(',');
                     }
-                } else if (MyListingsService.isArchivedList()) {
+                } else if ($scope.isArchivedList()) {
                     oApiParam.oParams['status'] = 'Archived';
                 } else {
                     oApiParam.oParams['completed'] = false;
                 }
 
-                if (MyListingsService.searchKeyword) {
-                    oApiParam.oParams['keyword'] = MyListingsService.searchKeyword;
+                if ($scope.searchKeyword) {
+                    oApiParam.oParams['keyword'] = $scope.searchKeyword;
                     oApiParam.oParams.offset = 0;
                 }
 
@@ -297,7 +297,7 @@
 
                 ApiService.call(oApiParam).then(
                     function(d) {
-                        if (MyListingsService.isArchivedList() || MyListingsService.isActiveList()) {
+                        if ($scope.isArchivedList() || $scope.isActiveList()) {
                             self.parsePrograms(data, callback, d);
                         } else {
                             self.parseRequests(data, callback, d);
