@@ -27,7 +27,7 @@
                     //make row obj for datatables
                     angular.forEach(results, function (r) {
                         var row = {
-                            'agency': {
+                            'organization': {
                                 'organizationId': r['elementId'],
                                 'name': r['name'],
                                 'hasParent': r['hasParent']
@@ -37,7 +37,7 @@
                             }
                         };
                         if (r['hasParent']) {
-                            row.agency.parentId = r['parentId'];
+                            row.organization.parentId = r['parentId'];
                         }
                         tableData.push(row);
                     });
@@ -70,7 +70,7 @@
             //datatables stuff
             //------------------------------------------------------------------
 
-            $scope.loadAgencies = function (data, callback, settings) {
+            $scope.loadOrganizations = function (data, callback, settings) {
                 if ($scope.dtData) {
                     //console.log("data is available");
                     callback({
@@ -112,7 +112,7 @@
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
-                .withOption('ajax', $scope.loadAgencies)
+                .withOption('ajax', $scope.loadOrganizations)
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
@@ -136,7 +136,7 @@
 
                     .withOption('orderable', false),
 
-                DTColumnBuilder.newColumn('agency')
+                DTColumnBuilder.newColumn('organization')
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
