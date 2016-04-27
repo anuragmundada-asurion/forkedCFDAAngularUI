@@ -2,39 +2,25 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'AuthorizationService', 'ROLES',
-        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, AuthorizationService, ROLES) {
+    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'AuthorizationService', 'ROLES', 'filterFilter',
+        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, AuthorizationService, ROLES, filterFilter) {
 
+            //Load data from FH
+            //------------------------------------------------------------------
+            $scope.dtData; //result of search filter will go into here also
+            $scope.dtData_original; // remains same
+            getDataFromFh();
 
-            //call on fh to get the list.. cuz cfda_fh table might not have all the rows needed
-            var userOrgId = UserService.getUserOrgId();
+            function getDataFromFh() {
 
-
-            $scope.searchKeyword = '';
-
-
-            $scope.loadAgencies = function (data, callback, settings) {
-                //console.log('tableData', data);
-
-                //params for fh call
-                var oParams = {
-                    limit: data['length'] || 10,
-                    offset: data['start'],
-                    includeCount: true
-                };
-
-                if ($scope.searchKeyword != '') {
-                    oParams['name'] = $scope.searchKeyword;
-                    console.log("updating oparams with keyword, keyword was not empty: ", oParams);
-                }
-
+                var userOrgId = UserService.getUserOrgId();
                 //no filter if rmo or super user
                 if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
                     userOrgId = null;
                 }
 
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(userOrgId, oParams, function (d) {
+                FederalHierarchyService.dtFormattedData(userOrgId, null, function (d) {
                     //console.log('got this data from fh', d);
                     var tableData = [];
                     var results = d;
@@ -56,27 +42,48 @@
                         tableData.push(row);
                     });
 
-                    //console.log('table daaata', tableData);
-                    callback({
-                        "draw": parseInt(data['draw']) + 1,
-                        "recordsTotal": results.length,
-                        "recordsFiltered": results.length,
-                        "data": tableData
-                    });
-
+                    $scope.dtData = tableData;
+                    $scope.dtData_original = tableData;
                 });
+            }
+
+            $scope.searchKeyword = '';
 
 
-            };
+            //Watches
+            //------------------------------------------------------------------
 
-
-            //reload dt if search keyword changes
             $scope.$watch('searchKeyword', function () {
                 if ($scope.dtInstance.DataTable) {
+                    $scope.dtData = filterFilter($scope.dtData_original, $scope.searchKeyword);
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             }, true);
 
+            $scope.$watch('dtData', function () {
+                if ($scope.dtData) {
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
+            });
+
+
+            //datatables stuff
+            //------------------------------------------------------------------
+
+            $scope.loadAgencies = function (data, callback, settings) {
+                if ($scope.dtData) {
+                    //console.log("data is available");
+                    callback({
+                        "draw": parseInt(data['draw']) + 1,
+                        "recordsTotal": $scope.dtData.length,
+                        "recordsFiltered": $scope.dtData.length,
+                        "data": $scope.dtData
+                    });
+                } else {
+                    //console.log("data not available yet??");
+                }
+
+            };
 
             $scope.dtInstance = {};
 
