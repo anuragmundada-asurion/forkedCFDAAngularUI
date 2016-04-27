@@ -82,6 +82,7 @@
             $scope.changeList = function(newList) {
                 if (MyListingsService.hasList(newList)) {
                     $scope.currentListId = newList;
+                    $scope.searchKeyword = '';
                 }
             };
 
