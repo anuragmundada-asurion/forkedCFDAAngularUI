@@ -99,7 +99,7 @@
                                 apiSuffix: '',
                                 oParams: {
                                     completed: false,
-                                    programId: vm.program._id,
+                                    program: vm.program._id,
                                     type: 'submit'
                                 },
                                 oData: {},
