@@ -27,19 +27,24 @@
                 <!-- oEntity.data.title: called from listing ; oEntity.title: calle from editPage -->
                 <p>{{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.title : oEntity.title) : oEntity.program.title }}</p>
             </div>
+            <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
+                <h4>FAL Number</h4>
+                <!-- oEntity.data.title: called from listing ; oEntity.title: calle from editPage -->
+                <p>{{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.programNumber : oEntity.programNumber) : oEntity.program.programNumber }}</p>
+            </div>
             <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
                 <h4>New title</h4>
                 <p>{{ stringToJson(oEntity.data).title }}</p>
             </div>
-            <div class="required field" ng-show="ngDialogData.action === 'title_request'">
-                <label for="newTitle">New Title</label>
+            <div class="field" ng-show="ngDialogData.action === 'title_request'">
+                <label for="newTitle">New Title <span class="required" >*</span></label>
                 <input id="newTitle" name="newTitle" ng-model="newTitle" required />
                 <div ng-show="form.error || programRequestForm.newTitle.$dirty">
                     <span ng-show="programRequestForm.newTitle.$error.required">You must provide a new Title of this request.</span>
                 </div>
             </div>
-            <div class="required field">
-                <label for="reason">Reason</label>
+            <div class="field">
+                <label for="reason">Reason <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <textarea id="reason" name="reason" ng-model="reason" style="height: 10rem;" required></textarea>
                 <div ng-show="form.error || programRequestForm.reason.$dirty">

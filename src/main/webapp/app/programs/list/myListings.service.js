@@ -28,9 +28,9 @@
         this.getRequestTitleAnchor = function(data) {
             var program = data['program'];
             if (!program.archived && program.status === 'pending' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
-                return '<a ui-sref="editProgram({ id: \'' + data['_id'] + '\', section: \'review\' })">' + program['title'] + '</a>';
+                return '<a ui-sref="editProgram({ id: \'' + program['_id'] + '\', section: \'review\' })">' + program['title'] + '</a>';
             } else {
-                return '<a ui-sref="reviewProgram({ id: \'' + data['_id'] + '\' })">' + program['title'] + '</a>';
+                return '<a ui-sref="reviewProgram({ id: \'' + program['_id'] + '\' })">' + program['title'] + '</a>';
             }
         };
 
