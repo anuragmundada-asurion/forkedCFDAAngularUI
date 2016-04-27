@@ -4,6 +4,52 @@
     var myApp = angular.module('app');
     myApp.controller('OrganizationListController', ['$scope', '$timeout', 'appConstants', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile',
         function ($scope, $timeout, appConstants, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile) {
+
+
+            var dataMap = {
+                topLevel: {},
+
+                '100011942': [
+                    {
+                        action: {
+                            organizationId: "100012855"
+                        },
+                        organization: {
+                            hasParent: true,
+                            name: "U.S. COAST GUARD",
+                            organizationId: "100012855",
+                            parentId: "100011942"
+                        }
+                    },
+                    {
+                        action: {
+                            organizationId: "100011968"
+                        },
+                        organization: {
+                            hasParent: true,
+                            name: "U.S. CITIZENSHIP AND IMMIGRATION SERVICES",
+                            organizationId: "100011968",
+                            parentId: "100011942"
+                        }
+                    },
+                    {
+                        action: {
+                            organizationId: "100012967"
+                        },
+                        organization: {
+                            hasParent: true,
+                            name: "U.S. SECRET SERVICE",
+                            organizationId: "100012967",
+                            parentId: "100011942"
+                        }
+                    }
+
+                ]
+
+
+            };
+
+
             $scope.data = {};
             //Load data from FH
             //------------------------------------------------------------------
@@ -14,6 +60,7 @@
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(function (tableData) {
+                    console.log('tableData: ', tableData);
                     $scope.dtData = tableData;
                     $scope.dtData_original = tableData;
                 });
@@ -57,7 +104,26 @@
 
             };
 
-            angular.element('table').on('draw.dt', function() {
+            $scope.rowClicked = function () {
+                console.log("table was clicked");
+                $('table tbody').off().on('click', 'tr', function () {
+                    console.log("click handler");
+                    var data = $scope.dtInstance.DataTable.row(this).data();
+                    var rowId = $scope.dtInstance.DataTable.row(this).id();
+                    console.log('You clicked on a row with this data: ', data);
+
+
+                    //append children after this row.
+                    var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
+                    var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD1</a>');
+                    var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
+                    $(row).insertAfter("#" + rowId);
+
+
+                });
+            };
+
+            angular.element('table').on('draw.dt', function () {
                 // Initialize semantic ui dropdown
                 $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
@@ -94,7 +160,7 @@
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
                     .withOption('defaultContent', '')
-                    .withOption('rowCallback', function(row) {
+                    .withOption('rowCallback', function (row) {
                         $compile(row)($scope);
                     })
                     .withOption('render', function (data) {

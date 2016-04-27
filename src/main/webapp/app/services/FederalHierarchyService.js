@@ -227,6 +227,7 @@
                     angular.forEach(data, function (currentObj, index, array) {
                         //build one row for datatable
                         var row = {
+                            DT_RowId: currentObj.elementId,
                             organization: {
                                 organizationId: currentObj.elementId,
                                 name: currentObj.name,
@@ -235,6 +236,7 @@
                             action: {
                                 organizationId: currentObj.elementId
                             }
+
                         };
                         if (row.organization.hasParent) {
                             //current item's id
