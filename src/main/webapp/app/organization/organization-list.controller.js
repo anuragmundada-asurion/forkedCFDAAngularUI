@@ -7,8 +7,6 @@
 
 
             var dataMap = {
-                topLevel: {},
-
                 '100011942': [
                     {
                         action: {
@@ -45,8 +43,6 @@
                     }
 
                 ]
-
-
             };
 
 
@@ -104,37 +100,12 @@
 
             };
 
-            $scope.rowClicked = function () {
-                console.log("table was clicked");
-                $('table tbody').off().on('click', 'tr', function () {
-                    console.log("click handler");
-                    var data = $scope.dtInstance.DataTable.row(this).data();
-                    var rowId = $scope.dtInstance.DataTable.row(this).id();
-                    console.log('You clicked on a row with this data: ', data);
-
-
-                    //append children after this row.
-                    var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
-                    var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD1</a>');
-                    var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
-                    $(row).insertAfter("#" + rowId);
-
-
-                });
-            };
-
             angular.element('table').on('draw.dt', function () {
                 // Initialize semantic ui dropdown
                 $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
                 $(".dataTables_length select").remove();
                 $compile(angular.element('.dataTables_length'))($scope);
-
-                var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
-                var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD</a>');
-                var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
-                $("table tbody").append(row);
-                $compile(row)($scope);
             });
 
             $scope.dtInstance = {};
@@ -149,6 +120,15 @@
                 .withDataProp('data')
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
+                .withOption('rowCallback', function(row) {
+                    $compile(row)($scope);
+                    $(row).click(function() {
+                        var anchor = $('<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>');
+                        var title = $('<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD</a>');
+                        var r = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
+                        r.insertAfter(row);
+                    });
+                })
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
