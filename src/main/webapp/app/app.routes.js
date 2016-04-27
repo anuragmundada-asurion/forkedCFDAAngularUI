@@ -172,13 +172,9 @@
                     templateUrl: "organization/organization-list.tpl.html",
                     controller: "OrganizationListController as orgListCtrl",
                     title: 'Organizations - CFDA: Organizations Listing',
-
-                    //TODO: update permissions
                     access: {
                         requiredPermissions: [
-                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE,
-                            PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE,
-                            PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE
+                            PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG
                         ]
                     }
                 })
@@ -188,7 +184,7 @@
                     controller: "OrganizationFormCtrl",
                     access: {
                         requiredPermissions: [
-                            PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE
+                            PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG
                         ]
                     }
                 })
@@ -196,7 +192,12 @@
                     url: "/organization/:id/view",
                     templateUrl: "organization/organization-view.tpl.html",
                     controller: "OrganizationViewCtrl",
-                    title: 'View Organization - CFDA: View Organization'
+                    title: 'View Organization - CFDA: View Organization',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG
+                        ]
+                    }
                 });
 
             // the known route

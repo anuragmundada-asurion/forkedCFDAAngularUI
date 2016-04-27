@@ -51,7 +51,14 @@
         'CAN_PERFORM_SUBMISSION': 'CanPerformSubmission',
 
         //  Create Revision
-        'CAN_EDIT_PUBLISHED_PROGRAMS' : 'CanEditPublishedPrograms'
+        'CAN_EDIT_PUBLISHED_PROGRAMS' : 'CanEditPublishedPrograms',
+
+        // Configure Organizations
+        'CAN_VIEW_ORGANIZATION_CONFIG' : 'CanViewOrganizationConfig',
+        'CAN_EDIT_ORGANIZATION_CONFIG' : 'CanEditOrganizationConfig'
+
+
+
     });
 
     myApp.run(['$rootScope', 'PERMISSIONS', function($rootScope, PERMISSIONS) {
