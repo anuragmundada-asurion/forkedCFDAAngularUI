@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
+    myApp.service('FederalHierarchyService', ['ApiService', 'UserService', 'AuthorizationService', 'ROLES', function (ApiService, UserService, AuthorizationService, ROLES) {
 
         /**
          * @returns Void
@@ -13,7 +13,7 @@
          * @param callbackFnSuccess
          * @param callbackFnError
          */
-        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError, params) {
+        var getFederalHierarchyById = function (id, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: id ? ('/' + id) : '',
@@ -28,11 +28,6 @@
 
             if (includeChildrenLevels) {
                 oApiParam.oParams['childrenLevels'] = 'all';
-            }
-
-            //if extra params were passed in
-            if (params) {
-                angular.extend(oApiParam.oParams, params);
             }
 
             //make api call to get federalHierarchy by id
@@ -204,42 +199,56 @@
          * @param id
          * @returns array of rows for datatable
          */
-        var dtFormattedData = function (id, oParams, successCallback) {
-            var formattedData = [];
-            //call fh
-            getFederalHierarchyById(id, false, true, function (d) {
-                var data = [d];//need it as an array
+        var dtFormattedData = function (successCallback) {
+            var dtTableData = [];
 
-                //if id = null, data returned in embedded property
+            var userOrgId = UserService.getUserOrgId();
+            //no filter if rmo or super user
+            if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
+                userOrgId = null;
+            }
+
+            //call fh
+            getFederalHierarchyById(userOrgId, false, true, function (d) {
+                var data;
                 if (d._embedded) {
-                    data = d._embedded.hierarchy;
+                    data = d._embedded.hierarchy;//if id = null, data returned in embedded property, an array already
+                } else {
+                    data = [d];//need it as an array
                 }
 
-
-                //need recurssion, will put formatted data in formattedData var
-                formatData(data, id);
-
-                //execute callback
-                successCallback(formattedData);
-            }, null, oParams);
+                formatData(data, userOrgId);
+                successCallback(dtTableData);
+            });
 
 
             //helper function; expects data as an array
             var formatData = function (data, id) {
                 if (data) {
-                    data.forEach(function (currentObj, index, array) {
-                        var obj = {};
-                        obj.name = currentObj.name;
-                        obj.elementId = currentObj.elementId;
-                        obj.hasParent = (currentObj._links.parent) ? true : false;
-                        if (obj.hasParent) {
-                            obj.parentId = id;
+                    angular.forEach(data, function (currentObj, index, array) {
+                        //build one row for datatable
+                        var row = {
+                            organization: {
+                                organizationId: currentObj.elementId,
+                                name: currentObj.name,
+                                hasParent: (currentObj._links.parent) ? true : false
+                            },
+                            action: {
+                                organizationId: currentObj.elementId
+                            }
+                        };
+                        if (row.organization.hasParent) {
+                            //current item's id
+                            row.organization.parentId = id;
                         }
-                        formattedData.push(obj);
+                        dtTableData.push(row);
+
                         var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;
                         //recursion
                         formatData(childrenData, currentObj.elementId);
                     });
+                } else {
+                    return; //if data = null return, base case
                 }
             };
 

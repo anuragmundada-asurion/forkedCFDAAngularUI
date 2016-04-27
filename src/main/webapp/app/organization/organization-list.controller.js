@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'AuthorizationService', 'ROLES', 'filterFilter',
-        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, AuthorizationService, ROLES, filterFilter) {
+    myApp.controller('OrganizationListController', ['$scope', '$timeout', 'appConstants', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter',
+        function ($scope, $timeout, appConstants, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter) {
 
             //Load data from FH
             //------------------------------------------------------------------
@@ -12,36 +12,8 @@
             getDataFromFh();
 
             function getDataFromFh() {
-
-                var userOrgId = UserService.getUserOrgId();
-                //no filter if rmo or super user
-                if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
-                    userOrgId = null;
-                }
-
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(userOrgId, null, function (d) {
-                    //console.log('got this data from fh', d);
-                    var tableData = [];
-                    var results = d;
-                    //make row obj for datatables
-                    angular.forEach(results, function (r) {
-                        var row = {
-                            'organization': {
-                                'organizationId': r['elementId'],
-                                'name': r['name'],
-                                'hasParent': r['hasParent']
-                            },
-                            'action': {
-                                'organizationId': r['elementId']
-                            }
-                        };
-                        if (r['hasParent']) {
-                            row.organization.parentId = r['parentId'];
-                        }
-                        tableData.push(row);
-                    });
-
+                FederalHierarchyService.dtFormattedData(function (tableData) {
                     $scope.dtData = tableData;
                     $scope.dtData_original = tableData;
                 });
