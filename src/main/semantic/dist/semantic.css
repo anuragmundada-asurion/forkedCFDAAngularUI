@@ -24043,6 +24043,31 @@ Floated Menu / Item
   font-size: 20px;
 }
 
+.dataTables_wrapper td .jqChangeRequest .menu > .header{
+    font-size: .6em;
+    font-weight: 500;
+    color: #818285;
+}
+
+.dataTables_wrapper td .jqChangeRequest .menu > .header{
+    font-size: .6em;
+    font-weight: 500;
+    color: #818285;
+}
+
+.dataTables_wrapper td .jqChangeRequest .menu .item, .dataTables_wrapper td .jqChangeRequest .menu .selected.item{
+    font-size: .6em;
+    font-weight: bold;
+    color: #0073ba;
+    background: none;
+}
+
+.dataTables_wrapper td .jqChangeRequest .menu .item:hover, .dataTables_wrapper td .jqChangeRequest .menu .selected.item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.95);
+    z-index: 13;
+}
+
 /*******************************
          Site Overrides
 *******************************/

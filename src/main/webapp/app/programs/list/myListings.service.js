@@ -53,8 +53,16 @@
                 }
 
                 if (status === 'published' && AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_ARCHIVE)) {
-                    buttons.push('<button class="ui mini primary button" type="button" title="Request Archive" ng-click="requestArchive(\'' + data['id'] + '\')"><span class="fa fa-folder"></span></button>');
-                    buttons.push('<button class="ui mini primary button" type="button" title="Request Title Change" ng-click="requestTitleChange(\'' + data['id'] + '\')"><span class="fa fa-i-cursor"></span></button>');
+                    buttons.push('<div class="ui icon top left pointing jqChangeRequest dropdown button">'+
+                        '<i class="toggle down icon"></i>'+
+                        '<div class="menu">'+
+                          '<div class="header">MAKE A REQUEST</div>'+
+                          '<div class="item" ng-click="requestArchive(\'' + data['id'] + '\')">Archive</div>'+
+                          '<div class="item" ng-click="requestTitleChange(\'' + data['id'] + '\')">Title Change</div>'+
+                        '</div>'+
+                      '</div>');
+//                    buttons.push('<button class="ui mini primary button" type="button" title="Request Archive" ng-click="requestArchive(\'' + data['id'] + '\')"><span class="fa fa-folder"></span></button>');
+//                    buttons.push('<button class="ui mini primary button" type="button" title="Request Title Change" ng-click="requestTitleChange(\'' + data['id'] + '\')"><span class="fa fa-i-cursor"></span></button>');
                 }
             } else {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_UNARCHIVE)) {

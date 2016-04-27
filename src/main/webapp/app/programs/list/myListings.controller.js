@@ -204,6 +204,9 @@
                 $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
                 $(".dataTables_length select").remove();
+                //initilize semantic ui dropdowns
+                $(".jqChangeRequest.dropdown").dropdown();
+
                 $compile(angular.element('.dataTables_length'))($scope);
             });
 
