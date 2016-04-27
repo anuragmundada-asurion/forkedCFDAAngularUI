@@ -24043,6 +24043,19 @@ Floated Menu / Item
   font-size: 20px;
 }
 
+.dataTables_wrapper td .jqChangeRequest{
+    padding:0 !important;
+}
+
+.dataTables_wrapper td .jqChangeRequest:hover, .dataTables_wrapper td .jqChangeRequest:focus{
+    background: white;
+}
+
+.dataTables_wrapper td .jqChangeRequest i.toggle.down{
+    font-size: 1.8em;
+    background: white;
+}
+
 .dataTables_wrapper td .jqChangeRequest .menu > .header{
     font-size: .6em;
     font-weight: 500;
