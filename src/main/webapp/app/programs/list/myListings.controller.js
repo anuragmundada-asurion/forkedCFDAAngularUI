@@ -405,8 +405,16 @@
             };
 
             $scope.requestTitleChange = function(programId) {
-                $scope.showProgramRequestModal({id: programId}, 'program_request', 'title_request', function() {
-                    self.reloadTable();
+                var oApiParam = {
+                    apiName: 'programList',
+                    apiSuffix: '/' + programId,
+                    method: 'GET'
+                };
+
+                ApiService.call(oApiParam).then(function(oData) {
+                    $scope.showProgramRequestModal(oData.data, 'program_request', 'title_request', function() {
+                        self.reloadTable();
+                    });
                 });
             };
 
@@ -438,6 +446,8 @@
         function($scope, $state, $timeout, ApiService, ngDialog) {
             //get the oEntity that was passed from ngDialog in 'data' option
             $scope.oEntity = $scope.ngDialogData.oEntity;
+
+            console.log($scope.ngDialogData)
 
             if($scope.ngDialogData.typeEntity === 'program_request_action') {
                 //populate field reason
@@ -516,7 +526,7 @@
                 ApiService.call(oApiParam).then(
                 function(data){
                     $scope.flash = {
-                        type: 'success',
+                        type: 'positive',
                         message: message.success
                     };
 
