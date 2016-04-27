@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$window', 'RegionalOfficeFactory', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog', 'FhConfigurationService',
-        function ($scope, $state, $stateParams, $timeout, $window, RegionalOfficeFactory, Dictionary, FederalHierarchyService, UserService, ngDialog, FhConfigurationService) {
+    myApp.controller('OrganizationFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$window', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog', 'FhConfigurationService',
+        function ($scope, $state, $stateParams, $timeout, $window, Dictionary, FederalHierarchyService, UserService, ngDialog, FhConfigurationService) {
 
 
             angular.element(document).ready(function () {

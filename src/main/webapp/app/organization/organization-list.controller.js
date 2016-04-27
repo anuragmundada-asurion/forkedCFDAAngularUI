@@ -127,9 +127,9 @@
                     .withOption('render', function (data) {
 
 
-                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/edit">' +
+                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/edit">' +
                             '<span class="fa fa-pencil"></span></a>' +
-                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' +
+                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' +
                             '<span class="fa fa-file-text-o"></span></a>';
                         return htmlStr;
                     })
@@ -140,7 +140,7 @@
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
                     })
             ];
         }]);
