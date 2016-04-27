@@ -221,7 +221,6 @@
                 successCallback(dtTableData);
             });
 
-
             //helper function; expects data as an array
             var formatData = function (data, id) {
                 if (data) {
