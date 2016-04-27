@@ -447,8 +447,6 @@
             //get the oEntity that was passed from ngDialog in 'data' option
             $scope.oEntity = $scope.ngDialogData.oEntity;
 
-            console.log($scope.ngDialogData)
-
             if($scope.ngDialogData.typeEntity === 'program_request_action') {
                 //populate field reason
                 $scope.reason = $scope.ngDialogData.oEntity.reason;
