@@ -2,65 +2,60 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'AuthorizationService', 'ROLES',
-        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, AuthorizationService, ROLES) {
+    myApp.controller('OrganizationListController', ['$scope', '$timeout', 'appConstants', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter',
+        function ($scope, $timeout, appConstants, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter) {
 
+            //Load data from FH
+            //------------------------------------------------------------------
+            $scope.dtData; //result of search filter will go into here also
+            $scope.dtData_original; // remains same
+            getDataFromFh();
 
-            //call on fh to get the list.. cuz cfda_fh table might not have all the rows needed
-            var userOrgId = UserService.getUserOrgId();
-
-
-            $scope.loadAgencies = function (data, callback, settings) {
-                //console.log('tableData', data);
-
-                //params for fh call
-                var oParams = {
-                    limit: data['length'] || 10,
-                    offset: data['start'],
-                    includeCount: true
-                };
-
-
-                //no filter if rmo or super user
-                if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
-                    userOrgId = null;
-                }
-
+            function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(userOrgId, oParams, function (d) {
-                    //console.log('got this data from fh', d);
-                    var tableData = [];
-                    var results = d;
-                    //make row obj for datatables
-                    angular.forEach(results, function (r) {
-                        var row = {
-                            'agency': {
-                                'organizationId': r['elementId'],
-                                'name': r['name'],
-                                'hasParent': r['hasParent']
-                            },
-                            'action': {
-                                'organizationId': r['elementId']
-                            }
-                        };
-                        if (r['hasParent']) {
-                            row.agency.parentId = r['parentId'];
-                        }
-                        tableData.push(row);
-                    });
+                FederalHierarchyService.dtFormattedData(function (tableData) {
+                    $scope.dtData = tableData;
+                    $scope.dtData_original = tableData;
+                });
+            }
 
-                    //console.log('table daaata', tableData);
+            $scope.searchKeyword = '';
+
+
+            //Watches
+            //------------------------------------------------------------------
+
+            $scope.$watch('searchKeyword', function () {
+                if ($scope.dtInstance.DataTable) {
+                    $scope.dtData = filterFilter($scope.dtData_original, $scope.searchKeyword);
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
+            }, true);
+
+            $scope.$watch('dtData', function () {
+                if ($scope.dtData) {
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
+            });
+
+
+            //datatables stuff
+            //------------------------------------------------------------------
+
+            $scope.loadOrganizations = function (data, callback, settings) {
+                if ($scope.dtData) {
+                    //console.log("data is available");
                     callback({
                         "draw": parseInt(data['draw']) + 1,
-                        "recordsTotal": results.length,
-                        "recordsFiltered": results.length,
-                        "data": tableData
+                        "recordsTotal": $scope.dtData.length,
+                        "recordsFiltered": $scope.dtData.length,
+                        "data": $scope.dtData
                     });
-
-                });
+                } else {
+                    //console.log("data not available yet??");
+                }
 
             };
-
 
             $scope.dtInstance = {};
 
@@ -89,7 +84,7 @@
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
-                .withOption('ajax', $scope.loadAgencies)
+                .withOption('ajax', $scope.loadOrganizations)
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
@@ -104,20 +99,20 @@
                     .withOption('render', function (data) {
 
 
-                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/edit">' +
+                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/edit">' +
                             '<span class="fa fa-pencil"></span></a>' +
-                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' +
+                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' +
                             '<span class="fa fa-file-text-o"></span></a>';
                         return htmlStr;
                     })
 
                     .withOption('orderable', false),
 
-                DTColumnBuilder.newColumn('agency')
+                DTColumnBuilder.newColumn('organization')
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
+                        return '<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
                     })
             ];
         }]);
