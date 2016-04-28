@@ -12,7 +12,6 @@
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(function (results) {
-                    console.log('Results: ', results);
                     $scope.dtData = results.topLevelData;
                     $scope.dtData_original = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
@@ -24,7 +23,6 @@
 
             function getChildrenMarkup(rowId) {
                 var children = $scope.childrenMap[rowId];
-                console.log("the children: ", children);
                 var childrenMarkup = '';
                 var colors = ['#e5e5e5', '#cccccc']; //0 based, so must minus one from level, levels 1, 2, -> 0, 1
                 var padding = ['40px', '80px'];
@@ -39,8 +37,7 @@
                     childrenMarkup = childrenMarkup + row;
                 });
 
-                childrenMarkup = childrenMarkup + "</div>";
-                console.log("returning this childrenMarkup:", childrenMarkup);
+                childrenMarkup = childrenMarkup;
                 return childrenMarkup;
             }
 
@@ -81,28 +78,22 @@
             };
 
             $scope.rowClicked = function () {
-                console.log("table was clicked");
                 $('table tbody').off('click').on('click', 'tr', function () {
-                    debugger;
-                    console.log("click handler");
-
                     //'this' is the element which was clicked on
                     var rowId = this.id;
 
                     //use lodash to filter to the current row obj
                     var rowObj = _.filter($scope.dtData_original, {'DT_RowId': rowId});
-                    console.log("clicked on this rowObj: ", rowObj);
 
+
+                    //toggle children
                     var childRowMarkupClass = "." + rowId + "-child";
-
                     if ($(childRowMarkupClass).length) {
                         $(childRowMarkupClass).toggle(500);
                     } else {
                         var childrenMarkup = getChildrenMarkup(rowId);
                         $(childrenMarkup).insertAfter(this);
                     }
-
-
                 });
             };
 

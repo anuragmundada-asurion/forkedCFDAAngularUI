@@ -234,10 +234,8 @@
 
             //helper function; expects data as an array
             var formatData = function (data, id) {
-                debugger;
                 if (data) {
                     angular.forEach(data, function (currentObj, index, array) {
-                        debugger;
                         //build one row for datatable
                         var row = {
                             DT_RowId: currentObj.elementId,
