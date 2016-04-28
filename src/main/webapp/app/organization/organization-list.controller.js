@@ -26,11 +26,15 @@
                 var children = $scope.childrenMap[rowId];
                 console.log("the children: ", children);
                 var childrenMarkup = '';
+                var colors = ['#e5e5e5', '#cccccc']; //0 based, so must minus one from level, levels 1, 2, -> 0, 1
+                var padding = ['40px', '80px'];
+
                 angular.forEach(children, function (child, index, array) {
                     var childId = child.organization.organizationId;
                     var childName = child.organization.name;
-                    var action = '<td><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
-                    var title = '<td><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
+                    var level = child.hierarchyLevel;
+                    var action = '<td style="background-color: ' + colors[level-1] + '; padding-left:' + padding[level-1] + ';"><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
+                    var title = '<td style="background-color: ' + colors[level-1] + '; padding-left:' + padding[level-1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
                     var row = '<tr id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
                     childrenMarkup = childrenMarkup + row;
                 });
@@ -83,6 +87,11 @@
 
                     //'this' is the element which was clicked on
                     var rowId = this.id;
+
+                    //use lodash to filter to the current row obj
+                    var rowObj = _.filter($scope.dtData_original, {'DT_RowId': rowId});
+                    console.log("clicked on this rowObj: ", rowObj);
+
 
                     //append children after this row.
                     var childrenMarkup = getChildrenMarkup(rowId);

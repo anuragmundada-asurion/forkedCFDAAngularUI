@@ -204,6 +204,8 @@
             var dtTableData = [];
             var childrenMap = {};
 
+            var level = 0; // to see depth of hierarchy
+
             var userOrgId = UserService.getUserOrgId();
             //no filter if rmo or super user
             if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
@@ -220,10 +222,8 @@
                 }
 
                 //last param is to check if currently processing children
-                formatData(data, userOrgId, false);
-                console.log("dtTableData: ", dtTableData);
-                console.log("childrenMap: ", childrenMap);
-                console.log("totalRecords: ", totalRecords);
+                formatData(data, userOrgId);
+
                 var results = {
                     totalData: totalRecords,
                     topLevelData: dtTableData,
@@ -234,12 +234,14 @@
 
             //helper function; expects data as an array
             var formatData = function (data, id) {
+                debugger;
                 if (data) {
                     angular.forEach(data, function (currentObj, index, array) {
-
+                        debugger;
                         //build one row for datatable
                         var row = {
                             DT_RowId: currentObj.elementId,
+                            hierarchyLevel: level,
                             organization: {
                                 organizationId: currentObj.elementId,
                                 name: currentObj.name,
@@ -266,11 +268,11 @@
 
                         //recursion
                         var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;
+                        level++;
                         formatData(childrenData, currentObj.elementId);
                     });
-                } else {
-                    return; //if data = null return, base case
                 }
+                level--;//undo the addition as you leave this function
             };
 
 
