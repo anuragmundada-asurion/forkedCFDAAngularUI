@@ -47,8 +47,6 @@
 
                 //make api call to get count of programs
                 ApiService.call(oApiParam).then(function (data) {
-
-                    
                     var newSymbol = d3.formatPrefix(data.new);
                     var archivedSymbol = d3.formatPrefix(data.archived);
                     var updatedSymbol = d3.formatPrefix(data.updated);
