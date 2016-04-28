@@ -33,7 +33,6 @@
             }
 
             if ($stateParams.hasOwnProperty("filter")) {
-                $scope.allFilters = false;
                 $scope.filters = {
                     draft: false,
                     pending: false,
@@ -59,7 +58,6 @@
                             $scope.filters.rejected = true;
                             break;
                         default:
-                            $scope.allFilters = true;
                             $scope.filters = {
                                 draft: true,
                                 pending: true,
@@ -70,7 +68,6 @@
                     }
                 }
             } else {
-                $scope.allFilters = true;
                 $scope.filters = {
                     draft: true,
                     pending: true,
@@ -94,27 +91,8 @@
                 self.reloadTable();
             }, true);
 
-            $scope.toggleSelectAll = function() {
-                $scope.allFilters = !$scope.allFilters;
-                if ($scope.allFilters) {
-                    $scope.filters = {
-                        draft: true,
-                        pending: true,
-                        published: true,
-                        rejected: true
-                    };
-                } else {
-                    $scope.filters = {
-                        draft: false,
-                        pending: false,
-                        published: false,
-                        rejected: false
-                    };
-                }
-            };
 
             $scope.$watch('filters', function(newValue, oldValue) {
-                $scope.allFilters = $scope.filters.draft && $scope.filters.pending && $scope.filters.published && $scope.filters.rejected;
                 if (newValue != oldValue) {
                     self.reloadTable();
                 }
@@ -257,26 +235,24 @@
                 };
 
                 if ($scope.isActiveList()) {
-                    if (!$scope.allFilters) {
-                        var statuses = [];
-                        if ($scope.filters.draft) {
-                            statuses.push('draft');
-                        }
-
-                        if ($scope.filters.pending) {
-                            statuses.push('pending');
-                        }
-
-                        if ($scope.filters.published) {
-                            statuses.push('published');
-                        }
-
-                        if ($scope.filters.rejected) {
-                            statuses.push('rejected');
-                        }
-
-                        oApiParam.oParams['status'] = statuses.join(',');
+                    var statuses = [];
+                    if ($scope.filters.draft) {
+                        statuses.push('draft');
                     }
+
+                    if ($scope.filters.pending) {
+                        statuses.push('pending');
+                    }
+
+                    if ($scope.filters.published) {
+                        statuses.push('published');
+                    }
+
+                    if ($scope.filters.rejected) {
+                        statuses.push('rejected');
+                    }
+
+                    oApiParam.oParams['status'] = statuses.join(',');
                 } else if ($scope.isArchivedList()) {
                     oApiParam.oParams['status'] = 'Archived';
                 } else {

@@ -29,11 +29,7 @@
                 </div>
             </div>
         </div>
-        <div class="five column row" ng-if="isActiveList()">
-            <div class="column">
-                <input id="allFilter" ng-click="toggleSelectAll()" type="checkbox" ng-checked="filters.draft && filters.pending && filters.published && filters.rejected">
-                <label for="allFilter">Select All</label>
-            </div>
+        <div class="four column row" ng-if="isActiveList()">
             <div class="column">
                 <input id="draftFilter" type="checkbox" ng-model="filters.draft">
                 <label for="draftFilter">Draft</label>
