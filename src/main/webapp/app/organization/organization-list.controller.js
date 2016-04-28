@@ -105,12 +105,6 @@
                 // Remove select to fix dropdown  double click bug
                 $(".dataTables_length select").remove();
                 $compile(angular.element('.dataTables_length'))($scope);
-
-                var anchor = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/100012855/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view"><span class="fa fa-file-text-o"></span></a>';
-                var title = '<a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/100012855/view">U.S. COAST GUARD</a>';
-                var row = $('<tr role="row" class="even"></tr>').append($('<td></td>').append(anchor)).append($('<td></td>').append(title));
-                $("table tbody").append(row);
-                $compile(row)($scope);
             });
 
             $scope.dtInstance = {};
