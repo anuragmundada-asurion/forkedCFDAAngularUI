@@ -133,13 +133,19 @@
                  * @returns Void
                  */
                 $scope.getProgramCode = function(elementID, aData){
-                    var aSelectedOrganization = $filter('filter')(aData, { "elementId": elementID }, true);
-
-                    if($.isArray(aSelectedOrganization) && aSelectedOrganization.length === 1) {
-                        $scope.programCode = aSelectedOrganization[0].cfdaCode;
-                    } else {
-                        $scope.programCode = '';
-                    }
+                    do {
+                        var aSelectedOrganization = $filter('filter')(aData, { "elementId": elementID }, true);
+                        if($.isArray(aSelectedOrganization) && aSelectedOrganization.length === 1) {
+                            if (aSelectedOrganization[0].cfdaCode) {
+                                $scope.programCode = aSelectedOrganization[0].cfdaCode;
+                            } else {
+                                elementID = aSelectedOrganization[0].parentElementId;
+                            }
+                        } else {
+                            $scope.programCode = '';
+                            elementID = null;
+                        }
+                    } while(!$scope.programCode && elementID);
                 };
 
                 /**
