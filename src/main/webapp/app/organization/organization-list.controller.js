@@ -33,12 +33,13 @@
                     var childId = child.organization.organizationId;
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
-                    var action = '<td style="background-color: ' + colors[level-1] + '; padding-left:' + padding[level-1] + ';"><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
-                    var title = '<td style="background-color: ' + colors[level-1] + '; padding-left:' + padding[level-1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
+                    var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
+                    var row = '<tr class="' + rowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
                     childrenMarkup = childrenMarkup + row;
                 });
 
+                childrenMarkup = childrenMarkup + "</div>";
                 console.log("returning this childrenMarkup:", childrenMarkup);
                 return childrenMarkup;
             }
@@ -92,10 +93,16 @@
                     var rowObj = _.filter($scope.dtData_original, {'DT_RowId': rowId});
                     console.log("clicked on this rowObj: ", rowObj);
 
+                    var childRowMarkupClass = "." + rowId + "-child";
 
-                    //append children after this row.
-                    var childrenMarkup = getChildrenMarkup(rowId);
-                    $(childrenMarkup).insertAfter("#" + rowId);
+                    if ($(childRowMarkupClass).length) {
+                        $(childRowMarkupClass).toggle(500);
+                    } else {
+                        var childrenMarkup = getChildrenMarkup(rowId);
+                        $(childrenMarkup).insertAfter(this);
+                    }
+
+
                 });
             };
 
