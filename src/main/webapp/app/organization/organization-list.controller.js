@@ -12,9 +12,10 @@
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(function (results) {
-                    $scope.dtData = results.topLevelData;
+                    $scope.dtData_topLevel = results.topLevelData;
                     $scope.dtData_original = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
+                    $scope.dtData = results.topLevelData; //current data to show in dt
                 });
             }
 
@@ -53,10 +54,14 @@
 
             //Watches
             //------------------------------------------------------------------
-
             $scope.$watch('searchKeyword', function () {
                 if ($scope.dtInstance.DataTable) {
                     $scope.dtData = filterFilter($scope.dtData_original, $scope.searchKeyword);
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
+                //if search is empty, then show only top level data
+                if ($scope.dtInstance.DataTable && $scope.searchKeyword == '') {
+                    $scope.dtData = $scope.dtData_topLevel;
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             }, true);
