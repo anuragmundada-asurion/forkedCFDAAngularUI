@@ -419,6 +419,49 @@
         function($scope, $state, $timeout, ApiService, ngDialog) {
             //get the oEntity that was passed from ngDialog in 'data' option
             $scope.oEntity = $scope.ngDialogData.oEntity;
+            $scope.modal = { "show": true, "message": '' };
+
+            /**
+             * init program request modal
+             * @returns Void
+             */
+            $scope.initModal = function(){
+                //If it is a request to make then make sure we don't have an existing request for this program before we proceed
+                if($scope.ngDialogData.typeEntity === 'program_request') {
+                    var actionType = ["archive_request"];
+
+                    if($.inArray($scope.ngDialogData.action, actionType) === -1){
+                        actionType.push($scope.ngDialogData.action)
+                    }
+
+                    var oApiParam = {
+                        apiName: 'programRequest',
+                        apiSuffix: '',
+                        oParams: {
+                            completed: false,
+                            program: ($scope.oEntity.hasOwnProperty('id')) ? $scope.oEntity.id : $scope.oEntity._id,
+                            type: actionType.join(',')
+                        },
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    ApiService.call(oApiParam).then(function (data) {
+                        if (data && data.results.length !== 0) {
+                            $scope.modal.show = false;
+                            $scope.modal.message = 'You cannot make another request on this program.';
+                        } else if(data && data.results.length === 0) {
+                            $scope.modal.show = true;
+                        }
+                    }, function (error) {
+                        $scope.modal = { "show": false, "message": 'An error has occurred, please try again !' };
+                        console.log(error);
+                    });
+                }
+            };
+
+            //init modal
+            $scope.initModal();
 
             if($scope.ngDialogData.typeEntity === 'program_request_action') {
                 //populate field reason
@@ -526,14 +569,14 @@
             }
         };
 
-            /**
-              *
-              * @param String string
-              * @returns Object
-              */
-            $scope.stringToJson = function(string) {
-                return JSON.parse(string);
-            };
+        /**
+          *
+          * @param String string
+          * @returns Object
+          */
+        $scope.stringToJson = function(string) {
+            return JSON.parse(string);
+        };
     }]);
 }();
 

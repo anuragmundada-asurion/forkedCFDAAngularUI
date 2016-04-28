@@ -200,7 +200,11 @@
          * @returns array of rows for datatable
          */
         var dtFormattedData = function (successCallback) {
+            var totalRecords = [];
             var dtTableData = [];
+            var childrenMap = {};
+
+            var level = 0; // to see depth of hierarchy
 
             var userOrgId = UserService.getUserOrgId();
             //no filter if rmo or super user
@@ -217,10 +221,16 @@
                     data = [d];//need it as an array
                 }
 
+                //last param is to check if currently processing children
                 formatData(data, userOrgId);
-                successCallback(dtTableData);
-            });
 
+                var results = {
+                    totalData: totalRecords,
+                    topLevelData: dtTableData,
+                    childrenMappingData: childrenMap
+                };
+                successCallback(results);
+            });
 
             //helper function; expects data as an array
             var formatData = function (data, id) {
@@ -228,28 +238,40 @@
                     angular.forEach(data, function (currentObj, index, array) {
                         //build one row for datatable
                         var row = {
+                            DT_RowId: currentObj.elementId,
+                            hierarchyLevel: level,
                             organization: {
                                 organizationId: currentObj.elementId,
                                 name: currentObj.name,
                                 hasParent: (currentObj._links.parent) ? true : false
                             },
                             action: {
-                                organizationId: currentObj.elementId
+                                organizationId: currentObj.elementId,
+                                hasChildren: (currentObj.hierarchy) ? true : false //to determine if row is expandable or not
                             }
                         };
+
+                        //determine where to put this row
                         if (row.organization.hasParent) {
                             //current item's id
                             row.organization.parentId = id;
+                            if (!childrenMap[id]) {
+                                childrenMap[id] = []; //initlize array if neccessary
+                            }
+                            childrenMap[id].push(row);//put the parent with id, 's children into array
+                        } else {
+                            dtTableData.push(row);//put top level departments into dtTableData array
                         }
-                        dtTableData.push(row);
 
-                        var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;
+                        totalRecords.push(row);
+
                         //recursion
+                        var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;
+                        level++;
                         formatData(childrenData, currentObj.elementId);
                     });
-                } else {
-                    return; //if data = null return, base case
                 }
+                level--;//undo the addition as you leave this function
             };
 
 
