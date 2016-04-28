@@ -22,21 +22,17 @@
             $scope.searchKeyword = '';
 
 
-            function getChildren(rowId) {
-                debugger;
-
+            function getChildrenMarkup(rowId) {
                 var children = $scope.childrenMap[rowId];
-                var childrenMarkup = '';
                 console.log("the children: ", children);
+                var childrenMarkup = '';
                 angular.forEach(children, function (child, index, array) {
                     var childId = child.organization.organizationId;
                     var childName = child.organization.name;
                     var action = '<td><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
                     var title = '<td><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr id="100500220" role="row" class="odd">' + action + title + '</tr>';
-
+                    var row = '<tr id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
                     childrenMarkup = childrenMarkup + row;
-                    console.log("current childrenMarkup: ", childrenMarkup);
                 });
 
                 console.log("returning this childrenMarkup:", childrenMarkup);
@@ -82,14 +78,24 @@
             $scope.rowClicked = function () {
                 console.log("table was clicked");
                 $('table tbody').off('click').on('click', 'tr', function () {
+                    debugger;
                     console.log("click handler");
-                    var data = $scope.dtInstance.DataTable.row(this).data();
-                    var rowId = $scope.dtInstance.DataTable.row(this).id();
-                    console.log('You clicked on a row with this data: ', data);
+
+                    //'this' is the element which was clicked on
+                    var rowId = this.id;
+
+                    ////var data = $scope.dtInstance.DataTable.row(this).data();
+                    //var id1 = this.id;
+                    //var childrenArray = $scope.childrenMap[id1];
+                    //var rowId = $scope.dtInstance.DataTable.row('#'+id1).add(childrenArray);
+                    ////console.log('You clicked on a row with this data: ', data);
+                    ////console.log('You clicked on a row with this id: ', rowId);
+                    //
+                    ////$scope.dtInstance.DataTable.row(this).add()
 
 
                     //append children after this row.
-                    var childrenMarkup = getChildren(rowId);
+                    var childrenMarkup = getChildrenMarkup(rowId);
                     $(childrenMarkup).insertAfter("#" + rowId);
 
 
