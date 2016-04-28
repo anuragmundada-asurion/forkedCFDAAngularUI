@@ -40,13 +40,14 @@
                         action = action + '</td>';
                     }
                     var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr class="' + rowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+                    var row = '<tr ng-click="rowClicked(' + childId + ')" class="' + rowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
 
                     childrenMarkup = childrenMarkup + row;
+
                 });
 
-                childrenMarkup = childrenMarkup;
-                return childrenMarkup;
+                var compiledMarkup = $compile(childrenMarkup)($scope);
+                return compiledMarkup;
             }
 
 
@@ -69,10 +70,8 @@
 
             // Datatables stuff
             //------------------------------------------------------------------
-
             $scope.loadOrganizations = function (data, callback, settings) {
                 if ($scope.dtData) {
-                    //console.log("data is available");
                     callback({
                         "draw": parseInt(data['draw']) + 1,
                         "recordsTotal": $scope.dtData.length,
@@ -85,24 +84,15 @@
 
             };
 
-            $scope.rowClicked = function () {
-                $('table tbody').off('click').on('click', 'tr', function () {
-                    //'this' is the element which was clicked on
-                    var rowId = this.id;
-
-                    //use lodash to filter to the current row obj
-                    var rowObj = _.filter($scope.dtData_original, {'DT_RowId': rowId});
-
-
-                    //toggle children
-                    var childRowMarkupClass = "." + rowId + "-child";
-                    if ($(childRowMarkupClass).length) {
-                        $(childRowMarkupClass).toggle(500);
-                    } else {
-                        var childrenMarkup = getChildrenMarkup(rowId);
-                        $(childrenMarkup).insertAfter(this);
-                    }
-                });
+            $scope.rowClicked = function (rowId) {
+                //toggle children
+                var childRowMarkupClass = "." + rowId + "-child";
+                if ($(childRowMarkupClass).length) {
+                    $(childRowMarkupClass).toggle(500);
+                } else {
+                    var childrenMarkup = getChildrenMarkup(rowId);
+                    $(childrenMarkup).insertAfter('#' + rowId);
+                }
             };
 
             angular.element('table').on('draw.dt', function () {
@@ -126,6 +116,12 @@
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
                 .withOption('bSortClasses', false)
+                .withOption('rowCallback', function (row) {
+                    $(row).click(function () {
+                        $scope.rowClicked(this.id);
+                    });
+                    $compile(row)($scope);
+                })
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
@@ -137,9 +133,6 @@
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
                     .withOption('defaultContent', '')
-                    .withOption('rowCallback', function (row) {
-                        $compile(row)($scope);
-                    })
                     .withOption('render', function (data) {
                         var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/edit">' +
                             '<span class="fa fa-pencil"></span></a>' +
