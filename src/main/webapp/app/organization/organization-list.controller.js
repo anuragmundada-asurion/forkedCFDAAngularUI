@@ -119,6 +119,7 @@
                 .withDataProp('data')
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
+                .withOption('bSortClasses', false)
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
