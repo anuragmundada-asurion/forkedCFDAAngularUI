@@ -31,9 +31,17 @@
                     var childId = child.organization.organizationId;
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
-                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a></td>';
+                    var downArrow = '';
+                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a>';
+                    if (child.action.hasChildren) {
+                        downArrow = '<a class="ui mini primary button"><span class="fa fa-chevron-circle-down"></span></a>';
+                        action = action + downArrow + '</td>';
+                    } else {
+                        action = action + '</td>';
+                    }
                     var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
                     var row = '<tr class="' + rowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+
                     childrenMarkup = childrenMarkup + row;
                 });
 
@@ -137,6 +145,9 @@
                             '<span class="fa fa-pencil"></span></a>' +
                             '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' +
                             '<span class="fa fa-file-text-o"></span></a>';
+                        if (data.hasChildren) {
+                            htmlStr = htmlStr + '<a class="ui mini primary button"><span class="fa fa-chevron-circle-down"></span></a>';
+                        }
                         return htmlStr;
                     })
 

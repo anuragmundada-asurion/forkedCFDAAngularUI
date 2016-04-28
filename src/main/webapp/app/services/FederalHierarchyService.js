@@ -246,7 +246,8 @@
                                 hasParent: (currentObj._links.parent) ? true : false
                             },
                             action: {
-                                organizationId: currentObj.elementId
+                                organizationId: currentObj.elementId,
+                                hasChildren: (currentObj.hierarchy) ? true : false //to determine if row is expandable or not
                             }
                         };
 
