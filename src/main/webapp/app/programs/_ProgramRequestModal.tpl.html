@@ -17,7 +17,7 @@
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'reject_program'">Reject Program</h3>
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'publish'">Approve Program Submission</h3>
     </div>
-    <div style="padding-top: 10px">
+    <div style="padding-top: 10px" ng-show="modal.show">
         <div ng-show="flash && flash.type && flash.message" class="ui ignored message" ng-class="flash.type">
             {{ flash.message }}
         </div>
@@ -57,5 +57,8 @@
 
         <button class="ui button" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="closeProgramRequestModal();">Cancel</button>
         <button class="ui button primary" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="submitProgramRequest()">Submit</button>
+    </div>
+    <div ng-if="!modal.show">
+        <div class="ui ignored message error">{{ modal.message }}</div>
     </div>
 </div>
