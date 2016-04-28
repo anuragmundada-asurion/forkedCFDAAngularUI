@@ -84,21 +84,9 @@
                     //'this' is the element which was clicked on
                     var rowId = this.id;
 
-                    ////var data = $scope.dtInstance.DataTable.row(this).data();
-                    //var id1 = this.id;
-                    //var childrenArray = $scope.childrenMap[id1];
-                    //var rowId = $scope.dtInstance.DataTable.row('#'+id1).add(childrenArray);
-                    ////console.log('You clicked on a row with this data: ', data);
-                    ////console.log('You clicked on a row with this id: ', rowId);
-                    //
-                    ////$scope.dtInstance.DataTable.row(this).add()
-
-
                     //append children after this row.
                     var childrenMarkup = getChildrenMarkup(rowId);
                     $(childrenMarkup).insertAfter("#" + rowId);
-
-
                 });
             };
 
