@@ -133,7 +133,7 @@
                  * @returns Void
                  */
                 $scope.getProgramCode = function(elementID, aData){
-                    var aSelectedOrganization = $filter('filter')(aData, { "elementId": elementID });
+                    var aSelectedOrganization = $filter('filter')(aData, { "elementId": elementID }, true);
 
                     if($.isArray(aSelectedOrganization) && aSelectedOrganization.length === 1) {
                         $scope.programCode = aSelectedOrganization[0].cfdaCode;
