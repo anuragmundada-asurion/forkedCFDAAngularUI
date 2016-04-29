@@ -551,7 +551,7 @@
 
                 //returns true if some required fields are missing.
                 $scope.requiredFieldsMissing = function (sectionName) {
-                    return  checkMissingRequiredFields(sectionName);
+                    return checkMissingRequiredFields(sectionName);
                 };
 
 
