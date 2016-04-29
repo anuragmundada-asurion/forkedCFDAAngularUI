@@ -552,6 +552,7 @@
                         if (angular.isFunction($scope.ngDialogData.callback)) {
                             $scope.ngDialogData.callback();
                         }
+                        $state.go('programList', {list: 'requests'});
                     }, 2000);
                 }, 
                 function(error){
