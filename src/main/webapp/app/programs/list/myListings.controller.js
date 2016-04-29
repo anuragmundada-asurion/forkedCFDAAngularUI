@@ -150,6 +150,7 @@
                         'id': r['id'],
                         'title': {
                             id: r['id'],
+                            programId: r['programId'],
                             program: r['program']
                         },
                         'requestType': r['requestType']['publicValue'],
