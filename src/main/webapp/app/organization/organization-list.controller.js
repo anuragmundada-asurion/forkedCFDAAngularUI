@@ -32,7 +32,8 @@
                 var padding = ['40px', '80px'];
 
                 angular.forEach(children, function (child, index, array) {
-                    var childId = child.organization.organizationId;
+                    var childId = child.DT_RowId;
+                    console.log("childId is: " + childId);
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
                     var downArrow = '';
@@ -44,14 +45,13 @@
                         action = action + '</td>';
                     }
                     var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr ng-click="rowClicked(' + childId + ')" class="' + parentRowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+                    var row = '<tr ng-click="rowClicked(\'' + childId + '\')" class="' + parentRowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
 
                     childrenMarkup = childrenMarkup + row;
 
                 });
-
-                var compiledMarkup = $compile(childrenMarkup)($scope);
-                return compiledMarkup;
+                console.log("finished markup: ", childrenMarkup);
+                return $compile(childrenMarkup)($scope);
             }
 
 
@@ -94,8 +94,11 @@
 
             $scope.rowClicked = function (uniqueRowId) {
                 //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
-                var a = uniqueRowId.split("-");
+                console.log("unique row id: ", uniqueRowId);
+
+                var a = String(uniqueRowId).split("-");
                 var rowId = a[a.length - 1];
+                console.log("new rowId: ", rowId);
                 debugger;
                 //toggle children
                 var childRowMarkupClass = "." + rowId + "-child";
@@ -103,7 +106,7 @@
                     $(childRowMarkupClass).toggle(500);
                 } else {
                     var childrenMarkup = getChildrenMarkup(rowId);
-                    $(childrenMarkup).insertAfter('#' + rowId);
+                    $(childrenMarkup).insertAfter('#' + uniqueRowId); //insert after original row id
                 }
             };
 
