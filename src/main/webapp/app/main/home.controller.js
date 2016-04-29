@@ -78,7 +78,8 @@
                 };
 
 
-                //is based on legend
+                //is based on legend; eg. Green is always first. orange second, blue third  and so on...
+                // so if for some reason we want to change the order in which the bars are being displayed, then the colors will be need to be updated in the legend
                 var chartOrder = {
                     0: "Local",
                     1: "State",
@@ -90,16 +91,12 @@
 
 
                 ApiService.call(eligbParams).then(function (data) {
-                    console.log("unordered data: " , data);
                     $scope.chartData = [];
                     //put it in correct order
                     angular.forEach(chartOrder, function (label, index, array) {
                         var obj = _.filter(data, {'label': label})[0];
                         $scope.chartData.push(obj);
                     });
-
-
-                    console.log("ordered data: " , $scope.chartData);
 
 
                     //generate chart when data is loaded
