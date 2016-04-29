@@ -23,7 +23,7 @@
             $scope.searchKeyword = '';
 
 
-            function getChildrenMarkup(parentRowId) {
+            function getChildrenMarkup(parentRowId, uniqueParentRowId) {
                 var children = $scope.childrenMap[parentRowId];
                 console.log("got this children for rowid: " + parentRowId + " : ", children);
                 //var parentRowObj = $
@@ -45,7 +45,7 @@
                         action = action + '</td>';
                     }
                     var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr ng-click="rowClicked(\'' + childId + '\')" class="' + parentRowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+                    var row = '<tr ng-click="rowClicked(\'' + childId + '\')" class="' + uniqueParentRowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
 
                     childrenMarkup = childrenMarkup + row;
 
@@ -101,11 +101,11 @@
                 console.log("new rowId: ", rowId);
                 debugger;
                 //toggle children
-                var childRowMarkupClass = "." + rowId + "-child";
+                var childRowMarkupClass = "." + uniqueRowId + "-child";
                 if ($(childRowMarkupClass).length) {
                     $(childRowMarkupClass).toggle(500);
                 } else {
-                    var childrenMarkup = getChildrenMarkup(rowId);
+                    var childrenMarkup = getChildrenMarkup(rowId, uniqueRowId);
                     $(childrenMarkup).insertAfter('#' + uniqueRowId); //insert after original row id
                 }
             };
