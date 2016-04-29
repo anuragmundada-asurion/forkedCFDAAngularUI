@@ -139,7 +139,6 @@
                         "recordsFiltered": d['totalCount'],
                         "data": tableData
                     });
-                    $scope.totalCount = d['totalCount'];
                 });
             };
 
@@ -169,7 +168,6 @@
                     "recordsFiltered": d['totalCount'],
                     "data": tableData
                 });
-                $scope.totalCount = d['totalCount'];
             };
 
             this.reloadTable = function() {
@@ -178,7 +176,7 @@
                 }
             };
 
-            angular.element('#programsTable').on('draw.dt', function() {
+            angular.element('#programsTable').on('draw.dt', function(event, data) {
                 // Initialize semantic ui dropdown
                 $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
@@ -187,6 +185,7 @@
                 $(".jqChangeRequest.dropdown").dropdown();
 
                 $compile(angular.element('.dataTables_length'))($scope);
+                $scope.totalCount = data._iRecordsTotal;
             });
 
             this.initializeTable = function() {
