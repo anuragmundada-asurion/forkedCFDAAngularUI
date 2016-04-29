@@ -157,7 +157,7 @@
                         }
                     },
                     choices: angular.extend({
-                        programs: ProgramFactory.query({limit: 2500, status: 'Published'}),
+                        programs: ProgramFactory.query({limit: 2500, status: 'published'}),
                         contacts: vm.program.organizationId ? Contacts.query({agencyId: vm.program.organizationId}) : Contacts.query({agencyId: UserService.getUser().orgId}),
                         offices: [
                             {
