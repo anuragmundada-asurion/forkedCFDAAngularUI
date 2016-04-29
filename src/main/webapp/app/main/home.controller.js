@@ -23,7 +23,7 @@
                  * @returns {String}
                  */
                 $scope.formatNumber = function (number) {
-                    if(number === 0)
+                    if (number === 0)
                         return '';
 
                     if (number <= 9) {
@@ -50,22 +50,22 @@
                     var newSymbol = d3.formatPrefix(data.new);
                     var archivedSymbol = d3.formatPrefix(data.archived);
                     var updatedSymbol = d3.formatPrefix(data.updated);
-                    
+
                     $scope.aProgramCount = {
                         'new': d3.format($scope.formatNumber(parseInt(data.new)))(newSymbol.scale(data.new)),
-                        'newsymbol' : newSymbol.symbol,
-                        'newNumber' : data.new,
+                        'newsymbol': newSymbol.symbol,
+                        'newNumber': data.new,
                         'archived': d3.format($scope.formatNumber(parseInt(data.archived)))(archivedSymbol.scale(data.archived)),
                         'archivedsymbol': archivedSymbol.symbol,
                         'archivedNumber': data.archived,
                         'updated': d3.format($scope.formatNumber(parseInt(data.updated)))(updatedSymbol.scale(data.updated)),
-                        'updatedsymbol' : updatedSymbol.symbol,
+                        'updatedsymbol': updatedSymbol.symbol,
                         'updatedNumber': data.updated
                     };
-                    
+
                     // Enable popups
                     $('.ui.circular.label').popup();
-                    
+
                 });
 
                 //make eligiblisting api call
@@ -77,12 +77,34 @@
                     method: 'GET'
                 };
 
+
+                //is based on legend
+                var chartOrder = {
+                    0: "Local",
+                    1: "State",
+                    2: "Nonprofit",
+                    3: "US Territories",
+                    4: "Individual",
+                    5: "Indian Tribal Organizations"
+                };
+
+
                 ApiService.call(eligbParams).then(function (data) {
-                    $scope.chartData = data;
+                    console.log("unordered data: " , data);
+                    $scope.chartData = [];
+                    //put it in correct order
+                    angular.forEach(chartOrder, function (label, index, array) {
+                        var obj = _.filter(data, {'label': label})[0];
+                        $scope.chartData.push(obj);
+                    });
+
+
+                    console.log("ordered data: " , $scope.chartData);
+
 
                     //generate chart when data is loaded
                     $scope.makeHomePageChart();
-                    
+
                     // Temporary fix to show gray bar behind color bar in ie11 and firefox
                     // var chartRectLeftPadding = 7;
                     // var chartRectWidth = 50;
@@ -90,15 +112,16 @@
                     //     $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
                     //     $(this).attr("width", chartRectWidth); 
                     // });
-                    
+
                 });
+
 
                 /**
                  * Generate chart
                  * @returns void
                  */
                 $scope.makeHomePageChart = function () {
-                    $timeout(function() {
+                    $timeout(function () {
                         var colors = ['#25A148', '#F16B22', '#1776B6', '#FAB915', '#8F65AA', '#8D5649'];
 
                         $scope.chart = c3.generate({
@@ -141,8 +164,8 @@
                             bar: {
                                 width: 50
                             },
-                            grid:{
-                                focus:{
+                            grid: {
+                                focus: {
                                     show: false
                                 }
                             },
@@ -171,13 +194,13 @@
                                     }
                                 }
                             },
-                            onrendered: function(){
+                            onrendered: function () {
                                 // Temporary fix to show gray bar behind color bar
                                 var chartRectLeftPadding = 7;
                                 var chartRectWidth = 50;
-                                $(".c3-event-rect").each(function(){ 
+                                $(".c3-event-rect").each(function () {
                                     $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
-                                    $(this).attr("width", chartRectWidth); 
+                                    $(this).attr("width", chartRectWidth);
                                 });
                             },
                             tooltip: {
@@ -205,7 +228,7 @@
 
                                         if (!text) {
                                             title = titleFormat ? titleFormat(d[i].x) : d[i].x;
-                                            text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>"  + title + "</span></div>" : "");
+                                            text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>" + title + "</span></div>" : "");
                                         }
 
                                         // text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";
@@ -222,7 +245,7 @@
                  * Go to search result prefiltered with Publication (New or Updated) of this year
                  * @returns void
                  */
-                $scope.searchByListingPublication = function(type) {
+                $scope.searchByListingPublication = function (type) {
                     //Set advanced search criteria
                     SearchFactory.setSearchCriteria('', {
                         publicationListingType: type
