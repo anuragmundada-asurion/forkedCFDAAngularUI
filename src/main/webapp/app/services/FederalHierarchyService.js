@@ -200,9 +200,9 @@
          * @returns array of rows for datatable
          */
         var dtFormattedData = function (successCallback) {
-            var totalRecords = [];
-            var dtTableData = [];
-            var childrenMap = {};
+            var totalRecords = []; //for search
+            var dtTopLevelData = []; //for default data in dt
+            var childrenMap = {}; //for expanding down to the children
 
             var level = 0; // to see depth of hierarchy
 
@@ -226,7 +226,7 @@
 
                 var results = {
                     totalData: totalRecords,
-                    topLevelData: dtTableData,
+                    topLevelData: dtTopLevelData,
                     childrenMappingData: childrenMap
                 };
                 successCallback(results);
@@ -255,15 +255,20 @@
                         if (row.organization.hasParent) {
                             //current item's id
                             row.organization.parentId = id;
+                            row.DT_RowId = "child-" + row.DT_RowId; //append search to search row ids
                             if (!childrenMap[id]) {
                                 childrenMap[id] = []; //initlize array if neccessary
                             }
                             childrenMap[id].push(row);//put the parent with id, 's children into array
                         } else {
-                            dtTableData.push(row);//put top level departments into dtTableData array
+                            dtTopLevelData.push(row);//put top level departments into dtTopLevelData array
                         }
 
-                        totalRecords.push(row);
+                        // search will happen on total records, search results are shown as toplevel rows, so need to reset their level
+                        var searchRow = angular.copy(row);
+                        searchRow.DT_RowId = "search-" + row.DT_RowId; //append search to search row ids
+                        searchRow.hierarchyLevel = 0;
+                        totalRecords.push(searchRow);
 
                         //recursion
                         var childrenData = (currentObj.hierarchy) ? currentObj.hierarchy : null;

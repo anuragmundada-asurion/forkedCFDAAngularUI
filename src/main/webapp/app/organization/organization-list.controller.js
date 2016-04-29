@@ -12,6 +12,7 @@
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(function (results) {
+                    console.log("results: ", results);
                     $scope.dtData_topLevel = results.topLevelData;
                     $scope.dtData_total = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
@@ -22,8 +23,10 @@
             $scope.searchKeyword = '';
 
 
-            function getChildrenMarkup(rowId) {
-                var children = $scope.childrenMap[rowId];
+            function getChildrenMarkup(parentRowId) {
+                var children = $scope.childrenMap[parentRowId];
+                console.log("got this children for rowid: " + parentRowId + " : ", children);
+                //var parentRowObj = $
                 var childrenMarkup = '';
                 var colors = ['#e5e5e5', '#cccccc']; //0 based, so must minus one from level, levels 1, 2, -> 0, 1
                 var padding = ['40px', '80px'];
@@ -41,7 +44,7 @@
                         action = action + '</td>';
                     }
                     var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view">' + childName + '</a></td>';
-                    var row = '<tr ng-click="rowClicked(' + childId + ')" class="' + rowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
+                    var row = '<tr ng-click="rowClicked(' + childId + ')" class="' + parentRowId + '-child" id="' + childId + '" role="row" class="odd">' + action + title + '</tr>';
 
                     childrenMarkup = childrenMarkup + row;
 
@@ -89,7 +92,11 @@
 
             };
 
-            $scope.rowClicked = function (rowId) {
+            $scope.rowClicked = function (uniqueRowId) {
+                //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
+                var a = uniqueRowId.split("-");
+                var rowId = a[a.length - 1];
+                debugger;
                 //toggle children
                 var childRowMarkupClass = "." + rowId + "-child";
                 if ($(childRowMarkupClass).length) {
@@ -123,6 +130,7 @@
                 .withOption('bSortClasses', false)
                 .withOption('rowCallback', function (row) {
                     $(row).click(function () {
+                        debugger;
                         $scope.rowClicked(this.id);
                     });
                     $compile(row)($scope);
