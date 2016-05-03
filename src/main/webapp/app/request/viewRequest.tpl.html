@@ -1,0 +1,92 @@
+<primary-nav-bar></primary-nav-bar>
+
+<div class="ui fixed container" ng-if="!request">
+    <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
+</div>
+<div class="ui fixed container" ng-if="request">
+
+    <h1 style="margin-top:30px;">View Request Details</h1>
+
+    <div class="ui small horizontal list">
+
+        <div class="item">
+            <div class="content">
+                <div class="header">Submitted</div>
+                {{request.getSubmittedDate()}} by <em>{{request.getSubmitter()}}</em>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ui form" style="margin-bottom: 50px;">
+
+        <div class="two fields" style="margin:0 0 30px 0;">
+
+            <div class="field">
+                <label>Program</label>
+
+                <a ui-sref="reviewProgram({id: request.getProgramId()})">{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</a>
+            </div>
+
+            <div class="field">
+                <label>Request Type</label>
+
+                <p>{{request.getFormattedType()}}</p>
+            </div>
+
+        </div>
+
+        <div class="two fields" style="margin:0 0 30px 0;" ng-if="isTitleRequest()">
+
+            <div class="field">
+                <label>Existing Title</label>
+
+                <p>{{request.getProgramTitle()}}</p>
+            </div>
+
+            <div class="field">
+                <label>Requested Title</label>
+
+                <p>{{getRequestedTitle()}}</p>
+            </div>
+
+        </div>
+
+        <div class="two fields" style="margin:0 0 30px 0;" ng-if="isAgencyRequest()">
+
+            <div class="field">
+                <label>Existing Organization</label>
+
+                <p>{{request.getProgramTitle()}}</p>
+            </div>
+
+            <div class="field">
+                <label>Requested Organization</label>
+
+                <p>{{getRequestedOrganization()}}</p>
+            </div>
+
+        </div>
+
+        <div class="one fields" style="margin:0px 0px 30px 0px;">
+
+            <div class="field">
+                <label>Reason</label>
+
+                <p>{{request.getReason()}}</p>
+            </div>
+
+        </div>
+
+        <a ui-sref="organizationList" class="ui large button">Return</a>
+
+        <button class="ui large primary button" ng-click="approveRequest()">Approve </button>
+        <button class="ui large primary button" ng-click="rejectRequest()">Reject </button>
+    </div>
+
+</div>
+
+
+
+
+

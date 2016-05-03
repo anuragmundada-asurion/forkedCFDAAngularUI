@@ -198,6 +198,12 @@
                             PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG
                         ]
                     }
+                })
+                .state('viewRequest', {
+                    url: "/requests/:id/view",
+                    templateUrl: "request/viewRequest.tpl.html",
+                    controller: "RequestViewCtrl",
+                    title: 'View Request - CFDA: View Request'
                 });
 
             // the known route

@@ -34,6 +34,10 @@
             }
         };
 
+        this.getRequestTypeAnchor = function(data) {
+            return '<a ui-sref="viewRequest({ id: \'' + data['id'] + '\' })">' + data['type'] + '</a>';
+        };
+
         this.getActionContent = function(data) {
             var status = data['status']['code'];
             var archived = data['archived'];
@@ -82,30 +86,7 @@
         };
 
         this.getRequestActionContent = function(data) {
-            var row = data['row'];
-            var buttons = [];
-            if (row.requestType.value === 'archive_request') {
-                if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_ARCHIVE)) {
-                    buttons.push('<button class="ui mini primary button" type="button" title="Approve Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button class="ui mini primary button" type="button" title="Reject Archive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'archive_reject\')"><span class="fa fa-times-circle"></span></button>');
-                }
-            } else if (row.requestType.value === 'unarchive_request') {
-                if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_UNARCHIVE)) {
-                    buttons.push('<button class="ui mini primary button" type="button" title="Approve Unarchive Request"ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button class="ui mini primary button" type="button" title="Reject Unarchive Request" ng-click="handleRequest(\'' + row['id'] + '\', \'unarchive_reject\')"><span class="fa fa-times-circle"></span></button>');
-                }
-            } else if (row.requestType.value === 'title_request') {
-                if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_TITLE_CHANGE)) {
-                    buttons.push('<button type="button" class="ui mini primary button" title="Approve Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title\')"><span class="fa fa-check-circle-o"></span></button>');
-                    buttons.push('<button type="button" class="ui mini primary button" title="Reject Title Change" ng-click="handleRequest(\'' + row['id'] + '\', \'title_reject\')"><span class="fa fa-times-circle"></span></button>');
-                }
-            } else if (row.requestType.value === 'submit') {
-                if (AuthorizationService.authorize(PERMISSIONS.CAN_PERFORM_SUBMISSION)) {
-                    buttons.push('<button type="button" class="ui mini primary button" title="Review Program" ng-click="editProgram(\'' + row['programId'] + '\')"><span class="fa fa-eye"></span></button>');
-                }
-            }
-
-            return buttons.join('');
+            return '<a ui-sref="viewRequest({ id: \'' + data['id'] + '\' })" class="ui mini primary button" title="Review Program"><span class="fa fa-eye"></span></a>';
         };
 
         this.getDateContent = function(data) {
@@ -184,7 +165,12 @@
                         .withOption('render', function(data) {
                             return self.getRequestTitleAnchor(data);
                         }),
-                    DTColumnBuilder.newColumn('requestType').withTitle('Request Type').withOption('defaultContent', ''),
+                    DTColumnBuilder.newColumn('requestType')
+                        .withTitle('Request Type')
+                        .withOption('defaultContent', '')
+                        .withOption('render', function(data) {
+                            return self.getRequestTypeAnchor(data);
+                        }),
                     DTColumnBuilder.newColumn('reason').withTitle('Reason').withOption('defaultContent', ''),
                     DTColumnBuilder.newColumn('action')
                         .withTitle('Action')

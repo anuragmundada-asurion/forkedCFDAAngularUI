@@ -10,6 +10,7 @@
             "programList": "/api/programs",
             "programNumberUnique": "/api/programs/isProgramNumberUnique",
             "programRequest": "/api/programRequests",
+            "programRequestEntity": "/api/programRequests/:id",
             "programRequestAction": "/api/programRequestActions",
             "programAction": "/api/programs", // /:program_id
             "programCountByYear": "/api/listingCount", //  /:year

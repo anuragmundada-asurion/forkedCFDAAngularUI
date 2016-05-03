@@ -153,11 +153,12 @@
                             programId: r['programId'],
                             program: r['program']
                         },
-                        'requestType': r['requestType']['publicValue'],
-                        'reason': r['reason'],
-                        'action': {
-                            row: r
+                        'requestType': {
+                            id: r['id'],
+                            type: r['requestType']['publicValue']
                         },
+                        'reason': r['reason'],
+                        'action': r['id'],
                         'entryDate': r['entryDate']
                     };
                     tableData.push(row);
