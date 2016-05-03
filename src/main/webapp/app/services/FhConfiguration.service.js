@@ -24,12 +24,14 @@
                     data.agencyCode = 'Not available';
                     //get parent path and put it into string
                     FederalHierarchyService.getParentPath(idObj.id, function (parentArray) {
-                        var parentPath = '';
-                        parentPath = parentPath + ((parentArray['DEPARTMENT']) ? parentArray['DEPARTMENT'] : '');
-                        parentPath = parentPath + ((parentArray['AGENCY']) ? '/' + parentArray['AGENCY'] : '');
-                        parentPath = parentPath + ((parentArray['OFFICE']) ? '/' + parentArray['OFFICE'] : '');
-                        data.parentPath = parentPath;
-
+                        //if object has only one property, it will be dept, and that's not the parent
+                        if (_.size(parentArray) > 1) {
+                            var parentPath = '';
+                            parentPath = parentPath + ((parentArray['DEPARTMENT']) ? parentArray['DEPARTMENT'] : '');
+                            parentPath = parentPath + ((parentArray['AGENCY']) ? '/' + parentArray['AGENCY'] : '');
+                            parentPath = parentPath + ((parentArray['OFFICE']) ? '/' + parentArray['OFFICE'] : '');
+                            data.parentPath = parentPath;
+                        }
                         //execute the callback function
                         callbackSuccess(data);
                     });
