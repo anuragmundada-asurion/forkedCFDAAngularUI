@@ -35,6 +35,10 @@
         'CAN_REQUEST_TITLE_CHANGE': 'CanRequestTitleChange',
         'CAN_PERFORM_TITLE_CHANGE': 'CanPerformTitleChange',
 
+        //  Agency change request
+        'CAN_REQUEST_AGENCY_CHANGE': 'CanRequestAgencyChange',
+        'CAN_PERFORM_AGENCY_CHANGE': 'CanPerformAgencyChange',
+
         //  Archive request
         'CAN_REQUEST_ARCHIVE': 'CanRequestArchive',
         'CAN_PERFORM_ARCHIVE': 'CanPerformArchive',
