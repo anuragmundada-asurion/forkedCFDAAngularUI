@@ -27,6 +27,9 @@
                 getProgramTitle: function() {
                     return this.program['title'];
                 },
+                getProgramOrganizationId: function() {
+                    return this.program['organizationId'];
+                },
                 getProgramId: function() {
                     return this.programId;
                 },

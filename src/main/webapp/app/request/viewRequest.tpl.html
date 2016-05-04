@@ -57,13 +57,13 @@
             <div class="field">
                 <label>Existing Organization</label>
 
-                <p>{{request.getProgramTitle()}}</p>
+                <p><federal-hierarchy-label organization-id="{{request.getProgramOrganizationId()}}"></federal-hierarchy-label></p>
             </div>
 
             <div class="field">
                 <label>Requested Organization</label>
 
-                <p>{{getRequestedOrganization()}}</p>
+                <p><federal-hierarchy-label organization-id="{{getRequestedOrganization()}}"></federal-hierarchy-label></p>
             </div>
 
         </div>

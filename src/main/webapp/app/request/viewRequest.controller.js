@@ -18,7 +18,8 @@
                 },
                 agency_request: {
                     approve: 'agency',
-                    reject: 'agency_reject'
+                    reject: 'agency_reject',
+                    permissionRequired: PERMISSIONS.CAN_PERFORM_AGENCY_CHANGE
                 },
                 program_number_request: {
                     approve: 'program_number',
@@ -57,6 +58,10 @@
                 return $scope.request.getData()['title'];
             };
 
+            $scope.getRequestedOrganization = function(){
+                return $scope.request.getData()['organizationId'];
+            };
+
             $scope.approveRequest = function() {
                 handleRequest($scope.requestMapping[$scope.request.getType()]['approve']);
             };
@@ -66,7 +71,7 @@
             };
 
             $scope.hasPermissions = function() {
-                return AuthorizationService.authorize(RequestActionMapping[$scope.request.getType()]['permissionRequired']);
+                return AuthorizationService.authorize($scope.requestMapping[$scope.request.getType()]['permissionRequired']);
             };
 
             function handleRequest(actionType) {
