@@ -58,6 +58,10 @@
                 return $scope.request.getData()['title'];
             };
 
+            $scope.getRequestedOrganization = function(){
+                return $scope.request.getData()['organizationId'];
+            };
+
             $scope.approveRequest = function() {
                 handleRequest($scope.requestMapping[$scope.request.getType()]['approve']);
             };
