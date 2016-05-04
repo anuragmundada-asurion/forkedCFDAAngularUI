@@ -3,6 +3,7 @@
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'archive_request'">Archive Request</h3>
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'unarchive_request'">Unarchive Request</h3>
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'title_request'">Title Change Request</h3>
+        <h3 class="ui dividing header" ng-show="ngDialogData.action === 'agency_request'">Agency Change Request</h3>
     </div>
     <div ng-show="ngDialogData.typeEntity === 'program_submit'">
         <h3 class="ui dividing header">Program Submission Request</h3>
@@ -21,6 +22,16 @@
         <div ng-show="flash && flash.type && flash.message" class="ui ignored message" ng-class="flash.type">
             {{ flash.message }}
         </div>
+
+        <div class="field" ng-show="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
+            <div class="ui ignored message warning" style="font-size: 1.2rem;">
+                The chosen Agency is outside your user's scope. If you continue and this request is approved, 
+                you will no longer have access to this program.<br/>
+                <b>Note:</b> The new agency has a different code ({{ programCode }}) than the existing agency ({{ (oEntity.data) ? oEntity.data.programNumber.split('.')[0] : oEntity.programNumber.split('.')[0] }}). 
+                Upon approval of this request, the program will be assigned a new program number.
+            </div>
+        </div>
+
         <form name='programRequestForm' class="ui form">
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
                 <h4>Existing title</h4>
@@ -42,6 +53,15 @@
                 <div ng-show="form.error || programRequestForm.newTitle.$dirty">
                     <span ng-show="programRequestForm.newTitle.$error.required">You must provide a new Title of this request.</span>
                 </div>
+            </div>
+            <div class="field" ng-show="ngDialogData.action === 'agency_request'">
+                <label>Existing Agency</label>
+                <federal-hierarchy-label organization-id="{{ (oEntity.data) ? oEntity.data.organizationId : oEntity.organizationId }}"></federal-hierarchy-label>
+            </div>
+            <div class="field" ng-show="ngDialogData.action === 'agency_request'">
+                <label>New Agency <span class="required" >*</span></label>
+                <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
+                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged"></federal-hierarchy-inputs>
             </div>
             <div class="field">
                 <label for="reason">Reason <span class="required" >*</span></label>
