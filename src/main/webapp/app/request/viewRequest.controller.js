@@ -38,6 +38,14 @@
                 return $scope.request.getType() === 'title_request';
             };
 
+            $scope.isSubmitRequest = function() {
+                return $scope.request.getType() === 'submit';
+            };
+
+            $scope.isReviseRequest = function() {
+                return $scope.request.getType() === 'revise';
+            };
+
             $scope.isAgencyRequest = function() {
                 return $scope.request.getType() === 'agency_request';
             };
