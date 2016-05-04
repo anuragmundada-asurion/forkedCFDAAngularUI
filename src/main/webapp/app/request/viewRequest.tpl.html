@@ -80,8 +80,8 @@
 
         <a ui-sref="programList({list: 'requests'})" class="ui large button">Return</a>
 
-        <button ng-if="!isSubmitRequest() && !isReviseRequest()" class="ui large primary button" ng-click="approveRequest()">Approve </button>
-        <button ng-if="!isSubmitRequest() && !isReviseRequest()" class="ui large primary button" ng-click="rejectRequest()">Reject </button>
+        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="approveRequest()">Approve </button>
+        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="rejectRequest()">Reject </button>
     </div>
 
 </div>
