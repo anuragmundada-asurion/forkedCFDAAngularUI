@@ -453,7 +453,7 @@
                     var actionType = ["archive_request"];
 
                     if($.inArray($scope.ngDialogData.action, actionType) === -1){
-                        actionType.push($scope.ngDialogData.action)
+                        actionType.push($scope.ngDialogData.action);
                     }
 
                     var oApiParam = {
@@ -480,20 +480,26 @@
                         console.log(error);
                     });
                 }
+
+                //agency change request
+                if($scope.ngDialogData.action === 'agency_request') {
+                    $scope.organizationId = ($scope.oEntity.hasOwnProperty("data")) ? $scope.oEntity.data.organizationId : $scope.oEntity.organizationId;
+                }
+
+                if($scope.ngDialogData.typeEntity === 'program_request_action') {
+                    //populate field reason
+                    $scope.reason = $scope.ngDialogData.oEntity.reason;
+
+                    //pre-approval agency change request (Manual organization)
+                    if($scope.ngDialogData.action === 'agency' && $scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto) {
+                        $scope.isProgramNumberUnique = false;
+                        $scope.isProgramNumberValid = false;
+                    }
+                }
             };
 
             //init modal
             $scope.initModal();
-
-            //agency change request
-            if($scope.ngDialogData.action === 'agency_request') {
-                $scope.organizationId = ($scope.oEntity.hasOwnProperty("data")) ? $scope.oEntity.data.organizationId : $scope.oEntity.organizationId;
-            }
-
-            if($scope.ngDialogData.typeEntity === 'program_request_action') {
-                //populate field reason
-                $scope.reason = $scope.ngDialogData.oEntity.reason;
-            }
 
             /**
              * function for submitting changes RestAPI call backend
@@ -560,6 +566,23 @@
                         actionType: $scope.ngDialogData.action,
                         reason: $scope.reason
                     };
+
+                    //approval agency change request
+                    if($scope.ngDialogData.action === 'agency'){
+                        //check program number before submitting
+                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && 
+                            (!$scope.isProgramNumberUnique || !$scope.isProgramNumberValid)) {
+                            $scope.submissionInProgress = false;
+
+                            return false;
+                        }
+
+                        //include program number
+                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && 
+                            $scope.isProgramNumberUnique && $scope.isProgramNumberValid){
+                            oApiParam.oData.programNumber = $scope.programCode+'.'+$scope.programNumber;
+                        }
+                    }
                 } else if ($scope.ngDialogData.typeEntity === 'program_submit') {
                     //set API Name to call
                     oApiParam.apiName = 'programAction';
@@ -605,6 +628,41 @@
                 angular.forEach($scope.programRequestForm.$error.required, function(field) {
                     field.$setDirty();
                 });
+            }
+        };
+
+        /**
+         * verify Program Number
+         * @returns void
+         */
+        $scope.verifyProgramNumber = function (){
+            $scope.isProgramNumberValid = false;
+
+            if ($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && $scope.programCode &&
+                $scope.programNumber >= $scope.organizationConfiguration.programNumberLow && $scope.programNumber <= $scope.organizationConfiguration.programNumberHigh && $scope.programNumber.length === 3) {
+
+                $scope.isProgramNumberValid = true;
+
+                //verify program number uniqueness
+                var oApiParam = {
+                    apiName: 'programNumberUnique',
+                    apiSuffix: '',
+                    oParams: {
+                        programNumber: $scope.programCode+'.'+$scope.programNumber,
+                        id: null
+                    },
+                    oData: {},
+                    method: 'GET'
+                };
+
+                ApiService.call(oApiParam).then(function (data) {
+                    $scope.isProgramNumberUnique = data.isProgramNumberUnique;
+                }, function (error) {
+                    $scope.isProgramNumberUnique = false;
+                    console.log(error);
+                });
+            } else {
+                $scope.isProgramNumberUnique = true;
             }
         };
 

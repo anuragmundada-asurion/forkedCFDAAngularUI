@@ -17,9 +17,11 @@
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'title_reject'">Title Change Request Reject</h3>
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'reject_program'">Reject Program</h3>
         <h3 class="ui dividing header" ng-show="ngDialogData.action === 'publish'">Approve Program Submission</h3>
+        <h3 class="ui dividing header" ng-show="ngDialogData.action === 'agency_reject'">Agency Change Request Reject</h3>
+        <h3 class="ui dividing header" ng-show="ngDialogData.action === 'agency'">Agency Change Request Approval</h3>
     </div>
     <div style="padding-top: 10px" ng-show="modal.show">
-        <div ng-show="flash && flash.type && flash.message" class="ui ignored message" ng-class="flash.type">
+        <div ng-show="flash && flash.type && flash.message" style="font-size: 1.2rem;" class="ui ignored message" ng-class="flash.type">
             {{ flash.message }}
         </div>
 
@@ -62,6 +64,30 @@
                 <label>New Agency <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged"></federal-hierarchy-inputs>
+            </div>
+            <div class="field" ng-if="ngDialogData.action === 'agency'">
+                <!-- Load configuration & program code for the requested organization-->
+                <federal-hierarchy-inputs class="hidden" organization-id="stringToJson(oEntity.data).organizationId" organization-configuration="$parent.organizationConfiguration" program-code="$parent.programCode"></federal-hierarchy-inputs>
+
+                <!-- If the requested organization is manual then show the input -->
+                <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto === false && programCode)">
+                    <label for="programNumber">Program Number <span class="required" >*</span></label>
+                    <div class="inline field">
+                        <label>{{ programCode }}.</label>
+                        <input type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="$parent.programNumber"  ng-change="verifyProgramNumber()" required />
+                    </div>
+                    <div ng-show="form.error || programRequestForm.programNumber.$dirty">
+                        <span ng-show="programRequestForm.programNumber.$error.required">You must provide Program Number of this request.</span>
+                    </div>
+                    <span ng-show="isProgramNumberValid === false && !programRequestForm.programNumber.$error.required">The program number is invalid.</span>
+                    <span ng-show="isProgramNumberUnique === false">The program number is already been used.</span>
+                </div>
+                <!-- If the requested organization is auto then just show the generated program number -->
+                <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto && programCode)">
+                    <label for="programNumber">Program Number <span class="required" >*</span></label>
+                    <p>A new program number must be assigned as the agency code is different. The requested agency uses automatic program numbering and this is the next program number available.</p>
+                    <b>{{ stringToJson(oEntity.data).programNumber }}</b>
+                </div>
             </div>
             <div class="field">
                 <label for="reason">Reason <span class="required" >*</span></label>
