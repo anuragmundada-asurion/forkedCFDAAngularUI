@@ -161,6 +161,12 @@
                         'action': r['id'],
                         'entryDate': r['entryDate']
                     };
+
+                    if (row['reason'] && row['reason'].length > 255) {
+                        row['reason'] = row['reason'].substr(0, 255);
+                        row['reason'] += '...';
+                    }
+
                     tableData.push(row);
                 });
 
