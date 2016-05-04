@@ -35832,3 +35832,11 @@ html.ios body {
    float: right;
    display: block;
  }
+
+ label {
+   margin-top: 0;
+ }
+
+ table td, table th {
+   border: none;
+ }

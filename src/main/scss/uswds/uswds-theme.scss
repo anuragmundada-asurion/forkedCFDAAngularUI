@@ -1,44 +1,44 @@
 // Vendor -------------- //
 
-@import '../../webapp/bower_components/uswds/assets/_scss/lib/bourbon/bourbon';
-@import '../../webapp/bower_components/uswds/assets/_scss/lib/neat/neat';
+@import '../../webapp/bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import '../../webapp/bower_components/neat/app/assets/stylesheets/neat';
 
 /*
   Disabling normalize because we are already
   including it in cfda theme  
 */
 
-@import '../../webapp/bower_components/uswds/assets/_scss/lib/normalize'; 
+@import '../../webapp/bower_components/normalize-scss/_normalize';
 
 // Core -------------- //
 
-@import '../../webapp/bower_components/uswds/assets/_scss/core/defaults';
-@import '../../webapp/bower_components/uswds/assets/_scss/core/variables';
-@import '../../webapp/bower_components/uswds/assets/_scss/core/base';
-@import '../../webapp/bower_components/uswds/assets/_scss/core/grid-settings';
-@import '../../webapp/bower_components/uswds/assets/_scss/core/grid';
-@import '../../webapp/bower_components/uswds/assets/_scss/core/utilities';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/defaults';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/variables';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/base';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/grid-settings';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/grid';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/utilities';
 
 
 // Elements -------------- //
 // Styles basic HTML elements
 
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/buttons';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/figure';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/inputs';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/labels';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/list';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/table';
-@import '../../webapp/bower_components/uswds/assets/_scss/elements/typography';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/buttons';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/figure';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/inputs';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/labels';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/list';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/table';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/typography';
 
 
 // Components -------------- //
 
-@import '../../webapp/bower_components/uswds/assets/_scss/components/accordions';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/alerts';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/disclaimer';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/footer';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/forms';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/search';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/sidenav';
-@import '../../webapp/bower_components/uswds/assets/_scss/components/skipnav';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/accordions';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/alerts';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/disclaimer';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/footer';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/forms';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/search';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/sidenav';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/skipnav';
