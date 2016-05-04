@@ -264,6 +264,7 @@
                     oApiParam.oParams['status'] = 'Archived';
                 } else {
                     oApiParam.oParams['completed'] = false;
+                    oApiParam.oParams['type'] = ['archive_request', 'title_request', 'agency_request', 'program_number_request', 'unarchive_request'].join(',');
                 }
 
                 if ($scope.searchKeyword) {
