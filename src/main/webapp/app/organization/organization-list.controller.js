@@ -12,7 +12,6 @@
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
                 FederalHierarchyService.dtFormattedData(function (results) {
-                    console.log("results: ", results);
                     $scope.dtData_topLevel = results.topLevelData;
                     $scope.dtData_total = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
@@ -25,7 +24,6 @@
 
             function getChildrenMarkup(parentRowId, uniqueParentRowId) {
                 var children = $scope.childrenMap[parentRowId];
-                console.log("got this children for rowid: " + parentRowId + " : ", children);
                 //var parentRowObj = $
                 var childrenMarkup = '';
                 var colors = ['#e5e5e5', '#cccccc']; //0 based, so must minus one from level, levels 1, 2, -> 0, 1
@@ -33,7 +31,6 @@
 
                 angular.forEach(children, function (child, index, array) {
                     var childId = child.DT_RowId;
-                    console.log("childId is: " + childId);
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
                     var downArrow = '';
@@ -50,7 +47,6 @@
                     childrenMarkup = childrenMarkup + row;
 
                 });
-                console.log("finished markup: ", childrenMarkup);
                 return $compile(childrenMarkup)($scope);
             }
 
@@ -94,12 +90,8 @@
 
             $scope.rowClicked = function (uniqueRowId) {
                 //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
-                console.log("unique row id: ", uniqueRowId);
-
                 var a = String(uniqueRowId).split("-");
                 var rowId = a[a.length - 1];
-                console.log("new rowId: ", rowId);
-                debugger;
                 //toggle children
                 var childRowMarkupClass = "." + uniqueRowId + "-child";
                 if ($(childRowMarkupClass).length) {
@@ -133,7 +125,6 @@
                 .withOption('bSortClasses', false)
                 .withOption('rowCallback', function (row) {
                     $(row).click(function () {
-                        debugger;
                         $scope.rowClicked(this.id);
                     });
                     $compile(row)($scope);
