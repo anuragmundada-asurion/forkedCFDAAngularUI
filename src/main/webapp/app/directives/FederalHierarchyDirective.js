@@ -34,7 +34,8 @@
             scope: {
                 "organizationId": "=", // ngModel var passed by reference (two-way) 
                 "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
-                "programCode": "=?" // ngModel var passed by reference (two-way) optional 
+                "programCode": "=?", // ngModel var passed by reference (two-way) optional 
+                "hasDepartmentChanged": "=?"
             },
             controller: ['$scope', '$filter', 'ROLES', 'ApiService', function($scope, $filter, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
@@ -50,6 +51,9 @@
                     }
 
                     $scope.isControllerLoaded = true;
+
+                    //initialize hasDepartmentChanged to false at the beginning
+                    $scope.hasDepartmentChanged = false;
                 };
 
                 /**
@@ -63,6 +67,9 @@
                             if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
                                     && $scope.selectedDeptId !== null) {
                                 $scope.organizationId = $scope.selectedDeptId;
+
+                                //once user choose a different department, switch flag of hasDepartmentChanged
+                                $scope.hasDepartmentChanged = true;
                             } else { //if department is not selected then set user's organization id
                                 $scope.organizationId = $scope.programOrganizationId;
                             }

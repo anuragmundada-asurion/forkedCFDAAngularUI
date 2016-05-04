@@ -392,6 +392,20 @@
                 });
             };
 
+            $scope.requestAgencyChange = function(programId) {
+                var oApiParam = {
+                    apiName: 'programList',
+                    apiSuffix: '/' + programId,
+                    method: 'GET'
+                };
+
+                ApiService.call(oApiParam).then(function(oData) {
+                    $scope.showProgramRequestModal(oData.data, 'program_request', 'agency_request', function() {
+                        self.reloadTable();
+                    });
+                });
+            };
+
             $scope.requestUnarchive = function(programId) {
                 $scope.showProgramRequestModal({id: programId}, 'program_request', 'unarchive_request', function() {
                     self.reloadTable();
@@ -464,6 +478,11 @@
             //init modal
             $scope.initModal();
 
+            //agency change request
+            if($scope.ngDialogData.action === 'agency_request') {
+                $scope.organizationId = ($scope.oEntity.hasOwnProperty("data")) ? $scope.oEntity.data.organizationId : $scope.oEntity.organizationId;
+            }
+
             if($scope.ngDialogData.typeEntity === 'program_request_action') {
                 //populate field reason
                 $scope.reason = $scope.ngDialogData.oEntity.reason;
@@ -508,6 +527,17 @@
                             oApiParam.oData.data.title = $scope.newTitle;
                         } else {
                             //prevent fron submitting unless he provided the "new title" of this request
+                            $scope.submissionInProgress = false;
+                            return false;
+                        }
+                    }
+                    // agency change request
+                    else if($scope.ngDialogData.action === 'agency_request') {
+                        if(($scope.oEntity.hasOwnProperty("data") && $scope.organizationId !== $scope.oEntity.data.organizationId) || ($scope.oEntity.hasOwnProperty("organizationId") && $scope.organizationId !== $scope.oEntity.organizationId)){
+                            oApiParam.oData.data.organizationId = $scope.organizationId;
+                        } else {
+                            //User has to choose a different organizationId
+                            $scope.submissionInProgress = false;
                             return false;
                         }
                     }
