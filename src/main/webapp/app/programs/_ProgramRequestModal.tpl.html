@@ -63,7 +63,7 @@
             <div class="field" ng-show="ngDialogData.action === 'agency_request'">
                 <label>New Agency <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true"></federal-hierarchy-inputs>
             </div>
             <div class="field" ng-if="ngDialogData.action === 'agency'">
                 <!-- Load configuration & program code for the requested organization-->
@@ -84,9 +84,9 @@
                 </div>
                 <!-- If the requested organization is auto then just show the generated program number -->
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto && programCode)">
-                    <label for="programNumber">Program Number <span class="required" >*</span></label>
+                    <label for="programNumber">Program Number <span class="required">*</span></label>
                     <p>A new program number must be assigned as the agency code is different. The requested agency uses automatic program numbering and this is the next program number available.</p>
-                    <b>{{ stringToJson(oEntity.data).programNumber }}</b>
+                    <b ng-init="getNextAvailableProgramNumber()">{{ programNumber }}</b>
                 </div>
             </div>
             <div class="field">

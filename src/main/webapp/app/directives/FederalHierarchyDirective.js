@@ -35,7 +35,8 @@
                 "organizationId": "=", // ngModel var passed by reference (two-way) 
                 "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
                 "programCode": "=?", // ngModel var passed by reference (two-way) optional 
-                "hasDepartmentChanged": "=?"
+                "hasDepartmentChanged": "=?",
+                "showDepartment": "=?"
             },
             controller: ['$scope', '$filter', 'ROLES', 'ApiService', function($scope, $filter, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
@@ -300,6 +301,18 @@
                         else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
                             //initialize Department/Agency/Office dropdowns (selected values)
                             scope.initFederalHierarchyDropdowns(ROLES.AGENCY_COORDINATOR.iamRoleId);
+
+                            //show department input as exception only for agency coordinator
+                            if(typeof scope.showDepartment !== 'undefined' && scope.showDepartment === true) {
+                                scope.initDictionaries('', true, false, function (oData) {
+                                    //initialize Department
+                                    scope.dictionary.aDepartment = oData._embedded.hierarchy;
+                                });
+
+                                var $element = $(element[0]);
+                                $element.find('select#jqDepartmentFH').removeClass('hidden');
+                                $element.find('.departmen-label').hide();
+                            }
                         } //Case if user is ROOT or ROOT_RMO
                         else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
                             //get Department level of user's organizationId

@@ -490,10 +490,13 @@
                     //populate field reason
                     $scope.reason = $scope.ngDialogData.oEntity.reason;
 
-                    //pre-approval agency change request (Manual organization)
-                    if($scope.ngDialogData.action === 'agency' && $scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto) {
-                        $scope.isProgramNumberUnique = false;
-                        $scope.isProgramNumberValid = false;
+                    //pre-approval agency change request 
+                    if($scope.ngDialogData.action === 'agency') {
+                        //Manual organization
+                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto) {
+                            $scope.isProgramNumberUnique = false;
+                            $scope.isProgramNumberValid = false;
+                        }
                     }
                 }
             };
@@ -581,6 +584,8 @@
                         if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && 
                             $scope.isProgramNumberUnique && $scope.isProgramNumberValid){
                             oApiParam.oData.programNumber = $scope.programCode+'.'+$scope.programNumber;
+                        } else if($scope.organizationConfiguration && $scope.organizationConfiguration.programNumberAuto){
+                            oApiParam.oData.programNumber = $scope.programNumber;
                         }
                     }
                 } else if ($scope.ngDialogData.typeEntity === 'program_submit') {
@@ -666,6 +671,30 @@
             }
         };
 
+        /**
+         * get next available program number
+         * @returns Void
+         */
+        $scope.getNextAvailableProgramNumber = function() {
+            var oApiParam = {
+                apiName: 'nextAvailableProgramNumber',
+                apiSuffix: '',
+                oParams: {
+                    organizationId: JSON.parse($scope.oEntity.data).organizationId
+                }, 
+                oData: {}, 
+                method: 'GET'
+            };
+
+            //Call API get next available program number
+            ApiService.call(oApiParam).then(
+            function(data){
+                $scope.programNumber = data.nextAvailableCode;
+            },
+            function(error){
+                console.log(error);
+            });
+        }
         /**
           *
           * @param String string

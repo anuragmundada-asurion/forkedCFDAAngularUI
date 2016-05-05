@@ -21,6 +21,7 @@
             "federalHierarchyConfigurationEntity": "/api/federalHierarchyConfigurations/:id",
             "programCount": "/api/programCount",
             "federalHierarchyList": "/api/federalHierarchies",
+            "nextAvailableProgramNumber": "/api/programs/nextAvailableProgramNumber",
             "historicalIndex": "/api/historicalIndex" //:programNumber
         };
 
