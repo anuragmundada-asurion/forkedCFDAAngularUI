@@ -1,5 +1,7 @@
 package gov.gsa.cfda.aui.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.hateoas.MediaTypes;
@@ -200,11 +203,19 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/programs/nextAvailableProgramNumber", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String nextAvailableProgramNumber(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+    public HttpEntity nextAvailableProgramNumber(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                         @RequestParam(value = "organizationId", required = true, defaultValue = "") String organizationId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("organizationId", organizationId);
-        return this.getsCall(accessToken, getProgramsApiUrl() + "/nextAvailableProgramNumber", params);
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(this.getsCall(accessToken, getProgramsApiUrl() + "/nextAvailableProgramNumber", params));
+        } catch (HttpServerErrorException e) {
+            JSONObject obj = new JSONObject();
+            obj.put("code", e.getStatusCode().value());
+            JsonObject response = new Gson().fromJson(e.getResponseBodyAsString(), JsonObject.class);
+            obj.put("error", response.get("message").getAsString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(obj.toString());
+        }
     }
 
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
