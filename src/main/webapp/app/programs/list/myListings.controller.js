@@ -691,7 +691,6 @@
             //Call API get next available program number
             ApiService.call(oApiParam).then(
             function(data){
-                $scope.submissionInProgress = false;
                 $scope.programNumber = data.nextAvailableCode;
             },
             function(error){
