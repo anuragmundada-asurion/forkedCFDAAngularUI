@@ -692,9 +692,14 @@
                 $scope.programNumber = data.nextAvailableCode;
             },
             function(error){
-                console.log(error);
+                $scope.submissionInProgress = true;
+                $scope.flash = {
+                    type: 'error',
+                    message: error.error
+                };
             });
         }
+
         /**
           *
           * @param String string
