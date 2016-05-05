@@ -7,7 +7,7 @@
 
     <h1 style="margin-top:30px;">View Request Details</h1>
 
-    <div class="ui small horizontal list">
+    <div class="ui small horizontal list" style="margin-top: 0; margin-bottom: 0;">
 
         <div class="item">
             <div class="content">
@@ -18,14 +18,16 @@
 
     </div>
 
-    <div class="ui form" style="margin-bottom: 50px;">
+    <div class="ui divider"></div>
+
+    <div class="ui form" style="margin-bottom: 50px; margin-top: 30px;">
 
         <div class="two fields" style="margin:0 0 30px 0;">
 
             <div class="field">
                 <label>Program</label>
 
-                <a ui-sref="reviewProgram({id: request.getProgramId()})">{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</a>
+                    <a ui-sref="reviewProgram({id: request.getProgramId()})">{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</a>
             </div>
 
             <div class="field">
@@ -78,7 +80,7 @@
 
         </div>
 
-        <a ui-sref="programList({list: 'requests'})" class="ui large button">Return</a>
+        <a ui-sref="programList({list: 'requests'})" class="ui large button" style="margin-right:50px;">Return</a>
 
         <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="approveRequest()">Approve </button>
         <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="rejectRequest()">Reject </button>
