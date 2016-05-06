@@ -154,6 +154,10 @@
                     // Update contacts drop down list
                     for (var i=0; i<contacts.length; i++) {
                         if (originalEmail == contacts[i]._id) {
+                            if(typeof contacts[i] === 'string') {
+                                contacts[i] = JSON.parse(contacts[i]);
+                            }
+
                             contacts[i]._id = $subForm.current.email;
                             contacts[i].title = "" + $subForm.current.title + " " + $subForm.current.fullName + " " + $subForm.current.email;
                             contacts[i].info = $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +

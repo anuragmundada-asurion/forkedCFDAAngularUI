@@ -610,7 +610,7 @@
                             return requiredFieldsMissing;
                         case 'contactSection':
 
-                            requiredFieldsMissing = (!vm.program.contacts || !vm.program.contacts['local'].flag || !vm.program.contacts.list || vm.program.contacts.list.length == 0);
+                            requiredFieldsMissing = (!vm.program.contacts || (typeof vm.program.contacts['local'] !== 'undefined' && !vm.program.contacts['local'].flag) || !vm.program.contacts.list || vm.program.contacts.list.length == 0);
 
                             //if still false, then check hq address's required fields;
                             if (!requiredFieldsMissing) {
