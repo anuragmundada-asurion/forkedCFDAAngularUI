@@ -514,6 +514,9 @@
                 error: 'An error has occurred, please try again !'
             };
 
+            //show error form validation
+            $scope.validateForm();
+
             if(typeof $scope.reason !== 'undefined' && $scope.reason !== '' && !$scope.submissionInProgress) {
                 $scope.submissionInProgress = true;
                 var oApiParam = {
@@ -590,6 +593,14 @@
                             oApiParam.oData.programNumber = $scope.programNumber;
                         }
                     }
+
+                    //approval archive change request
+                    if($scope.ngDialogData.action === 'archive'){
+                        if(typeof $scope.openAward === 'undefined' || !$scope.openAward) {
+                            $scope.submissionInProgress = false;
+                            return false;
+                        }
+                    }
                 } else if ($scope.ngDialogData.typeEntity === 'program_submit') {
                     //set API Name to call
                     oApiParam.apiName = 'programAction';
@@ -630,12 +641,17 @@
                         message: message.error
                     };
                 });
-            } else {
-                //show error form validation
-                angular.forEach($scope.programRequestForm.$error.required, function(field) {
-                    field.$setDirty();
-                });
             }
+        };
+
+        /**
+         * function for form validation
+         * @returns void
+         */
+        $scope.validateForm = function(){
+            angular.forEach($scope.programRequestForm.$error.required, function(field) {
+                field.$setDirty();
+            });
         };
 
         /**
