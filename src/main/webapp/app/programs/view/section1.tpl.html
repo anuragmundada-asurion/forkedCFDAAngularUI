@@ -27,23 +27,12 @@
         <div class="tabover">
             <p class="vp-field-label"> Describe how assistance can potentially be used </p>
 
-            <p class="vp-field-value">{{ programData.usage.rules.content }}</p>
-
-            <p class="vp-field-label"> Are there specific restrictions place upon the use of the assistance? </p>
-
-            <p class="vp-field-value">{{traverseTree(programData.usage.restrictions.flag, 'yes_no_na').value}}</p>
-
-            <p class="vp-field-value" ng-show="programData.usage.restrictions.flag === 'yes'">{{programData.usage.restrictions.content}}</p>
-
-            <p class="vp-field-label"> Are there discretionary funds available? </p>
-
-            <p class="vp-field-value">{{traverseTree(programData.usage.discretionaryFund.flag, 'yes_no_na').value}}</p>
-            <p class="vp-field-value" ng-show="programData.usage.discretionaryFund.flag === 'yes'">{{programData.usage.discretionaryFund.content}}</p>
-
-            <p class="vp-field-label"> Are loans a type of assistance in this program? </p>
-
-            <p class="vp-field-value">{{traverseTree(programData.usage.loanTerms.flag, 'yes_no_na').value}}</p>
-            <p class="vp-field-value" ng-show="programData.usage.loanTerms.flag === 'yes'">{{programData.usage.loanTerms.content}}</p>
+            <p class="vp-field-value">
+                {{ programData.usage.rules.content }}
+                <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>
+                <span ng-if="programData.usage.discretionaryFund.flag=='yes'">{{ programData.usage.discretionaryFund.content }}</span>
+                <span ng-if="programData.usage.loanTerms.flag=='yes'">{{ programData.usage.loanTerms.content }}</span>
+            </p>
         </div>
     </div>
 
