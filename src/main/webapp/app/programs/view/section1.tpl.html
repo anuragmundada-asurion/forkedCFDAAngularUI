@@ -24,16 +24,12 @@
     <div>
         <p class="vp-field-label-big"> Uses and Use Restrictions (070): </p>
 
-        <div class="tabover">
-            <p class="vp-field-label"> Describe how assistance can potentially be used </p>
-
-            <p class="vp-field-value">
-                {{ programData.usage.rules.content }}
-                <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>
-                <span ng-if="programData.usage.discretionaryFund.flag=='yes'">{{ programData.usage.discretionaryFund.content }}</span>
-                <span ng-if="programData.usage.loanTerms.flag=='yes'">{{ programData.usage.loanTerms.content }}</span>
-            </p>
-        </div>
+        <p class="vp-field-value">
+            {{ programData.usage.rules.content }}
+            <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>
+            <span ng-if="programData.usage.discretionaryFund.flag=='yes'">{{ programData.usage.discretionaryFund.content }}</span>
+            <span ng-if="programData.usage.loanTerms.flag=='yes'">{{ programData.usage.loanTerms.content }}</span>
+        </p>
     </div>
 
 </div>
