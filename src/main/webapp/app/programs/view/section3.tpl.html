@@ -6,7 +6,7 @@
             <p class="vp-field-label"> Preapplication Coordination (091):</p>
 
             <p class="vp-field-value" ng-if="programData.preApplication.coordination.flag == 'yes'">
-                Preapplication coordination is required. {{programData.preApplication.coordination.additionalInfo.content}}
+                Preapplication coordination is required.
 
                 <!-- Environmental statements-->
                 <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'yes'">
@@ -29,6 +29,10 @@
                 <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'no'">
                     This program is excluded from coverage under E.O. 12372.
                 </span>
+
+
+                <!-- additional content-->
+                {{programData.preApplication.coordination.additionalInfo.content}}
             </p>
 
         </div>
@@ -37,21 +41,19 @@
         <div>
             <p class="vp-field-label"> Application Procedures (092):</p>
 
-            <div class="tabover">
+            <p class="vp-field-value">
 
-                <p class="vp-field-label">Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?</p>
+                <!-- CFR 200-->
+                <span ng-if="programData.application.procedures.questions.OMBCircularA102.flag === 'yes'">
+                    2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards applies to this program.
+                </span>
+                <span ng-if="programData.application.procedures.questions.OMBCircularA102.flag === 'no'">
+                    This program is excluded from coverage under 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards.
+                </span>
 
-                <p class="vp-field-value" ng-show="programData.application.procedures.questions.OMBCircularA102.flag === 'yes'">
-                    2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards applies to this program.</p>
-
-                <p class="vp-field-value" ng-show="programData.application.procedures.questions.OMBCircularA102.flag === 'no'">
-                    This program is excluded from coverage under 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards.</p>
-
-
-                <p class="vp-field-label">Other Application Procedures:</p>
-
-                <p class="vp-field-value" ng-bind="programData.application.procedures.additionalInfo.content"></p>
-            </div>
+                <!-- additional content-->
+                {{programData.application.procedures.additionalInfo.content}}
+            </p>
         </div>
 
 
