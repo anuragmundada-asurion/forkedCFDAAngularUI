@@ -605,7 +605,7 @@
                         <div ng-show="gsavm.form.$submitted || gsavm.form.preappCoord3question2.$dirty">
                             <span ng-show="gsavm.form.preappCoord3question2.$error.required">You must provide restrictions.</span>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field" ng-show="gsavm.program.preApplication.coordination.questions.ExecutiveOrder12372.flag=='yes'">
                             <label for="preappCoord3question2info">Additional Information:</label>
                             <textarea id="preappCoord3question2info" name="preappCoord3question2info" ng-model="gsavm.program.preApplication.coordination.additionalInfo.content" ng-required="gsavm.program.usage.restrictions.flag3"></textarea>
 
