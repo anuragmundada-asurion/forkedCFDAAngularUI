@@ -13,6 +13,7 @@
         <p class="vp-field-label">Headquarters Office (152):</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.contacts.list">
+            <span ng-if="$index != 0 "><br></span>
             <span>{{item.title}}</span> <span>{{item.fullName}}</span><br>
             <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
             <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
@@ -22,7 +23,6 @@
             <span ng-show="item.email">Email: <a ng-href="mailto:item.email">{{item.email}}</a><br></span>
             <span ng-show="item.phone">Phone: {{item.phone}}<br></span>
             <span ng-show="item.fax">Fax: {{item.fax}}<br></span>
-            <br>
         </div>
 
         <p class="vp-field-label">Website Address (153):</p>
@@ -38,17 +38,15 @@
 
         <p class="vp-field-label">Related Programs (160):</p>
 
-        <div class="tabover">
-            <p class="vp-field-label">Does this program have related programs?</p>
-
-            <p class="vp-field-value"> {{traverseTree(programData.relatedPrograms.flag, 'yes_no_na').value}}</p>
-
-            <div ng-repeat="item in relatedPrograms">
-                <p class="vp-field-value"><b>{{item.programNumber}}</b> {{item.title}}</p>
-            </div>
-
-
-        </div>
+        <p class="vp-field-value">
+            <span ng-if="programData.relatedPrograms.flag == 'yes'">
+                <span ng-repeat="item in relatedPrograms">
+                    <b>{{item.programNumber}}</b> {{item.title}}
+                    <br>
+                </span>
+            </span>
+            <span ng-if="programData.relatedPrograms.flag == 'na'">Not Applicable</span>
+        </p>
 
 
         <p class="vp-field-label"> Examples of Funded Projects (170):</p>
@@ -77,17 +75,10 @@
 
         <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
 
-        <div class="tabover">
-            <p class="vp-field-label">Is there criteria for selecting proposals?</p>
-
-            <p class="vp-field-value">{{traverseTree(programData.application.selectionCriteria.flag, 'yes_no_na').value}}</p>
-
-            <div ng-show="programData.application.selectionCriteria.flag ==='yes'">
-                <p class="vp-field-label"> Please describe criteria for selecting proposals </p>
-
-                <p class="vp-field-value">{{programData.application.selectionCriteria.content}}</p>
-            </div>
-        </div>
+        <p class="vp-field-value">
+            <span ng-if="programData.application.selectionCriteria.flag == 'yes'">{{programData.application.selectionCriteria.content}}</span>
+            <span ng-if="programData.application.selectionCriteria.flag == 'na'">Not Applicable</span>
+            <span ng-if="programData.application.selectionCriteria.flag == 'no'">No</span></p>
 
     </div>
 </div>
