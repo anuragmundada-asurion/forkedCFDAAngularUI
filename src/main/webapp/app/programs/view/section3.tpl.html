@@ -1,8 +1,8 @@
-<h3 class="m-t-3"> Application and Award Process (090)</h3>
+<h3 class="m-t-3"> Application and Award Process</h3>
 
 <ul>
   <li>
-    <h4 class="m-t-2 m-b-0"> Preapplication Coordination (091)</h4>
+    <h4 class="m-t-2 m-b-0"> Preapplication Coordination</h4>
     <p class="m-t-0" ng-if="programData.preApplication.coordination.flag == 'yes'">
       Preapplication coordination is required.
 
@@ -15,7 +15,7 @@
       <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'no'">
         Environmental impact information is not required for this program.
       </span>
-      
+
       <!-- Executive Order  -->
       <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'yes'">
         This program is eligible for coverage under E.O. 12372, "Intergovernmental Review of Federal Programs."
@@ -31,7 +31,7 @@
     </p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Application Procedures (092)</h4>
+    <h4 class="m-t-2 m-b-0"> Application Procedures</h4>
     <p class="m-t-0">
       <!-- CFR 200-->
       <span ng-if="programData.application.procedures.questions.OMBCircularA102.flag === 'yes'">
@@ -46,11 +46,11 @@
     </p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Award Procedure (093)</h4>
+    <h4 class="m-t-2 m-b-0"> Award Procedure</h4>
     <p class="m-t-0">{{programData.award.procedures.content}}</p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Deadlines (094)</h4>
+    <h4 class="m-t-2 m-b-0"> Deadlines</h4>
     <p class="m-t-0" class="vp-field-value">
       <span ng-if="programData.application.deadlines.submission.flag == 'yes'">
         <!-- repeat over all deadlines. -->
@@ -71,7 +71,7 @@
     </p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Range of Approval/Disapproval Time(095)</h4>
+    <h4 class="m-t-2 m-b-0"> Range of Approval/Disapproval Time</h4>
     <p class="m-t-0">
       <span ng-if="programData.application.deadlines.approval.interval =='1'">From 1 to 15 days</span>
       <span ng-if="programData.application.deadlines.approval.interval =='2'">From 15 to 30 days</span>
@@ -86,7 +86,7 @@
     </p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Appeals (096)</h4>
+    <h4 class="m-t-2 m-b-0"> Appeals </h4>
     <p class="m-t-0">
       <span ng-if="programData.application.deadlines.appeal.interval =='1'">From 1 to 15 days</span>
       <span ng-if="programData.application.deadlines.appeal.interval =='2'">From 15 to 30 days</span>
@@ -101,7 +101,7 @@
     </p>
   </li>
   <li>
-    <h4 class="m-t-2 m-b-0"> Renewals (097)</h4>
+    <h4 class="m-t-2 m-b-0"> Renewals </h4>
     <p class="m-t-0">
       <span ng-if="programData.application.deadlines.renewal.interval =='1'">From 1 to 15 days</span>
       <span ng-if="programData.application.deadlines.renewal.interval =='2'">From 15 to 30 days</span>

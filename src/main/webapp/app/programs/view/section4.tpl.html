@@ -1,58 +1,53 @@
-<div class="subsection assistance-info">
-  <h3>Assistance Consideration (100)</h3>
+<h3>Assistance Consideration (100)</h3>
 
-  <div class="tabover">
-    <ul>
-      <li>
-        <h4> Formula and Matching Requirements (101)</h4>
+<ul>
+  <li>
+    <h4> Formula and Matching Requirements </h4>
 
-        <!-- statutory formula-->
-        <p ng-if="programData.assistance.formula.flag == 'yes'">
-          Statutory Formula: Title {{programData.assistance.formula.title}} Chapter {{programData.assistance.formula.chapter}}
-          Part {{programData.assistance.formula.part}} Subpart {{programData.assistance.formula.subPart}} Public Law {{programData.assistance.formula.publicLaw}}
-          {{programData.assistance.formula.additionalInfo.content}}
-        </p>
+    <!-- statutory formula-->
+    <p ng-if="programData.assistance.formula.flag == 'yes'">
+      Statutory Formula: Title {{programData.assistance.formula.title}} Chapter {{programData.assistance.formula.chapter}}
+      Part {{programData.assistance.formula.part}} Subpart {{programData.assistance.formula.subPart}} Public Law {{programData.assistance.formula.publicLaw}}
+      {{programData.assistance.formula.additionalInfo.content}}
+    </p>
 
-        <p ng-if="programData.assistance.formula.flag == 'no'">
-          This federal assistance listing has no statutory formula
-        </p>
+    <p ng-if="programData.assistance.formula.flag == 'no'">
+      This federal assistance listing has no statutory formula
+    </p>
 
-        <p ng-if="programData.assistance.formula.flag == 'na'">
-          Statuary formula is not applicable to this federal assistance listing.
-        </p>
+    <p ng-if="programData.assistance.formula.flag == 'na'">
+      Statuary formula is not applicable to this federal assistance listing.
+    </p>
 
-        <!-- matching requirements -->
-        <p ng-if="programData.assistance.matching.flag == 'yes'">
-          Matching Requirements: Percent: {{programData.assistance.matching.percent}}
-          {{programData.assistance.matching.otherInfo.content}}
-        </p>
+    <!-- matching requirements -->
+    <p ng-if="programData.assistance.matching.flag == 'yes'">
+      Matching Requirements: Percent: {{programData.assistance.matching.percent}}
+      {{programData.assistance.matching.otherInfo.content}}
+    </p>
 
-        <p ng-if="programData.assistance.matching.flag == 'no'">
-          This program has no matching requirements.
-        </p>
+    <p ng-if="programData.assistance.matching.flag == 'no'">
+      This program has no matching requirements.
+    </p>
 
-        <p ng-if="programData.assistance.matching.flag == 'na'">
-          Matching Requirements Not Applicable
-        </p>
+    <p ng-if="programData.assistance.matching.flag == 'na'">
+      Matching Requirements Not Applicable
+    </p>
 
-        <!-- moe-->
-        <p ng-if="programData.assistance.moe.flag == 'yes'">
-          This program has MOE requirements, see funding agency for further details. Additional Information:
-          {{programData.assistance.moe.additionalInfo.content}}
-        </p>
+    <!-- moe-->
+    <p ng-if="programData.assistance.moe.flag == 'yes'">
+      This program has MOE requirements, see funding agency for further details. Additional Information:
+      {{programData.assistance.moe.additionalInfo.content}}
+    </p>
 
-        <p ng-if="programData.assistance.moe.flag ==='no'">
-          This program does not have MOE requirements.
-        </p>
+    <p ng-if="programData.assistance.moe.flag ==='no'">
+      This program does not have MOE requirements.
+    </p>
 
-      </li>
-      <li>
-        <h4> Length and Time Phasing of Assistance (102)</h4>
-        <!--for time period-->
-        <!--{{programData.assistance.limitation.content}}-->
-        <p>{{programData.assistance.limitation.awarded}}</p>
-      </li>
-    </ul>
-
-  </div>
-</div>
+  </li>
+  <li>
+    <h4> Length and Time Phasing of Assistance</h4>
+    <!--for time period-->
+    <!--{{programData.assistance.limitation.content}}-->
+    <p>{{programData.assistance.limitation.awarded}}</p>
+  </li>
+</ul>

@@ -1,15 +1,15 @@
-<h3>Authorization (040)</h3>
+<h3>Authorization</h3>
 <div ng-repeat="item in programData.authorizations">
   <p>{{ appUtil.getAuthorizationTitle(item) }}</p>
 </div>
 
-<h3>Objectives (050)</h3>
+<h3>Objectives</h3>
 <p ng-bind="programData.objective"></p>
 
-<h3>Types of Assistance (060)</h3>
+<h3>Types of Assistance</h3>
 <p ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
 
-<h3>Uses and Use Restrictions (070)</h3>
+<h3>Uses and Use Restrictions</h3>
 <p>
   {{ programData.usage.rules.content }}
   <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>

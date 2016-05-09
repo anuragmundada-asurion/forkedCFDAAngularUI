@@ -1,10 +1,10 @@
 <div class="subsection financial-info">
 
-    <p class="vp-field-label-big"> Financial Information (120)</p>
+    <p class="vp-field-label-big"> Financial Information</p>
 
     <div class="tabover">
         <div>
-            <p class="vp-field-label">Account Identification (121):</p>
+            <p class="vp-field-label">Account Identification:</p>
 
             <!-- financial accounts-->
             <p class="vp-field-value">
@@ -14,7 +14,7 @@
 
 
             <!-- obligations-->
-            <p class="vp-field-label">Obligations (122):</p>
+            <p class="vp-field-label">Obligations:</p>
 
             <p class="vp-field-value">
                 <!-- one obligation-->
@@ -35,7 +35,7 @@
 
 
             <!-- range of financial assistance-->
-            <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
+            <p class="vp-field-label">Range and Average of Financial Assistance:</p>
 
             <p class="vp-field-value" ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
                 {{programData.financial.additionalInfo.content}}</p>
@@ -46,7 +46,7 @@
 
 
         <div>
-            <p class="vp-field-label"> Program Accomplishments (130):</p>
+            <p class="vp-field-label"> Program Accomplishments:</p>
 
             <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag =='yes'">
                 <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
@@ -62,7 +62,7 @@
 
 
         <div>
-            <p class="vp-field-label"> Regulations, Guidelines, and Literature (140):</p>
+            <p class="vp-field-label"> Regulations, Guidelines, and Literature:</p>
 
             <p class="vp-field-value">
                 <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
