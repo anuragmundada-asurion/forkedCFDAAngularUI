@@ -92,7 +92,7 @@
             <div class="field" ng-show="ngDialogData.action === 'archive'">
                 <label>Have you verified there are no open awards against this CFDA? <span class="required" >*</span></label>
                 <div class="ui radio checkbox">
-                    <input id="openAward" type="radio" name="openAward" ng-model="openAward" value="yes" required />
+                    <input id="openAward" type="checkbox" name="openAward" ng-model="openAward" value="yes" required />
                     <label for="openAward">Yes</label>
                 </div>
                 <div ng-show="form.error || programRequestForm.openAward.$dirty">
