@@ -6,69 +6,62 @@
         <div>
             <p class="vp-field-label">Account Identification (121):</p>
 
-            <div ng-repeat="account in programData.financial.accounts" style="margin-bottom:.5em;">
-                <p class="vp-field-value">{{account.code}}</p>
+            <!-- financial accounts-->
+            <p class="vp-field-value">
+                <span ng-repeat="account in programData.financial.accounts">
+                    {{account.code}}-{{account.description}}<br></span>
+            </p>
 
-                <p class="vp-field-value">{{account.description}}</p>
-            </div>
 
+            <!-- obligations-->
             <p class="vp-field-label">Obligations (122):</p>
 
-            <div class="tabover" ng-repeat="obligation in programData.financial.obligations">
-                <p class="vp-field-label">Is this a Recovery and Reinvestment Act Obligation?</p>
+            <p class="vp-field-value">
+                <!-- one obligation-->
+                <span ng-repeat="obligation in programData.financial.obligations">
+                    <!-- fy actual, estimate etc -->
+                    <span ng-repeat="(key, value) in obligation.values">
+                        FY{{key}}
+                        <span ng-if="$index == 0">(actual): {{value.actual | currency}}</span>
+                        <span ng-if="$index != 0">(est): {{value.estimate | currency}}</span>.
+                    </span>
+                    <!-- recovery act, salary expenses-->
+                    <span ng-if="obligation.questions.recovery.flag == 'yes'">This is a Recovery and Reinvestment Act obligation.</span>
+                    <span ng-if="obligation.questions.salary_or_expense.flag == 'yes'">This obligation is for salaries and expenses.</span>
+                    {{obligation.additionalInfo.content}}
+                    <br>
+                </span>
+            </p>
 
-                <p class="vp-field-value">{{traverseTree(obligation.questions.recovery.flag, 'yes_no_na').value}}</p>
-
-                <div ng-repeat="(key, value) in obligation.values">
-                    <p class="vp-field-label">Fiscal Year: <span class="vp-field-value"> {{key}}</span></p>
-
-                    <div class="tabover">
-                        <p class="vp-field-label">Flag: <span class="vp-field-value"> {{traverseTree(value.flag, 'yes_no_na').value}}</span></p>
-
-                        <p class="vp-field-label">Actual: <span class="vp-field-value"> {{value.actual | currency}}</span></p>
-
-                        <p class="vp-field-label">Estimate: <span class="vp-field-value"> {{value.estimate | currency}}</span></p>
-
-                        <p class="vp-field-label">Explanation: <span class="vp-field-value"> {{value.explanation | currency}}</span></p>
-                    </div>
-                </div>
-                <div>
-                    <p class="vp-field-label">Additional Info: </p>
-
-                    <p class="vp-field-value"> {{obligation.additionalInfo.content}}</p>
-                </div>
-            </div>
-
-
+            <!-- range of financial assistance-->
             <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
 
-            <p class="vp-field-value" ng-bind="programData.financial.additionalInfo.content"></p>
+            <p class="vp-field-value" ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
+                {{programData.financial.additionalInfo.content}}</p>
 
-            <!-- taking this out for now...-->
-
-            <!--<p class="vp-field-label">TAFS Codes - Unique Treasury Appropriation Fund Symbols (124):</p>-->
-
-            <!--<div class="tabover">-->
-            <!--<div ng-repeat="taf in programData.financial.treasury.tafs">-->
-            <!--<p class="vp-field-label">Treasury Dept Code: <span class="vp-field-value" ng-bind="taf.departmentCode"></span></p>-->
-
-            <!--<p class="vp-field-label">Allocation Transfer Agency: <span class="vp-field-value" ng-bind="taf.allocationTransferAgency"></span></p>-->
-
-            <!--<p class="vp-field-label">FY 1: <span class="vp-field-value" ng-bind="taf.fy1"></span></p>-->
-
-            <!--<p class="vp-field-label">FY 2: <span class="vp-field-value" ng-bind="taf.fy2"></span></p>-->
-
-            <!--<p class="vp-field-label"> Treasury Account Main Code: <span class="vp-field-value" ng-bind="taf.accountCode"></span></p>-->
-
-            <!--<p class="vp-field-label">TAFS Sub-Account: <span class="vp-field-value" ng-bind="taf.subAccountCode"></span></p>-->
-            <!--</div>-->
-            <!--</div>-->
-
+            <p class="vp-field-value" ng-if="!(programData.financial.additionalInfo.content) || (programData.financial.additionalInfo.content == '')">
+                No Data Available.</p>
         </div>
 
 
         <div>
             <p class="vp-field-label"> Program Accomplishments (130):</p>
+
+
+            <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag =='yes'">
+
+                <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
+
+
+
+                    <br>
+                </span>
+
+            </p>
+
+            <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag !='yes'">
+                Not Applicable. </p>
+
 
             <div class="tabover">
                 <p class="vp-field-label">Are there program accomplishments?</p>
