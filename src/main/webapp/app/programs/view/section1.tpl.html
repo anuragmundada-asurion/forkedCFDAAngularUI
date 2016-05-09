@@ -1,6 +1,6 @@
 <div class="subsection general-info">
     <div>
-        <p class="vp-field-label-big"> Authorization (040):</p>
+        <p class="vp-field-label-big"> Authorization:</p>
 
         <div class="vp-field-value" ng-repeat="item in programData.authorizations">
             <p>{{ appUtil.getAuthorizationTitle(item) }}</p>
@@ -8,21 +8,21 @@
     </div>
 
     <div>
-        <p class="vp-field-label-big"> Objectives (050): </p>
+        <p class="vp-field-label-big"> Objectives: </p>
 
         <p class="vp-field-value" ng-bind="programData.objective"></p>
     </div>
 
 
     <div>
-        <p class="vp-field-label-big"> Types of Assistance (060):</p>
+        <p class="vp-field-label-big"> Types of Assistance:</p>
 
         <p class="vp-field-value" ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
 
     </div>
 
     <div>
-        <p class="vp-field-label-big"> Uses and Use Restrictions (070): </p>
+        <p class="vp-field-label-big"> Uses and Use Restrictions: </p>
 
         <p class="vp-field-value">
             {{ programData.usage.rules.content }}
