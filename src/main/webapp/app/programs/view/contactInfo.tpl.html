@@ -1,17 +1,23 @@
-<div class="subsection contact-info">
-    <p class="vp-field-label">Website:</p>
+<div class="usa-card usa-card-green">
+  <div class="usa-card-body">
 
-    <p class="vp-field-value website"><a ng-href="{{programData.website}}" ng-bind="programData.website"></a></p>
+    <h4 class="usa-card-title">Contact Information</h4>
 
-    <p class="vp-field-label">Regional or Local Office:</p>
+    <h5>Website</h5>
+    <a class="usa-button usa-text-small" ng-href="{{programData.website}}" ng-bind="programData.website"></a>
 
-    <p class="vp-field-value">{{programData.contacts['local'].flag == 'regional'}}, {{programData.contacts['local'].additionalInfo.content}}</p>
+    <h5>Regional or Local Office</h5>
+    <p class="usa-card-text usa-text-small">{{programData.contacts['local'].flag == 'regional'}}, {{programData.contacts['local'].additionalInfo.content}}</p>
 
-    <p class="vp-field-label">Headquarters Office:</p>
+    <h5>Headquarters Office</h5>
+    <div class="usa-card-text usa-text-small" ng-repeat="item in programData.contacts.list">
+      <p>
 
-    <div class="vp-field-value" ng-repeat="item in programData.contacts.list" style="word-wrap: break-word;">
-        <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
+        <span class="font-weight-bold">{{item.fullName}}</span><br/>
+        <span class="font-italic">{{item.title}}</span><br/>
+
         <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
+
         <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
         <span ng-show="item.city">{{item.city}}<span ng-show="item.state || item.zip">, </span></span>
         <span ng-show="item.state">{{item.state}}<span ng-show="item.zip">, </span></span>
@@ -19,6 +25,9 @@
         <span ng-show="item.email">Email: <a ng-href="mailto:item.email">{{item.email}}</a><br/></span>
         <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
         <span ng-show="item.phone">Fax: {{item.fax}}<br/></span>
+
+      </p>
     </div>
 
+  </div>
 </div>

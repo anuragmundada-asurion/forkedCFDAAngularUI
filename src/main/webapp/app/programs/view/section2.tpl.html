@@ -1,31 +1,26 @@
-<div class="subsection eligibility-info">
-    <p class="vp-field-label-big"> Eligibility Requirements (080)</p>
+<h3 class="m-t-3"> Eligibility Requirements (080)</h3>
 
-    <div class="tabover">
-        <div>
-            <p class="vp-field-label"> Applicant Eligibility (081):</p>
+<ul>
 
-            <p class="vp-field-value">{{programData.eligibility.applicant.additionalInfo.content}}</p>
-        </div>
+  <li>
+    <h4 class="m-t-2 m-b-0">Applicant Eligibility (081)</h4>
+    <p class="m-t-0">{{programData.eligibility.applicant.additionalInfo.content}}</p>
+  </li>
 
-        <div>
-            <p class="vp-field-label"> Beneficiary Eligibility (082):</p>
+  <li>
+    <h4 class="m-t-2 m-b-0">Beneficiary Eligibility (082)</h4>
+    <p class="m-t-0">{{programData.eligibility.beneficiary.additionalInfo.content}}</p>
+  </li>
 
-            <p class="vp-field-value">{{programData.eligibility.beneficiary.additionalInfo.content}}</p>
-        </div>
+  <li>
+    <h4 class="m-t-2 m-b-0">Credentials/Documentation (083)</h4>
+    <p class="m-t-0">
+      <span ng-if="programData.eligibility.documentation.flag=='yes'">{{programData.eligibility.documentation.content}}
+        <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='yes'">2 CFR 200, Subpart E - Cost Principles applies to this program.</span>
+        <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='no'">This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</span>
+      </span>
+      <span ng-if="programData.eligibility.documentation.flag=='no'">None.</span>
+    </p>
+  </li>
 
-        <div>
-            <p class="vp-field-label"> Credentials/Documentation (083):</p>
-
-            <p class="vp-field-value">
-                <span ng-if="programData.eligibility.documentation.flag=='yes'">{{programData.eligibility.documentation.content}}
-                    <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='yes'">2 CFR 200, Subpart E - Cost Principles applies to this program.</span>
-                    <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='no'">This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</span>
-                </span>
-                <span ng-if="programData.eligibility.documentation.flag=='no'">None.</span>
-            </p>
-        </div>
-
-    </div>
-
-</div>
+</ul>

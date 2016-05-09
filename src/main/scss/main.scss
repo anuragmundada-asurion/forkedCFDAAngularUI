@@ -41,3 +41,9 @@
 body.ngdialog-open {
   overflow: visible !important;
 }
+
+// Extending USWDS
+@import 'uswds/custom/variables';
+@import 'uswds/custom/utilities'; // Bootstrap 4 Font Weight Utilities
+@import 'uswds/custom/utilities-spacing'; //Bootstrap 4 Spacing Utilities
+@import 'uswds/custom/card';
