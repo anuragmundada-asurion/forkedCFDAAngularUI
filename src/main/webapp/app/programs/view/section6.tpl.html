@@ -51,26 +51,16 @@
 
         <p class="vp-field-label"> Examples of Funded Projects (170):</p>
 
-        <div class="tabover">
-            <p class="vp-field-label">Are there examples of funded projects?</p>
-
-
-            <p class="vp-field-value">{{traverseTree(programData.projects.flag, 'yes_no_na').value}}</p>
-
-            <div ng-show="programData.projects.flag ==='yes'">
-                <div ng-repeat="(key,value) in programData.projects.list">
-                    <p class="vp-field-label">Year: <span class="vp-field-value"> {{key}}</span></p>
-
-                    <div class="tabover">
-                        <p class="vp-field-label">Projected: <span class="vp-field-value"> {{value.content.projection}}</span></p>
-
-                        <p class="vp-field-label">Actual: <span class="vp-field-value">{{value.content.actual}}</span></p>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
+        <p class="vp-field-value">
+            <span ng-if="programData.projects.flag == 'yes'">
+                <span ng-repeat="(key,value) in programData.projects.list">
+                    <span ng-if="value.content.actual"> Fiscal Year: {{key}} (actual) {{value.content.actual}}</span>
+                    <span ng-if="value.content.projection"> Fiscal Year: {{key}} (projection) {{value.content.projection}}</span>
+                    <br>
+                </span>
+            </span>
+            <span ng-if="programData.projects.flag == 'na'">Not Applicable</span>
+        </p>
 
 
         <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
