@@ -220,7 +220,7 @@
                                         }
 
                                         name = nameFormat(d[i].name);
-                                        value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
+                                        value = (d[i].value > 999) ? valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index) : d[i].value;
                                         bgcolor = colors[d[i].index];
 
                                         if (!text) {
