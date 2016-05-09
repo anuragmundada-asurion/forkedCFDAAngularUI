@@ -33,6 +33,7 @@
                 </span>
             </p>
 
+
             <!-- range of financial assistance-->
             <p class="vp-field-label">Range and Average of Financial Assistance (123):</p>
 
@@ -47,60 +48,25 @@
         <div>
             <p class="vp-field-label"> Program Accomplishments (130):</p>
 
-
             <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag =='yes'">
-
                 <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
-
-
-
+                    <span ng-if="value.content.actual && value.content.actual != ''">Fiscal Year {{key}}: {{value.content.actual}}</span>
+                    <span ng-if="value.content.projection && value.content.projection != ''">Fiscal Year {{key}}: {{value.content.projection}}</span>
                     <br>
                 </span>
-
             </p>
 
             <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag !='yes'">
                 Not Applicable. </p>
-
-
-            <div class="tabover">
-                <p class="vp-field-label">Are there program accomplishments?</p>
-
-                <p class="vp-field-value">{{traverseTree(programData.postAward.accomplishments.flag, 'yes_no_na').value}}</p>
-
-                <div class="tabover" ng-show="programData.postAward.accomplishments.flag === 'yes'">
-
-                    <div class="vp-field-value" ng-repeat="(key,value) in programData.postAward.accomplishments.list">
-
-                        <p class="vp-field-label">Year: <span class="vp-field-value"> {{key}}</span></p>
-
-                        <div class="tabover">
-                            <p class="vp-field-label">Projected: <span class="vp-field-value"> {{value.content.projection}}</span></p>
-
-                            <p class="vp-field-label">Actual: <span class="vp-field-value">{{value.content.actual}}</span></p>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
         </div>
 
 
         <div>
             <p class="vp-field-label"> Regulations, Guidelines, and Literature (140):</p>
 
-            <div class="tabover">
-                <p class="vp-field-label">Are there any regulations, guidelines or literature?</p>
-
-                <p class="vp-field-value">{{traverseTree(programData.postAward.documents.flag, 'yes_no_na').value}}</p>
-
-                <div class="tabover" ng-show="programData.postAward.documents.flag === 'yes'">
-                    <p class="vp-field-label"> Please describe regulations, guidelines, and literature.</p>
-
-                    <p class="vp-field-value" ng-bind="programData.postAward.documents.content"></p>
-                </div>
-            </div>
+            <p class="vp-field-value">
+                <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
+                <span ng-if="programData.postAward.documents.flag !='yes'"> Not Applicable.</span></p>
         </div>
 
     </div>
