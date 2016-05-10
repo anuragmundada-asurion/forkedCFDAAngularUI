@@ -1,37 +1,44 @@
-<div class="subsection financial-info">
+<h3> Related Programs</h3>
 
-    <p class="vp-field-label-big"> Related Programs</p>
+<ul ng-if="programData.relatedPrograms.flag == 'yes'">
+  <li ng-repeat="item in relatedPrograms">
+    <b>{{item.programNumber}}</b> {{item.title}}
+  </li>
+</ul>
 
-    <p class="vp-field-value">
-            <span ng-if="programData.relatedPrograms.flag == 'yes'">
-                <span ng-repeat="item in relatedPrograms">
-                    <b>{{item.programNumber}}</b> {{item.title}}
-                    <br>
-                </span>
-            </span>
-        <span ng-if="programData.relatedPrograms.flag == 'na'">Not Applicable</span>
-    </p>
+<p class="m-t-0" ng-if="programData.relatedPrograms.flag == 'na'">
+  Not Applicable
+</p>
 
 
-    <p class="vp-field-label-big"> Examples of Funded Projects</p>
+<h3> Examples of Funded Projects</h3>
 
-    <p class="vp-field-value">
-            <span ng-if="programData.projects.flag == 'yes'">
-                <span ng-repeat="(key,value) in programData.projects.list">
-                    <span ng-if="value.content.actual"> Fiscal Year: {{key}} {{value.content.actual}}</span>
-                    <span ng-if="value.content.projection"> Fiscal Year: {{key}} {{value.content.projection}}</span>
-                    <br>
-                </span>
-            </span>
-        <span ng-if="programData.projects.flag == 'na'">Not Applicable</span>
-    </p>
+<p>
+  <span ng-if="programData.projects.flag == 'yes'">
+    <span ng-repeat="(key,value) in programData.projects.list">
+      <span ng-if="value.content.actual">
+        Fiscal Year: {{key}} {{value.content.actual}}
+      </span>
+      <span ng-if="value.content.projection">
+        Fiscal Year: {{key}} {{value.content.projection}}
+      </span>
+      <br>
+    </span>
+  </span>
+  <span ng-if="programData.projects.flag == 'na'">Not Applicable</span>
+</p>
 
 
-    <p class="vp-field-label-big"> Criteria for Selecting Proposals</p>
+<h3> Criteria for Selecting Proposals</h3>
 
-    <p class="vp-field-value">
-        <span ng-if="programData.application.selectionCriteria.flag == 'yes'">{{programData.application.selectionCriteria.content}}</span>
-        <span ng-if="programData.application.selectionCriteria.flag == 'na'">Not Applicable</span>
-        <span ng-if="programData.application.selectionCriteria.flag == 'no'">No</span></p>
-
-</div>
+<p>
+  <span ng-if="programData.application.selectionCriteria.flag == 'yes'">
+    {{programData.application.selectionCriteria.content}}
+  </span>
+  <span ng-if="programData.application.selectionCriteria.flag == 'na'">
+    Not Applicable
+  </span>
+  <span ng-if="programData.application.selectionCriteria.flag == 'no'">
+    No
+  </span>
+</p>

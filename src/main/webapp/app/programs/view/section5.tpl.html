@@ -1,73 +1,76 @@
-<div class="subsection financial-info">
+<h3> Financial Information</h3>
 
-    <p class="vp-field-label-big"> Financial Information</p>
+<ul>
 
-    <div class="tabover">
-        <div>
-            <p class="vp-field-label">Account Identification:</p>
+  <li>
+    <h4 class="m-t-2 m-b-0">Account Identification:</h4>
 
-            <!-- financial accounts-->
-            <p class="vp-field-value">
-                <span ng-repeat="account in programData.financial.accounts">
-                    {{account.code}}-{{account.description}}<br></span>
-            </p>
+    <!-- financial accounts-->
+    <p class="m-t-0">
+      <span ng-repeat="account in programData.financial.accounts">
+        {{account.code}}-{{account.description}}
+      </span>
+    </p>
+  </li>
 
+  <li>
+    <!-- obligations-->
+    <h4 class="m-t-2 m-b-0">Obligations:</h4>
 
-            <!-- obligations-->
-            <p class="vp-field-label">Obligations:</p>
+    <p class="m-t-0">
+      <!-- one obligation-->
+      <span ng-repeat="obligation in programData.financial.obligations">
+        <!-- fy actual, estimate etc -->
+        <span ng-repeat="(key, value) in obligation.values">
+          FY{{key}}
+          <span ng-if="$index == 0">(actual): {{value.actual | currency}}</span>
+          <span ng-if="$index != 0">(est): {{value.estimate | currency}}</span>.
+        </span>
+        <!-- recovery act, salary expenses-->
+        <span ng-if="obligation.questions.recovery.flag == 'yes'">This is a Recovery and Reinvestment Act obligation.</span>
+        <span ng-if="obligation.questions.salary_or_expense.flag == 'yes'">This obligation is for salaries and expenses.</span>
+        {{obligation.additionalInfo.content}}
+      </span>
+    </p>
+  </li>
 
-            <p class="vp-field-value">
-                <!-- one obligation-->
-                <span ng-repeat="obligation in programData.financial.obligations">
-                    <!-- fy actual, estimate etc -->
-                    <span ng-repeat="(key, value) in obligation.values">
-                        FY{{key}}
-                        <span ng-if="$index == 0">(actual): {{value.actual | currency}}</span>
-                        <span ng-if="$index != 0">(est): {{value.estimate | currency}}</span>.
-                    </span>
-                    <!-- recovery act, salary expenses-->
-                    <span ng-if="obligation.questions.recovery.flag == 'yes'">This is a Recovery and Reinvestment Act obligation.</span>
-                    <span ng-if="obligation.questions.salary_or_expense.flag == 'yes'">This obligation is for salaries and expenses.</span>
-                    {{obligation.additionalInfo.content}}
-                    <br>
-                </span>
-            </p>
+  <li>
+    <!-- range of financial assistance-->
+    <h4 class="m-t-2 m-b-0">Range and Average of Financial Assistance:</h4>
 
+    <p class="m-t-0" ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
+      {{programData.financial.additionalInfo.content}}
+    </p>
 
-            <!-- range of financial assistance-->
-            <p class="vp-field-label">Range and Average of Financial Assistance:</p>
+    <p class="m-t-0" ng-if="!(programData.financial.additionalInfo.content) || (programData.financial.additionalInfo.content == '')">
+      No Data Available.
+    </p>
+  </li>
 
-            <p class="vp-field-value" ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
-                {{programData.financial.additionalInfo.content}}</p>
+  <li>
+    <h4 class="m-t-2 m-b-0"> Program Accomplishments:</h4>
 
-            <p class="vp-field-value" ng-if="!(programData.financial.additionalInfo.content) || (programData.financial.additionalInfo.content == '')">
-                No Data Available.</p>
-        </div>
+    <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag =='yes'">
+      <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
+        <span ng-if="value.content.actual && value.content.actual != ''">Fiscal Year {{key}}: {{value.content.actual}}</span>
+        <span ng-if="value.content.projection && value.content.projection != ''">Fiscal Year {{key}}: {{value.content.projection}}</span>
+        <br>
+      </span>
+    </p>
 
+    <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag !='yes'">
+      Not Applicable.
+    </p>
 
-        <div>
-            <p class="vp-field-label"> Program Accomplishments:</p>
+  </li>
 
-            <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag =='yes'">
-                <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
-                    <span ng-if="value.content.actual && value.content.actual != ''">Fiscal Year {{key}}: {{value.content.actual}}</span>
-                    <span ng-if="value.content.projection && value.content.projection != ''">Fiscal Year {{key}}: {{value.content.projection}}</span>
-                    <br>
-                </span>
-            </p>
+  <li>
+    <h4 class="m-t-2 m-b-0"> Regulations, Guidelines, and Literature:</h4>
 
-            <p class="vp-field-value" ng-if="programData.postAward.accomplishments.flag !='yes'">
-                Not Applicable. </p>
-        </div>
+    <p class="m-t-0">
+      <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
+      <span ng-if="programData.postAward.documents.flag !='yes'"> Not Applicable.</span>
+    </p>
+  </li>
 
-
-        <div>
-            <p class="vp-field-label"> Regulations, Guidelines, and Literature:</p>
-
-            <p class="vp-field-value">
-                <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
-                <span ng-if="programData.postAward.documents.flag !='yes'"> Not Applicable.</span></p>
-        </div>
-
-    </div>
-</div>
+</ul>
