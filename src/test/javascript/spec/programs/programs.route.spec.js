@@ -92,6 +92,25 @@ describe("Unit Tests for Program Routes", function () {
             .toEqual('/programs/4da0527af647322bf5e4b43bec7c6cef/edit/review');
     });
 
+
+    it("should should have the proper 'viewProgram' url", function() {
+        //HTML5 Mode OFF
+        //expect($state.href('viewProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da'}))
+        //    .toEqual('#/programs/66d1d2645f8acd25c2e79bb60b7342da/view');
+        //HTML5 Mode ON
+        expect($state.href('viewProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da'}))
+            .toEqual('/programs/66d1d2645f8acd25c2e79bb60b7342da/view');
+    });
+
+    it("should should have the proper 'previewProgram' url", function() {
+        //HTML5 Mode OFF
+        //expect($state.href('previewProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da'}))
+        //    .toEqual('#/programs/66d1d2645f8acd25c2e79bb60b7342da/preview');
+        //HTML5 Mode ON
+        expect($state.href('previewProgram', { id: '66d1d2645f8acd25c2e79bb60b7342da'}))
+            .toEqual('/programs/66d1d2645f8acd25c2e79bb60b7342da/preview');
+    });
+
     it("should go to 'editProgram' state with an existing program object and core dictionary choices", function(){
         $rootScope.$digest();
         var id = '66d1d2645f8acd25c2e79bb60b7342da';
