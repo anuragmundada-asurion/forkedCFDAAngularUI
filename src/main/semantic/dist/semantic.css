@@ -35840,3 +35840,7 @@ html.ios body {
  table td, table th {
    border: none;
  }
+
+ .ngdialog {
+   overflow: hidden;
+ }
