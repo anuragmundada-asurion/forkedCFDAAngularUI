@@ -17,7 +17,9 @@
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: id ? ('/' + id) : '',
-                oParams: {},
+                oParams: {
+                    'sort': 'name'
+                },
                 oData: {},
                 method: 'GET'
             };
@@ -111,7 +113,9 @@
             var oApiParam = {
                 apiName: 'federalHierarchyList',
                 apiSuffix: id ? ('/' + id) : '',
-                oParams: {},
+                oParams: {
+                    'sort': 'name'
+                },
                 oData: {},
                 method: 'GET'
             };
