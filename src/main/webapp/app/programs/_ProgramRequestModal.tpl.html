@@ -63,7 +63,7 @@
             <div class="field" ng-show="ngDialogData.action === 'agency_request'">
                 <label>New Agency <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true" set-selected-option="false"></federal-hierarchy-inputs>
             </div>
             <div class="field" ng-if="ngDialogData.action === 'agency'">
                 <!-- Load configuration & program code for the requested organization-->
