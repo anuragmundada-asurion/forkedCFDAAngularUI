@@ -6,7 +6,6 @@
     app.controller('ViewProgramCtrl', ['$state', '$scope', '$stateParams', '$filter', '$parse', 'ProgramFactory', 'Dictionary', 'appUtil', 'FederalHierarchyService', '$q', 'ApiService',
         function ($state, $scope, $stateParams, $filter, $parse, ProgramFactory, Dictionary, appUtil, FederalHierarchyService, $q, ApiService) {
             $scope.appUtil = appUtil;
-            $scope.programId = $stateParams.id;
             $scope.onPreviewPage = $state.current.data.onPreviewPage;
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
@@ -26,7 +25,7 @@
                 //get historical index data
                 var params = {
                     apiName: 'historicalIndex',
-                    apiSuffix: '/' + $scope.programId,
+                    apiSuffix: '/' + $stateParams.id,
                     oParams: {programNumber: $scope.programData.programNumber},
                     oData: {},
                     method: 'GET'
