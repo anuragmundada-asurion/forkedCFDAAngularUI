@@ -1,53 +1,79 @@
 <primary-nav-bar></primary-nav-bar>
 
-<div class="ui fixed container">
-    <div class="ui grid" style="margin-top: 0; margin-bottom: 0;">
-        <div class="one column row">
-            <div class="column">
-                <h1>My <span ng-show="isProgramList()">Listings</span><span ng-show="!isProgramList()">Requests</span><span style="font-style:italic; font-weight: normal;" ng-show="!angular.isUndefinedOrNull(totalCount)">({{totalCount}} Results)</span></h1>
-            </div>
+<div class="usa-grid m-t-3 m-b-2">
+
+  <h1>
+
+    My  <span ng-show="isProgramList()">Listings</span>
+    <span ng-show="!isProgramList()">Requests</span>
+
+    <span ng-show="!angular.isUndefinedOrNull(totalCount)" class="usa-font-lead" style="font-weight: normal;">
+      ( {{totalCount}} Results )
+    </span>
+
+  </h1>
+
+  <aside class="usa-width-one-fourth">
+    <ul class="usa-sidenav-list">
+      <li>
+        <a ng-class="isActiveList() ? 'usa-current' : '';" ng-click="changeList('activePrograms')">Active Listings</a>
+      </li>
+      <li>
+        <a ng-class="isArchivedList() ? 'usa-current' : '';" ng-click="changeList('archivedPrograms')">Archived Listings</a>
+      </li>
+      <li>
+        <a ng-class="isRequestList() ? 'usa-current' : '';" ng-click="changeList('requests')">Requests</a>
+      </li>
+    </ul>
+  </aside>
+
+  <div class="usa-width-three-fourths">
+
+    <div class="usa-grid">
+
+      <div class="usa-width-one-third">&nbsp;</div>
+
+      <div class="usa-width-one-third">
+        <div class="ui search">
+          <div class="ui icon fluid input">
+            <input ng-model="searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
+            <i class="search icon"></i>
+          </div>
         </div>
-        <div class="one column row">
-            <ul class="tab-menu">
-                <li ng-class="isActiveList() ? 'tab-selected' : '';" ng-click="changeList('activePrograms')"><span>Active Listings</span></li>
-                <li ng-class="isArchivedList() ? 'tab-selected' : '';" ng-click="changeList('archivedPrograms')"><span>Archived Listings</span></li>
-                <li ng-class="isRequestList() ? 'tab-selected' : '';" ng-click="changeList('requests')"><span>Requests</span></li>
-            </ul>
-        </div>
-        <div class="four column row">
-            <div class="column"></div>
-            <div class="column"></div>
-            <div class="column">
-                <a ng-if="isActiveList()" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
-            </div>
-            <div class="column">
-            <div class="ui search">
-                    <div class="ui icon fluid input">
-                        <input ng-model="searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four column row" ng-if="isActiveList()">
-            <div class="column">
-                <input id="draftFilter" type="checkbox" ng-model="filters.draft">
-                <label for="draftFilter">Draft</label>
-            </div>
-            <div class="column">
-                <input id="pendingFilter" type="checkbox" ng-model="filters.pending">
-                <label for="pendingFilter">Pending</label>
-            </div>
-            <div class="column">
-                <input id="publishedFilter" type="checkbox" ng-model="filters.published">
-                <label for="publishedFilter">Published</label>
-            </div>
-            <div class="column">
-                <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected">
-                <label for="rejectedFilter">Rejected</label>
-            </div>
-        </div>
+      </div>
+
+      <div class="usa-width-one-third">
+        <a ng-class="!isActiveList() ? 'disabled' : '';" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
+      </div>
+
     </div>
+
+    <div class="usa-grid m-t-2">
+
+      <div class="usa-width-one-fourth">
+        <input id="draftFilter" type="checkbox" ng-model="filters.draft" ng-disabled="!isActiveList()">
+        <label for="draftFilter">Draft</label>
+      </div>
+
+      <div class="usa-width-one-fourth">
+        <input id="pendingFilter" type="checkbox" ng-model="filters.pending" ng-disabled="!isActiveList()">
+        <label for="pendingFilter">Pending</label>
+      </div>
+
+      <div class="usa-width-one-fourth">
+        <input id="publishedFilter" type="checkbox" ng-model="filters.published" ng-disabled="!isActiveList()">
+        <label for="publishedFilter">Published</label>
+      </div>
+
+      <div class="usa-width-one-fourth">
+        <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected" ng-disabled="!isActiveList()">
+        <label for="rejectedFilter">Rejected</label>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
 <table id="programsTable" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui darkblue table"></table>
