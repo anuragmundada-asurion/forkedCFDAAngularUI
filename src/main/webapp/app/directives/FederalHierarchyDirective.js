@@ -133,6 +133,13 @@
 
                     //get program code (first 2 digits)
                     $scope.getProgramCode($scope.organizationId, $scope.dictionary.aDepartment.concat($scope.dictionary.aAgency).concat($scope.dictionary.aOffice));
+
+                    //change hasDeparmentChanged flag when we need to apply exception on showing department input
+                    if(typeof $scope.showDepartment !== 'undefined' && $scope.showDepartment === true &&
+                        $scope.organizationId === $scope.programDepartmentId) {
+                        //once user choose a different department, switch flag of hasDepartmentChanged
+                        $scope.hasDepartmentChanged = false;
+                    }
                 };
 
                 /**
@@ -212,6 +219,11 @@
                 $scope.initFederalHierarchyDropdowns = function(userRole) {
                     //get current federal hierarchy by program organizationid or user organization id
                     $scope.initDictionaries($scope.programOrganizationId, true, true, function (oData) {
+                        //get the department from the selected organization id if we need to apply exception on showing department input
+                        if(typeof $scope.showDepartment !== 'undefined' && $scope.showDepartment === true) {
+                            $scope.programDepartmentId = oData.elementId;
+                        }
+
                         //if role is agency coordinator, assign the department
                         if(userRole === ROLES.AGENCY_COORDINATOR.iamRoleId) {
                             $scope.dictionary.aDepartment = [oData];
