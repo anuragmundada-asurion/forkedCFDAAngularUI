@@ -11,7 +11,7 @@
     <!-- endinject -->
     <!-- iae:css -->
     <!-- endinject -->
-    
+
 
 
     <!--[if lte IE 9]>
@@ -34,13 +34,14 @@
     <!-- endinject -->
     <!-- cfda:js -->
     <!-- endinject -->
-    
+
 </head>
 <body>
     <div ng-if="$state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name
         === 'searchPrograms' || $state.current.name === 'programList' || $state.current.name === 'organizationList' ||
         $state.current.name === 'viewOrganization' || $state.current.name === 'editOrganization' ||
         $state.current.name === 'viewRequest'">
+        <link rel="stylesheet" href="/css/cfda.min.css">
       <link rel="stylesheet" href="/semantic/semantic.css">
     </div>
     <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name
@@ -49,7 +50,6 @@
         === 'viewRequest')">
       <link rel="stylesheet" href="/semantic/components/reset.css">
       <link rel="stylesheet" href="/semantic/components/site.css">
-      <link rel="stylesheet" href="/semantic/components/menu.css">
       <link rel="stylesheet" href="/semantic/components/container.css">
       <link rel="stylesheet" href="/css/cfda.min.css">
     </div>
