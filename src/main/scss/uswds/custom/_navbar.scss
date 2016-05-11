@@ -45,7 +45,8 @@
   a{
     color: rgba(0, 0, 0, 0.87);
   }
-  a:hover{
+  a:hover,
+  a.usa-current{
     color: #fff;
     background-color: #112e51;
   }
