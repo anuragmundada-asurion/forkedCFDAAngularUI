@@ -1,35 +1,18 @@
-<div class="subsection general-info">
-    <div>
-        <p class="vp-field-label-big"> Authorization (040):</p>
-
-        <div class="vp-field-value" ng-repeat="item in programData.authorizations">
-            <p>{{ appUtil.getAuthorizationTitle(item) }}</p>
-        </div>
-    </div>
-
-    <div>
-        <p class="vp-field-label-big"> Objectives (050): </p>
-
-        <p class="vp-field-value" ng-bind="programData.objective"></p>
-    </div>
-
-
-    <div>
-        <p class="vp-field-label-big"> Types of Assistance (060):</p>
-
-        <p class="vp-field-value" ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
-
-    </div>
-
-    <div>
-        <p class="vp-field-label-big"> Uses and Use Restrictions (070): </p>
-
-        <p class="vp-field-value">
-            {{ programData.usage.rules.content }}
-            <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>
-            <span ng-if="programData.usage.discretionaryFund.flag=='yes'">{{ programData.usage.discretionaryFund.content }}</span>
-            <span ng-if="programData.usage.loanTerms.flag=='yes'">{{ programData.usage.loanTerms.content }}</span>
-        </p>
-    </div>
-
+<h3>Authorization</h3>
+<div ng-repeat="item in programData.authorizations">
+  <p>{{ appUtil.getAuthorizationTitle(item) }}</p>
 </div>
+
+<h3>Objectives</h3>
+<p ng-bind="programData.objective"></p>
+
+<h3>Types of Assistance</h3>
+<p ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
+
+<h3>Uses and Use Restrictions</h3>
+<p>
+  {{ programData.usage.rules.content }}
+  <span ng-if="programData.usage.restrictions.flag=='yes'">{{ programData.usage.restrictions.content }}</span>
+  <span ng-if="programData.usage.discretionaryFund.flag=='yes'">{{ programData.usage.discretionaryFund.content }}</span>
+  <span ng-if="programData.usage.loanTerms.flag=='yes'">{{ programData.usage.loanTerms.content }}</span>
+</p>

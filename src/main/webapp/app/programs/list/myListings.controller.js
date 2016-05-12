@@ -556,6 +556,7 @@
                             oApiParam.oData.data.organizationId = $scope.organizationId;
                         } else {
                             //User has to choose a different organizationId
+                            $scope.organizationError = true;
                             $scope.submissionInProgress = false;
                             return false;
                         }

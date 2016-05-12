@@ -63,7 +63,8 @@
             <div class="field" ng-show="ngDialogData.action === 'agency_request'">
                 <label>New Agency <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true" set-selected-option="false"></federal-hierarchy-inputs>
+                <span ng-show="organizationError && organizationError === true">You must provide a new agency.</span>
             </div>
             <div class="field" ng-if="ngDialogData.action === 'agency'">
                 <!-- Load configuration & program code for the requested organization-->
@@ -92,7 +93,7 @@
             <div class="field" ng-show="ngDialogData.action === 'archive'">
                 <label>Have you verified there are no open awards against this CFDA? <span class="required" >*</span></label>
                 <div class="ui radio checkbox">
-                    <input id="openAward" type="radio" name="openAward" ng-model="openAward" value="yes" required />
+                    <input id="openAward" type="checkbox" name="openAward" ng-model="openAward" value="yes" required />
                     <label for="openAward">Yes</label>
                 </div>
                 <div ng-show="form.error || programRequestForm.openAward.$dirty">

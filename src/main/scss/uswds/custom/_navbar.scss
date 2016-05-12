@@ -1,0 +1,62 @@
+
+.usa-navbar{
+
+  float: left;
+  width: 100%;
+
+  & > ul{
+    float: left;
+  }
+
+  // Second UL list its aligned to the right
+  & > ul + ul {
+    float: right;
+  }
+
+  li{
+    float: left;
+  }
+
+  a{
+    display: block;
+    font-weight: 700;
+    padding: 1.5em;
+    cursor: pointer;
+
+    // transitions currently work only in Safari, Chrome, Firefox, Opera and
+    // Internet Explorer 10.
+    -webkit-transition: background-color 0.35s ease;
+    -moz-transition: background-color 0.35s ease;
+    -o-transition: background-color 0.35s ease;
+    -ms-transition: background-color 0.35s ease;
+    transition: background-color 0.35s ease;
+
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+}
+
+// Variations
+.usa-navbar.usa-navbar-lightblue{
+  background-color: #E1F3F8;
+  a{
+    color: rgba(0, 0, 0, 0.87);
+  }
+  a:hover,
+  a.usa-current{
+    color: #fff;
+    background-color: #112e51;
+  }
+  & > ul + ul {
+    a{
+      color: #fff;
+      background-color: #2e8540
+    }
+    a:hover{
+      background-color: #4aa564;
+    }
+  }
+}

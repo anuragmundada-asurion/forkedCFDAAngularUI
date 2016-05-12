@@ -1,90 +1,44 @@
-<div class="subsection financial-info">
+<h3> Related Programs</h3>
 
-    <p class="vp-field-label-big"> Information Contacts (150)</p>
+<ul ng-if="programData.relatedPrograms.flag == 'yes'">
+  <li ng-repeat="item in relatedPrograms">
+    <b>{{item.programNumber}}</b> {{item.title}}
+  </li>
+</ul>
 
-    <div class="tabover">
-        <p class="vp-field-label">Regional or Local Office (151):</p>
-
-        <div class="tabover">
-            <p class="vp-field-value" ng-bind="programData.contacts['local'].flag == 'regional'"></p>
-
-            <p class="vp-field-label">Additional Information:</p>
-
-            <p class="vp-field-value" ng-bind="programData.contacts['local'].additionalInfo.content"></p>
-        </div>
+<p class="m-t-0" ng-if="programData.relatedPrograms.flag == 'na'">
+  Not Applicable
+</p>
 
 
-        <p class="vp-field-label">Headquarters Office (152):</p>
+<h3> Examples of Funded Projects</h3>
 
-        <div class="vp-field-value tabover" ng-repeat="item in programData.contacts.list">
-            <span>{{item.title}}</span> <span>{{item.fullName}}</span><br/>
-            <test-this address="{{item.address}}" city="{{item.city}}" state="{{item.state}}" zip="{{item.zip}}"></test-this>
-            <span ng-show="item.address">{{item.address}}<span ng-show="item.city || item.state || item.zip">, </span></span>
-            <span ng-show="item.city">{{item.city}}<span ng-show="item.state || item.zip">, </span></span>
-            <span ng-show="item.state">{{item.state}}<span ng-show="item.zip">, </span></span>
-            <span>{{item.zip}}</span><span ng-show="item.address || item.city || item.state || item.zip"><br/></span>
-            <span ng-show="item.email">Email: <a ng-href="mailto:item.email">{{item.email}}</a><br/></span>
-            <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
-            <span ng-show="item.phone">Fax: {{item.fax}}<br/></span>
-        </div>
-
-        <p class="vp-field-label">Website Address (153):</p>
-
-        <p class="vp-field-value website"><a ng-href="{{programData.website}}" ng-bind="programData.website"></a></p>
-
-        <p class="vp-field-label">Related Programs (160):</p>
-
-        <div class="tabover">
-            <p class="vp-field-label">Does this program have related programs?</p>
-
-            <p class="vp-field-value"> {{traverseTree(programData.relatedPrograms.flag, 'yes_no_na').value}}</p>
-
-            <div ng-repeat="item in relatedPrograms">
-                <p class="vp-field-value"><b>{{item.programNumber}}</b> {{item.title}}</p>
-            </div>
+<p>
+  <span ng-if="programData.projects.flag == 'yes'">
+    <span ng-repeat="(key,value) in programData.projects.list">
+      <span ng-if="value.content.actual">
+        Fiscal Year: {{key}} {{value.content.actual}}
+      </span>
+      <span ng-if="value.content.projection">
+        Fiscal Year: {{key}} {{value.content.projection}}
+      </span>
+      <br>
+    </span>
+  </span>
+  <span ng-if="programData.projects.flag == 'na'">Not Applicable</span>
+</p>
 
 
-        </div>
+<h3> Criteria for Selecting Proposals</h3>
 
-
-        <p class="vp-field-label"> Examples of Funded Projects (170):</p>
-
-        <div class="tabover">
-            <p class="vp-field-label">Are there examples of funded projects?</p>
-
-
-            <p class="vp-field-value">{{traverseTree(programData.projects.flag, 'yes_no_na').value}}</p>
-
-            <div ng-show="programData.projects.flag ==='yes'">
-                <div ng-repeat="(key,value) in programData.projects.list">
-                    <p class="vp-field-label">Year: <span class="vp-field-value"> {{key}}</span></p>
-
-                    <div class="tabover">
-                        <p class="vp-field-label">Projected: <span class="vp-field-value"> {{value.content.projection}}</span></p>
-
-                        <p class="vp-field-label">Actual: <span class="vp-field-value">{{value.content.actual}}</span></p>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-
-        <p class="vp-field-label"> Criteria for Selecting Proposals (180):</p>
-
-        <div class="tabover">
-            <p class="vp-field-label">Is there criteria for selecting proposals?</p>
-
-            <p class="vp-field-value">{{traverseTree(programData.application.selectionCriteria.flag, 'yes_no_na').value}}</p>
-
-            <div ng-show="programData.application.selectionCriteria.flag ==='yes'">
-                <p class="vp-field-label"> Please describe criteria for selecting proposals </p>
-
-                <p class="vp-field-value">{{programData.application.selectionCriteria.content}}</p>
-            </div>
-        </div>
-
-    </div>
-</div>
-</div>
+<p>
+  <span ng-if="programData.application.selectionCriteria.flag == 'yes'">
+    {{programData.application.selectionCriteria.content}}
+  </span>
+  <span ng-if="programData.application.selectionCriteria.flag == 'na'">
+    Not Applicable
+  </span>
+  <span ng-if="programData.application.selectionCriteria.flag == 'no'">
+    No
+  </span>
+</p>

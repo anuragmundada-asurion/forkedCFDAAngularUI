@@ -36,7 +36,8 @@
                 "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
                 "programCode": "=?", // ngModel var passed by reference (two-way) optional 
                 "hasDepartmentChanged": "=?",
-                "showDepartment": "=?"
+                "showDepartment": "=?",
+                "setSelectedOption": "=?"
             },
             controller: ['$scope', '$filter', 'ROLES', 'ApiService', function($scope, $filter, ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
@@ -132,6 +133,13 @@
 
                     //get program code (first 2 digits)
                     $scope.getProgramCode($scope.organizationId, $scope.dictionary.aDepartment.concat($scope.dictionary.aAgency).concat($scope.dictionary.aOffice));
+
+                    //change hasDeparmentChanged flag when we need to apply exception on showing department input
+                    if(typeof $scope.showDepartment !== 'undefined' && $scope.showDepartment === true &&
+                        $scope.organizationId === $scope.programDepartmentId) {
+                        //once user choose a different department, switch flag of hasDepartmentChanged
+                        $scope.hasDepartmentChanged = false;
+                    }
                 };
 
                 /**
@@ -211,6 +219,11 @@
                 $scope.initFederalHierarchyDropdowns = function(userRole) {
                     //get current federal hierarchy by program organizationid or user organization id
                     $scope.initDictionaries($scope.programOrganizationId, true, true, function (oData) {
+                        //get the department from the selected organization id if we need to apply exception on showing department input
+                        if(typeof $scope.showDepartment !== 'undefined' && $scope.showDepartment === true) {
+                            $scope.programDepartmentId = oData.elementId;
+                        }
+
                         //if role is agency coordinator, assign the department
                         if(userRole === ROLES.AGENCY_COORDINATOR.iamRoleId) {
                             $scope.dictionary.aDepartment = [oData];
@@ -258,12 +271,30 @@
                                         });
                                     }
                                 });
+
+                                //check if we don't want to pre-set the option by default
+                                if(typeof $scope.setSelectedOption !== 'undefined' && $scope.setSelectedOption === false) {
+                                    $scope.selectedDeptId   = null;
+                                    $scope.selectedAgencyId = null;
+                                    $scope.selectedOfficeId = null;
+                                    $scope.dictionary.aAgency = [];
+                                    $scope.dictionary.aOffice = [];
+                                }
                             });
                         } else if($scope.programOrganizationId == oData.elementId) { //if the program's organization id or user's organization id is the same then prepopulate agencies
                             $scope.dictionary.aAgency = oData.hierarchy;
 
                             //get program code (first 2 digits)
                             $scope.getProgramCode($scope.programOrganizationId, $scope.dictionary.aDepartment);
+                        }
+
+                        //check if we don't want to pre-set the option by default
+                        if(typeof $scope.setSelectedOption !== 'undefined' && $scope.setSelectedOption === false) {
+                            $scope.selectedDeptId   = null;
+                            $scope.selectedAgencyId = null;
+                            $scope.selectedOfficeId = null;
+                            $scope.dictionary.aAgency = [];
+                            $scope.dictionary.aOffice = [];
                         }
                     });
                 };

@@ -1,0 +1,30 @@
+// Spacing
+//
+
+$spacer:                     1rem !default;
+$spacer-x:                   $spacer !default;
+$spacer-y:                   $spacer !default;
+$spacers: (
+  0: (
+    x:   0,
+    y:   0
+  ),
+  1: (
+    x:   $spacer-x,
+    y:   $spacer-y
+  ),
+  2: (
+    x:   ($spacer-x * 1.5),
+    y:   ($spacer-y * 1.5)
+  ),
+  3: (
+    x:   ($spacer-x * 3),
+    y:   ($spacer-y * 3)
+  )
+) !default;
+
+// Cards
+$card-spacer-x:            1em !default;
+$card-spacer-y:            .75rem !default;
+
+$card-bg:                  #fff !default;

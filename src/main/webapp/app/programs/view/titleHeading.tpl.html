@@ -1,26 +1,31 @@
-<div class="usa-grid-full">
-    <div class="usa-alert usa-alert-info" ng-show="onPreviewPage">
-        <div class="usa-alert-body">
-            <h3 class="usa-alert-heading">FAL Preview</h3>
+<div class="usa-grid m-t-3">
 
-            <p class="usa-alert-text">Please note that only saved information displays in Preview.</p>
-        </div>
+  <!-- Alert -->
+  <div class="usa-alert usa-alert-info" ng-show="onPreviewPage">
+    <div class="usa-alert-body">
+      <h3 class="usa-alert-heading">FAL Preview</h3>
+      <p class="usa-alert-text">Please note that only saved information displays in Preview.</p>
     </div>
-</div>
+  </div>
 
-<div class="usa-grid-full">
-    <div class="usa-width-one-twelfth" style="margin-top:3em;">
-        <img src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide">
+  <div class="usa-width-one-twelfth">
+
+    <img src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide">
+
+  </div>
+
+  <div class="usa-width-three-fourths">
+
+    <h1 class="m-b-0" ng-bind="programData.title"></h1>
+    <div class="usa-font-lead">{{programData.alternativeNames[0]}}</div>
+
+    <div>
+      <span class="font-weight-bold">Program Number:</span> {{programData.programNumber}} &nbsp;|&nbsp;
+      <span class="font-weight-bold">Department:</span> {{hierarchyLevels.DEPARTMENT}} &nbsp;|&nbsp;
+      <span class="font-weight-bold">Agency:</span> {{hierarchyLevels.AGENCY}} &nbsp;|&nbsp;
+      <span class="font-weight-bold">Office:</span> {{hierarchyLevels.OFFICE}}
     </div>
 
-    <div class="usa-width-three-fourths">
-        <h2 ng-bind="programData.title" style="margin-bottom: 0;"></h2>
+  </div>
 
-        <div><span class="popularName">{{programData.alternativeNames[0]}}</span></div>
-        <div><span class="programNumber">Program Number: {{programData.programNumber}} </span></div>
-        <div><span>Department: {{hierarchyLevels.DEPARTMENT}} </span></div>
-        <div><span>Agency: {{hierarchyLevels.AGENCY}} </span></div>
-        <div><span>Office: {{hierarchyLevels.OFFICE}}</span></div>
-
-    </div>
 </div>

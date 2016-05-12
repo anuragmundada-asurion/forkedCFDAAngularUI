@@ -126,7 +126,7 @@ ul {
         list-style: none;
         margin: 2.1em 0em 1em 0em;
         border-bottom: 1px solid $color-gray-lightest;
-        
+
         > li  {
             &:before {
                 content: none;
@@ -172,9 +172,9 @@ ul {
     }
 }
 
-ul li:before {
-  content: '';
-}
+// ul li:before {
+//   content: '';
+// }
 
 ux-form-nav {
   display: block;

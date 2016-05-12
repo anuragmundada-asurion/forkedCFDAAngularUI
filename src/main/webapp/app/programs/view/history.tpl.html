@@ -1,9 +1,14 @@
-<div class="subsection contact-info">
-    <p class="vp-field-label">History</p>
+<div class="usa-card usa-card-green">
+  <div class="usa-card-body">
 
+    <h4 class="usa-card-title">History</h4>
 
-    <div ng-repeat="item in historicalIndex">
-        <p>{{item.fiscalYear}} ({{item.statusCode}}): {{item.changeDescription}}</p>
-    </div>
+    <h5>Regional or Local Office</h5>
+    <ul class="usa-card-text usa-text-small">
+      <li ng-repeat="item in historicalIndex">
+        <strong>{{item.fiscalYear}} ({{item.statusCode}}):</strong> {{item.changeDescription}}
+      </li>
+    </ul>
 
+  </div>
 </div>

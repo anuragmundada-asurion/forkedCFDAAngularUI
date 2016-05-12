@@ -1,58 +1,67 @@
-<div class="subsection assistanceRequirements-info">
-    <p class="vp-field-label-big"> Post Assistance Requirements (110)</p>
+<h3> Post Assistance Requirements</h3>
 
-    <div class="tabover">
-        <div>
-            <p class="vp-field-label"> Reports (111):</p>
+<ul>
+  <li>
+    <h4 class="m-t-2 m-b-0"> Reports:</h4>
 
-            <p class="vp-field-value" ng-if="programData.postAward.reports.flag == 'yes'">
-                <span ng-if="programData.postAward.reports.list.program.flag == 'yes'">{{programData.postAward.reports.list.program.content}}</span>
-                <span ng-if="programData.postAward.reports.list.cash.flag == 'yes'">{{programData.postAward.reports.list.cash.content}}</span>
-                <span ng-if="programData.postAward.reports.list.progress.flag == 'yes'">{{programData.postAward.reports.list.progress.content}}</span>
-                <span ng-if="programData.postAward.reports.list.expenditure.flag == 'yes'">{{programData.postAward.reports.list.expenditure.content}}</span>
-                <span ng-if="programData.postAward.reports.list.performanceMonitoring.flag == 'yes'">{{programData.postAward.reports.list.performanceMonitoring.content}}</span></p>
+    <p class="m-a-0" ng-if="programData.postAward.reports.flag == 'yes'">
+      <span ng-if="programData.postAward.reports.list.program.flag == 'yes'">{{programData.postAward.reports.list.program.content}}</span>
+      <span ng-if="programData.postAward.reports.list.cash.flag == 'yes'">{{programData.postAward.reports.list.cash.content}}</span>
+      <span ng-if="programData.postAward.reports.list.progress.flag == 'yes'">{{programData.postAward.reports.list.progress.content}}</span>
+      <span ng-if="programData.postAward.reports.list.expenditure.flag == 'yes'">{{programData.postAward.reports.list.expenditure.content}}</span>
+      <span ng-if="programData.postAward.reports.list.performanceMonitoring.flag == 'yes'">{{programData.postAward.reports.list.performanceMonitoring.content}}</span>
+    </p>
 
-            <p class="vp-field-value" ng-if="programData.postAward.reports.flag == 'no'">
-                No reports are required.</p>
+    <p class="m-a-0" ng-if="programData.postAward.reports.flag == 'no'">
+      No reports are required.
+    </p>
 
-            <p class="vp-field-value" ng-if="programData.postAward.reports.flag == 'na'">
-                Not Applicable</p>
-        </div>
+    <p class="m-a-0" ng-if="programData.postAward.reports.flag == 'na'">
+      Not Applicable
+    </p>
 
-
-        <div>
-            <p class="vp-field-label"> Audits (112):</p>
-
-            <p class="vp-field-value" ng-if="programData.postAward.audit.flag == 'yes'">
-                <span ng-if="programData.postAward.audit.questions['OMBCircularA133'].flag == 'yes'">
-                    In accordance with the provisions of 2 CFR 200, Subpart F - Audit Requirements,
-                    nonfederal entities that expend financial assistance of $750,000 or more in Federal
-                    awards will have a single or a program-specific audit conducted for that year. Non-Federal
-                    entities that expend less than $750,000 a year in Federal awards are exempt from Federal
-                    audit requirements for that year, except as noted in 2 CFR 200.503</span>
-                <span ng-if="programData.postAward.audit.questions['OMBCircularA133'].flag == 'no'">
-                    This program is excluded from coverage under 2 CFR 200, Subpart F - Audit Requirements.</span>
-
-                {{programData.postAward.audit.content}}
-            </p>
-
-            <p class="vp-field-value" ng-if="programData.postAward.audit.flag == 'no'">
-                No audits are required for this program.</p>
-
-            <p class="vp-field-value" ng-if="programData.postAward.audit.flag == 'na'">
-                Not Applicable.</p>
-        </div>
+  </li>
 
 
-        <div>
-            <p class="vp-field-label"> Records (113):</p>
+  <li>
 
-            <p class="vp-field-value" ng-if="(programData.postAward.records.content) && (programData.postAward.records.content != '')">
-                {{programData.postAward.records.content}}</p>
+    <h4 class="m-t-2 m-b-0"> Audits:</h4>
 
-            <p class="vp-field-value" ng-if="!(programData.postAward.records.content) || (programData.postAward.records.content == '')">
-                No Data Available.</p>
-        </div>
+    <p class="m-a-0" ng-if="programData.postAward.audit.flag == 'yes'">
+      <span ng-if="programData.postAward.audit.questions['OMBCircularA133'].flag == 'yes'">
+        In accordance with the provisions of 2 CFR 200, Subpart F - Audit Requirements,
+        nonfederal entities that expend financial assistance of $750,000 or more in Federal
+        awards will have a single or a program-specific audit conducted for that year. Non-Federal
+        entities that expend less than $750,000 a year in Federal awards are exempt from Federal
+        audit requirements for that year, except as noted in 2 CFR 200.503
+      </span>
+      <span ng-if="programData.postAward.audit.questions['OMBCircularA133'].flag == 'no'">
+        This program is excluded from coverage under 2 CFR 200, Subpart F - Audit Requirements.
+      </span>
 
-    </div>
-</div>
+      {{programData.postAward.audit.content}}
+    </p>
+
+    <p class="m-a-0" ng-if="programData.postAward.audit.flag == 'no'">
+      No audits are required for this program.
+    </p>
+
+    <p class="m-a-0" ng-if="programData.postAward.audit.flag == 'na'">
+      Not Applicable.
+    </p>
+  </li>
+
+
+  <li>
+    <h4 class="m-t-2 m-b-0"> Records:</h4>
+
+    <p class="m-a-0" ng-if="(programData.postAward.records.content) && (programData.postAward.records.content != '')">
+      {{programData.postAward.records.content}}
+    </p>
+
+    <p class="m-a-0" ng-if="!(programData.postAward.records.content) || (programData.postAward.records.content == '')">
+      No Data Available.
+    </p>
+  </li>
+
+</ul>
