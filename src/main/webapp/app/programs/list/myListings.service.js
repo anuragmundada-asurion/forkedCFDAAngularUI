@@ -14,9 +14,9 @@
                 } else if (status == 'pending') {
                     var isNew = data['parentProgramId'] ? false : true;
                     if (AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
-                        return '<a ui-sref="editProgram({ id: \'' + data['id'] + '\', section: \'review\' })">' + data['text'] + (isNew ? '<img class="new" src="/img/img_cfda/new_icon.svg" />' : '') + '</a>';
+                        return '<a style="float:left; width:60%;" ui-sref="editProgram({ id: \'' + data['id'] + '\', section: \'review\' })">' + data['text'] + '</a>' + (isNew ? '<img style="float:right; width:40px; margin-top: -15px;" src="/img/img_cfda/new_icon.svg" />' : '');
                     }
-                    return '<a ui-sref="reviewProgram({ id: \'' + data['id'] + '\' })">' + data['text'] + (isNew ? '<img class="new" src="/img/img_cfda/new_icon.svg" />' : '') + '</a>';
+                    return '<a style="float:left; width:60%;" ui-sref="reviewProgram({ id: \'' + data['id'] + '\' })">' + data['text'] + '</a>' + (isNew ? '<img style="float:right; width:40px; margin-top: -15px;" src="/img/img_cfda/new_icon.svg" />' : '');
                 } else {
                     return '<a ui-sref="reviewProgram({ id: \'' + data['id'] + '\' })">' + data['text'] + '</a>';
                 }
