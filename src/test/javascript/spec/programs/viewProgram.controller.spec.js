@@ -93,8 +93,6 @@ describe('Unit Tests for Public View FAL:', function () {
             $controller('ViewProgramCtrl', {$scope: $scope});
             $httpBackend.flush();
             expect($scope.onPreviewPage).toEqual(false);
-            console.log("$scope: ", $scope);
-            console.log("$scope.relatedPrograms: ", $scope.relatedPrograms);
         });
 
 
