@@ -61,7 +61,7 @@
                     title = (uscTitleGetter(authorization) || undefinedTextValue) + " US Code " + (uscSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "act":
-                    title = (actDescGetter(authorization) || undefinedTextValue) + ",Title " + (actTitleGetter(authorization) || undefinedTextValue) + ",Part " + (actPartGetter(authorization) || undefinedTextValue) + ",Section " + (actSectionGetter(authorization) || undefinedTextValue);
+                    title = (actDescGetter(authorization) || undefinedTextValue) + ", Title " + (actTitleGetter(authorization) || undefinedTextValue) + ", Part " + (actPartGetter(authorization) || undefinedTextValue) + ", Section " + (actSectionGetter(authorization) || undefinedTextValue);
                     break;
                 case "eo":
                     title = "Executive Order - " + (eoTitleGetter(authorization) || undefinedTextValue);
