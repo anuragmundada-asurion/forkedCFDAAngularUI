@@ -2,25 +2,28 @@
 
 <ul>
 
-  <li>
-    <h4 class="m-t-2 m-b-0">Applicant Eligibility</h4>
-    <p class="m-t-0">{{programData.eligibility.applicant.additionalInfo.content}}</p>
-  </li>
+    <li>
+        <h4 class="m-t-2 m-b-0">Applicant Eligibility</h4>
 
-  <li>
-    <h4 class="m-t-2 m-b-0">Beneficiary Eligibility </h4>
-    <p class="m-t-0">{{programData.eligibility.beneficiary.additionalInfo.content}}</p>
-  </li>
+        <p class="m-t-0">{{programData.eligibility.applicant.additionalInfo.content}}</p>
+    </li>
 
-  <li>
-    <h4 class="m-t-2 m-b-0">Credentials/Documentation</h4>
-    <p class="m-t-0">
-      <span ng-if="programData.eligibility.documentation.flag=='yes'">{{programData.eligibility.documentation.content}}
-        <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='yes'">2 CFR 200, Subpart E - Cost Principles applies to this program.</span>
-        <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='no'">This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</span>
-      </span>
-      <span ng-if="programData.eligibility.documentation.flag=='no'">None.</span>
-    </p>
-  </li>
+    <li>
+        <h4 class="m-t-2 m-b-0">Beneficiary Eligibility </h4>
+
+        <p class="m-t-0">{{programData.eligibility.beneficiary.additionalInfo.content}}</p>
+    </li>
+
+    <li>
+        <h4 class="m-t-2 m-b-0">Credentials/Documentation</h4>
+
+        <p class="m-t-0">
+          <span ng-if="programData.eligibility.documentation.flag=='yes'">{{programData.eligibility.documentation.content}}
+            <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='yes'">2 CFR 200, Subpart E - Cost Principles applies to this program.</span>
+            <span ng-if="programData.eligibility.documentation.questions['OMBCircularA87'].flag=='no'">This program is excluded from coverage under 2 CFR 200, Subpart E - Cost Principles.</span>
+          </span>
+            <span ng-if="programData.eligibility.documentation.flag=='na'">None.</span>
+        </p>
+    </li>
 
 </ul>

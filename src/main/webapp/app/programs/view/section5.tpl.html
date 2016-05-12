@@ -2,75 +2,79 @@
 
 <ul>
 
-  <li>
-    <h4 class="m-t-2 m-b-0">Account Identification:</h4>
+    <li>
+        <h4 class="m-t-2 m-b-0">Account Identification:</h4>
 
-    <!-- financial accounts-->
-    <p class="m-t-0">
+        <!-- financial accounts-->
+        <p class="m-t-0">
       <span ng-repeat="account in programData.financial.accounts">
-        {{account.code}}-{{account.description}}
+        {{account.code}}-{{account.description}};
       </span>
-    </p>
-  </li>
+        </p>
+    </li>
 
-  <li>
-    <!-- obligations-->
-    <h4 class="m-t-2 m-b-0">Obligations:</h4>
+    <li>
+        <!-- obligations-->
+        <h4 class="m-t-2 m-b-0">Obligations:</h4>
 
-    <p class="m-t-0">
-      <!-- one obligation-->
+        <p class="m-t-0">
+            <!-- one obligation-->
       <span ng-repeat="obligation in programData.financial.obligations">
+       ({{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}})
         <!-- fy actual, estimate etc -->
         <span ng-repeat="(key, value) in obligation.values">
-          FY{{key}}
-          <span ng-if="$index == 0">(actual): {{value.actual | currency}}</span>
-          <span ng-if="$index != 0">(est): {{value.estimate | currency}}</span>.
+          FY{{format(key)}}
+          <span ng-if="$index == 0">: {{value.actual | currency}};</span>
+          <span ng-if="$index != 0">(est): {{value.estimate | currency}};</span>
         </span>
         <!-- recovery act, salary expenses-->
         <span ng-if="obligation.questions.recovery.flag == 'yes'">This is a Recovery and Reinvestment Act obligation.</span>
         <span ng-if="obligation.questions.salary_or_expense.flag == 'yes'">This obligation is for salaries and expenses.</span>
         {{obligation.additionalInfo.content}}
+        <br>
       </span>
-    </p>
-  </li>
+        </p>
+    </li>
 
-  <li>
-    <!-- range of financial assistance-->
-    <h4 class="m-t-2 m-b-0">Range and Average of Financial Assistance:</h4>
+    <li>
+        <!-- range of financial assistance-->
+        <h4 class="m-t-2 m-b-0">Range and Average of Financial Assistance:</h4>
 
-    <p class="m-t-0" ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
-      {{programData.financial.additionalInfo.content}}
-    </p>
+        <p class="m-t-0"
+           ng-if="(programData.financial.additionalInfo.content) && (programData.financial.additionalInfo.content != '')">
+            {{programData.financial.additionalInfo.content}}
+        </p>
 
-    <p class="m-t-0" ng-if="!(programData.financial.additionalInfo.content) || (programData.financial.additionalInfo.content == '')">
-      No Data Available.
-    </p>
-  </li>
+        <p class="m-t-0"
+           ng-if="!(programData.financial.additionalInfo.content) || (programData.financial.additionalInfo.content == '')">
+            No Data Available.
+        </p>
+    </li>
 
-  <li>
-    <h4 class="m-t-2 m-b-0"> Program Accomplishments:</h4>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Program Accomplishments:</h4>
 
-    <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag =='yes'">
+        <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag =='yes'">
       <span ng-repeat="(key,value) in programData.postAward.accomplishments.list">
         <span ng-if="value.content.actual && value.content.actual != ''">Fiscal Year {{key}}: {{value.content.actual}}</span>
         <span ng-if="value.content.projection && value.content.projection != ''">Fiscal Year {{key}}: {{value.content.projection}}</span>
         <br>
       </span>
-    </p>
+        </p>
 
-    <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag !='yes'">
-      Not Applicable.
-    </p>
+        <p class="m-t-0" ng-if="programData.postAward.accomplishments.flag !='yes'">
+            Not Applicable.
+        </p>
 
-  </li>
+    </li>
 
-  <li>
-    <h4 class="m-t-2 m-b-0"> Regulations, Guidelines, and Literature:</h4>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Regulations, Guidelines, and Literature:</h4>
 
-    <p class="m-t-0">
-      <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
-      <span ng-if="programData.postAward.documents.flag !='yes'"> Not Applicable.</span>
-    </p>
-  </li>
+        <p class="m-t-0">
+            <span ng-if="programData.postAward.documents.flag =='yes'"> {{programData.postAward.documents.content}}</span>
+            <span ng-if="programData.postAward.documents.flag !='yes'"> Not Applicable.</span>
+        </p>
+    </li>
 
 </ul>

@@ -1,39 +1,44 @@
 <h3 class="m-t-3"> Application and Award Process</h3>
 
 <ul>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Preapplication Coordination</h4>
-    <p class="m-t-0" ng-if="programData.preApplication.coordination.flag == 'yes'">
-      Preapplication coordination is required.
+    <li>
+        <h4 class="m-t-2 m-b-0"> Preapplication Coordination</h4>
 
-      <!-- Environmental statements-->
-      <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'yes'">
-        <span ng-repeat="(key, value) in programData.preApplication.coordination.environmentalImpact.reports">
-          <span ng-if="value.flag === 'yes'">An environmental impact <strong>{{key}}</strong> is required for this program.</span>
-        </span>
-      </span>
-      <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'no'">
-        Environmental impact information is not required for this program.
-      </span>
+        <p class="m-t-0" ng-if="programData.preApplication.coordination.flag == 'yes'">
+            Preapplication coordination is required.
 
-      <!-- Executive Order  -->
-      <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'yes'">
-        This program is eligible for coverage under E.O. 12372, "Intergovernmental Review of Federal Programs."
-        An applicant should consult the office or official designated as the single point of contact in his or her State for more information
-        on the process the State requires to be followed in applying for assistance, if the State has selected the program for review.
-      </span>
-      <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'no'">
-        This program is excluded from coverage under E.O. 12372.
-      </span>
+            <!-- Environmental statements-->
+              <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'yes'">
+                <span ng-repeat="(key, value) in programData.preApplication.coordination.environmentalImpact.reports">
+                  <span ng-if="value.flag === 'yes'">An environmental impact <strong>{{key}}</strong> is required for this program.</span>
+                </span>
+              </span>
+              <span ng-if="programData.preApplication.coordination.environmentalImpact.flag == 'no'">
+                Environmental impact information is not required for this program.
+              </span>
 
-      <!-- additional content-->
-      {{programData.preApplication.coordination.additionalInfo.content}}
-    </p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Application Procedures</h4>
-    <p class="m-t-0">
-      <!-- CFR 200-->
+            <!-- Executive Order  -->
+              <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'yes'">
+                This program is eligible for coverage under E.O. 12372, "Intergovernmental Review of Federal Programs."
+                An applicant should consult the office or official designated as the single point of contact in his or her State for more information
+                on the process the State requires to be followed in applying for assistance, if the State has selected the program for review.
+              </span>
+              <span ng-if="programData.preApplication.coordination.questions.ExecutiveOrder12372.flag === 'no'">
+                This program is excluded from coverage under E.O. 12372.
+              </span>
+
+            <!-- additional content-->
+            {{programData.preApplication.coordination.additionalInfo.content}}
+        </p>
+
+        <p class="m-t-0" ng-if="programData.preApplication.coordination.flag == 'na'">
+            Preapplication coordination is not applicable.</p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Application Procedures</h4>
+
+        <p class="m-t-0">
+            <!-- CFR 200-->
       <span ng-if="programData.application.procedures.questions.OMBCircularA102.flag === 'yes'">
         2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards applies to this program.
       </span>
@@ -41,78 +46,83 @@
         This program is excluded from coverage under 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards.
       </span>
 
-      <!-- additional content-->
-      {{programData.application.procedures.additionalInfo.content}}
-    </p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Award Procedure</h4>
-    <p class="m-t-0">{{programData.award.procedures.content}}</p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Deadlines</h4>
-    <p class="m-t-0" class="vp-field-value">
-      <span ng-if="programData.application.deadlines.submission.flag == 'yes'">
-        <!-- repeat over all deadlines. -->
-        <span ng-repeat="deadline in programData.application.deadlines.submission.list">
-          {{deadline.start | date: 'MMM dd, yyyy'}} to {{deadline.end | date: 'MMM dd, yyyy'}}
-          {{deadline.description}}
-        </span>
-      </span>
-      <span ng-if="programData.application.deadlines.submission.flag == 'no'">
-        Not Applicable.
-      </span>
-      <span ng-if="programData.application.deadlines.submission.flag == 'contactHQ'">
-        Contact the headquarters or regional office, as appropriate for application deadlines
-      </span>
+            <!-- additional content-->
+            {{programData.application.procedures.additionalInfo.content}}
+        </p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Award Procedure</h4>
 
-      <!-- additional deadline info-->
-      {{programData.application.deadlines.submission.additionalInfo.content}}
-    </p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Range of Approval/Disapproval Time</h4>
-    <p class="m-t-0">
-      <span ng-if="programData.application.deadlines.approval.interval =='1'">From 1 to 15 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='2'">From 15 to 30 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='3'">From 30 to 60 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='4'">From 60 to 90 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='5'">From 90 to 120 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='6'">From 120 to 180 days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='7'">&gt; 180 Days</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='8'">Not Applicable</span>
-      <span ng-if="programData.application.deadlines.approval.interval =='9'">Other</span>
-      <span>{{programData.application.deadlines.approval.otherInfo.content}}</span>
-    </p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Appeals </h4>
-    <p class="m-t-0">
-      <span ng-if="programData.application.deadlines.appeal.interval =='1'">From 1 to 15 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='2'">From 15 to 30 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='3'">From 30 to 60 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='4'">From 60 to 90 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='5'">From 90 to 120 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='6'">From 120 to 180 days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='7'">&gt; 180 Days</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='8'">Not Applicable</span>
-      <span ng-if="programData.application.deadlines.appeal.interval =='9'">Other</span>
-      <span>{{programData.application.deadlines.appeal.otherInfo.content}}</span>
-    </p>
-  </li>
-  <li>
-    <h4 class="m-t-2 m-b-0"> Renewals </h4>
-    <p class="m-t-0">
-      <span ng-if="programData.application.deadlines.renewal.interval =='1'">From 1 to 15 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='2'">From 15 to 30 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='3'">From 30 to 60 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='4'">From 60 to 90 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='5'">From 90 to 120 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='6'">From 120 to 180 days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='7'">&gt; 180 Days</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='8'">Not Applicable</span>
-      <span ng-if="programData.application.deadlines.renewal.interval =='9'">Other</span>
-      <span>{{programData.application.deadlines.renewal.otherInfo.content}}</span>
-    </p>
-  </li>
+        <p class="m-t-0">{{programData.award.procedures.content}}</p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Deadlines</h4>
+
+        <p class="m-t-0" class="vp-field-value">
+          <span ng-if="programData.application.deadlines.submission.flag == 'yes'">
+            <!-- repeat over all deadlines. -->
+            <span ng-repeat="deadline in programData.application.deadlines.submission.list">
+              {{deadline.start | date: 'MMM dd, yyyy'}} to {{deadline.end | date: 'MMM dd, yyyy'}}
+              {{deadline.description}}
+              <br>
+            </span>
+                      <!-- additional deadline info-->
+              {{programData.application.deadlines.submission.additionalInfo.content}}
+          </span>
+          <span ng-if="programData.application.deadlines.submission.flag == 'no'">
+            Not Applicable.
+          </span>
+          <span ng-if="programData.application.deadlines.submission.flag == 'contactHQ'">
+            Contact the headquarters or regional office, as appropriate for application deadlines
+          </span>
+        </p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Range of Approval/Disapproval Time</h4>
+
+        <p class="m-t-0">
+            <span ng-if="programData.application.deadlines.approval.interval =='1'">From 1 to 15 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='2'">From 15 to 30 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='3'">From 30 to 60 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='4'">From 60 to 90 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='5'">From 90 to 120 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='6'">From 120 to 180 days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='7'">&gt; 180 Days</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='8'">Not Applicable</span>
+            <span ng-if="programData.application.deadlines.approval.interval =='9'">Other</span>
+            <span>{{programData.application.deadlines.approval.otherInfo.content}}</span>
+        </p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Appeals </h4>
+
+        <p class="m-t-0">
+            <span ng-if="programData.application.deadlines.appeal.interval =='1'">From 1 to 15 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='2'">From 15 to 30 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='3'">From 30 to 60 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='4'">From 60 to 90 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='5'">From 90 to 120 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='6'">From 120 to 180 days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='7'">&gt; 180 Days</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='8'">Not Applicable</span>
+            <span ng-if="programData.application.deadlines.appeal.interval =='9'">Other</span>
+            <span>{{programData.application.deadlines.appeal.otherInfo.content}}</span>
+        </p>
+    </li>
+    <li>
+        <h4 class="m-t-2 m-b-0"> Renewals </h4>
+
+        <p class="m-t-0">
+            <span ng-if="programData.application.deadlines.renewal.interval =='1'">From 1 to 15 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='2'">From 15 to 30 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='3'">From 30 to 60 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='4'">From 60 to 90 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='5'">From 90 to 120 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='6'">From 120 to 180 days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='7'">&gt; 180 Days</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='8'">Not Applicable</span>
+            <span ng-if="programData.application.deadlines.renewal.interval =='9'">Other</span>
+            <span>{{programData.application.deadlines.renewal.otherInfo.content}}</span>
+        </p>
+    </li>
 </ul>

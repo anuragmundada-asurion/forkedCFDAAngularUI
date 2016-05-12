@@ -7,6 +7,9 @@
         function ($state, $scope, $stateParams, $filter, $parse, ProgramFactory, Dictionary, appUtil, FederalHierarchyService, $q, ApiService) {
             $scope.appUtil = appUtil;
             $scope.onPreviewPage = $state.current.data.onPreviewPage;
+            $scope.format = function (year) {
+                return year.substring(year.length - 2, year.length);
+            };
 
             ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 $scope.programData = data;
