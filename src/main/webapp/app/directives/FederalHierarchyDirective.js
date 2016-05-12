@@ -32,9 +32,9 @@
     .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'ROLES', function(FederalHierarchyService, UserService, AuthorizationService, ROLES){
         return {
             scope: {
-                "organizationId": "=", // ngModel var passed by reference (two-way) 
+                "organizationId": "=", // ngModel var passed by reference (two-way)
                 "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
-                "programCode": "=?", // ngModel var passed by reference (two-way) optional 
+                "programCode": "=?", // ngModel var passed by reference (two-way) optional
                 "hasDepartmentChanged": "=?",
                 "showDepartment": "=?",
                 "setSelectedOption": "=?"
@@ -66,7 +66,7 @@
                 $scope.setOrganizationId = function(type) {
                     switch(type){
                         case 'department':
-                            if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
+                            if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== ''
                                     && $scope.selectedDeptId !== null) {
                                 $scope.organizationId = $scope.selectedDeptId;
 
@@ -81,8 +81,8 @@
                             $scope.selectedAgencyId = null;
                             $scope.dictionary.aOffice = [];
                             $scope.selectedOfficeId = null;
-                            
-                            if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== '' 
+
+                            if(typeof $scope.selectedDeptId !== 'undefined' && $scope.selectedDeptId !== ''
                                     && $scope.selectedDeptId !== null) {
                                 //get agencies of the selected department
                                 $scope.initDictionaries($scope.organizationId, true, true, function (oData) {
@@ -94,7 +94,7 @@
                             }
                             break;
                         case 'agency':
-                            if(typeof $scope.selectedAgencyId !== 'undefined' && $scope.selectedAgencyId !== '' 
+                            if(typeof $scope.selectedAgencyId !== 'undefined' && $scope.selectedAgencyId !== ''
                                     && $scope.selectedAgencyId !== null) {
                                 $scope.organizationId = $scope.selectedAgencyId;
                             } else { //if agency is not selected then set department
@@ -119,7 +119,7 @@
                             });
                             break;
                         case 'office':
-                            if(typeof $scope.selectedOfficeId !== 'undefined' && $scope.selectedOfficeId !== '' 
+                            if(typeof $scope.selectedOfficeId !== 'undefined' && $scope.selectedOfficeId !== ''
                                 && $scope.selectedOfficeId !== null) {
                                 $scope.organizationId = $scope.selectedOfficeId;
                             } else { //if office is not selected then set agency
@@ -128,7 +128,7 @@
                             break;
                     }
 
-                    //get federal hierarchy configuration 
+                    //get federal hierarchy configuration
                     $scope.getFederalHierarchyConfiguration($scope.organizationId);
 
                     //get program code (first 2 digits)
@@ -254,7 +254,7 @@
                                         return;
                                     }
 
-                                    //check if this agency has offices, if yes, 
+                                    //check if this agency has offices, if yes,
                                     //loop through them and verify if $scope.programOrganizationId is an office if yes,
                                     //assign selected values for agency and office and also populate offices
                                     if(oAgency.hasOwnProperty('hierarchy')) {
@@ -314,7 +314,7 @@
                         scope.departmentLabel = '';
                         scope.error = '';
 
-                        //get federal hierarchy configuration 
+                        //get federal hierarchy configuration
                         scope.getFederalHierarchyConfiguration(scope.programOrganizationId);
 
                         //Case if user is an AGENCY USER
@@ -358,28 +358,28 @@
                     }
                 });
             },
-            template: 
+            template:
                 "<div class='organization-container'>"+
                     "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+", "+JSON.stringify(ROLES.OMB_ANALYST)+"]'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
                     "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3><label for='jqDepartmentFH'>Department</label></h3>"+
+                            "<h3 class='m-t-2'><label for='jqDepartmentFH'>Department</label></h3>"+
                             "<select id='jqDepartmentFH' name='department' class='usa-form-medium' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3><label for='jqAgencyFH'>Agency</label></h3>"+
+                            "<h3 class='m-t-2'><label for='jqAgencyFH'>Agency</label></h3>"+
                             "<select id='jqAgencyFH' name='agency' class='usa-form-medium' ng-change='setOrganizationId(\"agency\")' ng-model='selectedAgencyId' ng-options='item.elementId as item.name for item in dictionary.aAgency'>"+
                                 "<option value=''>Please select an Agency</option>"+
                             "</select>"+
 
                         "</div>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3><label for='jqOfficeFH'>Office</label></h3>"+
+                            "<h3 class='m-t-2'><label for='jqOfficeFH'>Office</label></h3>"+
                             "<select id='jqOfficeFH' name='office' class='usa-form-medium' ng-change='setOrganizationId(\"office\")' ng-model='selectedOfficeId' ng-options='item.elementId as item.name for item in dictionary.aOffice'>"+
                                 "<option value=''>Please select an Office</option>"+
                             "</select>"+

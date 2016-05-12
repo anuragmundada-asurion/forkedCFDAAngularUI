@@ -27,14 +27,14 @@
 
         <div class="field" ng-show="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
             <div class="ui ignored message warning" style="font-size: 1.2rem;">
-                The chosen Agency is outside your user's scope. If you continue and this request is approved, 
+                The chosen Agency is outside your user's scope. If you continue and this request is approved,
                 you will no longer have access to this program.<br/>
-                <b>Note:</b> The new agency has a different code ({{ programCode }}) than the existing agency ({{ (oEntity.data) ? oEntity.data.programNumber.split('.')[0] : oEntity.programNumber.split('.')[0] }}). 
+                <b>Note:</b> The new agency has a different code ({{ programCode }}) than the existing agency ({{ (oEntity.data) ? oEntity.data.programNumber.split('.')[0] : oEntity.programNumber.split('.')[0] }}).
                 Upon approval of this request, the program will be assigned a new program number.
             </div>
         </div>
 
-        <form name='programRequestForm' class="ui form">
+        <form name='programRequestForm' class="m-b-2">
             <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
                 <h4>Existing title</h4>
                 <!-- oEntity.data.title: called from listing ; oEntity.title: calle from editPage -->
@@ -110,7 +110,7 @@
             </div>
         </form>
 
-        <div class="ui divider"></div>
+
 
         <button class="ui button" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="closeProgramRequestModal();">Cancel</button>
         <button class="ui button primary" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="submitProgramRequest()">Submit</button>

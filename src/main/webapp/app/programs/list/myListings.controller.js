@@ -189,8 +189,10 @@
                 $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
                 $(".dataTables_length select").remove();
-                //initilize semantic ui dropdowns
+                // initilize semantic ui dropdowns
                 $(".jqChangeRequest.dropdown").dropdown();
+                // adding status classes to add status icons
+                $('td:contains("Published")').addClass("published");
 
                 $compile(angular.element('.dataTables_length'))($scope);
                 $scope.totalCount = data._iRecordsTotal;
@@ -200,7 +202,7 @@
                 if (!$scope.dtInstance) {
                     $scope.dtInstance = {};
                 }
-                
+
                 $scope.dtOptions = DTOptionsBuilder.newOptions()
                     .withOption('processing', true)
                     .withOption('serverSide', true)
@@ -490,7 +492,7 @@
                     //populate field reason
                     $scope.reason = $scope.ngDialogData.oEntity.reason;
 
-                    //pre-approval agency change request 
+                    //pre-approval agency change request
                     if($scope.ngDialogData.action === 'agency') {
                         //Manual organization
                         if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto) {
@@ -522,8 +524,8 @@
                 var oApiParam = {
                     apiName: '',
                     apiSuffix: '',
-                    oParams: {}, 
-                    oData: {}, 
+                    oParams: {},
+                    oData: {},
                     method: 'POST'
                 };
 
@@ -577,7 +579,7 @@
                     //approval agency change request
                     if($scope.ngDialogData.action === 'agency'){
                         //check program number before submitting
-                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && 
+                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto &&
                             (!$scope.isProgramNumberUnique || !$scope.isProgramNumberValid)) {
                             $scope.submissionInProgress = false;
 
@@ -585,11 +587,11 @@
                         }
 
                         //include program number
-                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && 
+                        if($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto &&
                             $scope.isProgramNumberUnique && $scope.isProgramNumberValid){
                             oApiParam.oData.programNumber = $scope.programCode+'.'+$scope.programNumber;
-                        }//auto org 
-                        else if($scope.organizationConfiguration && $scope.organizationConfiguration.programNumberAuto && 
+                        }//auto org
+                        else if($scope.organizationConfiguration && $scope.organizationConfiguration.programNumberAuto &&
                             typeof $scope.programNumber !== 'undefined'){
                             oApiParam.oData.programNumber = $scope.programNumber;
                         }
@@ -634,7 +636,7 @@
                         }
                         $state.go('programList');
                     }, 2000);
-                }, 
+                },
                 function(error){
                     $scope.submissionInProgress = false;
                     $scope.flash = {
@@ -700,8 +702,8 @@
                 apiSuffix: '',
                 oParams: {
                     organizationId: JSON.parse($scope.oEntity.data).organizationId
-                }, 
-                oData: {}, 
+                },
+                oData: {},
                 method: 'GET'
             };
 
@@ -729,4 +731,3 @@
         };
     }]);
 }();
-
