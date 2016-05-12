@@ -1,0 +1,43 @@
+
+.usa-tab{
+
+  float: left;
+  border-bottom: 1px solid #eee;
+
+  li{
+    float: left;
+  }
+
+  a{
+    display: block;
+    font-weight: 700;
+    padding: 1em;
+    cursor: pointer;
+
+    // transitions currently work only in Safari, Chrome, Firefox, Opera and
+    // Internet Explorer 10.
+    -webkit-transition: background-color 0.35s ease;
+    -moz-transition: background-color 0.35s ease;
+    -o-transition: background-color 0.35s ease;
+    -ms-transition: background-color 0.35s ease;
+    transition: background-color 0.35s ease;
+
+  }
+
+  a:hover{
+    text-decoration: none;
+  }
+
+}
+
+// Variations
+.usa-tab.usa-tab-lightblue{
+  a:hover,
+  a.usa-current{
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #E1F3F8;
+  }
+  a.usa-current{
+    border: 1px solid #eee;
+  }
+}

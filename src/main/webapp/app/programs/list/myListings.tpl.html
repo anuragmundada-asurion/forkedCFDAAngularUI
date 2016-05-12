@@ -1,39 +1,38 @@
 <primary-nav-bar></primary-nav-bar>
 
+<div class="usa-grid m-t-3">
+  <ul class="usa-tab usa-tab-lightblue usa-unstyled-list">
+    <li>
+      <a ng-class="isActiveList() ? 'usa-current' : '';" ng-click="changeList('activePrograms')">Active Listings</a>
+    </li>
+    <li>
+      <a ng-class="isArchivedList() ? 'usa-current' : '';" ng-click="changeList('archivedPrograms')">Archived Listings</a>
+    </li>
+    <li>
+      <a ng-class="isRequestList() ? 'usa-current' : '';" ng-click="changeList('requests')">Requests</a>
+    </li>
+  </ul>
+</div>
+
 <div class="usa-grid m-t-3 m-b-2">
 
-  <h1>
+  <div class="usa-width-one-half">
+    <h1>
 
-    My  <span ng-show="isProgramList()">Listings</span>
-    <span ng-show="!isProgramList()">Requests</span>
+      My  <span ng-show="isProgramList()">Listings</span>
+      <span ng-show="!isProgramList()">Requests</span>
 
-    <span ng-show="!angular.isUndefinedOrNull(totalCount)" class="usa-font-lead" style="font-weight: normal;">
-      ( {{totalCount}} Results )
-    </span>
+      <span ng-show="!angular.isUndefinedOrNull(totalCount)" class="usa-font-lead" style="font-weight: normal;">
+        ( {{totalCount}} Results )
+      </span>
 
-  </h1>
+    </h1>
+  </div>
 
-  <aside class="usa-width-one-fourth">
-    <ul class="usa-sidenav-list">
-      <li>
-        <a ng-class="isActiveList() ? 'usa-current' : '';" ng-click="changeList('activePrograms')">Active Listings</a>
-      </li>
-      <li>
-        <a ng-class="isArchivedList() ? 'usa-current' : '';" ng-click="changeList('archivedPrograms')">Archived Listings</a>
-      </li>
-      <li>
-        <a ng-class="isRequestList() ? 'usa-current' : '';" ng-click="changeList('requests')">Requests</a>
-      </li>
-    </ul>
-  </aside>
-
-  <div class="usa-width-three-fourths">
-
+  <div class="usa-width-one-half">
     <div class="usa-grid-full">
 
-      <div class="usa-width-one-third">&nbsp;</div>
-
-      <div class="usa-width-one-third">
+      <div class="usa-width-one-half">
         <div class="ui search">
           <div class="ui icon fluid input">
             <input ng-model="searchKeyword" type="search" class="prompt" placeholder="Search Listings" aria-controls="listings-table">
@@ -41,37 +40,38 @@
           </div>
         </div>
       </div>
-
-      <div class="usa-width-one-third">
+      <div class="usa-width-one-half">
         <a ng-class="!isActiveList() ? 'disabled' : '';" class="ui fluid primary button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">Create a new listing</a>
       </div>
 
     </div>
+  </div>
 
-    <div class="usa-grid m-t-2">
+</div>
 
-      <div class="usa-width-one-fourth">
-        <input id="draftFilter" type="checkbox" ng-model="filters.draft" ng-disabled="!isActiveList()">
-        <label for="draftFilter">Draft</label>
-      </div>
+<div class="usa-grid m-t-2 m-b-2">
 
-      <div class="usa-width-one-fourth">
-        <input id="pendingFilter" type="checkbox" ng-model="filters.pending" ng-disabled="!isActiveList()">
-        <label for="pendingFilter">Pending</label>
-      </div>
+  <div class="usa-width-one-sixth">&nbsp;</div>
+  <div class="usa-width-one-sixth">&nbsp;</div>
 
-      <div class="usa-width-one-fourth">
-        <input id="publishedFilter" type="checkbox" ng-model="filters.published" ng-disabled="!isActiveList()">
-        <label for="publishedFilter">Published</label>
-      </div>
+  <div class="usa-width-one-sixth">
+    <input id="draftFilter" type="checkbox" ng-model="filters.draft" ng-disabled="!isActiveList()">
+    <label for="draftFilter">Draft</label>
+  </div>
 
-      <div class="usa-width-one-fourth">
-        <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected" ng-disabled="!isActiveList()">
-        <label for="rejectedFilter">Rejected</label>
-      </div>
+  <div class="usa-width-one-sixth">
+    <input id="pendingFilter" type="checkbox" ng-model="filters.pending" ng-disabled="!isActiveList()">
+    <label for="pendingFilter">Pending</label>
+  </div>
 
-    </div>
+  <div class="usa-width-one-sixth">
+    <input id="publishedFilter" type="checkbox" ng-model="filters.published" ng-disabled="!isActiveList()">
+    <label for="publishedFilter">Published</label>
+  </div>
 
+  <div class="usa-width-one-sixth">
+    <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected" ng-disabled="!isActiveList()">
+    <label for="rejectedFilter">Rejected</label>
   </div>
 
 </div>
