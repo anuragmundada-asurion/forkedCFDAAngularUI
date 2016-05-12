@@ -38,7 +38,6 @@
                 //make call to federalHierarchy
                 FederalHierarchyService.getParentPath($scope.programData.organizationId, function (data) {
                     $scope.hierarchyLevels = data;
-
                 });
 
             });
@@ -51,7 +50,6 @@
                     beneficiary_types: data['beneficiary_types'],
                     yes_no_na: data['yes_no_na'],
                     phasing_assistance: data['phasing_assistance']
-
                 };
 
                 $scope.traverseTree = function (value, dictionaryName) {
