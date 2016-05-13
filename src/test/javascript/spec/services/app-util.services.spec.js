@@ -22,7 +22,7 @@ describe("Unit Tests for App Utility Service", function () {
                     "authorizationType": "act"
                 });
                 expect(authorizationTitle).toBeDefined();
-                expect(authorizationTitle).toBe("TestDesc,Title TestTitle,Part TestPart,Section TestSection");
+                expect(authorizationTitle).toBe("TestDesc, Title TestTitle, Part TestPart, Section TestSection");
             });
 
             it('should get authorization title with undefined description', function(){
@@ -37,7 +37,7 @@ describe("Unit Tests for App Utility Service", function () {
                     "authorizationType": "act"
                 });
                 expect(authorizationTitle).toBeDefined();
-                expect(authorizationTitle).toBe(",Title TestTitle,Part TestPart,Section TestSection");
+                expect(authorizationTitle).toBe(", Title TestTitle, Part TestPart, Section TestSection");
             });
 
             it('should get authorization title with undefined title', function(){
@@ -52,7 +52,7 @@ describe("Unit Tests for App Utility Service", function () {
                     "authorizationType": "act"
                 });
                 expect(authorizationTitle).toBeDefined();
-                expect(authorizationTitle).toBe("TestDesc,Title ,Part TestPart,Section TestSection");
+                expect(authorizationTitle).toBe("TestDesc, Title , Part TestPart, Section TestSection");
             });
 
             it('should get authorization title with undefined part', function(){
@@ -67,7 +67,7 @@ describe("Unit Tests for App Utility Service", function () {
                     "authorizationType": "act"
                 });
                 expect(authorizationTitle).toBeDefined();
-                expect(authorizationTitle).toBe("TestDesc,Title TestTitle,Part ,Section TestSection");
+                expect(authorizationTitle).toBe("TestDesc, Title TestTitle, Part , Section TestSection");
             });
 
             it('should get authorization title with undefined section', function(){
@@ -82,7 +82,7 @@ describe("Unit Tests for App Utility Service", function () {
                     "authorizationType": "act"
                 });
                 expect(authorizationTitle).toBeDefined();
-                expect(authorizationTitle).toBe("TestDesc,Title TestTitle,Part TestPart,Section ");
+                expect(authorizationTitle).toBe("TestDesc, Title TestTitle, Part TestPart, Section ");
             });
         });
 
