@@ -73,15 +73,17 @@
                 <!-- If the requested organization is manual then show the input -->
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto === false && programCode)">
                     <h4 class="m-t-1">Program Number <span class="required" >*</span></h4>
-                    <div class="inline field">
-                        <label>{{ programCode }}.</label>
-                        <input type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="$parent.programNumber"  ng-change="verifyProgramNumber()" required />
+
+                    <div class="inline field" style="float:left; width:100%;">
+                        <strong style="float:left; width:10%; margin-top:13px; text-align: right; margin-right: 5px;">{{ programCode }}.</strong>
+                        <input style="float:left; width: 30%;" type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="$parent.programNumber"  ng-change="verifyProgramNumber()" required />
                     </div>
+
                     <div ng-show="form.error || programRequestForm.programNumber.$dirty">
-                        <span ng-show="programRequestForm.programNumber.$error.required">You must provide Program Number of this request.</span>
+                        <span class="usa-text-small" ng-show="programRequestForm.programNumber.$error.required">You must provide Program Number of this request.</span>
                     </div>
-                    <span ng-show="isProgramNumberValid === false && !programRequestForm.programNumber.$error.required">The program number is invalid.</span>
-                    <span ng-show="isProgramNumberUnique === false">The program number is already been used.</span>
+                    <span class="usa-text-small" ng-show="isProgramNumberValid === false && !programRequestForm.programNumber.$error.required">The program number is invalid.</span>
+                    <span class="usa-text-small" ng-show="isProgramNumberUnique === false">The program number is already been used.</span>
                 </div>
                 <!-- If the requested organization is auto then just show the generated program number -->
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto && programCode)">
