@@ -365,21 +365,21 @@
                     "</div>"+
                     "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3 class='m-t-2'><label for='jqDepartmentFH'>Department</label></h3>"+
+                            "<h5 class='m-t-2'><label for='jqDepartmentFH'>Department</label></h5>"+
                             "<select id='jqDepartmentFH' name='department' class='usa-form-medium' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3 class='m-t-2'><label for='jqAgencyFH'>Agency</label></h3>"+
+                            "<h5 class='m-t-2'><label for='jqAgencyFH'>Agency</label></h5>"+
                             "<select id='jqAgencyFH' name='agency' class='usa-form-medium' ng-change='setOrganizationId(\"agency\")' ng-model='selectedAgencyId' ng-options='item.elementId as item.name for item in dictionary.aAgency'>"+
                                 "<option value=''>Please select an Agency</option>"+
                             "</select>"+
 
                         "</div>"+
                         "<div class='input-field usa-width-one-fourth'>"+
-                            "<h3 class='m-t-2'><label for='jqOfficeFH'>Office</label></h3>"+
+                            "<h5 class='m-t-2'><label for='jqOfficeFH'>Office</label></h5>"+
                             "<select id='jqOfficeFH' name='office' class='usa-form-medium' ng-change='setOrganizationId(\"office\")' ng-model='selectedOfficeId' ng-options='item.elementId as item.name for item in dictionary.aOffice'>"+
                                 "<option value=''>Please select an Office</option>"+
                             "</select>"+
