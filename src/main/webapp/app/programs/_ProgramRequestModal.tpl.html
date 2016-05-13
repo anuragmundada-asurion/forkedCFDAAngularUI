@@ -74,7 +74,7 @@
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto === false && programCode)">
                     <h4 class="m-t-1">Program Number <span class="required" >*</span></h4>
 
-                    <div class="inline field" style="float:left; width:100%;">
+                    <div class="inline field m-b-1" style="float:left; width:100%;">
                         <strong style="float:left; width:10%; margin-top:13px; text-align: right; margin-right: 5px;">{{ programCode }}.</strong>
                         <input style="float:left; width: 30%;" type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="$parent.programNumber"  ng-change="verifyProgramNumber()" required />
                     </div>
