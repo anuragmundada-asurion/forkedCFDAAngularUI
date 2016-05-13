@@ -27,13 +27,13 @@
             <div class="field">
                 <label>Program</label>
 
-                    <a ui-sref="reviewProgram({id: request.getProgramId()})">{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</a>
+                    <a ui-sref="reviewProgram({id: request.getProgramId()})"><strong>{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</strong></a>
             </div>
 
             <div class="field">
                 <label>Request Type</label>
 
-                <p>{{request.getFormattedType()}}</p>
+                <p><strong>{{request.getFormattedType()}}</strong></p>
             </div>
 
         </div>
@@ -43,13 +43,13 @@
             <div class="field">
                 <label>Existing Title</label>
 
-                <p>{{request.getProgramTitle()}}</p>
+                <p><strong>{{request.getProgramTitle()}}</strong></p>
             </div>
 
             <div class="field">
                 <label>Requested Title</label>
 
-                <p>{{getRequestedTitle()}}</p>
+                <p><strong>{{getRequestedTitle()}}</strong></p>
             </div>
 
         </div>
@@ -59,13 +59,13 @@
             <div class="field">
                 <label>Existing Organization</label>
 
-                <p><federal-hierarchy-label organization-id="{{request.getProgramOrganizationId()}}"></federal-hierarchy-label></p>
+                <p><strong><federal-hierarchy-label organization-id="{{request.getProgramOrganizationId()}}"></federal-hierarchy-label></strong></p>
             </div>
 
             <div class="field">
                 <label>Requested Organization</label>
 
-                <p><federal-hierarchy-label organization-id="{{getRequestedOrganization()}}"></federal-hierarchy-label></p>
+                <p><strong><federal-hierarchy-label organization-id="{{getRequestedOrganization()}}"></federal-hierarchy-label></strong></p>
             </div>
 
         </div>
@@ -75,15 +75,17 @@
             <div class="field">
                 <label>Reason</label>
 
-                <p>{{request.getReason()}}</p>
+                <p><strong>{{request.getReason()}}</strong></p>
             </div>
 
         </div>
 
-        <a ui-sref="programList({list: 'requests'})" class="ui large button" style="margin-right:50px;">Return</a>
+        <div style="text-align: right;">
+          <a ui-sref="programList({list: 'requests'})" class="ui large button" style="margin-right:50px;">Return</a>
 
-        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="approveRequest()">Approve </button>
-        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="rejectRequest()">Reject </button>
+          <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="approveRequest()">Approve </button>
+          <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" class="ui large primary button" ng-click="rejectRequest()">Reject </button>
+        </div>
     </div>
 
 </div>
