@@ -34,7 +34,7 @@
                  * @param Object oProgram
                  * @returns Void
                  */
-                $scope.loadDictionaries = function(oProgram) {
+                $scope.loadDictionaries = function (oProgram) {
                     Dictionary.query({ids: TREES.join(',')}, function (data) {
                         //Functional Code (async -> for edit mode set pre-selected one)
                         $scope.dictionary.aFunctionalCode = DictionaryService.istevenDropdownDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : [], true);
@@ -59,10 +59,10 @@
                  * @param String dictionaryName
                  * @returns void
                  */
-                $scope.unselectDictionary = function(oItemRemove, dictionaryName) {
-                    if($scope.dictionary[dictionaryName]) {
-                        angular.forEach($scope.dictionary[dictionaryName], function(oItem, i) {
-                            if(oItem.element_id == oItemRemove.element_id) {
+                $scope.unselectDictionary = function (oItemRemove, dictionaryName) {
+                    if ($scope.dictionary[dictionaryName]) {
+                        angular.forEach($scope.dictionary[dictionaryName], function (oItem, i) {
+                            if (oItem.element_id == oItemRemove.element_id) {
                                 $scope.dictionary[dictionaryName][i].ticked = false;
                             }
                         });
@@ -116,7 +116,7 @@
                             });
                         } else if (vm.program.status === 'Draft') {
                             //remove first 2 digits (Program Code) from ProgramNumber
-                            if(vm.program.programNumber && vm.program.programNumber.indexOf('.') !== -1) {
+                            if (vm.program.programNumber && vm.program.programNumber.indexOf('.') !== -1) {
                                 vm.programCode = vm.program.programNumber.split('.')[0];
                                 vm.program.programNumber = vm.program.programNumber.split('.')[1];
                             }
@@ -254,10 +254,10 @@
                     copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
                     copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
                     copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
-                    if(copy.financial && copy.financial.hasOwnProperty('obligations')) {
-                        angular.forEach(copy.financial.obligations, function(row, i){
-                            if(row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
-                                if(typeof row.assistanceType === 'object') {
+                    if (copy.financial && copy.financial.hasOwnProperty('obligations')) {
+                        angular.forEach(copy.financial.obligations, function (row, i) {
+                            if (row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
+                                if (typeof row.assistanceType === 'object') {
                                     copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
                                 }
                             }
@@ -270,8 +270,8 @@
 
                     //Prepend 2 digits (ProgramCode) to programNumber
                     if (copy.status === 'Draft' && vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
-                        copy.programNumber = vm.programCode+'.'+((typeof copy.programNumber !== 'undefined') ? copy.programNumber : '');
-                    } else if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+                        copy.programNumber = vm.programCode + '.' + ((typeof copy.programNumber !== 'undefined') ? copy.programNumber : '');
+                    } else if (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
                         //clear out program number if organization's number is auto generated
                         copy.programNumber = '';
                     }
@@ -432,10 +432,10 @@
 
                 function getTreeNodeModel(value, keyName, childrenName, dictionaryName) {
                     //isteven data structure
-                    if(angular.isArray(value) && value.length > 0){
+                    if (angular.isArray(value) && value.length > 0) {
                         value = value[0];
                     }
-                    if(typeof value === 'object'){
+                    if (typeof value === 'object') {
                         value = value.element_id;
                     }
                     //end isteven structure
@@ -499,34 +499,66 @@
                  */
                 function validateProgramFields(oProgram) {
                     return !(!oProgram.title || !oProgram.authorizations || oProgram.authorizations.length == 0
-                    || !oProgram.objective || !oProgram.usage.restrictions.flag
-                    || (oProgram.usage.restrictions.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
-                    || (oProgram.usage.discretionaryFund.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.discretionaryFund.content)
-                    || !oProgram.usage.loanTerms.flag || (oProgram.usage.loanTerms.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.loanTerms.content)
-                    || !oProgram.relatedPrograms.flag || (oProgram.relatedPrograms.flag === 'yes' && !oProgram.relatedPrograms.relatedTo) || !oProgram.projects.flag
-                    || !oProgram.functionalCodes || oProgram.functionalCodes.length == 0 || !oProgram.subjectTerms || oProgram.subjectTerms.length == 0
-                    || !oProgram.eligibility.applicant.types || oProgram.eligibility.applicant.types.length == 0
-                    || !oProgram.eligibility.applicant.assistanceUsageTypes || oProgram.eligibility.applicant.assistanceUsageTypes.length == 0 || !oProgram.eligibility.applicant.additionalInfo
-                    || !oProgram.eligibility.beneficiary.types || oProgram.eligibility.beneficiary.types.length == 0 || !oProgram.eligibility.beneficiary.additionalInfo.content
-                    || !oProgram.eligibility.documentation.flag || (oProgram.eligibility.documentation.flag === 'yes' && !oProgram.eligibility.documentation.content)
-                    || oProgram.eligibility.documentation.flag === 'yes' && !oProgram.eligibility.documentation.questions['OMBCircularA87'].flag
-                    || !oProgram.preApplication.coordination.flag || (oProgram.preApplication.coordination.flag === 'yes' && !oProgram.preApplication.coordination.environmentalImpact.flag)
-                    || (oProgram.preApplication.coordination.flag === 'yes' && !oProgram.preApplication.coordination.questions.ExecutiveOrder12372.flag) || !oProgram.application.procedures.questions.OMBCircularA102.flag
-                    || !oProgram.award.procedures.content || !oProgram.application.deadlines.submission.flag || !oProgram.application.deadlines.approval.interval || !oProgram.application.deadlines.appeal.interval
-                    || !oProgram.application.deadlines.renewal.interval || !oProgram.assistance.formula.flag || !oProgram.assistance.matching.flag || (oProgram.assistance.matching.flag == 'yes' && !oProgram.assistance.matching.percent)
-                    || !oProgram.assistance.moe.flag || !oProgram.assistance.limitation.content || !oProgram.assistance.limitation.awarded || !oProgram.application.selectionCriteria.flag
-                    || (oProgram.application.selectionCriteria.flag == 'yes' && !oProgram.application.selectionCriteria.content)
-                    || !oProgram.postAward.reports.flag || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.program.flag)
-                    || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.cash.flag) || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.progress.flag)
-                    || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.expenditure.flag) || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.performanceMonitoring.flag)
-                    || !oProgram.postAward.audit.flag || (oProgram.postAward.audit.flag === 'yes' && !oProgram.postAward.audit.questions['OMBCircularA133'].flag)
-                    || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
-                    || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
-                    || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
-                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= vm.organizationConfiguration.programNumberLow && oProgram.programNumber <= vm.organizationConfiguration.programNumberHigh && oProgram.programNumber.length === 3))
-                    || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && vm.isProgramNumberUnique === false)
+                        || !oProgram.objective || !oProgram.usage.restrictions.flag
+                        || (oProgram.usage.restrictions.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
+                        || (oProgram.usage.discretionaryFund.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.discretionaryFund.content)
+                        || !oProgram.usage.loanTerms.flag || (oProgram.usage.loanTerms.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.loanTerms.content)
+                        || !oProgram.relatedPrograms.flag || (oProgram.relatedPrograms.flag === 'yes' && !oProgram.relatedPrograms.relatedTo) || !oProgram.projects.flag
+                        || !oProgram.functionalCodes || oProgram.functionalCodes.length == 0 || !oProgram.subjectTerms || oProgram.subjectTerms.length == 0
+                        || !oProgram.eligibility.applicant.types || oProgram.eligibility.applicant.types.length == 0
+                        || !oProgram.eligibility.applicant.assistanceUsageTypes || oProgram.eligibility.applicant.assistanceUsageTypes.length == 0 || !oProgram.eligibility.applicant.additionalInfo
+                        || !oProgram.eligibility.beneficiary.types || oProgram.eligibility.beneficiary.types.length == 0 || !oProgram.eligibility.beneficiary.additionalInfo.content
+                        || !oProgram.eligibility.documentation.flag || (oProgram.eligibility.documentation.flag === 'yes' && !oProgram.eligibility.documentation.content)
+                        || oProgram.eligibility.documentation.flag === 'yes' && !oProgram.eligibility.documentation.questions['OMBCircularA87'].flag
+                        || !oProgram.preApplication.coordination.flag || (oProgram.preApplication.coordination.flag === 'yes' && !oProgram.preApplication.coordination.environmentalImpact.flag)
+                        || (oProgram.preApplication.coordination.flag === 'yes' && !oProgram.preApplication.coordination.questions.ExecutiveOrder12372.flag) || !oProgram.application.procedures.questions.OMBCircularA102.flag
+                        || !oProgram.award.procedures.content || !oProgram.application.deadlines.submission.flag || !oProgram.application.deadlines.approval.interval || !oProgram.application.deadlines.appeal.interval
+                        || !oProgram.application.deadlines.renewal.interval || !oProgram.assistance.formula.flag || !oProgram.assistance.matching.flag || (oProgram.assistance.matching.flag == 'yes' && !oProgram.assistance.matching.percent)
+                        || !oProgram.assistance.moe.flag || !oProgram.assistance.limitation.content || !oProgram.assistance.limitation.awarded || !oProgram.application.selectionCriteria.flag
+                        || (oProgram.application.selectionCriteria.flag == 'yes' && !oProgram.application.selectionCriteria.content)
+                        || !oProgram.postAward.reports.flag || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.program.flag)
+                        || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.cash.flag) || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.progress.flag)
+                        || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.expenditure.flag) || (oProgram.postAward.reports.flag === 'yes' && !oProgram.postAward.reports.list.performanceMonitoring.flag)
+                        || !oProgram.postAward.audit.flag || (oProgram.postAward.audit.flag === 'yes' && !oProgram.postAward.audit.questions['OMBCircularA133'].flag)
+                        || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
+                        || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
+                        || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
+                        || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= vm.organizationConfiguration.programNumberLow && oProgram.programNumber <= vm.organizationConfiguration.programNumberHigh && oProgram.programNumber.length === 3))
+                        || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && vm.isProgramNumberUnique === false)
                     );
                 }
+
+
+                function showProgramNumberWarningModal(oProgram) {
+                    var msg = "There are no more available numbers in the configured range. If you would like to continue, the next " +
+                        "available number will be assigned, but will fall outside of the configured range for this organization." + "<br>" +
+                        " If you do not want to continue, please adjust the number range for your" +
+                        " organization before proceeding and your Federal Assistance Listing will remain in a Draft state.";
+                    var msg2 = "There are no more available numbers in the configured range. Please contact your agency coordinator and have" +
+                        " them adjust your organizations number range.";
+                    var template = '<div class="usa-alert usa-alert-warning" role="alert">' +
+                        '<div class="usa-alert-body">' +
+                        '<p class="usa-alert-text">' + msg + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<button ng-click="closeModal();">Cancel</button>' + '<button ng-click="closeAndShowSubmitModal(' + oProgram + ' );">Continue</button>';
+
+                    //$scope.showWarningModal(oProgram);
+                    ngDialog.open({
+                        template: template,
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+                }
+
+                $scope.closeAndShowSubmitModal = function (oProgram) {
+                    console.log("hello?");
+                    debugger;
+                    $scope.closeModal();//close current modal
+                    $scope.showProgramRequestModal(oProgram, 'program_submit');//show submit Program  dialog modal
+                };
+
 
                 /**
                  *
@@ -537,11 +569,20 @@
                 function submitProgram(oProgram) {
                     var isProgramValidated = validateProgramFields(oProgram);
 
+                    //check if programNumber is outside of range, (when configuration is auto)
+                    var isNumberOutsideRange = true;//validateProgramNumber(oProgram);
+
+
                     //Call save program on success then call showProgramChangeStatus
                     save(function () {
                         if (isProgramValidated) {
-                            $scope.showProgramRequestModal(oProgram, 'program_submit');
-                        } else {
+                            if (isNumberOutsideRange) {
+                                showProgramNumberWarningModal(oProgram);
+                            } else {
+                                $scope.showProgramRequestModal(oProgram, 'program_submit');
+                            }
+                        }
+                        else {
                             //program has an issue and cannot be published yet
                             $location.hash('formErrorMessages');
                         }
@@ -632,9 +673,9 @@
 
                 function getDictionary(name, aSelectedIDs) {
                     var aDictionary = [];
-                    if(angular.isArray(aSelectedIDs) && aSelectedIDs.length > 0 && $scope.dictionary.hasOwnProperty(name)) {
-                            aDictionary = DictionaryService.istevenDropdownDataStructure($scope.dictionary[name], aSelectedIDs, false);
-                    } else if($scope.dictionary.hasOwnProperty(name)) {
+                    if (angular.isArray(aSelectedIDs) && aSelectedIDs.length > 0 && $scope.dictionary.hasOwnProperty(name)) {
+                        aDictionary = DictionaryService.istevenDropdownDataStructure($scope.dictionary[name], aSelectedIDs, false);
+                    } else if ($scope.dictionary.hasOwnProperty(name)) {
                         aDictionary = $scope.dictionary[name];
                     }
 
@@ -650,7 +691,7 @@
                             apiName: 'programNumberUnique',
                             apiSuffix: '',
                             oParams: {
-                                programNumber: vm.programCode+'.'+vm.program.programNumber,
+                                programNumber: vm.programCode + '.' + vm.program.programNumber,
                                 id: vm.program._id
                             },
                             oData: {},
