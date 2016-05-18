@@ -2,6 +2,7 @@ package gov.gsa.cfda.aui.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.json.JSONObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -58,7 +59,14 @@ public class UserServiceController {
                 users = embedded.get("userResources").getAsJsonArray();
             }
 
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(users.toString());
+            //  Extract user object
+            JsonArray results = new JsonArray();
+            for(JsonElement user : users) {
+                JsonObject u = user.getAsJsonObject();
+                results.add(u.get("user"));
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(results.toString());
         } catch (HttpClientErrorException e) {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());

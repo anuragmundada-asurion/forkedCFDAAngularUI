@@ -17,6 +17,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/search",
                 "/advanced-search",
 
+
                 "/programs/add/",
                 "/programs/add/{section:\\w+}",
                 "/programs/{id:\\w+}/edit/{section:\\w+}",
@@ -26,12 +27,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/programs/{id:\\w+}/preview",
                 "/programs/{id:\\w+}/review",
 
+
                 "/requests/{id:\\w+}/view",
+
 
                 "/agency/main",
                 "/agency/edit/{id:\\w+}",
                 "/agency/review/{id:\\w+}",
                 "/agency/create",
+
 
                 "/regionalOffice",
                 "/regionalOffice/create",
@@ -42,6 +46,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/organization",
                 "/organization/{id:\\w+}/edit",
                 "/organization/{id:\\w+}/view",
+
+
+                "/users",
+                "/users/{id:\\w+}/edit",
+                "/users/{id:\\w+}/view",
+
 
                 "/unauthorized",
                 "/forbidden",

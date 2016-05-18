@@ -204,6 +204,12 @@
                     templateUrl: "request/viewRequest.tpl.html",
                     controller: "RequestViewCtrl",
                     title: 'View Request - CFDA: View Request'
+                })
+                .state('userList', {
+                    url: "/users",
+                    templateUrl: "users/list/userList.tpl.html",
+                    controller: "UserListCtrl",
+                    title: 'Users - CFDA: User List'
                 });
 
             // the known route
