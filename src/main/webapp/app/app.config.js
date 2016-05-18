@@ -43,7 +43,7 @@
             };
 
             //global function for Closing change status modal
-            $rootScope.closeProgramRequestModal = function() {
+            $rootScope.closeModal = function() {
                 ngDialog.close();
             };
 
