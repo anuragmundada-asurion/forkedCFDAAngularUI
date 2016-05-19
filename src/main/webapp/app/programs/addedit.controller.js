@@ -529,6 +529,34 @@
                 }
 
 
+                $scope.isNextAvailableProgramNumberOutsideRange = function (callback) {
+                    var oApiParam = {
+                        apiName: 'nextAvailableProgramNumber',
+                        apiSuffix: '',
+                        oParams: {
+                            organizationId: vm.program.organizationId
+                        },
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    //Call API get next available program number
+                    ApiService.call(oApiParam).then(
+                        function (data) {
+                            console.log("error did not happen! : ", data);
+                            callback(false);
+                        },
+                        function (error) {
+                            if (error['generatedNumber']) {
+                                console.log("error happend related to program number being outside range! : ", error);
+                                callback(true);
+                            } else {
+                                console.log("should NOT HAPPEN");
+                                callback(true);
+                            }
+                        });
+                };
+
                 function showWarning(oProgram) {
                     var msg1 = "There are no more available numbers in the configured range. If you would like to continue, the next " +
                         "available number will be assigned, but will fall outside of the configured range for this organization." + "<br>" +
@@ -539,8 +567,8 @@
                     var template = '<div class="usa-alert usa-alert-warning" role="alert">' +
                         '<div class="usa-alert-body">' +
                         '<p class="usa-alert-text">' +
-                        '<span has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}">' + msg1 + '</span>'  +
-                        '<span has-role="{{ [ROLES.AGENCY_USER] }}">' + msg2 + '</span>'  +
+                        '<span has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}">' + msg1 + '</span>' +
+                        '<span has-role="{{ [ROLES.AGENCY_USER] }}">' + msg2 + '</span>' +
                         '</p>' +
                         '</div>' +
                         '</div>' +
@@ -574,24 +602,25 @@
                     var isProgramValidated = validateProgramFields(oProgram);
 
                     //check if programNumber is outside of range, (when configuration is auto)
-                    verifyProgramNumber();
-                    var isNumberOutsideRange = true;//validateProgramNumber(oProgram);
-
-
-                    //Call save program on success then call showProgramChangeStatus
-                    save(function () {
-                        if (isProgramValidated) {
-                            if (isNumberOutsideRange) {
-                                showWarning(oProgram);//will allow agency coordinator to go ahead and submit.
-                            } else {
-                                $scope.showProgramRequestModal(oProgram, 'program_submit');
+                    $scope.isNextAvailableProgramNumberOutsideRange(function (boolean) {
+                        debugger;
+                        var isNumberOutsideRange = boolean;
+                        //Call save program on success then call showProgramChangeStatus
+                        save(function () {
+                            if (isProgramValidated) {
+                                if (isNumberOutsideRange) {
+                                    showWarning(oProgram);//will allow agency coordinator to go ahead and submit.
+                                } else {
+                                    $scope.showProgramRequestModal(oProgram, 'program_submit');
+                                }
                             }
-                        }
-                        else {
-                            //program has an issue and cannot be published yet
-                            $location.hash('formErrorMessages');
-                        }
+                            else {
+                                //program has an issue and cannot be published yet
+                                $location.hash('formErrorMessages');
+                            }
+                        });
                     });
+
                 }
 
 
