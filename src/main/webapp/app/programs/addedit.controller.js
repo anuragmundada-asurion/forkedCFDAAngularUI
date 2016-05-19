@@ -543,15 +543,13 @@
                     //Call API get next available program number
                     ApiService.call(oApiParam).then(
                         function (data) {
-                            console.log("error did not happen! : ", data);
                             callback(false);
                         },
                         function (error) {
                             if (error['generatedNumber']) {
-                                console.log("error happend related to program number being outside range! : ", error);
                                 callback(true);
                             } else {
-                                console.log("should NOT HAPPEN");
+                                //console.log("should NOT HAPPEN, at least not for programNumber outside range errors");
                                 callback(true);
                             }
                         });
@@ -603,7 +601,6 @@
 
                     //check if programNumber is outside of range, (when configuration is auto)
                     $scope.isNextAvailableProgramNumberOutsideRange(function (boolean) {
-                        debugger;
                         var isNumberOutsideRange = boolean;
                         //Call save program on success then call showProgramChangeStatus
                         save(function () {

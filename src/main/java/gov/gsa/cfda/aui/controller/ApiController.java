@@ -213,7 +213,6 @@ public class ApiController {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             JsonObject response = new Gson().fromJson(e.getResponseBodyAsString(), JsonObject.class);
-            System.out.println("Error response: " + response + "\n\n");
             obj.put("error", response.get("message").getAsString());
             if(response.get("generatedNumber") != null){
                 obj.put("generatedNumber", response.get("generatedNumber").getAsString());
