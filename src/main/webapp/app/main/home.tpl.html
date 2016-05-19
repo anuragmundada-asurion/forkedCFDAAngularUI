@@ -57,7 +57,7 @@
 
         <!-- Menu of Statistics -->
 
-        <div class="ui fluid five item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top: 0;">
+        <div class="ui fluid four item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top: 0;">
             <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'all'})">
                 <div class="ui statistic">
                     <div class="value font bold big">
@@ -95,15 +95,6 @@
                     <div class="label page font huge lighter no transformation">Published<br>Listings</div>
                 </div>
             </a>
-            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                        <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Rejected<br>Listings</div>
-                </div>
-            </a>
         </div>
 
 
@@ -114,36 +105,36 @@
             <div class="ui grid">
 
                 <div class="row">
-                    <div class="sixteen wide column center aligned">
-                        <a class="ui primary large button" ui-sref="addProgram" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
-                            <span class="fa fa-plus"></span> Create a New Listing
+                    <div class="sixteen wide column">
+                        <div class="ui divider" style="width:100%;"></div>
+                    </div>
+                </div>
+
+                <div class="four column row">
+                    <div class="column right aligned">
+                        <a class="ui fluid large button" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
+                            <span class="fa fa-thumbs-down"></span>
+                            <span>Rejected Listing</span>
                         </a>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="sixteen wide column">
-                        <div class="ui divider"></div>
-                    </div>
-                </div>
-
-                <div class="three column row">
                     <div class="column right aligned">
                         <a class="ui fluid large button" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
-                            <span class="fa fa-archive"></span> Archived Listing
+                            <span class="fa fa-archive"></span>
+                            <span>Archived Listing</span>
                         </a>
                     </div>
                     <div class="column left aligned">
                         <a class="ui fluid large button">
-                            <span class="fa fa-server"></span> Historical Index
+                            <span class="fa fa-server"></span>
+                            <span>Historical Index</span>
                         </a>
                     </div>
 
-
                     <!-- Agency List-->
-                    <div has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="organizationList">
-                            <span class="fa fa-university"></span> Organizations
+                    <div has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}" class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="addProgram">
+                            <span class="fa fa-plus-square-o"></span>
+                            <span>Create FAL</span>
                         </a>
                     </div>
 
@@ -158,44 +149,51 @@
 
     <div class="ui fixed container" style="margin-top:50px;">
 
+        <div class="ui top attached segment borderless">
+            <div class="ui grid">
+                <div class="one column row">
+                    <div class="column">
+                        <strong class="font grey" style="letter-spacing: -.5px;">Administration Dashboard</strong>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="ui bottom attached segment borderless">
 
             <!-- Options -->
 
             <div class="ui grid">
 
-                <div class="row">
-                    <div class="sixteen wide column center aligned">
-                        <a class="ui primary large button" ui-sref="addRegionalOffice" has-access="{{ [PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE] }}">
-                            <span class="fa fa-plus"></span> Create Regional Agency Office
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="sixteen wide column">
-                        <div class="ui divider"></div>
-                    </div>
-                </div>
-
-                <div class="three column row">
+                <div class="four column row">
                     <!-- Agency List-->
                     <div has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" class="column left aligned">
                         <a class="ui fluid large button" ui-sref="organizationList">
-                            <span class="fa fa-building-o"></span> Organizations
+                            <span class="fa fa-users"></span>
+                            <span>Organizations</span>
                         </a>
                     </div>
 
                     <div class="column left aligned">
                         <a class="ui fluid large button" ui-sref="userList">
-                            <span class="fa fa-book"></span> Users
+                            <span class="fa fa-book"></span>
+                            <span>Contacts</span>
                         </a>
                     </div>
 
                     <!-- Agency List-->
                     <div has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}" class="column left aligned">
                         <a class="ui fluid large button" ui-sref="regionalOfficeList">
-                            <span class="fa fa-briefcase"></span> My Regional Agency Offices
+                            <span class="fa fa-briefcase"></span>
+                            <span>My Regional Agency Offices</span>
+                        </a>
+                    </div>
+
+                    <div has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="addRegionalOffice">
+                            <span class="fa fa-plus-square-o"></span>
+                            <span>Create Regional Agency Office</span>
                         </a>
                     </div>
 
