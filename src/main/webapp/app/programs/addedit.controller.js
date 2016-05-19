@@ -530,7 +530,7 @@
 
 
                 function showWarning(oProgram) {
-                    var msg = "There are no more available numbers in the configured range. If you would like to continue, the next " +
+                    var msg1 = "There are no more available numbers in the configured range. If you would like to continue, the next " +
                         "available number will be assigned, but will fall outside of the configured range for this organization." + "<br>" +
                         " If you do not want to continue, please adjust the number range for your" +
                         " organization before proceeding and your Federal Assistance Listing will remain in a Draft state.";
@@ -538,17 +538,23 @@
                         " them adjust your organizations number range.";
                     var template = '<div class="usa-alert usa-alert-warning" role="alert">' +
                         '<div class="usa-alert-body">' +
-                        '<p class="usa-alert-text">' + msg + '</p>' +
+                        '<p class="usa-alert-text">' +
+                        '<span has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}">' + msg1 + '</span>'  +
+                        '<span has-role="{{ [ROLES.AGENCY_USER] }}">' + msg2 + '</span>'  +
+                        '</p>' +
                         '</div>' +
                         '</div>' +
-                        '<button ng-click="closeModal();">Cancel</button>' + '<button ng-click="openSubmitModal();">Continue</button>';
+                        '<button ng-click="closeModal();">Cancel</button>' +
+                        '<button has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}" ng-click="openSubmitModal();">Continue</button>';
+
 
                     ngDialog.open({
                         template: template,
                         plain: true,
                         closeByEscape: true,
                         showClose: true,
-                        scope: $scope //give the dialog access to current scope
+                        scope: $scope, //give the dialog access to current scope
+                        width: '80%'
                     });
                 }
 
@@ -569,7 +575,6 @@
 
                     //check if programNumber is outside of range, (when configuration is auto)
                     verifyProgramNumber();
-                    console.log("number is wihtin range: ", $scope.programNumberSeemsValid);
                     var isNumberOutsideRange = true;//validateProgramNumber(oProgram);
 
 
@@ -698,7 +703,6 @@
                             method: 'GET'
                         };
 
-                        $scope.programNumberSeemsValid = true;
                         ApiService.call(oApiParam).then(function (data) {
                             vm.isProgramNumberUnique = data.isProgramNumberUnique;
                         }, function (error) {
