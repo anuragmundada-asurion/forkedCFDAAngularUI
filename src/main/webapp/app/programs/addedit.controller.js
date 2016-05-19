@@ -550,7 +550,7 @@
                                 callback(true);
                             } else {
                                 //console.log("should NOT HAPPEN, at least not for programNumber outside range errors");
-                                callback(true);
+                                //callback(true);
                             }
                         });
                 };
