@@ -529,7 +529,7 @@
                 }
 
 
-                function showProgramNumberWarningModal(oProgram) {
+                function showWarning(oProgram) {
                     var msg = "There are no more available numbers in the configured range. If you would like to continue, the next " +
                         "available number will be assigned, but will fall outside of the configured range for this organization." + "<br>" +
                         " If you do not want to continue, please adjust the number range for your" +
@@ -541,22 +541,20 @@
                         '<p class="usa-alert-text">' + msg + '</p>' +
                         '</div>' +
                         '</div>' +
-                        '<button ng-click="closeModal();">Cancel</button>' + '<button ng-click="closeAndShowSubmitModal(' + oProgram + ' );">Continue</button>';
+                        '<button ng-click="closeModal();">Cancel</button>' + '<button ng-click="openSubmitModal();">Continue</button>';
 
-                    //$scope.showWarningModal(oProgram);
                     ngDialog.open({
                         template: template,
                         plain: true,
                         closeByEscape: true,
-                        showClose: true
+                        showClose: true,
+                        scope: $scope //give the dialog access to current scope
                     });
                 }
 
-                $scope.closeAndShowSubmitModal = function (oProgram) {
-                    console.log("hello?");
-                    debugger;
+                $scope.openSubmitModal = function () {
                     $scope.closeModal();//close current modal
-                    $scope.showProgramRequestModal(oProgram, 'program_submit');//show submit Program  dialog modal
+                    $scope.showProgramRequestModal(vm.program, 'program_submit');//show submit Program  dialog modal
                 };
 
 
@@ -570,6 +568,8 @@
                     var isProgramValidated = validateProgramFields(oProgram);
 
                     //check if programNumber is outside of range, (when configuration is auto)
+                    verifyProgramNumber();
+                    console.log("number is wihtin range: ", $scope.programNumberSeemsValid);
                     var isNumberOutsideRange = true;//validateProgramNumber(oProgram);
 
 
@@ -577,7 +577,7 @@
                     save(function () {
                         if (isProgramValidated) {
                             if (isNumberOutsideRange) {
-                                showProgramNumberWarningModal(oProgram);
+                                showWarning(oProgram);//will allow agency coordinator to go ahead and submit.
                             } else {
                                 $scope.showProgramRequestModal(oProgram, 'program_submit');
                             }
@@ -698,6 +698,7 @@
                             method: 'GET'
                         };
 
+                        $scope.programNumberSeemsValid = true;
                         ApiService.call(oApiParam).then(function (data) {
                             vm.isProgramNumberUnique = data.isProgramNumberUnique;
                         }, function (error) {
