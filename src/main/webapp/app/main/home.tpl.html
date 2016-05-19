@@ -156,6 +156,58 @@
 
     </div>
 
+    <div class="ui fixed container" style="margin-top:50px;">
+
+        <div class="ui bottom attached segment borderless">
+
+            <!-- Options -->
+
+            <div class="ui grid">
+
+                <div class="row">
+                    <div class="sixteen wide column center aligned">
+                        <a class="ui primary large button" ui-sref="addRegionalOffice" has-access="{{ [PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE] }}">
+                            <span class="fa fa-plus"></span> Create Regional Agency Office
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <div class="ui divider"></div>
+                    </div>
+                </div>
+
+                <div class="three column row">
+                    <!-- Agency List-->
+                    <div has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="organizationList">
+                            <span class="fa fa-building-o"></span> Organizations
+                        </a>
+                    </div>
+
+                    <div class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="userList">
+                            <span class="fa fa-book"></span> Users
+                        </a>
+                    </div>
+
+                    <!-- Agency List-->
+                    <div has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}" class="column left aligned">
+                        <a class="ui fluid large button" ui-sref="regionalOfficeList">
+                            <span class="fa fa-briefcase"></span> My Regional Agency Offices
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
 </div>
 
 
