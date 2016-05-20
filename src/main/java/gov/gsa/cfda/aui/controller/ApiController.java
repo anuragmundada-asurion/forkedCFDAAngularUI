@@ -214,9 +214,6 @@ public class ApiController {
             obj.put("code", e.getStatusCode().value());
             JsonObject response = new Gson().fromJson(e.getResponseBodyAsString(), JsonObject.class);
             obj.put("error", response.get("message").getAsString());
-            if(response.get("generatedNumber") != null){
-                obj.put("generatedNumber", response.get("generatedNumber").getAsString());
-            }
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(obj.toString());
         }
     }
