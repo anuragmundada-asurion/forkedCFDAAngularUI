@@ -204,7 +204,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/programs/nextAvailableProgramNumber", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public HttpEntity nextAvailableProgramNumber(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                        @RequestParam(value = "organizationId", required = true, defaultValue = "") String organizationId) throws Exception {
+                                                 @RequestParam(value = "organizationId", required = true, defaultValue = "") String organizationId) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("organizationId", organizationId);
         try {
@@ -214,6 +214,9 @@ public class ApiController {
             obj.put("code", e.getStatusCode().value());
             JsonObject response = new Gson().fromJson(e.getResponseBodyAsString(), JsonObject.class);
             obj.put("error", response.get("message").getAsString());
+            if(response.get("generatedNumber") != null){
+                obj.put("generatedNumber", response.get("generatedNumber").getAsString());
+            }
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(obj.toString());
         }
     }
@@ -222,7 +225,7 @@ public class ApiController {
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                               @RequestParam(value = "type", required = false, defaultValue = "") String types,
-                              @RequestParam(value = "program", required=false, defaultValue = "") String programId,
+                              @RequestParam(value = "program", required = false, defaultValue = "") String programId,
                               @RequestParam(value = "completed", required = false, defaultValue = "false") boolean isCompleted,
                               @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                               @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
