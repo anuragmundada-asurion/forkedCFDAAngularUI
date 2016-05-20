@@ -1,22 +1,31 @@
+
 <primary-nav-bar></primary-nav-bar>
 
-<div class="background darkblue" style="padding-bottom: 10px; padding-top: 60px; margin-bottom: 20px;">
-    <!-- Search box -->
-    <search-box></search-box>
+<!-- Search box -->
+<div class="usa-background-primary-darkest">
+  <div class="usa-grid">
+    <div class="usa-width-one-whole usa-margin-top-3">
+      <search-box></search-box>
+    </div>
+  </div>
 </div>
 
-<div class="ui fixed container">
-    <div class="ui grid" style="margin-bottom: 0px;">
-        <div class="one column row">
-            <div class="column">
-                <a class="ui right floated primary button" ui-sref="exportToExcel">Save to Excel</a>
-            </div>
-        </div>
-    </div>
+<!-- Export to Excel -->
+<div class="usa-grid">
+  <div class="usa-width-one-whole usa-text-align-right">
+    <a class="usa-button usa-button-big" ui-sref="exportToExcel">
+      Save to Excel
+    </a>
+  </div>
 </div>
 
  <!-- Table -->
-<section class="search-results-content" st-pipe="getSearchResults" st-table="searchResults">
-    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui
-    darkblue table"></table>
+<section st-pipe="getSearchResults" st-table="searchResults">
+  <table
+    datatable=""
+    dt-options="dtOptions"
+    dt-columns="dtColumns"
+    dt-instance="dtInstance"
+    class="usa-table-primary-darkest">
+  </table>
 </section>

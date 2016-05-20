@@ -66,7 +66,7 @@
                     $scope.advancedSearch = {};
 
                     $scope.dictionary = DictionaryService.istevenDropdownResetData($scope.dictionary, aArray);
-                    //empty Search criteria (keyword & advanced search criterias) 
+                    //empty Search criteria (keyword & advanced search criterias)
                     //when user go to other pages rather then search
                     SearchFactory.setSearchCriteria(null, {});
 
@@ -157,9 +157,10 @@
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function(settings, json){
                     // Initialize semantic ui dropdown
-                    $(".dataTables_length select").addClass("ui compact dropdown").dropdown();                       
+                    //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                     // Remove select to fix dropdown  double click bug
-                    $(".dataTables_length select").remove();
+                    //$(".dataTables_length select").remove();
+
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -169,7 +170,7 @@
                 .withOption('searching', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
-                .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
+                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('rowCallback', function(row) {
                     $compile(row)($scope);
                 })

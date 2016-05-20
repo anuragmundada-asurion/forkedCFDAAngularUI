@@ -61,6 +61,11 @@
         "dist/xdomain.min.js"
       ]
     },
+    "isteven-multi-select":{
+      "main":[
+        "isteven-multi-select.js"
+      ]
+    },
     "datatables":{
       "main": [
         "media/js/jquery.dataTables.js"
@@ -85,7 +90,6 @@
     "uswds": {
       "main": [
         "dist/fonts/*",
-        "dist/css/uswds.min.css",
         "dist/img/*",
         "dist/js/uswds.min.js"
       ]
