@@ -712,8 +712,14 @@
                 }
 
                 function verifyProgramNumber() {
-                    if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode &&
-                        vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh && vm.program.programNumber.length === 3) {
+                    if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode && typeof vm.program.programNumber !== 'undefined' && vm.program.programNumber.length === 3) {
+
+                        //provided program number is within the range
+                        if(vm.program.programNumber < vm.organizationConfiguration.programNumberLow || vm.program.programNumber > vm.organizationConfiguration.programNumberHigh) {
+                            vm.isProgramNumberOutsideRange = true;
+                        } else {
+                            vm.isProgramNumberOutsideRange = false;
+                        }
 
                         //verify program number uniqueness
                         var oApiParam = {
@@ -733,8 +739,12 @@
                             vm.isProgramNumberUnique = false;
                             console.log(error);
                         });
-                    } else {
+                    }
+                    else 
+                    {
                         vm.isProgramNumberUnique = true;
+                        //provided program number is between the range
+                        vm.isProgramNumberOutsideRange = false;
                     }
                 }
             }]);
