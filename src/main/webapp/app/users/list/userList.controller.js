@@ -40,6 +40,7 @@
                             var promises = [];
                             var tableData = [];
                             angular.forEach(results, function (r) {
+                                r['name'] = r['firstName'] + ' ' + r['lastName'];
                                 if (r['orgID']) {
                                     promises.push(FederalHierarchyService.getFederalHierarchyById(r['orgID'], true, false, function (data) {
                                         r['organization'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
@@ -71,17 +72,13 @@
                     .withTitle('Action')
                     .withOption('defaultContent', '')
                     .withOption('orderable', false),
-                DTColumnBuilder.newColumn('lastName').withTitle('Last Name').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('firstName').withTitle('First Name').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('name').withTitle('Name').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                //DTColumnBuilder.newColumn('assignedAgencies').withTitle('Assigned Agencies').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('assignedAgencies').withTitle('Assigned Agencies').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('email').withTitle('E-mail').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('workPhone').withTitle('Phone').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('_id').withTitle('Username').withOption('defaultContent', ''),
-                //DTColumnBuilder.newColumn('permissions').withTitle('Permission Attributes').withOption('defaultContent', ''),
-                //DTColumnBuilder.newColumn('lastLogin').withTitle('Last Login').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
-                //DTColumnBuilder.newColumn('accountStatus').withTitle('Account Status').withOption('defaultContent', '')
+                DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', '')
             ];
         }
     ]);
