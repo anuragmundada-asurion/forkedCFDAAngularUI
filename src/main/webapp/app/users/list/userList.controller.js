@@ -5,9 +5,14 @@
 
     myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q',
         function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q) {
-            $scope.searchFirstName = '';
-            $scope.searchLastName = '';
+            $scope.searchKeyword = '';
             $scope.dtInstance = {};
+
+            $scope.$watch('searchKeyword', function() {
+                if ($scope.dtInstance.DataTable) {
+                    $scope.dtInstance.DataTable.search($scope.searchKeyword).draw();
+                }
+            }, true);
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('infoCallback', function(settings, start, end, max, total, pre) {
@@ -32,9 +37,6 @@
                         method: 'GET'
                     };
 
-                    if ($scope.searchFirstName || $scope.searchLastName) {
-                    }
-
                     ApiService.call(oApiParam).then(
                         function (results) {
                             var promises = [];
@@ -58,7 +60,7 @@
                         }
                     );
                 })
-                .withOption('searching', false)
+                .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
                 .withLanguage({
