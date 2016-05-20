@@ -543,15 +543,10 @@
                     //Call API get next available program number
                     ApiService.call(oApiParam).then(
                         function (data) {
-                            callback(false);
+                            callback(data);
                         },
                         function (error) {
-                            if (error['generatedNumber']) {
-                                callback(true);
-                            } else {
-                                //console.log("should NOT HAPPEN, at least not for programNumber outside range errors");
-                                //callback(true);
-                            }
+                            console.log(error);
                         });
                 };
 
@@ -589,37 +584,40 @@
                     $scope.showProgramRequestModal(vm.program, 'program_submit');//show submit Program  dialog modal
                 };
 
-
                 /**
                  *
-                 * @param Boolean saveProgram True -> Save Program then create publish request
-                 * @param Object oProgram (using as variable in order to call this function out of edit page program)
+                 * @param oProgram Object (using as variable in order to call this function out of edit page program)
                  * @returns Void
                  */
                 function submitProgram(oProgram) {
                     var isProgramValidated = validateProgramFields(oProgram);
 
-                    //check if programNumber is outside of range, (when configuration is auto)
-                    $scope.isNextAvailableProgramNumberOutsideRange(function (boolean) {
-                        var isNumberOutsideRange = boolean;
-                        //Call save program on success then call showProgramChangeStatus
-                        save(function () {
-                            if (isProgramValidated) {
-                                if (isNumberOutsideRange) {
-                                    showWarning(oProgram);//will allow agency coordinator to go ahead and submit.
-                                } else {
-                                    $scope.showProgramRequestModal(oProgram, 'program_submit');
-                                }
+                    save(function () {
+                        if (isProgramValidated) {
+                            //verify if program's organization is auto
+                            if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+
+                                //check if programNumber is outside of range, (when configuration is auto)
+                                $scope.isNextAvailableProgramNumberOutsideRange(function (oData) {
+                                    var isNumberOutsideRange = (oData.hasOwnProperty('isProgramNumberOutsideRange') ? oData['isProgramNumberOutsideRange'] : true);
+
+                                    if (isNumberOutsideRange) {
+                                        showWarning(oProgram);//will allow agency coordinator to go ahead and submit.
+                                    } else {
+                                        $scope.showProgramRequestModal(oProgram, 'program_submit');
+                                    }
+                                });
+                            // verify if program's organization is manual
+                            } else if(vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
+                                //Call save program on success then call showProgramChangeStatus
+                                $scope.showProgramRequestModal(oProgram, 'program_submit');
                             }
-                            else {
-                                //program has an issue and cannot be published yet
-                                $location.hash('formErrorMessages');
-                            }
-                        });
+                        } else {
+                            //program has an issue and cannot be published yet
+                            $location.hash('formErrorMessages');
+                        }
                     });
-
                 }
-
 
                 //returns true if some required fields are missing.
                 $scope.requiredFieldsMissing = function (sectionName) {
