@@ -73,6 +73,7 @@
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
                     .withOption('defaultContent', '')
+                    .withOption('searchable', false)
                     .withOption('orderable', false),
                 DTColumnBuilder.newColumn('name').withTitle('Name').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
