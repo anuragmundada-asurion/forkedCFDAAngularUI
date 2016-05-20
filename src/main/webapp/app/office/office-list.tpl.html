@@ -1,58 +1,51 @@
+
 <primary-nav-bar></primary-nav-bar>
 
-<div class="ui fixed container">
+<div class="usa-grid">
+  <div class="usa-width-one-whole">
+    <h1>Regional Agency Offices</h1>
+  </div>
+</div>
 
-    <div class="ui grid" style="margin-top: 0; margin-bottom: 0;">
-        
-        <div class="one column row">
-            <div class="column"> 
-                <h1>Regional Agency Offices</h1>
-            </div>
-        </div>
+<div class="usa-grid">
 
-        <div class="three column row">
-            
-            <div class="column">
-                <a has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" ui-sref="addRegionalOffice" class="ui
-                    primary fluid button" >Create a New Address</a>
-            </div>
-            
-            <div class="column">
-                <isteven-multi-select
-                    helper-elements="all none filter"
-                    template-url="search/dropdown.tpl.html"
-                    max-labels="1"
-                    input-model="dictionary.aDivision"
-                    output-model="filter.aDivision"
-                    button-label="displayValue"
-                    item-label="displayValue"
-                    tick-property="ticked"
-                    max-height="250px"
-                    >
-                </isteven-multi-select>
-            </div>
-            
-            <div class="column">
-                <div class="ui search"> 
-                    <div class="ui icon fluid input">
-                        <input ng-model="searchKeyword" type="text" class="prompt" placeholder="Search Listings"
-                            aria-controls="agency-table" >
-                        <i class="search icon"></i>
-                     </div>
-                </div>
-            </div>
+  <div class="usa-width-one-third">
+    <a  has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}"
+        ui-sref="addRegionalOffice"
+        class="usa-button usa-button-big usa-button-fluid usa-margin-all-0" >
+        Create a New Address
+    </a>
+  </div>
 
-        </div>
+  <div class="usa-width-one-third">
+    <isteven-multi-select
+        max-labels="1"
+        input-model="dictionary.aDivision"
+        output-model="filter.aDivision"
+        button-label="displayValue"
+        item-label="displayValue"
+        tick-property="ticked"
+        max-height="250px"
+        >
+    </isteven-multi-select>
+  </div>
 
-        <!-- js tree-->
-       <!--<div class="one column row" style="background-color: lightgrey;">
-           <label>Search:<input ng-model="searchText"></label>
-           <div ng-if="treeData" js-tree="treeConfig" ng-model="treeData" tree="officeListCtrl.treeInstance23" tree-events-obj="treeEventsObj"></div>
-       </div>-->
-
-    </div>
+  <div class="usa-width-one-third">
+    <input  ng-model="searchKeyword"
+            type="text"
+            placeholder="Search Listings"
+            aria-controls="agency-table" >
+  </div>
 
 </div>
 
-<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs"
-                    dt-instance="dtInstance" class="ui darkblue table"></table>
+
+ <!-- Table -->
+<table
+  datatable=""
+  dt-options="dtOptions"
+  dt-columns="dtColumns"
+  dt-column-defs="dtColumnDefs"
+  dt-instance="dtInstance"
+  class="usa-table-primary-darkest">
+</table>

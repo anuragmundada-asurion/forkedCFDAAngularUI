@@ -186,9 +186,9 @@
 
             angular.element('#programsTable').on('draw.dt', function (event, data) {
                 // Initialize semantic ui dropdown
-                $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
-                $(".dataTables_length select").remove();
+                //$(".dataTables_length select").remove();
                 // initilize semantic ui dropdowns
                 $(".jqChangeRequest.dropdown").dropdown();
                 // adding status classes to add status icons
@@ -210,7 +210,7 @@
                     .withOption('info', false)
                     .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                     .withDataProp('data')
-                    .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"l> <"column"p> > > > > <"clear">')
+                    .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                     .withOption('rowCallback', function (row) {
                         $compile(row)($scope);
                     })
