@@ -114,7 +114,7 @@
                     queryObj["page"] = Math.ceil(data['start'] / queryObj.size);
                 }
 
-                if (data['order']) {
+                if (data['order'].length > 0) {
                     var order = data['order'][0];
                     var columnName = data['columns'][order['column']]['data'];
                     if (columnName) {
@@ -168,6 +168,7 @@
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
+                .withOption('order', [])
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
