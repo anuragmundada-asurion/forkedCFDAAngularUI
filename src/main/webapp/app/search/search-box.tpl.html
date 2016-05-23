@@ -2,7 +2,7 @@
   <div class="usa-width-one-whole">
 
     <div class="usa-segment usa-segment-attached-top usa-border-radius-top-right-1">
-			<form class="usa-search usa-search-huge" action="">
+			<form class="usa-search usa-search-huge">
 				<div role="search">
 
           <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
@@ -12,7 +12,7 @@
                   type="search" required="required" placeholder="Keyword/FAL#"
                   class="usa-input-borderless" name="text">
 
-          <button class="usa-border-radius-bottom-right-0" type="submit" ng-click="searchPrograms()">
+          <button class="usa-border-radius-bottom-right-0" type="button" ng-click="searchPrograms()">
             <span class="usa-search-submit-text">Search</span>
           </button>
 
@@ -224,7 +224,7 @@
                   <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearAdvancedSearchForm()">
                       Clear All
                   </button>
-                  <button class="usa-button-big" type="submit" ng-click="searchPrograms()">
+                  <button class="usa-button-big" type="button" ng-click="searchPrograms()">
                       Search
                   </button>
 								</div>
