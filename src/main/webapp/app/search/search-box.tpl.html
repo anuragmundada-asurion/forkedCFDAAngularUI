@@ -131,15 +131,38 @@
 								<div class="usa-width-one-half">
 									<label for="published">Date Published</label>
 
-                  <input datepicker-popup-template-url="search/calendar/popup.tpl.html" datepicker-template-url="search/calendar/datepicker.tpl.html" type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedStartOpened')" uib-datepicker-popup="MM/dd/yyyy"
-                  ng-model="advancedSearch.datePublishedStart" is-open="advancedSearch.datePublishedStartOpened"
-                  datepicker-options="dateOptions" close-text="Close" />
+                  <div class="usa-grid-full">
+                    <div class="usa-width-one-third" style="width:38%;">
+                      <input  datepicker-popup-template-url="search/calendar/popup.tpl.html"
+                              datepicker-template-url="search/calendar/datepicker.tpl.html"
+                              type="text"
+                              placeholder="mm/dd/yyyy"
+                              ng-click="openDatepicker($event, 'datePublishedStartOpened')"
+                              uib-datepicker-popup="MM/dd/yyyy"
+                              ng-model="advancedSearch.datePublishedStart"
+                              is-open="advancedSearch.datePublishedStartOpened"
+                              datepicker-options="dateOptions"
+                              close-text="Close" />
+                    </div>
 
-                  To
+                    <div class="usa-width-one-third usa-text-align-center usa-margin-top-2" style="width:12%;">
+                      <strong>To</strong>
+                    </div>
 
-                  <input datepicker-popup-template-url="search/calendar/popup.tpl.html" datepicker-template-url="search/calendar/datepicker.tpl.html" type="text" placeholder="mm/dd/yyyy" ng-click="openDatepicker($event, 'datePublishedEndOpened')" uib-datepicker-popup="MM/dd/yyyy"
-                  ng-model="advancedSearch.datePublishedEnd" is-open="advancedSearch.datePublishedEndOpened"
-                  datepicker-options="dateOptions" close-text="Close" />
+                    <div class="usa-width-one-third" style="width:38%;">
+                      <input  datepicker-popup-template-url="search/calendar/popup.tpl.html"
+                              datepicker-template-url="search/calendar/datepicker.tpl.html"
+                              type="text"
+                              placeholder="mm/dd/yyyy"
+                              ng-click="openDatepicker($event, 'datePublishedEndOpened')"
+                              uib-datepicker-popup="MM/dd/yyyy"
+                              ng-model="advancedSearch.datePublishedEnd"
+                              is-open="advancedSearch.datePublishedEndOpened"
+                              datepicker-options="dateOptions"
+                              close-text="Close" />
+                    </div>
+                  </div>
+
 
 								</div>
 								<div class="usa-width-one-half">

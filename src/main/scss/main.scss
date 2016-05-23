@@ -991,4 +991,7 @@ Overriding Semantic UI
 	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
 		color: #fff !important;
 	}
+	.uib-datepicker-popup.dropdown-menu{
+		z-index: 2 !important;
+	}
 }
