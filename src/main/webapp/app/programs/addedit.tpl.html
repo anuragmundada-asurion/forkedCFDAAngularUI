@@ -35,7 +35,7 @@
                     <div class="input-field" ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
 
 
-                        <input type="text" id="programNumber" name="programNumber" ng-change="programNumberChangedManually(gsavm.program.programNumber)" class="usa-input-small" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+                        <input type="text" id="programNumber" name="programNumber" class="usa-input-small" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
 
 
 

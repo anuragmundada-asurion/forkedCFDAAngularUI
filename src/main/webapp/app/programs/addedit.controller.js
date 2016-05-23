@@ -528,13 +528,13 @@
                     );
                 }
 
-
-                $scope.programNumberChangedManually = function (programNumber) {
-                    if(programNumber){
-                        programNumber = programNumber.replace(/[^0-9]/g, '');
-                        vm.program.programNumber = programNumber;
-                    }
-                };
+                //
+                //$scope.programNumberChangedManually = function (programNumber) {
+                //    if(programNumber){
+                //        programNumber = programNumber.replace(/[^0-9]/g, '');
+                //        vm.program.programNumber = programNumber;
+                //    }
+                //};
 
                 $scope.isNextAvailableProgramNumberOutsideRange = function (callback) {
                     var oApiParam = {
@@ -719,6 +719,12 @@
                 }
 
                 function verifyProgramNumber() {
+                    //no alpha allowed in program number,
+                    if(vm.program.programNumber){
+                        vm.program.programNumber = vm.program.programNumber.replace(/[^0-9]/g, '');
+                    }
+
+                    //after alphas removed, verify number
                     if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode && typeof vm.program.programNumber !== 'undefined' && vm.program.programNumber.length === 3) {
 
                         //provided program number is within the range
