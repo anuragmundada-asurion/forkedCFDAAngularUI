@@ -209,7 +209,12 @@
                     url: "/users",
                     templateUrl: "users/list/userList.tpl.html",
                     controller: "UserListCtrl",
-                    title: 'Users - CFDA: User List'
+                    title: 'Users - CFDA: User List',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_VIEW_USERS
+                        ]
+                    }
                 });
 
             // the known route

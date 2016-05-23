@@ -60,9 +60,10 @@
 
         // Configure Organizations
         'CAN_VIEW_ORGANIZATION_CONFIG' : 'CanViewOrganizationConfig',
-        'CAN_EDIT_ORGANIZATION_CONFIG' : 'CanEditOrganizationConfig'
+        'CAN_EDIT_ORGANIZATION_CONFIG' : 'CanEditOrganizationConfig',
 
-
+        //  User Profiles
+        'CAN_VIEW_USERS' : 'CanViewUsers'
 
     });
 
