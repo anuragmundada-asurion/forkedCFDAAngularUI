@@ -51,7 +51,7 @@ gulp.task('ie', ['index'], function() {
 });
 
 gulp.task('base', ['index'], function() {
-    
+
     // var baseCss = gulp.src('src/main/scss/uswds/all.scss')
     //     .pipe(sass().on('error', sass.logError))
     //     .pipe(rename('base.css'))
@@ -109,10 +109,10 @@ gulp.task('iae', ['index'], function() {
 
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
-                
+
     var allCss = gulp.src(['src/main/scss/uswds/uswds-theme.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
         .pipe(sass().on('error', sass.logError))
-        .pipe(cssPrefix({parentClass: 'theme-iae'}))        
+        .pipe(cssPrefix({parentClass: 'theme-iae'}))
         .pipe(gulp.dest('target/classes/static/css'));
 
     var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
@@ -125,22 +125,22 @@ gulp.task('iae', ['index'], function() {
 });
 
 gulp.task('semantic', ['index'], function(){
-  
+
   gulp.src(['src/main/semantic/dist/**/*','!src/main/semantic/dist/semantic.css','!src/main/semantic/dist/semantic.js' ])
       .pipe(gulp.dest('target/classes/static/semantic'));
-  
+
   var sources = gulp.src(['src/main/semantic/dist/semantic.css', 'src/main/semantic/dist/semantic.js'])
       .pipe(gulp.dest('target/classes/static/semantic'));
-  
+
   index.pipe(inject(sources, { addRootSlash: true, name: 'semantic', relative: true }))
     .pipe(gulp.dest('target/classes/static'));
-  
+
 });
 
 gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(cleanCss({processImport: false}))
+        // .pipe(cleanCss({processImport: false}))
         .pipe(rename('cfda.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
