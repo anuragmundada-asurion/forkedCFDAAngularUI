@@ -560,13 +560,13 @@
                     var template = '<div class="usa-alert usa-alert-warning" role="alert">' +
                         '<div class="usa-alert-body">' +
                         '<p class="usa-alert-text">' +
-                        '<span has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}">' + msg1 + '</span>' +
+                        '<span has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}">' + msg1 + '</span>' +
                         '<span has-role="{{ [ROLES.AGENCY_USER] }}">' + msg2 + '</span>' +
                         '</p>' +
                         '</div>' +
                         '</div>' +
                         '<button ng-click="closeModal();">Cancel</button>' +
-                        '<button has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}" ng-click="openSubmitModal();">Continue</button>';
+                        '<button has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}" ng-click="openSubmitModal();">Continue</button>';
 
 
                     ngDialog.open({
