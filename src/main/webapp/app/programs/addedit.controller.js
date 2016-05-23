@@ -529,6 +529,13 @@
                 }
 
 
+                $scope.programNumberChangedManually = function (programNumber) {
+                    if(programNumber){
+                        programNumber = programNumber.replace(/[^0-9]/g, '');
+                        vm.program.programNumber = programNumber;
+                    }
+                };
+
                 $scope.isNextAvailableProgramNumberOutsideRange = function (callback) {
                     var oApiParam = {
                         apiName: 'nextAvailableProgramNumber',
@@ -595,7 +602,7 @@
                     save(function () {
                         if (isProgramValidated) {
                             //verify if program's organization is auto
-                            if(vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
+                            if (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto) {
 
                                 //check if programNumber is outside of range, (when configuration is auto)
                                 $scope.isNextAvailableProgramNumberOutsideRange(function (oData) {
@@ -607,8 +614,8 @@
                                         $scope.showProgramRequestModal(oProgram, 'program_submit');
                                     }
                                 });
-                            // verify if program's organization is manual
-                            } else if(vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
+                                // verify if program's organization is manual
+                            } else if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
                                 //Call save program on success then call showProgramChangeStatus
                                 $scope.showProgramRequestModal(oProgram, 'program_submit');
                             }
@@ -715,7 +722,7 @@
                     if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto && vm.programCode && typeof vm.program.programNumber !== 'undefined' && vm.program.programNumber.length === 3) {
 
                         //provided program number is within the range
-                        if(vm.program.programNumber < vm.organizationConfiguration.programNumberLow || vm.program.programNumber > vm.organizationConfiguration.programNumberHigh) {
+                        if (vm.program.programNumber < vm.organizationConfiguration.programNumberLow || vm.program.programNumber > vm.organizationConfiguration.programNumberHigh) {
                             vm.isProgramNumberOutsideRange = true;
                         } else {
                             vm.isProgramNumberOutsideRange = false;
@@ -740,8 +747,7 @@
                             console.log(error);
                         });
                     }
-                    else 
-                    {
+                    else {
                         vm.isProgramNumberUnique = true;
                         //provided program number is between the range
                         vm.isProgramNumberOutsideRange = false;
