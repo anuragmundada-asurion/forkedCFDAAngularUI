@@ -147,10 +147,14 @@ td.sorting_1{
 Font
 ---------------*/
 // Source Sans Pro Extra Light 200
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+@import url('https://fonts.googleapis.com/css?family=Source Sans Pro:200');
 
 
+/*--------------
+CDFA Old Styles
+---------------*/
 
+// These files will be deleted
 @import 'cfda-specific/variables';
 @import 'cfda-specific/form';
 @import 'cfda-specific/layout';
