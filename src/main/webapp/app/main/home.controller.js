@@ -64,7 +64,7 @@
                     };
 
                     // Enable popups
-                    $('.ui.circular.label').popup();
+                    $('.usa-popup').popup();
 
                 });
 
@@ -105,9 +105,9 @@
                     // Temporary fix to show gray bar behind color bar in ie11 and firefox
                     // var chartRectLeftPadding = 7;
                     // var chartRectWidth = 50;
-                    // $(".c3-event-rect").each(function(){ 
+                    // $(".c3-event-rect").each(function(){
                     //     $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
-                    //     $(this).attr("width", chartRectWidth); 
+                    //     $(this).attr("width", chartRectWidth);
                     // });
 
                 });
@@ -225,7 +225,7 @@
 
                                         if (!text) {
                                             title = titleFormat ? titleFormat(d[i].x) : d[i].x;
-                                            text = "<div style='border-color:" + bgcolor + "' class='ui circular label outline filled big " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 60px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px;'>" + title + "</span></div>" : "");
+                                            text = "<div style='border:3px solid; border-color:" + bgcolor + ";' class='usa-label-circular usa-label-circular-massive usa-label-color-white " + $$.CLASS.tooltip + "'>" + (title || title === 0 ? "<div><span style='font-weight: 300; '>" + value + "</span><span style='display: block; width: 45px; font-size: 14px; text-align: center; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0; margin-top: -5px; font-weight: 700;'>" + title + "</span></div>" : "");
                                         }
 
                                         // text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[i].id + "'>";

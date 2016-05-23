@@ -3,297 +3,311 @@
 <primary-nav-bar></primary-nav-bar>
 
 
-<div class="usa-background-primary-darkest">
+<div class="usa-background-primary-darkest usa-grid-fixed">
   <div class="usa-grid">
-    <div class="usa-width-one-whole">
 
-      <!-- Intro text -->
+    <!-- Intro text -->
 
-      <div class="usa-content usa-content-centered usa-text-inverse usa-margin-bottom-3">
-					<h4>Federal Assistance Searching - Simplified</h4>
-					<p>
-						Search here for information about federal assistance listings including
-						grants, loans, scholarships, insurance, and more. Whether you are searching
-						on behalf of a government entity, a nonprofit or educational institution,
-						or any other sector, this site will help you determine eligibility,
-						show availability, and provide relevant contact information.
-					</p>
-			</div>
-
-      <!-- Search box -->
-
-      <search-box></search-box>
-
+    <div class="usa-content usa-content-centered usa-text-inverse">
+      <h4>Federal Assistance Searching - Simplified</h4>
+      <p>
+        Search here for information about federal assistance listings including
+        grants, loans, scholarships, insurance, and more. Whether you are searching
+        on behalf of a government entity, a nonprofit or educational institution,
+        or any other sector, this site will help you determine eligibility,
+        show availability, and provide relevant contact information.
+      </p>
     </div>
+
+    <!-- Search box -->
+
+    <search-box></search-box>
+
   </div>
 </div>
 
 
 <!-- User Dashboard -->
 
-<div class="background gray" style="padding: 40px 0px;" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
+<div class="usa-background-gray-lightest usa-grid-fixed" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
 
+  <div class="usa-grid">
 
-    <div class="ui fixed container">
+    <!-- Menu of Statistics -->
 
-        <div class="ui top attached segment borderless">
-            <div class="ui grid">
-                <div class="one column row">
-                    <div class="column">
+    <div class="usa-segment">
 
-                        <!-- Alerts -->
+      <!-- Alerts -->
 
-                        <a ui-sref="programList({list: 'requests', filter: 'all'})" class="ui top right attached green label large font uppercase squared"
-                        style="margin-top: -8px; margin-right: -21px; padding-left: 40px;">
-                            <i class="circular inverted blue alarm icon large" style="background-color: #112e51 !important; position: absolute; top: -5px; left: -20px;"></i>
-                            <div ng-if="!oDashboardReport" class="ui active small inline loader"></div>
-                            {{ oDashboardReport.request }} Request(s)
-                        </a>
+      <a  ui-sref="programList({list: 'requests', filter: 'all'})"
+          class="usa-label-huge usa-label-color-green usa-label-attach-top-right usa-border-radius-all-0">
 
-                        <!-- User name -->
+        <span class="usa-label-circular usa-label-circular-huge usa-label-color-primary-darkest">
+          <i class="fa fa-bell fa-2x"></i>
+        </span>
 
-                        <strong class="font grey" style="letter-spacing: -.5px;">{{ user.fullName }}'s Dashboard</strong>
+        <div ng-if="!oDashboardReport" class="usa-loader-small"></div>
+        {{ oDashboardReport.request }} Request(s)
+      </a>
 
-                    </div>
-                </div>
+      <!-- User name -->
+
+      <div class="usa-grid">
+
+        <h4 class="usa-sans usa-text-color-gray-medium usa-margin-top-0 usa-margin-bottom-2">
+          {{ user.fullName }}'s Dashboard
+        </h4>
+
+      </div>
+
+      <!-- Statistics -->
+
+      <div class="usa-grid-full usa-margin-top-1 usa-margin-bottom-3">
+
+        <div class="usa-width-one-fourth-collapse">
+          <a  class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-all-0 usa-padding-top-2 usa-padding-bottom-2"
+              ui-sref="programList({list: 'activePrograms', filter: 'all'})">
+            <div class="ui statistic">
+              <div class="usa-text-huge">
+                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
+              </div>
+              <div class="usa-text-massive usa-sans-extralight">Total Active<br>Listings</div>
             </div>
+          </a>
         </div>
 
-        <!-- Menu of Statistics -->
-
-        <div class="ui fluid four item inverted lightblue menu top aligned" style="margin-bottom: 0; margin-top: 0;">
-            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'all'})">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                        <span ng-show="oDashboardReport">{{ oDashboardReport.active }}</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Total Active<br>Listings</div>
-                </div>
-            </a>
-            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'draft'})">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                        <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Draft
-                        <br>Listing</div>
-                </div>
-            </a>
-            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'pending'})">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                        <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Pending<br>Listings</div>
-                </div>
-            </a>
-            <a class="item" ui-sref="programList({list: 'activePrograms', filter: 'published'})">
-                <div class="ui statistic">
-                    <div class="value font bold big">
-                        <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
-                        <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
-                    </div>
-                    <div class="label page font huge lighter no transformation">Published<br>Listings</div>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="ui bottom attached segment borderless">
-
-            <!-- Options -->
-
-            <div class="ui grid">
-
-                <div class="row">
-                    <div class="sixteen wide column">
-                        <div class="ui divider" style="width:100%;"></div>
-                    </div>
-                </div>
-
-                <div class="four column row">
-                    <div class="column right aligned">
-                        <a class="ui fluid large button" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
-                            <span class="fa fa-thumbs-down"></span>
-                            <span>Rejected Listing</span>
-                        </a>
-                    </div>
-                    <div class="column right aligned">
-                        <a class="ui fluid large button" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
-                            <span class="fa fa-archive"></span>
-                            <span>Archived Listing</span>
-                        </a>
-                    </div>
-                    <div class="column left aligned">
-                        <a class="ui fluid large button">
-                            <span class="fa fa-server"></span>
-                            <span>Historical Index</span>
-                        </a>
-                    </div>
-
-                    <!-- Agency List-->
-                    <div has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}" class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="addProgram">
-                            <span class="fa fa-plus-square-o"></span>
-                            <span>Create FAL</span>
-                        </a>
-                    </div>
-
-                </div>
-
+        <div class="usa-width-one-fourth-collapse">
+          <a  class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-all-0 usa-padding-top-2 usa-padding-bottom-2"
+              ui-sref="programList({list: 'activePrograms', filter: 'draft'})">
+            <div class="ui statistic">
+              <div class="usa-text-huge">
+                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                <span ng-show="oDashboardReport">{{ oDashboardReport.draft }}</span>
+              </div>
+              <div class="usa-text-massive usa-sans-extralight">Draft<br>Listing
+              </div>
             </div>
-
-
+          </a>
         </div>
+
+        <div class="usa-width-one-fourth-collapse">
+          <a  class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-all-0 usa-padding-top-2 usa-padding-bottom-2"
+              ui-sref="programList({list: 'activePrograms', filter: 'pending'})">
+            <div class="ui statistic">
+              <div class="usa-text-huge">
+                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                <span ng-show="oDashboardReport">{{ oDashboardReport.pending }}</span>
+              </div>
+              <div class="usa-text-massive usa-sans-extralight">Pending<br>Listings</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="usa-width-one-fourth-collapse">
+          <a  class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-all-0 usa-padding-top-2 usa-padding-bottom-2"
+              ui-sref="programList({list: 'activePrograms', filter: 'published'})">
+            <div class="ui statistic">
+              <div class="usa-text-huge">
+                <div ng-show="!oDashboardReport" class="ui active small inline loader"></div>
+                <span ng-show="oDashboardReport">{{ oDashboardReport.published }}</span>
+              </div>
+              <div class="usa-text-massive usa-sans-extralight">Published<br>Listings</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Options -->
+
+      <div class="usa-grid">
+
+        <div class="usa-width-one-fourth">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
+            <span class="fa fa-thumbs-down"></span>
+            <span>Rejected Listing</span>
+          </a>
+        </div>
+
+        <div class="usa-width-one-fourth">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
+            <span class="fa fa-archive"></span>
+            <span>Archived Listing</span>
+          </a>
+        </div>
+
+        <div class="usa-width-one-fourth">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top">
+            <span class="fa fa-server"></span>
+            <span>Historical Index</span>
+            <br><br>
+          </a>
+        </div>
+
+        <div class="usa-width-one-fourth" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
+          <a class="usa-button usa-button-big usa-button-fluid usa-button-icon-top" ui-sref="addProgram">
+            <span class="fa fa-plus-square-o"></span>
+            <span>Create FAL</span>
+            <br><br>
+          </a>
+        </div>
+
+      </div>
 
     </div>
 
-    <div class="ui fixed container" style="margin-top:50px;">
 
-        <div class="ui top attached segment borderless">
-            <div class="ui grid">
-                <div class="one column row">
-                    <div class="column">
-                        <strong class="font grey" style="letter-spacing: -.5px;">Administration Dashboard</strong>
+    <div class="usa-segment">
 
-                    </div>
-                </div>
-            </div>
+      <div class="usa-grid">
+        <div class="usa-width-one-whole">
+          <h4 class="usa-sans usa-text-color-gray-medium usa-margin-top-0 usa-margin-bottom-2">
+            Administration Dashboard
+          </h4>
+        </div>
+      </div>
+
+      <!-- Options -->
+
+      <div class="usa-grid">
+
+        <!-- Agency List-->
+        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="organizationList">
+            <span class="fa fa-users"></span>
+            <span>Organizations</span>
+            <br><br>
+          </a>
         </div>
 
-        <div class="ui bottom attached segment borderless">
-
-            <!-- Options -->
-
-            <div class="ui grid">
-
-                <div class="four column row">
-                    <!-- Agency List-->
-                    <div has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="organizationList">
-                            <span class="fa fa-users"></span>
-                            <span>Organizations</span>
-                        </a>
-                    </div>
-
-                    <div class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="userList">
-                            <span class="fa fa-book"></span>
-                            <span>Contacts</span>
-                        </a>
-                    </div>
-
-                    <!-- Agency List-->
-                    <div has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}" class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="regionalOfficeList">
-                            <span class="fa fa-briefcase"></span>
-                            <span>My Regional Agency Offices</span>
-                        </a>
-                    </div>
-
-                    <div has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}" class="column left aligned">
-                        <a class="ui fluid large button" ui-sref="addRegionalOffice">
-                            <span class="fa fa-plus-square-o"></span>
-                            <span>Create Regional Agency Office</span>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
+        <!-- User Directory -->
+        <div class="usa-width-one-fourth">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="userList">
+            <span class="fa fa-book"></span>
+            <span>User Directory</span>
+            <br><br>
+          </a>
         </div>
+
+        <!-- Agency List-->
+        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}">
+          <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="regionalOfficeList">
+            <span class="fa fa-briefcase"></span>
+            <span>My Regional Agency Offices</span>
+          </a>
+        </div>
+
+        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}">
+          <a class="usa-button usa-button-big usa-button-fluid usa-button-icon-top" ui-sref="addRegionalOffice">
+            <span class="fa fa-plus-square-o"></span>
+            <span>Create Regional Agency Office</span>
+          </a>
+        </div>
+
+      </div>
 
     </div>
+
+
+  </div>
 
 </div>
 
 
-<div class="background darkblue" style="padding-bottom: 50px; padding-top: 50px;">
+<div class="usa-background-primary-darkest usa-grid-fixed">
 
-    <div class="ui fixed container">
+  <div class="usa-grid">
 
-        <div class="ui segment borderless">
-            <div class="ui grid">
-                <div class="two column row">
-                    <!-- New in 2015 -->
+    <div class="usa-width-one-whole">
+      <div class="usa-segment">
+        <div class="usa-grid">
 
-                    <div class="eight wide column">
+          <!-- New in 2015 -->
 
-                        <h3 class="ui centered aligned header">New in {{ currentYear }}</h3>
+          <div class="usa-width-one-half">
 
-                        <!-- New Listings -->
-                        <a ng-click="searchByListingPublication('new')" class="ui fluid big light lightblue button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny"  class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
-                                <div ng-if="!aProgramCount.new" class="ui active small inline loader" style="font-size: .6em;"></div>
-                                {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
-                            </div>
-                            <span class="font lighter h1 size">New Listings</span>
-                        </a>
+            <h3 class="usa-text-align-center usa-margin-top-0 usa-margin-bottom-2">New in {{ currentYear }}</h3>
 
-                        <!-- Archived Listings -->
-                        <a class="ui fluid big light lightblue button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
-                                <div ng-if="!aProgramCount.archived" class="ui active small inline loader" style="font-size: .6em;"></div>
-                                {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
-                            </div>
-                            <span class="font lighter h1 size">Archived Listings</span>
-                        </a>
+            <!-- New Listings -->
+            <a  ng-click="searchByListingPublication('new')"
+                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+              <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny"  class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
+                <div ng-if="!aProgramCount.new" class="ui active small inline loader"></div>
+                {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
+              </div>
+              <span class="usa-text-massive usa-sans-extralight usa-margin-left-1">New Listings</span>
+            </a>
 
-                        <!-- Updated Listings -->
-                        <a ng-click="searchByListingPublication('updated')" class="ui fluid big light lightblue button" style="text-align: left; position: relative; padding-left: 126px; margin-top: 10px; margin-bottom:10px;">
-                            <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" class="ui circular label yellow outline filled big" style="position: absolute; top: 7px; left: 30px;">
-                                <div ng-if="!aProgramCount.updated" class="ui active small inline loader" style="font-size: .6em;"></div>
-                                {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
-                            </div>
-                            <span class="font lighter h1 size">Updated Listings</span>
-                        </a>
+            <!-- Archived Listings -->
+            <a class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+              <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
+                <div ng-if="!aProgramCount.archived" class="ui active small inline loader"></div>
+                {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>
+              </div>
+              <span class="usa-text-massive usa-sans-extralight usa-margin-left-1">Archived Listings</span>
+            </a>
 
-                    </div>
+            <!-- Updated Listings -->
+            <a  ng-click="searchByListingPublication('updated')"
+                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+              <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
+                <div ng-if="!aProgramCount.updated" class="ui active small inline loader"></div>
+                {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
+              </div>
+              <span class="usa-text-massive usa-sans-extralight usa-margin-left-1">Updated Listings</span>
+            </a>
 
-                    <!-- Who can apply chart -->
+          </div>
 
-                    <div class="eight wide column" style="padding-left: 0;">
-                        <h3 class="ui centered aligned header">Who Can Apply</h3>
-                        <div id="listingsChart"></div>
+          <!-- Who can apply -->
 
-                        <div class="ui tiny horizontal list" style="margin-top:0; margin-left: 17px;">
-                            <div class="item">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #25A148;"></div>
-                                Local
-                            </div>
-                            <div class="item">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #F16B22;"></div>
-                                State
-                            </div>
-                            <div class="item">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #1776B6;"></div>
-                                Nonprofit
-                            </div>
-                            <div class="item">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #FAB915;"></div>
-                                US Territories
-                            </div>
-                            <div class="item">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #8F65AA;"></div>
-                                Individual
-                            </div>
-                            <div class="item" style="margin-left: 0;">
-                                <div class="ui empty circular label" style="margin-right: 5px; background-color: #8D5649;"></div>
-                                Indian Tribal Origanizations
-                            </div>
-                        </div>
+          <div class="usa-width-one-half">
+            <h3 class="usa-text-align-center usa-margin-top-0 usa-margin-bottom-2">Who Can Apply</h3>
 
-                    </div>
-                </div>
-            </div>
+            <!-- Chart -->
+            <div id="listingsChart" class="usa-margin-bottom-2"></div>
+
+            <!-- Legend -->
+            <ul class="usa-horizontal-list usa-text-small usa-margin-left-1">
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #25A148;"></span>
+                &nbsp;Local
+              </li>
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #F16B22;"></span>
+                &nbsp;State
+              </li>
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #1776B6;"></span>
+                &nbsp;Nonprofit
+              </li>
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #FAB915;"></span>
+                &nbsp;US Territories
+              </li>
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #8F65AA;"></span>
+                &nbsp;Individual
+              </li>
+              <li>
+                <span class="usa-label-circular"
+                style="background-color: #8D5649;"></span>
+                &nbsp;Indian Tribal Origanizations
+              </li>
+            </ul>
+
+          </div>
         </div>
-
+      </div>
     </div>
+
+  </div>
 
 
 </div>
@@ -301,99 +315,110 @@
 
 <!-- Quick Links -->
 
-<h3 class="ui centered aligned header" style="margin-bottom: 30px; margin-top: 80px;">Quick Links</h3>
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-whole usa-margin-top-3">
+    <h3 class="usa-text-align-center">Quick Links</h3>
+  </div>
+</div>
 
-<div class="ui very relaxed grid fixed container" style="padding: 20px 0px 90px 0px;">
+<div class="usa-grid usa-grid-fixed usa-text-align-center usa-margin-top-2 usa-margin-bottom-3 usa-padding-bottom-3">
 
-    <div class="three column row">
-        <div class="column center aligned">
-            <a class="font large bold" href="" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide"
-                /> CFDA Public User Guide
-            </a>
-        </div>
-        <div class="column center aligned">
-            <a class="font large bold" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/PrintEdition.png" alt="Print Edition" />                2015 Print Edition
-            </a>
-        </div>
-        <div class="column center aligned">
-            <a class="font large bold" href="" target="_blank">
-                <img style="margin-bottom: 10px;" class="ui centered image" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />                FTP Downloads
-            </a>
-        </div>
+  <div class="usa-width-one-third">
+    <a class="" href="" target="_blank">
+      <img class="usa-move-center" src="/img/links/PublicUserGuide.png" alt="CFDA Public User Guide" />
+      <strong>CFDA Public User Guide</strong>
+    </a>
+  </div>
+
+  <div class="usa-width-one-third">
+
+    <a class="" href="https://www.cfda.gov/downloads/CFDA_2015.pdf" target="_blank">
+      <img class="usa-move-center" src="/img/links/PrintEdition.png" alt="Print Edition" />
+      <strong>2015 Print Edition</strong>
+    </a>
+
+    <div class="usa-margin-top-2">
+      <select id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
+        <option selected value="">Download Previous Editions</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
+        <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
+      </select>
     </div>
 
-    <div class="two column centered row">
-        <div class="column center aligned">
-            <select class="ui dropdown" id="printedition" size="1" onchange="if (this.value) window.open(this.value,'_blank')">
-                <option selected value="">Download Previous Editions</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2014.pdf">CFDA 2014 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2013.pdf">CFDA 2013 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2012.pdf">CFDA 2012 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2011.pdf">CFDA 2011 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2010.pdf">CFDA 2010 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2009.pdf">CFDA 2009 Print Edition</option>
-                <option value="https://www.cfda.gov/downloads/CFDA_2008.pdf">CFDA 2008 Print Edition</option>
-            </select>
-        </div>
-    </div>
+  </div>
+
+  <div class="usa-width-one-third">
+    <a class="" href="" target="_blank">
+      <img class="usa-move-center" src="/img/links/FTPDownloads.png" alt="FTP Downloads" />
+      <strong>FTP Downloads</strong>
+    </a>
+  </div>
 
 </div>
 
 
 <!-- Related Links -->
 
-<div class="background gray" style="padding: 80px 0px 120px 0px;">
+<div class="usa-background-gray-lightest usa-grid-fixed usa-text-align-center usa-padding-bottom-3 clearfix">
 
-    <h3 class="ui centered aligned header" style="margin-bottom: 30px">Related Links</h3>
-
-    <div class="ui very relaxed grid fixed container">
-
-        <div class="three column row">
-            <div class="column center aligned">
-                <a href="http://www.grants.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/grants.png" alt="Grants.gov" />                    Grants.gov is your gateway to finding information about and applying for grant opportunities from over
-                    1000 federal programs.
-                </a>
-            </div>
-            <div class="column center aligned">
-                <a href="http://www.benefits.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/benefits.png" alt="Benefits.gov" />                    Benefits.gov offers information on more than 1,000 Federal and state benefit programs. Simply complete
-                    the free and confidential questionnaire and our prescreening tool will generate a tailored list of programs
-                    just for you.
-                </a>
-            </div>
-            <div class="column center aligned">
-                <a href="http://www.govloans.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/govloans.png" alt="GovLoans.gov" />                    GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you
-                    determine which loans may be right for you.
-                </a>
-            </div>
-        </div>
-
-        <div class="three column row">
-            <div class="column center aligned">
-                <a href="http://www.data.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/data.png" alt="Data.gov" />                    Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and
-                    resources to conduct.
-                </a>
-            </div>
-            <div class="column center aligned">
-                <a href="https://www.whitehouse.gov/omb" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/omb.png" alt="Whitehouse.gov/OMB" />                    The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed
-                    to help.
-                </a>
-            </div>
-            <div class="column center aligned">
-                <a href="https://www.usaspending.gov/" target="_blank">
-                    <img style="width: 225px; height:90px;" class="ui centered image" src="/img/links/usaspending.png" alt="UsaSpending.gov"
-                    /> USASpending.gov is a searchable website that shows the public how their tax dollars
-                    are spent through federal contracts, grants, and loans.
-                </a>
-            </div>
-        </div>
-
+  <div class="usa-grid">
+    <div class="usa-width-one-whole usa-margin-top-3">
+      <h3 class="usa-text-align-center">Related Links</h3>
     </div>
+  </div>
+
+  <div class="usa-grid usa-margin-top-2">
+    <div class="usa-width-one-third">
+      <a href="http://www.grants.gov/" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/grants.png" alt="Grants.gov" />
+        Grants.gov is your gateway to finding information about and applying for grant opportunities from over
+        1000 federal programs.
+      </a>
+    </div>
+    <div class="usa-width-one-third">
+      <a href="http://www.benefits.gov/" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/benefits.png" alt="Benefits.gov" />
+        Benefits.gov offers information on more than 1,000 Federal and state benefit programs. Simply complete
+        the free and confidential questionnaire and our prescreening tool will generate a tailored list of programs
+        just for you.
+      </a>
+    </div>
+    <div class="usa-width-one-third">
+      <a href="http://www.govloans.gov/" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/govloans.png" alt="GovLoans.gov" />
+        GovLoans.gov is your first stop for Federal loan information and is specifically designed to help you
+        determine which loans may be right for you.
+      </a>
+    </div>
+  </div>
+
+  <div class="usa-grid usa-margin-top-3 usa-margin-bottom-3">
+    <div class="usa-width-one-third">
+      <a href="http://www.data.gov/" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/data.png" alt="Data.gov" />
+        Data.gov is the home of the U.S. government's open data. Here you will find open data sets, tools, and
+        resources to conduct.
+      </a>
+    </div>
+    <div class="usa-width-one-third">
+      <a href="https://www.whitehouse.gov/omb" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/omb.png" alt="Whitehouse.gov/OMB" />
+        The Compliance Supplement from the Office of Management and Budget (OMB) provides annual guidance designed
+        to help.
+      </a>
+    </div>
+    <div class="usa-width-one-third">
+      <a href="https://www.usaspending.gov/" target="_blank">
+        <img class="usa-move-center" style="width: 225px; height:90px;" src="/img/links/usaspending.png" alt="UsaSpending.gov"
+        /> USASpending.gov is a searchable website that shows the public how their tax dollars
+        are spent through federal contracts, grants, and loans.
+      </a>
+    </div>
+  </div>
 
 </div>
