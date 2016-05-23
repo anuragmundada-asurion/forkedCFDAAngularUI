@@ -29,33 +29,33 @@
                         <span ng-show="gsavm.form.title.$error.required">You must provide a title.</span>
                     </div>
                 </div>
-                <div ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
-                    <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
-                    <span>Please enter a unique program number. Note: The agency number will automatically be set upon submission. <br/>Please provide the 3 digit code (i.e. for 10.244 you would enter 244)</span>
-                    <div class="input-field" ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
+            </section>
+            <section field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
+                <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
+                <span>Please enter a unique program number. Note: The agency number will automatically be set upon submission. <br/>Please provide the 3 digit code (i.e. for 10.244 you would enter 244)</span>
+                <div class="input-field" ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
 
 
-                        <input type="text" id="programNumber" name="programNumber" class="usa-input-small" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+                    <input type="text" id="programNumber" name="programNumber" class="usa-input-small" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
 
 
 
-                        <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
-                            <span class="usa-input-error-message" role="alert" ng-show="gsavm.form.programNumber.$error.required">You must provide a program number.</span>
-                        </div>
-                        <span class="usa-input-error-message" role="alert" ng-show="gsavm.isProgramNumberUnique === false">The FAL number has already been used. Please enter a different FAL number.</span>
-                        <span class="usa-input-error-message" role="alert" 
-                            has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}"  
-                            ng-show="gsavm.isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization.</span>
-                        <span class="usa-input-error-message" role="alert" 
-                            has-role="{{ [ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
-                            ng-show="gsavm.isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.</span>
+                    <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
+                        <span class="usa-input-error-message" role="alert" ng-show="gsavm.form.programNumber.$error.required">You must provide a program number.</span>
                     </div>
+                    <span class="usa-input-error-message" role="alert" ng-show="gsavm.isProgramNumberUnique === false">The FAL number has already been used. Please enter a different FAL number.</span>
+                        <span class="usa-input-error-message" role="alert"
+                              has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}"
+                              ng-show="gsavm.isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization.</span>
+                        <span class="usa-input-error-message" role="alert"
+                              has-role="{{ [ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}"
+                              ng-show="gsavm.isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.</span>
                 </div>
-                <div ng-if="(gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft')">
-                    <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
-                    <div class="input-field" >
-                        <span ng-bind="gsavm.program.programNumber"></span>
-                    </div>
+            </section>
+            <section field-finder-bookmark title="Program Number" ng-if="(gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft')">
+                <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
+                <div class="input-field" >
+                    <span ng-bind="gsavm.program.programNumber"></span>
                 </div>
             </section>
             <section class="sub-section" field-finder-bookmark title="020 Popular Name">
@@ -1904,9 +1904,9 @@
                         || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)">
                                 <h4>General Information</h4>
                                 <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
-                                <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)" trigger-click-on-enter>The FAL number has already been used. Please enter a different FAL number.<br/></a>
-                                <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.program.programNumber)" trigger-click-on-enter>Program Number is required<br/></a>
-                                <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.program.programNumber && !(gsavm.program.programNumber >= gsavm.organizationConfiguration.programNumberLow && gsavm.program.programNumber <= gsavm.organizationConfiguration.programNumberHigh && gsavm.program.programNumber.length === 3))" trigger-click-on-enter>Program Number is invalid<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)" trigger-click-on-enter>The FAL number has already been used. Please enter a different FAL number.<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.program.programNumber)" trigger-click-on-enter>Program Number is required<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.program.programNumber && !(gsavm.program.programNumber >= gsavm.organizationConfiguration.programNumberLow && gsavm.program.programNumber <= gsavm.organizationConfiguration.programNumberHigh && gsavm.program.programNumber.length === 3))" trigger-click-on-enter>Program Number is invalid<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
