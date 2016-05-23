@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$timeout', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'Program', 'DictionaryService',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $timeout, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, Program, DictionaryService) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService) {
 
                 $scope.$log = $log;
 
@@ -498,7 +498,8 @@
                  * @returns Boolean
                  */
                 function validateProgramFields(oProgram) {
-                    return !(!oProgram.title || !oProgram.authorizations || oProgram.authorizations.length == 0
+                    return !(checkMissingRequiredFields('financialSection') || checkMissingRequiredFields('contactSection') 
+                        || !oProgram.title || !oProgram.authorizations || oProgram.authorizations.length == 0
                         || !oProgram.objective || !oProgram.usage.restrictions.flag
                         || (oProgram.usage.restrictions.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
                         || (oProgram.usage.discretionaryFund.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.discretionaryFund.content)
@@ -523,7 +524,7 @@
                         || !oProgram.postAward.documents.flag || (oProgram.postAward.documents.flag === 'yes' && !oProgram.postAward.documents.content)
                         || !oProgram.financial.treasury.tafs || oProgram.financial.treasury.tafs.length == 0 || !oProgram.postAward.accomplishments.flag
                         || !oProgram.contacts['local'].flag || !oProgram.contacts.list || oProgram.contacts.list.length == 0
-                        || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(oProgram.programNumber >= vm.organizationConfiguration.programNumberLow && oProgram.programNumber <= vm.organizationConfiguration.programNumberHigh && oProgram.programNumber.length === 3))
+                        || checkMissingRequiredFields('ProgramNumber')
                         || (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && vm.isProgramNumberUnique === false)
                     );
                 }
@@ -701,6 +702,10 @@
 
                             }
                             return requiredFieldsMissing;
+
+                        case 'ProgramNumber':
+                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && 
+                            !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && vm.program.programNumber.length === 3));
                     }
 
 
@@ -734,24 +739,27 @@
                             vm.isProgramNumberOutsideRange = false;
                         }
 
-                        //verify program number uniqueness
-                        var oApiParam = {
-                            apiName: 'programNumberUnique',
-                            apiSuffix: '',
-                            oParams: {
-                                programNumber: vm.programCode + '.' + vm.program.programNumber,
-                                id: vm.program._id
-                            },
-                            oData: {},
-                            method: 'GET'
-                        };
+                        // check if user has access to perform check on FAL outside the range
+                        if((vm.isProgramNumberOutsideRange === true && AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE)) || vm.isProgramNumberOutsideRange === false){
+                            //verify program number uniqueness
+                            var oApiParam = {
+                                apiName: 'programNumberUnique',
+                                apiSuffix: '',
+                                oParams: {
+                                    programNumber: vm.programCode + '.' + vm.program.programNumber,
+                                    id: vm.program._id
+                                },
+                                oData: {},
+                                method: 'GET'
+                            };
 
-                        ApiService.call(oApiParam).then(function (data) {
-                            vm.isProgramNumberUnique = data.isProgramNumberUnique;
-                        }, function (error) {
-                            vm.isProgramNumberUnique = false;
-                            console.log(error);
-                        });
+                            ApiService.call(oApiParam).then(function (data) {
+                                vm.isProgramNumberUnique = data.isProgramNumberUnique;
+                            }, function (error) {
+                                vm.isProgramNumberUnique = false;
+                                console.log(error);
+                            });
+                        }
                     }
                     else {
                         vm.isProgramNumberUnique = true;
