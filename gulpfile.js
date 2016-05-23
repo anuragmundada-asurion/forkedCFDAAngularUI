@@ -140,7 +140,7 @@ gulp.task('semantic', ['index'], function(){
 gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(cleanCss())
+        .pipe(cleanCss({processImport: false}))
         .pipe(rename('cfda.min.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
@@ -189,10 +189,10 @@ gulp.task('test-dependencies', function() {
 });
 
 gulp.task('test', ['test-dependencies'], function(done) {
-    //new karmaServer({
-    //    configFile: __dirname + '/src/test/javascript/karma.conf.js',
-    //    singleRun: true
-    //}, done).start();
+    new karmaServer({
+        configFile: __dirname + '/src/test/javascript/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 gulp.task('watch', function(){

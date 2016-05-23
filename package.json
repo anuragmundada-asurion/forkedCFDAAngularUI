@@ -20,7 +20,7 @@
     "bower": "~1.7.7",
     "gulp": "~3.9.1",
     "gulp-angular-templatecache": "~1.8.0",
-    "gulp-clean-css": "~2.0.3",
+    "gulp-clean-css": "~2.0.8",
     "gulp-concat": "~2.6.0",
     "gulp-css-prefix": "^0.1.0",
     "gulp-flatten": "~0.2.0",

@@ -52,7 +52,7 @@
         //  Submitting/Publishing
         'CAN_EDIT_PENDING_PROGRAMS': 'CanEditPendingPrograms',
         'CAN_REQUEST_SUBMISSION': 'CanRequestSubmission',
-        'CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE': 'CanRwquestSubmissionOutsideRange',
+        'CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE': 'CanRequestSubmissionOutsideRange',
         'CAN_PERFORM_SUBMISSION': 'CanPerformSubmission',
 
         //  Create Revision
