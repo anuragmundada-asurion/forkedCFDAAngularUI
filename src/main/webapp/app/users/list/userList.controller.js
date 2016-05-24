@@ -19,10 +19,6 @@
                     $scope.totalCount = total;
                 })
                 .withOption('initComplete', function(){
-                    // Initialize semantic ui dropdown
-                    //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
-                    // Remove select to fix dropdown  double click bug
-                    //$(".dataTables_length select").remove();
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -62,7 +58,7 @@
                 })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
-                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
+                .withDOM('<"usa-grid usa-grid-fixed"r> <"usa-grid usa-grid-fixed"t> <"usa-background-gray-lightest usa-grid-fixed" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Users Found',
@@ -80,7 +76,7 @@
                 DTColumnBuilder.newColumn('assignedAgencies').withTitle('Assigned Agencies').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('email').withTitle('E-mail').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('workPhone').withTitle('Phone').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', '').withOption('width', '100px'),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', '')
             ];
         }
