@@ -82,14 +82,16 @@
                     <div ng-show="form.error || programRequestForm.programNumber.$dirty">
                         <span class="usa-text-small" ng-show="programRequestForm.programNumber.$error.required">You must provide Program Number of this request.</span>
                     </div>
-                    <span class="usa-text-small" ng-show="isProgramNumberValid === false && !programRequestForm.programNumber.$error.required">The program number is invalid.</span>
-                    <span class="usa-text-small" ng-show="isProgramNumberUnique === false">The program number is already been used.</span>
+                    <p class="usa-text-small" ng-show="isProgramNumberValid === false && !programRequestForm.programNumber.$error.required">The program number is invalid.</p>
+                    <p class="usa-text-small" ng-show="isProgramNumberUnique === false">The FAL number has already been used. Please enter a different FAL number.</p>
+                    <p class="usa-text-small" ng-show="isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization.</p>
                 </div>
                 <!-- If the requested organization is auto then just show the generated program number -->
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto && programCode)">
-                    <h4 class="m-t-1">Program Number <span class="required">*</span></h4>
-                    <b ng-init="getNextAvailableProgramNumber()">{{ programNumber }}</b>
+                    <h4 ng-if="(organizationConfiguration && organizationConfiguration.programNumberAuto && programCode)" class="m-t-1">Program Number <span ng-init="getNextAvailableProgramNumber()" class="required">*</span></h4>
+                    <b>{{ programNumber }}</b>
                     <p class="usa-text-small">A new program number must be assigned as the agency code is different. The requested agency uses automatic program numbering and this is the next program number available.</p>
+                    <p class="usa-text-small" ng-show="isProgramNumberOutsideRange === true">This number falls outside the range defined for this organization.</p>
                 </div>
             </div>
             <div class="field" ng-show="ngDialogData.action === 'archive'">

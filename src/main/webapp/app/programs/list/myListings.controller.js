@@ -661,10 +661,21 @@
              * @returns void
              */
             $scope.verifyProgramNumber = function () {
+                //no alpha allowed in program number,
+                if($scope.programNumber){
+                    $scope.programNumber = $scope.programNumber.replace(/[^0-9]/g, '');
+                }
+
                 $scope.isProgramNumberValid = false;
 
-                if ($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && $scope.programCode &&
-                    $scope.programNumber >= $scope.organizationConfiguration.programNumberLow && $scope.programNumber <= $scope.organizationConfiguration.programNumberHigh && $scope.programNumber.length === 3) {
+                if ($scope.organizationConfiguration && !$scope.organizationConfiguration.programNumberAuto && $scope.programCode && typeof $scope.programNumber !== 'undefined' && $scope.programNumber.length === 3) {
+
+                    //provided program number is within the range
+                    if ($scope.programNumber < $scope.organizationConfiguration.programNumberLow || $scope.programNumber > $scope.organizationConfiguration.programNumberHigh) {
+                        $scope.isProgramNumberOutsideRange = true;
+                    } else {
+                        $scope.isProgramNumberOutsideRange = false;
+                    }
 
                     $scope.isProgramNumberValid = true;
 
@@ -688,6 +699,7 @@
                     });
                 } else {
                     $scope.isProgramNumberUnique = true;
+                    $scope.isProgramNumberOutsideRange = false;
                 }
             };
 
@@ -710,6 +722,7 @@
                 ApiService.call(oApiParam).then(
                     function (data) {
                         $scope.programNumber = data.nextAvailableCode;
+                        $scope.isProgramNumberOutsideRange = data.isProgramNumberOutsideRange;
                     },
                     function (error) {
                         $scope.submissionInProgress = true;
