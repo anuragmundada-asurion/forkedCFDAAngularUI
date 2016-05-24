@@ -173,10 +173,6 @@ CDFA Old Styles
   text-align: center;
 }
 
-body.ngdialog-open {
-  overflow: visible !important;
-}
-
 // These files will be deleted
 
 // @import 'cfda-specific/fix';
@@ -191,6 +187,9 @@ body.ngdialog-open {
 // @import 'cfda-specific/homePage/barChart';
 // @import 'cfda-specific/home-header';
 
+// body.ngdialog-open {
+//   overflow: visible !important;
+// }
 
 /* ==========================================================
 Extending USWDS
@@ -952,66 +951,113 @@ $usa-btn-huge-width:     17rem;
 }
 
 
-/* ==========================================================
-Overriding Semantic UI
-========================================================== */
 
-// .usa-content{
-//   h4{
-//     margin-top: 1.5em !important;
-//   }
-// }
-//
-// .usa-search input{
-//   font-weight: 700;
-// }
-//
-// .usa-grid{
-//   select{
-//     font-weight: $font-bold !important;
-//     margin:.2em 0 !important;
-//   }
-//   .usa-accordion-content {
-//     label{
-//       margin-top: 3rem;
-//     }
-//     .usa-fieldset-inputs label{
-//       margin-top: 0;
-//     }
-//   }
-//   fieldset{
-//     border: none !important;
-//     margin: 0 !important;
-//     padding: 0 !important;
-//   }
-//   .usa-button-unstyled,
-//   .usa-button-big{
-//     font-weight: 700 !important;
-//   }
-//   .usa-button,
-//   .usa-button-primary,
-//   .usa-button-primary:visited,
-//   .usa-button:visited,
-//   [type=button],
-//   [type=image],
-//   [type=reset],
-//   [type=submit],
-//   button{
-//
-//   }
-// 	.usa-width-one-fourth:nth-child(4n){
-// 		.usa-button.usa-button-big.usa-button-icon-top{
-// 			padding-left: 2.9rem;
-// 			padding-right: 2.9rem;
-// 		}
-// 	}
-// 	.usa-label-circular.usa-label-circular-huge.usa-label-color-primary-darkest{
-// 		left: -39px !important;
-// 	}
-// 	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
-// 		color: #fff !important;
-// 	}
-// 	.uib-datepicker-popup.dropdown-menu{
-// 		z-index: 2 !important;
-// 	}
-// }
+/* ngDialog CFDA Theme
+---------------------------------------------------------- */
+
+@-webkit-keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes ngdialog-flyout {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes ngdialog-flyout {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+}
+
+.ngdialog.ngdialog-theme-cfda {
+  padding-bottom: 160px;
+  padding-top: 160px;
+}
+
+.ngdialog.ngdialog-theme-cfda.ngdialog-closing .ngdialog-content {
+  -webkit-animation: ngdialog-flyout .5s;
+  animation: ngdialog-flyout .5s;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-content {
+  -webkit-animation: ngdialog-flyin .5s;
+  animation: ngdialog-flyin .5s;
+  background: $color-white;
+  border-radius: 3px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 1em;
+  position: relative;
+  width: 600px;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close {
+  border-radius: 3px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:before {
+  background: transparent;
+  border-radius: 3px;
+  color: #bbb;
+  content: '\00D7';
+  font-size: 26px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 26px;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  top: 3px;
+  width: 30px;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:hover:before,
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:active:before {
+  color: #777;
+}

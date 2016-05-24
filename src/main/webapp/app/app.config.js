@@ -23,22 +23,22 @@
 
             /**
              * global function for change status modal
-             * 
+             *
              * @param Object oEntity  Program | Program Request
              * @param String typeEntity Type of entity provided in oEntity
              * @param String action action to perform (Approve|Reject)
              * @returns Void
              */
             $rootScope.showProgramRequestModal = function(oEntity, typeEntity, action, callback) {
-                ngDialog.open({ 
-                    template: 'programs/_ProgramRequestModal.tpl.html', 
-                    className: 'ngdialog-theme-default',
+                ngDialog.open({
+                    template: 'programs/_ProgramRequestModal.tpl.html',
+                    className: 'ngdialog-theme-cfda',
                     data: {
-                        oEntity: oEntity, 
+                        oEntity: oEntity,
                         typeEntity: typeEntity,
                         action: action,
                         callback: callback
-                    } 
+                    }
                 });
             };
 
@@ -52,7 +52,7 @@
              */
             $rootScope.$on('$stateChangeStart', function(event, stateConfig){
                 if(stateConfig.name !== 'searchPrograms' && stateConfig.name !== 'advancedSearch') {
-                    //empty Search criteria (keyword & advanced search criterias) 
+                    //empty Search criteria (keyword & advanced search criterias)
                     //when user go to other pages rather then search
                     SearchFactory.setSearchCriteria(null, {});
                 }

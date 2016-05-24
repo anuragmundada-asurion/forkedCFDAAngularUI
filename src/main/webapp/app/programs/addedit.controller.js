@@ -498,7 +498,7 @@
                  * @returns Boolean
                  */
                 function validateProgramFields(oProgram) {
-                    return !(checkMissingRequiredFields('financialSection') || checkMissingRequiredFields('contactSection') 
+                    return !(checkMissingRequiredFields('financialSection') || checkMissingRequiredFields('contactSection')
                         || !oProgram.title || !oProgram.authorizations || oProgram.authorizations.length == 0
                         || !oProgram.objective || !oProgram.usage.restrictions.flag
                         || (oProgram.usage.restrictions.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.restrictions.content) || !oProgram.usage.discretionaryFund.flag
@@ -565,7 +565,7 @@
                         " organization before proceeding and your Federal Assistance Listing will remain in a Draft state.";
                     var msg2 = "There are no more available numbers in the configured range. Please contact your agency coordinator and have" +
                         " them adjust your organizations number range.";
-                    var template = '<div class="usa-alert usa-alert-warning" role="alert">' +
+                    var template = '<div class="usa-alert usa-alert-warning usa-margin-bottom-2" role="alert">' +
                         '<div class="usa-alert-body">' +
                         '<p class="usa-alert-text">' +
                         '<span has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}">' + msg1 + '</span>' +
@@ -573,12 +573,13 @@
                         '</p>' +
                         '</div>' +
                         '</div>' +
-                        '<button ng-click="closeModal();">Cancel</button>' +
+                        '<button class="usa-button-gray-light" ng-click="closeModal();">Cancel</button>' +
                         '<button has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}" ng-click="openSubmitModal();">Continue</button>';
 
 
                     ngDialog.open({
                         template: template,
+                        className: 'ngdialog-theme-cfda',
                         plain: true,
                         closeByEscape: true,
                         showClose: true,
@@ -704,7 +705,7 @@
                             return requiredFieldsMissing;
 
                         case 'ProgramNumber':
-                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && 
+                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false &&
                             !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && vm.program.programNumber.length === 3));
                     }
 
