@@ -19,6 +19,7 @@
                     $scope.totalCount = total;
                 })
                 .withOption('initComplete', function(){
+                    $(".jqUsersContactInfo.dropdown").dropdown();
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -38,7 +39,11 @@
                             var promises = [];
                             var tableData = [];
                             angular.forEach(results, function (r) {
-                                r['name'] = r['firstName'] + ' ' + r['lastName'];
+                                r['name'] = {
+                                    'name': r['firstName'] + ' ' + r['lastName'],
+                                    'email': r['email'],
+                                    'phone': r['workPhone']
+                                };
                                 if (r['orgID']) {
                                     promises.push(FederalHierarchyService.getFederalHierarchyById(r['orgID'], true, false, function (data) {
                                         r['organization'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
@@ -58,7 +63,7 @@
                 })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
-                .withDOM('<"usa-grid usa-grid-fixed"r> <"usa-grid usa-grid-fixed usa-overflow-right"t> <"usa-background-gray-lightest usa-grid-fixed" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
+                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Users Found',
@@ -71,11 +76,21 @@
                     .withOption('defaultContent', '')
                     .withOption('searchable', false)
                     .withOption('orderable', false),
-                DTColumnBuilder.newColumn('name').withTitle('Name').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('name')
+                    .withTitle('Name')
+                    .withOption('defaultContent', '')
+                    .withOption('render', function (data) {
+                        var infoIcon = '<div class="ui icon top left pointing jqUsersContactInfo dropdown button primary">' +
+                            '<i class="fa fa-info-circle"></i>' +
+                            '<div class="menu" style="font-size: 1.7rem;">' +
+                            '<div class="header">Contact Info</div>' +
+                            '<div class="item"><strong>E-mail:</strong> ' + data['email'] + '</div>' +
+                            '<div class="item"><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div>' +
+                            '</div>' +
+                            '</div>';
+                        return infoIcon + data['name'];
+                    }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('assignedAgencies').withTitle('Assigned Agencies').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('email').withTitle('E-mail').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('workPhone').withTitle('Phone').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', '')
             ];
