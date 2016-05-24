@@ -16,7 +16,7 @@
             link: link,
             template:
             '<div class="usa-width-one-half">' +
-                '<label class="sr-only">Field Finder Dropdown</label>' +
+                '<label class="usa-sr-only">Field Finder Dropdown</label>' +
                 '<select ng-model="uxForm.selectedBookmark" ng-options="bookmark.text for bookmark in uxForm.bookmarks">' +
                     '<option value="" disabled style="display:none">Select a field</option>' +
                 '</select>' +
