@@ -1,32 +1,27 @@
+
 <primary-nav-bar></primary-nav-bar>
 
-<div class="ui fixed container">
-
-    <div class="ui grid" style="margin-top: 0px; margin-bottom: 0px;">
-
-        <div class="two column row">
-
-            <div class="column">
-                <h1>Organizations List</h1>
-            </div>
-
-            <div class="column">
-                <div class="ui search">
-                    <div class="ui icon fluid input">
-                        <input ng-model="searchKeyword" type="text" class="prompt" placeholder="Search Listings"
-                               aria-controls="agency-table" >
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- no search bar for now, will put that in later-->
-
-    </div>
-
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-half">
+    <h1>Organizations List</h1>
+  </div>
+  <div class="usa-width-one-half usa-margin-top-3">
+    <input  ng-model="searchKeyword"
+            type="text"
+            placeholder="Search Listings"
+            aria-controls="agency-table"
+            class="usa-margin-top-3" >
+  </div>
 </div>
 
+<!-- no search bar for now, will put that in later-->
 
-<!--datatable-->
-<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-column-defs="dtColumnDefs" dt-instance="dtInstance" class="ui darkblue table"></table>
+
+<!-- Table -->
+<table  datatable=""
+        dt-options="dtOptions"
+        dt-columns="dtColumns"
+        dt-column-defs="dtColumnDefs"
+        dt-instance="dtInstance"
+        class="usa-table-primary-darkest">
+</table>

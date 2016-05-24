@@ -314,7 +314,7 @@
                 DTColumnBuilder.newColumn('phone').withTitle('Phone').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
-                    .withOption('defaultContent', '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-pencil"></span></button></a><a ui-sref="viewRegionalOffice({id: row.id})"><button type="button"><span class="fa fa-file-text-o"></span></button></a>')
+                    .withOption('defaultContent', '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a><a ui-sref="viewRegionalOffice({id: row.id})"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>')
                     .withOption('orderable', false)
             ];
         }]);

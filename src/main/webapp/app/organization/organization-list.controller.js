@@ -104,10 +104,12 @@
 
             angular.element('table').on('draw.dt', function () {
                 // Initialize semantic ui dropdown
-                $(".dataTables_length select").addClass("ui compact dropdown").dropdown();
+                //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                 // Remove select to fix dropdown  double click bug
-                $(".dataTables_length select").remove();
+                //$(".dataTables_length select").remove();
                 $compile(angular.element('.dataTables_length'))($scope);
+                $(".dataTables_info").appendTo(".dataTables_length label");
+                $(".dataTables_info").contents().unwrap();
             });
 
             $scope.dtInstance = {};
@@ -120,7 +122,7 @@
                 .withOption('searching', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
-                .withDOM('<"top ui fixed container"r> <"ui fixed container"t> <"bottom background gray" <"ui fixed container" <"ui grid" <"two column row" <"column"li> <"column"p> > > > > <"clear">')
+                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
                 .withOption('bSortClasses', false)
                 .withOption('rowCallback', function (row) {
@@ -141,12 +143,12 @@
                     .withTitle('Action')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        var htmlStr = '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/edit">' +
+                        var htmlStr = '<a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/edit">' +
                             '<span class="fa fa-pencil"></span></a>' +
-                            '<a class="ui mini primary button" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' +
+                            '<a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + data['organizationId'] + '/view">' +
                             '<span class="fa fa-file-text-o"></span></a>';
                         if (data.hasChildren) {
-                            htmlStr = htmlStr + '<a class="ui mini primary button"><span class="fa fa-chevron-circle-down"></span></a>';
+                            htmlStr = htmlStr + '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
                         }
                         return htmlStr;
                     })
@@ -163,4 +165,3 @@
         }]);
 
 })();
-

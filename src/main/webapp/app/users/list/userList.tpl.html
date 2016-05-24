@@ -1,31 +1,28 @@
+
 <primary-nav-bar></primary-nav-bar>
 
-<div class="usa-grid m-t-3 m-b-2">
-
-    <div class="usa-width-one-half">
-        <h1>
-
-            Users
-
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-half">
+    <h1>
+      Users
       <span ng-show="totalCount" class="usa-font-lead" style="font-weight: normal;">
         ( {{totalCount}} Results )
       </span>
-
-        </h1>
-    </div>
-
-    <div class="usa-width-one-half">
-        <div class="usa-grid-full">
-            <div class="usa-width-one-whole">
-                <div class="ui search">
-                    <div class="ui icon fluid input">
-                        <input ng-model="searchKeyword" type="search" class="prompt" placeholder="Search Users" aria-controls="usersTable">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    </h1>
+  </div>
+  <div class="usa-width-one-half usa-margin-top-3">
+    <input  ng-model="searchKeyword"
+            type="search"
+            placeholder="Search Users"
+            aria-controls="usersTable"
+            class="usa-margin-top-3">
+  </div>
 </div>
-<table id="usersTable" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="ui darkblue table"></table>
+
+<table  id="usersTable"
+        datatable=""
+        dt-options="dtOptions"
+        dt-columns="dtColumns"
+        dt-instance="dtInstance"
+        class="usa-table-primary-darkest">
+</table>
