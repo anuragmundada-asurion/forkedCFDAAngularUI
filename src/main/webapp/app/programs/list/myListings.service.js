@@ -86,7 +86,7 @@
         };
 
         this.getRequestActionContent = function(data) {
-            return '<a ui-sref="viewRequest({ id: \'' + data + '\' })" class="usa-button-compact" title="Review Program"><span class="fa fa-eye"></span></a>';
+            return '<a ui-sref="viewRequest({ id: \'' + data + '\' })" class="usa-button usa-button-compact" title="Review Program"><span class="fa fa-eye"></span></a>';
         };
 
         this.getDateContent = function(data) {
