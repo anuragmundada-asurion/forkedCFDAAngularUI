@@ -155,45 +155,46 @@ CDFA Old Styles
 ---------------*/
 
 // These files will be deleted
-// @import 'cfda-specific/variables';
-// @import 'cfda-specific/form';
-// @import 'cfda-specific/layout';
-// @import 'cfda-specific/wizard';
-// @import 'cfda-specific/table';
-// @import 'cfda-specific/pagination';
-// @import 'cfda-specific/fieldFinder';
-// @import 'cfda-specific/nav';
-// @import 'cfda-specific/text-format';
-// @import 'cfda-specific/masked-input';
-// @import 'cfda-specific/button';
-// @import 'cfda-specific/listbox';
-// @import 'cfda-specific/multi-entry';
-// @import 'cfda-specific/hierarchy-dropdown';
-//
-// @import 'cfda-specific/menu-bar';
-// @import 'cfda-specific/home';
-// @import 'cfda-specific/home-header';
-// @import 'cfda-specific/home-quick-links';
-// @import 'cfda-specific/home-related-links';
-//
-// @import 'cfda-specific/select2/core';
-// @import 'cfda-specific/_datepicker';
-//
-// @import 'cfda-specific/fix';
-//
-// @import 'cfda-specific/search';
-//
-// @import 'cfda-specific/viewProgram/viewProgram';
-// @import 'cfda-specific/homePage/barChart';
-//
-//
-// .text-center {
-//   text-align: center;
-// }
-//
-// body.ngdialog-open {
-//   overflow: visible !important;
-// }
+
+@import 'cfda-specific/variables';
+@import 'cfda-specific/form';
+@import 'cfda-specific/layout';
+@import 'cfda-specific/wizard';
+@import 'cfda-specific/table';
+@import 'cfda-specific/pagination';
+@import 'cfda-specific/fieldFinder';
+@import 'cfda-specific/nav';
+@import 'cfda-specific/text-format';
+@import 'cfda-specific/masked-input';
+@import 'cfda-specific/button';
+@import 'cfda-specific/listbox';
+@import 'cfda-specific/multi-entry';
+@import 'cfda-specific/hierarchy-dropdown';
+
+@import 'cfda-specific/menu-bar';
+@import 'cfda-specific/home';
+@import 'cfda-specific/home-header';
+@import 'cfda-specific/home-quick-links';
+@import 'cfda-specific/home-related-links';
+
+@import 'cfda-specific/select2/core';
+@import 'cfda-specific/_datepicker';
+
+@import 'cfda-specific/fix';
+
+@import 'cfda-specific/search';
+
+@import 'cfda-specific/viewProgram/viewProgram';
+@import 'cfda-specific/homePage/barChart';
+
+
+.text-center {
+  text-align: center;
+}
+
+body.ngdialog-open {
+  overflow: visible !important;
+}
 
 /* ==========================================================
 Extending USWDS
@@ -938,63 +939,63 @@ $usa-btn-huge-width:     17rem;
 /* ==========================================================
 Overriding Semantic UI
 ========================================================== */
-//
-// .usa-content{
-//   h4{
-//     margin-top: 1.5em !important;
-//   }
-// }
-//
-// .usa-search input{
-//   font-weight: 700;
-// }
-//
-// .usa-grid{
-//   select{
-//     font-weight: $font-bold !important;
-//     margin:.2em 0 !important;
-//   }
-//   .usa-accordion-content {
-//     label{
-//       margin-top: 3rem;
-//     }
-//     .usa-fieldset-inputs label{
-//       margin-top: 0;
-//     }
-//   }
-//   fieldset{
-//     border: none !important;
-//     margin: 0 !important;
-//     padding: 0 !important;
-//   }
-//   .usa-button-unstyled,
-//   .usa-button-big{
-//     font-weight: 700 !important;
-//   }
-//   .usa-button,
-//   .usa-button-primary,
-//   .usa-button-primary:visited,
-//   .usa-button:visited,
-//   [type=button],
-//   [type=image],
-//   [type=reset],
-//   [type=submit],
-//   button{
-//
-//   }
-// 	.usa-width-one-fourth:nth-child(4n){
-// 		.usa-button.usa-button-big.usa-button-icon-top{
-// 			padding-left: 2.9rem;
-// 			padding-right: 2.9rem;
-// 		}
-// 	}
-// 	.usa-label-circular.usa-label-circular-huge.usa-label-color-primary-darkest{
-// 		left: -39px !important;
-// 	}
-// 	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
-// 		color: #fff !important;
-// 	}
-// 	.uib-datepicker-popup.dropdown-menu{
-// 		z-index: 2 !important;
-// 	}
-// }
+
+.usa-content{
+  h4{
+    margin-top: 1.5em !important;
+  }
+}
+
+.usa-search input{
+  font-weight: 700;
+}
+
+.usa-grid{
+  select{
+    font-weight: $font-bold !important;
+    margin:.2em 0 !important;
+  }
+  .usa-accordion-content {
+    label{
+      margin-top: 3rem;
+    }
+    .usa-fieldset-inputs label{
+      margin-top: 0;
+    }
+  }
+  fieldset{
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .usa-button-unstyled,
+  .usa-button-big{
+    font-weight: 700 !important;
+  }
+  .usa-button,
+  .usa-button-primary,
+  .usa-button-primary:visited,
+  .usa-button:visited,
+  [type=button],
+  [type=image],
+  [type=reset],
+  [type=submit],
+  button{
+
+  }
+	.usa-width-one-fourth:nth-child(4n){
+		.usa-button.usa-button-big.usa-button-icon-top{
+			padding-left: 2.9rem;
+			padding-right: 2.9rem;
+		}
+	}
+	.usa-label-circular.usa-label-circular-huge.usa-label-color-primary-darkest{
+		left: -39px !important;
+	}
+	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
+		color: #fff !important;
+	}
+	.uib-datepicker-popup.dropdown-menu{
+		z-index: 2 !important;
+	}
+}
