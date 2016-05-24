@@ -19,7 +19,10 @@
                     $scope.totalCount = total;
                 })
                 .withOption('initComplete', function(){
-                    $(".jqUsersContactInfo.dropdown").dropdown();
+                    $(".jqUsersContactInfo").popup({
+                        on: 'click',
+                        position: 'left center'
+                    });
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -80,14 +83,7 @@
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        var infoIcon = '<div class="ui icon top left pointing jqUsersContactInfo dropdown button primary">' +
-                            '<i class="fa fa-info-circle"></i>' +
-                            '<div class="menu" style="font-size: 1.7rem;">' +
-                            '<div class="header">Contact Info</div>' +
-                            '<div class="item"><strong>E-mail:</strong> ' + data['email'] + '</div>' +
-                            '<div class="item"><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div>' +
-                            '</div>' +
-                            '</div>';
+                        var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo" data-html="<div class=\'ui\'><div class=\'header\'>Contact Info</div><div class=\'content\'><strong>E-mail:</strong> ' + data['email'] + '<br/><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div></div>"></i>';
                         return infoIcon + data['name'];
                     }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
