@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title ng-bind="Page.title()">CFDA</title>
+
+    <!-- cfda:css -->
+    <!-- endinject -->
     <!-- base:css -->
     <!-- endinject -->
     <!-- plugins:css -->
@@ -12,7 +15,13 @@
     <!-- iae:css -->
     <!-- endinject -->
 
-
+    <!-- Semantic  -->
+    <link rel="stylesheet" href="/semantic/components/transition.css">
+    <link rel="stylesheet" href="/semantic/components/container.css">
+    <link rel="stylesheet" href="/semantic/components/loader.css">
+    <link rel="stylesheet" href="/semantic/components/button.css">
+    <link rel="stylesheet" href="/semantic/components/popup.css">
+    <link rel="stylesheet" href="/semantic/components/dropdown.css">
 
     <!--[if lte IE 9]>
     <script type="text/javascript">
@@ -37,36 +46,25 @@
 
 </head>
 <body>
-    <div ng-if="$state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name
-        === 'searchPrograms' || $state.current.name === 'programList' || $state.current.name === 'organizationList' ||
-        $state.current.name === 'viewOrganization' || $state.current.name === 'editOrganization' ||
-        $state.current.name === 'viewRequest' || $state.current.name === 'userList'">
-        <link rel="stylesheet" href="/css/cfda.min.css">
-        <link rel="stylesheet" href="/semantic/semantic.css">
-    </div>
-    <div ng-if="!($state.current.name === 'home' || $state.current.name === 'regionalOfficeList' || $state.current.name
-        === 'searchPrograms' || $state.current.name === 'programList'|| $state.current.name === 'organizationList' ||
-        $state.current.name === 'viewOrganization' || $state.current.name === 'editOrganization' || $state.current.name
-        === 'viewRequest' || $state.current.name === 'userList')">
-      <link rel="stylesheet" href="/semantic/components/reset.css">
-      <link rel="stylesheet" href="/semantic/components/site.css">
-      <link rel="stylesheet" href="/semantic/components/container.css">
-      <link rel="stylesheet" href="/css/cfda.min.css">
-    </div>
 
     <header class="header theme-iae" role="banner">
         <section id="iae-authentication-modal" class="gsa-authentication-modal hidden"></section>
         <section id="iae-header"></section>
     </header>
+
     <loading-modal></loading-modal>
+
     <div id="main" class="theme-cfda" ui-view aria-live="polite" role="main">
     </div>
+
     <footer class="footer theme-iae">
         <section id="iae-footer"></section>
     </footer>
+
     <!-- plugins:js -->
     <!-- endinject -->
     <!-- semantic:js -->
     <!-- endinject -->
+
 </body>
 </html>

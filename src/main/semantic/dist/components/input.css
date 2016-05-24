@@ -24,7 +24,6 @@
   font-weight: normal;
   font-style: normal;
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   color: rgba(0, 0, 0, 0.87);
@@ -33,7 +32,6 @@
   margin: 0em;
   max-width: 100%;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
   outline: none;
@@ -41,7 +39,7 @@
   text-align: left;
   line-height: 1.2142em;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  padding: 0.8929em 1.4em;
+  padding: 0.4819em 1.4em;
   background: #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.87);
@@ -248,7 +246,7 @@
   right: 0px;
   margin: 0em;
   height: 100%;
-  width: 3.1em;
+  width: 2.278em;
   opacity: 0.5;
   border-radius: 0em 0 0 0em;
   -webkit-transition: opacity 0.3s ease;
@@ -258,7 +256,7 @@
   pointer-events: none;
 }
 .ui.icon.input input {
-  padding-right: 3.1em !important;
+  padding-right: 2.278em !important;
 }
 .ui.icon.input > i.icon:before,
 .ui.icon.input > i.icon:after {
@@ -288,7 +286,7 @@
   left: 0.5em;
 }
 .ui[class*="left icon"].input > input {
-  padding-left: 3.1em !important;
+  padding-left: 2.278em !important;
   padding-right: 1.4em !important;
 }
 
@@ -305,15 +303,14 @@
 /* Adjacent Label */
 .ui.labeled.input > .label {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 auto;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   margin: 0;
   font-size: 1.7em;
 }
 .ui.labeled.input > .label:not(.corner) {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.589em;
+  padding-bottom: 0.589em;
 }
 
 /* Regular Label on Left */
@@ -391,22 +388,19 @@
 .ui.action.input > .button,
 .ui.action.input > .buttons {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 auto;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
 .ui.action.input > .button,
 .ui.action.input > .buttons > .button {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.589em;
+  padding-bottom: 0.589em;
   margin: 0;
 }
 
@@ -470,7 +464,6 @@
 
 .ui.fluid.input {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }

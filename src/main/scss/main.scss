@@ -454,6 +454,10 @@ button,
 [type="reset"],
 [type="image"] {
 
+	&.usa-button-compact{
+		padding: 0.589em 0.689em;
+	}
+
 	&.usa-button-light-blue {
     background-color: #E1F3F8;
 		color: $color-base;
@@ -940,62 +944,62 @@ $usa-btn-huge-width:     17rem;
 Overriding Semantic UI
 ========================================================== */
 
-.usa-content{
-  h4{
-    margin-top: 1.5em !important;
-  }
-}
-
-.usa-search input{
-  font-weight: 700;
-}
-
-.usa-grid{
-  select{
-    font-weight: $font-bold !important;
-    margin:.2em 0 !important;
-  }
-  .usa-accordion-content {
-    label{
-      margin-top: 3rem;
-    }
-    .usa-fieldset-inputs label{
-      margin-top: 0;
-    }
-  }
-  fieldset{
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .usa-button-unstyled,
-  .usa-button-big{
-    font-weight: 700 !important;
-  }
-  .usa-button,
-  .usa-button-primary,
-  .usa-button-primary:visited,
-  .usa-button:visited,
-  [type=button],
-  [type=image],
-  [type=reset],
-  [type=submit],
-  button{
-
-  }
-	.usa-width-one-fourth:nth-child(4n){
-		.usa-button.usa-button-big.usa-button-icon-top{
-			padding-left: 2.9rem;
-			padding-right: 2.9rem;
-		}
-	}
-	.usa-label-circular.usa-label-circular-huge.usa-label-color-primary-darkest{
-		left: -39px !important;
-	}
-	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
-		color: #fff !important;
-	}
-	.uib-datepicker-popup.dropdown-menu{
-		z-index: 2 !important;
-	}
-}
+// .usa-content{
+//   h4{
+//     margin-top: 1.5em !important;
+//   }
+// }
+//
+// .usa-search input{
+//   font-weight: 700;
+// }
+//
+// .usa-grid{
+//   select{
+//     font-weight: $font-bold !important;
+//     margin:.2em 0 !important;
+//   }
+//   .usa-accordion-content {
+//     label{
+//       margin-top: 3rem;
+//     }
+//     .usa-fieldset-inputs label{
+//       margin-top: 0;
+//     }
+//   }
+//   fieldset{
+//     border: none !important;
+//     margin: 0 !important;
+//     padding: 0 !important;
+//   }
+//   .usa-button-unstyled,
+//   .usa-button-big{
+//     font-weight: 700 !important;
+//   }
+//   .usa-button,
+//   .usa-button-primary,
+//   .usa-button-primary:visited,
+//   .usa-button:visited,
+//   [type=button],
+//   [type=image],
+//   [type=reset],
+//   [type=submit],
+//   button{
+//
+//   }
+// 	.usa-width-one-fourth:nth-child(4n){
+// 		.usa-button.usa-button-big.usa-button-icon-top{
+// 			padding-left: 2.9rem;
+// 			padding-right: 2.9rem;
+// 		}
+// 	}
+// 	.usa-label-circular.usa-label-circular-huge.usa-label-color-primary-darkest{
+// 		left: -39px !important;
+// 	}
+// 	a.usa-label-huge.usa-label-color-green.usa-label-attach-top-right.usa-border-radius-all-0:visited{
+// 		color: #fff !important;
+// 	}
+// 	.uib-datepicker-popup.dropdown-menu{
+// 		z-index: 2 !important;
+// 	}
+// }

@@ -25,7 +25,7 @@
   color: #0071bc;
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0em 0.25em 0em 0em;
-  padding: 1em 1.5em 1em;
+  padding: 0.589em 1.5em 0.589em;
   text-transform: none;
   text-shadow: none;
   font-weight: bold;
@@ -33,7 +33,7 @@
   font-style: normal;
   text-align: center;
   text-decoration: none;
-  border-radius: 0rem;
+  border-radius: 0.3rem;
   box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -388,12 +388,10 @@
 
 .ui.labeled.button:not(.icon) {
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
   background: none !important;
@@ -406,11 +404,9 @@
 }
 .ui.labeled.button > .label {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
   margin: 0px 0px 0px -1px !important;
@@ -643,15 +639,15 @@
 
 .ui.compact.buttons .button,
 .ui.compact.button {
-  padding: 0.75em 1.125em 0.75em;
+  padding: 0.44175em 1.125em 0.44175em;
 }
 .ui.compact.icon.buttons .button,
 .ui.compact.icon.button {
-  padding: 0.75em 0.75em 0.75em;
+  padding: 0.44175em 0.44175em 0.44175em;
 }
 .ui.compact.labeled.icon.buttons .button,
 .ui.compact.labeled.icon.button {
-  padding: 0.75em 4.125em 0.75em;
+  padding: 0.44175em 3.303em 0.44175em;
 }
 
 /*-------------------
@@ -705,7 +701,7 @@
 
 .ui.icon.buttons .button,
 .ui.icon.button {
-  padding: 1em 1em 1em;
+  padding: 0.589em 0.589em 0.589em;
 }
 .ui.icon.buttons .button > .icon,
 .ui.icon.button > .icon {
@@ -723,7 +719,7 @@
   background: transparent none !important;
   color: #0071bc !important;
   font-weight: 700;
-  border-radius: 0rem;
+  border-radius: 0.3rem;
   text-transform: none;
   text-shadow: none !important;
   box-shadow: 0px 0px 0px 2px rgba(34, 36, 38, 0.15) inset;
@@ -731,7 +727,7 @@
 .ui.basic.buttons {
   box-shadow: none;
   border: 2px solid rgba(34, 36, 38, 0.15);
-  border-radius: 0rem;
+  border-radius: 0.3rem;
 }
 .ui.basic.buttons .button {
   border-radius: 0em;
@@ -836,7 +832,7 @@
 .ui.labeled.icon.buttons .button,
 .ui.labeled.icon.button {
   position: relative;
-  padding-left: 4.5em !important;
+  padding-left: 3.678em !important;
   padding-right: 1.5em !important;
 }
 
@@ -851,7 +847,7 @@
   border-bottom-left-radius: inherit;
   text-align: center;
   margin: 0em;
-  width: 3em;
+  width: 2.178em;
   background-color: rgba(0, 0, 0, 0.05);
   color: '';
   box-shadow: -1px 0px 0px 0px transparent inset;
@@ -866,7 +862,7 @@
 
 /* Right Labeled */
 .ui[class*="right labeled"].icon.button {
-  padding-right: 4.5em !important;
+  padding-right: 3.678em !important;
   padding-left: 1.5em !important;
 }
 .ui[class*="right labeled"].icon.button > .icon {
@@ -893,20 +889,20 @@
   border-radius: 0em;
 }
 .ui.labeled.icon.buttons .button:first-child > .icon {
-  border-top-left-radius: 0rem;
-  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
 }
 .ui.labeled.icon.buttons .button:last-child > .icon {
-  border-top-right-radius: 0rem;
-  border-bottom-right-radius: 0rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
 }
 .ui.vertical.labeled.icon.buttons .button:first-child > .icon {
   border-radius: 0em;
-  border-top-left-radius: 0rem;
+  border-top-left-radius: 0.3rem;
 }
 .ui.vertical.labeled.icon.buttons .button:last-child > .icon {
   border-radius: 0em;
-  border-bottom-left-radius: 0rem;
+  border-bottom-left-radius: 0.3rem;
 }
 
 /* Fluid Labeled */
@@ -955,7 +951,7 @@
 .ui.buttons .or {
   position: relative;
   width: 0.3em;
-  height: 3em;
+  height: 2.178em;
   z-index: 3;
 }
 .ui.buttons .or:before {
@@ -967,11 +963,11 @@
   left: 50%;
   background-color: #FFFFFF;
   text-shadow: none;
-  margin-top: -1em;
-  margin-left: -1em;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
+  margin-top: -0.7945em;
+  margin-left: -0.7945em;
+  width: 1.589em;
+  height: 1.589em;
+  line-height: 1.589em;
   color: rgba(0, 0, 0, 0.4);
   font-style: normal;
   font-weight: bold;
@@ -1005,10 +1001,10 @@
 
 /* Top / Bottom */
 .ui.attached.top.button {
-  border-radius: 0rem 0rem 0em 0em;
+  border-radius: 0.3rem 0.3rem 0em 0em;
 }
 .ui.attached.bottom.button {
-  border-radius: 0em 0em 0rem 0rem;
+  border-radius: 0em 0em 0.3rem 0.3rem;
 }
 
 /* Left / Right */
@@ -1017,20 +1013,19 @@
   border-left: none;
   text-align: right;
   padding-right: 0.75em;
-  border-radius: 0rem 0em 0em 0rem;
+  border-radius: 0.3rem 0em 0em 0.3rem;
 }
 .ui.right.attached.button {
   display: inline-block;
   text-align: left;
   padding-left: 0.75em;
-  border-radius: 0em 0rem 0rem 0em;
+  border-radius: 0em 0.3rem 0.3rem 0em;
 }
 
 /* Plural */
 .ui.attached.buttons {
   position: relative;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   border-radius: 0em;
@@ -1052,59 +1047,57 @@
 /* Top / Bottom */
 .ui[class*="top attached"].buttons {
   margin-bottom: -1px;
-  border-radius: 0rem 0rem 0em 0em;
+  border-radius: 0.3rem 0.3rem 0em 0em;
 }
 .ui[class*="top attached"].buttons .button:first-child {
-  border-radius: 0rem 0em 0em 0em;
+  border-radius: 0.3rem 0em 0em 0em;
 }
 .ui[class*="top attached"].buttons .button:last-child {
-  border-radius: 0em 0rem 0em 0em;
+  border-radius: 0em 0.3rem 0em 0em;
 }
 .ui[class*="bottom attached"].buttons {
   margin-top: -1px;
-  border-radius: 0em 0em 0rem 0rem;
+  border-radius: 0em 0em 0.3rem 0.3rem;
 }
 .ui[class*="bottom attached"].buttons .button:first-child {
-  border-radius: 0em 0em 0em 0rem;
+  border-radius: 0em 0em 0em 0.3rem;
 }
 .ui[class*="bottom attached"].buttons .button:last-child {
-  border-radius: 0em 0em 0rem 0em;
+  border-radius: 0em 0em 0.3rem 0em;
 }
 
 /* Left / Right */
 .ui[class*="left attached"].buttons {
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   margin-right: 0em;
   margin-left: -1px;
-  border-radius: 0em 0rem 0rem 0em;
+  border-radius: 0em 0.3rem 0.3rem 0em;
 }
 .ui[class*="left attached"].buttons .button:first-child {
   margin-left: -1px;
-  border-radius: 0em 0rem 0em 0em;
+  border-radius: 0em 0.3rem 0em 0em;
 }
 .ui[class*="left attached"].buttons .button:last-child {
   margin-left: -1px;
-  border-radius: 0em 0em 0rem 0em;
+  border-radius: 0em 0em 0.3rem 0em;
 }
 .ui[class*="right attached"].buttons {
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   margin-left: 0em;
   margin-right: -1px;
-  border-radius: 0rem 0em 0em 0rem;
+  border-radius: 0.3rem 0em 0em 0.3rem;
 }
 .ui[class*="right attached"].buttons .button:first-child {
   margin-left: -1px;
-  border-radius: 0rem 0em 0em 0em;
+  border-radius: 0.3rem 0em 0em 0em;
 }
 .ui[class*="right attached"].buttons .button:last-child {
   margin-left: -1px;
-  border-radius: 0em 0em 0em 0rem;
+  border-radius: 0em 0em 0em 0.3rem;
 }
 
 /*-------------------
@@ -1189,7 +1182,6 @@
 .ui.fluid.vertical.buttons,
 .ui.fluid.vertical.buttons > .button {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: auto;
@@ -3218,12 +3210,10 @@
 
 .ui.buttons {
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
   font-size: 0em;
@@ -3246,7 +3236,6 @@
 /* Standard Group */
 .ui.buttons .button {
   -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
   margin: 0em;
@@ -3260,23 +3249,21 @@
 .ui.buttons .button:first-child {
   border-left: none;
   margin-left: 0em;
-  border-top-left-radius: 0rem;
-  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
 }
 .ui.buttons .button:last-child {
-  border-top-right-radius: 0rem;
-  border-bottom-right-radius: 0rem;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
 }
 
 /* Vertical  Style */
 .ui.vertical.buttons {
   display: -webkit-inline-box;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
 }
@@ -3293,7 +3280,7 @@
 .ui.vertical.buttons .small.button:first-child,
 .ui.vertical.buttons .massive.button:first-child,
 .ui.vertical.buttons .huge.button:first-child {
-  border-radius: 0rem 0rem 0px 0px;
+  border-radius: 0.3rem 0.3rem 0px 0px;
 }
 .ui.vertical.buttons .button:last-child,
 .ui.vertical.buttons .mini.button:last-child,
@@ -3303,7 +3290,7 @@
 .ui.vertical.buttons .huge.button:last-child,
 .ui.vertical.buttons .gigantic.button:last-child {
   margin-bottom: 0px;
-  border-radius: 0px 0px 0rem 0rem;
+  border-radius: 0px 0px 0.3rem 0.3rem;
 }
 
 
@@ -3385,6 +3372,15 @@
 .ui.basic.blue.buttons .active.button,
 .ui.basic.blue.active.button {
   background: #FFFFFF !important;
+}
+
+/*--------------
+    Icon Only
+---------------*/
+
+.ui.icon.buttons .button,
+.ui.icon.button {
+  padding: 0.589em 0.689em 0.589em;
 }
 
 

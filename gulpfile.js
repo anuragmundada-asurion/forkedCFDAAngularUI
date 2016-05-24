@@ -141,7 +141,7 @@ gulp.task('cfda', ['index'], function() {
     var cfdaCss = gulp.src('src/main/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         // .pipe(cleanCss({processImport: false}))
-        .pipe(rename('cfda.min.css'))
+        .pipe(rename('cfda.css'))
         .pipe(gulp.dest('target/classes/static/css'));
 
     var js = gulp.src([
@@ -160,7 +160,7 @@ gulp.task('cfda', ['index'], function() {
         .pipe(concat('cfda.js'))
         .pipe(gulp.dest('target/classes/static/js'));
 
-    //index.pipe(inject(cfdaCss, { addRootSlash: true, name: 'cfda', relative: true }))
+    index.pipe(inject(cfdaCss, { addRootSlash: true, name: 'cfda', relative: true }))
     index.pipe(inject(cfdaJs, { addRootSlash: true, name: 'cfda', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });

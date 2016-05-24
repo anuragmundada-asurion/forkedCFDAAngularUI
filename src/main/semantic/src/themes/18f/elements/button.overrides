@@ -72,3 +72,12 @@
 .ui.basic.blue.active.button {
   background: @white !important;
 }
+
+/*--------------
+    Icon Only
+---------------*/
+
+.ui.icon.buttons .button,
+.ui.icon.button {
+  padding: @verticalPadding (@verticalPadding + .1) ( @verticalPadding + @shadowOffset );
+}
