@@ -58,7 +58,7 @@
                 })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
-                .withDOM('<"usa-grid usa-grid-fixed"r> <"usa-grid usa-grid-fixed"t> <"usa-background-gray-lightest usa-grid-fixed" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
+                .withDOM('<"usa-grid usa-grid-fixed"r> <"usa-grid usa-grid-fixed usa-overflow-right"t> <"usa-background-gray-lightest usa-grid-fixed" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Users Found',
@@ -76,7 +76,7 @@
                 DTColumnBuilder.newColumn('assignedAgencies').withTitle('Assigned Agencies').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('email').withTitle('E-mail').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('workPhone').withTitle('Phone').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', '').withOption('width', '100px'),
+                DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', '')
             ];
         }
