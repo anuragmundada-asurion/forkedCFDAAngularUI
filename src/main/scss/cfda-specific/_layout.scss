@@ -50,10 +50,10 @@ hr {
   height: 75px;
 }
 
-footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+// footer {
+//   padding-top: 20px;
+//   padding-bottom: 20px;
+// }
 
 .action-list {
   .action-list-item {
@@ -72,75 +72,75 @@ footer {
   }
 }
 
-.page-heading {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-  }
-  > div {
-    display: inline-block !important;
-    vertical-align: middle;
-    input,
-    select,
-    .usa-button,
-    button {
-      margin: 0;
-      height: 55px;
-      width: 100%;
-      max-width: none;
-    }
-    .usa-button,
-    button {
-      padding: 20px 15px;
-    }
-    input[type=search] {
-      @include placeholder() {
-        font-weight: $font-bold;
-      }
-    }
-  }
-}
+// .page-heading {
+//   margin-top: 25px;
+//   margin-bottom: 25px;
+//   h1, h2, h3, h4, h5, h6 {
+//     margin: 0;
+//   }
+//   > div {
+//     display: inline-block !important;
+//     vertical-align: middle;
+//     input,
+//     select,
+//     .usa-button,
+//     button {
+//       margin: 0;
+//       height: 55px;
+//       width: 100%;
+//       max-width: none;
+//     }
+//     .usa-button,
+//     button {
+//       padding: 20px 15px;
+//     }
+//     input[type=search] {
+//       @include placeholder() {
+//         font-weight: $font-bold;
+//       }
+//     }
+//   }
+// }
 
-.ngdialog-theme-default.ngdialog .ngdialog-content .dialog-large {
-    width:900px !important;
-}
+// .ngdialog-theme-default.ngdialog .ngdialog-content .dialog-large {
+//     width:900px !important;
+// }
 
-
-.fix-select{
-  isteven-multi-select{
-
-      .multiSelect > button{
-          width:100%;
-      }
-      .multiSelect > button:hover{
-          color: #555555;
-          border-bottom: 1px solid #c6c6c6;
-      }
-      div.checkboxLayer button{
-          padding:0px 6px;
-      }
-      div.checkboxLayer button.clearButton{
-          margin: 0px;
-          padding: 0px;
-      }
-      div.checkboxLayer .inputFilter{
-          padding-top:7px;
-          padding-bottom:7px;
-          height: 28px;
-      }
-      div.checkboxLayer div.helperContainer .inputFilter{
-          min-width: 100%;
-      }
-  }
-}
-
-.fix-alignment{
-  div[angular-multi-select]{
-    .ams-button{
-      width: 100% !important;
-      padding: 10px !important;
-      margin-top: 5px !important;
-    }
-  }
-}
+//
+// .fix-select{
+//   isteven-multi-select{
+//
+//       .multiSelect > button{
+//           width:100%;
+//       }
+//       .multiSelect > button:hover{
+//           color: #555555;
+//           border-bottom: 1px solid #c6c6c6;
+//       }
+//       div.checkboxLayer button{
+//           padding:0px 6px;
+//       }
+//       div.checkboxLayer button.clearButton{
+//           margin: 0px;
+//           padding: 0px;
+//       }
+//       div.checkboxLayer .inputFilter{
+//           padding-top:7px;
+//           padding-bottom:7px;
+//           height: 28px;
+//       }
+//       div.checkboxLayer div.helperContainer .inputFilter{
+//           min-width: 100%;
+//       }
+//   }
+// }
+//
+// .fix-alignment{
+//   div[angular-multi-select]{
+//     .ams-button{
+//       width: 100% !important;
+//       padding: 10px !important;
+//       margin-top: 5px !important;
+//     }
+//   }
+// }
