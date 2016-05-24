@@ -64,7 +64,9 @@
                     };
 
                     // Enable popups
-                    $('.usa-popup').popup();
+                    $('.usa-popup').popup({
+                      inline: true
+                    });
 
                 });
 
