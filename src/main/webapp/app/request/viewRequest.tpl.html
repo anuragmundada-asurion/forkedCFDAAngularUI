@@ -5,77 +5,78 @@
     <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
 </div>
 
-
-<div class="usa-grid usa-grid-fixed">
-  <div class="usa-width-one-whole">
-    <h1>View Request Details</h1>
-    <h5>Submitted</h5>
-    <p class="usa-text-small">
-      {{request.getSubmittedDate()}} by <em>{{request.getSubmitter()}}</em>
-    </p>
-  </div>
-</div>
-
-
-<div class="usa-grid usa-grid-fixed">
-  <div class="usa-width-one-half">
-    <label>Program</label>
-    <p>
-      <a ui-sref="reviewProgram({id: request.getProgramId()})">
-        <strong>{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</strong>
-      </a>
-    </p>
-  </div>
-  <div class="usa-width-one-half">
-    <label>Request Type</label>
-    <p><strong>{{request.getFormattedType()}}</strong></p>
-  </div>
-</div>
+<div ng-if="request">
+    <div class="usa-grid usa-grid-fixed">
+      <div class="usa-width-one-whole">
+        <h1>View Request Details</h1>
+        <h5>Submitted</h5>
+        <p class="usa-text-small">
+          {{request.getSubmittedDate()}} by <em>{{request.getSubmitter()}}</em>
+        </p>
+      </div>
+    </div>
 
 
-<div class="usa-grid usa-grid-fixed" ng-if="isTitleRequest()">
-  <div class="usa-width-one-half">
-    <label>Existing Title</label>
-    <p><strong>{{request.getProgramTitle()}}</strong></p>
-  </div>
-  <div class="usa-width-one-half">
-    <label>Requested Title</label>
-    <p><strong>{{getRequestedTitle()}}</strong></p>
-  </div>
-</div>
+    <div class="usa-grid usa-grid-fixed">
+      <div class="usa-width-one-half">
+        <label>Program</label>
+        <p>
+          <a ui-sref="reviewProgram({id: request.getProgramId()})">
+            <strong>{{request.getProgramNumber()}} - {{request.getProgramTitle()}}</strong>
+          </a>
+        </p>
+      </div>
+      <div class="usa-width-one-half">
+        <label>Request Type</label>
+        <p><strong>{{request.getFormattedType()}}</strong></p>
+      </div>
+    </div>
 
 
-<div class="usa-grid usa-grid-fixed" ng-if="isAgencyRequest()">
-  <div class="usa-width-one-half">
-    <label>Existing Organization</label>
-    <p>
-      <strong>
-        <federal-hierarchy-label organization-id="{{request.getProgramOrganizationId()}}"></federal-hierarchy-label>
-      </strong>
-    </p>
-  </div>
-  <div class="usa-width-one-half">
-    <label>Requested Organization</label>
-    <p>
-      <strong>
-        <federal-hierarchy-label organization-id="{{getRequestedOrganization()}}"></federal-hierarchy-label>
-      </strong>
-    </p>
-  </div>
-</div>
+    <div class="usa-grid usa-grid-fixed" ng-if="isTitleRequest()">
+      <div class="usa-width-one-half">
+        <label>Existing Title</label>
+        <p><strong>{{request.getProgramTitle()}}</strong></p>
+      </div>
+      <div class="usa-width-one-half">
+        <label>Requested Title</label>
+        <p><strong>{{getRequestedTitle()}}</strong></p>
+      </div>
+    </div>
 
 
-<div class="usa-grid usa-grid-fixed">
-  <div class="usa-width-one-whole">
-    <label>Reason</label>
-    <p><strong>{{request.getReason()}}</strong></p>
-  </div>
-</div>
+    <div class="usa-grid usa-grid-fixed" ng-if="isAgencyRequest()">
+      <div class="usa-width-one-half">
+        <label>Existing Organization</label>
+        <p>
+          <strong>
+            <federal-hierarchy-label organization-id="{{request.getProgramOrganizationId()}}"></federal-hierarchy-label>
+          </strong>
+        </p>
+      </div>
+      <div class="usa-width-one-half">
+        <label>Requested Organization</label>
+        <p>
+          <strong>
+            <federal-hierarchy-label organization-id="{{getRequestedOrganization()}}"></federal-hierarchy-label>
+          </strong>
+        </p>
+      </div>
+    </div>
 
-<div class="usa-grid usa-grid-fixed">
-  <div class="usa-width-one-whole usa-text-align-right">
-    <a ui-sref="programList({list: 'requests'})" class="usa-button usa-button-gray-light usa-margin-right-3">Return</a>
-    <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" ng-click="approveRequest()">Approve</button>
-    <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" ng-click="rejectRequest()">Reject</button>
-  </div>
+
+    <div class="usa-grid usa-grid-fixed">
+      <div class="usa-width-one-whole">
+        <label>Reason</label>
+        <p><strong>{{request.getReason()}}</strong></p>
+      </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+      <div class="usa-width-one-whole usa-text-align-right">
+        <a ui-sref="programList({list: 'requests'})" class="usa-button usa-button-gray-light usa-margin-right-3">Return</a>
+        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" ng-click="approveRequest()">Approve</button>
+        <button ng-if="!isSubmitRequest() && !isReviseRequest() && hasPermissions()" ng-click="rejectRequest()">Reject</button>
+      </div>
+    </div>
 </div>
