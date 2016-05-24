@@ -168,7 +168,6 @@ CDFA Old Styles
 @import 'cfda-specific/hierarchy-dropdown';
 @import 'cfda-specific/select2/core';
 @import 'cfda-specific/_datepicker';
-@import 'cfda-specific/fix';
 
 .text-center {
   text-align: center;
@@ -180,6 +179,7 @@ body.ngdialog-open {
 
 // These files will be deleted
 
+// @import 'cfda-specific/fix';
 // @import 'cfda-specific/nav';
 // @import 'cfda-specific/menu-bar';
 // @import 'cfda-specific/viewProgram/viewProgram';
