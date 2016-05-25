@@ -25,13 +25,16 @@
             {{ flash.message }}
         </div>
 
-        <div ng-show="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
-            <div class="ui ignored message warning" style="font-size: 1.2rem;">
-                The chosen Agency is outside your user's scope. If you continue and this request is approved,
-                you will no longer have access to this program.<br/>
-                <b>Note:</b> The new agency has a different code ({{ programCode }}) than the existing agency ({{ (oEntity.data) ? oEntity.data.programNumber.split('.')[0] : oEntity.programNumber.split('.')[0] }}).
-                Upon approval of this request, the program will be assigned a new program number.
-            </div>
+        <div class="usa-alert usa-alert-warning" ng-if="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
+          <div class="usa-alert-body">
+            <h3 class="usa-alert-heading">Agency outside of your user's scope</h3>
+            <p class="usa-alert-text">
+              The chosen Agency is outside your user's scope. If you continue and this request is approved,
+              you will no longer have access to this program.<br/>
+              <b>Note:</b> The new agency has a different code ({{ programCode }}) than the existing agency ({{ (oEntity.data) ? oEntity.data.programNumber.split('.')[0] : oEntity.programNumber.split('.')[0] }}).
+              Upon approval of this request, the program will be assigned a new program number.
+            </p>
+          </div>
         </div>
 
         <form name='programRequestForm'>
