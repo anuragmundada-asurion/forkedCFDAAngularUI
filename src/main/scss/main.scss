@@ -368,6 +368,9 @@ p.usa-input-readonly{
   margin: 0.2em 0;
   line-height: normal;
   font-weight: 700;
+	&:empty{
+		height: 4.4rem;
+	}
 }
 
 

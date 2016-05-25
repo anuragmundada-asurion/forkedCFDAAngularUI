@@ -24,49 +24,50 @@
   </div>
 </div>
 
-
-<div class="usa-grid usa-grid-fixed">
-
-  <div class="usa-width-one-half" ng-if="oOrganization.parentPath">
+<div class="usa-grid usa-grid-fixed" ng-if="oOrganization.parentPath">
+  <div class="usa-width-one-whole">
     <label>Parent Agency</label>
     <p class="usa-input-readonly">{{oOrganization.parentPath}}</p>
   </div>
+</div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.name">
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-third">
     <label>Name</label>
     <p class="usa-input-readonly">{{oOrganization.name}}</p>
   </div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.agencyCode">
+  <div class="usa-width-one-third">
     <label>Agency Code</label>
     <p class="usa-input-readonly">{{oOrganization.agencyCode}}</p>
   </div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.acronym">
+  <div class="usa-width-one-third">
     <label>Acronym/Shortname</label>
     <p class="usa-input-readonly">{{oOrganization.acronym}}</p>
   </div>
+</div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.agencyProgramCode">
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-fourth">
     <label>Agency Program Code</label>
     <p class="usa-input-readonly">{{oOrganization.agencyProgramCode}}</p>
   </div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.programNumberLow">
+  <div class="usa-width-one-fourth">
     <label>Program Low Number</label>
     <p class="usa-input-readonly">{{oOrganization.programNumberLow}}</p>
   </div>
 
-  <div class="usa-width-one-half" ng-if="oOrganization.programNumberHigh">
+  <div class="usa-width-one-fourth">
     <label>Program High Number</label>
     <p class="usa-input-readonly">{{oOrganization.programNumberHigh}}</p>
   </div>
 
-  <div class="usa-width-one-half">
+  <div class="usa-width-one-fourth">
     <label>Use Manual FAL Number</label>
     <p class="usa-input-readonly">{{(!oOrganization.programNumberAuto)? 'Yes': 'No'}}</p>
   </div>
-
 </div>
 
 
