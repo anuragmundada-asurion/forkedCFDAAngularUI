@@ -34,7 +34,7 @@
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
                     var downArrow = '';
-                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + childId + '/view"><span class="fa fa-file-text-o"></span></a>';
+                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
                     if (child.action.hasChildren) {
                         downArrow = '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
                         action = action + downArrow + '</td>';
