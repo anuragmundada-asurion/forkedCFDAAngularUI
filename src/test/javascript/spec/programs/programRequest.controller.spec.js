@@ -121,15 +121,16 @@ describe('Unit Tests for Public View FAL:', function () {
 
                 spyOn(scope, 'validateForm');
 
-                scope.submitProgramRequest();
+                var result = scope.submitProgramRequest();
 
+                expect(result).toEqual(false);
                 expect(scope.validateForm).toHaveBeenCalled();
                 expect(scope.submissionInProgress).toBeDefined();
                 expect(scope.organizationError).toBeDefined();
                 expect(scope.organizationError).toEqual(true);
             });
 
-            it('Function submitProgramRequest: programRequest/AgencyRequest Failure (Different Organization)', function () {
+            it('Function submitProgramRequest: programRequest/AgencyRequest Success', function () {
                 $controller('ProgramRequestCtrl', {$scope: scope});
                 scope.organizationId = '1234321';
 
@@ -152,14 +153,45 @@ describe('Unit Tests for Public View FAL:', function () {
 
                 expect($state.go).toHaveBeenCalled();
             });
-        });
 
-//        it('should initialize a program request function', function () {
-//            $controller('ProgramRequestCtrl', { $scope: scope });
-//            
-//            spyOn(scope, 'initModal').and.callThrough();
-//
-//            expect(scope.initModal).toHaveBeenCalled();
-//        });
+            it('Function submitProgramRequest: programRequest/TitleChangeRequest Failure', function () {
+                scope.ngDialogData.action = 'title_request';
+
+                $controller('ProgramRequestCtrl', {$scope: scope});
+
+                spyOn(scope, 'validateForm');
+
+                var result = scope.submitProgramRequest();
+
+                expect(scope.validateForm).toHaveBeenCalled();
+                expect(scope.submissionInProgress).toBeDefined();
+                expect(result).toEqual(false);
+            });
+
+            it('Function submitProgramRequest: programRequest/TitleChangeRequest Success', function () {
+                scope.ngDialogData.action = 'title_request';
+                $controller('ProgramRequestCtrl', {$scope: scope});
+                scope.newTitle = 'new title !';
+
+                spyOn(scope, 'validateForm');
+
+                scope.submitProgramRequest();
+
+                expect(scope.validateForm).toHaveBeenCalled();
+                expect(scope.submissionInProgress).toBeDefined();
+                
+                $httpBackend.flush();
+
+                spyOn($state, 'go');
+
+                expect(scope.flash).toBeDefined();
+                expect(scope.flash.type).toBeDefined();
+                expect(scope.flash.message).toBeDefined();
+
+                $timeout.flush();
+
+                expect($state.go).toHaveBeenCalled();
+            });
+        });
     });
 });
