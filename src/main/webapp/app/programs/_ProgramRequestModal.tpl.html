@@ -25,7 +25,7 @@
             {{ flash.message }}
         </div>
 
-        <div class="field" ng-show="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
+        <div ng-show="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
             <div class="ui ignored message warning" style="font-size: 1.2rem;">
                 The chosen Agency is outside your user's scope. If you continue and this request is approved,
                 you will no longer have access to this program.<br/>
@@ -34,38 +34,50 @@
             </div>
         </div>
 
-        <form name='programRequestForm' class="m-b-2">
-            <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
+        <form name='programRequestForm'>
+
+            <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1">
                 <h4>Existing title</h4>
                 <!-- oEntity.data.title: called from listing ; oEntity.title: calle from editPage -->
-                <p>{{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.title : oEntity.title) : oEntity.program.title }}</p>
+                <p class="usa-font-lead">
+                  {{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.title : oEntity.title) : oEntity.program.title }}
+                </p>
             </div>
-            <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
-                <h4>FAL Number</h4>
+
+            <div ng-show="['title_request', 'title', 'title_reject'].indexOf(ngDialogData.action)!==-1">
+                <label>FAL Number</label>
                 <!-- oEntity.data.title: called from listing ; oEntity.title: calle from editPage -->
-                <p>{{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.programNumber : oEntity.programNumber) : oEntity.program.programNumber }}</p>
+                <p class="usa-input-readonly">
+                  {{ (ngDialogData.action === 'title_request') ? ((oEntity.data) ? oEntity.data.programNumber : oEntity.programNumber) : oEntity.program.programNumber }}
+                </p>
             </div>
-            <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1" class="field">
-                <h4>New title</h4>
-                <p>{{ stringToJson(oEntity.data).title }}</p>
+
+            <div ng-if="['title', 'title_reject'].indexOf(ngDialogData.action)!==-1">
+                <label>New title</label>
+                <p class="usa-input-readonly">{{ stringToJson(oEntity.data).title }}</p>
             </div>
-            <div class="field" ng-show="ngDialogData.action === 'title_request'">
-                <label for="newTitle">New Title <span class="required" >*</span></label>
+
+            <div ng-show="ngDialogData.action === 'title_request'" ng-class=" programRequestForm.newTitle.$dirty && programRequestForm.newTitle.$error.required ? 'usa-input-error' : '' ">
+                <label for="newTitle" ng-class=" programRequestForm.newTitle.$dirty && programRequestForm.newTitle.$error.required ? 'usa-input-error-label' : '' ">New Title <span class="required" >*</span></label>
+                <span class="usa-input-error-message" role="alert" ng-show="programRequestForm.newTitle.$dirty && programRequestForm.newTitle.$error.required">
+                  You must provide a new Title of this request.
+                </span>
                 <input id="newTitle" name="newTitle" ng-model="newTitle" type="text" required />
-                <div ng-show="form.error || programRequestForm.newTitle.$dirty">
-                    <span ng-show="programRequestForm.newTitle.$error.required">You must provide a new Title of this request.</span>
-                </div>
             </div>
-            <div class="field" ng-show="ngDialogData.action === 'agency_request'">
-                <h4 class="m-t-1">Existing Agency</h4>
+
+
+            <div ng-show="ngDialogData.action === 'agency_request'">
+                <h4>Existing Agency</h4>
                 <federal-hierarchy-label organization-id="{{ (oEntity.data) ? oEntity.data.organizationId : oEntity.organizationId }}"></federal-hierarchy-label>
             </div>
-            <div class="field" ng-show="ngDialogData.action === 'agency_request'">
-                <h4 class="m-t-3">New Agency <span class="required" >*</span></h4>
+
+            <div ng-show="ngDialogData.action === 'agency_request'">
+                <h4>New Agency <span class="required" >*</span></h4>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
                 <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true" set-selected-option="false"></federal-hierarchy-inputs>
                 <span ng-show="organizationError && organizationError === true">You must provide a new agency.</span>
             </div>
+
             <div class="field" ng-if="ngDialogData.action === 'agency'">
                 <!-- Load configuration & program code for the requested organization-->
                 <federal-hierarchy-inputs class="hidden" organization-id="stringToJson(oEntity.data).organizationId" organization-configuration="$parent.organizationConfiguration" program-code="$parent.programCode"></federal-hierarchy-inputs>
@@ -104,20 +116,23 @@
                     <span ng-show="programRequestForm.openAward.$error.required">You must check this field of this request.</span>
                 </div>
             </div>
-            <div class="field">
-                <h4 class="m-t-3">Reason <span class="required" >*</span></h4>
+
+
+            <div ng-class="programRequestForm.reason.$dirty && programRequestForm.reason.$error.required ? 'usa-input-error' : ''">
+                <label for="reason" ng-class="programRequestForm.reason.$dirty && programRequestForm.reason.$error.required ? 'usa-input-error-label' : ''">Reason <span class="required" >*</span></label>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                <textarea id="reason" name="reason" ng-model="reason" style="height: 10rem;" required></textarea>
-                <div ng-show="form.error || programRequestForm.reason.$dirty">
-                    <span ng-show="programRequestForm.reason.$error.required">You must provide Reason of this request.</span>
-                </div>
+                <span class="usa-input-error-message" role="alert" ng-show="programRequestForm.reason.$dirty && programRequestForm.reason.$error.required">
+                  You must provide Reason of this request.
+                </span>
+                <textarea id="reason" name="reason" ng-model="reason" required></textarea>
             </div>
+
+
         </form>
 
+        <button class="usa-button-gray-light" ng-class="submissionInProgress ? 'usa-button-disabled' : ''" type="button" ng-click="closeModal();">Cancel</button>
+        <button ng-class="submissionInProgress ? 'usa-button-disabled' : ''" type="button" ng-click="submitProgramRequest()">Submit</button>
 
-
-        <button class="ui button" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="closeModal();">Cancel</button>
-        <button class="ui button primary" ng-class="submissionInProgress ? 'disabled' : ''" type="button" ng-click="submitProgramRequest()">Submit</button>
     </div>
     <div ng-if="!modal.show">
         <div class="ui ignored message error">{{ modal.message }}</div>

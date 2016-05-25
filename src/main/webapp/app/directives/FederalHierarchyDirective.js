@@ -17,6 +17,7 @@
                         FederalHierarchyService.getFullLabelPathFederalHierarchyById(scope.organizationId, true, false, function (organizationNames) {
                             scope.organizationName = organizationNames;
                         }, function (error) {
+                            scope.organizationNameError = true;
                             if (error['code'] == '404') {
                                 scope.organizationName = "Organization Not Found";
                             } else {
@@ -26,7 +27,8 @@
                     }
                 });
             },
-            template: '<img ng-show="!organizationName" style="max-width: 10%;" src="/img/img_cfda/loading.svg" />{{ organizationName }}'
+            template: '<img ng-show="!organizationName" style="max-width: 10%;" src="/img/img_cfda/loading.svg" /><div class="usa-alert usa-alert-error" role="alert" ng-if="organizationNameError"><div class="usa-alert-body"><h3 class="usa-alert-heading">Existing Agency Error</h3><p class="usa-alert-text">{{ organizationName }}</p></div></div><p class="usa-font-lead" ng-if="!organizationNameError">{{ organizationName }}</p>'
+
         };
     }])
     .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'ROLES', function(FederalHierarchyService, UserService, AuthorizationService, ROLES){
@@ -360,33 +362,37 @@
             },
             template:
                 "<div class='organization-container'>"+
+                    "<div class='usa-alert usa-alert-error' role='alert' ng-if='error'>" +
+                      "<div class='usa-alert-body'>" +
+                        "<h3 class='usa-alert-heading'>New Agency Error</h3>" +
+                        "<p class='usa-alert-text'>{{ error }}</p>" +
+                      "</div>" +
+                    "</div>" +
                     "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+", "+JSON.stringify(ROLES.OMB_ANALYST)+"]'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='organization-container-form' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
-                        "<div class='input-field usa-width-one-fourth'>"+
-                            "<h5 class='m-t-2'><label for='jqDepartmentFH'>Department</label></h5>"+
+                    "<div class='usa-grid-full' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
+                        "<div class='usa-width-one-third'>"+
+                            "<label for='jqDepartmentFH'>Department</label>"+
                             "<select id='jqDepartmentFH' name='department' class='usa-form-medium' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
-                        "<div class='input-field usa-width-one-fourth'>"+
-                            "<h5 class='m-t-2'><label for='jqAgencyFH'>Agency</label></h5>"+
+                        "<div class='usa-width-one-third'>"+
+                            "<label for='jqAgencyFH'>Agency</label>"+
                             "<select id='jqAgencyFH' name='agency' class='usa-form-medium' ng-change='setOrganizationId(\"agency\")' ng-model='selectedAgencyId' ng-options='item.elementId as item.name for item in dictionary.aAgency'>"+
                                 "<option value=''>Please select an Agency</option>"+
                             "</select>"+
 
                         "</div>"+
-                        "<div class='input-field usa-width-one-fourth'>"+
-                            "<h5 class='m-t-2'><label for='jqOfficeFH'>Office</label></h5>"+
+                        "<div class='usa-width-one-third'>"+
+                            "<label for='jqOfficeFH'>Office</label>"+
                             "<select id='jqOfficeFH' name='office' class='usa-form-medium' ng-change='setOrganizationId(\"office\")' ng-model='selectedOfficeId' ng-options='item.elementId as item.name for item in dictionary.aOffice'>"+
                                 "<option value=''>Please select an Office</option>"+
                             "</select>"+
-
                         "</div>"+
                     "</div>"+
-                    "{{ error }}"+
                 "</div>"
         };
     }]);

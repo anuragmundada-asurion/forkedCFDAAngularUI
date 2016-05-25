@@ -334,6 +334,7 @@ select{
 }
 select{
 	border: 2px solid $color-primary;
+	padding-right: 3.5rem;
 }
 
 label {
@@ -352,6 +353,13 @@ input[type="radio"] + label {
 input[disabled]{
 	border: 1px solid #ccc;
 	color: #bbb;
+}
+
+.usa-input-error {
+  textarea {
+    border: 3px solid $color-secondary-dark;
+    width: calc(100% + 1.5rem);
+  }
 }
 
 p.usa-input-readonly{
@@ -1062,4 +1070,8 @@ $usa-btn-huge-width:     17rem;
 .ngdialog.ngdialog-theme-cfda .ngdialog-close:hover:before,
 .ngdialog.ngdialog-theme-cfda .ngdialog-close:active:before {
   color: #777;
+}
+
+.ngdialog.ngdialog-theme-cfda .usa-input-error{
+	position: static;
 }
