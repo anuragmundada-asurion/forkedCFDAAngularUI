@@ -56,16 +56,17 @@
             $scope.$watch('searchKeyword', function () {
                 if ($scope.dtInstance.DataTable) {
                     $scope.dtData = filterFilter($scope.dtData_total, $scope.searchKeyword);
-                    $scope.dtInstance.DataTable.ajax.reload();
+                    //$scope.dtInstance.DataTable.ajax.reload();
                 }
                 //if search is empty, then show only top level data
                 if ($scope.dtInstance.DataTable && $scope.searchKeyword == '') {
-                    $scope.dtData = $scope.dtData_topLevel;
-                    $scope.dtInstance.DataTable.ajax.reload();
+                    $scope.dtData = $scope.dtData_topLevel; //will already trigger reload via watch below
+                    //$scope.dtInstance.DataTable.ajax.reload();
                 }
             }, true);
 
             $scope.$watch('dtData', function () {
+                $scope.totalCount = $scope.dtData.length;
                 if ($scope.dtData) {
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
@@ -120,6 +121,7 @@
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('order', [[1, 'asc']])
                 .withOption('searching', false)
+                .withOption('info', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
@@ -134,8 +136,7 @@
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
-                    'lengthMenu': 'Showing _MENU_ entries',
-                    'info': ' of _TOTAL_ entries'
+                    'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
                 });
             $scope.dtColumns = [
 
