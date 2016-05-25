@@ -126,7 +126,7 @@
                 .withOption('ajax', $scope.loadOrganizations)
                 .withOption('bSortClasses', false)
                 .withOption('rowCallback', function (row) {
-                    $(row).click(function () {
+                    $(row).unbind('click').click(function (e) {
                         $scope.rowClicked(this.id);
                     });
                     $compile(row)($scope);
