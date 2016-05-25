@@ -81,7 +81,7 @@ describe('Unit Tests for Public View FAL:', function () {
                 });
             });
 
-            it('Function initModal', function () {
+            it('Function initModal: Program request', function () {
                 $controller('ProgramRequestCtrl', {$scope: scope});
 
                 expect(scope.ngDialogData.typeEntity).toBeDefined();
@@ -191,6 +191,33 @@ describe('Unit Tests for Public View FAL:', function () {
                 $timeout.flush();
 
                 expect($state.go).toHaveBeenCalled();
+            });
+
+            describe('Controller Program Request: Testing Function', function () {
+
+                beforeEach(function(){
+                    scope.ngDialogData = {
+                        oEntity: {
+                            id: 'bde3daabaf5f41ea986e6b421f78',
+                            organizationId: '123321',
+                            reason: 'Need approval!'
+                        },
+                        typeEntity: 'program_request_action',
+                        action: 'agency'
+                    };
+                });
+
+                it('Function initModal: Program Request Action', function () {
+
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+
+                    expect(scope.ngDialogData.typeEntity).toBeDefined();
+                    expect(scope.ngDialogData.typeEntity).toEqual('program_request_action');
+                    expect(scope.ngDialogData.action).toBeDefined();
+                    expect(scope.ngDialogData.action).toEqual('agency');
+                    expect(scope.reason).toBeDefined();
+                    expect(scope.reason).toEqual(scope.ngDialogData.oEntity.reason);
+                });
             });
         });
     });
