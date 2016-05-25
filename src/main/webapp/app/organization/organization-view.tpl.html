@@ -1,95 +1,78 @@
+
 <primary-nav-bar></primary-nav-bar>
 
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-whole">
 
-<div class="ui fixed container">
+    <h1>View Organization</h1>
 
-    <h1 style="margin-top:30px;">View Organization</h1>
+    <ul class="usa-horizontal-list usa-text-small">
+      <li>
+        <h5>Created</h5>
+        <p>
+          April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
+        </p>
+      </li>
+      <li>
+        <h5>Modified</h5>
+        <p>
+          April 18, 2016 8:00 am by <em>Michael Stephenson</em>
+        </p>
+      </li>
+    </ul>
 
-    <div class="ui small horizontal list">
+  </div>
+</div>
 
-        <div class="item">
-            <div class="content">
-                <div class="header">Created</div>
-                April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
-            </div>
-        </div>
 
-        <div class="item">
-            <div class="content">
-                <div class="header">Modified</div>
-                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
-            </div>
-        </div>
+<div class="usa-grid usa-grid-fixed">
 
-    </div>
+  <div class="usa-width-one-half" ng-if="oOrganization.parentPath">
+    <label>Parent Agency</label>
+    <p class="usa-input-readonly">{{oOrganization.parentPath}}</p>
+  </div>
 
-    <div class="ui form" style="margin-bottom: 50px;">
+  <div class="usa-width-one-half" ng-if="oOrganization.name">
+    <label>Name</label>
+    <p class="usa-input-readonly">{{oOrganization.name}}</p>
+  </div>
 
-        <div class="three fields" style="margin-bottom: 30px;">
+  <div class="usa-width-one-half" ng-if="oOrganization.agencyCode">
+    <label>Agency Code</label>
+    <p class="usa-input-readonly">{{oOrganization.agencyCode}}</p>
+  </div>
 
-            <div ng-if="oOrganization.parentPath" class="field">
-                <label>Parent Agency</label>
+  <div class="usa-width-one-half" ng-if="oOrganization.acronym">
+    <label>Acronym/Shortname</label>
+    <p class="usa-input-readonly">{{oOrganization.acronym}}</p>
+  </div>
 
-                <p>{{oOrganization.parentPath}}</p>
-            </div>
+  <div class="usa-width-one-half" ng-if="oOrganization.agencyProgramCode">
+    <label>Agency Program Code</label>
+    <p class="usa-input-readonly">{{oOrganization.agencyProgramCode}}</p>
+  </div>
 
-            <div class="field">
-                <label>Name</label>
+  <div class="usa-width-one-half" ng-if="oOrganization.programNumberLow">
+    <label>Program Low Number</label>
+    <p class="usa-input-readonly">{{oOrganization.programNumberLow}}</p>
+  </div>
 
-                <p>{{oOrganization.name}}</p>
-            </div>
+  <div class="usa-width-one-half" ng-if="oOrganization.programNumberHigh">
+    <label>Program High Number</label>
+    <p class="usa-input-readonly">{{oOrganization.programNumberHigh}}</p>
+  </div>
 
-            <div class="field">
-                <label>Agency Code</label>
-
-                <p>{{oOrganization.agencyCode}}</p>
-            </div>
-
-            <div class="field">
-                <label>Acronym/Shortname</label>
-
-                <p>{{oOrganization.acronym}}</p>
-            </div>
-
-        </div>
-
-        <div class="four fields" style="margin:0px 0px 30px 0px;">
-
-            <div class="field">
-                <label>Agency Program Code</label>
-
-                <p>{{oOrganization.agencyProgramCode}}</p>
-            </div>
-
-            <div class="field">
-                <label>Program Low Number</label>
-
-                <p>{{oOrganization.programNumberLow}}</p>
-            </div>
-
-            <div class="field">
-                <label>Program High Number</label>
-
-                <p>{{oOrganization.programNumberHigh}}</p>
-            </div>
-
-            <div class="field">
-                <label>Use Manual FAL Number</label>
-
-                <p>{{(!oOrganization.programNumberAuto)? 'Yes': 'No'}}</p>
-            </div>
-
-        </div>
-
-        <a ui-sref="organizationList" class="ui large button">Return</a>
-
-        <a class="ui large primary button" ui-sref="editOrganization({id: id})">Edit </a>
-
-    </div>
+  <div class="usa-width-one-half">
+    <label>Use Manual FAL Number</label>
+    <p class="usa-input-readonly">{{(!oOrganization.programNumberAuto)? 'Yes': 'No'}}</p>
+  </div>
 
 </div>
 
 
-
-
-
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+  <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
+    <a class="usa-button usa-button-gray-light" ui-sref="organizationList">Return</a>
+    <a class="usa-button" ui-sref="editOrganization({id: id})">Edit</a>
+  </div>
+</div>

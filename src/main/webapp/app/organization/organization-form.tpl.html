@@ -1,88 +1,77 @@
+
 <primary-nav-bar></primary-nav-bar>
 
-<div class="ui fixed container">
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-whole">
+    <h1>Edit Organization</h1>
 
-    <h1 style="margin-top:30px;">Edit Organization</h1>
-
-    <div class="usa-grid-full" style="clear: both;">
-        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
-            <div class="usa-alert-body">
-                <p class="usa-alert-text">{{ flash.message }}</p>
-            </div>
-        </div>
+    <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+      <div class="usa-alert-body">
+        <p class="usa-alert-text">{{ flash.message }}</p>
+      </div>
     </div>
 
-    <div class="ui small horizontal list">
-
-        <div class="item">
-            <div class="content">
-                <div class="header">Created</div>
-                April 20, 2009 12:48 pm
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="content">
-                <div class="header">Modified</div>
-                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
-            </div>
-        </div>
-
-    </div>
-
-    <form class="ui form" style="margin-bottom: 50px;">
-
-        <div class="three fields" style="margin-bottom: 30px;">
-
-            <div class="disabled field">
-                <label for="name">Name</label>
-                <input type="text" id="name" ng-model="oOrganization.name">
-            </div>
-
-            <div class="disabled field">
-                <label for="agencycode">Agency Code</label>
-                <input type="text" id="agencycode" ng-model="oOrganization.agencyCode">
-            </div>
-
-            <div class="disabled field">
-                <label for="acronym">Acronym/Shortname</label>
-                <input type="text" id="acronym" ng-model="oOrganization.acronym" disabled="">
-            </div>
-
-        </div>
-
-
-        <div class="four fields" style="margin:40px 0px 30px 0px;">
-
-            <div class="disabled field">
-                <label for="agencyProgramCode">Agency Program Code</label>
-                <input type="text" id="agencyProgramCode" ng-model="oOrganization.agencyProgramCode">
-            </div>
-
-            <div class="field">
-                <label for="programNumberLow">Program Low Number</label>
-                <input type="text" id="programNumberLow" ng-model="oOrganization.programNumberLow">
-            </div>
-
-            <div class="field">
-                <label for="programNumberHigh">Program High Number</label>
-                <input type="text" id="programNumberHigh" ng-model="oOrganization.programNumberHigh">
-            </div>
-
-            <div class="field">
-                <label for="programNumberAuto">Use Manual FAL Number</label>
-                <select id="programNumberAuto" ng-options="item as item.label for item in items track by item.value" ng-model="selected"></select>
-            </div>
-
-        </div>
-
-        <a ui-sref="organizationList" class="ui large button">Cancel</a>
-        <button class="ui primary large button" ng-click="saveFhConfiguration()">Save</button>
-
-
-    </form>
-
+    <ul class="usa-horizontal-list usa-text-small">
+      <li>
+        <h5>Created</h5>
+        <p>
+          April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
+        </p>
+      </li>
+      <li>
+        <h5>Modified</h5>
+        <p>
+          April 18, 2016 8:00 am by <em>Michael Stephenson</em>
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
 
 
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-third">
+    <label for="name">Name</label>
+    <input type="text" id="name" ng-model="oOrganization.name" disabled="">
+  </div>
 
+  <div class="usa-width-one-third">
+    <label for="agencycode">Agency Code</label>
+    <input type="text" id="agencycode" ng-model="oOrganization.agencyCode" disabled="">
+  </div>
+
+  <div class="usa-width-one-third">
+    <label for="acronym">Acronym/Shortname</label>
+    <input type="text" id="acronym" ng-model="oOrganization.acronym" disabled="">
+  </div>
+</div>
+
+
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-fourth">
+    <label for="agencyProgramCode">Agency Program Code</label>
+    <input type="text" id="agencyProgramCode" ng-model="oOrganization.agencyProgramCode" disabled="">
+  </div>
+
+  <div class="usa-width-one-fourth">
+    <label for="programNumberLow">Program Low Number</label>
+    <input type="text" id="programNumberLow" ng-model="oOrganization.programNumberLow">
+  </div>
+
+  <div class="usa-width-one-fourth">
+    <label for="programNumberHigh">Program High Number</label>
+    <input type="text" id="programNumberHigh" ng-model="oOrganization.programNumberHigh">
+  </div>
+
+  <div class="usa-width-one-fourth">
+    <label for="programNumberAuto">Use Manual FAL Number</label>
+    <select id="programNumberAuto" ng-options="item as item.label for item in items track by item.value" ng-model="selected"></select>
+  </div>
+</div>
+
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+  <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
+    <a class="usa-button usa-button-gray-light" ui-sref="organizationList">Cancel</a>
+    <button class="usa-button" ng-click="saveFhConfiguration()">Save</button>
+  </div>
+</div>

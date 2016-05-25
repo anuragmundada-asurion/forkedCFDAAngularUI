@@ -360,6 +360,19 @@ input[type="radio"] + label {
 	font-weight: $font-bold;
 }
 
+input[disabled]{
+	border: 1px solid #ccc;
+	color: #bbb;
+}
+
+p.usa-input-readonly{
+	border: 1px solid #ccc;
+  padding: 1rem 0.7em;
+  margin: 0.2em 0;
+  line-height: normal;
+  font-weight: 700;
+}
+
 
 /* Labels
 ---------------------------------------------------------- */
