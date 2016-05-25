@@ -72,7 +72,7 @@ describe('Unit Tests for Public View FAL:', function () {
                     results: [{}]
                 });
 
-                //program has request
+                //submit program request
                 $httpBackend.whenPOST(/\/api\/programRequests/i).respond({});
 
                 inject(function(_$state_, _$timeout_){
@@ -205,9 +205,20 @@ describe('Unit Tests for Public View FAL:', function () {
                         typeEntity: 'program_request_action',
                         action: 'agency'
                     };
+
+                    //submit program request
+                    $httpBackend.whenPOST(/\/api\/programRequestActions/i).respond({});
+
+                    //get next available program number
+                    $httpBackend.whenGET(/\/api\/programs\/nextAvailableProgramNumber\?organizationId=[\w]+/i).respond({
+                        nextAvailableCode: 123,
+                        isProgramNumberOutsideRange: true
+                    });
                 });
 
                 it('Function initModal: Program Request Action', function () {
+
+                    scope.organizationConfiguration = { programNumberAuto: false };
 
                     $controller('ProgramRequestCtrl', {$scope: scope});
 
@@ -217,6 +228,82 @@ describe('Unit Tests for Public View FAL:', function () {
                     expect(scope.ngDialogData.action).toEqual('agency');
                     expect(scope.reason).toBeDefined();
                     expect(scope.reason).toEqual(scope.ngDialogData.oEntity.reason);
+
+                    expect(scope.isProgramNumberUnique).toBeDefined();
+                    expect(scope.isProgramNumberUnique).toEqual(false);
+                    expect(scope.isProgramNumberValid).toBeDefined();
+                    expect(scope.isProgramNumberValid).toEqual(false);
+                });
+
+                it('Function initModal: Program Request Action / Agency Change Request -> Maunal (Failure)', function () {
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+                    
+                    scope.organizationConfiguration = { programNumberAuto: false };
+                    
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+
+                    spyOn(scope, 'validateForm');
+
+                    var result = scope.submitProgramRequest();
+
+                    expect(scope.validateForm).toHaveBeenCalled();
+                    expect(scope.submissionInProgress).toBeDefined();
+                    expect(result).toEqual(false);
+                });
+
+                it('Function initModal: Program Request Action / Agency Change Request -> Maunal (Success)', function () {
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+
+                    scope.isProgramNumberUnique = true;
+                    scope.isProgramNumberValid = true;
+                    scope.organizationConfiguration = { programNumberAuto: false };
+
+                    spyOn(scope, 'validateForm');
+
+                    scope.submitProgramRequest();
+
+                    expect(scope.validateForm).toHaveBeenCalled();
+                    expect(scope.submissionInProgress).toBeDefined();
+
+                    $httpBackend.flush();
+                    spyOn($state, 'go');
+
+                    expect(scope.flash).toBeDefined();
+                    expect(scope.flash.type).toBeDefined();
+                    expect(scope.flash.message).toBeDefined();
+
+                    $timeout.flush();
+
+                    expect($state.go).toHaveBeenCalled();
+                });
+
+                it('Function initModal: Program Request Action / Agency Change Request -> Auto', function () {
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+
+                    scope.organizationConfiguration = { programNumberAuto: true };
+                    scope.oEntity.data = "{\"organizationId\": \"1234321\"}";
+                    scope.getNextAvailableProgramNumber();
+                    spyOn(scope, 'validateForm');
+
+                    scope.submitProgramRequest();
+
+                    expect(scope.validateForm).toHaveBeenCalled();
+                    expect(scope.submissionInProgress).toBeDefined();
+
+                    $httpBackend.flush();
+                    spyOn($state, 'go');
+
+                    expect(scope.flash).toBeDefined();
+                    expect(scope.flash.type).toBeDefined();
+                    expect(scope.flash.message).toBeDefined();
+                    expect(scope.programNumber).toBeDefined();
+                    expect(scope.isProgramNumberOutsideRange).toBeDefined();
+                    expect(scope.programNumber).toEqual(123);
+                    expect(scope.isProgramNumberOutsideRange).toEqual(true);
+
+                    $timeout.flush();
+
+                    expect($state.go).toHaveBeenCalled();
                 });
             });
         });
