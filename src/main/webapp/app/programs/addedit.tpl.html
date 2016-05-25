@@ -330,7 +330,7 @@
 
                         <isteven-multi-select
                             max-labels="1"
-                            input-model="dictionary.aFunctionalCode"    
+                            input-model="dictionary.aFunctionalCode"
                             output-model="gsavm.program.functionalCodes"
                             button-label="displayValue"
                             item-label="displayValue"
@@ -341,7 +341,7 @@
                             helper-elements="all none filter"
                         >
                         </isteven-multi-select>
-                        
+
 <!--                        <div>
                             <span ng-show="$ctrl.parentVm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
                         </div>-->
@@ -405,7 +405,7 @@
 
                             <isteven-multi-select
                                 max-labels="1"
-                                input-model="dictionary.aApplicantEligibility"    
+                                input-model="dictionary.aApplicantEligibility"
                                 output-model="gsavm.program.eligibility.applicant.types"
                                 button-label="displayValue"
                                 item-label="displayValue"
@@ -438,7 +438,7 @@
 
                             <isteven-multi-select
                                 max-labels="1"
-                                input-model="dictionary.aAssistanceUsageType"    
+                                input-model="dictionary.aAssistanceUsageType"
                                 output-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"
                                 button-label="displayValue"
                                 item-label="displayValue"
@@ -468,7 +468,7 @@
                     <div class="input-field">
                         <div class="usa-grid-full">
                             <label>Beneficiary Eligibility<span class="required">*</span></label>
-                            
+
                             <ul class="usa-unstyled-list action-list">
                                 <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.beneficiary.types">
                                     <div class="item-btn-group">
@@ -482,7 +482,7 @@
 
                             <isteven-multi-select
                                 max-labels="1"
-                                input-model="dictionary.aBeneficiaryEligibility"    
+                                input-model="dictionary.aBeneficiaryEligibility"
                                 output-model="gsavm.program.eligibility.beneficiary.types"
                                 button-label="displayValue"
                                 item-label="displayValue"
@@ -1867,7 +1867,8 @@
                         || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag
                         || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0 
                         || requiredFieldsMissing('ProgramNumber')
-                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)">
+                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false &&
+                                (gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true))">
                 <table ng-hide="gsavm.IsVisible">
                     <tr>
                         <td style="vertical-align:top;border:none">
@@ -1901,12 +1902,13 @@
                         || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
                         || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0
                         || requiredFieldsMissing('ProgramNumber')
-                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)">
+                        || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false &&
+                                (gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true))">
                                 <h4>General Information</h4>
                                 <a ng-click="uxForm.goToBookmarkByText('010 Program Title')" ng-show="!gsavm.program.title" trigger-click-on-enter>010 Program Title is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && gsavm.isProgramNumberUnique === false)" trigger-click-on-enter>The FAL number has already been used. Please enter a different FAL number.<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.program.programNumber)" trigger-click-on-enter>Program Number is required<br/></a>
-                                <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="gsavm.program.programNumber && requiredFieldsMissing('ProgramNumber')" trigger-click-on-enter>Program number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.<br/></a>
+                                <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="gsavm.program.programNumber && gsavm.isProgramNumberOutsideRange === true" trigger-click-on-enter>Program number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
                                 <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
