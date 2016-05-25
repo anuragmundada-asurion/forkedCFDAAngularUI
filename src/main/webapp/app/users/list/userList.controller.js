@@ -19,10 +19,6 @@
                     $scope.totalCount = total;
                 })
                 .withOption('initComplete', function(){
-                    $(".jqUsersContactInfo").popup({
-                        on: 'click',
-                        position: 'left center'
-                    });
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -64,6 +60,13 @@
                         }
                     );
                 })
+                .withOption('rowCallback', function(row, data, index) {
+                    $(row).find('.jqUsersContactInfo').popup({
+                        on: 'click',
+                        position: 'left center',
+                        html: '<div class="ui"><div class="header">Contact Info</div><div class="content"><strong>E-mail:</strong> ' + (data['email'] ? data['email'] : 'Not Available') + '<br/><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div></div>'
+                    });
+                })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
@@ -83,7 +86,7 @@
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo" data-html="<div class=\'ui\'><div class=\'header\'>Contact Info</div><div class=\'content\'><strong>E-mail:</strong> ' + data['email'] + '<br/><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div></div>"></i>';
+                        var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo"></i>';
                         return infoIcon + data['name'];
                     }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
