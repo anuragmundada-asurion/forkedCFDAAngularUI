@@ -26,7 +26,7 @@
         </div>
 
         <div class="usa-alert usa-alert-warning" ng-if="ngDialogData.action === 'agency_request' && hasDepartmentChanged">
-          <div class="usa-alert-body">
+          <div class="usa-alert-body" style="font-size: 1.2rem;">
             <h3 class="usa-alert-heading">Agency outside of your user's scope</h3>
             <p class="usa-alert-text">
               The chosen Agency is outside your user's scope. If you continue and this request is approved,
@@ -127,7 +127,7 @@
                 <span class="usa-input-error-message" role="alert" ng-show="programRequestForm.reason.$dirty && programRequestForm.reason.$error.required">
                   You must provide Reason of this request.
                 </span>
-                <textarea id="reason" name="reason" ng-model="reason" required></textarea>
+                <textarea style="height: 100px;" id="reason" name="reason" ng-model="reason" required></textarea>
             </div>
 
 
