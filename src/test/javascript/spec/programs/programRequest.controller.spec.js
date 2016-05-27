@@ -312,6 +312,44 @@ describe('Unit Tests for Public View FAL:', function () {
 
                     expect($state.go).toHaveBeenCalled();
                 });
+
+                it('Function Program Request Action: Archive approval Failure', function () {
+                    scope.ngDialogData.action = 'archive';
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+
+                    spyOn(scope, 'validateForm');
+
+                    var result = scope.submitProgramRequest();
+
+                    expect(scope.validateForm).toHaveBeenCalled();
+                    expect(scope.submissionInProgress).toBeDefined();
+                    expect(result).toEqual(false);
+                });
+
+                it('Function Program Request Action: Archive approval Success', function () {
+                    scope.ngDialogData.action = 'archive';
+                    $controller('ProgramRequestCtrl', {$scope: scope});
+                    scope.openAward = 'yes';
+
+                    spyOn(scope, 'validateForm');
+
+                    scope.submitProgramRequest();
+
+                    expect(scope.validateForm).toHaveBeenCalled();
+                    expect(scope.submissionInProgress).toBeDefined();
+
+                    $httpBackend.flush();
+
+                    spyOn($state, 'go');
+
+                    expect(scope.flash).toBeDefined();
+                    expect(scope.flash.type).toBeDefined();
+                    expect(scope.flash.message).toBeDefined();
+
+                    $timeout.flush();
+
+                    expect($state.go).toHaveBeenCalled();
+                });
             });
         });
     });
