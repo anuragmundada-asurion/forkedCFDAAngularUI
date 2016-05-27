@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Unit Tests for Public View FAL:', function () {
+describe('Unit Tests for Program Request Controller:', function () {
     beforeEach(module('app'));
 
     //dependencies to be injected
