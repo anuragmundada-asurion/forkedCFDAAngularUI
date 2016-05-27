@@ -74,6 +74,6 @@
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
   <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
     <a class="usa-button usa-button-gray-light" ui-sref="organizationList">Return</a>
-    <a class="usa-button" ui-sref="editOrganization({id: id})">Edit</a>
+    <a has-access="{{[PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG]}}" class="usa-button" ui-sref="editOrganization({id: id})">Edit</a>
   </div>
 </div>
