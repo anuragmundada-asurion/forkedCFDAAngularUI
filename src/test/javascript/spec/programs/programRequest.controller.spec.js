@@ -214,6 +214,11 @@ describe('Unit Tests for Public View FAL:', function () {
                         nextAvailableCode: 123,
                         isProgramNumberOutsideRange: true
                     });
+
+                    //is program number unique
+                    $httpBackend.whenGET(/\/api\/programs\/isProgramNumberUnique\?programNumber=[\w]+/i).respond({
+                        isProgramNumberUnique: true
+                    });
                 });
 
                 it('Function initModal: Program Request Action', function () {
@@ -254,18 +259,20 @@ describe('Unit Tests for Public View FAL:', function () {
                 it('Function initModal: Program Request Action / Agency Change Request -> Maunal (Success)', function () {
                     $controller('ProgramRequestCtrl', {$scope: scope});
 
-                    scope.isProgramNumberUnique = true;
-                    scope.isProgramNumberValid = true;
-                    scope.organizationConfiguration = { programNumberAuto: false };
+                    scope.programNumber = '100';
+                    scope.programCode = '97';
+                    scope.organizationConfiguration = { programNumberAuto: false, programNumberLow:0, programNumberHigh:101 };
 
                     spyOn(scope, 'validateForm');
 
-                    scope.submitProgramRequest();
+                    scope.verifyProgramNumber();
+                    $httpBackend.flush();
 
+                    scope.submitProgramRequest();
                     expect(scope.validateForm).toHaveBeenCalled();
                     expect(scope.submissionInProgress).toBeDefined();
-
                     $httpBackend.flush();
+
                     spyOn($state, 'go');
 
                     expect(scope.flash).toBeDefined();
