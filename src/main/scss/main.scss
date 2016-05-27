@@ -167,10 +167,10 @@ CDFA Old Styles
 @import 'cfda-specific/multi-entry';
 @import 'cfda-specific/hierarchy-dropdown';
 @import 'cfda-specific/select2/core';
-@import 'cfda-specific/_datepicker';
+// @import 'cfda-specific/_datepicker';
 
 .text-center {
-  text-align: center;
+	text-align: center;
 }
 
 // These files will be deleted
@@ -317,6 +317,10 @@ table.usa-table-primary-darkest{
 		border-top: 0;
 		border-bottom: 2px solid rgba(34, 36, 38, 0.1);
 	}
+	th{
+		border-width: 1px;
+		border-color: $color-white;
+	}
 	td a{
 		font-weight: $font-bold;
 	}
@@ -356,18 +360,18 @@ input[disabled]{
 }
 
 .usa-input-error {
-  textarea {
-    border: 3px solid $color-secondary-dark;
-    width: calc(100% + 1.5rem);
-  }
+	textarea {
+		border: 3px solid $color-secondary-dark;
+		width: calc(100% + 1.5rem);
+	}
 }
 
 p.usa-input-readonly{
 	border: 1px solid #ccc;
-  padding: 1rem 0.7em;
-  margin: 0.2em 0;
-  line-height: normal;
-  font-weight: 700;
+	padding: 1rem 0.7em;
+	margin: 0.2em 0;
+	line-height: normal;
+	font-weight: 700;
 	&:empty{
 		height: 4.4rem;
 	}
@@ -483,34 +487,34 @@ button,
 	}
 
 	&.usa-button-light-blue {
-    background-color: #E1F3F8;
+		background-color: #E1F3F8;
 		color: $color-base;
 		border:1px solid $color-white;
-    &:hover,
-    &.usa-button-hover {
+		&:hover,
+		&.usa-button-hover {
 			color: $color-white;
-      background-color: $color-primary-darkest;
-    }
-    &:active,
-    &.usa-button-active {
+			background-color: $color-primary-darkest;
+		}
+		&:active,
+		&.usa-button-active {
 			color: $color-white;
-      background-color: $color-primary-darkest;
-    }
-  }
+			background-color: $color-primary-darkest;
+		}
+	}
 
 	&.usa-button-gray-light {
-    background-color: #E0E1E2;
+		background-color: #E0E1E2;
 		color: $color-primary;
-    &:hover,
-    &.usa-button-hover {
-      background-color: darken(#E0E1E2, 10%);
-    }
+		&:hover,
+		&.usa-button-hover {
+			background-color: darken(#E0E1E2, 10%);
+		}
 
-    &:active,
-    &.usa-button-active {
-      background-color: darken(#E0E1E2, 10%);
-    }
-  }
+		&:active,
+		&.usa-button-active {
+			background-color: darken(#E0E1E2, 10%);
+		}
+	}
 
 	&.usa-button-fluid{
 		width: 100%;
@@ -674,7 +678,7 @@ $usa-btn-huge-width:     17rem;
 .usa-cfda-accordion,
 .usa-cfda-accordion-bordered {
 	&.usa-accordion-button-centered{
-		ul > li > button{
+		ul.usa-unstyled-list > li > button{
 			color: $color-primary;
 			background-color: $color-white;
 			text-align: center;
@@ -693,7 +697,7 @@ $usa-btn-huge-width:     17rem;
 				border-top: 0 dotted;
 			}
 		}
-		ul > li > button[aria-expanded=false] {
+		ul.usa-unstyled-list > li > button[aria-expanded=false] {
 			.caret{
 				border-top: 6px solid $color-primary;
 				border-bottom: 0 dotted;
@@ -969,112 +973,162 @@ $usa-btn-huge-width:     17rem;
 ---------------------------------------------------------- */
 
 @-webkit-keyframes ngdialog-flyin {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-40px);
-    transform: translateY(-40px);
-  }
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
 
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
 }
 
 @keyframes ngdialog-flyin {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-40px);
-    transform: translateY(-40px);
-  }
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
 
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
 }
 
 @-webkit-keyframes ngdialog-flyout {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
 
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(-40px);
-    transform: translateY(-40px);
-  }
+	100% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
 }
 
 @keyframes ngdialog-flyout {
-  0% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
 
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(-40px);
-    transform: translateY(-40px);
-  }
+	100% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
 }
 
 .ngdialog.ngdialog-theme-cfda {
-  padding-bottom: 160px;
-  padding-top: 160px;
+	padding-bottom: 160px;
+	padding-top: 160px;
 }
 
 .ngdialog.ngdialog-theme-cfda.ngdialog-closing .ngdialog-content {
-  -webkit-animation: ngdialog-flyout .5s;
-  animation: ngdialog-flyout .5s;
+	-webkit-animation: ngdialog-flyout .5s;
+	animation: ngdialog-flyout .5s;
 }
 
 .ngdialog.ngdialog-theme-cfda .ngdialog-content {
-  -webkit-animation: ngdialog-flyin .5s;
-  animation: ngdialog-flyin .5s;
-  background: $color-white;
-  border-radius: 3px;
-  margin: 0 auto;
-  max-width: 100%;
-  padding: 1em;
-  position: relative;
-  width: 600px;
+	-webkit-animation: ngdialog-flyin .5s;
+	animation: ngdialog-flyin .5s;
+	background: $color-white;
+	border-radius: 3px;
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 1em;
+	position: relative;
+	width: 600px;
 }
 
 .ngdialog.ngdialog-theme-cfda .ngdialog-close {
-  border-radius: 3px;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 0;
+	border-radius: 3px;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .ngdialog.ngdialog-theme-cfda .ngdialog-close:before {
-  background: transparent;
-  border-radius: 3px;
-  color: #bbb;
-  content: '\00D7';
-  font-size: 26px;
-  font-weight: 400;
-  height: 30px;
-  line-height: 26px;
-  position: absolute;
-  right: 3px;
-  text-align: center;
-  top: 3px;
-  width: 30px;
+	background: transparent;
+	border-radius: 3px;
+	color: #bbb;
+	content: '\00D7';
+	font-size: 26px;
+	font-weight: 400;
+	height: 30px;
+	line-height: 26px;
+	position: absolute;
+	right: 3px;
+	text-align: center;
+	top: 3px;
+	width: 30px;
 }
 
 .ngdialog.ngdialog-theme-cfda .ngdialog-close:hover:before,
 .ngdialog.ngdialog-theme-cfda .ngdialog-close:active:before {
-  color: #777;
+	color: #777;
 }
 
 .ngdialog.ngdialog-theme-cfda .usa-input-error{
 	position: static;
+}
+
+
+
+/* Date Picker (https://angular-ui.github.io/bootstrap/#/datepickerPopup)
+---------------------------------------------------------- */
+// .uib-datepicker .uib-title{
+// 	width:100%;
+// }
+//
+// .uib-day button,
+// .uib-month button,
+// .uib-year button{
+// 	min-width:100%;
+// }
+//
+// .uib-datepicker-popup.dropdown-menu{
+// 	display:block;
+// 	float:none;
+// 	margin:0;
+// }
+//
+// .uib-button-bar{
+// 	padding:10px 9px 2px;
+// }
+//
+// .uib-left,
+// .uib-right{
+// 	width:100%
+// }
+.uib-datepicker-popup{
+	position: absolute;
+	background-color: $color-white;
+	z-index: 2;
+	border: 1px solid $color-primary-darkest;
+	border-radius: 0.3rem;
+
+	table{
+		thead th{
+			padding: 1rem;
+			text-align: center;
+		}
+		td{
+			border-bottom: none;
+		}
+	}
+}
+.uib-day button,
+.uib-year button{
+	min-width:0;
 }
