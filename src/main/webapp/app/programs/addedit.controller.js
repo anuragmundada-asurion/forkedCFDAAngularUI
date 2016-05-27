@@ -573,7 +573,7 @@
                         '</p>' +
                         '</div>' +
                         '</div>' +
-                        '<button class="usa-button-gray-light" ng-click="closeModal();">Cancel</button>' +
+                        '<button class="usa-button-gray-light" ui-sref="programList" ng-click="closeModal();">Cancel</button>' +
                         '<button has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}" ng-click="openSubmitModal();">Continue</button>';
 
 
