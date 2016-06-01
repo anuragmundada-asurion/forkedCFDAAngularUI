@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService,ROLES) {
 
                 $scope.$log = $log;
 
@@ -213,7 +213,8 @@
                     getTafsTitle: appUtil.getTafsTitle,
                     getDeadlineTitle: appUtil.getDeadlineTitle,
                     getContactTitle: appUtil.getContactTitle,
-                    nextId: util.nextId
+                    nextId: util.nextId,
+                    shouldSeeCoordinatorMessage: shouldSeeCoordinatorMessage
                 });
 
                 Dictionary.toDropdown({ids: appConstants.CORE_DICTIONARIES.join(',')}).$promise.then(function (data) {
@@ -705,8 +706,7 @@
                             return requiredFieldsMissing;
 
                         case 'ProgramNumber':
-                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false &&
-                            !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && vm.program.programNumber.length === 3));
+                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && vm.program.programNumber.length === 3));
                     }
 
 
@@ -726,7 +726,7 @@
 
                 function verifyProgramNumber() {
                     //no alpha allowed in program number,
-                    if(vm.program.programNumber){
+                    if (vm.program.programNumber) {
                         vm.program.programNumber = vm.program.programNumber.replace(/[^0-9]/g, '');
                     }
 
@@ -741,7 +741,7 @@
                         }
 
                         // check if user has access to perform check on FAL outside the range
-                        if((vm.isProgramNumberOutsideRange === true && AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE)) || vm.isProgramNumberOutsideRange === false){
+                        if ((vm.isProgramNumberOutsideRange === true && AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE)) || vm.isProgramNumberOutsideRange === false) {
                             //verify program number uniqueness
                             var oApiParam = {
                                 apiName: 'programNumberUnique',
@@ -767,6 +767,14 @@
                         //provided program number is between the range
                         vm.isProgramNumberOutsideRange = false;
                     }
+                }
+
+
+                function shouldSeeCoordinatorMessage() {
+                    if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR])){
+                        return false;
+                    }
+                    return true;
                 }
             }]);
 })();
