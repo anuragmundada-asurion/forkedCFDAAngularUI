@@ -160,17 +160,17 @@ CDFA Old Styles
 @import 'cfda-specific/wizard';
 @import 'cfda-specific/pagination';
 @import 'cfda-specific/fieldFinder';
-@import 'cfda-specific/text-format';
 @import 'cfda-specific/masked-input';
 @import 'cfda-specific/button';
 @import 'cfda-specific/listbox';
-@import 'cfda-specific/multi-entry';
-@import 'cfda-specific/hierarchy-dropdown';
 @import 'cfda-specific/select2/core';
 
 
 // These files will be deleted
 
+// @import 'cfda-specific/text-format';
+// @import 'cfda-specific/hierarchy-dropdown';
+// @import 'cfda-specific/multi-entry';
 // @import 'cfda-specific/_datepicker';
 // @import 'cfda-specific/fix';
 // @import 'cfda-specific/nav';
