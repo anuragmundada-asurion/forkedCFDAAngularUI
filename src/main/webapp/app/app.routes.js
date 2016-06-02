@@ -127,6 +127,12 @@
                             PERMISSIONS.CAN_PERFORM_SUBMISSION
                         ]
                     }
+                })  
+                .state('historicalIndex', {
+                    url: "/historicalIndex?list&filter",
+                    title: 'Historical Index of Programs',
+                    templateUrl: "historicalIndex/historicalIndex-list.tpl.html",
+                    controller: "HistoricalIndexListController",
                 })
                 .state('regionalOfficeList', {
                     url: "/regionalOffice",
