@@ -486,7 +486,7 @@ button,
 	&.usa-button-compact{
 		padding: 0.589em 0.689em;
 	}
-	
+
 	&.usa-button-light-blue {
 		background-color: #E1F3F8;
 		color: $color-base;
@@ -615,6 +615,7 @@ button,
 		margin-top: 0rem;
 		padding-top: 0rem;
 		padding-bottom: 0rem;
+		border-bottom: 1px solid #cbcbcb;
 	}
 	&.usa-segment-secondary{
 		background-color: #eeeeee;
