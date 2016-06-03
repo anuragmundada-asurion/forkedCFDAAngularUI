@@ -335,6 +335,16 @@ table.usa-table-child{
 	td{
 		border-bottom: none;
 	}
+	td:first-child:before{
+		margin-left: -34px;
+		content: "•";
+		font-size: 25px;
+		line-height: 0;
+		padding-right: 27px;
+	}
+	tr:last-child td:first-child:before{
+		color: #8dc63f;
+	}
 }
 
 
