@@ -2,13 +2,20 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
+        function ($scope, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
-            $scope.historicalIndexSearch = $scope.historicalIndexSearch || { aChangeEvent:[], aStatus:[], aDateOfChange:[], organizationId: '-', betweenFromOpened: false, betweenToOpened: false };
+            $scope.historicalIndexSearch = $scope.historicalIndexSearch || {
+                    aChangeEvent: [],
+                    aStatus: [],
+                    aDateOfChange: [],
+                    organizationId: '-',
+                    betweenFromOpened: false,
+                    betweenToOpened: false
+                };
             $scope.dictionary = {
                 aChangeEvent: [
                     {
@@ -32,7 +39,7 @@
                         label: "Number Changed"
                     }
                 ],
-                aStatus:[
+                aStatus: [
                     {
                         name: "active",
                         label: "Active"
@@ -42,7 +49,7 @@
                         label: "Archived"
                     }
                 ],
-                aDateOfChange:[
+                aDateOfChange: [
                     {
                         displayValue: "Since FY 2013 Publication",
                         elementId: "2013"
@@ -65,7 +72,7 @@
                 startingDay: 1
             };
 
-            $('.usa-cfda-accordion').each(function() {
+            $('.usa-cfda-accordion').each(function () {
                 new CommonUtility.AccordionCFDA($(this));
             });
 
@@ -75,16 +82,16 @@
              * @param String field
              * @returns Void
              */
-            $scope.toggleSelection = function(name, field) {
+            $scope.toggleSelection = function (name, field) {
                 var idx = $scope.historicalIndexSearch[field].indexOf(name);
 
                 // is currently selected
                 if (idx > -1) {
-                  $scope.historicalIndexSearch[field].splice(idx, 1);
+                    $scope.historicalIndexSearch[field].splice(idx, 1);
                 }
                 // is newly selected
                 else {
-                  $scope.historicalIndexSearch[field].push(name);
+                    $scope.historicalIndexSearch[field].push(name);
                 }
             };
 
@@ -194,7 +201,7 @@
                                     'label': 'Agricultural Research Service Basic Applied'
                                 },
                             ]
-                        },{
+                        }, {
                             'programId': "3333",
                             'title': "Test fal number outside the range",
                             'organizationId': "100000391",
@@ -258,7 +265,7 @@
             ];
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
-                .withOption('initComplete', function(settings, json){
+                .withOption('initComplete', function (settings, json) {
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -271,17 +278,22 @@
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('ajax', $scope.searchHistoricalIndex)
+                .withOption('rowCallback', function (row) {
+                    $compile(row)($scope);
+                })
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Results Found',
                     'lengthMenu': 'Showing _MENU_ entries',
                     'info': ' of _TOTAL_ entries'
                 });
-
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('empty').withTitle('').withOption('defaultContent', '').withOption('sWidth', '50px').withOption('orderable', false),
                 DTColumnBuilder.newColumn('programNumber').withTitle('FAL#').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', '')
+                    .withOption('render', function (data) {
+                        return '<a ui-sref="viewProgram({id: \'66d1d2645f8acd25c2e79bb60b7342da\'})">' + data + '</a>';
+                    }),
                 DTColumnBuilder.newColumn('organization')
                     .withTitle('Department/Sub-Tier Agency & Office')
                     .withOption('defaultContent', '')
@@ -294,11 +306,11 @@
 
             //expand historical indexes by defaults
             angular.element('#historicalIndexTable').on('draw.dt', function (event, data) {
-                $('#historicalIndexTable tbody tr').each(function(){
+                $('#historicalIndexTable tbody tr').each(function () {
                     var tr = $(this);
-                    var row = $scope.dtInstance.DataTable.row( tr );
+                    var row = $scope.dtInstance.DataTable.row(tr);
                     // Open this row
-                    row.child( $scope.formatHistoricalIndex(row.data()) ).show();
+                    row.child($scope.formatHistoricalIndex(row.data())).show();
                     tr.addClass('shown');
                 });
             });
@@ -332,13 +344,13 @@
                   '</tr>';
               });
 
-              childDataTable.innerHTML = html;
-              dataColumn.appendChild(childDataTable);
+                childDataTable.innerHTML = html;
+                dataColumn.appendChild(childDataTable);
 
-              childData.appendChild(spacingColumn);
-              childData.appendChild(dataColumn);
+                childData.appendChild(spacingColumn);
+                childData.appendChild(dataColumn);
 
-              return childData;
+                return childData;
             };
         }]);
 })();
