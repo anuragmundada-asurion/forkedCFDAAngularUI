@@ -233,6 +233,7 @@ Extending USWDS
 	float: right;
 }
 
+// Margin all
 .usa-margin-all-0{
 	margin: 0rem;
 }
@@ -271,6 +272,7 @@ Extending USWDS
 .usa-margin-right-3{
 	margin-right: 3rem !important;
 }
+
 
 // Padding Top
 .usa-padding-top-2{
@@ -324,6 +326,14 @@ table.usa-table-primary-darkest{
 	}
 	td a{
 		font-weight: $font-bold;
+	}
+}
+
+table.usa-table-child{
+	margin: 0rem;
+	font-size: 1.6rem;
+	td{
+		border-bottom: none;
 	}
 }
 
