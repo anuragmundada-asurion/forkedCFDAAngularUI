@@ -318,23 +318,26 @@
              * @param {Object} d
              * @returns {String}
              */
-            $scope.formatHistoricalIndex = function (d) {
+            $scope.formatHistoricalIndex = function(d) {
 
                 var html = '';
 
                 var childData = document.createElement("tr");
+                childData.setAttribute("style", "background-color: #eeeeee;");
                 var spacingColumn = document.createElement("td");
+                spacingColumn.setAttribute("style", "border-right: 1px solid #ddd;");
                 var dataColumn = document.createElement("td");
-                dataColumn.colSpan = "3";
+                dataColumn.colSpan="3";
 
                 var childDataTable = document.createElement("table");
+                childDataTable.className = "usa-table-child";
 
-                angular.forEach(d.historicalChanges, function (row) {
+                angular.forEach(d.historicalChanges, function(row){
                     html +=
-                        '<tr>' +
-                        '<td>' + row.year + '</td>' +
-                        '<td>' + row.event + '</td>' +
-                        '<td>' + row.label + '</td>' +
+                        '<tr>'+
+                        '<td>'+row.year+'</td>'+
+                        '<td>'+row.event+'</td>'+
+                        '<td>'+row.label+'</td>'+
                         '</tr>';
                 });
 
