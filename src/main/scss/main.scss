@@ -292,6 +292,9 @@ Extending USWDS
 ---------------------------------------------------------- */
 .usa-grid,
 .usa-grid-full {
+	.usa-width-one-half-collapse {
+    @include span-columns(6, "block-collapse");
+  }
 	.usa-width-one-fourth-collapse {
 		@include span-columns(3, "block-collapse");
 	}
@@ -302,6 +305,7 @@ Extending USWDS
 /* Table
 ---------------------------------------------------------- */
 table.usa-table-primary-darkest{
+	margin-top: 0rem;
 	thead {
 		tr {
 			color: $color-white;
@@ -482,7 +486,7 @@ button,
 	&.usa-button-compact{
 		padding: 0.589em 0.689em;
 	}
-
+	
 	&.usa-button-light-blue {
 		background-color: #E1F3F8;
 		color: $color-base;
