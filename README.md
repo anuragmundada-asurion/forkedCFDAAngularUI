@@ -1,18 +1,23 @@
 # REISystems-GSA-CFDA-Angular-UI
 CFDA modernization UI service. Primarily using AngularJS framework. 
 
-
-
 # Local Setup (Vagrant)
 
 ## Prerequisites:
 1. To run this project you will have to setup VirtualBox on your machine.
-2. Make sure that you have the following folders before you start to setup your environment -
-    a) scripts (which has the shell scripts in it)
-    b) vagrant (which has vagrantfile and config.yaml file in it)
-    c) package.box
-  
+2. Make sure that you have the following folders before you start to setup your environment:
+
+| Directory/File   |  Comment |
+|----------|:-------------|
+| /apps/ |  microservice repos will be cloned here | 
+| /vagrant/ |  vagrant configuration files will go here, the shared folder is setup to be at the top level of this structure | 
+| /scripts/ | various scripts for setting up the environment and starting the services go here | 
+| package.box | Vagrant box that contains the VM for our environment | 
+3. The vagrant box "package.box" and the contents in /vagrant/ and /scripts/ can be provided by a fellow developer.
+
 ## Steps for first time Local Setup
+The following section will run through getting a developer's local environment setup and started. This instruction set will assume you're working on a mac/linux machine.
+### 1. Start Vagrant
 1. Open the terminal (I would recommend iTerm2) and follow the commands below.
 2. mkdir gsa-iae
 3. cd gsa-iae
@@ -22,20 +27,61 @@ CFDA modernization UI service. Primarily using AngularJS framework.
 6. rm -rf .vagrant/
 7. vagrant box add rei-gsa-iae package.box
 8. vim puphet/config.yaml (make necessary edits)
+    - machine id, machine hostname, private network ip address should be something unique for every vagrant instance (**remember** the IP address)
+    - the box/box_url should point to the vagrant box.
 9. vagrant up
    (if errors pop do the following)
    -->mkdir -p Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/dev-dependencies.sh
-   -->cp ..scripts/vagrant/dev-dependencies.sh /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
- 
+   -->cp ../scripts/vagrant/dev-dependencies.sh /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
+10. vagrant ssh
+
+At this point you should be logged into Vagrant box. Move into the /var/www/gsa-iae directory to find the shared folders with the host machine.
+
+Go into scripts/vagrant/, run the following to download additional dependencies 
+```
+sudo ./dev-dependencies.sh
+```
+Also run the next line to clear ports 
+```
+sudo ./setup-session.sh
+```
+### 3. Database Re-Sync
+The database structure and data is likely out of date, to re-sync:
+```
+sudo su postgres
+psql
+DROP DATABASE gsa_cfda;
+CREATE DATABASE gsa_cfda;
+```
+Using a tool like **pgAdmin**, get a 'cfda' database backup from our DEV environment (ogpsql.reisys.com)
+setup a postgres connection to your vagrant box (use the ip address mentioned earlier) and restore the gsa_cfda database from the recently created backup 
+### ElasticSearch Tweaks
+Run "sudo vim /etc/elasticsearch/elasticsearch.yml" and ensure the network.bind_host is pointing to the correct ip address if necessary.
+### Clone the Microservice Git Repositories
+Go to /var/www/gsa-iae and switch into your apps/ directory, begin cloning all the repos:
+- https://github.com/REI-Systems/REISystems-GSA-CFDA-Angular-UI.git
+- https://github.com/REI-Systems/REISystems-GSA-CFDA-Program.git
+- https://github.com/REI-Systems/REISystems-GSA-CFDA-Modern-Search.git
+- https://github.com/REI-Systems/REISystems-GSA-CFDA-Modern-Sync.git
+- https://github.com/REI-Systems/REISystems-GSA-IAE-Federal-Hierarchy.git
+- https://github.com/REI-Systems/REISystems-GSA-IAE-Notifications.git
+### ElasticSearch JDBC
+Move into your REISystems-GSA-CFDA-Modern-Search repo and create a "lib/" directory. Go online, download, and add elasticsearch-jdbc-1.7.3.0 to this location.
+### 8. Startup script updates
+Finally, from /var/www/gsa-iae, change into scripts/app/. Edit all the files in this directory and make sure your ip address is correct.
 ## Steps for Daily Local Setup
+At this point, the developer environment should be setup. The next step is starting all the microservices.
 1. vagrant up (only once, in one terminal)
 2. vagrant ssh (in all terminals)
 3. cd /var/www/gsa-iae/scripts/app/ (in all terminals)
 4. sudo ../vagrant/setup-session.sh (only once, in one terminal)
 5. ./start-cfda-frontend-java.sh (in one terminal)
 6. ./start-cfda-program-java.sh (in another terminal)
-7. cd /var/www/gsa-iae/apps/{name of angular-ui repo} (in different terminal) 
-8. gulp package (if only html, js changes were made, changes to java need the script in step 5 to be rerun)
+7. ./start-cfda-federal.sh (in another terminal)
+8. ./start-cfda-search-java.sh (in another terminal)
+9. ./start-cfda-sync-java.sh (in another terminal)
+10. cd /var/www/gsa-iae/apps/{name of angular-ui repo} (in different terminal) 
+11. gulp package (if only html, js changes were made, changes to java need the script in step 5 to be rerun)
 
 NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. 
 
