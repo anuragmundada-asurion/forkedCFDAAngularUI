@@ -27,7 +27,7 @@ CFDA modernization UI service. Primarily using AngularJS framework.
    -->mkdir -p Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/dev-dependencies.sh
    -->cp ..scripts/vagrant/dev-dependencies.sh /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
  
- ## Steps for Daily Local Setup
+## Steps for Daily Local Setup
 1. vagrant up (only once, in one terminal)
 2. vagrant ssh (in all terminals)
 3. cd /var/www/gsa-iae/scripts/app/ (in all terminals)
@@ -40,7 +40,7 @@ CFDA modernization UI service. Primarily using AngularJS framework.
 NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. 
 
 
-  Using Dev Microservices (if needed)
+## Using Dev Microservice URLs (if needed)
 1. vim ./start-cfda-frontend-java.sh (change SEARCH + FH to Dev host)
     {dev url for Federal Hierarchy: http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh
      dev url for Search microservice: http://gsaiae-cfda-modern-search-dev02.reisys.com/}
