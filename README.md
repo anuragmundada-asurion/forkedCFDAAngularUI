@@ -65,12 +65,16 @@ Go to /var/www/gsa-iae and switch into your apps/ directory, begin cloning all t
 - https://github.com/REI-Systems/REISystems-GSA-CFDA-Modern-Sync.git
 - https://github.com/REI-Systems/REISystems-GSA-IAE-Federal-Hierarchy.git
 - https://github.com/REI-Systems/REISystems-GSA-IAE-Notifications.git
+
 ### ElasticSearch JDBC
 Move into your REISystems-GSA-CFDA-Modern-Search repo and create a "lib/" directory. Go online, download, and add elasticsearch-jdbc-1.7.3.0 to this location.
+
 ### 8. Startup script updates
 Finally, from /var/www/gsa-iae, change into scripts/app/. Edit all the files in this directory and make sure your ip address is correct.
+
 ## Steps for Daily Local Setup
 At this point, the developer environment should be setup. The next step is starting all the microservices.
+
 1. vagrant up (only once, in one terminal)
 2. vagrant ssh (in all terminals)
 3. cd /var/www/gsa-iae/scripts/app/ (in all terminals)
