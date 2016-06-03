@@ -70,7 +70,7 @@
             });
 
             /**
-             * 
+             *
              * @param String name
              * @param String field
              * @returns Void
@@ -259,10 +259,6 @@
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function(settings, json){
-                    // Initialize semantic ui dropdown
-                    //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
-                    // Remove select to fix dropdown  double click bug
-                    //$(".dataTables_length select").remove();
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -311,19 +307,32 @@
              * @returns {String}
              */
             $scope.formatHistoricalIndex = function(d) {
-                var html = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-                angular.forEach(d.historicalChanges, function(row){
-                    html += 
-                    '<tr>'+
-                        '<td>'+row.year+'</td>'+
-                        '<td>'+row.event+'</td>'+
-                        '<td>'+row.label+'</td>'+
-                    '</tr>';
-                });
 
-                html += '</table>';
+              var html = '';
 
-                return html;
+              var childData = document.createElement("tr");
+              var spacingColumn = document.createElement("td");
+              var dataColumn = document.createElement("td");
+              dataColumn.colSpan="3";
+
+              var childDataTable = document.createElement("table");
+
+              angular.forEach(d.historicalChanges, function(row){
+                  html +=
+                  '<tr>'+
+                      '<td>'+row.year+'</td>'+
+                      '<td>'+row.event+'</td>'+
+                      '<td>'+row.label+'</td>'+
+                  '</tr>';
+              });
+
+              childDataTable.innerHTML = html;
+              dataColumn.appendChild(childDataTable);
+
+              childData.appendChild(spacingColumn);
+              childData.appendChild(dataColumn);
+
+              return childData;
             };
         }]);
 })();
