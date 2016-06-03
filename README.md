@@ -45,7 +45,7 @@ Also run the next line to clear ports
 ```
 sudo ./setup-session.sh
 ```
-### 3. Database Re-Sync
+### 2. Database Re-Sync
 The database structure and data is likely out of date, to re-sync:
 ```
 sudo su postgres
@@ -55,9 +55,11 @@ CREATE DATABASE gsa_cfda;
 ```
 Using a tool like **pgAdmin**, get a 'cfda' database backup from our DEV environment (ogpsql.reisys.com)
 setup a postgres connection to your vagrant box (use the ip address mentioned earlier) and restore the gsa_cfda database from the recently created backup 
-### ElasticSearch Tweaks
+
+### 3. ElasticSearch Tweaks
 Run "sudo vim /etc/elasticsearch/elasticsearch.yml" and ensure the network.bind_host is pointing to the correct ip address if necessary.
-### Clone the Microservice Git Repositories
+
+### 4. Clone the Microservice Git Repositories
 Go to /var/www/gsa-iae and switch into your apps/ directory, begin cloning all the repos:
 - https://github.com/REI-Systems/REISystems-GSA-CFDA-Angular-UI.git
 - https://github.com/REI-Systems/REISystems-GSA-CFDA-Program.git
@@ -66,10 +68,10 @@ Go to /var/www/gsa-iae and switch into your apps/ directory, begin cloning all t
 - https://github.com/REI-Systems/REISystems-GSA-IAE-Federal-Hierarchy.git
 - https://github.com/REI-Systems/REISystems-GSA-IAE-Notifications.git
 
-### ElasticSearch JDBC
+### 5. ElasticSearch JDBC
 Move into your REISystems-GSA-CFDA-Modern-Search repo and create a "lib/" directory. Go online, download, and add elasticsearch-jdbc-1.7.3.0 to this location.
 
-### 8. Startup script updates
+### 6. Startup script updates
 Finally, from /var/www/gsa-iae, change into scripts/app/. Edit all the files in this directory and make sure your ip address is correct.
 
 ## Steps for Daily Local Setup
