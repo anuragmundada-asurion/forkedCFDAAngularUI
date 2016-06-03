@@ -20,6 +20,16 @@
                     </form>
                 </div>
 
+
+                <div class="usa-segment usa-segment-attached usa-segment-secondary">
+            			<div class="usa-grid">
+            				<div class="usa-width-one-whole">
+
+                    </div>
+            			</div>
+            		</div>
+
+
                 <div class="usa-segment usa-segment-attached-bottom">
                   <div class="usa-cfda-accordion usa-accordion-button-centered">
                       <ul class="usa-unstyled-list">
@@ -28,29 +38,37 @@
                                   Historical Index Advanced Search <span class="caret"></span>
                               </button>
                               <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
-                                  <div class="ui-grid-full">
+                                  <div class="usa-grid-full">
                                       <div class="usa-width-one-half">
-                                        <label class="usa-label-marginless">Change Events</label>
-                                        <ul class="usa-horizontal-list ">
-                                            <li ng-repeat="oChangeEvent in dictionary.aChangeEvent">
-                                                <input type="checkbox" name="changeEvent[]" ng-checked="historicalIndexSearch.aChangeEvent.indexOf(oChangeEvent.name) > -1" ng-click="toggleSelection(oChangeEvent.name, 'aChangeEvent')" id="ce_{{ oChangeEvent.name }}" value="{{ oChangeEvent.name }}">
-                                                <label for="ce_{{ oChangeEvent.name }}">{{ oChangeEvent.label }}</label>
-                                            </li>
-                                        </ul>
+
+                                        <fieldset class="usa-fieldset-inputs">
+                                          <label class="usa-label-marginless">Change Events</label>
+                                          <ul class="usa-horizontal-list ">
+                                              <li ng-repeat="oChangeEvent in dictionary.aChangeEvent">
+                                                  <input type="checkbox" name="changeEvent[]" ng-checked="historicalIndexSearch.aChangeEvent.indexOf(oChangeEvent.name) > -1" ng-click="toggleSelection(oChangeEvent.name, 'aChangeEvent')" id="ce_{{ oChangeEvent.name }}" value="{{ oChangeEvent.name }}">
+                                                  <label for="ce_{{ oChangeEvent.name }}">{{ oChangeEvent.label }}</label>
+                                              </li>
+                                          </ul>
+                                        </fieldset>
+
                                       </div>
                                       <div class="usa-width-one-half">
-                                        <label class="usa-label-marginless">Current Status</label>
-                                        <ul class="usa-horizontal-list ">
-                                            <li ng-repeat="oStatus in dictionary.aStatus">
-                                                <input type="checkbox" name="status[]" ng-checked="historicalIndexSearch.aStatus.indexOf(oStatus.name) > -1" ng-click="toggleSelection(oStatus.name, 'aStatus')" id="s_{{ oStatus.name }}" value="{{ oStatus.name }}">
-                                                <label for="s_{{ oStatus.name }}">{{ oStatus.label }}</label>
-                                            </li>
-                                        </ul>
+
+                                        <fieldset class="usa-fieldset-inputs">
+                                          <label class="usa-label-marginless">Current Status</label>
+                                          <ul class="usa-horizontal-list ">
+                                              <li ng-repeat="oStatus in dictionary.aStatus">
+                                                  <input type="checkbox" name="status[]" ng-checked="historicalIndexSearch.aStatus.indexOf(oStatus.name) > -1" ng-click="toggleSelection(oStatus.name, 'aStatus')" id="s_{{ oStatus.name }}" value="{{ oStatus.name }}">
+                                                  <label for="s_{{ oStatus.name }}">{{ oStatus.label }}</label>
+                                              </li>
+                                          </ul>
+                                        </fieldset>
+
                                       </div>
                                   </div>
-                                  <div class="ui-grid-full">
+                                  <div class="usa-grid-full">
                                       <div class="usa-width-one-half">
-                                        <label class="usa-label-marginless">Date of Change</label>
+                                        <label>Date of Change</label>
                                         <div isteven-multi-select
                                             max-labels="1"
                                             input-model="dictionary.aDateOfChange"
@@ -81,7 +99,7 @@
                                                 close-text="Close" />
                                             </div>
 
-                                            <div class="usa-width-one-third usa-text-align-center usa-margin-top-2" style="width:12%;">
+                                            <div class="usa-width-one-third usa-text-align-center usa-margin-top-1" style="width:12%;">
                                               <strong>To</strong>
                                             </div>
 
@@ -101,21 +119,34 @@
                                       </div>
                                   </div>
 
-                                  <div class="ui-grid-full">
+                                  <div class="usa-grid-full">
                                       <federal-hierarchy-inputs organization-id="historicalIndexSearch.organizationId" set-selected-option="false"></federal-hierarchy-inputs>
-                                      {{ historicalIndexSearch }}
                                   </div>
 
-                                  <div class="usa-grid-full">
-                                      <div class="usa-width-one-whole usa-text-align-right">
-                                          <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearHistoricalIndexForm()">
+                                  <div class="usa-grid-full usa-margin-top-3">
+                                    <div class="usa-width-one-half">&nbsp;</div>
+                                    <div class="usa-width-one-half">
+                                      <div class="usa-grid-full">
+                                        <div class="usa-width-one-half">
+                                          <button class="usa-button-gray-light usa-button-big usa-button-fluid" type="submit" ng-click="clearHistoricalIndexForm()">
                                           Clear All
                                           </button>
-                                          <button class="usa-button-big" type="button" ng-click="searchHistoricalIndex()">
+                                        </div>
+                                        <div class="usa-width-one-half">
+                                          <button class="usa-button-big usa-button-fluid" type="button" ng-click="searchHistoricalIndex()">
                                           Search
                                           </button>
+                                        </div>
                                       </div>
+                                    </div>
                                   </div>
+
+                                  <div class="usa-grid-full usa-margin-top-3">
+                                    <div class="usa-width-one-whole">
+                                      <span class="usa-text-small">{{ historicalIndexSearch }}</div>
+                                    </div>
+                                  </div>
+
                               </div>
                           </li>
                       </ul>
