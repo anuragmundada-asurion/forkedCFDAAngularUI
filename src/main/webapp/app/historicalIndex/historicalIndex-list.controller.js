@@ -263,6 +263,7 @@
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
                 })
+                .withOption('order', [[1, 'asc']])
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
@@ -278,6 +279,7 @@
                 });
 
             $scope.dtColumns = [
+                DTColumnBuilder.newColumn('empty').withTitle('').withOption('defaultContent', '').withOption('sWidth', '50px').withOption('orderable', false),
                 DTColumnBuilder.newColumn('programNumber').withTitle('FAL#').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('organization')
@@ -313,6 +315,7 @@
               var childData = document.createElement("tr");
               childData.setAttribute("style", "background-color: #eeeeee;");
               var spacingColumn = document.createElement("td");
+              spacingColumn.colSpan="2";
               spacingColumn.setAttribute("style", "border-right: 1px solid #ddd;");
               var dataColumn = document.createElement("td");
               dataColumn.colSpan="3";
