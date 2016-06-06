@@ -1,10 +1,10 @@
 <primary-nav-bar></primary-nav-bar>
 <form name="gsavm.form" ux-form use-ui-router="section" on-section-change="gsavm.onSectionChange(prevSectionKey)" scroll-anchor="#status-indicator-bar-anchor" novalidate>
-    <section class="usa-grid-full form-header">
+    <section class="usa-grid">
         <div class="usa-width-one-half">
             <h1>{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
         </div>
-        <div class="usa-width-one-half">
+        <div class="usa-width-one-half usa-margin-top-3 usa-padding-top-3">
             <field-finder-searchbox></field-finder-searchbox>
         </div>
     </section>
@@ -1864,7 +1864,7 @@
                         || !gsavm.program.postAward.audit.flag || (gsavm.program.postAward.audit.flag==='yes' && !gsavm.program.postAward.audit.questions['OMBCircularA133'].flag)
                         || !gsavm.program.postAward.documents.flag || (gsavm.program.postAward.documents.flag==='yes' && !gsavm.program.postAward.documents.content)
                         || !gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0 || !gsavm.program.postAward.accomplishments.flag
-                        || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0 
+                        || !gsavm.program.contacts['local'].flag || !gsavm.program.contacts.list || gsavm.program.contacts.list.length==0
                         || requiredFieldsMissing('ProgramNumber')
                         || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false &&
                                 (gsavm.isProgramNumberUnique === false || (gsavm.isProgramNumberOutsideRange === true && gsavm.shouldSeeCoordinatorMessage()) ))">
@@ -2055,7 +2055,7 @@
         <button type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
         <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button>
-        <span class="divider"></span>
+
         <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
         <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
         <!--field-finder-searchbox></field-finder-searchbox-->

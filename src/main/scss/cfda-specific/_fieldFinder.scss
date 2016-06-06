@@ -3,22 +3,22 @@ field-finder-bookmark.highlight,
   background-color: #ffea6f;
 }
 
-field-finder-searchbox {
-  [type="button"],
-  button,
-  select {
-    display: inline-block;
-    vertical-align: middle;
-    height: 55px;
-    margin: 0;
-    .form-header & {
-      width: 100%;
-    }
-  }
-  select {
-    border: 2px solid $color-primary;
-  }
-}
+// field-finder-searchbox {
+//   [type="button"],
+//   button,
+//   select {
+//     display: inline-block;
+//     vertical-align: middle;
+//     height: 55px;
+//     margin: 0;
+//     .form-header & {
+//       width: 100%;
+//     }
+//   }
+//   select {
+//     border: 2px solid $color-primary;
+//   }
+// }
 
 .field-finder-navigator {
   display: block;

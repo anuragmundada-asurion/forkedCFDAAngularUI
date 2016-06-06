@@ -1,68 +1,68 @@
 form {
   max-width: none !important;
-  .form-header {
-    padding-top: $form-header-margin-height;
-    padding-bottom: $form-header-margin-height;
-    h1, h2 {
-      margin: 0;
-    }
-    > * {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-  textarea {
-    &.usa-width-two-thirds {
-      padding: 10px;
-    }
-  }
-  fieldset {
-    border: none;
-    display: block;
-    margin-top: 3rem;
-  }
+  // .form-header {
+  //   padding-top: $form-header-margin-height;
+  //   padding-bottom: $form-header-margin-height;
+  //   h1, h2 {
+  //     margin: 0;
+  //   }
+  //   > * {
+  //     display: inline-block;
+  //     vertical-align: middle;
+  //   }
+  // }
+  // textarea {
+  //   &.usa-width-two-thirds {
+  //     padding: 10px;
+  //   }
+  // }
+  // fieldset {
+  //   border: none;
+  //   display: block;
+  //   margin-top: 3rem;
+  // }
 
-  .usa-input-large {
-      max-width: 56rem;
-      width: 56rem;
-  }
+  // .usa-input-large {
+  //     max-width: 56rem;
+  //     width: 56rem;
+  // }
 
-  span.icon {
-     display: block;
-  }
-  span.checkmark-checked-icon {
-  	 background-image: url('../img/checkbox-checked.png');
-     background-repeat: no-repeat;
-     background-position: left center;
-     height: 30px;
-     padding-top:3px;
-     padding-left: 33px;
-  }
+  // span.icon {
+  //    display: block;
+  // }
+  // span.checkmark-checked-icon {
+  // 	 background-image: url('../img/checkbox-checked.png');
+  //    background-repeat: no-repeat;
+  //    background-position: left center;
+  //    height: 30px;
+  //    padding-top:3px;
+  //    padding-left: 33px;
+  // }
 
-  input.navigation-button {
-     display:inline;
-     width:auto;
-     padding-left: 2rem;
-     padding-right: 2rem;
-  }
+  // input.navigation-button {
+  //    display:inline;
+  //    width:auto;
+  //    padding-left: 2rem;
+  //    padding-right: 2rem;
+  // }
 
 }
 
-.divider{
-    width: 1.5rem;
-    height:auto;
-    display:inline-block;
-}
+// .divider{
+//     width: 1.5rem;
+//     height:auto;
+//     display:inline-block;
+// }
 
-.radio-button-group {
-  > li {
-    display: inline-block;
-    margin-right: 15px;
-    label {
-      width: auto;
-    }
-  }
-}
+// .radio-button-group {
+//   > li {
+//     display: inline-block;
+//     margin-right: 15px;
+//     label {
+//       width: auto;
+//     }
+//   }
+// }
 
 .section-circle {
   border-radius: 50%;
@@ -101,81 +101,83 @@ form {
   }
 }
 
-fieldset > label {
-  margin-bottom: .7em;
-}
-
-fieldset {
-  border: 0;
-}
-
 .required {
   color: $color-secondary-dark;
 }
 
-input,
-select {
-  &.bold-border {
-    border: 2px solid $color-primary;
-  }
-}
+// fieldset > label {
+//   margin-bottom: .7em;
+// }
+//
+// fieldset {
+//   border: 0;
+// }
 
-ul {
-    &.tab-menu {
-        width: 100%;
-        list-style: none;
-        margin: 2.1em 0em 1em 0em;
-        border-bottom: 1px solid $color-gray-lightest;
 
-        > li  {
-            &:before {
-                content: none;
-            }
-            line-height: 1 !important;
-            font-weight: bold;
-            text-align: center;
-            display: inline-block;
-            border-style: solid;
-            background-color: white;
-            border-color: $color-gray-lightest;
-            color: $color-primary;
-            height: 55px;
-            border-width: 1px 1px 1px 1px;
-            margin-right: -6px;
-            margin-bottom: 0px !important;
 
-            &.tab-selected {
-               background-color:$color-primary-alt-lightest !important;
-               color: $color-gray !important;
-               border-color: none !important;
-               border-width: 1px 1px 3px 1px !important;
-
-               > span {
-                    color: $color-gray !important;
-               }
-            }
-
-            > span {
-                text-decoration: none;
-                display: block;
-                height: 100%;
-                padding-top: 1em;
-                padding-left: 1.85em;
-                padding-right: 1.85em;
-                color: $color-primary;
-                &:hover {
-                    background-color: $color-gray-lighter;
-                }
-            }
-
-         }
-    }
-}
+// input,
+// select {
+//   &.bold-border {
+//     border: 2px solid $color-primary;
+//   }
+// }
+//
+// ul {
+//     &.tab-menu {
+//         width: 100%;
+//         list-style: none;
+//         margin: 2.1em 0em 1em 0em;
+//         border-bottom: 1px solid $color-gray-lightest;
+//
+//         > li  {
+//             &:before {
+//                 content: none;
+//             }
+//             line-height: 1 !important;
+//             font-weight: bold;
+//             text-align: center;
+//             display: inline-block;
+//             border-style: solid;
+//             background-color: white;
+//             border-color: $color-gray-lightest;
+//             color: $color-primary;
+//             height: 55px;
+//             border-width: 1px 1px 1px 1px;
+//             margin-right: -6px;
+//             margin-bottom: 0px !important;
+//
+//             &.tab-selected {
+//                background-color:$color-primary-alt-lightest !important;
+//                color: $color-gray !important;
+//                border-color: none !important;
+//                border-width: 1px 1px 3px 1px !important;
+//
+//                > span {
+//                     color: $color-gray !important;
+//                }
+//             }
+//
+//             > span {
+//                 text-decoration: none;
+//                 display: block;
+//                 height: 100%;
+//                 padding-top: 1em;
+//                 padding-left: 1.85em;
+//                 padding-right: 1.85em;
+//                 color: $color-primary;
+//                 &:hover {
+//                     background-color: $color-gray-lighter;
+//                 }
+//             }
+//
+//          }
+//     }
+// }
 
 // ul li:before {
 //   content: '';
 // }
 
-ux-form-nav {
-  display: block;
-}
+// ux-form-nav {
+//   display: block;
+// }
