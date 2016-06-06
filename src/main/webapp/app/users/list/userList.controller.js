@@ -84,7 +84,7 @@
                         var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo"></i>';
                         return infoIcon + data['name'];
                     }),
-                DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', '').withOption('sWidth', '230px'),
+                DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', '').withOption('sWidth', '380px'),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('action')
