@@ -77,11 +77,6 @@
                     'info': ' of _TOTAL_ entries'
                 });
             $scope.dtColumns = [
-                DTColumnBuilder.newColumn('action')
-                    .withTitle('Action')
-                    .withOption('defaultContent', '')
-                    .withOption('searchable', false)
-                    .withOption('orderable', false),
                 DTColumnBuilder.newColumn('name')
                     .withTitle('Name')
                     .withOption('defaultContent', '')
@@ -91,7 +86,12 @@
                     }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', '')
+                DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('action')
+                    .withTitle('Action')
+                    .withOption('defaultContent', '')
+                    .withOption('searchable', false)
+                    .withOption('orderable', false)
             ];
         }
     ]);
