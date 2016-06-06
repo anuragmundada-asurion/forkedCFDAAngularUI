@@ -84,14 +84,14 @@
                         var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo"></i>';
                         return infoIcon + data['name'];
                     }),
-                DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', '').withOption('sWidth', '230px'),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
                     .withOption('defaultContent', '')
                     .withOption('searchable', false)
-                    .withOption('orderable', false).withOption('sWidth', '230px')
+                    .withOption('orderable', false)
             ];
         }
     ]);
