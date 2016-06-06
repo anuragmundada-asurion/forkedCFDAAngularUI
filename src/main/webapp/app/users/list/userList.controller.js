@@ -91,7 +91,7 @@
                     .withTitle('Action')
                     .withOption('defaultContent', '')
                     .withOption('searchable', false)
-                    .withOption('orderable', false)
+                    .withOption('orderable', false).withOption('sWidth', '230px')
             ];
         }
     ]);
