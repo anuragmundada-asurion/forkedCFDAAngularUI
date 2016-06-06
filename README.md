@@ -31,7 +31,7 @@ The following section will run through getting a developer's local environment s
     - the box/box_url should point to the vagrant box.
 9. vagrant up
    (if errors pop do the following)
-   -->mkdir -p /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/dev-dependencies.sh
+   -->mkdir -p /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant
    -->cp ../scripts/vagrant/dev-dependencies.sh /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
 10. vagrant ssh
 
