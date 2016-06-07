@@ -121,6 +121,7 @@
             </section>
 
 
+            <!-- 40 Authorization -->
             <section class="usa-grid" field-finder-bookmark title="040 Authorization">
                 <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
 
@@ -175,36 +176,54 @@
                 </div>
             </section>
 
-            <section class="sub-section" field-finder-bookmark title="050 Objectives">
-                <h3><label for="objective">050 Objectives<span class="required">*</span></label></h3>
 
-                <div class="input-field">
-                    <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                    <textarea id="objective" name="objective" class="usa-input-large" ng-model="gsavm.program.objective" required></textarea>
+            <!-- 050 Objectives -->
+            <section class="usa-grid" field-finder-bookmark title="050 Objectives">
+              <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+                <legend>050 Objectives</legend>
 
-                    <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
-                        <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
-                    </div>
+                <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
+                  <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">Objectives <span class="usa-additional_text">Required</span></label>
+                  <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
+                  <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
+                      <span class="usa-input-error-message" ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
+                  </div>
+                  <textarea id="objective" name="objective" ng-model="gsavm.program.objective" required></textarea>
                 </div>
-            </section>
-            <section class="sub-section" field-finder-bookmark title="060 Types of Assistance">
-                <h3>060 Types of Assistance</h3>
 
+              </div>
+            </section>
+
+            <!-- 060 Types of Assistance -->
+            <section class="usa-grid" field-finder-bookmark title="060 Types of Assistance">
+              <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+                <legend>060 Types of Assistance</legend>
                 <div ng-repeat="obligation in gsavm.program.financial.obligations">
-                    <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</p>
+                    <p class='text-nowrap'>
+                      {{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}
+                    </p>
                 </div>
+              </div>
             </section>
-            <section class="sub-section" field-finder-bookmark title="070 Uses and Use Restrictions">
+
+
+            <!-- 070 Uses and Use Restrictions -->
+            <section class="" field-finder-bookmark title="070 Uses and Use Restrictions">
                 <h3>070 Uses and Use Restrictions</h3>
 
                 <div class="input-field">
-                    <label for="usageRulesContent">Select "Not Applicable" if the requested information does not apply to your program. If "Yes" is selected, users are required to provide more details in text fields.</label>
-                    <textarea id="usageRulesContent" name="usageRulesContent" class="usa-input-large" ng-model="gsavm.program.usage.rules.content" required></textarea>
+                    <label for="usageRulesContent">
+                      Select "Not Applicable" if the requested information does not apply
+                      to your program. If "Yes" is selected, users are required to provide
+                      more details in text fields.
+                    </label>
+                    <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" required></textarea>
                 </div>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label>Are there specific restrictions place upon the use of the assistance?<span class="required">*</span></label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                             <li>
                                 <input type="radio" name="restrictionsFlag" ng-model="gsavm.program.usage.restrictions.flag" id="restrictionsFlagYes" value="yes" required/>
                                 <label for="restrictionsFlagYes">Yes</label>
@@ -216,6 +235,7 @@
                         </ul>
                     </fieldset>
                 </div>
+
                 <div class="input-field" ng-show="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code">
                     <label for="restrictions">Please provide the restrictions:<span class="required">*</span></label>
                     <textarea id="restrictions" name="restrictions" class="usa-input-large" ng-model="gsavm.program.usage.restrictions.content" ng-required="gsavm.program.usage.restrictions.flag ==='yes'"></textarea>
@@ -224,10 +244,11 @@
                         <span ng-show="gsavm.form.restrictions.$error.required">You must provide restrictions.</span>
                     </div>
                 </div>
+
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
                         <label for="discretionaryFundFlag">Are there discretionary funds available?<span class="required">*</span></label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                             <li>
                                 <input type="radio" name="discretionaryFundFlag" ng-model="gsavm.program.usage.discretionaryFund.flag" id="discretionaryFundFlagYes" value="yes" required/>
                                 <label for="discretionaryFundFlagYes">Yes</label>
@@ -250,7 +271,7 @@
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
                         <label for="loanTermsFlag">Are loans a type of assistance in this program?<span class="required">*</span></label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                             <li>
                                 <input type="radio" name="loanTermsFlag" ng-model="gsavm.program.usage.loanTerms.flag" id="loanTermsFlagYes" value="yes" required/>
                                 <label for="loanTermsFlagYes">Yes</label>
@@ -277,7 +298,7 @@
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
                         <label for="relatedProgramsFlag">Are there any related programs?</label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                             <li>
                                 <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagYes" value="yes" required/>
                                 <label for="relatedProgramsFlagYes">Yes</label>
@@ -342,7 +363,7 @@
                 <div class="input-field">
                     <fieldset class="usa-fieldset-inputs usa-sans">
                         <label>Are there examples of funded projects?</label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                             <li>
                                 <input name="fundedProjectsExampleFlag-yes" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
                                 <label for="fundedProjectsExampleFlag-yes">Yes</label>
