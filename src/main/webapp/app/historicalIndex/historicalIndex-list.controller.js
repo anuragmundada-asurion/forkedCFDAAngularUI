@@ -275,9 +275,11 @@
                 $('#historicalIndexTable tbody tr').each(function () {
                     var tr = $(this);
                     var row = $scope.dtInstance.DataTable.row(tr);
-                    // Open this row
-                    row.child($scope.formatHistoricalIndex(row.data())).show();
-                    tr.addClass('shown');
+                    if(typeof row.data() !== 'undefined') {
+                        // Open this row
+                        row.child($scope.formatHistoricalIndex(row.data())).show();
+                        tr.addClass('shown');
+                    }
                 });
             });
 
