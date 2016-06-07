@@ -188,7 +188,7 @@
                                 'title': r['title'],
                                 'organization': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': r['status'],
+                                'status': r['archive'],
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
