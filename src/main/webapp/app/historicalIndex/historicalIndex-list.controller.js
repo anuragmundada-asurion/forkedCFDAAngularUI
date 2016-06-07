@@ -184,11 +184,14 @@
                         var tableData = [];
                         angular.forEach(results, function (r) {
                             var row = {
-                                'programId': r['id'],
-                                'title': r['title'],
+                                'programId': r['programId'],
+                                'title': {
+                                    title: r['title'],
+                                    id: r['programId']
+                                },
                                 'organization': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': r['archive'],
+                                'status': (r['archive'])? 'Archived': 'Active',
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
@@ -246,7 +249,7 @@
                 DTColumnBuilder.newColumn('programNumber').withTitle('FAL#').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a ui-sref="viewProgram({id: \'66d1d2645f8acd25c2e79bb60b7342da\'})">' + data + '</a>';
+                        return '<a ui-sref="viewProgram({id: \'' + data.id+ '\'})">' + data.title + '</a>';
                     }),
                 DTColumnBuilder.newColumn('organization')
                     .withTitle('Department/Sub-Tier Agency & Office')
