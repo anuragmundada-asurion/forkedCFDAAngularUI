@@ -2,32 +2,32 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment',
+        function ($scope, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
             $scope.historicalIndexSearch = $scope.historicalIndexSearch || {
-                    aChangeEvent: [],
-                    aStatus: [],
-                    aDateOfChange: [],
-                    organizationId: '-',
-                    betweenFromOpened: false,
-                    betweenToOpened: false
-                };
+                aChangeEvent: [],
+                aStatus: [],
+                aDateOfChange: [],
+                organizationId: '-',
+                betweenFromOpened: false,
+                betweenToOpened: false
+            };
             $scope.dictionary = {
                 aChangeEvent: [
                     {
-                        name: "agencyChanged",
+                        name: "program_number",
                         label: "Agency Changed"
                     },
                     {
-                        name: "reinstated",
+                        name: "unarchive",
                         label: "Reinstated"
                     },
                     {
-                        name: "titleChanged",
+                        name: "title",
                         label: "Title Changed"
                     },
                     {
@@ -35,7 +35,7 @@
                         label: "Archived"
                     },
                     {
-                        name: "numberChanged",
+                        name: "program_number",
                         label: "Number Changed"
                     }
                 ],
@@ -49,18 +49,10 @@
                         label: "Archived"
                     }
                 ],
-                aDateOfChange: [
+                aDateOfChange: [ //only last FY -> NEED TO FIX IT WITH CORRECT LAST FY
                     {
-                        displayValue: "Since FY 2013 Publication",
-                        elementId: "2013"
-                    },
-                    {
-                        displayValue: "Since FY 2014 Publication",
-                        elementId: "2014"
-                    },
-                    {
-                        displayValue: "Since FY 2015 Publication",
-                        elementId: "2015"
+                        displayValue: "Since FY "+(moment().format('YYYY') - 1)+" Publication",
+                        elementId: (moment().format('YYYY') - 1)
                     }
                 ]
             };
@@ -131,37 +123,37 @@
 
                 if ($scope.historicalIndexSearch.keyword) {
                     oApiParam.oParams['keyword'] = $scope.historicalIndexSearch.keyword;
-                    oApiParam.oParams.offset = 0;
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply agency custom search
                 if ($scope.historicalIndexSearch.aChangeEvent.length > 0) {
                     oApiParam.oParams['oFilterParam'].aChangeEvent = $scope.historicalIndexSearch.aChangeEvent;
-                    oApiParam.oParams.offset = 0;
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply Status custom search
                 if ($scope.historicalIndexSearch.aStatus.length > 0) {
                     oApiParam.oParams['oFilterParam'].aStatus = $scope.historicalIndexSearch.aStatus;
-                    oApiParam.oParams.offset = 0;
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply BetweenFrom  from custom search
                 if ($scope.historicalIndexSearch.betweenFrom) {
-                    oApiParam.oParams['oFilterParam'].from = $scope.historicalIndexSearch.betweenFrom;
-                    oApiParam.oParams.offset = 0;
+                    oApiParam.oParams['oFilterParam'].from = moment($scope.historicalIndexSearch.betweenFrom, 'mm/dd/YYYY').format('YYYY');
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply BetweenTo from custom search
                 if ($scope.historicalIndexSearch.betweenTo) {
-                    oApiParam.oParams['oFilterParam'].to = $scope.historicalIndexSearch.betweenTo;
-                    oApiParam.oParams.offset = 0;
+                    oApiParam.oParams['oFilterParam'].to = moment($scope.historicalIndexSearch.betweenTo, 'mm/dd/YYYY').format('YYYY');
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply date of change from custom search
                 if ($scope.historicalIndexSearch.aDateOfChange.length > 0) {
                     oApiParam.oParams['oFilterParam'].dateChange = $scope.historicalIndexSearch.aDateOfChange[0].elementId;
-                    oApiParam.oParams.offset = 0;
+//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply organization from custom search
