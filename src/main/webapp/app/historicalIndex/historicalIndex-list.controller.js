@@ -187,11 +187,12 @@
                                 'programId': r['programId'],
                                 'title': {
                                     title: r['title'],
-                                    id: r['programId']
+                                    id: r['programId'],
+                                    activeLink: (r['latest'] && !r['archive'])
                                 },
                                 'organization': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': (r['archive'])? 'Archived': 'Active',
+                                'status': (r['archive']) ? 'Archived' : 'Active',
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
@@ -249,7 +250,12 @@
                 DTColumnBuilder.newColumn('programNumber').withTitle('FAL#').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('title').withTitle('Title').withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a ui-sref="viewProgram({id: \'' + data.id+ '\'})">' + data.title + '</a>';
+                        //only show title as active link if its not suppposed to be disabled
+                        if (data.activeLink) {
+                            return '<a ui-sref="viewProgram({id: \'' + data.id + '\'})">' + data.title + '</a>';
+                        } else {
+                            return '<span>' + data.title + '</span>';
+                        }
                     }),
                 DTColumnBuilder.newColumn('organization')
                     .withTitle('Department/Sub-Tier Agency & Office')
@@ -276,29 +282,29 @@
              * @param {Object} d
              * @returns {String}
              */
-            $scope.formatHistoricalIndex = function(d) {
+            $scope.formatHistoricalIndex = function (d) {
 
-              var html = '';
+                var html = '';
 
-              var childData = document.createElement("tr");
-              childData.setAttribute("style", "background-color: #eeeeee;");
-              var spacingColumn = document.createElement("td");
-              spacingColumn.colSpan="2";
-              spacingColumn.setAttribute("style", "border-right: 1px solid #ddd;");
-              var dataColumn = document.createElement("td");
-              dataColumn.colSpan="3";
+                var childData = document.createElement("tr");
+                childData.setAttribute("style", "background-color: #eeeeee;");
+                var spacingColumn = document.createElement("td");
+                spacingColumn.colSpan = "2";
+                spacingColumn.setAttribute("style", "border-right: 1px solid #ddd;");
+                var dataColumn = document.createElement("td");
+                dataColumn.colSpan = "3";
 
-              var childDataTable = document.createElement("table");
-              childDataTable.className = "usa-table-child";
+                var childDataTable = document.createElement("table");
+                childDataTable.className = "usa-table-child";
 
-              angular.forEach(d.historicalChanges, function(row){
-                  html +=
-                  '<tr>'+
-                      '<td>'+row.fiscalYear+'</td>'+
-                      '<td>'+row.actionType+'</td>'+
-                      '<td>'+row.body+'</td>'+
-                  '</tr>';
-              });
+                angular.forEach(d.historicalChanges, function (row) {
+                    html +=
+                        '<tr>' +
+                        '<td>' + row.fiscalYear + '</td>' +
+                        '<td>' + row.actionType + '</td>' +
+                        '<td>' + row.body + '</td>' +
+                        '</tr>';
+                });
 
                 childDataTable.innerHTML = html;
                 dataColumn.appendChild(childDataTable);
