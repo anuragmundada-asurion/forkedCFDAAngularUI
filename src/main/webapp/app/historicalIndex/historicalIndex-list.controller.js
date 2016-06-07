@@ -112,14 +112,16 @@
                     apiName: 'historicalIndexList',
                     apiSuffix: '',
                     oParams: {
-                        limit: data['length'] || 10,
-                        offset: data['start'],
-                        includeCount: true,
+                        size: data['length'] || 10,
                         oFilterParam: {}
                     },
                     oData: {},
                     method: 'GET'
                 };
+
+                if (data['start']) {
+                    oApiParam.oParams["page"] = Math.ceil(data['start'] / oApiParam.oParams.size);
+                }
 
                 if ($scope.historicalIndexSearch.keyword) {
                     oApiParam.oParams['keyword'] = $scope.historicalIndexSearch.keyword;
