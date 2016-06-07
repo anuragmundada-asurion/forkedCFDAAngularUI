@@ -89,6 +89,7 @@
 
             $scope.$watch('searchKeyword', function () {
                 self.reloadTable();
+                oApiParam.oParams.offset = 0;
             }, true);
 
 
@@ -271,7 +272,7 @@
 
                 if ($scope.searchKeyword) {
                     oApiParam.oParams['keyword'] = $scope.searchKeyword;
-                    oApiParam.oParams.offset = 0;
+                    //oApiParam.oParams.offset = 0; //this needs to be put on the watch, otherwise doesnt let user go to next page
                 }
 
                 if (data['order']) {
@@ -662,7 +663,7 @@
              */
             $scope.verifyProgramNumber = function () {
                 //no alpha allowed in program number,
-                if($scope.programNumber){
+                if ($scope.programNumber) {
                     $scope.programNumber = $scope.programNumber.replace(/[^0-9]/g, '');
                 }
 
