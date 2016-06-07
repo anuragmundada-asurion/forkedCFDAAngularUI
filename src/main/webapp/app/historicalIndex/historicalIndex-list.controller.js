@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$state', '$stateParams', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
+        function ($scope, $state, $stateParams, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -103,6 +103,10 @@
                 $scope.historicalIndexSearch[openedInput] = true;
             };
 
+            $scope.searchHistoricalIndex = function () {
+                $scope.dtInstance.DataTable.ajax.reload();
+            };
+
             /**
              * Function loading agencies
              * @returns Void
@@ -110,7 +114,7 @@
              * @param callback
              * @param settings
              */
-            $scope.searchHistoricalIndex = function (data, callback, settings) {
+            $scope.loadHistoricalIndex = function (data, callback, settings) {
                 console.log(data)
                 var oApiParam = {
                     apiName: 'historicalIndexList',
@@ -235,7 +239,7 @@
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
-                .withOption('ajax', $scope.searchHistoricalIndex)
+                .withOption('ajax', $scope.loadHistoricalIndex)
                 .withOption('rowCallback', function (row) {
                     $compile(row)($scope);
                 })
