@@ -140,13 +140,13 @@
 
                 //apply BetweenFrom  from custom search
                 if ($scope.historicalIndexSearch.betweenFrom) {
-                    oApiParam.oParams['oFilterParam'].from = moment($scope.historicalIndexSearch.betweenFrom, 'mm/dd/YYYY').format('YYYY');
+                    oApiParam.oParams['oFilterParam'].from = moment($scope.historicalIndexSearch.betweenFrom).format('YYYY');
 //                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply BetweenTo from custom search
                 if ($scope.historicalIndexSearch.betweenTo) {
-                    oApiParam.oParams['oFilterParam'].to = moment($scope.historicalIndexSearch.betweenTo, 'mm/dd/YYYY').format('YYYY');
+                    oApiParam.oParams['oFilterParam'].to = moment($scope.historicalIndexSearch.betweenTo).format('YYYY');
 //                    oApiParam.oParams.offset = 0;
                 }
 
