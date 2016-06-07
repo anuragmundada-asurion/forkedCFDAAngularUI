@@ -301,14 +301,16 @@
                 var childDataTable = document.createElement("table");
                 childDataTable.className = "usa-table-child";
 
-                angular.forEach(d.historicalChanges, function (row) {
-                    html +=
-                        '<tr>' +
-                        '<td>' + row.fiscalYear + '</td>' +
-                        '<td>' + row.actionType + '</td>' +
-                        '<td>' + row.body + '</td>' +
-                        '</tr>';
-                });
+                if (d.hasOwnProperty('historicalChanges')) {
+                    angular.forEach(d.historicalChanges, function (row) {
+                        html +=
+                            '<tr>' +
+                            '<td>' + row.fiscalYear + '</td>' +
+                            '<td>' + row.actionType + '</td>' +
+                            '<td>' + row.body + '</td>' +
+                            '</tr>';
+                    });
+                }
 
                 childDataTable.innerHTML = html;
                 dataColumn.appendChild(childDataTable);
