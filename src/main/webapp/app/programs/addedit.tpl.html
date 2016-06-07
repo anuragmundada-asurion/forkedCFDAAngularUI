@@ -135,11 +135,11 @@
                           None. You must add at least one authorization.
                         </p>
 
-                        <multi-entry-list editable="true">
+                        <multi-entry-list editable="true" ng-hide="$ctrl.parentVm.form.authorizations.$error.requiredLength">
                             <span>{{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
                         </multi-entry-list>
 
-                        <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
+                        <multi-entry-sub-form create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
                             <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
 
                                 <section class="usa-grid">
@@ -415,7 +415,7 @@
             </section>
             <section class="sub-section" field-finder-bookmark title="300 Subject Terms">
                 <div class="input-field">
-                    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="+ Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+                    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
                         <multi-entry-header>
                             <h3>300 Subject Terms<span class="required">*</span></h3>
                         </multi-entry-header>

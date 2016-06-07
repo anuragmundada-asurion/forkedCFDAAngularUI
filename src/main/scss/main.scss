@@ -387,6 +387,19 @@ input[disabled]{
 	}
 }
 
+ul.usa-input-field{
+	border: 1px solid $color-black;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+	li{
+		border-bottom: 1px solid #ccc;
+	}
+	li:last-child{
+		border-bottom: none;
+	}
+}
+
 p.usa-input-readonly{
 	border: 1px solid #ccc;
 	padding: 1rem 0.7em;
