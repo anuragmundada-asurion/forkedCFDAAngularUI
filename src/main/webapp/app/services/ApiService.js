@@ -24,7 +24,7 @@
             "nextAvailableProgramNumber": "/api/programs/nextAvailableProgramNumber",
             "historicalIndex": "/api/historicalIndex", //:programNumber
             "userList": "/api/users",
-            "historicalIndexList": "",
+            "historicalIndexList": "/api/searchHistoricalIndex",
             "userEntity": "/api/users/:id"
         };
 

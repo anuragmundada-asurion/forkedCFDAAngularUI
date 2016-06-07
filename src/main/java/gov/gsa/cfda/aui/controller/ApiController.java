@@ -179,6 +179,28 @@ public class ApiController {
         return response.getBody();
     }
 
+    @RequestMapping(value = "/api/searchHistoricalIndex", method = RequestMethod.GET, produces = "application/json")
+    public String searchHistoricalIndexApiCall(@RequestParam(value = "keyword", required = false) String keyword,
+                                               @RequestParam(value = "sortBy", required = false, defaultValue = "score") String sortBy,
+                                               @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                               @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                                               @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") JSONObject oFilterParam) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getSearchHistoricalIndexApiUrl())
+                .queryParam("keyword", keyword)
+                .queryParam("includeCount", true)
+                .queryParam("sortBy", sortBy)
+                .queryParam("page", page)
+                .queryParam("size", size)
+                .queryParam("oFilterParam", oFilterParam);
+
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
+        return response.getBody();
+    }
+
     @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String submitProgram(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String programId,
@@ -585,6 +607,10 @@ public class ApiController {
 
     private String getSearchApiUrl() {
         return environment.getProperty(API_SEARCH_ENV) + "/search";
+    }
+
+    private String getSearchHistoricalIndexApiUrl() {
+        return environment.getProperty(API_SEARCH_ENV) + "/searchHistoricalIndex";
     }
 
     private String getFederalHierarchyConfigurationApiUrl() {
