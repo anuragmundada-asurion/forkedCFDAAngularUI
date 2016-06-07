@@ -177,55 +177,8 @@
                 ApiService.call(oApiParam).then(
                     function (d) {
                         console.log(d);
-                        var results = d;//.results;
+                        var results = d.results;
 
-                        //results = [{
-                        //    'programId': "222222",
-                        //    'title': "rk test manual fal number outside the range",
-                        //    'organizationId': "100500340",
-                        //    'programNumber': "10.012",
-                        //    'status': "Active",
-                        //    'historicalChanges': [
-                        //        {
-                        //            'year': '1965',
-                        //            'event': 'Created',
-                        //            'label': 'Agricultural Research Service'
-                        //        },
-                        //        {
-                        //            'year': '1981',
-                        //            'event': 'Title Changed',
-                        //            'label': 'Agricultural Research Service Basic Applied'
-                        //        },
-                        //        {
-                        //            'year': '2002',
-                        //            'event': 'Number Changed',
-                        //            'label': 'Agricultural Research Service Basic Applied'
-                        //        },
-                        //    ]
-                        //}, {
-                        //    'programId': "3333",
-                        //    'title': "Test fal number outside the range",
-                        //    'organizationId': "100000391",
-                        //    'programNumber': "20.015",
-                        //    'status': "Archived",
-                        //    'historicalChanges': [
-                        //        {
-                        //            'year': '1978',
-                        //            'event': 'Created',
-                        //            'label': 'Agricultural Research Service'
-                        //        },
-                        //        {
-                        //            'year': '1991',
-                        //            'event': 'Title Changed',
-                        //            'label': 'Agricultural Research Service Basic Applied'
-                        //        },
-                        //        {
-                        //            'year': '2012',
-                        //            'event': 'Number Changed',
-                        //            'label': 'Agricultural Research Service Basic Applied'
-                        //        },
-                        //    ]
-                        //}];
 
                         var promises = [];
                         var tableData = [];
@@ -338,9 +291,9 @@
               angular.forEach(d.historicalChanges, function(row){
                   html +=
                   '<tr>'+
-                      '<td>'+row.year+'</td>'+
-                      '<td>'+row.event+'</td>'+
-                      '<td>'+row.label+'</td>'+
+                      '<td>'+row.fiscalYear+'</td>'+
+                      '<td>'+row.actionType+'</td>'+
+                      '<td>'+row.body+'</td>'+
                   '</tr>';
               });
 
