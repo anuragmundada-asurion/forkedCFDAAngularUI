@@ -16,6 +16,17 @@
                     betweenFromOpened: false,
                     betweenToOpened: false
                 };
+
+
+            $scope.getActionLabel = function (name) {
+                var actionObj = _.filter($scope.dictionary.aChangeEvent, {'name': name})[0];
+                if (name === "publish") {
+                    return "Published";
+                }
+                return actionObj.label;
+            };
+
+
             $scope.dictionary = {
                 aChangeEvent: [
                     {
@@ -115,7 +126,7 @@
              * @param settings
              */
             $scope.loadHistoricalIndex = function (data, callback, settings) {
-                console.log(data)
+                console.log(data);
                 var oApiParam = {
                     apiName: 'historicalIndexList',
                     apiSuffix: '',
@@ -186,7 +197,7 @@
                         var results = d.results;
 
                         //make sure the historical index results are sorted by fiscal year
-                        results = _.map(results, function(result){
+                        results = _.map(results, function (result) {
                             //sort the results historical changes array, and put it back in result.historicalChanges
                             result.historicalChanges = _.sortBy(result.historicalChanges, ['fiscalYear']);
                             return result;
@@ -313,10 +324,11 @@
 
                 if (d.hasOwnProperty('historicalChanges')) {
                     angular.forEach(d.historicalChanges, function (row) {
+                        var actionLabel = $scope.getActionLabel(row.actionType);
                         html +=
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null) ? ' (' + row.statusCode + ')' : '') + '</td>' +
-                            '<td>' + row.actionType + '</td>' +
+                            '<td>' + actionLabel + '</td>' +
                             '<td>' + row.body + '</td>' +
                             '</tr>';
                     });
