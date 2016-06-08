@@ -295,211 +295,209 @@
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>160 Related Programs</legend>
 
-          <div class="input-field">
-            <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
-              <label for="relatedProgramsFlag">Are there any related programs? <span class="usa-additional_text">Required</span></label>
-              <ul class="usa-horizontal-list">
-                <li>
-                  <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagYes" value="yes" required/>
-                  <label for="relatedProgramsFlagYes">Yes</label>
-                </li>
-                <li>
-                  <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagNA" value="na" required/>
-                  <label for="relatedProgramsFlagNA">Not Applicable</label>
-                </li>
+          <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
+            <label for="relatedProgramsFlag">Are there any related programs? <span class="usa-additional_text">Required</span></label>
+            <ul class="usa-horizontal-list">
+              <li>
+                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagYes" value="yes" required/>
+                <label for="relatedProgramsFlagYes">Yes</label>
+              </li>
+              <li>
+                <input type="radio" name="relatedProgramsFlag" ng-model="gsavm.program.relatedPrograms.flag" id="relatedProgramsFlagNA" value="na" required/>
+                <label for="relatedProgramsFlagNA">Not Applicable</label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <div ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
+            <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+              <multi-entry-header>
+                <label>Select any related programs below<span class="usa-additional_text">Required</span></label>
+              </multi-entry-header>
+
+              <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
+                You need to select at least one related Program.
+              </p>
+
+              <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
+                <span>{{$ctrl.parentVm.formatModelString(item, 'data._id', 'programs', 'data.programNumber + " " + data.title')}}</span>
+              </multi-entry-list>
+
+              <multi-entry-select>
+                <ux-adv-multi-select
+                ng-model="_multiEntrySelect.current"
+                ux-choices="$ctrl.parentVm.choices['programs']"
+                ux-choice-value="id"
+                ux-choice-title="data.programNumber + ' ' + data.title"
+                ux-items-per-page="25"
+                ux-displayed-pages="5"
+                ux-search-filter="searchRelatedPrograms:srchText"></ux-adv-multi-select>
+              </multi-entry-select>
+            </multi-entry>
+          </div>
+        </div>
+      </section>
+
+      <!-- 170 Examples of Funded Projects -->
+      <section class="usa-grid" field-finder-bookmark title="170 Examples of Funded Projects">
+        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+          <legend>170 Examples of Funded Projects</legend>
+
+          <fieldset class="usa-fieldset-inputs usa-sans">
+            <label>Are there examples of funded projects? <span class="usa-additional_text">Required</span></label>
+            <ul class="usa-horizontal-list">
+              <li>
+                <input name="fundedProjectsExampleFlag-yes" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
+                <label for="fundedProjectsExampleFlag-yes">Yes</label>
+              </li>
+              <li>
+                <input name="fundedProjectsExampleFlag-na" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
+                <label for="fundedProjectsExampleFlag-na">Not Applicable</label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <div class="usa-padding-top-3" ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
+
+            <fieldset class="usa-fieldset-inputs usa-sans">
+              <label>Please select all that apply:</label>
+              <ul class="usa-unstyled-list">
+                <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+                  <li>
+                    <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
+                    ng-model="gsavm.program.projects.list[fyTpl.year].flag">
+                    <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
+                  </li>
+                </div>
               </ul>
             </fieldset>
-            <!--hr/>
-            <ui-select multiple ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTozzz"
-            on-select="change()" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
-            <ui-select-match placeholder="Select a program...">{{$item.title}}</ui-select-match>
-            <ui-select-choices repeat="item._id as item in gsavm.choices['contacts'] | filter: {title: $select.search, _id: '!' + gsavm.program._id}">
-            <div ng-bind-html="item.title | highlight: $select.search"></div>
-          </ui-select-choices>
-        </ui-select>
-        <br>
-        <input type="text" id="titlezzz" name="titlezzz" class="usa-input-large" ng-model="gsavm.program.titlezzz" required>
-        <hr/-->
-      </div>
-      <div class="" ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
-        <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-          <multi-entry-header>
-            <label>Select any related programs below<span class="usa-additional_text">Required</span></label>
-          </multi-entry-header>
 
-          <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
-            You need to select at least one related Program.
-          </p>
+            <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
+              <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
+                <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="usa-additional_text">Required</span></label>
+                <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.program.projects.list[fyTpl.year].content.actual"></textarea>
+              </div>
+            </div>
 
-          <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
-            <span>{{$ctrl.parentVm.formatModelString(item, 'data._id', 'programs', 'data.programNumber + " " + data.title')}}</span>
-          </multi-entry-list>
-
-          <multi-entry-select>
-            <ux-adv-multi-select
-            ng-model="_multiEntrySelect.current"
-            ux-choices="$ctrl.parentVm.choices['programs']"
-            ux-choice-value="id"
-            ux-choice-title="data.programNumber + ' ' + data.title"
-            ux-items-per-page="25"
-            ux-displayed-pages="5"
-            ux-search-filter="searchRelatedPrograms:srchText"
-            >
-          </ux-adv-multi-select>
-        </multi-entry-select>
-      </multi-entry>
-
-      <!--<ui-select multiple ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" on-select="gsavm.log($item, $model)" class="usa-input-large" theme="select2" required-Length='{ "min": 1, "requiredIf": "gsavm.uiLogic.relatedProgramsFlag" }'>
-      <ui-select-match placeholder="Select a program...">{{$item.title}}</ui-select-match>
-      <ui-select-choices repeat="item._id as item in gsavm.choices['programs'] | filter: {title: $select.search, _id: '!' + gsavm.program._id}">
-      <div ng-bind-html="item.title | highlight: $select.search"></div>
-    </ui-select-choices>
-  </ui-select>
-  <div ng-show="gsavm.validationFlag.info || gsavm.form.relatedTo.$dirty">
-  <span ng-show="gsavm.form.relatedTo.$error.requiredLength">You need to select at least one related Program.</span>
-</div>-->
-</div>
-</div>
-</section>
-
-<!-- 170 Examples of Funded Projects -->
-<section class="usa-grid" field-finder-bookmark title="170 Examples of Funded Projects">
-  <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-    <legend>170 Examples of Funded Projects</legend>
-
-    <fieldset class="usa-fieldset-inputs usa-sans">
-      <label>Are there examples of funded projects? <span class="usa-additional_text">Required</span></label>
-      <ul class="usa-horizontal-list">
-        <li>
-          <input name="fundedProjectsExampleFlag-yes" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-yes" type="radio" value="yes" required>
-          <label for="fundedProjectsExampleFlag-yes">Yes</label>
-        </li>
-        <li>
-          <input name="fundedProjectsExampleFlag-na" ng-model="gsavm.program.projects.flag" id="fundedProjectsExampleFlag-na" type="radio" value="na" required>
-          <label for="fundedProjectsExampleFlag-na">Not Applicable</label>
-        </li>
-      </ul>
-    </fieldset>
-
-    <div class="usa-padding-top-3" ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
-
-      <fieldset class="usa-fieldset-inputs usa-sans">
-        <label>Please select all that apply:</label>
-        <ul class="usa-unstyled-list">
-          <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-            <li>
-              <input name="fundedProjectsExampleYear-{{fyTpl.year}}" id="fundedProjectsExampleYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
-              ng-model="gsavm.program.projects.list[fyTpl.year].flag">
-              <label for="fundedProjectsExampleYear-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}</label>
-            </li>
           </div>
-        </ul>
-      </fieldset>
 
-      <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
-        <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
-          <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="usa-additional_text">Required</span></label>
-          <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.program.projects.list[fyTpl.year].content.actual"></textarea>
+        </div>
+      </section>
+
+
+      <!-- 190 Functional Codes -->
+      <section class="usa-grid" field-finder-bookmark title="190 Functional Codes">
+        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+
+          <legend>190 Functional Codes<span class="required">*</span></legend>
+
+          <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
+            <li ng-repeat="item in gsavm.program.functionalCodes">
+              <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aFunctionalCode')">
+                <span class="fa fa-trash"></span>
+              </button>
+              <strong>{{ item.displayValue }}</strong>
+            </li>
+          </ul>
+
+          <isteven-multi-select
+          max-labels="1"
+          input-model="dictionary.aFunctionalCode"
+          output-model="gsavm.program.functionalCodes"
+          button-label="displayValue"
+          item-label="displayValue"
+          tick-property="ticked"
+          max-height="250px"
+          group-property="msGroup"
+          output-properties="element_id displayValue"
+          helper-elements="all none filter"></isteven-multi-select>
+
+        </div>
+      </section>
+
+
+      <!-- 300 Subject Terms -->
+      <section class="usa-grid" field-finder-bookmark title="300 Subject Terms">
+        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+          <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+            <multi-entry-header>
+              <legend>300 Subject Terms<span class="required">*</span></legend>
+            </multi-entry-header>
+
+            <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
+              You need to select at least one Subject Term.
+            </p>
+
+            <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
+              <span>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').displayValue}}</span>
+            </multi-entry-list>
+
+            <multi-entry-select>
+              <ux-adv-multi-select
+              ng-model="_multiEntrySelect.current"
+              ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
+              ux-choice-value="element_id"
+              ux-choice-title="displayValue"
+              ux-items-per-page="25"
+              ux-displayed-pages="5"
+              ux-search-filter="filter: {displayValue: srchText }"></ux-adv-multi-select>
+            </multi-entry-select>
+          </multi-entry>
+        </div>
+      </section>
+
+    </ux-form-section>
+
+
+
+    <ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
+      <h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
+      <section class="sub-section" field-finder-bookmark title="080 Eligibility Requirements">
+        <h3>080 Eligibility Requirements</h3>
+        <section class="sub-minor-section" field-finder-bookmark title="081 Applicant Eligibility">
+          <h4>081 Applicant Eligibility</h4>
+
+          <div class="input-field">
+            <div class="usa-grid-full">
+              <label>Eligible Applicants<span class="required">*</span></label>
+
+              <ul class="usa-unstyled-list action-list">
+                <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.types">
+                  <div class="item-btn-group">
+                    <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aApplicantEligibility')">
+                      <span class="fa fa-times"></span>
+                    </button>
+                  </div>
+                  <div class="item-title-group">{{ item.displayValue }}</div>
+                </li>
+              </ul>
+
+              <isteven-multi-select
+              max-labels="1"
+              input-model="dictionary.aApplicantEligibility"
+              output-model="gsavm.program.eligibility.applicant.types"
+              button-label="displayValue"
+              item-label="displayValue"
+              tick-property="ticked"
+              max-height="250px"
+              output-properties="element_id displayValue"
+              helper-elements="all none filter"
+              >
+            </isteven-multi-select>
+
+            <!--                            <div>
+            <span ng-show="$ctrl.parentVm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
+          </div>-->
         </div>
       </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- 190 Functional Codes -->
-<section class="usa-grid" field-finder-bookmark title="190 Functional Codes">
-  <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-
-    <legend>190 Functional Codes<span class="required">*</span></legend>
-
-    <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
-      <li ng-repeat="item in gsavm.program.functionalCodes">
-        <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aFunctionalCode')">
-          <span class="fa fa-trash"></span>
-        </button>
-        <strong>{{ item.displayValue }}</strong>
-      </li>
-    </ul>
-
-    <isteven-multi-select
-    max-labels="1"
-    input-model="dictionary.aFunctionalCode"
-    output-model="gsavm.program.functionalCodes"
-    button-label="displayValue"
-    item-label="displayValue"
-    tick-property="ticked"
-    max-height="250px"
-    group-property="msGroup"
-    output-properties="element_id displayValue"
-    helper-elements="all none filter"
-    >
-  </isteven-multi-select>
-
-  <!--              <div>
-  <span ng-show="$ctrl.parentVm.form.functionalCodes.$error.requiredLength">You need to select at least one Functional Code.</span>
-</div>-->
-</div>
-</section>
-
-
-<!-- 300 Subject Terms -->
-<section class="usa-grid" field-finder-bookmark title="300 Subject Terms">
-  <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-    <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
-      <multi-entry-header>
-        <legend>300 Subject Terms<span class="required">*</span></legend>
-      </multi-entry-header>
-
-      <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
-        You need to select at least one Subject Term.
-      </p>
-
-      <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
-        <span>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').displayValue}}</span>
-      </multi-entry-list>
-
-      <multi-entry-select>
-        <ux-adv-multi-select
-        ng-model="_multiEntrySelect.current"
-        ux-choices="$ctrl.parentVm.choices['program_subject_terms']"
-        ux-choice-value="element_id"
-        ux-choice-title="displayValue"
-        ux-items-per-page="25"
-        ux-displayed-pages="5"
-        ux-search-filter="filter: {displayValue: srchText }">
-      </ux-adv-multi-select>
-    </multi-entry-select>
-  </multi-entry>
-  <!--<ui-select multiple ng-model="gsavm.program.subjectTerms" name="subjectTerms" theme="select2" class="usa-input-large" required-Length='{ "min": 1 }'>
-  <ui-select-match placeholder="Select subject term...">{{$item.value}}</ui-select-match>
-  <ui-select-choices group-by="gsavm.groupByFns.multiPickerGroupByFn" repeat="item.element_id as item in gsavm.choices['program_subject_terms'] | filter: {value: $select.search } | orderBy:[gsavm.groupByFns.multiPickerGroupByFn,'code']">
-  <div ng-bind-html="item.value | highlight: $select.search"></div>
-</ui-select-choices>
-</ui-select>-->
-</div>
-</section>
-</ux-form-section>
-
-
-
-<ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
-  <h2><span class="section-circle">2</span> Eligibility / Qualifications</h2>
-  <section class="sub-section" field-finder-bookmark title="080 Eligibility Requirements">
-    <h3>080 Eligibility Requirements</h3>
-    <section class="sub-minor-section" field-finder-bookmark title="081 Applicant Eligibility">
-      <h4>081 Applicant Eligibility</h4>
-
       <div class="input-field">
         <div class="usa-grid-full">
-          <label>Eligible Applicants<span class="required">*</span></label>
+          <label>Use Of Assistance<span class="required">*</span></label>
 
           <ul class="usa-unstyled-list action-list">
-            <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.types">
+            <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.assistanceUsageTypes">
               <div class="item-btn-group">
-                <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aApplicantEligibility')">
+                <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aAssistanceUsageType')">
                   <span class="fa fa-times"></span>
                 </button>
               </div>
@@ -509,8 +507,8 @@
 
           <isteven-multi-select
           max-labels="1"
-          input-model="dictionary.aApplicantEligibility"
-          output-model="gsavm.program.eligibility.applicant.types"
+          input-model="dictionary.aAssistanceUsageType"
+          output-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"
           button-label="displayValue"
           item-label="displayValue"
           tick-property="ticked"
@@ -521,50 +519,17 @@
         </isteven-multi-select>
 
         <!--                            <div>
-        <span ng-show="$ctrl.parentVm.form.eligibleApplicants.$error.requiredLength">You must select at least one Eligible Applicant.</span>
+        <span ng-show="$ctrl.parentVm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
       </div>-->
     </div>
   </div>
-  <div class="input-field">
-    <div class="usa-grid-full">
-      <label>Use Of Assistance<span class="required">*</span></label>
+  <label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
+  <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
+  </textarea>
 
-      <ul class="usa-unstyled-list action-list">
-        <li class="action-list-item" ng-repeat="item in gsavm.program.eligibility.applicant.assistanceUsageTypes">
-          <div class="item-btn-group">
-            <button type="button" class="button-circle" ng-click="unselectDictionary(item, 'aAssistanceUsageType')">
-              <span class="fa fa-times"></span>
-            </button>
-          </div>
-          <div class="item-title-group">{{ item.displayValue }}</div>
-        </li>
-      </ul>
-
-      <isteven-multi-select
-      max-labels="1"
-      input-model="dictionary.aAssistanceUsageType"
-      output-model="gsavm.program.eligibility.applicant.assistanceUsageTypes"
-      button-label="displayValue"
-      item-label="displayValue"
-      tick-property="ticked"
-      max-height="250px"
-      output-properties="element_id displayValue"
-      helper-elements="all none filter"
-      >
-    </isteven-multi-select>
-
-    <!--                            <div>
-    <span ng-show="$ctrl.parentVm.form.useOfAssistance.$error.requiredLength">You must select at least one Use of Assistance.</span>
-  </div>-->
-</div>
-</div>
-<label for="assistanceAdditionalInfo">Additional Information<span class="required">*</span></label>
-<textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
-</textarea>
-
-<div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
-  <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
-</div>
+  <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
+    <span ng-show="gsavm.form.assistanceAdditionalInfo.$error.required">You must provide additional information.</span>
+  </div>
 </section>
 <section class="sub-minor-section" field-finder-bookmark title="082 Beneficiary Eligibility">
   <h4>082 Beneficiary Eligibility</h4>
@@ -2154,7 +2119,8 @@
 <div ng-include="'programs/view-section6.tpl.html'"></div>
 </ux-form-section>
 </section>
-<section class="usa-grid-full">
+
+<section class="usa-grid">
   <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
   <button type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
   <button type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
@@ -2163,6 +2129,6 @@
 
   <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
   <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
-  <!--field-finder-searchbox></field-finder-searchbox-->
 </section>
+
 </form>
