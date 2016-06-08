@@ -18,6 +18,7 @@
                 };
 
 
+            //this uses the static data in $scope.dictionary.aChangeEvent
             $scope.getActionLabel = function (name) {
                 var actionObj = _.filter($scope.dictionary.aChangeEvent, {'name': name})[0];
                 if (name === "publish") {
