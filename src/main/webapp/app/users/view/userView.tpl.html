@@ -1,0 +1,84 @@
+
+<primary-nav-bar></primary-nav-bar>
+
+<div ng-if="!user" class="usa-grid-full loading">
+    <!-- loading icon -->
+    <div style="width: 10%; margin-left: auto; margin-right: auto;" >
+        <img src="/img/img_cfda/loading.svg"/>
+    </div>
+</div>
+
+<div ng-if="user">
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+
+            <h1>View User</h1>
+
+            <ul class="usa-horizontal-list usa-text-small">
+                <li>
+                    <h5>Member Since</h5>
+                    <p>
+                        PLACEHOLDER
+                    </p>
+                </li>
+                <li>
+                    <h5>Last Logged In</h5>
+                    <p>
+                        PLACEHOLDER
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-third">
+            <label>Full Name</label>
+            <p class="usa-input-readonly">{{user.getFullName()}}</p>
+        </div>
+
+        <div class="usa-width-one-third">
+            <label>E-mail</label>
+            <p class="usa-input-readonly">{{user.getEmail()}}</p>
+        </div>
+
+        <div class="usa-width-one-third">
+            <label>Work Phone</label>
+            <p class="usa-input-readonly">{{user.getWorkPhone()}}</p>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-third">
+            <label>Role</label>
+            <p class="usa-input-readonly">{{user.getRole()}}</p>
+        </div>
+
+        <div class="usa-width-one-third">
+            <label>Organization</label>
+            <federal-hierarchy-label ng-if="user.getOrganizationId()" organization-id="{{ user.getOrganizationId() }}"></federal-hierarchy-label>
+            <p class="usa-input-readonly" ng-if="!user.getOrganizationId()">No organization</p>
+        </div>
+    </div>
+
+
+    <div class="usa-grid usa-grid-fixed" ng-if="isOMBAnalyst()">
+        <div class="usa-width-one-whole">
+            <label>Assigned Organization</label>
+            <p class="usa-input-readonly" ng-if="!user.getAssignedOrganizationIds().length">No assigned organization</p>
+            <div ng-if="user.getAssignedOrganizationIds().length">
+                <div ng-repeat="assignedOrg in user.getAssignedOrganizationIds()">
+                    <federal-hierarchy-label organization-id="{{ assignedOrg }}"></federal-hierarchy-label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+        <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
+            <a class="usa-button usa-button-gray-light" ui-sref="userList">Return</a>
+            <a ng-if="canEditUser()" class="usa-button" ui-sref="editUser({id: user.getId()})">Edit</a>
+        </div>
+    </div>
+</div>

@@ -221,6 +221,28 @@
                             PERMISSIONS.CAN_VIEW_USERS
                         ]
                     }
+                })
+                .state('viewUser', {
+                    url: "/users/:id/view",
+                    templateUrl: "users/view/userView.tpl.html",
+                    controller: "UserViewCtrl",
+                    title: 'View User - CFDA: View User',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_VIEW_USERS
+                        ]
+                    }
+                })
+                .state('editUser', {
+                    url: "/users/:id/edit",
+                    templateUrl: "users/form/userForm.tpl.html",
+                    controller: "UserFormCtrl",
+                    title: 'Edit User - CFDA: Edit User',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_EDIT_USERS
+                        ]
+                    }
                 });
 
             // the known route

@@ -24,8 +24,8 @@
             "nextAvailableProgramNumber": "/api/programs/nextAvailableProgramNumber",
             "historicalIndex": "/api/historicalIndex", //:programNumber
             "userList": "/api/users",
-            "historicalIndexList": "/api/searchHistoricalIndex",
-            "userEntity": "/api/users/:id"
+            "userEntity": "/api/users/",
+            "historicalIndexList": "/api/searchHistoricalIndex"
         };
 
         this.APIs = APIs;

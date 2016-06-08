@@ -63,8 +63,8 @@
         'CAN_EDIT_ORGANIZATION_CONFIG' : 'CanEditOrganizationConfig',
 
         //  User Profiles
-        'CAN_VIEW_USERS' : 'CanViewUsers'
-
+        'CAN_VIEW_USERS' : 'CanViewUsers',
+        'CAN_EDIT_USERS' : 'CanEditUsers'
     });
 
     myApp.run(['$rootScope', 'PERMISSIONS', function($rootScope, PERMISSIONS) {

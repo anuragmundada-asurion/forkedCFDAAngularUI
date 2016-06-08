@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
 
@@ -39,12 +39,13 @@
                             var tableData = [];
                             angular.forEach(results, function (r) {
                                 r['name'] = {
-                                    'name': r['firstName'] + ' ' + r['lastName'],
+                                    'name': r['fullName'],
                                     'email': r['email'],
+                                    'id': r['id'],
                                     'phone': r['workPhone']
                                 };
-                                if (r['orgID']) {
-                                    promises.push(FederalHierarchyService.getFederalHierarchyById(r['orgID'], true, false, function (data) {
+                                if (r['organizationId']) {
+                                    promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
                                         r['organization'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
                                     }, function () {
                                         r['organization'] = 'Organization Not Found';
@@ -66,6 +67,7 @@
                         position: 'left center',
                         html: '<div class="ui"><div class="header">Contact Info</div><div class="content"><strong>E-mail:</strong> ' + (data['email'] ? data['email'] : 'Not Available') + '<br/><strong>Phone:</strong> ' + (data['phone'] ? data['phone'] : 'Not Available') + '</div></div>'
                     });
+                    $compile(row)($scope);
                 })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
@@ -81,8 +83,8 @@
                     .withTitle('Name')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo"></i>';
-                        return infoIcon + data['name'];
+                        var infoIcon = '<i class="fa fa-info-circle jqUsersContactInfo"></i> ';
+                        return infoIcon + '<a ui-sref="viewUser({id: \'' + data['id'] + '\'})">' + data['name'] + '</a>';
                     }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', '').withOption('sWidth', '380px'),
                 DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),

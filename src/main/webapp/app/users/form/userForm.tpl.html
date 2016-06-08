@@ -1,0 +1,88 @@
+
+<primary-nav-bar></primary-nav-bar>
+<div ng-if="!user" class="usa-grid-full loading">
+    <!-- loading icon -->
+    <div style="width: 10%; margin-left: auto; margin-right: auto;" >
+        <img src="/img/img_cfda/loading.svg"/>
+    </div>
+</div>
+
+<div ng-if="user">
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+            <h1>Edit Organization</h1>
+
+            <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
+                <div class="usa-alert-body">
+                    <p class="usa-alert-text">{{ flash.message }}</p>
+                </div>
+            </div>
+
+            <ul class="usa-horizontal-list usa-text-small">
+                <li>
+                    <h5>Member Since</h5>
+                    <p>
+                        PLACEHOLDER
+                    </p>
+                </li>
+                <li>
+                    <h5>Last Logged In</h5>
+                    <p>
+                        PLACEHOLDER
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-fourth">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" ng-model="user.getFullName()" disabled="">
+        </div>
+
+        <div class="usa-width-one-fourth">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" ng-model="user.getEmail()" disabled="">
+        </div>
+
+        <div class="usa-width-one-fourth">
+            <label for="workPhone">Work Phone</label>
+            <input type="text" id="workPhone" ng-model="user.getWorkPhone()" disabled="">
+        </div>
+
+        <div class="usa-width-one-fourth">
+            <label for="homePhone">Home Phone</label>
+            <input type="text" id="homePhone" ng-model="user.getHomePhone()" disabled="">
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-fourth">
+            <label for="cfdaRole">Role</label>
+            <select id="cfdaRole" ng-options="item as item.value for item in items track by item.element_id" ng-model="cfdaRoles"></select>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-fourth">
+            <label>Organization</label>
+            <federal-hierarchy-inputs organization-id="user.getOrganization()"></federal-hierarchy-inputs>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-fourth">
+            <label>Assigned Organization</label>
+            <federal-hierarchy-inputs organization-id="user.getAssignedOrganization()"></federal-hierarchy-inputs>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+        <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
+            <a class="usa-button usa-button-gray-light" ui-sref="userList">Cancel</a>
+            <button class="usa-button" ng-click="saveUser()">Save</button>
+        </div>
+    </div>
+</div>

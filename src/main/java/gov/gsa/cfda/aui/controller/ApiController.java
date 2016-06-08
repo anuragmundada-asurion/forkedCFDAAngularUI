@@ -240,6 +240,19 @@ public class ApiController {
         }
     }
 
+    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                          @PathVariable("id") String userId) {
+        Map<String, Object> params = new HashMap<>();
+        return getsCall(accessToken, getUsersApiUrl().concat("/").concat(userId), params);
+    }
+
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        Map<String, Object> params = new HashMap<>();
+        return getsCall(accessToken, getUsersApiUrl(), params);
+    }
+
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
@@ -559,6 +572,10 @@ public class ApiController {
                                                           @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
         this.deleteCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id);
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    private String getUsersApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/users";
     }
 
     private String getProgramRequestsApiUrl() {
