@@ -315,7 +315,7 @@
                     angular.forEach(d.historicalChanges, function (row) {
                         html +=
                             '<tr>' +
-                            '<td>' + row.fiscalYear + '</td>' +
+                            '<td>' + row.fiscalYear + ((row.statusCode !== null) ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + row.actionType + '</td>' +
                             '<td>' + row.body + '</td>' +
                             '</tr>';
