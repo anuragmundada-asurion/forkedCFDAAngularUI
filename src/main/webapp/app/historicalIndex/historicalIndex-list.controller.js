@@ -9,13 +9,13 @@
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
             $scope.historicalIndexSearch = $scope.historicalIndexSearch || {
-                aChangeEvent: [],
-                aStatus: [],
-                aDateOfChange: [],
-                organizationId: '-',
-                betweenFromOpened: false,
-                betweenToOpened: false
-            };
+                    aChangeEvent: [],
+                    aStatus: [],
+                    aDateOfChange: [],
+                    organizationId: '-',
+                    betweenFromOpened: false,
+                    betweenToOpened: false
+                };
             $scope.dictionary = {
                 aChangeEvent: [
                     {
@@ -51,7 +51,7 @@
                 ],
                 aDateOfChange: [ //only last FY -> NEED TO FIX IT WITH CORRECT LAST FY
                     {
-                        displayValue: "Since FY "+(moment().format('YYYY') - 1)+" Publication",
+                        displayValue: "Since FY " + (moment().format('YYYY') - 1) + " Publication",
                         elementId: (moment().format('YYYY') - 1)
                     }
                 ]
@@ -93,6 +93,14 @@
                 $event.stopPropagation();
 
                 $scope.historicalIndexSearch[openedInput] = true;
+            };
+
+
+            //search on enter also
+            $scope.searchKeyUp = function (keycode) {
+                if (keycode === 13) {
+                    $scope.searchHistoricalIndex();
+                }
             };
 
             $scope.searchHistoricalIndex = function () {
@@ -269,7 +277,7 @@
                 $('#historicalIndexTable tbody tr').each(function () {
                     var tr = $(this);
                     var row = $scope.dtInstance.DataTable.row(tr);
-                    if(typeof row.data() !== 'undefined') {
+                    if (typeof row.data() !== 'undefined') {
                         // Open this row
                         row.child($scope.formatHistoricalIndex(row.data())).show();
                         tr.addClass('shown');
