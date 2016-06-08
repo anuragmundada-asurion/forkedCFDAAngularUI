@@ -56,8 +56,8 @@
         <div class="usa-grid usa-grid-fixed">
             <div class="usa-width-one-third">
                 <label>Which Organizations is this user responsible for?</label>
-                <select ng-model="userProfile.organizationType">
-                    <option value="default">User Organization</option>
+                <select ng-init="userProfile.organizationType = (userProfile.organizationType ? userProfile.organizationType : 'default')" ng-model="userProfile.organizationType">
+                    <option value="default" selected="selected">User Organization</option>
                     <option value="all">All Organizations</option>
                     <option value="custom">Custom Organizations</option>
                 </select>
