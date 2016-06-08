@@ -19,7 +19,7 @@
             $scope.dictionary = {
                 aChangeEvent: [
                     {
-                        name: "program_number",
+                        name: "agency",
                         label: "Agency Changed"
                     },
                     {
