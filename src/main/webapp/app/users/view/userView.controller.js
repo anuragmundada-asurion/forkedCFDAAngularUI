@@ -6,7 +6,25 @@
     myApp.controller('UserViewCtrl', ['$stateParams', '$scope', 'UserProfile', 'ApiService', 'AuthorizationService', 'ROLES',
         function($stateParams, $scope, UserProfile, ApiService, AuthorizationService, ROLES) {
             $scope.canEditUser = function() {
-                return AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR, ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]);
+                var hasPermission = false;
+
+                if (AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
+                    hasPermission = $scope.isAgencyUser() || $scope.isAgencyCoordinator();
+                } else if (AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
+                    hasPermission = $scope.isOMBAnalyst();
+                } else if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                    hasPermission = true;
+                }
+
+                return hasPermission;
+            };
+
+            $scope.isAgencyUser = function() {
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.AGENCY_USER.iamRoleId) : false;
+            };
+
+            $scope.isAgencyCoordinator = function() {
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.AGENCY_COORDINATOR.iamRoleId) : false;
             };
 
             $scope.isOMBAnalyst = function() {
