@@ -373,7 +373,7 @@
 
             <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
               <div ng-show='gsavm.program.projects.list[fyTpl.year].flag'>
-                <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="usa-additional_text">Required</span></label>
+                <label for="fundedProjectsExampleContent-{{fyTpl.year}}">{{fyTpl.name}}: {{fyTpl.year}}<span class="required">*</span></label>
                 <textarea id="fundedProjectsExampleContent-{{fyTpl.year}}" name="fundedProjectsExampleContent-{{fyTpl.year}}" ng-model=" gsavm.program.projects.list[fyTpl.year].content.actual"></textarea>
               </div>
             </div>
@@ -387,14 +387,18 @@
       <section class="usa-grid" field-finder-bookmark title="190 Functional Codes">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
 
-          <legend>190 Functional Codes<span class="required">*</span></legend>
+          <legend>190 Functional Codes</legend>
+
+          <label>Functional Codes <span class="required">*</span></label>
 
           <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
             <li ng-repeat="item in gsavm.program.functionalCodes">
-              <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aFunctionalCode')">
-                <span class="fa fa-trash"></span>
-              </button>
-              <strong>{{ item.displayValue }}</strong>
+              <div class="usa-input-field-content">{{ item.displayValue }}</div>
+              <div class="usa-input-field-options">
+                <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aFunctionalCode')">
+                  <span class="fa fa-trash"></span>
+                </button>
+              </div>
             </li>
           </ul>
 
@@ -413,14 +417,15 @@
         </div>
       </section>
 
-
       <!-- 300 Subject Terms -->
       <section class="usa-grid" field-finder-bookmark title="300 Subject Terms">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
             <multi-entry-header>
-              <legend>300 Subject Terms<span class="required">*</span></legend>
+              <legend>300 Subject Terms</legend>
             </multi-entry-header>
+
+            <label>Subject Terms <span class="required">*</span></label>
 
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
               You need to select at least one Subject Term.
@@ -441,6 +446,7 @@
               ux-search-filter="filter: {displayValue: srchText }"></ux-adv-multi-select>
             </multi-entry-select>
           </multi-entry>
+
         </div>
       </section>
 
