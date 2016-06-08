@@ -202,15 +202,15 @@
                                     id: r['programId'],
                                     activeLink: (r['latest'] && !r['archive'])
                                 },
-                                'organization': {'id': r['organizationId'], 'value': ''},
+                                'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
                                 'status': (r['archive']) ? 'Archived' : 'Active',
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
-                                row['organization']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
+                                row['organizationId']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
                             }, function () {
-                                row['organization']['value'] = 'Organization Not Found';
+                                row['organizationId']['value'] = 'Organization Not Found';
                             }));
 
                             tableData.push(row);
@@ -269,7 +269,7 @@
                             return '<span>' + data.title + '</span>';
                         }
                     }),
-                DTColumnBuilder.newColumn('organization')
+                DTColumnBuilder.newColumn('organizationId')
                     .withTitle('Department/Sub-Tier Agency & Office')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
