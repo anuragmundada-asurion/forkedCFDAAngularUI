@@ -35,7 +35,7 @@
       </div>
 
       <!-- Intro -->
-      <section field-finder-bookmark title="000 Intro" class="usa-grid">
+      <section class="usa-grid" field-finder-bookmark title="000 Intro">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode"></federal-hierarchy-inputs>
           <federal-hierarchy-label ng-if="((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
@@ -43,14 +43,14 @@
       </section>
 
       <!-- 010 Program Title -->
-      <section field-finder-bookmark class="usa-grid" title="010 Program Title">
+      <section class="usa-grid" field-finder-bookmark title="010 Program Title">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>010 Program Title</legend>
           <div ng-class=" gsavm.validationFlag.info || (gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error' : '' ">
             <label for="title" ng-class="gsavm.validationFlag.info || (gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error-label' : '' ">
-              Title <span class="usa-additional_text">Required</span>
+              Title <span class="required">*</span>
             </label>
-            <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
+            <span class="usa-input-error-message" ng-show="gsavm.validationFlag.info || gsavm.form.title.$error.required && gsavm.form.title.$dirty">
               You must provide a title.
             </span>
             <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
@@ -60,13 +60,20 @@
 
       <!-- Program Number -->
       <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+
+        <div class="usa-width-two-thirds usa-padding-top-3 usa-padding-bottom-3">
           <legend>Program Number</legend>
-          <span class="usa-form-hint">Please enter a unique program number. Note: The agency number will automatically be set upon submission. <br/>Please provide the 3 digit code (i.e. for 10.244 you would enter 244)</span>
+          <span class="usa-form-hint">
+            Please enter a unique program number. Note: The agency number will automatically be set upon submission.
+            Please provide the 3 digit code (i.e. for 10.244 you would enter 244)
+          </span>
+        </div>
+
+        <div class="usa-width-one-third usa-padding-top-3">
           <div ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
 
             <label for="programNumber" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error-label' : ''">
-              Number <span class="usa-additional_text">Required</span>
+              Number <span class="required">*</span>
             </label>
 
             <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
@@ -95,9 +102,7 @@
 
       <section field-finder-bookmark title="Program Number" ng-if="(gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft')">
         <h3><label for="programNumber">Program Number<span class="required">*</span></label></h3>
-        <div class="input-field" >
-          <span ng-bind="gsavm.program.programNumber"></span>
-        </div>
+        <span ng-bind="gsavm.program.programNumber"></span>
       </section>
 
       <!-- 020 Popular Name -->
@@ -124,7 +129,7 @@
               <legend>040 Authorization</legend>
             </multi-entry-header>
 
-            <label>Authorization <span class="usa-additional_text">Required</span></label>
+            <label>Authorization <span class="required">*</span></label>
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
               None. You must add at least one authorization.
             </p>
@@ -2120,15 +2125,15 @@
 </ux-form-section>
 </section>
 
-<section class="usa-grid">
-  <button type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-  <button type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
-  <button type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
-  <button type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
-  <button type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button>
+<section class="usa-grid usa-margin-top-3">
+  <button class="usa-button-big" type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
+  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
+  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
+  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
+  <button class="usa-button-big" type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button>
 
-  <button type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
-  <button type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
+  <button class="usa-button-big" type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>
+  <button class="usa-button-big" type="button" ng-hide="uxForm.isSection('review')" ng-click="uxForm.goToNextSection()">Next</button>
 </section>
 
 </form>

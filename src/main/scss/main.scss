@@ -393,10 +393,20 @@ ul.usa-input-field{
 	padding-right: 10px;
 	width: 100%;
 	li{
+		display: table;
+		width: 100%;
 		border-bottom: 1px solid #ccc;
 	}
 	li:last-child{
 		border-bottom: none;
+	}
+	.usa-input-field-content{
+		font-weight: 700;
+		width: 80%;
+		display: table-cell;
+	}
+	.usa-input-field-options{
+		text-align: right;
 	}
 }
 

@@ -1,27 +1,31 @@
 <ul class="usa-unstyled-list usa-input-field">
-    <li>
+  <li>
+
+    <!-- Content -->
+    <div class="usa-input-field-content" transclude-append></div>
+
+    <!-- Options -->
+    <div class="usa-input-field-options">
 
       <!-- Edit -->
-      <button class="usa-button-compact"
-              ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
-              type="button"
-              ng-click='$ctrl.openEntryDialog(item)'
-              ng-disabled='!$ctrl.allowModifications'>
-        <span class="fa fa-pencil"></span>
-      </button>
+      <button type="button"
+      class="usa-button-compact"
+      ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
+      ng-click='$ctrl.openEntryDialog(item)'
+      ng-show="newEntryBtnName"
+      ng-disabled='!$ctrl.allowModifications'>
+      <span class="fa fa-pencil"></span></button>
 
       <!-- Delete -->
       <button type='button'
-              class="usa-button-compact"
-              ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
-              ng-click='$ctrl.deleteEntry(item)'
-              ng-show="newEntryBtnName"
-              ng-disabled='!$ctrl.allowModifications'>
-          <span class="fa fa-trash"></span>
-      </button>
+      class="usa-button-compact"
+      ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
+      ng-click='$ctrl.deleteEntry(item)'
+      ng-show="newEntryBtnName"
+      ng-disabled='!$ctrl.allowModifications'>
+      <span class="fa fa-trash"></span></button>
 
-      <!-- Content -->
-      <strong transclude-append></strong>
+    </div>
 
-    </li>
+  </li>
 </ul>

@@ -1,14 +1,21 @@
 <ul class="usa-unstyled-list usa-input-field" ng-if="$ctrl.showList">
-    <li>
+  <li>
+
+    <!-- Content -->
+    <div class="usa-input-field-content" transclude-append></div>
+
+    <!-- Options -->
+    <div class="usa-input-field-options">
+
+      <!-- Delete -->
       <button type='button'
-              class="usa-button-compact"
-              ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
-              ng-click='$ctrl.deleteEntry(item)'
-              ng-disabled='!$ctrl.allowModifications'>
-          <span class="fa fa-trash"></span>
-      </button>
+      class="usa-button-compact"
+      ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
+      ng-click='$ctrl.deleteEntry(item)'
+      ng-disabled='!$ctrl.allowModifications'>
+      <span class="fa fa-trash"></span></button>
 
-      <strong transclude-append></strong>
+    </div>
 
-    </li>
+  </li>
 </ul>
