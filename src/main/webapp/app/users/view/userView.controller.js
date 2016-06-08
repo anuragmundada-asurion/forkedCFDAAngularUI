@@ -10,11 +10,15 @@
             };
 
             $scope.isOMBAnalyst = function() {
-                return $scope.user.getRole() == ROLES.OMB_ANALYST.iamRoleId;
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.OMB_ANALYST.iamRoleId) : false;
+            };
+
+            $scope.isCustomOrganizationType = function() {
+                return $scope.userProfile ? ($scope.userProfile.getOrganizationType() == 'custom') : false;
             };
 
             var oApiParam = {
-                apiName: 'userEntity',
+                apiName: 'userAPI',
                 apiSuffix: $stateParams.id,
                 oParams: {},
                 oData: {},
@@ -23,7 +27,7 @@
 
             ApiService.call(oApiParam).then(
                 function (results) {
-                    $scope.user = new UserProfile(results);
+                    $scope.userProfile = new UserProfile(results);
                 }
             );
         }

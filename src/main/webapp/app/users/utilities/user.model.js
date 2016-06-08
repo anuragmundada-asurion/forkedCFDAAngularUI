@@ -52,6 +52,10 @@
                 return this.organizationType ? this.organizationType : 'default';
             };
 
+            UserProfile.prototype.getOrganizationTypeValue = function() {
+                return this.organizationType == 'custom' ? 'Custom Organizations' : (this.organizationType == 'all' ? 'All Organizations' : 'User Organization');
+            };
+
             /**
              * Return the constructor function
              */

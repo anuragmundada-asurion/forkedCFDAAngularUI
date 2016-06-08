@@ -26,7 +26,7 @@
                 .withOption('processing', true)
                 .withOption('ajax', function(data, callback, settings) {
                     var oApiParam = {
-                        apiName: 'userList',
+                        apiName: 'userAPI',
                         apiSuffix: '',
                         oParams: {},
                         oData: {},
