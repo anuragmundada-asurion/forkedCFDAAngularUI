@@ -243,8 +243,14 @@ public class ApiController {
     @RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                           @PathVariable("id") String userId) {
-        Map<String, Object> params = new HashMap<>();
-        return getsCall(accessToken, getUsersApiUrl().concat("/").concat(userId), params);
+        return getCall(accessToken, getUsersApiUrl().concat("/").concat(userId));
+    }
+
+    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String updateUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                             @PathVariable("id") String userId,
+                             @RequestBody String jsonBody) {
+        return updateCall(accessToken, getUsersApiUrl().concat("/").concat(userId), jsonBody);
     }
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
