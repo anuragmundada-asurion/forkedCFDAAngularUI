@@ -185,6 +185,12 @@
                         console.log(d);
                         var results = d.results;
 
+                        //make sure the historical index results are sorted by fiscal year
+                        results = _.map(results, function(result){
+                            //sort the results historical changes array, and put it back in result.historicalChanges
+                            result.historicalChanges = _.sortBy(result.historicalChanges, ['fiscalYear']);
+                            return result;
+                        });
 
                         var promises = [];
                         var tableData = [];
