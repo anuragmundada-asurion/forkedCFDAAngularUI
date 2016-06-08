@@ -11,24 +11,15 @@
 <div ng-if="user">
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-whole">
-
             <h1>View User</h1>
+        </div>
+    </div>
 
-            <ul class="usa-horizontal-list usa-text-small">
-                <li>
-                    <h5>Member Since</h5>
-                    <p>
-                        PLACEHOLDER
-                    </p>
-                </li>
-                <li>
-                    <h5>Last Logged In</h5>
-                    <p>
-                        PLACEHOLDER
-                    </p>
-                </li>
-            </ul>
-
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+            <label>Organization</label>
+            <federal-hierarchy-label ng-if="user.getOrganizationId()" organization-id="{{ user.getOrganizationId() }}"></federal-hierarchy-label>
+            <p class="usa-input-readonly" ng-if="!user.getOrganizationId()">No organization</p>
         </div>
     </div>
 
@@ -54,14 +45,7 @@
             <label>Role</label>
             <p class="usa-input-readonly">{{user.getRole()}}</p>
         </div>
-
-        <div class="usa-width-one-third">
-            <label>Organization</label>
-            <federal-hierarchy-label ng-if="user.getOrganizationId()" organization-id="{{ user.getOrganizationId() }}"></federal-hierarchy-label>
-            <p class="usa-input-readonly" ng-if="!user.getOrganizationId()">No organization</p>
-        </div>
     </div>
-
 
     <div class="usa-grid usa-grid-fixed" ng-if="isOMBAnalyst()">
         <div class="usa-width-one-whole">
