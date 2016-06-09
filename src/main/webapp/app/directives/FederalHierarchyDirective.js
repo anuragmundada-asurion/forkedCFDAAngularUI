@@ -34,6 +34,7 @@
     .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'ROLES', function(FederalHierarchyService, UserService, AuthorizationService, ROLES){
         return {
             scope: {
+                "noDefault": "=?",
                 "organizationId": "=", // ngModel var passed by reference (two-way)
                 "organizationConfiguration": "=?", // ngModel var passed by reference (two-way) optional
                 "programCode": "=?", // ngModel var passed by reference (two-way) optional
@@ -51,7 +52,7 @@
                 $scope.initController = function() {
                     //store program organization id if the program has it otherwise store user's organization id
                     if(typeof $scope.programOrganizationId === 'undefined' ) {
-                        $scope.programOrganizationId = (typeof $scope.organizationId === 'undefined' || $scope.organizationId === '' || $scope.organizationId === null) ? UserService.getUserOrgId() : $scope.organizationId;
+                        $scope.programOrganizationId = (typeof $scope.organizationId === 'undefined' || $scope.organizationId === '' || $scope.organizationId === null) ? ($scope.noDefault ? null : UserService.getUserOrgId()) : $scope.organizationId;
                     }
 
                     $scope.isControllerLoaded = true;
@@ -302,9 +303,9 @@
                 };
             }],
             link: function(scope, element, attributes) {
-                scope.$watch('organizationId', function(value){
+                scope.$watch('organizationId', function(){
                     //execute this only at the begining (Once)
-                    if(value && !scope.isControllerLoaded) {
+                    if(!scope.isControllerLoaded) {
                         //initialize controller
                         scope.initController();
 
