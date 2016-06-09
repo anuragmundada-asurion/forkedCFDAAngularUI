@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('RegionalOfficeListController', ['$scope', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
-        function ($scope, $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
+    myApp.controller('RegionalOfficeListController', ['$scope',  '$compile', '$log', '$timeout', '$http', 'appConstants', 'ApiService', 'Dictionary', 'FederalHierarchyService', 'UserService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q',
+        function ($scope, $compile,  $log, $timeout, $http, appConstants, ApiService, Dictionary, FederalHierarchyService, UserService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q) {
             //needed for ng-jstree plugin
             var vm = this;
 
@@ -279,6 +279,12 @@
                 DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%')
             ];
 
+
+            angular.element('#regionalofficetable').on('draw.dt', function (event, data) {
+                $compile(angular.element('.dataTables_length'))($scope);
+                $scope.totalCount = data._iRecordsTotal;
+            });
+
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function (settings, json) {
                     // Initialize semantic ui dropdown
@@ -292,6 +298,7 @@
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
+                .withOption('info', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
@@ -299,8 +306,7 @@
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Agencies Found',
-                    'lengthMenu': 'Showing _MENU_ entries',
-                    'info': ' of _TOTAL_ entries'
+                    'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('agency')
