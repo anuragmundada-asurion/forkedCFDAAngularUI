@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'ROLES',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, ROLES) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
 
@@ -13,6 +13,20 @@
                     $scope.dtInstance.DataTable.search($scope.searchKeyword).draw();
                 }
             }, true);
+
+            $scope.canEditUser = function(data) {
+                var hasPermission = false;
+
+                if (AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
+                    hasPermission = (data['role'] == ROLES.AGENCY_USER.iamRoleId) || (data['role'] == ROLES.AGENCY_COORDINATOR.iamRoleId);
+                } else if (AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
+                    hasPermission = data['role'] == ROLES.OMB_ANALYST.iamRoleId;
+                } else if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                    hasPermission = true;
+                }
+
+                return hasPermission;
+            };
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('infoCallback', function(settings, start, end, max, total, pre) {
@@ -53,6 +67,10 @@
                                 } else {
                                     r['organization'] = 'No Organization Assigned';
                                 }
+                                r['action'] = {
+                                    'id': r['id'],
+                                    'role': r['role']
+                                };
                                 tableData.push(r);
                             });
                             $q.all(promises).then(function () {
@@ -94,6 +112,13 @@
                     .withOption('defaultContent', '')
                     .withOption('searchable', false)
                     .withOption('orderable', false)
+                    .withOption('render', function(data) {
+                        if ($scope.canEditUser(data)) {
+                            return '<a ui-sref="editUser({id: \'' + data['id'] + '\'})"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
+                        } else {
+                            return '';
+                        }
+                    })
             ];
         }
     ]);
