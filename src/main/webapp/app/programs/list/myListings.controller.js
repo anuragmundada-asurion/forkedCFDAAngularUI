@@ -89,7 +89,6 @@
 
             $scope.$watch('searchKeyword', function () {
                 self.reloadTable();
-                oApiParam.oParams.offset = 0;
             }, true);
 
 
