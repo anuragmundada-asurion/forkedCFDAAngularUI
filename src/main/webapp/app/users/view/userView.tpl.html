@@ -8,18 +8,12 @@
     </div>
 </div>
 
+
+
 <div ng-if="userProfile">
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-whole">
             <h1>View User</h1>
-        </div>
-    </div>
-
-    <div class="usa-grid usa-grid-fixed">
-        <div class="usa-width-one-whole">
-            <label>Organization</label>
-            <federal-hierarchy-label ng-if="userProfile.getOrganizationId()" organization-id="{{ userProfile.getOrganizationId() }}"></federal-hierarchy-label>
-            <p class="usa-input-readonly" ng-if="!userProfile.getOrganizationId()">No organization</p>
         </div>
     </div>
 
@@ -37,6 +31,14 @@
         <div class="usa-width-one-third">
             <label>Work Phone</label>
             <p class="usa-input-readonly">{{userProfile.getWorkPhone()}}</p>
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+            <label>Organization</label>
+            <federal-hierarchy-label ng-if="userProfile.getOrganizationId()" organization-id="{{ userProfile.getOrganizationId() }}"></federal-hierarchy-label>
+            <p class="usa-input-readonly" ng-if="!userProfile.getOrganizationId()">No organization</p>
         </div>
     </div>
 

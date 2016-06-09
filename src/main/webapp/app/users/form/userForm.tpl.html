@@ -22,13 +22,6 @@
     </div>
 
     <div class="usa-grid usa-grid-fixed">
-        <div class="usa-width-one-whole">
-            <label>Organization</label>
-            <federal-hierarchy-inputs ng-if="userProfile.organizationId" organization-id="userProfile.organizationId"></federal-hierarchy-inputs>
-        </div>
-    </div>
-
-    <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-third">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" ng-model="userProfile.fullName" disabled="">
@@ -42,6 +35,13 @@
         <div class="usa-width-one-third">
             <label for="workPhone">Work Phone</label>
             <input type="text" id="workPhone" ng-model="userProfile.workPhone" disabled="">
+        </div>
+    </div>
+
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+            <label>Organization</label>
+            <federal-hierarchy-inputs ng-if="userProfile.organizationId" organization-id="userProfile.organizationId"></federal-hierarchy-inputs>
         </div>
     </div>
 
