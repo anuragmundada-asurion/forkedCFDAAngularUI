@@ -213,7 +213,8 @@
                                 'street': r['address']['street'],
                                 'city': r['address']['city'],
                                 'state': r['address']['state'],
-                                'phone': r['phone']
+                                'phone': r['phone'],
+                                'action': {'officeId': r['id']}
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
                                 row['agency']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
@@ -279,7 +280,7 @@
             ];
 
             $scope.dtOptions = DTOptionsBuilder.newOptions()
-                .withOption('initComplete', function(settings, json){
+                .withOption('initComplete', function (settings, json) {
                     // Initialize semantic ui dropdown
                     //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
                     // Remove select to fix dropdown  double click bug
@@ -314,7 +315,16 @@
                 DTColumnBuilder.newColumn('phone').withTitle('Phone').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
-                    .withOption('defaultContent', '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" ui-sref="editRegionalOffice({id: row.id})"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a><a ui-sref="viewRegionalOffice({id: row.id})"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>')
+                    .withOption('render', function (actionRowData) {
+                        var editIcon = '<a has-access="{{[PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE]}}" href="/regionalOffice/' + actionRowData.officeId + '/edit"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
+                        console.log("editIcon html: ", editIcon);
+                        var viewIcon = '<a href="/regionalOffice/' + actionRowData.officeId + '/view"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>';
+                        console.log("viewIcon html: ", viewIcon);
+
+                        var html = editIcon + viewIcon;
+
+                        return html;
+                    })
                     .withOption('orderable', false)
             ];
         }]);
