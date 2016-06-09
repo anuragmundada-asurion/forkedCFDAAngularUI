@@ -28,8 +28,8 @@
                     aStatus: [],
                     aDateOfChange: [],
                     organizationId: '-',
-                    betweenFromOpened: false,
-                    betweenToOpened: false
+                    betweenFrom: [],
+                    betweenTo: []
                 };
 
                 $scope.dictionary = {
@@ -70,7 +70,9 @@
                             displayValue: "Since FY " + (moment().format('YYYY') - 1) + " Publication",
                             elementId: (moment().format('YYYY') - 1)
                         }
-                    ]
+                    ],
+                    aYearFrom: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) { return { "elementId":i, "displayValue":i }; }),
+                    aYearTo: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) { return { "elementId":i, "displayValue":i }; })
                 };
 
                 if(reloadSearchResult === true){
@@ -80,15 +82,6 @@
 
             //init search form
             $scope.initSearchForm(false);
-
-            //setting for datepicker
-            $scope.dateOptions = {
-                formatYear: 'yy',
-                showWeeks: false,
-                //startingDay: 1,
-                datepickerMode:'year',
-                minMode:'year'
-            };
 
             $('.usa-cfda-accordion').each(function () {
                 new CommonUtility.AccordionCFDA($(this));
@@ -112,15 +105,6 @@
                     $scope.historicalIndexSearch[field].push(name);
                 }
             };
-
-            //function for setting the popup when opened to it's field input
-            $scope.openDatepicker = function ($event, openedInput) {
-                $event.preventDefault();
-                $event.stopPropagation();
-
-                $scope.historicalIndexSearch[openedInput] = true;
-            };
-
 
             //search on enter also
             $scope.searchKeyUp = function (keycode) {
@@ -171,13 +155,13 @@
                 }
 
                 //apply BetweenFrom  from custom search
-                if ($scope.historicalIndexSearch.betweenFrom) {
-                    oApiParam.oParams['oFilterParam'].from = moment($scope.historicalIndexSearch.betweenFrom).format('YYYY');
+                if ($scope.historicalIndexSearch.betweenFrom.length > 0) {
+                    oApiParam.oParams['oFilterParam'].from = $scope.historicalIndexSearch.betweenFrom[0].elementId;
                 }
 
                 //apply BetweenTo from custom search
-                if ($scope.historicalIndexSearch.betweenTo) {
-                    oApiParam.oParams['oFilterParam'].to = moment($scope.historicalIndexSearch.betweenTo).format('YYYY');
+                if ($scope.historicalIndexSearch.betweenTo.length > 0) {
+                    oApiParam.oParams['oFilterParam'].to = $scope.historicalIndexSearch.betweenTo[0].elementId;
                 }
 
                 //apply date of change from custom search

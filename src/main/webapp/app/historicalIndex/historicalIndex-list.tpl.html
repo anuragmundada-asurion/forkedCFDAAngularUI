@@ -123,17 +123,17 @@
 
                                           <div class="usa-grid-full">
                                             <div class="usa-width-one-third" style="width:38%;">
-                                              <input  datepicker-popup-template-url="search/calendar/popup.tpl.html"
-                                                datepicker-template-url="search/calendar/datepicker.tpl.html"
-                                                type="text"
-                                                placeholder="yyyy"
-                                                ng-click="openDatepicker($event, 'betweenFromOpened')"
-                                                uib-datepicker-popup="yyyy"
-                                                ng-model="historicalIndexSearch.betweenFrom"
-                                                is-open="historicalIndexSearch.betweenFromOpened"
-                                                datepicker-options="dateOptions"
-                                                show-button-bar="false"
-                                                close-text="Close" />
+                                              <div isteven-multi-select
+                                                max-labels="1"
+                                                input-model="dictionary.aYearFrom"
+                                                output-model="historicalIndexSearch.betweenFrom"
+                                                button-label="displayValue"
+                                                item-label="displayValue"
+                                                tick-property="ticked"
+                                                output-properties="elementId"
+                                                max-height="250px"
+                                                selection-mode="single">
+                                              </div>
                                             </div>
 
                                             <div class="usa-width-one-third usa-text-align-center usa-margin-top-1" style="width:12%;">
@@ -141,17 +141,17 @@
                                             </div>
 
                                             <div class="usa-width-one-third" style="width:38%;">
-                                              <input datepicker-popup-template-url="search/calendar/popup.tpl.html"
-                                                datepicker-template-url="search/calendar/datepicker.tpl.html"
-                                                type="text"
-                                                placeholder="yyyy"
-                                                ng-click="openDatepicker($event, 'betweenToOpened')"
-                                                uib-datepicker-popup="yyyy"
-                                                ng-model="historicalIndexSearch.betweenTo"
-                                                is-open="historicalIndexSearch.betweenToOpened"
-                                                datepicker-options="dateOptions"
-                                                show-button-bar="false"
-                                                close-text="Close" />
+                                              <div isteven-multi-select
+                                                max-labels="1"
+                                                input-model="dictionary.aYearTo"
+                                                output-model="historicalIndexSearch.betweenTo"
+                                                button-label="displayValue"
+                                                item-label="displayValue"
+                                                tick-property="ticked"
+                                                output-properties="elementId"
+                                                max-height="250px"
+                                                selection-mode="single">
+                                              </div>
                                             </div>
                                           </div>
                                       </div>
