@@ -73,7 +73,9 @@
             $scope.dateOptions = {
                 formatYear: 'yy',
                 showWeeks: false,
-                startingDay: 1
+                //startingDay: 1,
+                datepickerMode:'year',
+                minMode:'year'
             };
 
             $('.usa-cfda-accordion').each(function () {
