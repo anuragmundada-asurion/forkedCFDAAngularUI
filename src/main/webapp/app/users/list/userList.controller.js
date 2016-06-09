@@ -87,7 +87,7 @@
                         return infoIcon + '<a ui-sref="viewUser({id: \'' + data['id'] + '\'})">' + data['name'] + '</a>';
                     }),
                 DTColumnBuilder.newColumn('organization').withTitle('Department/Sub-Tier Agency & Office').withOption('defaultContent', '').withOption('sWidth', '380px'),
-                DTColumnBuilder.newColumn('gsaRAC[, ]').withTitle('Roles').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('role').withTitle('Roles').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('permissions').withTitle('Permissions').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('action')
                     .withTitle('Action')
