@@ -192,8 +192,7 @@
                     }
                 }
 
-                ApiService.call(oApiParam).then(
-                    function (d) {
+                ApiService.call(oApiParam).then(function (d) {
                         console.log(d);
                         var results = d.results;
 
@@ -246,6 +245,12 @@
                 DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%')
             ];
 
+            angular.element('#historicalIndexTable').on('draw.dt', function (event, data) {
+                $compile(angular.element('.dataTables_length'))($scope);
+                $scope.totalCount = data._iRecordsTotal;
+            });
+
+
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function (settings, json) {
                     // Append info text for easier theming
@@ -258,6 +263,7 @@
                 .withOption('searching', false)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
+                .withOption('info', false)
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('ajax', $scope.loadHistoricalIndex)
                 .withOption('rowCallback', function (row) {
@@ -266,8 +272,7 @@
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Results Found',
-                    'lengthMenu': 'Showing _MENU_ entries',
-                    'info': ' of _TOTAL_ entries'
+                    'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('empty').withTitle('').withOption('defaultContent', '').withOption('sWidth', '50px').withOption('orderable', false),
