@@ -9,7 +9,7 @@
       <a ng-class="isArchivedList() ? 'usa-current' : '';" ng-click="changeList('archivedPrograms')">Archived Listings</a>
     </li>
     <li>
-      <a ng-class="isRequestList() ? 'usa-current' : '';" ng-click="changeList('requests')">Requests</a>
+      <a ng-class="isRequestList() ? 'usa-current' : '';" has-access="{{[PERMISSIONS.CAN_VIEW_REQUESTS]}}" ng-click="changeList('requests')">Requests</a>
     </li>
   </ul>
 </div>

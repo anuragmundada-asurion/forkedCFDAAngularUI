@@ -31,6 +31,9 @@
         //  Review Program Page
         'CAN_REVIEW_PROGRAMS': 'CanReviewPrograms',
 
+        //  View Requests Page
+        'CAN_VIEW_REQUESTS': 'CanViewRequests',
+
         //  Title change request
         'CAN_REQUEST_TITLE_CHANGE': 'CanRequestTitleChange',
         'CAN_PERFORM_TITLE_CHANGE': 'CanPerformTitleChange',
