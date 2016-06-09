@@ -147,43 +147,36 @@
 
                 if ($scope.historicalIndexSearch.keyword) {
                     oApiParam.oParams['keyword'] = $scope.historicalIndexSearch.keyword;
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply agency custom search
                 if ($scope.historicalIndexSearch.aChangeEvent.length > 0) {
                     oApiParam.oParams['oFilterParam'].aChangeEvent = $scope.historicalIndexSearch.aChangeEvent;
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply Status custom search
                 if ($scope.historicalIndexSearch.aStatus.length > 0) {
                     oApiParam.oParams['oFilterParam'].aStatus = $scope.historicalIndexSearch.aStatus;
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply BetweenFrom  from custom search
                 if ($scope.historicalIndexSearch.betweenFrom) {
                     oApiParam.oParams['oFilterParam'].from = moment($scope.historicalIndexSearch.betweenFrom).format('YYYY');
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply BetweenTo from custom search
                 if ($scope.historicalIndexSearch.betweenTo) {
                     oApiParam.oParams['oFilterParam'].to = moment($scope.historicalIndexSearch.betweenTo).format('YYYY');
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply date of change from custom search
                 if ($scope.historicalIndexSearch.aDateOfChange.length > 0) {
                     oApiParam.oParams['oFilterParam'].dateChange = $scope.historicalIndexSearch.aDateOfChange[0].elementId;
-//                    oApiParam.oParams.offset = 0;
                 }
 
                 //apply organization from custom search
                 if ($scope.historicalIndexSearch.organizationId !== '-') {
                     oApiParam.oParams['oFilterParam'].organizationId = $scope.historicalIndexSearch.organizationId;
-                    oApiParam.oParams.offset = 0;
                 }
 
                 if (data['order'].length > 0) {
