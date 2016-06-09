@@ -8,15 +8,6 @@
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
-            $scope.historicalIndexSearch = $scope.historicalIndexSearch || {
-                    aChangeEvent: [],
-                    aStatus: [],
-                    aDateOfChange: [],
-                    organizationId: '-',
-                    betweenFromOpened: false,
-                    betweenToOpened: false
-                };
-
 
             //this uses the static data in $scope.dictionary.aChangeEvent
             $scope.getActionLabel = function (name) {
@@ -27,47 +18,68 @@
                 return actionObj.label;
             };
 
+            /**
+             * initialize form
+             * @returns void
+             */
+            $scope.initSearchForm = function(reloadSearchResult) {
+                $scope.historicalIndexSearch = {
+                    aChangeEvent: [],
+                    aStatus: [],
+                    aDateOfChange: [],
+                    organizationId: '-',
+                    betweenFromOpened: false,
+                    betweenToOpened: false
+                };
 
-            $scope.dictionary = {
-                aChangeEvent: [
-                    {
-                        name: "agency",
-                        label: "Agency Changed"
-                    },
-                    {
-                        name: "unarchive",
-                        label: "Reinstated"
-                    },
-                    {
-                        name: "title",
-                        label: "Title Changed"
-                    },
-                    {
-                        name: "archived",
-                        label: "Archived"
-                    },
-                    {
-                        name: "program_number",
-                        label: "Number Changed"
-                    }
-                ],
-                aStatus: [
-                    {
-                        name: "active",
-                        label: "Active"
-                    },
-                    {
-                        name: "archived",
-                        label: "Archived"
-                    }
-                ],
-                aDateOfChange: [ //only last FY -> NEED TO FIX IT WITH CORRECT LAST FY
-                    {
-                        displayValue: "Since FY " + (moment().format('YYYY') - 1) + " Publication",
-                        elementId: (moment().format('YYYY') - 1)
-                    }
-                ]
+                $scope.dictionary = {
+                    aChangeEvent: [
+                        {
+                            name: "agency",
+                            label: "Agency Changed"
+                        },
+                        {
+                            name: "unarchive",
+                            label: "Reinstated"
+                        },
+                        {
+                            name: "title",
+                            label: "Title Changed"
+                        },
+                        {
+                            name: "archived",
+                            label: "Archived"
+                        },
+                        {
+                            name: "program_number",
+                            label: "Number Changed"
+                        }
+                    ],
+                    aStatus: [
+                        {
+                            name: "active",
+                            label: "Active"
+                        },
+                        {
+                            name: "archived",
+                            label: "Archived"
+                        }
+                    ],
+                    aDateOfChange: [ //only last FY -> NEED TO FIX IT WITH CORRECT LAST FY
+                        {
+                            displayValue: "Since FY " + (moment().format('YYYY') - 1) + " Publication",
+                            elementId: (moment().format('YYYY') - 1)
+                        }
+                    ]
+                };
+
+                if(reloadSearchResult === true){
+                    $scope.dtInstance.DataTable.ajax.reload();
+                }
             };
+
+            //init search form
+            $scope.initSearchForm(false);
 
             //setting for datepicker
             $scope.dateOptions = {
@@ -129,7 +141,6 @@
              * @param settings
              */
             $scope.loadHistoricalIndex = function (data, callback, settings) {
-                console.log(data);
                 var oApiParam = {
                     apiName: 'historicalIndexList',
                     apiSuffix: '',
@@ -188,7 +199,6 @@
                 }
 
                 ApiService.call(oApiParam).then(function (d) {
-                        console.log(d);
                         var results = d.results;
 
                         //make sure the historical index results are sorted by fiscal year
