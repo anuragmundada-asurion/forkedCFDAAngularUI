@@ -184,7 +184,7 @@
                     oApiParam.oParams.offset = 0;
                 }
 
-                if (data['order']) {
+                if (data['order'].length > 0) {
                     var order = data['order'][0];
                     var columnName = data['columns'][order['column']]['data'];
                     if (columnName) {
@@ -257,7 +257,7 @@
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
                 })
-                .withOption('order', [[1, 'asc']])
+                .withOption('order', [])
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
