@@ -81,7 +81,7 @@
                                         <fieldset class="usa-fieldset-inputs">
                                           <label class="usa-label-marginless">Change Events</label>
                                           <ul class="usa-horizontal-list ">
-                                              <li ng-repeat="oChangeEvent in dictionary.aChangeEvent">
+                                              <li ng-repeat="oChangeEvent in dictionary.aChangeEvent" style="width: 40%;">
                                                   <input type="checkbox" name="changeEvent[]" ng-checked="historicalIndexSearch.aChangeEvent.indexOf(oChangeEvent.name) > -1" ng-click="toggleSelection(oChangeEvent.name, 'aChangeEvent')" id="ce_{{ oChangeEvent.name }}" value="{{ oChangeEvent.name }}">
                                                   <label for="ce_{{ oChangeEvent.name }}">{{ oChangeEvent.label }}</label>
                                               </li>
