@@ -328,7 +328,7 @@
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null) ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
-                            '<td>' + row.body + '</td>' +
+                            '<td>' + ((row.actionType !== 'archived') ? row.body : '') + '</td>' +
                             '</tr>';
                     });
                 }
