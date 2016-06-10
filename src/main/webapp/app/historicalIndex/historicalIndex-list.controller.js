@@ -114,6 +114,10 @@
             };
 
             $scope.searchHistoricalIndex = function () {
+                //force a click on collapsible-0 to hide advanced search if its open
+                if($( "#advancedsearchbutton").attr("aria-expanded") === "true"){
+                    $( "#advancedsearchbutton" ).trigger( "click" );
+                }
                 $scope.dtInstance.DataTable.ajax.reload();
             };
 
