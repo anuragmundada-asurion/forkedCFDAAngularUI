@@ -80,7 +80,7 @@
                     '<ul class="usa-unstyled-list action-list">' +
                     '<li class="action-list-item" ng-repeat="item in selectedItemsAsNodes track by item.$key">' +
                     '<div class="item-btn-group">' +
-                    '<button type="button" class="button-circle" ng-click="removeItem(item.$key)"><span class="fa fa-times"></span></button>' +
+                    '<button type="button" class="usa-button-compact" ng-click="removeItem(item.$key)"><span class="fa fa-trash"></span></button>' +
                     '</div>' +
                     '<div class="item-title-group">' +
                     '<span>{{ getItemLabel(item) }}</span>' +

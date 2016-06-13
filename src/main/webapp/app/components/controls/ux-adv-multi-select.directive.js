@@ -28,7 +28,7 @@
                     '<ul class="usa-unstyled-list action-list">' +
                         '<li class="action-list-item" ng-repeat="item in {0} | selectedChoiceFilter:_ctrl.getSelected():\'{1}\'">' +
                             '<div class="item-btn-group">' +
-                                '<button type="button" class="button-circle" ng-click="_ctrl.remove(item)"><span class="fa fa-times"></span></button>' +
+                                '<button type="button" class="usa-button-compact" ng-click="_ctrl.remove(item)"><span class="fa fa-trash"></span></button>' +
                             '</div>' +
                             '<div class="item-title-group">' +
                                 '<span>{{ _ctrl.choiceTitleGetter(item) }}</span>' +
