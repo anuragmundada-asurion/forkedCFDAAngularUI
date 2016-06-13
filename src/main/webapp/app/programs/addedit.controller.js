@@ -532,13 +532,6 @@
                     );
                 }
 
-                //
-                //$scope.programNumberChangedManually = function (programNumber) {
-                //    if(programNumber){
-                //        programNumber = programNumber.replace(/[^0-9]/g, '');
-                //        vm.program.programNumber = programNumber;
-                //    }
-                //};
 
                 $scope.isNextAvailableProgramNumberOutsideRange = function (callback) {
                     var oApiParam = {
