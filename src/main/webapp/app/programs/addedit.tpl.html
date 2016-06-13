@@ -1422,9 +1422,9 @@
                       <!--                                            <p ng-show="$subForm.current.assistanceType"> Selected Assistance Type:
                       <b>{{$ctrl.parentVm.getTreeNodeModel($subForm.current.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</b></p>-->
 
-                      <div ng-show="!$subForm.current.assistanceType">
+                      <!--<div ng-show="!$subForm.current.assistanceType">-->
                         <span>Please select Assistance Type<span class="required">*</span></span>
-                      </div>
+                      <!--</div>-->
 
                       <div ng-init="selectedAssistanceType=(!selectedAssistanceType && $subForm.current.assistanceType) ? $subForm.current.assistanceType : null"></div>
                       <div ng-init="$subForm.current.assistanceType=$ctrl.setSelectedDictionaryItems(selectedAssistanceType, false)"></div>
