@@ -2099,7 +2099,7 @@
   <div ng-repeat="obligation in gsavm.program.financial.obligations">
     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.recovery" trigger-click-on-enter>122 Obligations, "Is this a Recovery and Reinvestment Act Obligation?" field is required for Obligation # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="(obligation.questions.salary_or_expense.flag == 'na') && (!obligation.assistanceType)" trigger-click-on-enter>122 Obligations, Assistance Type Field is required for Obligation # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="(obligation.questions.salary_or_expense.flag == 'na') && (!obligation.assistanceType || obligation.assistanceType == '')" trigger-click-on-enter>122 Obligations, Assistance Type Field is required for Obligation # {{$index + 1}}<br/></a>
   </div>
 
   <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!gsavm.program.financial.treasury.tafs || gsavm.program.financial.treasury.tafs.length==0" trigger-click-on-enter>124 TAFS Codes is required<br/></a>
