@@ -24,3 +24,46 @@
     }
   }
 }
+
+.pagination-panel {
+  background-color: $color-gray-lightest;
+  padding: 40px 0;
+  &.small-pagination {
+    padding: 0;
+  }
+  .pagination-item-count-control {
+    float: left;
+    > select {
+      display: inline-block;
+      width: 75px;
+    }
+  }
+  .pagination {
+    @extend .usa-unstyled-list;
+    margin-top: 10px; //Temp
+    float: right;
+
+    > li {
+      display: inline-block;
+      margin: 0 5px;
+      font-weight: $font-bold;
+      &.active {
+        background-color: $color-white;
+      }
+      > a,
+      > span {
+        display: inline-block;
+        padding: 5px 12px;
+      }
+      &.arrow-btn {
+        span {
+          font-size: 25px;
+          vertical-align: middle;
+        }
+        &.disabled {
+          color: $color-gray;
+        }
+      }
+    }
+  }
+}

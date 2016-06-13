@@ -4,24 +4,24 @@
 // .layout-padding {
 //   padding: $layout-padding;
 // }
-.sub-form {
-  display: block;
-  padding: $form-section-indent;
-  background-color: $color-primary-alt-lightest;
-  & &{
-    background-color: $color-primary-alt-light;
-  }
-}
-.sub-section,
-.sub-minor-section{
-  padding-bottom:30px !important;
-}
-.sub-section {
-  border-top: 1px solid $color-gray-lighter;
-  > .sub-minor-section {
-    padding-left: $form-section-indent;
-  }
-}
+// .sub-form {
+//   display: block;
+//   padding: $form-section-indent;
+//   background-color: $color-primary-alt-lightest;
+//   & &{
+//     background-color: $color-primary-alt-light;
+//   }
+// }
+// .sub-section,
+// .sub-minor-section{
+//   padding-bottom:30px !important;
+// }
+// .sub-section {
+//   border-top: 1px solid $color-gray-lighter;
+//   > .sub-minor-section {
+//     padding-left: $form-section-indent;
+//   }
+// }
 // .action-list {
 //   .action-list-item {
 //     > * {

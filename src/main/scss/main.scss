@@ -59,6 +59,53 @@ html.tr-coretext{
 }
 
 /*--------------
+Form
+---------------*/
+form {
+  max-width: none !important;
+}
+
+// This needs to be replaced to usa-input-required
+.required {
+  color: $color-secondary-dark;
+  font-weight: 700;
+}
+
+/*--------------
+Masked Input
+Angular Directive
+---------------*/
+masked-input {
+  > * {
+    display: inline-block !important;
+  }
+  >span {
+    margin: 0 5px;
+  }
+  > input[type="text"] {
+    width: 35px;
+    &.masked-input-length-2 {
+      width: 45px;
+    }
+    &.masked-input-length-3 {
+      width: 55px;
+    }
+    &.masked-input-length-4 {
+      width: 65px
+    }
+    &.masked-input-length-5 {
+      width: 75px;
+    }
+    &.masked-input-length-6 {
+      width: 85px;
+    }
+    &.masked-input-length-7 {
+      width: 95px;
+    }
+  }
+}
+
+/*--------------
 C3 Chart
 ---------------*/
 
@@ -155,19 +202,18 @@ CDFA Old Styles
 ---------------*/
 
 @import 'cfda-specific/variables';
-@import 'cfda-specific/form';
-@import 'cfda-specific/layout';
 @import 'cfda-specific/wizard';
-@import 'cfda-specific/pagination';
-@import 'cfda-specific/fieldFinder';
-@import 'cfda-specific/masked-input';
-@import 'cfda-specific/button';
 @import 'cfda-specific/listbox';
-@import 'cfda-specific/select2/core';
 
 
 // These files will be deleted
 
+// @import 'cfda-specific/masked-input';
+// @import 'cfda-specific/pagination';
+// @import 'cfda-specific/button';
+// @import 'cfda-specific/layout';
+// @import 'cfda-specific/form';
+// @import 'cfda-specific/fieldFinder';
 // @import 'cfda-specific/text-format';
 // @import 'cfda-specific/hierarchy-dropdown';
 // @import 'cfda-specific/multi-entry';
@@ -753,6 +799,11 @@ $usa-btn-huge-width:     17rem;
 		}
 	}
 }
+
+/* UI Select
+---------------------------------------------------------- */
+// Need to be replaced with multiselect
+@import 'vendors/ui-select';
 
 /* Multiselect
 ---------------------------------------------------------- */
