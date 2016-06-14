@@ -1,244 +1,247 @@
-<div class="usa-grid-full" ng-controller="ProgramSearchCtrl">
-    <div class="usa-width-one-whole">
 
-        <div class="usa-segment usa-segment-attached-top usa-border-radius-top-right-1">
-            <form class="usa-search usa-search-huge">
-                <div role="search">
+<div class="usa-cfda-accordion usa-accordion-button-centered" ng-controller="ProgramSearchCtrl">
 
-                    <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
-                    <input id="filterYearVal" type="hidden" name="filterYear" value="0">
+  <div class="usa-background-primary-darkest usa-grid-fixed">
 
-                    <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue"
-                           type="search" required="required" placeholder="Keyword/FAL#"
-                           class="usa-input-borderless" name="text">
+    <div class="usa-grid">
 
-                    <button class="usa-search-submit usa-border-radius-bottom-right-0" type="button" ng-click="searchPrograms()">
-                        <span class="usa-search-submit-text">Search</span>
-                    </button>
+      <div class="usa-segment usa-segment-attached-top usa-border-radius-top-right-1">
+        <form class="usa-search usa-search-big">
+          <div role="search">
 
-                </div>
-            </form>
+            <input id="pageSizeVal" type="hidden" name="pageSize" value="10">
+            <input id="filterYearVal" type="hidden" name="filterYear" value="0">
+
+            <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="globalSearchValue"
+            type="search" required="required" placeholder="Keyword/FAL#"
+            class="usa-input-borderless" name="text">
+
+            <button class="usa-search-submit usa-border-radius-bottom-right-0" type="button" ng-click="searchPrograms()">
+              <span class="usa-search-submit-text">Search</span>
+            </button>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="usa-segment usa-segment-attached usa-segment-secondary">
+        <div class="usa-grid">
+          <div class="usa-width-one-third">
+            <label class="usa-label-marginless" for="agencyselect">By Agency</label>
+            <select id="agencyselect">
+              <option selected value="">By Agency</option>
+            </select>
+          </div>
+          <div class="usa-width-one-third">
+            <label class="usa-label-marginless" for="assistance">By Assistance Type</label>
+
+            <div
+            isteven-multi-select
+            max-labels="1"
+            input-model="dictionary.aAssistanceType"
+            output-model="advancedSearch.aAssistanceType"
+            button-label="displayValue"
+            item-label="displayValue"
+            tick-property="ticked"
+            max-height="250px"
+            group-property="msGroup"></div>
+          </div>
+          <div class="usa-width-one-third">
+            <button style="margin-top: 2.3rem;" class="usa-button-outline usa-button-big usa-button-fluid usa-margin-bottom-0" ui-sref="historicalIndex()" type="button">
+              Historical Index
+            </button>
+          </div>
         </div>
+      </div>
 
-        <div class="usa-segment usa-segment-attached usa-segment-secondary">
-            <div class="usa-grid">
-                <div class="usa-width-one-third">
-                    <label class="usa-label-marginless" for="agencyselect">By Agency</label>
-                    <select id="agencyselect">
-                        <option selected value="">By Agency</option>
-                    </select>
-                </div>
-                <div class="usa-width-one-third">
-                    <label class="usa-label-marginless" for="assistance">By Assistance Type</label>
+      <div class="usa-segment usa-segment-attached-bottom usa-margin-bottom-0">
 
-                    <div
-                            isteven-multi-select
-                            max-labels="1"
-                            input-model="dictionary.aAssistanceType"
-                            output-model="advancedSearch.aAssistanceType"
-                            button-label="displayValue"
-                            item-label="displayValue"
-                            tick-property="ticked"
-                            max-height="250px"
-                            group-property="msGroup"
-                            >
-                    </div>
-                </div>
-                <div class="usa-width-one-third">
-                    <button style="margin-top: 2.3rem;" class="usa-button-outline usa-button-big usa-button-fluid usa-margin-bottom-0" ui-sref="historicalIndex()" type="button">
-                        Historical Index
-                    </button>
-                </div>
-            </div>
-        </div>
+        <ul class="usa-unstyled-list">
+          <li class="usa-margin-bottom-0">
+            <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
+              Advanced Search <span class="caret"></span>
+            </button>
+          </li>
+        </ul>
 
-        <div class="usa-segment usa-segment-attached-bottom">
-
-            <div class="usa-cfda-accordion usa-accordion-button-centered">
-                <ul class="usa-unstyled-list">
-                    <li class="usa-margin-bottom-0">
-                        <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
-                            Advanced Search <span class="caret"></span>
-                        </button>
-                        <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
-
-                            <div class="usa-grid-full">
-                                <div class="usa-width-one-half">
-                                    <label class="usa-label-marginless">Use of Assistance</label>
-
-                                    <div
-                                            isteven-multi-select
-                                            max-labels="1"
-                                            input-model="dictionary.aAssistanceUsageType"
-                                            output-model="advancedSearch.aAssistanceUsageType"
-                                            button-label="displayValue"
-                                            item-label="displayValue"
-                                            tick-property="ticked"
-                                            max-height="250px"
-                                            group-property="msGroup"
-                                            >
-                                    </div>
-                                </div>
-                                <div class="usa-width-one-half">
-                                    <label class="usa-label-marginless">Applicant Eligibility</label>
-
-                                    <div
-                                            isteven-multi-select
-                                            max-labels="1"
-                                            input-model="dictionary.aApplicantEligibility"
-                                            output-model="advancedSearch.aApplicantEligibility"
-                                            button-label="displayValue"
-                                            item-label="displayValue"
-                                            tick-property="ticked"
-                                            max-height="250px"
-                                            >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="usa-grid-full">
-                                <div class="usa-width-one-half">
-                                    <label>Beneficiary Eligibility</label>
-
-                                    <div
-                                            isteven-multi-select
-                                            max-labels="1"
-                                            input-model="dictionary.aBeneficiaryEligibility"
-                                            output-model="advancedSearch.aBeneficiaryEligibility"
-                                            button-label="displayValue"
-                                            item-label="displayValue"
-                                            tick-property="ticked"
-                                            max-height="250px"
-                                            >
-                                    </div>
-                                </div>
-                                <div class="usa-width-one-half">
-                                    <label>Functional Codes</label>
-
-                                    <div
-                                            isteven-multi-select
-                                            max-labels="1"
-                                            input-model="dictionary.aFunctionalCode"
-                                            output-model="advancedSearch.aFunctionalCode"
-                                            button-label="displayValue"
-                                            item-label="displayValue"
-                                            tick-property="ticked"
-                                            max-height="250px"
-                                            group-property="msGroup"
-                                            >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="usa-grid-full">
-                                <div class="usa-width-one-half">
-                                    <label for="published">Date Published</label>
-
-                                    <div class="usa-grid-full">
-                                        <div class="usa-width-one-third" style="width:38%;">
-                                            <input datepicker-popup-template-url="search/calendar/popup.tpl.html"
-                                                   datepicker-template-url="search/calendar/datepicker.tpl.html"
-                                                   type="text"
-                                                   placeholder="mm/dd/yyyy"
-                                                   ng-click="openDatepicker($event, 'datePublishedStartOpened')"
-                                                   uib-datepicker-popup="MM/dd/yyyy"
-                                                   ng-model="advancedSearch.datePublishedStart"
-                                                   is-open="advancedSearch.datePublishedStartOpened"
-                                                   datepicker-options="dateOptions"
-                                                   close-text="Close"/>
-                                        </div>
-
-                                        <div class="usa-width-one-third usa-text-align-center usa-margin-top-2" style="width:12%;">
-                                            <strong>To</strong>
-                                        </div>
-
-                                        <div class="usa-width-one-third" style="width:38%;">
-                                            <input datepicker-popup-template-url="search/calendar/popup.tpl.html"
-                                                   datepicker-template-url="search/calendar/datepicker.tpl.html"
-                                                   type="text"
-                                                   placeholder="mm/dd/yyyy"
-                                                   ng-click="openDatepicker($event, 'datePublishedEndOpened')"
-                                                   uib-datepicker-popup="MM/dd/yyyy"
-                                                   ng-model="advancedSearch.datePublishedEnd"
-                                                   is-open="advancedSearch.datePublishedEndOpened"
-                                                   datepicker-options="dateOptions"
-                                                   close-text="Close"/>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="usa-width-one-half">
-
-                                    <label>Executive Order 12372</label>
-
-                                    <fieldset class="usa-fieldset-inputs usa-margin-top-1">
-
-                                        <legend class="usa-sr-only">Executive Order 12372</legend>
-
-                                        <ul class="usa-horizontal-list ">
-                                            <li>
-                                                <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderYes" value="yes">
-                                                <label for="executiveOrderYes">Yes</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderNo" value="no">
-                                                <label for="executiveOrderNo">No</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderAll" value="">
-                                                <label for="executiveOrderAll">Not Selected</label>
-                                            </li>
-                                        </ul>
-
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                            <div class="usa-grid-full">
-                                <div class="usa-width-one-whole">
-                                    <label>Has Recovery and Reinvestment Act Obligations</label>
-
-                                    <fieldset class="usa-fieldset-inputs usa-margin-top-1">
-
-                                        <legend class="usa-sr-only">Has Recovery and Reinvestment Act Obligations</legend>
-
-                                        <ul class="usa-horizontal-list ">
-                                            <li>
-                                                <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActYes" value="yes">
-                                                <label for="recoveryActYes">Yes</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActNA" value="na">
-                                                <label for="recoveryActNA">Not Applicable</label>
-                                            </li>
-                                            <li>
-                                                <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActAll" value="">
-                                                <label for="recoveryActAll">All listings</label>
-                                            </li>
-                                        </ul>
-
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                            <div class="usa-grid-full">
-                                <div class="usa-width-one-whole usa-text-align-right">
-                                    <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearAdvancedSearchForm()">
-                                        Clear All
-                                    </button>
-                                    <button class="usa-button-big" type="button" ng-click="searchPrograms()">
-                                        Search
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
+      </div>
 
     </div>
+
+  </div>
+
+
+  <!-- Advanced Search Content -->
+
+  <div id="collapsible-0" aria-hidden="true" class="usa-background-gray-lightest usa-grid-fixed">
+    <div class="usa-grid">
+      <div class="usa-accordion-content">
+
+        <div class="usa-grid-full">
+          <div class="usa-width-one-half">
+            <label class="usa-label-marginless">Use of Assistance</label>
+
+            <div
+            isteven-multi-select
+            max-labels="1"
+            input-model="dictionary.aAssistanceUsageType"
+            output-model="advancedSearch.aAssistanceUsageType"
+            button-label="displayValue"
+            item-label="displayValue"
+            tick-property="ticked"
+            max-height="250px"
+            group-property="msGroup"></div>
+          </div>
+          <div class="usa-width-one-half">
+            <label class="usa-label-marginless">Applicant Eligibility</label>
+
+            <div
+            isteven-multi-select
+            max-labels="1"
+            input-model="dictionary.aApplicantEligibility"
+            output-model="advancedSearch.aApplicantEligibility"
+            button-label="displayValue"
+            item-label="displayValue"
+            tick-property="ticked"
+            max-height="250px"></div>
+          </div>
+        </div>
+
+        <div class="usa-grid-full">
+          <div class="usa-width-one-half">
+            <label>Beneficiary Eligibility</label>
+
+            <div
+            isteven-multi-select
+            max-labels="1"
+            input-model="dictionary.aBeneficiaryEligibility"
+            output-model="advancedSearch.aBeneficiaryEligibility"
+            button-label="displayValue"
+            item-label="displayValue"
+            tick-property="ticked"
+            max-height="250px"></div>
+          </div>
+          <div class="usa-width-one-half">
+            <label>Functional Codes</label>
+
+            <div
+            isteven-multi-select
+            max-labels="1"
+            input-model="dictionary.aFunctionalCode"
+            output-model="advancedSearch.aFunctionalCode"
+            button-label="displayValue"
+            item-label="displayValue"
+            tick-property="ticked"
+            max-height="250px"
+            group-property="msGroup"></div>
+          </div>
+        </div>
+
+        <div class="usa-grid-full">
+          <div class="usa-width-one-half">
+            <label for="published">Date Published</label>
+
+            <div class="usa-grid-full">
+              <div class="usa-width-one-third" style="width:38%;">
+                <input datepicker-popup-template-url="search/calendar/popup.tpl.html"
+                datepicker-template-url="search/calendar/datepicker.tpl.html"
+                type="text"
+                placeholder="mm/dd/yyyy"
+                ng-click="openDatepicker($event, 'datePublishedStartOpened')"
+                uib-datepicker-popup="MM/dd/yyyy"
+                ng-model="advancedSearch.datePublishedStart"
+                is-open="advancedSearch.datePublishedStartOpened"
+                datepicker-options="dateOptions"
+                close-text="Close"/>
+              </div>
+
+              <div class="usa-width-one-third usa-text-align-center usa-margin-top-2" style="width:12%;">
+                <strong>To</strong>
+              </div>
+
+              <div class="usa-width-one-third" style="width:38%;">
+                <input datepicker-popup-template-url="search/calendar/popup.tpl.html"
+                datepicker-template-url="search/calendar/datepicker.tpl.html"
+                type="text"
+                placeholder="mm/dd/yyyy"
+                ng-click="openDatepicker($event, 'datePublishedEndOpened')"
+                uib-datepicker-popup="MM/dd/yyyy"
+                ng-model="advancedSearch.datePublishedEnd"
+                is-open="advancedSearch.datePublishedEndOpened"
+                datepicker-options="dateOptions"
+                close-text="Close"/>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="usa-width-one-half">
+
+            <label>Executive Order 12372</label>
+
+            <fieldset class="usa-fieldset-inputs usa-margin-top-1">
+
+              <legend class="usa-sr-only">Executive Order 12372</legend>
+
+              <ul class="usa-horizontal-list ">
+                <li>
+                  <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderYes" value="yes">
+                  <label for="executiveOrderYes">Yes</label>
+                </li>
+                <li>
+                  <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderNo" value="no">
+                  <label for="executiveOrderNo">No</label>
+                </li>
+                <li>
+                  <input type="radio" name="executiveOrder" ng-model="advancedSearch.executiveOrder12372" id="executiveOrderAll" value="">
+                  <label for="executiveOrderAll">Not Selected</label>
+                </li>
+              </ul>
+
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="usa-grid-full">
+          <div class="usa-width-one-whole">
+            <label>Has Recovery and Reinvestment Act Obligations</label>
+
+            <fieldset class="usa-fieldset-inputs usa-margin-top-1">
+
+              <legend class="usa-sr-only">Has Recovery and Reinvestment Act Obligations</legend>
+
+              <ul class="usa-horizontal-list ">
+                <li>
+                  <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActYes" value="yes">
+                  <label for="recoveryActYes">Yes</label>
+                </li>
+                <li>
+                  <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActNA" value="na">
+                  <label for="recoveryActNA">Not Applicable</label>
+                </li>
+                <li>
+                  <input type="radio" name="recoveryAct" ng-model="advancedSearch.recovery" id="recoveryActAll" value="">
+                  <label for="recoveryActAll">All listings</label>
+                </li>
+              </ul>
+
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="usa-grid-full">
+          <div class="usa-text-align-right">
+            <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearAdvancedSearchForm()">
+              Clear All
+            </button>
+            <button class="usa-button-big" type="button" ng-click="searchPrograms()">
+              Search
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>

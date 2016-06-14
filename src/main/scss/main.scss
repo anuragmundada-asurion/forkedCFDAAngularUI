@@ -404,7 +404,7 @@ select{
 	}
 }
 select{
-	border: 2px solid $color-primary;
+	border: 1px solid $color-primary;
 	padding-right: 3.5rem;
 }
 
@@ -769,12 +769,17 @@ $usa-btn-huge-width:     17rem;
 .usa-cfda-accordion,
 .usa-cfda-accordion-bordered {
 	&.usa-accordion-button-centered{
+		ul.usa-unstyled-list{
+			width: 100%;
+		}
 		ul.usa-unstyled-list > li > button{
 			color: $color-primary;
 			background-color: $color-white;
 			text-align: center;
-			padding: 1.5rem 3rem;
+			padding: 1.3rem 3rem;
 			font-size: 1.9rem;
+			margin: 0;
+			width: 100%;
 			background-image: none;
 			.caret{
 				display: inline-block;
@@ -844,7 +849,7 @@ $usa-btn-huge-width:     17rem;
 	display: inline-block;
 	position: relative;
 	text-align: left;
-	border: 2px solid $color-primary;
+	border: 1px solid $color-primary;
 	color: $color-base;;
 	background-color: #fff;
 	margin: 0.2em 0 0 0;
@@ -867,7 +872,7 @@ $usa-btn-huge-width:     17rem;
 .multiSelect > button:hover {
 	color: $color-primary-darker;
 	background-color: $color-white;
-	border-bottom: 2px solid;
+	border-bottom: 1px solid;
 	.caret{
 		border-top-color : $color-primary-darker;
 	}
