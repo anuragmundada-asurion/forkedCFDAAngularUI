@@ -154,13 +154,14 @@
                 });
             };
 
+            // Adding table loading state
+            angular.element('table.usa-table-primary-darkest').on( 'processing.dt', function ( e, settings, processing ) {
+              $('table.usa-table-primary-darkest, .datatable-bottom').addClass( processing ? 'datatable-loading' : '' );
+              $('table.usa-table-primary-darkest, .datatable-bottom').removeClass( processing ? '' : 'datatable-loading' );
+            });
+
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('initComplete', function(settings, json){
-                    // Initialize semantic ui dropdown
-                    //$(".dataTables_length select").addClass("ui compact dropdown").dropdown();
-                    // Remove select to fix dropdown  double click bug
-                    //$(".dataTables_length select").remove();
-
                     // Append info text for easier theming
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
@@ -171,7 +172,7 @@
                 .withOption('order', [])
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
-                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
+                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest datatable-bottom" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('rowCallback', function(row) {
                     $compile(row)($scope);
                 })
