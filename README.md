@@ -76,7 +76,7 @@ Finally, from /var/www/gsa-iae, change into scripts/app/. Edit all the files in 
 
 ## Steps for Daily Local Setup
 At this point, the developer environment should be setup. The next step is starting all the microservices.
-
+(Prerequisite: make sure you are in the folder that contains the "vagrantfile")
 1. vagrant up (only once, in one terminal)
 2. vagrant ssh (in all terminals)
 3. cd /var/www/gsa-iae/scripts/app/ (in all terminals)
