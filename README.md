@@ -90,7 +90,7 @@ At this point, the developer environment should be setup. The next step is start
 10. cd /var/www/gsa-iae/apps/{name of angular-ui repo} (in different terminal) 
 11. gulp package (if only html, js changes were made, changes to java need the script in step 5 to be rerun)
 
-NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. 
+NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. To logout of the virtual machine, hold down SHIFT key and press "~" followed by ".". This will log you out of the virtual machine. Then you can run "vagrant halt" to stop the virtual machine. 
 
 
 ## Using Dev Microservice URLs (if needed)
