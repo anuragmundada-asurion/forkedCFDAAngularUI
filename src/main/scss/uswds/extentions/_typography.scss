@@ -1,0 +1,59 @@
+
+/* Typography
+---------------------------------------------------------- */
+
+// Text Color
+.usa-text-inverse{
+	color: $color-white;
+}
+.usa-text-color-gray-medium{
+	color: $color-gray-medium;
+}
+
+// Text Alignment
+.usa-text-align-center{
+	text-align: center;
+}
+.usa-text-align-right{
+	text-align: right;
+}
+.usa-text-align-left{
+	text-align: left;
+}
+
+// Text Sizes
+.usa-text-massive{
+	font-size: $h1-font-size;
+	letter-spacing: -0.1rem;
+}
+.usa-text-huge{
+	font-size: $h2-font-size;
+	letter-spacing: -0.05rem;
+}
+
+.usa-content{
+	&.usa-content-centered{
+		text-align: center;
+		p{
+			margin: 0 auto 1em auto;
+		}
+	}
+}
+// Background (Inside Typography file)
+.usa-background-primary-darkest{
+	display: inline-block;
+	width: 100%;
+	background-color: $color-primary-darkest;
+}
+.usa-background-gray-lightest{
+	display: inline-block;
+	width: 100%;
+	background-color: #eeeeee;
+}
+
+.usa-sans{
+	font-family: $font-sans;
+	&-extralight{
+		font-weight: 200;
+	}
+}

@@ -1,0 +1,73 @@
+
+/* Inputs
+---------------------------------------------------------- */
+input,
+select{
+	font-weight: $font-bold;
+	&.usa-input-borderless{
+		border: none;
+	}
+}
+select{
+	border: 1px solid $color-primary;
+	padding-right: 3.5rem;
+}
+
+label {
+	display: block;
+	margin-top: 2rem;
+	max-width: $input-max-width;
+	&.usa-label-marginless{
+		margin-top: 0 !important;
+	}
+}
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+	font-weight: $font-bold;
+}
+
+input[disabled]{
+	border: 1px solid #ccc;
+	color: #bbb;
+}
+
+.usa-input-error {
+	textarea {
+		border: 3px solid $color-secondary-dark;
+		width: calc(100% + 1.5rem);
+	}
+}
+
+ul.usa-input-field{
+	border: 1px solid $color-black;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+	li{
+		display: table;
+		width: 100%;
+		border-bottom: 1px solid #ccc;
+	}
+	li:last-child{
+		border-bottom: none;
+	}
+	.usa-input-field-content{
+		font-weight: 700;
+		width: 80%;
+		display: table-cell;
+	}
+	.usa-input-field-options{
+		text-align: right;
+	}
+}
+
+p.usa-input-readonly{
+	border: 1px solid #ccc;
+	padding: 1rem 0.7em;
+	margin: 0.2em 0;
+	line-height: normal;
+	font-weight: 700;
+	&:empty{
+		height: 4.4rem;
+	}
+}

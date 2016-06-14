@@ -1,3 +1,47 @@
+/*--------------
+CDFA Old Styles
+---------------*/
+
+// variables
+$nav-padding-width: 10px !default;
+$nav-padding-height: 15px !default;
+
+$form-header-margin-height: 35px !default;
+$form-header-element-spacing: 15px !default;
+
+$steps-dashboard-padding: 15px 0 !default;
+
+$step-dimensions: 75px !default;
+$step-text-dimensions: 5px 5px 0 !default;
+
+$section-circle-dimensions: 44px !default;
+
+$badge-padding: 5px !default;
+$badge-color: $color-gray-light !default;
+$badge-font-color: $color-white !default;
+
+$layout-padding: $grid-margins !default;
+$sub-form-margin: 10px;
+
+$field-finder-navigator-height: 55px !default;
+$field-finder-navigator-padding: ($field-finder-navigator-height / (11/3)) !default;
+$color-limegreen: #8bd12f !default;
+$color-highlight: #FFFBD9 !default;
+
+$form-section-indent: 20px;
+
+$button-circle-padding: 10px !default;
+$button-circle-shadow-color: transparentize($color-base, 0.6) !default;
+$button-circle-shadow-dimensions: 0 1px 2px 0;
+$button-circle-shadow: $button-circle-shadow-dimensions $button-circle-shadow-color, inset 0 0 0 0 $button-circle-shadow-color!default;
+$button-circle-shadow-active: 0 0 0 0 $button-circle-shadow-color, inset $button-circle-shadow-dimensions $button-circle-shadow-color!default;
+$button-circle-dimensions: 37px !default;
+
+$transition-default-timing: .3s !default;
+$transition-default-duration: cubic-bezier(.55,0,.55,.2) !default;
+$transition-default: all $transition-default-timing $transition-default-duration !default;
+
+// wizard
 a.usa-button,
 button {
   &.button-circle {
@@ -206,6 +250,77 @@ field-finder-bookmark.highlight,
     }
     &.active {
       @include transform(none);
+    }
+  }
+}
+
+// Listbox
+.listbox-container {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $color-white;
+  border: 1px solid $color-gray;
+  ul, ol {
+    @extend .usa-unstyled-list;
+    width: 100%;
+
+    li {
+      padding: 5px;
+
+      &:hover,
+      &:focus,
+      .focus {
+        background-color: $color-gray-lighter;
+      }
+      &.selected {
+        background-color: $color-primary;
+        color: $color-white;
+        font-weight: $font-bold;
+      }
+    }
+  }
+}
+
+.pagination-panel {
+  background-color: $color-gray-lightest;
+  padding: 40px 0;
+  &.small-pagination {
+    padding: 0;
+  }
+  .pagination-item-count-control {
+    float: left;
+    > select {
+      display: inline-block;
+      width: 75px;
+    }
+  }
+  .pagination {
+    @extend .usa-unstyled-list;
+    margin-top: 10px; //Temp
+    float: right;
+
+    > li {
+      display: inline-block;
+      margin: 0 5px;
+      font-weight: $font-bold;
+      &.active {
+        background-color: $color-white;
+      }
+      > a,
+      > span {
+        display: inline-block;
+        padding: 5px 12px;
+      }
+      &.arrow-btn {
+        span {
+          font-size: 25px;
+          vertical-align: middle;
+        }
+        &.disabled {
+          color: $color-gray;
+        }
+      }
     }
   }
 }

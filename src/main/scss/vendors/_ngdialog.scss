@@ -1,0 +1,114 @@
+
+/* ngDialog CFDA Theme
+---------------------------------------------------------- */
+
+@-webkit-keyframes ngdialog-flyin {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@keyframes ngdialog-flyin {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes ngdialog-flyout {
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
+}
+
+@keyframes ngdialog-flyout {
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		-webkit-transform: translateY(-40px);
+		transform: translateY(-40px);
+	}
+}
+
+.ngdialog.ngdialog-theme-cfda {
+	padding-bottom: 160px;
+	padding-top: 30px;
+}
+
+.ngdialog.ngdialog-theme-cfda.ngdialog-closing .ngdialog-content {
+	-webkit-animation: ngdialog-flyout .5s;
+	animation: ngdialog-flyout .5s;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-content {
+	-webkit-animation: ngdialog-flyin .5s;
+	animation: ngdialog-flyin .5s;
+	background: $color-white;
+	border-radius: 3px;
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 1em;
+	position: relative;
+	width: 600px;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close {
+	border-radius: 3px;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:before {
+	background: transparent;
+	border-radius: 3px;
+	color: #bbb;
+	content: '\00D7';
+	font-size: 26px;
+	font-weight: 400;
+	height: 30px;
+	line-height: 26px;
+	position: absolute;
+	right: 3px;
+	text-align: center;
+	top: 3px;
+	width: 30px;
+}
+
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:hover:before,
+.ngdialog.ngdialog-theme-cfda .ngdialog-close:active:before {
+	color: #777;
+}
+
+.ngdialog.ngdialog-theme-cfda .usa-input-error{
+	position: static;
+}

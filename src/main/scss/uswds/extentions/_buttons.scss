@@ -1,0 +1,64 @@
+
+/* Buttons
+---------------------------------------------------------- */
+.usa-button,
+.usa-button-primary,
+.usa-button:visited,
+.usa-button-primary:visited,
+button,
+[type="button"],
+[type="submit"],
+[type="reset"],
+[type="image"] {
+
+	&.usa-button-compact{
+		padding: 0.589em 0.689em;
+	}
+
+	&.usa-button-big {
+    padding: 1.25rem 3rem;
+  }
+
+	&.usa-button-light-blue {
+		background-color: #E1F3F8;
+		color: $color-base;
+		border:1px solid $color-white;
+		&:hover,
+		&.usa-button-hover {
+			color: $color-white;
+			background-color: $color-primary-darkest;
+		}
+		&:active,
+		&.usa-button-active {
+			color: $color-white;
+			background-color: $color-primary-darkest;
+		}
+	}
+
+	&.usa-button-gray-light {
+		background-color: #E0E1E2;
+		color: $color-primary;
+		&:hover,
+		&.usa-button-hover {
+			background-color: darken(#E0E1E2, 10%);
+		}
+
+		&:active,
+		&.usa-button-active {
+			background-color: darken(#E0E1E2, 10%);
+		}
+	}
+
+	&.usa-button-fluid{
+		width: 100%;
+	}
+
+	&.usa-button-icon-top{
+		// FontAwesome Icons
+		span.fa{
+			display: block;
+			margin-bottom: .5rem;
+		}
+	}
+
+}

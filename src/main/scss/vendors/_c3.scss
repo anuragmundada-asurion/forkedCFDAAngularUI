@@ -1,0 +1,39 @@
+/*--------------
+C3 Chart
+---------------*/
+
+.c3 svg {
+	font-family: $font-sans !important;
+	font-size: 11px;
+}
+
+// hide tick lines
+.c3-axis .tick line {
+	display: none;
+}
+
+.c3-axis-x .tick{
+	display: none;
+}
+
+// line color
+.c3 line,
+.c3 path{
+	stroke: #ccc ;
+}
+
+// bars
+.c3-event-rect{
+	fill: #F1F1F2;
+	fill-opacity: 1;
+}
+
+// X and Y labels
+.c3-axis-x-label,
+.c3-axis-y-label{
+	font-family: $font-serif;
+	font-size: 17px;
+	font-weight: 400;
+	font-style: italic;
+	color: #888888;
+}

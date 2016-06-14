@@ -1,0 +1,30 @@
+
+/* Segment (New Component)
+---------------------------------------------------------- */
+.usa-segment{
+	padding-top: $grid-margins;
+	padding-bottom: $grid-margins;
+	margin-top: $grid-margins;
+	margin-bottom: $grid-margins;
+	background-color: $color-white;
+	position: relative;
+	&.usa-segment-attached{
+		margin-top: 0rem;
+		margin-bottom: 0rem;
+	}
+	&.usa-segment-attached-top{
+		padding-top: 0rem;
+		padding-bottom: 0rem;
+		margin-bottom: 0rem;
+		border-bottom: 3px solid #cbcbcb;
+	}
+	&.usa-segment-attached-bottom{
+		margin-top: 0rem;
+		padding-top: 0rem;
+		padding-bottom: 0rem;
+		border-bottom: 1px solid #cbcbcb;
+	}
+	&.usa-segment-secondary{
+		background-color: #eeeeee;
+	}
+}

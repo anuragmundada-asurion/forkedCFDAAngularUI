@@ -2,6 +2,8 @@
 USWDS Framework 0.9.1
 ========================================================== */
 
+// framework for header and footer only
+
 // Vendor -------------- //
 
 @import '../../webapp/bower_components/bourbon/app/assets/stylesheets/bourbon';
@@ -9,7 +11,7 @@ USWDS Framework 0.9.1
 
 /*
   Disabling normalize because we are already
-  including it in cfda.css
+  including it in main.scss
 */
 
 // @import '../../webapp/bower_components/normalize-scss/_normalize';
