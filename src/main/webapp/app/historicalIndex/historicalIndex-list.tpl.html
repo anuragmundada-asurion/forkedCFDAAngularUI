@@ -44,7 +44,7 @@
         <div class="usa-grid-full">
             <div class="usa-width-one-whole">
                 <div class="usa-segment usa-segment-attached-top usa-border-radius-top-right-1">
-                    <form class="usa-search usa-search-huge">
+                    <form class="usa-search usa-search-big">
                         <div role="search">
                             <input ng-keyup="searchKeyUp($event.keyCode)" ng-model="historicalIndexSearch.keyword"
                                 type="search" required="required" placeholder="Historical Index Search"
@@ -92,6 +92,57 @@
                                       <div class="usa-width-one-half">
 
                                         <fieldset class="usa-fieldset-inputs">
+                                          <label class="usa-label-marginless">Date of Change</label>
+                                          <ul class="usa-horizontal-list ">
+                                            <li>
+                                              <input type="checkbox" name="currentCalendarYear" id="currentCalendarYear" ng-checked="historicalIndexSearch.currentCalendarYear" ng-model="historicalIndexSearch.currentCalendarYear">
+                                              <label for="currentCalendarYear">Current Calendar Year</label>
+                                            </li>
+                                          </ul>
+                                        </fieldset>
+
+                                        <label>Between</label>
+
+                                        <div class="usa-grid-full">
+                                          <div class="usa-width-one-third" style="width:38%;">
+                                            <div isteven-multi-select
+                                              max-labels="1"
+                                              input-model="dictionary.aYearFrom"
+                                              output-model="historicalIndexSearch.betweenFrom"
+                                              button-label="displayValue"
+                                              item-label="displayValue"
+                                              tick-property="ticked"
+                                              output-properties="elementId"
+                                              max-height="250px"
+                                              selection-mode="single">
+                                            </div>
+                                          </div>
+
+                                          <div class="usa-width-one-third usa-text-align-center usa-margin-top-1" style="width:12%;">
+                                            <strong>To</strong>
+                                          </div>
+
+                                          <div class="usa-width-one-third" style="width:38%;">
+                                            <div isteven-multi-select
+                                              max-labels="1"
+                                              input-model="dictionary.aYearTo"
+                                              output-model="historicalIndexSearch.betweenTo"
+                                              button-label="displayValue"
+                                              item-label="displayValue"
+                                              tick-property="ticked"
+                                              output-properties="elementId"
+                                              max-height="250px"
+                                              selection-mode="single">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                  </div>
+                                  <div class="usa-grid-full">
+                                      <div class="usa-width-one-whole">
+
+                                        <fieldset class="usa-fieldset-inputs">
                                           <label class="usa-label-marginless">Current Status</label>
                                           <ul class="usa-horizontal-list ">
                                               <li ng-repeat="oStatus in dictionary.aStatus">
@@ -102,56 +153,7 @@
                                         </fieldset>
 
                                       </div>
-                                  </div>
-                                  <div class="usa-grid-full">
-                                      <div class="usa-width-one-half">
-                                          <fieldset class="usa-fieldset-inputs">
-                                            <label class="usa-label-marginless">Date of Change</label>
-                                            <ul class="usa-horizontal-list ">
-                                              <li>
-                                                <input type="checkbox" name="currentCalendarYear" id="currentCalendarYear" ng-checked="historicalIndexSearch.currentCalendarYear" ng-model="historicalIndexSearch.currentCalendarYear">
-                                                <label for="currentCalendarYear">Current Calendar Year</label>
-                                              </li>
-                                            </ul>
-                                          </fieldset>
-                                      </div>
-                                      <div class="usa-width-one-half">
-                                          <label>Between</label>
 
-                                          <div class="usa-grid-full">
-                                            <div class="usa-width-one-third" style="width:38%;">
-                                              <div isteven-multi-select
-                                                max-labels="1"
-                                                input-model="dictionary.aYearFrom"
-                                                output-model="historicalIndexSearch.betweenFrom"
-                                                button-label="displayValue"
-                                                item-label="displayValue"
-                                                tick-property="ticked"
-                                                output-properties="elementId"
-                                                max-height="250px"
-                                                selection-mode="single">
-                                              </div>
-                                            </div>
-
-                                            <div class="usa-width-one-third usa-text-align-center usa-margin-top-1" style="width:12%;">
-                                              <strong>To</strong>
-                                            </div>
-
-                                            <div class="usa-width-one-third" style="width:38%;">
-                                              <div isteven-multi-select
-                                                max-labels="1"
-                                                input-model="dictionary.aYearTo"
-                                                output-model="historicalIndexSearch.betweenTo"
-                                                button-label="displayValue"
-                                                item-label="displayValue"
-                                                tick-property="ticked"
-                                                output-properties="elementId"
-                                                max-height="250px"
-                                                selection-mode="single">
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
                                   </div>
 
                                   <!-- <div class="usa-grid-full">
