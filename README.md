@@ -92,6 +92,7 @@ At this point, the developer environment should be setup. The next step is start
 
 NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. To logout of the virtual machine, hold down SHIFT key and press "~" followed by ".". This will log you out of the virtual machine. Then you can run "vagrant halt" to stop the virtual machine. 
 
+NOTE: if you run into an error such as "can not find module q", do this: Remove the app repositories and install them from inside the virtual machine. Then "vagrant halt" and try again. 
 
 ## Using Dev Microservice URLs (if needed)
 1. vim ./start-cfda-frontend-java.sh (change SEARCH + FH to Dev host)
