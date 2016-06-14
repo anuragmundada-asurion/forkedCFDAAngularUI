@@ -279,6 +279,11 @@ Extending USWDS
 	float: right;
 }
 
+// Margin input
+.usa-margin-input{
+	margin: 0.2em 0;
+}
+
 // Margin all
 .usa-margin-all-0{
 	margin: 0rem;
@@ -315,6 +320,9 @@ Extending USWDS
 }
 
 // Margin Right
+.usa-margin-right-0{
+	margin-right: 0rem;
+}
 .usa-margin-right-3{
 	margin-right: 3rem !important;
 }
@@ -576,6 +584,10 @@ button,
 		padding: 0.589em 0.689em;
 	}
 
+	&.usa-button-big {
+    padding: 1.25rem 3rem;
+  }
+
 	&.usa-button-light-blue {
 		background-color: #E1F3F8;
 		color: $color-base;
@@ -746,6 +758,10 @@ $usa-btn-huge-width:     17rem;
 	li {
 		display: inline-block;
 		margin: 0.5rem 3rem 0 0;
+
+		&:last-child{
+			margin-right: 0;
+		}
 
 		input[type="radio"] + label{
 			margin-bottom: 0;
