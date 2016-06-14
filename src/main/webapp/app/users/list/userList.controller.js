@@ -28,6 +28,12 @@
                 return hasPermission;
             };
 
+            // Adding table loading state
+            angular.element('table.usa-table-primary-darkest').on( 'processing.dt', function ( e, settings, processing ) {
+              $('table.usa-table-primary-darkest, .datatable-bottom').addClass( processing ? 'datatable-loading' : '' );
+              $('table.usa-table-primary-darkest, .datatable-bottom').removeClass( processing ? '' : 'datatable-loading' );
+            });
+
             $scope.dtOptions = DTOptionsBuilder.newOptions()
                 .withOption('infoCallback', function(settings, start, end, max, total, pre) {
                     $scope.totalCount = total;
@@ -89,7 +95,7 @@
                 })
                 .withOption('searching', true)
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
-                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
+                .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest datatable-bottom" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Users Found',
