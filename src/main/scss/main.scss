@@ -247,6 +247,8 @@ CDFA Old Styles
 //   overflow: visible !important;
 // }
 
+
+
 /* ==========================================================
 Extending USWDS
 ========================================================== */
@@ -431,7 +433,7 @@ select{
 
 label {
 	display: block;
-	margin-top: 3rem;
+	margin-top: 2rem;
 	max-width: $input-max-width;
 	&.usa-label-marginless{
 		margin-top: 0 !important;
