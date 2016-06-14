@@ -26,7 +26,7 @@
                 $scope.historicalIndexSearch = {
                     aChangeEvent: [],
                     aStatus: [],
-                    aDateOfChange: [],
+                    currentCalendarYear: false,
                     organizationId: '-',
                     betweenFrom: [],
                     betweenTo: []
@@ -63,12 +63,6 @@
                         {
                             name: "archived",
                             label: "Archived"
-                        }
-                    ],
-                    aDateOfChange: [ //only last FY -> NEED TO FIX IT WITH CORRECT LAST FY
-                        {
-                            displayValue: "Since FY " + (moment().format('YYYY') - 1) + " Publication",
-                            elementId: (moment().format('YYYY') - 1)
                         }
                     ],
                     aYearFrom: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) { return { "elementId":i, "displayValue":i }; }),
@@ -169,8 +163,8 @@
                 }
 
                 //apply date of change from custom search
-                if ($scope.historicalIndexSearch.aDateOfChange.length > 0) {
-                    oApiParam.oParams['oFilterParam'].dateChange = $scope.historicalIndexSearch.aDateOfChange[0].elementId;
+                if ($scope.historicalIndexSearch.currentCalendarYear) {
+                    oApiParam.oParams['oFilterParam'].dateChange =  moment().format('YYYY'); //current calendar year
                 }
 
                 //apply organization from custom search

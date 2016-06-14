@@ -105,18 +105,15 @@
                                   </div>
                                   <div class="usa-grid-full">
                                       <div class="usa-width-one-half">
-                                        <label>Date of Change</label>
-                                        <div isteven-multi-select
-                                            max-labels="1"
-                                            input-model="dictionary.aDateOfChange"
-                                            output-model="historicalIndexSearch.aDateOfChange"
-                                            button-label="displayValue"
-                                            item-label="displayValue"
-                                            tick-property="ticked"
-                                            output-properties="elementId"
-                                            max-height="250px"
-                                            selection-mode="single">
-                                          </div>
+                                          <fieldset class="usa-fieldset-inputs">
+                                            <label class="usa-label-marginless">Date of Change</label>
+                                            <ul class="usa-horizontal-list ">
+                                              <li>
+                                                <input type="checkbox" name="currentCalendarYear" id="currentCalendarYear" ng-model="historicalIndexSearch.currentCalendarYear">
+                                                <label for="currentCalendarYear">Current Calendar Year</label>
+                                              </li>
+                                            </ul>
+                                          </fieldset>
                                       </div>
                                       <div class="usa-width-one-half">
                                           <label>Between</label>
