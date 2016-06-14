@@ -5,7 +5,6 @@
     myApp.controller('HistoricalIndexListController', ['$scope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment',
         function ($scope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment) {
 
-            console.log($stateParams)
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
