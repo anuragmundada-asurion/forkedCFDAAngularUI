@@ -35,7 +35,8 @@
                     $timeout(function() {
                         var value = input.val();
                         if(value) {
-                            value = value.replace(/[^0-9]/g, '');
+                            //taking this out for now, for testing purposes.
+                            //value = value.replace(/[^0-9]/g, '');
                             input.val(value.substring(0, part.length));
                             var valCharLength = value.length;
                             if(valCharLength >= part.length && !isEnd)
