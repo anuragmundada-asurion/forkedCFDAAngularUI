@@ -240,7 +240,7 @@
             </a>
 
             <!-- Archived Listings -->
-            <a class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+            <a ui-sref="historicalIndex({ status: 'archived', currentCalendarYear: 'true' })" class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
               <div data-content="{{ aProgramCount.archivedNumber }}" data-variation="tiny" data-position="top left" class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
                 <div ng-if="!aProgramCount.archived" class="ui active small inline loader"></div>
                 {{ aProgramCount.archived }}<span class="font light uppercase">{{ aProgramCount.archivedsymbol }}</span>

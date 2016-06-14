@@ -2,9 +2,10 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment',
-        function ($scope, $compile, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment',
+        function ($scope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment) {
 
+            console.log($stateParams)
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.previousState = null;
@@ -25,8 +26,8 @@
             $scope.initSearchForm = function(reloadSearchResult) {
                 $scope.historicalIndexSearch = {
                     aChangeEvent: [],
-                    aStatus: [],
-                    currentCalendarYear: false,
+                    aStatus: ($stateParams.hasOwnProperty('status') && typeof $stateParams.status !== 'undefined') ? [$stateParams.status] : [],
+                    currentCalendarYear: ($stateParams.hasOwnProperty('currentCalendarYear') && typeof $stateParams.currentCalendarYear !== 'undefined') ? true : false,
                     organizationId: '-',
                     betweenFrom: [],
                     betweenTo: []

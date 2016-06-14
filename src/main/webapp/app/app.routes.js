@@ -129,7 +129,7 @@
                     }
                 })  
                 .state('historicalIndex', {
-                    url: "/historicalIndex?list&filter",
+                    url: "/historicalIndex?status&currentCalendarYear",
                     title: 'Historical Index of Programs',
                     templateUrl: "historicalIndex/historicalIndex-list.tpl.html",
                     controller: "HistoricalIndexListController",
