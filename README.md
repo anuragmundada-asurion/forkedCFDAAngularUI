@@ -97,7 +97,8 @@ NOTE: if you run into an error such as "can not find module q", do this: Remove 
 ## Using Dev Microservice URLs (if needed)
 1. vim ./start-cfda-frontend-java.sh (change SEARCH + FH to Dev host)
     {dev url for Federal Hierarchy: http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh
-     dev url for Search microservice: http://gsaiae-cfda-modern-search-dev02.reisys.com/}
+     dev url for Search microservice: http://gsaiae-cfda-modern-search-dev02.reisys.com/
+     dev url for Program microservice: http://gsaiae-dev02.reisys.com:82/api/v1}
 2. vim ./start-cfda-program-java.sh 
     (Change FH to dev host AND DDATABASE_FQDN=192.168.56.109 -DDATABASE_NAME=gsa_cfda -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres TO Dev Credentials DB)
     {dev url for notifications ms: http://gsaiae-dev02.reisys.com:96/v1/notifications
