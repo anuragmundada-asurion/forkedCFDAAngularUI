@@ -14,11 +14,9 @@
             },
             link: function (scope, element, attributes) {
                 //build regex object
-                var regexObj = new RegExp(scope.regexPattern, 'g');
+                var regexObj = new RegExp(scope.regexPattern); //only need to resetIndex to 0 if flag "g" is specified
                 //watch model for changes
                 scope.$watch("model", function (newValue, oldValue) {
-                    //regular expression obj is stateful, must reset lastIndex each time
-                    regexObj.lastIndex = 0;
                     if (newValue) {
                         if(!regexObj.test(newValue)){
                             scope.showErrorMsg = true;

@@ -1531,7 +1531,8 @@
                 <section class="usa-grid">
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'dept-code-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["deptCode"]["label"]}}<span class="required">*</span></label>
-                    <input type="text" id="{{ 'dept-code-' + idPath }}" name="deptCode" ng-model="$subForm.current.departmentCode" required>
+                    <error-msg model="$subForm.current.departmentCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 00-99."></error-msg>
+                    <input type="text" id="{{ 'dept-code-' + idPath }}" maxlength="2" name="deptCode" ng-model="$subForm.current.departmentCode" required>
 
                     <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
                       <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$error.required">The Treasury Dept Code must be filled.</span>
@@ -1539,21 +1540,26 @@
                   </div>
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'allocation-transfer-agency-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["allocationAgency"]["label"]}}</label>
-                    <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" name="allocationTransferAgency" ng-model="$subForm.current.allocationTransferAgency">
+                    <error-msg model="$subForm.current.allocationTransferAgency" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 00-99."></error-msg>
+                    <input type="text" id="{{ 'allocation-transfer-agency-' + idPath }}" maxlength="2" name="allocationTransferAgency"
+                           ng-model="$subForm.current.allocationTransferAgency">
                   </div>
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'fy1-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["fy1"]["label"]}}</label>
-                    <input type="text" id="{{ 'fy1-' + idPath }}" name="fy1" ng-model="$subForm.current.fy1">
+                    <error-msg model="$subForm.current.fy1" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 0000-9999."></error-msg>
+                    <input type="text" id="{{ 'fy1-' + idPath }}" maxlength="4" name="fy1" ng-model="$subForm.current.fy1">
                   </div>
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'fy2-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["fy2"]["label"]}}</label>
-                    <input type="text" id="{{ 'fy2-' + idPath }}" name="fy2" ng-model="$subForm.current.fy2">
+                    <error-msg model="$subForm.current.fy2" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 0000-9999."></error-msg>
+                    <input type="text" id="{{ 'fy2-' + idPath }}" maxlength="4" name="fy2" ng-model="$subForm.current.fy2">
                   </div>
                 </section>
                 <section class="usa-grid">
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'account-code-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["accountCode"]["label"]}}<span class="required">*</span></label>
-                    <input type="text" id="{{ 'account-code-' + idPath }}" name="accountCode" ng-model="$subForm.current.accountCode" required>
+                    <error-msg model="$subForm.current.accountCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 0000-9999."></error-msg>
+                    <input type="text" id="{{ 'account-code-' + idPath }}" maxlength="4" name="accountCode" ng-model="$subForm.current.accountCode" required>
 
                     <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
                       <span ng-show="$ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$error.required">The Treasury Account Main Code must be filled.</span>
@@ -1561,7 +1567,8 @@
                   </div>
                   <div class="input-field usa-width-one-fourth">
                     <label for="{{ 'tafs-sub-account-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["subAccount"]["label"]}}</label>
-                    <input type="text" id="{{ 'tafs-sub-account-' + idPath }}" name="subAccountCode" ng-model="$subForm.current.subAccountCode">
+                    <error-msg model="$subForm.current.subAccountCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 000-999."></error-msg>
+                    <input type="text" id="{{ 'tafs-sub-account-' + idPath }}" maxlength="3" name="subAccountCode" ng-model="$subForm.current.subAccountCode">
                   </div>
                 </section>
               </div>
@@ -1676,8 +1683,12 @@
             <span ng-show="$ctrl.parentVm.form.fullname.$error.required">You must provide a full name.</span>
           </div>
 
-          <label for="email6">Email<span class="required">*</span>:</label>
-          <input type="text" id="email6" name="email6" ng-model="$subForm.current.email">
+            <div class="input-field">
+              <label for="email6">Email<span class="required">*</span>:</label>
+              <error-msg model="$subForm.current.email" regex-pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                         msg="Please enter a valid Internet email address. Format: username@host.domain. "></error-msg>
+              <input type="text" id="email6" name="email6" ng-model="$subForm.current.email">
+            </div>
 
           <div>
             <span ng-show="emailDuplicateError">Email address already exists. Use a different email address.</span>
@@ -1948,6 +1959,7 @@
   <section class="sub-minor-section" field-finder-bookmark title="153 Website">
     <div class="input-field">
       <h4><label for="website6">{{::instructionalText["06"]["153"]["title"]}}</label></h4>
+      <error-msg model="gsavm.program.website" regex-pattern="(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?" msg="Please enter a valid url. [protocol]://hostname.domain. Protocal can be ftp, http, or https. Spaces are not allowed."></error-msg>
       <span class="usa-form-hint">{{::instructionalText["06"]["153"]["label"]}}</span>
       <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
     </div>
