@@ -1,0 +1,51 @@
+
+/* Date Picker (https://angular-ui.github.io/bootstrap/#/datepickerPopup)
+---------------------------------------------------------- */
+
+// Styles added at by angular at the top of the page
+// .uib-datepicker .uib-title{
+// 	width:100%;
+// }
+//
+// .uib-day button,
+// .uib-month button,
+// .uib-year button{
+// 	min-width:100%;
+// }
+//
+// .uib-datepicker-popup.dropdown-menu{
+// 	display:block;
+// 	float:none;
+// 	margin:0;
+// }
+//
+// .uib-button-bar{
+// 	padding:10px 9px 2px;
+// }
+//
+// .uib-left,
+// .uib-right{
+// 	width:100%
+// }
+
+.uib-datepicker-popup{
+	position: absolute;
+	background-color: $color-white;
+	z-index: 2;
+	border: 1px solid $color-primary-darkest;
+	border-radius: 0.3rem;
+
+	table{
+		thead th{
+			padding: 1rem;
+			text-align: center;
+		}
+		td{
+			border-bottom: none;
+		}
+	}
+}
+.uib-day button,
+.uib-year button{
+	min-width:0;
+}

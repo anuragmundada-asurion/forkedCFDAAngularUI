@@ -1,0 +1,58 @@
+/*--------------
+Datatables
+---------------*/
+
+th.sorting_asc,
+th.sorting_desc,
+th.sorting{
+	cursor: pointer;
+	// background-image: url('../img/arrow-down.png');
+	// background-image: url('../img/arrow-down.svg');
+	// background-position: right 1rem center;
+	// background-repeat: no-repeat;
+	// background-size: 1rem;
+}
+th.sorting_asc,
+th.sorting_desc{
+	background-color: $color-primary;
+}
+td.sorting_1{
+	background-color: #fffded;
+}
+.dataTables_length select{
+	display: inline-block;
+	width: 80px;
+	margin: 0 4px 30px 4px;
+}
+.dataTables_paginate{
+	margin-top: 4rem;
+	text-align: right;
+	a{
+		font-weight: $font-bold;
+		margin: 0 1.5rem;
+		cursor: pointer;
+		&.current{
+			color: $color-base;
+			background-color: $color-white;
+			padding: 10px 20px;
+			margin: 0 8px;
+			cursor: default;
+			text-decoration: none;
+		}
+	}
+}
+
+// Loading state
+.datatable-loading{
+	opacity: .2;
+}
+// Loading text container
+.dataTables_processing{
+	position: absolute;
+	text-align: center;
+	width: 980px;
+	font-size: 4rem;
+	font-weight: 700;
+	margin-top: 100px;
+	margin-left: -30px;
+}

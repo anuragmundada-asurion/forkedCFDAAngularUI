@@ -31,8 +31,8 @@ The following section will run through getting a developer's local environment s
     - the box/box_url should point to the vagrant box.
 9. vagrant up
    (if errors pop do the following)
-   -->mkdir -p /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant
-   -->cp ../scripts/vagrant/dev-dependencies.sh /Users/{username/hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
+   -->mkdir -p /Users/{username or hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant
+   -->cp ../scripts/vagrant/dev-dependencies.sh /Users/{username or hostname}/.vagrant.d/boxes/rei-gsa-iae/0/virtualbox/scripts/vagrant/
 10. vagrant ssh
 
 At this point you should be logged into Vagrant box. Move into the /var/www/gsa-iae directory to find the shared folders with the host machine.
@@ -77,6 +77,7 @@ Finally, from /var/www/gsa-iae, change into scripts/app/. Edit all the files in 
 ## Steps for Daily Local Setup
 At this point, the developer environment should be setup. The next step is starting all the microservices.
 
+0. (Prerequisite: make sure you are in the folder that contains the "vagrantfile")
 1. vagrant up (only once, in one terminal)
 2. vagrant ssh (in all terminals)
 3. cd /var/www/gsa-iae/scripts/app/ (in all terminals)
@@ -89,13 +90,15 @@ At this point, the developer environment should be setup. The next step is start
 10. cd /var/www/gsa-iae/apps/{name of angular-ui repo} (in different terminal) 
 11. gulp package (if only html, js changes were made, changes to java need the script in step 5 to be rerun)
 
-NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. 
+NOTE: if terminal seems to hang, you may need to quit out of it and restart your computer and try again. To logout of the virtual machine, hold down SHIFT key and press "~" followed by ".". This will log you out of the virtual machine. Then you can run "vagrant halt" to stop the virtual machine. 
 
+NOTE: if you run into an error such as "can not find module q", do this: Remove the app repositories and install them from inside the virtual machine. Then "vagrant halt" and try again. 
 
 ## Using Dev Microservice URLs (if needed)
 1. vim ./start-cfda-frontend-java.sh (change SEARCH + FH to Dev host)
     {dev url for Federal Hierarchy: http://gsaiae-cfda-fh-dev02.reisys.com/v1/fh
-     dev url for Search microservice: http://gsaiae-cfda-modern-search-dev02.reisys.com/}
+     dev url for Search microservice: http://gsaiae-cfda-modern-search-dev02.reisys.com/
+     dev url for Program microservice: http://gsaiae-dev02.reisys.com:82/api/v1}
 2. vim ./start-cfda-program-java.sh 
     (Change FH to dev host AND DDATABASE_FQDN=192.168.56.109 -DDATABASE_NAME=gsa_cfda -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres TO Dev Credentials DB)
     {dev url for notifications ms: http://gsaiae-dev02.reisys.com:96/v1/notifications

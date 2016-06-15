@@ -1,0 +1,35 @@
+// Cards
+$card-spacer-x:            1em !default;
+$card-spacer-y:            .75rem !default;
+
+$card-bg:                  #fff !default;
+
+.usa-card{
+  position: relative;
+  display: block;
+  background-color: $card-bg;
+  margin-bottom: $card-spacer-y;
+}
+
+.usa-card-body{
+  padding: $card-spacer-x;
+}
+
+.usa-card-title{
+  margin-bottom: $card-spacer-y;
+}
+
+.usa-card-title + .usa-card-subtitle{
+  margin-top: -$card-spacer-y;
+}
+
+//
+// Background variations
+//
+
+@mixin card-variant($background) {
+  background-color: $background;
+}
+.usa-card-green{
+  @include card-variant($color-green-lightest);
+}

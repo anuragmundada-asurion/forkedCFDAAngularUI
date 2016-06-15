@@ -1,0 +1,41 @@
+
+/* Accordions
+---------------------------------------------------------- */
+.usa-cfda-accordion,
+.usa-cfda-accordion-bordered {
+	&.usa-accordion-button-centered{
+		ul.usa-unstyled-list{
+			width: 100%;
+		}
+		ul.usa-unstyled-list > li > button{
+			color: $color-primary;
+			background-color: $color-white;
+			text-align: center;
+			padding: 1.3rem 3rem;
+			font-size: 1.9rem;
+			margin: 0;
+			width: 100%;
+			background-image: none;
+			.caret{
+				display: inline-block;
+				width: 0;
+				height: 0;
+				margin: 0px 0px 1px 3px;
+				vertical-align: middle;
+				border-bottom: 6px solid $color-primary;
+				border-right: 6px solid transparent;
+				border-left: 6px solid transparent;
+				border-top: 0 dotted;
+			}
+		}
+		ul.usa-unstyled-list > li > button[aria-expanded=false] {
+			.caret{
+				border-top: 6px solid $color-primary;
+				border-bottom: 0 dotted;
+			}
+		}
+		.usa-accordion-content{
+			border-top: 1px solid $color-gray-lighter;
+		}
+	}
+}

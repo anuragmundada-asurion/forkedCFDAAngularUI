@@ -1,0 +1,13 @@
+/*------------------------------
+Form
+--------------------------------*/
+// Create a variation class maybe ".usa-form-fluid"
+form {
+  max-width: none !important;
+}
+
+// This needs to be replaced with "usa-input-required"
+.required {
+  color: $color-secondary-dark;
+  font-weight: 700;
+}

@@ -1,0 +1,50 @@
+/* ==========================================================
+USWDS Framework 0.9.1
+https://github.com/18F/web-design-standards
+========================================================== */
+
+// Vendor -------------- //
+
+@import '../../webapp/bower_components/bourbon/app/assets/stylesheets/bourbon';
+
+// Grid Variables (CFDA)
+$gutter: modular-scale(4, 1em, $golden);
+@import '../../webapp/bower_components/neat/app/assets/stylesheets/neat';
+
+@import '../../webapp/bower_components/normalize-scss/_normalize';
+
+
+// Core -------------- //
+
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/defaults';
+// https://github.com/18F/web-design-standards/issues/1168
+@import 'modifications/variables';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/fonts';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/base';
+@import 'modifications/grid-settings';
+@import 'modifications/grid';
+@import '../../webapp/bower_components/uswds/src/stylesheets/core/utilities';
+
+
+// Elements -------------- //
+// Styles basic HTML elements
+
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/buttons';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/figure';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/inputs';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/labels';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/list';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/table';
+@import '../../webapp/bower_components/uswds/src/stylesheets/elements/typography';
+
+
+// Components -------------- //
+
+@import 'modifications/accordions';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/alerts';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/disclaimer';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/footer';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/forms';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/search';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/sidenav';
+@import '../../webapp/bower_components/uswds/src/stylesheets/components/skipnav';

@@ -1,0 +1,11 @@
+/* Grid
+---------------------------------------------------------- */
+.usa-grid,
+.usa-grid-full {
+	.usa-width-one-half-collapse {
+    @include span-columns(6, "block-collapse");
+  }
+	.usa-width-one-fourth-collapse {
+		@include span-columns(3, "block-collapse");
+	}
+}

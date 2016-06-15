@@ -1,0 +1,43 @@
+
+/* Table
+---------------------------------------------------------- */
+table.usa-table-primary-darkest{
+	margin-top: 0rem;
+	thead {
+		tr {
+			color: $color-white;
+			background-color: $color-primary-darkest;
+		}
+	}
+	th, td {
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		border-bottom: 2px solid rgba(34, 36, 38, 0.1);
+	}
+	th{
+		border-width: 1px;
+		border-color: $color-white;
+	}
+	td a{
+		font-weight: $font-bold;
+	}
+}
+
+table.usa-table-child{
+	margin: 0rem;
+	font-size: 1.6rem;
+	td{
+		border-bottom: none;
+	}
+	td:first-child:before{
+		margin-left: -34px;
+		content: "•";
+		font-size: 25px;
+		line-height: 0;
+		padding-right: 27px;
+	}
+	tr:last-child td:first-child:before{
+		color: #8dc63f;
+	}
+}

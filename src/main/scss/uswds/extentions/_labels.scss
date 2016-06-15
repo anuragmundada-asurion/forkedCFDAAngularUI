@@ -1,0 +1,90 @@
+
+/* Labels
+---------------------------------------------------------- */
+.usa-label-circular{
+	border-radius: 50%;
+	padding: .5em;
+	text-align: center;
+	min-width: 2em;
+	min-height: 2em;
+	display: inline-block;
+	vertical-align: baseline;
+	font-size: 1.2rem;
+	line-height: 1;
+	color: $color-white;
+	background-color: $color-primary;
+	&.usa-label-circular-huge{
+		padding: 1.2em;
+	}
+	&.usa-label-circular-massive{
+		font-size: 3rem;
+		padding: 0.7em 0.75em;
+		letter-spacing: -0.2rem;
+	}
+	&:empty{
+		min-width: 0;
+		min-height: 0;
+		width: .5em;
+		height: .5em;
+	}
+}
+
+// Attach to sides
+.usa-label-attach-top-right{
+	position: absolute;
+	margin-right: 0;
+	top: 20px;
+	right: 0;
+}
+
+// Colors
+.usa-label-color-green{
+	background-color: $color-green;
+}
+a.usa-label-color-green:hover{
+	background-color: darken($color-green, 10%);
+	text-decoration: none;
+}
+a.usa-label-color-green:visited{
+	color:$color-white;
+}
+
+.usa-label-color-white{
+	color: $color-base;
+	background-color: $color-white;
+}
+a.usa-label-color-white:hover{
+	background-color: darken($color-white, 10%);
+	text-decoration: none;
+}
+
+.usa-label-color-primary-darkest{
+	background-color: $color-primary-darkest;
+}
+a.usa-label-color-primary-darkest:hover{
+	background-color: darken($color-primary-darkest, 10%);
+	text-decoration: none;
+}
+
+// Outline
+.usa-label-outline-gold{
+	border: 3px solid $color-gold;
+}
+
+
+// Sizes
+.usa-label-huge {
+	@extend .usa-label;
+	font-size: $base-font-size;
+	font-weight: $font-bold;
+	padding-left: 1.7rem;
+	padding-right: 1.7rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	display: inline-block;
+	& > .usa-label-circular-huge{
+		position: absolute;
+		left: -42px;
+		top: -5px;
+	}
+}

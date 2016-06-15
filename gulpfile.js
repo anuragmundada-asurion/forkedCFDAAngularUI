@@ -110,7 +110,7 @@ gulp.task('iae', ['index'], function() {
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
 
-    var allCss = gulp.src(['src/main/scss/uswds/uswds-theme.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
+    var allCss = gulp.src(['src/main/scss/uswds/uswds-default.scss','src/main/webapp/plugins/iae-widgets/css/iae-all.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(cssPrefix({parentClass: 'theme-iae'}))
         .pipe(gulp.dest('target/classes/static/css'));

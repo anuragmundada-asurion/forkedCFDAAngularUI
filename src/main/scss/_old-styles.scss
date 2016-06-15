@@ -1,0 +1,331 @@
+
+/* ===============================================================
+DO NOT ADD OR MODIFIED ANY STYLES - THIS FILE WILL BE DELETED
+================================================================== */
+
+/*--------------
+CDFA Old Styles
+---------------*/
+
+// variables
+$nav-padding-width: 10px !default;
+$nav-padding-height: 15px !default;
+
+$form-header-margin-height: 35px !default;
+$form-header-element-spacing: 15px !default;
+
+$steps-dashboard-padding: 15px 0 !default;
+
+$step-dimensions: 75px !default;
+$step-text-dimensions: 5px 5px 0 !default;
+
+$section-circle-dimensions: 44px !default;
+
+$badge-padding: 5px !default;
+$badge-color: $color-gray-light !default;
+$badge-font-color: $color-white !default;
+
+$layout-padding: $grid-margins !default;
+$sub-form-margin: 10px;
+
+$field-finder-navigator-height: 55px !default;
+$field-finder-navigator-padding: ($field-finder-navigator-height / (11/3)) !default;
+$color-limegreen: #8bd12f !default;
+$color-highlight: #FFFBD9 !default;
+
+$form-section-indent: 20px;
+
+$button-circle-padding: 10px !default;
+$button-circle-shadow-color: transparentize($color-base, 0.6) !default;
+$button-circle-shadow-dimensions: 0 1px 2px 0;
+$button-circle-shadow: $button-circle-shadow-dimensions $button-circle-shadow-color, inset 0 0 0 0 $button-circle-shadow-color!default;
+$button-circle-shadow-active: 0 0 0 0 $button-circle-shadow-color, inset $button-circle-shadow-dimensions $button-circle-shadow-color!default;
+$button-circle-dimensions: 37px !default;
+
+$transition-default-timing: .3s !default;
+$transition-default-duration: cubic-bezier(.55,0,.55,.2) !default;
+$transition-default: all $transition-default-timing $transition-default-duration !default;
+
+// wizard
+a.usa-button,
+button {
+  &.button-circle {
+    width: $button-circle-dimensions;
+    height: $button-circle-dimensions;
+    padding: $button-circle-padding;
+    border-radius: 50%;
+    text-align: center;
+    @include transition(all 0.1s $transition-default-duration);
+
+    &.ng-hide-add-active,
+    &.ng-hide-remove {
+      display: inline-block !important;
+    }
+
+    &.ng-hide-add {
+      opacity: 1;
+    }
+    &.ng-hide-remove {
+      opacity: 0;
+    }
+    &,
+    &:hover,
+    &:focus {
+      box-shadow: $button-circle-shadow;
+    }
+    &.active,
+    &:active {
+      box-shadow: $button-circle-shadow-active;
+    }
+    &.action-button {
+      color: $color-primary-darkest;
+      background-color: $color-white;
+      &,
+      &:hover,
+      &:focus {
+        color: $color-primary-darkest;
+      }
+      &:hover,
+      &:focus {
+        background-color: $color-gray-lightest;
+      }
+      &.active,
+      &:active {
+        color: $color-primary-darkest;
+        background-color: $color-gray-lighter;
+      }
+      &:disabled {
+        box-shadow: $button-circle-shadow;
+        background-color: $color-gray-lighter;
+        color: $color-gray-dark;
+        cursor: default;
+      }
+    }
+    &:disabled {
+      background-color: $color-gray-lighter;
+      color: $color-gray-dark;
+      cursor: default;
+    }
+  }
+}
+.sub-form {
+  display: block;
+  padding: $form-section-indent;
+  background-color: $color-primary-alt-lightest;
+  & &{
+    background-color: $color-primary-alt-light;
+  }
+}
+.sub-section,
+.sub-minor-section{
+  padding-bottom:30px !important;
+}
+.sub-section {
+  border-top: 1px solid $color-gray-lighter;
+  > .sub-minor-section {
+    padding-left: $form-section-indent;
+  }
+}
+.section-circle {
+  border-radius: 50%;
+  width: $section-circle-dimensions;
+  height: $section-circle-dimensions;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  text-align: center;
+  font-family: "Source Sans Pro","Helvetica","Arial",sans-serif;
+  font-size: 15.3px;
+  font-weight: $font-normal;
+  border-width: 1px;
+  border-style: solid;
+  outline-radus: 50%;
+  background-color: $color-white;
+  color: $color-primary;
+  border-color: $color-primary;
+  h2 &{
+    @extend .completed;
+  }
+  &.completed {
+    background-color: $color-primary-darkest;
+    color: $color-white;
+    border-color: $color-primary-darkest;
+  }
+  &.current {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+  &.review {
+    background-color: $color-limegreen;
+    color: $color-base;
+    border-color: $color-limegreen;
+  }
+}
+
+.steps-dashboard{
+  background-color:$color-gray-lightest;
+  padding: $steps-dashboard-padding;
+  .steps {
+    @include unstyled-list;
+    margin: 0 auto;
+    li {
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      &.step {
+        &.steps-6 {
+          width: calc(100%/6);
+        }
+        &.steps-7 {
+          width: calc(100%/7.5);
+        }
+        .step-title {
+          cursor: pointer;
+          display: block;
+          font-size: 12px;
+          font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif;
+          font-weight: $font-bold;
+          padding: $step-text-dimensions;
+        }
+      }
+      &.step-progress {
+        position: absolute;
+        @include transform(translateX(-50%));
+        .steps-progress-bar {
+          cursor: default;
+          display: table-cell;
+          height: $section-circle-dimensions;
+          line-height: 0;
+          vertical-align: middle;
+          > .dot {
+            display: block;
+            float: left;
+            background-color: $color-gray-lighter;
+            width: 6px;
+            height: 6px;
+            margin: 0 4px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+  a {
+    > .step-num {
+      @extend .section-circle;
+      box-sizing: border-box;
+      cursor: pointer;
+      @include transition(all .3s cubic-bezier(.55, 0, .55, .2));
+    }
+    &:focus > .step-num {
+      box-shadow: $focus-shadow;
+    }
+  }
+}
+
+
+field-finder-bookmark.highlight,
+.highlight[field-finder-bookmark] {
+  background-color: $color-gold-lighter;
+  border: 1px solid $color-gold;
+}
+
+.field-finder-navigator {
+  display: block;
+  background-color: darken($color-gray-lightest, 5%);
+  .navigator-list {
+    @include unstyled-list;
+    margin-left: auto;
+    margin-right: auto;
+    height: $field-finder-navigator-height;
+    padding: $field-finder-navigator-padding 0;
+  }
+  .navigator-button-group {
+    float: right;
+  }
+  .navigator-item {
+    display: table;
+    position: absolute;
+    font-family: $font-serif;
+    transition: $transition-default;
+    @include transform(translateY(-5px));
+    &:not(.active) {
+      opacity: 0;
+    }
+    &.active {
+      @include transform(none);
+    }
+  }
+}
+
+// Listbox
+.listbox-container {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $color-white;
+  border: 1px solid $color-gray;
+  ul, ol {
+    @extend .usa-unstyled-list;
+    width: 100%;
+
+    li {
+      padding: 5px;
+
+      &:hover,
+      &:focus,
+      .focus {
+        background-color: $color-gray-lighter;
+      }
+      &.selected {
+        background-color: $color-primary;
+        color: $color-white;
+        font-weight: $font-bold;
+      }
+    }
+  }
+}
+
+.pagination-panel {
+  background-color: $color-gray-lightest;
+  padding: 40px 0;
+  &.small-pagination {
+    padding: 0;
+  }
+  .pagination-item-count-control {
+    float: left;
+    > select {
+      display: inline-block;
+      width: 75px;
+    }
+  }
+  .pagination {
+    @extend .usa-unstyled-list;
+    margin-top: 10px; //Temp
+    float: right;
+
+    > li {
+      display: inline-block;
+      margin: 0 5px;
+      font-weight: $font-bold;
+      &.active {
+        background-color: $color-white;
+      }
+      > a,
+      > span {
+        display: inline-block;
+        padding: 5px 12px;
+      }
+      &.arrow-btn {
+        span {
+          font-size: 25px;
+          vertical-align: middle;
+        }
+        &.disabled {
+          color: $color-gray;
+        }
+      }
+    }
+  }
+}
