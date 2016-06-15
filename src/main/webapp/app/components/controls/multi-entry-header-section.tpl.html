@@ -5,7 +5,8 @@
                 ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
                 ng-show="newEntryBtnName"
                 ng-click='$ctrl.openEntryDialog()'
-                ng-disabled='!$ctrl.allowModifications'>
+                ng-disabled='!$ctrl.allowModifications'
+                class="usa-margin-right-0">
                 <span class="fa fa-plus-square-o"></span>
                 {{newEntryBtnName}}
         </button>

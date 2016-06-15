@@ -21,6 +21,11 @@ label {
 		margin-top: 0 !important;
 	}
 }
+
+.usa-fieldset-inputs > label {
+  margin-top: 2rem;
+}
+
 input[type="checkbox"] + label,
 input[type="radio"] + label {
 	font-weight: $font-bold;

@@ -217,7 +217,7 @@
           <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" required></textarea>
         </div>
 
-        <div class="usa-width-one-whole usa-padding-bottom-3">
+        <div class="usa-width-one-whole">
           <fieldset class="usa-fieldset-inputs usa-sans">
             <label>Are there specific restrictions place upon the use of the assistance? <span class="required">*</span></label>
             <ul class="usa-horizontal-list">
@@ -240,7 +240,7 @@
           </div>
         </div>
 
-        <div class="usa-width-one-whole usa-padding-bottom-3">
+        <div class="usa-width-one-whole">
           <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
             <label for="discretionaryFundFlag">Are there discretionary funds available?<span class="required">*</span></label>
             <ul class="usa-horizontal-list">
@@ -264,7 +264,7 @@
           </div>
         </div>
 
-        <div class="usa-width-one-whole usa-padding-bottom-3">
+        <div class="usa-width-one-whole">
           <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
             <label for="loanTermsFlag">Are loans a type of assistance in this program?<span class="required">*</span></label>
             <ul class="usa-horizontal-list">
@@ -357,7 +357,7 @@
             </ul>
           </fieldset>
 
-          <div class="usa-padding-top-3" ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
+          <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
 
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label>Please select all that apply:</label>
@@ -598,7 +598,7 @@
                 <span ng-show="gsavm.form.credentialsAdditionalInfo.$error.required">You must provide additional information.</span>
               </div>
 
-              <fieldset class="usa-fieldset-inputs usa-sans usa-margin-top-3">
+              <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="costPrincipalsAcceptable">Is 2 CFR 200, Subpart E - Cost Principles applicable?<span class="required">*</span></label>
                 <ul class="usa-horizontal-list">
                   <li>
@@ -664,7 +664,7 @@
 
             <div ng-show="gsavm.program.preApplication.coordination.flag === 'yes'">
 
-              <fieldset class="usa-fieldset-inputs usa-sans usa-margin-top-3">
+              <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="environmentalImpact">Does this program require submission of environmental impact information?<span class="required">*</span></label>
                 <ul class="usa-horizontal-list">
                   <li>
@@ -695,7 +695,7 @@
                 </ul>
               </fieldset>
 
-              <fieldset class="usa-fieldset-inputs usa-sans usa-margin-top-3">
+              <fieldset class="usa-fieldset-inputs usa-sans">
                 <label for="preappCoord3question2">Does Executive Order 12372, "Intergovernmental Review of Federal Programs", apply to this program?<span class="required">*</span></label>
                 <ul class="usa-horizontal-list">
                   <li>
@@ -912,7 +912,7 @@
           </legend>
           <section field-finder-bookmark title="101 Formula and Matching Requirements">
             <h4>101 Formula and Matching Requirements</h4>
-            <fieldset class="usa-fieldset-inputs usa-sans usa-margin-bottom-3">
+            <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="statuatoryFormula3">Does this program have a statutory formula and/or administrative rule reference in the CFR? <span class="required">*</span></label>
 
               <ul class="usa-horizontal-list">
@@ -948,7 +948,7 @@
               <textarea id="formulaInfo3" name="formulaInfo3" ng-model="gsavm.program.assistance.formula.additionalInfo.content"></textarea>
             </div>
 
-            <fieldset class="usa-fieldset-inputs usa-sans usa-sans usa-margin-bottom-3">
+            <fieldset class="usa-fieldset-inputs usa-sans usa-sans">
               <label for="matchingRequirements3">Does this program have matching requirements? <span class="required">*</span></label>
               <ul class="usa-horizontal-list">
                 <li>
