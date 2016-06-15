@@ -31,9 +31,14 @@ input[type="radio"] + label {
 	font-weight: $font-bold;
 }
 
-input[disabled]{
+input[disabled],
+select[disabled]{
 	border: 1px solid #ccc;
 	color: #bbb;
+}
+
+select[disabled]{
+	background-image: none;
 }
 
 .usa-input-error {
