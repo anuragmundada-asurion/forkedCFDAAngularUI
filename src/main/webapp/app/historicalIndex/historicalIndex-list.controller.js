@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment',
-        function ($scope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment', 'AuthorizationService',
+        function ($scope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment, AuthorizationService) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -198,7 +198,7 @@
                                 'title': {
                                     title: r['title'],
                                     id: r['programId'],
-                                    activeLink: (r['latest'] && !r['archive'])
+                                    activeLink: ((r['latest'] && !r['archive']) || (r['latest'] && r['archive'] && AuthorizationService.authorizeByOrganization(r['organizationId'])))
                                 },
                                 'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],

@@ -19,7 +19,8 @@
         'isteven-multi-select',
         'angular-multi-select',
         'ngJsTree',
-        'datatables'
+        'datatables',
+        'LocalStorageModule'
 
     ];
 

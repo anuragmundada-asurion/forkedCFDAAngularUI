@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('FederalHierarchyService', ['ApiService', 'UserService', 'AuthorizationService', 'ROLES', function (ApiService, UserService, AuthorizationService, ROLES) {
+    myApp.service('FederalHierarchyService', ['ApiService', function (ApiService) {
 
         /**
          * @returns Void
@@ -203,18 +203,12 @@
          * @param id
          * @returns array of rows for datatable
          */
-        var dtFormattedData = function (successCallback) {
+        var dtFormattedData = function (userOrgId, successCallback) {
             var totalRecords = []; //for search
             var dtTopLevelData = []; //for default data in dt
             var childrenMap = {}; //for expanding down to the children
 
             var level = 0; // to see depth of hierarchy
-
-            var userOrgId = UserService.getUserOrgId();
-            //no filter if rmo or super user
-            if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
-                userOrgId = null;
-            }
 
             //call fh
             getFederalHierarchyById(userOrgId, false, true, function (d) {

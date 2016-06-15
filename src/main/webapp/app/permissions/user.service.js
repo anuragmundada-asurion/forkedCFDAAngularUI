@@ -54,8 +54,8 @@
         return User;
     }]);
 
-    myApp.service('UserService', ['User', 'ROLES', '$window', '$state', '$http', '$rootScope',
-        function(User, ROLES, $window, $state, $http, $rootScope) {
+    myApp.service('UserService', ['User', 'ROLES', '$window', '$state', '$http', '$rootScope', 'FederalHierarchyService', 'localStorageService',
+        function(User, ROLES, $window, $state, $http, $rootScope, FederalHierarchyService, localStorageService) {
             this.loadingUser = false;
 
             this.getUser = function() {
@@ -80,6 +80,9 @@
             this.changeUser = function(iamUser) {
                 $rootScope.user = new User(iamUser);
                 $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('Rei-Sign-In-As') ? Cookies.get('Rei-Sign-In-As') : Cookies.get('iPlanetDirectoryPro');
+
+                //load and store user organization ids (FH)
+                this.fetchUserOrganizationIDs();
             };
 
             this.loadCLPUser = function() {
@@ -120,6 +123,57 @@
 
             this.isLoadingIamUser = function() {
                 return this.loadingUser;
+            };
+
+            this.fetchUserOrganizationIDs = function(){
+                if (this.getUserOrgId() !== null) {
+                    //get user roles
+                    var aUserRoles = [];
+                    angular.forEach(this.getUserRoles(), function(oRole){
+                        if(oRole.hasOwnProperty('iamRoleId')){
+                            aUserRoles.push(oRole.iamRoleId);
+                        }
+                    });
+
+                    //init  userOrganizationIDs storage with assigned orgID
+                    localStorageService.set('userOrganizationIDs', [this.getUserOrgId()]);
+
+                    //AGENCY_COORDINATOR: include children organizations
+                    if (_.includes(aUserRoles, ROLES.AGENCY_COORDINATOR.iamRoleId)) {
+                        FederalHierarchyService.getFederalHierarchyById(this.getUserOrgId(), false, true, 
+                        function(data) {
+                            var aOrgID = [data.elementId];
+                            var fetchOrgIDsFn = function (oData) {
+                                if(oData.hasOwnProperty('hierarchy') && oData.hierarchy.length > 0) {
+                                    angular.forEach(oData.hierarchy, function(oRow) {
+                                        aOrgID.push(oRow.elementId);
+                                        fetchOrgIDsFn(oRow);
+                                    });
+                                }
+                            };
+
+                            fetchOrgIDsFn(data);
+
+                            localStorageService.set('userOrganizationIDs', aOrgID);
+                        }, 
+                        function(err){
+                            console.log(err);
+                        });
+                    }
+
+                    //OMB_ANALYST and RMO_SUPER_USER: FECTH CUSTOM ORGANIZATION
+                    if (_.includes(aUserRoles, ROLES.OMB_ANALYST.iamRoleId) || _.includes(aUserRoles, ROLES.RMO_SUPER_USER.iamRoleId)) {
+                        //TODO API CALL BACK AND PUSH TO aOrgID
+                        //aOrgID.push();
+                        //localStorageService.set('userOrganizationIDs', aOrgID);
+                    }
+                } else {
+                    localStorageService.set('userOrganizationIDs', []);
+                }
+            };
+
+            this.getUserAllOrgIDs = function() {
+                return localStorageService.get('userOrganizationIDs');
             };
 
             var self = this;
