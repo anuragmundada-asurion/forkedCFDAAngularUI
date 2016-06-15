@@ -61,6 +61,7 @@ module.exports = function(config) {
             'main/webapp/bower_components/jstree/dist/jstree.js',
             'main/webapp/bower_components/ng-js-tree/dist/ngJsTree.js',
             'main/webapp/bower_components/semantic-ui/dist/semantic.js',
+            'main/webapp/bower_components/angular-local-storage/dist/angular-local-storage.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/bower_components/angular-multi-select/dist/prod/angular-multi-select.js',
