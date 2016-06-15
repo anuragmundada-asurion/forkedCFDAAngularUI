@@ -185,6 +185,8 @@
             };
 
             angular.element('#programsTable').on('draw.dt', function (event, data) {
+                // initilize semantic ui dropdowns
+-               $(".jqChangeRequest.dropdown").dropdown();
                 // adding status classes to add status icons
                 $('td:contains("Published")').addClass("published");
 
