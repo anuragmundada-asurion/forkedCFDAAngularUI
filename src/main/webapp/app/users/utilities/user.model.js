@@ -16,8 +16,7 @@
                 this.role = user.role;
                 this.email = user.email;
                 this.organizationId = user.organizationId;
-                this.assignedOrganizationIds = user.assignedOrganizationIds;
-                this.organizationType = user.organizationType;
+                this.additionalInfo = user.additionalInfo;
             }
 
             UserProfile.prototype.getId = function() {
@@ -45,15 +44,30 @@
             };
 
             UserProfile.prototype.getAssignedOrganizationIds = function() {
-                return this.assignedOrganizationIds ? this.assignedOrganizationIds : [];
+                return this.additionalInfo ? (this.additionalInfo['assignedOrganizationIds'] ? this.additionalInfo['assignedOrganizationIds'] : []) : [];
             };
 
             UserProfile.prototype.getOrganizationType = function() {
-                return this.organizationType ? this.organizationType : 'default';
+                return this.additionalInfo ? (this.additionalInfo['organizationType'] ? this.additionalInfo['organizationType']['id'] : 'default') : 'default';
             };
 
             UserProfile.prototype.getOrganizationTypeValue = function() {
-                return this.organizationType == 'custom' ? 'Custom Organizations' : (this.organizationType == 'all' ? 'All Organizations' : 'User Organization');
+                return this.additionalInfo ? (this.additionalInfo['organizationType'] ? this.additionalInfo['organizationType']['value'] : 'User Organization') : 'User Organization';
+            };
+
+            UserProfile.prototype.getCustomRoles = function() {
+                return this.additionalInfo ? (this.additionalInfo['customRoles'] ? this.additionalInfo['customRoles'] : {}) : {};
+            };
+
+            UserProfile.prototype.getCustomRolesValue = function() {
+                var customRoles = this.getCustomRoles();
+                var r = [];
+
+                angular.forEach(customRoles, function(value) {
+                    r.push(value);
+                });
+
+                return r;
             };
 
             /**
