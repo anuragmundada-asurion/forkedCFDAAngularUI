@@ -2,16 +2,22 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', '$timeout', 'appConstants', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile',
-        function ($scope, $timeout, appConstants, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile) {
+    myApp.controller('OrganizationListController', ['$scope', 'UserService', 'AuthorizationService', 'ROLES', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile',
+        function ($scope, UserService, AuthorizationService, ROLES, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile) {
 
             //Load data from FH
             //------------------------------------------------------------------
 
+            var userOrgId = UserService.getUserOrgId();
+            //no filter if rmo or super user
+            if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER])) {
+                userOrgId = null;
+            }
+
             getDataFromFh();
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(function (results) {
+                FederalHierarchyService.dtFormattedData(userOrgId, function (results) {
                     $scope.dtData_topLevel = results.topLevelData;
                     $scope.dtData_total = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
@@ -66,7 +72,10 @@
             }, true);
 
             $scope.$watch('dtData', function () {
-                $scope.totalCount = $scope.dtData.length;
+                if(typeof $scope.dtData !== 'undefined') {
+                    $scope.totalCount = $scope.dtData.length;
+                }
+
                 if ($scope.dtData) {
                     $scope.dtInstance.DataTable.ajax.reload();
                 }

@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('AuthorizationService', ['UserService', function(UserService) {
+    myApp.service('AuthorizationService', ['UserService', 'ROLES', function(UserService, ROLES) {
         this.authorize = function(requiredPermissions) {
             var userPermissions = UserService.getUserPermissions();
 
@@ -57,6 +57,20 @@
             }
 
             return hasRole;
+        };
+
+        /**
+         * Authorize user by organization
+         * @param Integer orgID
+         * @returns Boolean
+         */
+        this.authorizeByOrganization = function(orgID) {
+            //super users has access to organization
+            if(this.authorizeByRole([ROLES.SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
+                return true;
+            } else {
+                return (_.includes(UserService.getUserAllOrgIDs(), orgID));
+            }
         };
     }]);
 }();
