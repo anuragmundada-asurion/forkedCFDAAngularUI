@@ -48,7 +48,12 @@
                         orgIds.push(value);
                     });
 
-                    $scope.userProfile.assignedOrganizationIds = orgIds;
+                    $scope.userProfile.additionalInfo['assignedOrganizationIds'] = orgIds;
+                }
+
+                if ($scope.isAgencyUser()) {
+                    //  Populate custom permissions
+                    $scope.userProfile.additionalInfo['customRoles'] = $scope.customAgencyUserPermissions;
                 }
 
                 var oApiParam = {
@@ -87,8 +92,16 @@
                 delete $scope.assignedOrganizationList[key];
             };
 
+            $scope.isAgencyUser = function() {
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.AGENCY_USER.iamRoleId) : false;
+            };
+
             $scope.isOMBAnalyst = function() {
                 return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.OMB_ANALYST.iamRoleId) : false;
+            };
+
+            $scope.isRMOSuperUser = function() {
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.RMO_SUPER_USER.iamRoleId) : false;
             };
 
             $scope.isCustomOrganizationType = function() {
@@ -107,14 +120,22 @@
                 function (results) {
                     $scope.userProfile = new UserProfile(results);
 
-                    //  Have to translate array of ids to object for ng repeat to remove items correctly
+                    //  Pull additional information out of object structure to easier consume
                     $scope.assignedOrganizationList = {};
                     $scope.assignedNextId = 0;
 
-                    if ($scope.userProfile.assignedOrganizationIds) {
-                        angular.forEach($scope.userProfile.assignedOrganizationIds, function(value, key) {
+                    if ($scope.userProfile.getAssignedOrganizationIds()) {
+                        angular.forEach($scope.userProfile.getAssignedOrganizationIds(), function(value, key) {
                             $scope.assignedOrganizationList[key] = value;
                             $scope.assignedNextId = key;
+                        });
+                    }
+
+                    $scope.customAgencyUserPermissions = {};
+
+                    if ($scope.isAgencyUser() && $scope.userProfile.getCustomRoles()) {
+                        angular.forEach($scope.userProfile.getCustomRoles(), function(value, key) {
+                            $scope.customAgencyUserPermissions[key] = true;
                         });
                     }
                 }

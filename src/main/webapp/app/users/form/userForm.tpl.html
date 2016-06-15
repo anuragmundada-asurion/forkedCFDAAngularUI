@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div ng-if="isOMBAnalyst()">
+    <div ng-if="isOMBAnalyst() || isRMOSuperUser()">
         <div class="usa-grid usa-grid-fixed">
             <div class="usa-width-one-third">
                 <label>Which Organizations is this user responsible for?</label>
@@ -75,6 +75,28 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div ng-if="isAgencyUser()">
+        <div class="usa-grid usa-grid-fixed">
+            <fieldset class="usa-fieldset-inputs usa-sans" style="margin-top:3rem;">
+                <legend style="font-size:17px;font-weight:normal;">User Rights</legend>
+                <ul class="usa-horizontal-list">
+                    <li>
+                        <input id="createPermission" type="checkbox" ng-model="customAgencyUserPermissions['CAN_CREATE_PROGRAMS']">
+                        <label for="createPermission">Program (Create)</label>
+                    </li>
+                    <li>
+                        <input id="submitPermission" type="checkbox" ng-model="customAgencyUserPermissions['CAN_REQUEST_SUBMISSION']">
+                        <label for="submitPermission">Program (Submit)</label>
+                    </li>
+                    <li>
+                        <input id="editPermission" type="checkbox" ng-model="customAgencyUserPermissions['CAN_EDIT_DRAFT_PROGRAMS']">
+                        <label for="editPermission">Program (Edit)</label>
+                    </li>
+                </ul>
+            </fieldset>
         </div>
     </div>
 

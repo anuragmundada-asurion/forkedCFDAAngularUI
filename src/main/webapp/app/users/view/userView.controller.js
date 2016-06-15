@@ -31,6 +31,10 @@
                 return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.OMB_ANALYST.iamRoleId) : false;
             };
 
+            $scope.isRMOSuperUser = function() {
+                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.RMO_SUPER_USER.iamRoleId) : false;
+            };
+
             $scope.isCustomOrganizationType = function() {
                 return $scope.userProfile ? ($scope.userProfile.getOrganizationType() == 'custom') : false;
             };
