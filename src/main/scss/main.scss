@@ -1,91 +1,38 @@
 
 /* ==========================================================
 USWDS Framework 0.9.1
+https://github.com/18F/web-design-standards
 ========================================================== */
 // Need to update framework to 0.9.4
 @import 'uswds/uswds-modified';
 
 
 /* ==========================================================
-CFDA Fonts
-========================================================== */
-// Source Sans Pro Extra Light 200
-// used only in homepage, evaluate if it can be replaced and remove import
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200');
-
-
-/* ==========================================================
-CFDA Specific Styles
-========================================================== */
-
-/*------------------------------
-Form
---------------------------------*/
-// Create a variation class maybe ".usa-form-fluid"
-// and moved to uswds/extentions/forms
-form {
-  max-width: none !important;
-}
-
-// This needs to be replaced with "usa-input-required"
-// and moved to uswds/extentions/forms
-.required {
-  color: $color-secondary-dark;
-  font-weight: 700;
-}
-
-/*------------------------------
-Masked Input Angular Directive
---------------------------------*/
-// make angular handle this with inline styles and remove
-masked-input {
-  > * {
-    display: inline-block !important;
-  }
-  >span {
-    margin: 0 5px;
-  }
-  > input[type="text"] {
-    width: 35px;
-    &.masked-input-length-2 {
-      width: 45px;
-    }
-    &.masked-input-length-3 {
-      width: 55px;
-    }
-    &.masked-input-length-4 {
-      width: 65px
-    }
-    &.masked-input-length-5 {
-      width: 75px;
-    }
-    &.masked-input-length-6 {
-      width: 85px;
-    }
-    &.masked-input-length-7 {
-      width: 95px;
-    }
-  }
-}
-
-
-/* ==========================================================
 Extending USWDS
 ========================================================== */
 
+// Core -------------- //
+@import 'uswds/extentions/grid';
 @import 'uswds/extentions/utilities';
+@import 'uswds/extentions/fonts';
+
+// Elements -------------- //
+@import 'uswds/extentions/buttons';
+@import 'uswds/extentions/inputs';
+@import 'uswds/extentions/labels';
+@import 'uswds/extentions/list';
+@import 'uswds/extentions/table';
+@import 'uswds/extentions/typography';
+
+// Components -------------- //
+@import 'uswds/extentions/accordions';
+@import 'uswds/extentions/forms';
+
+// CFDA Components -------------- //
 @import 'uswds/extentions/card';
 @import 'uswds/extentions/navbar';
 @import 'uswds/extentions/tab';
-@import 'uswds/extentions/grid';
-@import 'uswds/extentions/table';
-@import 'uswds/extentions/inputs';
-@import 'uswds/extentions/labels';
-@import 'uswds/extentions/buttons';
-@import 'uswds/extentions/typography';
 @import 'uswds/extentions/segment';
-@import 'uswds/extentions/list';
-@import 'uswds/extentions/accordions';
 
 
 /* ==========================================================
@@ -105,5 +52,5 @@ Vendors
 Old Styles (Clean Up needed)
 ========================================================== */
 // Once program add/edit form and 1-7 steps component
-// are cleaned remove the import and delete file
+// are cleaned remove the the line below and delete file
 @import 'old-styles';
