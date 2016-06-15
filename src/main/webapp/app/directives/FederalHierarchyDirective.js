@@ -375,21 +375,23 @@
                     "<div class='usa-grid-full' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' name='department' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "{{ dictionary.aDepartment.length }}"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0' name='department' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqAgencyFH'>Agency</label>"+
-                            "<select id='jqAgencyFH' name='agency' ng-change='setOrganizationId(\"agency\")' ng-model='selectedAgencyId' ng-options='item.elementId as item.name for item in dictionary.aAgency'>"+
+                            "{{ dictionary.aAgency.length }}"+
+                            "<select id='jqAgencyFH' ng-disabled='dictionary.aAgency.length == 0' name='agency' ng-change='setOrganizationId(\"agency\")' ng-model='selectedAgencyId' ng-options='item.elementId as item.name for item in dictionary.aAgency'>"+
                                 "<option value=''>Please select an Agency</option>"+
                             "</select>"+
-
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqOfficeFH'>Office</label>"+
-                            "<select id='jqOfficeFH' name='office' ng-change='setOrganizationId(\"office\")' ng-model='selectedOfficeId' ng-options='item.elementId as item.name for item in dictionary.aOffice'>"+
+                            "{{ dictionary.aOffice.length }}"+
+                            "<select id='jqOfficeFH' ng-disabled='dictionary.aOffice.length == 0' name='office' ng-change='setOrganizationId(\"office\")' ng-model='selectedOfficeId' ng-options='item.elementId as item.name for item in dictionary.aOffice'>"+
                                 "<option value=''>Please select an Office</option>"+
                             "</select>"+
                         "</div>"+

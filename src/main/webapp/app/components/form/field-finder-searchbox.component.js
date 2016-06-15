@@ -22,7 +22,7 @@
                 '</select>' +
             '</div>' +
             '<div class="usa-width-one-half">' +
-                '<button type="button" class="usa-button-big usa-button-fluid usa-margin-top-0" ng-click="uxForm.goToBookmark()">Jump to field</button>' +
+                '<button type="button" class="usa-button-big usa-button-fluid usa-margin-input" ng-click="uxForm.goToBookmark()">Jump to field</button>' +
             '</div>'
         };
 
