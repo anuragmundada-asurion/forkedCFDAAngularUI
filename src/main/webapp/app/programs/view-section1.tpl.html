@@ -7,7 +7,7 @@
 </section>
 <section class="sub-section" >
     <div class="input-field" >
-        <h3 for="title7">010 Program Title<span class="required" >*</span></h3>
+        <h3 for="title7">{{::instructionalText["01"]["010"]["title"]}}<span class="required" >*</span></h3>
         <span type="text" class="italic" id="title7"  ng-bind="gsavm.program.title"></span>
     </div>
     <div class="input-field" ng-if="((gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false) || (gsavm.program.status && gsavm.program.status !== 'Draft'))">
@@ -18,7 +18,7 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3 for="alternativeName7">020 Popular Name</h3>
+        <h3 for="alternativeName7">{{::instructionalText["01"]["020"]["title"]}}</h3>
         <span type="text" class="italic"  id="alternativeName7"  ng-bind="gsavm.program.alternativeNames"></span>
     </div>
 </section>
@@ -26,7 +26,7 @@
     <div class="input-field">
         <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
             <multi-entry-header>
-                <h3>040 Authorization<span class="required" >*</span></h3>
+                <h3>{{::$ctrl.parentVm.instructionalText["01"]["040"]["title"]}}<span class="required" >*</span></h3>
             </multi-entry-header>
             <div>
                 <span ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">You need to create at least one Authorization.</span>
@@ -65,21 +65,21 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3 for="objective7">050 Objectives<span class="required" >*</span></h3>
+        <h3 for="objective7">{{::instructionalText["01"]["050"]["title"]}}<span class="required" >*</span></h3>
         <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
         <span type="text" class="italic" id="objective7" ng-bind="gsavm.program.objective"></span>
     </div>
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3>060 Types of Assistance</h3>
+        <h3>{{::instructionalText["01"]["060"]["title"]}}</h3>
         <div ng-repeat="obligation in gsavm.program.financial.obligations">
             <p class='text-nowrap'>{{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}</p>
         </div>
     </div>
 </section>
 <section class="sub-section" >
-    <h3>070 Uses and Use Restrictions</h3>
+    <h3>{{::instructionalText["01"]["070"]["title"]}}</h3>
     <fieldset class="usa-fieldset-inputs usa-sans">
         <!--<p>Select all that apply to your Program. If "Yes" is selected, users are required to provide more details in the textfields.</p>-->
         <label for="usageRulesContent7">Describe how assistance can potentially be used<span class="required" >*</span></label>
@@ -88,7 +88,7 @@
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
             <!--input type="checkbox" id="restrictionsFlag" ng-model="restrictionsFlag" ng-checked="gsavm.program.usage.restrictions.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.restrictions.flag = restrictionsFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
-            <label for="restrictionsFlag7">Are there specific restrictions place upon the use of the assistance?</label>
+            <label for="restrictionsFlag7">{{::instructionalText["01"]["070"]["restrictions"]["label"]}}</label>
             <span type="text" class="italic" id="restrictionsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.restrictions.flag].value"></span>
         </fieldset>
     </div>
@@ -101,7 +101,7 @@
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
             <!--input type="checkbox" id="discretionaryFundFlag" ng-model="discretionaryFundFlag" ng-checked="gsavm.program.usage.discretionaryFund.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.discretionaryFund.flag = discretionaryFundFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
-            <label for="discretionaryFundFlag7">Are there discretionary funds available?</label>
+            <label for="discretionaryFundFlag7">{{::instructionalText["01"]["070"]["funds"]["label"]}}</label>
             <span type="text" class="italic" id="discretionaryFundFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.discretionaryFund.flag].value"></span>
         </fieldset>
     </div>
@@ -114,7 +114,7 @@
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
             <!--input type="checkbox" id="loanTermsFlag" ng-model="loanTermsFlag" ng-checked="gsavm.program.usage.loanTerms.flag === gsavm.choices['yes_no'].yes.code" ng-change="gsavm.program.usage.loanTerms.flag = loanTermsFlag ? gsavm.choices['yes_no'].yes.code : gsavm.choices['yes_no'].no.code" trigger-click-on-enter-->
-            <label for="loanTermsFlag7">Are loans a type of assistance in this program?</label>
+            <label for="loanTermsFlag7">{{::instructionalText["01"]["070"]["loanTerms"]["label"]}}</label>
             <span type="text" class="italic" id="loanTermsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.usage.loanTerms.flag].value"></span>
         </fieldset>
     </div>
@@ -126,10 +126,10 @@
     </div>
 </section>
 <section class="sub-section">
-    <h3>160 Related Programs<span class="required">*</span></h3>
+    <h3>{{::instructionalText["01"]["160"]["title"]}}<span class="required">*</span></h3>
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
-            <label>Are there any related programs?</label>
+            <label>{{::instructionalText["01"]["160"]["label"]}}</label>
             <span type="text" class="italic" id="relatedProgramsFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.relatedPrograms.flag].value"></span>
         </fieldset>
     </div>
@@ -143,10 +143,10 @@
     </div>
 </section>
 <section class="sub-section" >
-    <h3>170 Examples of Funded Projects</h3>
+    <h3>{{::instructionalText["01"]["170"]["title"]}}</h3>
     <div class="input-field">
         <fieldset class="usa-fieldset-inputs usa-sans">
-            <label>Are there examples of funded projects?</label>
+            <label>{{::instructionalText["01"]["170"]["label"]}}</label>
             <span type="text" class="italic" id="fundedProjectsExampleFlag7" ng-bind="gsavm.choices['yes_na'][gsavm.program.projects.flag].value"></span>
         </fieldset>
     </div>
@@ -170,7 +170,7 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3>190 Functional Codes<span class="required" >*</span></h3>
+        <h3>{{::instructionalText["01"]["190"]["title"]}}<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.program.functionalCodes">
             <span>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'aFunctionalCode').displayValue}}</span>
         </div>
@@ -178,7 +178,7 @@
 </section>
 <section class="sub-section" >
     <div class="input-field">
-        <h3>300 Subject Terms<span class="required" >*</span></h3>
+        <h3>{{::instructionalText["01"]["300"]["title"]}}<span class="required" >*</span></h3>
         <div ng-repeat="item in gsavm.choices['program_subject_terms'] | selectedChoiceFilter:gsavm.program.subjectTerms:'element_id' track by item.element_id">
             <p type="text" class="italic" ng-bind="item.displayValue"></p>
         </div>

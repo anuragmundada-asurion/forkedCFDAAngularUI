@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService,ROLES) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http','PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService,ROLES) {
 
                 $scope.$log = $log;
 
@@ -26,6 +26,7 @@
                     ],
                     originalTitle; //original title is stored because Published programs cannot have title changed.
 
+                $scope.instructionalText = {};
                 //initialize dictionary container
                 $scope.dictionary = {};
 
@@ -70,6 +71,7 @@
                 };
 
                 //initialize program object
+                loadInstructionalText();
                 if ($state.current['name'] === 'addProgram') { // Create Program
                     //vm.isCreateProgram = true;
                     vm.program = new ProgramFactory();
@@ -775,6 +777,15 @@
                         return false;
                     }
                     return true;
+                }
+
+
+                function loadInstructionalText(){
+                    $http.get('/data/instructionalText.json').success(function(data) {
+                       $scope.instructionalText = data;
+                       vm.instructionalText = data;
+                       //console.log(data);
+                    });
                 }
             }]);
 })();

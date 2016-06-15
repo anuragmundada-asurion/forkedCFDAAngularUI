@@ -1,0 +1,429 @@
+{
+  "01":{
+    "010":{
+      "title":"010 Title",
+      "helpText":"Spell out any acronyms and limit to 144 characters.",
+      "label":"Title"
+    },
+    "programNumber":{
+      "title":"Program Number",
+      "helpText":"Provide a unique three digit program number (for example, enter “244” for CFDA number 10.244).",
+      "label":"Number"
+    },
+    "020":{
+      "title":"020 Popular Name",
+      "label":"Name"
+    },
+    "040":{
+      "title":"040 Authorization",
+      "helpText":"You must add at least one authorization.",
+      "label":"Authorization",
+      "form":{
+        "authorizationTypes":{
+          "label":"Authorization types"
+        },
+        "amendments":{
+          "label":"Amendments"
+        }
+      }
+    },
+    "050":{
+      "title":"050 Objectives",
+      "helpText":"Provide a plain text description highlighting program goals. Use specific terms that will help public users find this listing.",
+      "label":"Objectives"
+    },
+    "070":{
+      "title":"070 Uses and Use Restrictions",
+      "helpText":"Describe how assistance may be used. Use specific terms that will help public users find this listing.",
+      "label":"Uses and Use Restrictions",
+      "restrictions":{
+        "label":"Are there specific restrictions place upon the use of the assistance?",
+        "helpText":"List any restrictions on how assistance may be used. Only provide restrictions specific to your organization or this listing."
+      },
+      "funds":{
+        "label":"Are there discretionary funds available?",
+        "helpText":"Describe the discretionary funds:"
+      },
+      "loanTerms":{
+        "label":"Are loans a type of assistance in this program?",
+        "helpText":"Describe the loan terms:"
+      }
+    },
+    "160":{
+      "title":"160 Related Programs",
+      "label":"Are there any related programs?",
+      "form":{
+        "intro":"Select at least one program from list"
+      }
+    },
+    "170":{
+      "title":"170 Examples of Funded Projects",
+      "label":"Are there examples of funded projects?"
+    },
+    "190":{
+      "title":"190 Functional Codes",
+      "helpText":"Select one or more Functional Codes to help public users search for this listing.",
+      "label":"Functional Codes"
+    },
+    "300":{
+      "title":"300 Subject Terms",
+      "helpText":"Select one or more Subject Terms to help public users search for this listing.",
+      "label":"Subject Terms"
+    }
+  },
+  "02":{
+    "080":{
+      "title":"080 Eligibility Requirements"
+    },
+    "081":{
+      "title":"081 Applicant Eligibility",
+      "eligibleApplicants":{
+        "label":"Eligible Applicants",
+        "helpText":"Select all that apply to help public users search for this listing."
+      },
+      "useOfAssistance":{
+        "label":"Use Of Assistance",
+        "helpText":"Select all that apply to help public users search for this listing."
+      },
+      "additionalInfo":{
+        "label":"Describe who may apply for the assistance."
+      }
+    },
+    "082":{
+      "title":"082 Beneficiary Eligibility",
+      "beneficiaryEligibility":{
+        "label":"Beneficiary Eligibility",
+        "helpText":"Select all that apply to help public users search for this listing."
+      },
+      "additionalInfo":{
+        "label":"Describe who may benefit from the assistance."
+      }
+    },
+    "083":{
+      "title":"083 Credentials/Documentation",
+      "label":"Are there credentials or documentation?",
+      "additionalInfo": {
+        "label": "What qualifications must be demonstrated? Only consider credentials or documentation specific to your organization or this listing."
+      },
+      "costPrincipalsAcceptable":{
+        "label": "Is 2 CFR 200, Subpart E - Cost Principles applicable?"
+      }
+    }
+  },
+  "03":{
+    "090":{
+      "title":"090 Application and Award Process"
+    },
+    "091":{
+      "title":"091 Pre-application Coordination",
+      "label":"Is any prior coordination or approval required with governmental or nongovernmental units prior to the submission of a formal application to the Federal funding agency?",
+      "environmentalImpact":{
+        "label":"Does this program require submission of environmental impact information?"
+      },
+      "preappCoord3question2":{
+        "label":"Does Executive Order 12372, \"Intergovernmental Review of Federal Program\", apply to this program?"
+      },
+      "additionalInfo":{
+        "label":"Describe other coordination requirements if applicable"
+      }
+    },
+    "092":{
+      "title":"092 Application Procedures",
+      "label":"Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?",
+      "additionalInfo":{
+        "label":"List all steps in the application process."
+      }
+    },
+    "093":{
+      "title":"093 Award Procedure",
+      "label":"Describe how assistance is awarded.  Include who approves the award and how assistance is distributed."
+    },
+    "094":{
+      "title":"094 Deadlines",
+      "label":"Is a deadline for submission of application available?",
+      "deadlines":{
+        "title":"Current Deadlines",
+        "helpText":"List all deadlines in the application process.  Enter each deadline separately.",
+        "form":{
+          "intro":"Use the calendar and/or description field to provide deadline date(s). Leave the End Date blank if the deadline is fixed."
+        },
+        "additionalInfo":{
+          "label":"Other Deadline Information:"
+        }
+      }
+    },
+    "095":{
+      "title":"095 Range of Approval/Disapproval Time",
+      "dateRange":{
+        "label":"Select the range that best represents how much time the approval process takes"
+      },
+      "additionalInfo":{
+        "label":"Provide an additional information if appropriate."
+      }
+    },
+    "096":{
+      "title":"096 Appeals",
+      "dateRange":{
+        "label":"Select the range that best represents how long an applicant has to appeal a decision."
+      },
+      "additionalInfo":{
+        "label":"Describe appeal, rework, or other options for applications that are not approved."
+      }
+    },
+    "097":{
+      "title":"097 Renewals",
+      "dateRange":{
+        "label":"Select the range that best represents when an awardee may apply for a renewal or extension."
+      },
+      "additionalInfo":{
+        "label":"Describe renewal or extension procedures."
+      }
+    },
+    "100":{
+      "title":"100 Assistance Consideration"
+    },
+    "101":{
+      "title":"101 Formula and Matching Requirements",
+      "helpText":"See the reference guide or online help for instructions when Yes is selected.",
+      "statuatoryFormula":{
+        "label":"Does this program have a statutory formula and/or administrative rule reference in the CFR?",
+        "formulaForm":{
+          "title":{
+            "label":"Title:"
+          },
+          "chapter":{
+            "label":"Chapter:"
+          },
+          "part":{
+            "label":"Part:"
+          },
+          "subpart":{
+            "label":"Subpart:"
+          },
+          "publicLaw":{
+            "label":"Public Law:"
+          },
+          "additionalInfo":{
+            "label":"Additional Info:"
+          }
+        }
+      },
+      "matchingRequirements":{
+        "label":"Does this program have matching requirements?",
+        "dateRange":{
+          "label":"Select the Percentage Below"
+        },
+        "additionalInfo":{
+          "label":"Other Matching Requirements Information:"
+        }
+      },
+      "moeRequirements":{
+        "label":"Does this program have MOE requirements AND total allocations over $100 million (current FY)?",
+        "additionalInfo":{
+          "label":"Please enter any additional information below:"
+        }
+      }
+    },
+    "102":{
+      "title":"102 Length and Time Phasing of Assistance",
+      "assistLimit": {
+        "label": "Describe the period of time when assistance is available. Also, the period of time when funding must be spent."
+      },
+      "assistanceAwarded":{
+        "label": "Select the value that best represents how funding is released."
+      }
+    },
+    "180":{
+      "title":"180 Criteria for Selecting Proposals",
+      "label":"Is there criteria for selecting proposals?",
+      "additionalInfo":{
+        "label":"List all factors used to select awardees. Include how these factors are prioritized or weighted."
+      }
+    }
+  },
+  "04":{
+    "110":{
+      "title":"110 Post Assistance Requirements"
+    },
+    "111":{
+      "title":"111 Reports",
+      "label":"Are reports required by the funding agency?",
+      "programReports":{
+        "label":"Are program reports required?",
+        "additionalInfo":{
+          "label":"Describe progress, performance, cash, expenditure or other required reports for this listing."
+        }
+      },
+      "cashReports":{
+        "label":"Are cash reports required",
+        "additionalInfo":{
+          "label":"Describe required cash reports."
+        }
+      },
+      "progressReports":{
+        "label":"Are progress reports required?",
+        "additionalInfo":{
+          "label":"Describe required progress reports."
+        }
+      },
+      "expenditureReports":{
+        "label":"Are expenditure reports required?",
+        "additionalInfo":{
+          "label":"Describe required expenditure reports."
+        }
+      },
+      "performanceMonitoring":{
+        "label":"Is performance monitoring required?",
+        "additionalInfo":{
+          "label":"Describe required progress reports."
+        }
+      }
+    },
+    "112":{
+      "title":"112 Audits",
+      "label":"Are audits required for the program?",
+      "auditRequirements":{
+        "label":"Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?"
+      },
+      "additionalInfo":{
+        "label":"Describe audit procedures for this program. Only include requirements not already covered by 2 CFR 200."
+      }
+    },
+    "113":{
+      "title":"113 Records",
+      "label":"Describe required records. Include the time period when the records must be kept."
+    },
+    "140":{
+      "title":"140 Regulations, Guidelines, and Literature",
+      "label":"Are there any regulations, guidelines or literature?",
+      "additionalInfo":{
+        "label":"List references to all official published information related to this listing. Omit references to 2 CFR 200"
+      }
+    }
+  },
+  "05": {
+    "120": {
+      "title": "120 Financial Information"
+    },
+    "121": {
+      "title": "121 Account Identification",
+      "label": "List the 11-digit budget account identification code(s) that funds the program. This code must match the President’s budget.",
+      "form": {
+        "code": {
+          "label": "Code"
+        },
+        "description": {
+          "label": "Description"
+        }
+      }
+    },
+    "122": {
+      "title": "122 Obligations",
+      "label": "Financial information must be consistent with the President’s budget. Enter obligations for each type of assistance separately.",
+      "form": {
+        "recovery": {
+          "label": "Is this a Recovery and Reinvestment Act Obligation?"
+        },
+        "salaryOrExpense": {
+          "label": "Is this for Federal salaries and expenses?",
+          "assistanceType": {
+            "label": "Select the type of assistance that best represents how this funding is obligated."
+          }
+        },
+        "helpText": "Enter a dollar amount (format xx,xxx,xxx).  Exclude the dollar sign.",
+        "additionalInfo": {
+          "label": "Additional Information"
+        }
+      }
+    },
+    "123": {
+      "title": "123 Range and Average of Financial Assistance",
+      "label": "Provide a range that best represents the smallest and largest awards available. Provide an approximate average award size."
+    },
+    "124": {
+      "title": "124 TAFS Codes - Unique Treasury Appropriation Fund Symbols",
+      "label": "Enter as many components as possible. Treasury Dept Code, Allocation Transfer Agency, and Treasury Account Main Code are required.",
+      "form": {
+        "deptCode": {
+          "label": "Treasury Dept Code"
+        },
+        "allocationAgency": {
+          "label": "Allocation Transfer Agency"
+        },
+        "fy1": {
+          "label": "FY 1"
+        },
+        "fy2": {
+          "label": "FY 2"
+        },
+        "accountCode": {
+          "label": "Treasury Account Main Code"
+        },
+        "subAccount": {
+          "label": "TAFS Sub-Account"
+        }
+      }
+    },
+    "130": {
+      "title": "130 Program Accomplishments",
+      "label": "Are there program accomplishments?",
+      "programAccomplishments": {
+        "label": "Please select all that apply:"
+      }
+    }
+  },
+  "06":{
+    "150":{
+      "title":"150 Information Contacts"
+    },
+    "151":{
+      "title":"151 Regional or Local Office",
+      "additionalInfo":{
+        "label":"Identify Federal regional or local offices that may be contacted about this listing."
+      }
+    },
+    "152":{
+      "title":"152 Headquarters Office",
+      "label":"Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added",
+      "form":{
+        "contacts":{
+          "label":"Contacts:"
+        },
+        "title":{
+          "label":"Title:"
+        },
+        "fullName":{
+          "label":"Full Name:"
+        },
+        "email":{
+          "label":"Email:"
+        },
+        "phone":{
+          "label":"Phone:"
+        },
+        "fax":{
+          "label":"Fax:"
+        },
+        "street":{
+          "label":"Street:"
+        },
+        "city":{
+          "label":"City:"
+        },
+        "state":{
+          "label":"state:"
+        },
+        "zip":{
+          "label":"Zip:"
+        },
+        "country":{
+          "label":"Country:"
+        }
+      }
+    },
+    "153":{
+      "title":"153 Website",
+      "label":"Provide the primary web page URL for this listing. When possible, the web page should be specific to this listing."
+    }
+  }
+}
