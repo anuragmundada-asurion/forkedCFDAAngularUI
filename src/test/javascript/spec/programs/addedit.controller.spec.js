@@ -38,6 +38,9 @@ describe("Unit Tests for Add Edit Controller", function () {
         });
 
         UserService.changeUser({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
+        $httpBackend
+            .whenGET('/data/instructionalText.json')
+            .respond('{}');//data in actual file doesn't affect submissions, passing an empty object to pass unit test
 
         $httpBackend
             .whenGET('/api/contacts')
