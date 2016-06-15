@@ -39,8 +39,8 @@ Extending USWDS
 Vendors
 ========================================================== */
 
-@import 'vendors/trmix';
-@import "vendors/c3";
+@import 'vendors/trmix'; // antialias
+@import "vendors/c3"; // chart
 @import "vendors/datatables";
 @import 'vendors/ui-select'; // Need to be replaced with multiselect
 @import 'vendors/multiselect';
