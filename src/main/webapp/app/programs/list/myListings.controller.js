@@ -438,6 +438,7 @@
             this.initializeTable();
         }
     ]);
+    
 
     //Controller for Program Status
     myApp.controller('ProgramRequestCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
@@ -475,6 +476,13 @@
                         if (data && data.results.length !== 0) {
                             $scope.modal.show = false;
                             $scope.modal.message = 'You cannot make another request on this program.';
+                            $(".ngdialog-close").attr("tabindex", "0");
+                           $(".ngdialog-close").bind('keydown', function(event) {
+                               if(event.keyCode === 13){
+                                   $scope.closeModal();
+                               }
+
+                           });
                         } else if (data && data.results.length === 0) {
                             $scope.modal.show = true;
                         }
