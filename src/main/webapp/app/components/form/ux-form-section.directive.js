@@ -57,6 +57,7 @@
                 self.uxForm.current = self;
                 self.uxForm.removeAllHighlights();
                 $document.scrollToElementAnimated($document.findAll(self.uxForm.scrollAnchor), 188);
+                window.location.hash=self.uxForm.scrollAnchor;//changes focus point for screen readers too
             }
         }
 
