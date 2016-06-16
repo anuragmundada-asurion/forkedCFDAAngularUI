@@ -3,39 +3,39 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserFormCtrl', ['$stateParams', '$scope', 'UserProfile', 'ApiService', 'AuthorizationService', 'ROLES', 'ngDialog', '$state', '$timeout',
-        function($stateParams, $scope, UserProfile, ApiService, AuthorizationService, ROLES, ngDialog, $state, $timeout) {
-            if (AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
+    myApp.controller('UserFormCtrl', ['$stateParams', '$scope', 'User', 'ApiService', 'AuthorizationService', 'SUPPORTED_ROLES', 'ngDialog', '$state', '$timeout',
+        function($stateParams, $scope, User, ApiService, AuthorizationService, SUPPORTED_ROLES, ngDialog, $state, $timeout) {
+            if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
                 $scope.cfdaRoles = [{
-                    id: ROLES.AGENCY_USER.iamRoleId,
+                    id: SUPPORTED_ROLES.AGENCY_USER,
                     value: "Agency User"
                 }, {
-                    id: ROLES.AGENCY_COORDINATOR.iamRoleId,
+                    id: SUPPORTED_ROLES.AGENCY_COORDINATOR,
                     value: "Agency Coordinator"
                 }];
-            } else if (AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
+            } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                 $scope.cfdaRoles = [{
-                    id: ROLES.OMB_ANALYST.iamRoleId,
+                    id: SUPPORTED_ROLES.OMB_ANALYST,
                     value: "OMB Analyst"
                 }];
-            } else if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+            } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER])) {
                 $scope.cfdaRoles = [{
-                    id: ROLES.AGENCY_USER.iamRoleId,
+                    id: SUPPORTED_ROLES.AGENCY_USER,
                     value: "Agency User"
                 }, {
-                    id: ROLES.AGENCY_COORDINATOR.iamRoleId,
+                    id: SUPPORTED_ROLES.AGENCY_COORDINATOR,
                     value: "Agency Coordinator"
                 }, {
-                    id: ROLES.OMB_ANALYST.iamRoleId,
+                    id: SUPPORTED_ROLES.OMB_ANALYST,
                     value: "OMB Analyst"
                 }, {
-                    id: ROLES.RMO_SUPER_USER.iamRoleId,
+                    id: SUPPORTED_ROLES.RMO_SUPER_USER,
                     value: "RMO Super User"
                 }, {
-                    id: ROLES.LIMITED_SUPER_USER.iamRoleId,
+                    id: SUPPORTED_ROLES.LIMITED_SUPER_USER,
                     value: "Limited Super User"
                 }, {
-                    id: ROLES.SUPER_USER.iamRoleId,
+                    id: SUPPORTED_ROLES.SUPER_USER,
                     value: "Super User"
                 }];
             }
@@ -93,15 +93,15 @@
             };
 
             $scope.isAgencyUser = function() {
-                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.AGENCY_USER.iamRoleId) : false;
+                return $scope.userProfile ? ($scope.userProfile.getRole() == SUPPORTED_ROLES.AGENCY_USER) : false;
             };
 
             $scope.isOMBAnalyst = function() {
-                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.OMB_ANALYST.iamRoleId) : false;
+                return $scope.userProfile ? ($scope.userProfile.getRole() == SUPPORTED_ROLES.OMB_ANALYST) : false;
             };
 
             $scope.isRMOSuperUser = function() {
-                return $scope.userProfile ? ($scope.userProfile.getRole() == ROLES.RMO_SUPER_USER.iamRoleId) : false;
+                return $scope.userProfile ? ($scope.userProfile.getRole() == SUPPORTED_ROLES.RMO_SUPER_USER) : false;
             };
 
             $scope.isCustomOrganizationType = function() {
@@ -118,7 +118,7 @@
 
             ApiService.call(oApiParam).then(
                 function (results) {
-                    $scope.userProfile = new UserProfile(results);
+                    $scope.userProfile = new User(results);
 
                     //  Pull additional information out of object structure to easier consume
                     $scope.assignedOrganizationList = {};

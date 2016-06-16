@@ -10,7 +10,7 @@
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
 
   <div class="usa-width-one-third">
-    <a  has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}"
+    <a ng-if="hasPermission([PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE])"
         ui-sref="addRegionalOffice"
         class="usa-button usa-button-big usa-button-fluid usa-margin-all-0" >
         Create a New Address

@@ -259,6 +259,12 @@ public class ApiController {
         return getsCall(accessToken, getUsersApiUrl(), params);
     }
 
+    @RequestMapping(value = "/api/roles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getRoles() {
+        Map<String, Object> params = new HashMap<>();
+        return getsCall(null, getRolesApiUrl(), params);
+    }
+
     @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
@@ -578,6 +584,10 @@ public class ApiController {
                                                           @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
         this.deleteCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id);
         return ResponseEntity.status(HttpStatus.OK).body(null);
+    }
+
+    private String getRolesApiUrl() {
+        return environment.getProperty(API_PROGRAMS_ENV) + "/roles";
     }
 
     private String getUsersApiUrl() {

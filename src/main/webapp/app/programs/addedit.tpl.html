@@ -89,11 +89,11 @@
               The FAL number has already been used. Please enter a different FAL number.
             </span>
 
-            <span class="usa-input-error-message" role="alert" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR] }}" ng-show="gsavm.isProgramNumberOutsideRange === true">
+            <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR])" ng-show="gsavm.isProgramNumberOutsideRange === true">
               This number falls outside the range defined for this organization.
             </span>
 
-            <span class="usa-input-error-message" role="alert" has-role="{{ [ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}" ng-show="gsavm.isProgramNumberOutsideRange === true">
+            <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])" ng-show="gsavm.isProgramNumberOutsideRange === true">
               This number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.
             </span>
 
@@ -2244,9 +2244,9 @@
 
 <section class="usa-grid usa-margin-top-3">
   <button class="usa-button-big" type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
-  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
-  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_PERFORM_SUBMISSION] }}" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
-  <button class="usa-button-big" type="button" has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION] }}" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
+  <button class="usa-button-big" type="button" ng-if="hasPermission([PERMISSIONS.CAN_PERFORM_SUBMISSION])" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
+  <button class="usa-button-big" type="button" ng-if="hasPermission([PERMISSIONS.CAN_PERFORM_SUBMISSION])" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>
+  <button class="usa-button-big" type="button" ng-if="hasPermission([PERMISSIONS.CAN_REQUEST_SUBMISSION])" ng-show="uxForm.isSection('review') && (gsavm.program.status === 'Draft' || gsavm.program.status === 'Rejected' || !gsavm.program.status) && !gsavm.program.archived" ng-click="gsavm.submitProgram(gsavm.program)">Save & Submit</button>
   <button class="usa-button-big" type="button" ng-hide="uxForm.isSection('review')" ng-click="gsavm.cancelForm()">Cancel</button>
 
   <button class="usa-button-big" type="button" ng-hide="uxForm.isSection('info')" ng-click="uxForm.goToPreviousSection()">Previous</button>

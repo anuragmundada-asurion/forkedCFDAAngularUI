@@ -5,7 +5,7 @@
 
 <!-- User Dashboard -->
 
-<div class="usa-background-gray-lightest usa-grid-fixed" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
+<div class="usa-background-gray-lightest usa-grid-fixed" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])">
 
   <div class="usa-grid">
 
@@ -121,7 +121,7 @@
           </a>
         </div>
 
-        <div class="usa-width-one-fourth" has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
+        <div class="usa-width-one-fourth" ng-if="hasPermission(PERMISSIONS.CAN_CREATE_PROGRAMS)">
           <a class="usa-button usa-button-big usa-button-fluid usa-button-icon-top" ui-sref="addProgram">
             <span class="fa fa-plus-square-o"></span>
             <span>Create FAL</span>
@@ -149,7 +149,7 @@
       <div class="usa-grid">
 
         <!-- Agency List-->
-        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG]}}">
+        <div class="usa-width-one-fourth" ng-if="hasPermission(PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG)">
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="organizationList">
             <span class="fa fa-users"></span>
             <span>Organizations</span>
@@ -167,14 +167,14 @@
         </div>
 
         <!-- Agency List-->
-        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE]}}">
+        <div class="usa-width-one-fourth" ng-if="hasPermission([PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])">
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="regionalOfficeList">
             <span class="fa fa-briefcase"></span>
             <span>My Regional Agency Offices</span>
           </a>
         </div>
 
-        <div class="usa-width-one-fourth" has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}">
+        <div class="usa-width-one-fourth" ng-if="hasPermission([PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE])">
           <a class="usa-button usa-button-big usa-button-fluid usa-button-icon-top" ui-sref="addRegionalOffice">
             <span class="fa fa-plus-square-o"></span>
             <span>Create Regional Agency Office</span>

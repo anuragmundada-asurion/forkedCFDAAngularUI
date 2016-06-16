@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('AuthorizationService', ['UserService', 'ROLES', function(UserService, ROLES) {
+    myApp.service('AuthorizationService', ['UserService', 'SUPPORTED_ROLES', function(UserService, SUPPORTED_ROLES) {
         this.authorize = function(requiredPermissions) {
             var userPermissions = UserService.getUserPermissions();
 
@@ -34,20 +34,12 @@
          * @returns Boolean
          */
         this.authorizeByRole = function(aRequiredRoles) {
-            var oUserRoles = UserService.getUserRoles();
-            var aUserRoles = [];
+            var oUserRole = UserService.getUserRole();
             var hasRole = false;
-
-            //get roles from User (usually always one but we count for more)
-            angular.forEach(oUserRoles, function(oRole){
-                if(oRole.hasOwnProperty('iamRoleId')){
-                    aUserRoles.push(oRole.iamRoleId);
-                }
-            });
 
             if (aRequiredRoles && aRequiredRoles.length) {
                 aRequiredRoles.every(function(oRequiredRole) {
-                    if (aUserRoles.indexOf(oRequiredRole.iamRoleId) !== -1) {
+                    if (angular.equals(oUserRole, oRequiredRole)) {
                         hasRole = true;
                         return false;
                     }
@@ -66,11 +58,21 @@
          */
         this.authorizeByOrganization = function(orgID) {
             //super users has access to organization
-            if(this.authorizeByRole([ROLES.SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
+            if(this.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.LIMITED_SUPER_USER])) {
                 return true;
             } else {
                 return (_.includes(UserService.getUserAllOrgIDs(), orgID));
             }
         };
+    }]);
+
+    myApp.run(['$rootScope', 'AuthorizationService', function($rootScope, AuthorizationService) {
+        $rootScope.hasRole = function(rolesRequired) {
+            return AuthorizationService.authorizeByRole(rolesRequired);
+        };
+
+        $rootScope.hasPermission = function(permissionsRequired) {
+            return AuthorizationService.authorize(permissionsRequired);
+        }
     }]);
 }();
