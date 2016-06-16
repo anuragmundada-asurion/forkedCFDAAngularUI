@@ -1,0 +1,215 @@
+/* ===============================================================
+Do not use any of these variables for any other file
+================================================================== */
+$field-finder-navigator-height: 55px !default;
+$field-finder-navigator-padding: ($field-finder-navigator-height / (11/3)) !default;
+$color-limegreen: #8bd12f;
+
+$button-circle-padding: 10px !default;
+$button-circle-shadow-color: transparentize($color-base, 0.6) !default;
+$button-circle-shadow-dimensions: 0 1px 2px 0;
+$button-circle-shadow: $button-circle-shadow-dimensions $button-circle-shadow-color, inset 0 0 0 0 $button-circle-shadow-color!default;
+$button-circle-shadow-active: 0 0 0 0 $button-circle-shadow-color, inset $button-circle-shadow-dimensions $button-circle-shadow-color!default;
+$button-circle-dimensions: 37px !default;
+
+$transition-default-timing: .3s !default;
+$transition-default-duration: cubic-bezier(.55,0,.55,.2) !default;
+$transition-default: all $transition-default-timing $transition-default-duration !default;
+
+
+/* ===============================================================
+Wizard Steps
+================================================================== */
+.usa-steps{
+  background-color:$color-gray-lightest;
+  padding: 2rem 0;
+  & > ul {
+    margin: 0 auto;
+    width: 1024px;
+    li {
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      .usa-steps-item-text {
+        cursor: pointer;
+        display: block;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        padding-top: 1rem;
+      }
+      &.usa-steps-progress {
+        position: absolute;
+        @include transform(translateX(-50%));
+        .usa-steps-progress-bar {
+          cursor: default;
+          display: table-cell;
+          height: 44px;
+          line-height: 0;
+          vertical-align: middle;
+
+          > .dot {
+            display: block;
+            float: left;
+            background-color: $color-gray-lighter;
+            width: 6px;
+            height: 6px;
+            margin: 0 4px;
+            border-radius: 50%;
+          }
+
+        }
+      }
+    }
+  }
+
+  a {
+    > .step-num {
+      @extend .section-circle; // replace with label
+      display: block;
+      cursor: pointer;
+      @include transition(all .3s cubic-bezier(.55, 0, .55, .2));
+    }
+    &:focus > .step-num {
+      box-shadow: $focus-shadow;
+    }
+  }
+
+}
+
+
+/* ===============================================================
+Needs to be clean up
+================================================================== */
+.field-finder-navigator {
+  display: block;
+  background-color: darken($color-gray-lightest, 5%);
+  .navigator-list {
+    @include unstyled-list;
+    margin-left: auto;
+    margin-right: auto;
+    height: $field-finder-navigator-height;
+    padding: $field-finder-navigator-padding 0;
+  }
+  .navigator-button-group {
+    float: right;
+  }
+  .navigator-item {
+    display: table;
+    position: absolute;
+    font-family: $font-serif;
+    transition: $transition-default;
+    @include transform(translateY(-5px));
+    &:not(.active) {
+      opacity: 0;
+    }
+    &.active {
+      @include transform(none);
+    }
+  }
+}
+
+/* ===============================================================
+DO NOT USE (Deprecated) use styles in extentions/label
+================================================================== */
+// .section-title should be replace with label
+.section-circle {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  text-align: center;
+  font-family: "Source Sans Pro","Helvetica","Arial",sans-serif;
+  font-size: 15.3px;
+  font-weight: $font-normal;
+  border-width: 1px;
+  border-style: solid;
+  outline-radus: 50%;
+  background-color: $color-white;
+  color: $color-primary;
+  border-color: $color-primary;
+  h2 &{
+    @extend .completed;
+  }
+  &.completed {
+    background-color: $color-primary-darkest;
+    color: $color-white;
+    border-color: $color-primary-darkest;
+  }
+  &.current {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+  }
+  &.review {
+    background-color: $color-limegreen;
+    color: $color-base;
+    border-color: $color-limegreen;
+  }
+}
+
+/* ===============================================================
+DO NOT USE (Deprecated) use styles in extentions/label
+================================================================== */
+a.usa-button,
+button {
+  &.button-circle {
+    width: 37px;
+    height: 37px;
+    padding: 10px;
+    border-radius: 50%;
+    text-align: center;
+    @include transition(all 0.1s cubic-bezier(.55,0,.55,.2));
+
+    &.ng-hide-add-active,
+    &.ng-hide-remove {
+      display: inline-block !important;
+    }
+
+    &.ng-hide-add {
+      opacity: 1;
+    }
+    &.ng-hide-remove {
+      opacity: 0;
+    }
+    &,
+    &:hover,
+    &:focus {
+      box-shadow: $button-circle-shadow;
+    }
+    &.active,
+    &:active {
+      box-shadow: $button-circle-shadow-active;
+    }
+    &.action-button {
+      color: $color-primary-darkest;
+      background-color: $color-white;
+      &,
+      &:hover,
+      &:focus {
+        color: $color-primary-darkest;
+      }
+      &:hover,
+      &:focus {
+        background-color: $color-gray-lightest;
+      }
+      &.active,
+      &:active {
+        color: $color-primary-darkest;
+        background-color: $color-gray-lighter;
+      }
+      &:disabled {
+        box-shadow: $button-circle-shadow;
+        background-color: $color-gray-lighter;
+        color: $color-gray-dark;
+        cursor: default;
+      }
+    }
+    &:disabled {
+      background-color: $color-gray-lighter;
+      color: $color-gray-dark;
+      cursor: default;
+    }
+  }
+}
