@@ -712,7 +712,7 @@
 
                                 });
 
-                                if(!$scope.validateFieldByRegex('(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?', vm.program.website)){
+                                if(!$scope.validateFieldByRegex('website-url', vm.program.website)){
                                     requiredFieldsMissing = true;
                                 }
 
@@ -803,11 +803,12 @@
 
                 //returns false if error, true if no error. may clean up the code later, and put this in validation service
                 $scope.validateFieldByRegex = function(regexPattern, field) {
-                    var regexObj = new RegExp(regexPattern);
-                    if(regexObj.test(field)){
-                        return true;
+                    if(regexPattern == "website-url"){
+                        return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(field);
                     }
-                    return false;
+                    else{
+                        return new RegExp(regexPattern).test(field);
+                    }
                 };
 
                 $scope.getActualOrEstimate = function(obligationValueObj){
