@@ -707,7 +707,6 @@
                                     && hqContact.address && hqContact.city && hqContact.zip && hqContact.state);
 
                                     if(!$scope.validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)){
-                                        debugger;
                                         requiredFieldsMissing = true;
                                     }
 
