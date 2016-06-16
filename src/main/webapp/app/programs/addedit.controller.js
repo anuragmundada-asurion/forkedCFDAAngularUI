@@ -50,7 +50,7 @@
                         $scope.dictionary.aAssistanceUsageType = DictionaryService.istevenDropdownDataStructure(data.assistance_usage_types, (oProgram) ? oProgram.eligibility.applicant.assistanceUsageTypes : [], false);
 
                         //Assistance type
-                        $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, [], true);
+                        $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
                     });
                 };
 
@@ -257,6 +257,7 @@
                     copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
                     copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
                     copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
+                    copy.assistanceTypes = DictionaryService.istevenDropdownGetIds(vm.program, ['assistanceTypes']).assistanceTypes;
                     if (copy.financial && copy.financial.hasOwnProperty('obligations')) {
                         angular.forEach(copy.financial.obligations, function (row, i) {
                             if (row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {

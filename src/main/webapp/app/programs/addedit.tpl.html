@@ -195,14 +195,33 @@
       </section>
 
       <!-- 060 Types of Assistance -->
-      <section class="usa-grid" ng-if="gsavm.program.financial.obligations.length" field-finder-bookmark title="060 Types of Assistance">
+      <section class="usa-grid" field-finder-bookmark title="060 Types of Assistance">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-          <legend>060 Types of Assistance</legend>
-          <div ng-repeat="obligation in gsavm.program.financial.obligations">
-            <p>
-              {{gsavm.getTreeNodeModel(obligation.assistanceType, 'element_id', 'elements', 'aAssistanceType').displayValue}}
-            </p>
-          </div>
+          <legend>{{::instructionalText["01"]["060"]["title"]}}</legend>
+          <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
+          <label>{{::instructionalText["01"]["060"]["label"]}}<span class="required">*</span></label>
+          <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
+              <li ng-repeat="item in gsavm.program.assistanceTypes">
+                <div class="usa-input-field-content">{{ item.displayValue }}</div>
+                <div class="usa-input-field-options">
+                  <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aAssistanceType')">
+                    <span class="fa fa-trash"></span>
+                  </button>
+                </div>
+              </li>
+            </ul>
+          <isteven-multi-select
+          max-labels="1"
+          input-model="dictionary.aAssistanceType"
+          output-model="gsavm.program.assistanceTypes"
+          button-label="displayValue"
+          item-label="displayValue"
+          tick-property="ticked"
+          max-height="250px"
+          group-property="msGroup"
+          output-properties="element_id displayValue"
+          helper-elements="all none filter">
+          </isteven-multi-select>
         </div>
       </section>
 
@@ -314,7 +333,7 @@
           <div ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
             <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
               <multi-entry-header>
-                <label>{{::instructionalText["01"]["160"]["form"]["intro"]}}<span class="required">*</span></label>
+                <label>{{::$ctrl.parentVm.instructionalText["01"]["160"]["form"]["intro"]}}<span class="required">*</span></label>
               </multi-entry-header>
 
               <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">

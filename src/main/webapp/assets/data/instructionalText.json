@@ -32,6 +32,11 @@
       "helpText":"Provide a plain text description highlighting program goals. Use specific terms that will help public users find this listing.",
       "label":"Objectives"
     },
+    "060":{
+      "title":"060 Types of Assistance",
+      "helpText":"Select one or more Types of Assistance to help public users search for this listing.",
+      "label":"Types of Assistance"
+    },
     "070":{
       "title":"070 Uses and Use Restrictions",
       "helpText":"Describe how assistance may be used. Use specific terms that will help public users find this listing.",
