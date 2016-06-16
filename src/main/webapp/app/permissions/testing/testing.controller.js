@@ -13,6 +13,12 @@
             });
         };
 
+        $(".sign").bind('keydown', function(event) {
+            if(event.keyCode === 13){
+                $scope.signInAsPopup();
+            }
+        });
+
         $scope.changeRole = function() {
             var user = {
                 "roles": [
