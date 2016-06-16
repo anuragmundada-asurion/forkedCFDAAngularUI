@@ -33,7 +33,7 @@ describe('Unit Tests for Public View FAL:', function () {
             ProgramFactory = _ProgramFactory_;
         });
 
-        UserService.changeUser({"roles": ["GSA_CFDA_R_cfdasuperuser"]});
+        UserService.setUser({"role": "GSA_CFDA_R_cfdasuperuser"});
 
 
         //set up the mock backend service... it returns this json

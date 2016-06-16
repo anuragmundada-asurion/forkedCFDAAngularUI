@@ -51,7 +51,7 @@ describe("Unit Tests for Program Routes", function () {
             UserService = _UserService_;
         });
 
-        UserService.changeUser({ "roles": ["GSA_CFDA_R_cfdasuperuser"] });
+        UserService.setUser({ "role": "GSA_CFDA_R_cfdasuperuser" });
     });
 
     it("should have the proper 'home' url", function(){
