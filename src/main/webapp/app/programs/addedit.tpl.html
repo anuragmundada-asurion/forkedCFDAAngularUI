@@ -2141,6 +2141,7 @@
 
   <div ng-repeat="account in gsavm.program.financial.accounts">
     <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for Account # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!validateFieldByRegex('^[0-9\-\_]*$', account.code)" trigger-click-on-enter>121 Account Identification, Code is not valid for Account # {{$index + 1}}<br/></a>
   </div>
   <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
 

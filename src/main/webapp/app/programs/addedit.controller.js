@@ -649,7 +649,7 @@
 
                                 //check things in accounts array
                                 vm.program.financial.accounts.forEach(function (account, index, array) {
-                                    if (!account.code) {
+                                    if (!account.code || !$scope.validateFieldByRegex('^[0-9\-\_]*$', account.code)) {
                                         requiredFieldsMissing = true;
                                     }
                                 });
@@ -782,5 +782,17 @@
                        //console.log(data);
                     });
                 }
+
+
+                //returns false if error, true if no error. may clean up the code later, and put this in validation service
+                $scope.validateFieldByRegex = function(regexPattern, field) {
+                    var regexObj = new RegExp(regexPattern);
+                    if(regexObj.test(field)){
+                        return true;
+                    }
+                    return false;
+                };
+
+
             }]);
 })();
