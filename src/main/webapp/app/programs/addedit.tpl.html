@@ -135,7 +135,7 @@
             <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
             <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
-              None.
+              None
             </p>
 
             <multi-entry-list editable="true" ng-hide="$ctrl.parentVm.form.authorizations.$error.requiredLength">
@@ -337,7 +337,7 @@
               </multi-entry-header>
 
               <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
-                You need to select at least one related Program.
+                None
               </p>
 
               <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
@@ -381,7 +381,7 @@
           <div ng-show="gsavm.program.projects.flag === gsavm.choices['yes_na'].yes.code">
 
             <fieldset class="usa-fieldset-inputs usa-sans">
-              <label>Please select all that apply:</label>
+              <label>{{::instructionalText["01"]["170"]['projects']["label"]}}</label>
               <ul class="usa-unstyled-list">
                 <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
                   <li>
@@ -450,7 +450,7 @@
             <label>{{::$ctrl.parentVm.instructionalText["01"]["300"]["label"]}}<span class="required">*</span></label>
 
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
-              You need to select at least one Subject Term.
+              None
             </p>
 
             <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
