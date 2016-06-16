@@ -1719,7 +1719,7 @@
 
             <div class="input-field">
               <label for="email6">Email<span class="required">*</span>:</label>
-              <error-msg model="$subForm.current.email" regex-pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              <error-msg model="$subForm.current.email" regex-pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$"
                          msg="Please enter a valid Internet email address. Format: username@host.domain. "></error-msg>
               <input type="text" id="email6" name="email6" ng-model="$subForm.current.email">
             </div>
@@ -2202,7 +2202,7 @@
   <div ng-repeat="hqContact in gsavm.program.contacts.list">
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!validateFieldByRegex('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', hqContact.email)" trigger-click-on-enter>152 Headquarters Office, Email format is invalid for HQ Contact # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)" trigger-click-on-enter>152 Headquarters Office, Email format is invalid for HQ Contact # {{$index + 1}}<br/></a>
 
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>

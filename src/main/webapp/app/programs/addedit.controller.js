@@ -704,8 +704,11 @@
                                 vm.program.contacts.list.forEach(function (hqContact, index, array) {
 
                                     requiredFieldsMissing = !(hqContact.fullName && hqContact.email && hqContact.phone
-                                    && hqContact.address && hqContact.city && hqContact.zip && hqContact.state
-                                    && $scope.validateFieldByRegex('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', hqContact.email));
+                                    && hqContact.address && hqContact.city && hqContact.zip && hqContact.state);
+
+                                    if(!$scope.validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)){
+                                        requiredFieldsMissing = true;
+                                    }
 
                                 });
 
