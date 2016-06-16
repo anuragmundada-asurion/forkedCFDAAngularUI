@@ -1993,6 +1993,7 @@
   || !gsavm.program.usage.loanTerms.flag || (gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content)
   || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
   || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0
+  || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0
   || !gsavm.program.eligibility.applicant.types || gsavm.program.eligibility.applicant.types.length==0
   || !gsavm.program.eligibility.applicant.assistanceUsageTypes || gsavm.program.eligibility.applicant.assistanceUsageTypes.length==0 || !gsavm.program.eligibility.applicant.additionalInfo
   || !gsavm.program.eligibility.beneficiary.types || gsavm.program.eligibility.beneficiary.types.length==0 || !gsavm.program.eligibility.beneficiary.additionalInfo.content
@@ -2046,6 +2047,7 @@
         || !gsavm.program.usage.loanTerms.flag || (gsavm.program.usage.loanTerms.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.loanTerms.content)
         || !gsavm.program.relatedPrograms.flag || (gsavm.program.relatedPrograms.flag==='yes' && !gsavm.program.relatedPrograms.relatedTo) || !gsavm.program.projects.flag
         || !gsavm.program.functionalCodes || gsavm.program.functionalCodes.length==0 || !gsavm.program.subjectTerms || gsavm.program.subjectTerms.length==0
+        || !gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0
         || requiredFieldsMissing('ProgramNumber')
         || (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false &&
         (gsavm.isProgramNumberUnique === false || (gsavm.isProgramNumberOutsideRange === true && gsavm.shouldSeeCoordinatorMessage()) ))">
@@ -2056,6 +2058,7 @@
         <a ng-click="uxForm.goToBookmarkByText('Program Number')" ng-show="gsavm.shouldSeeCoordinatorMessage() && gsavm.program.programNumber && gsavm.isProgramNumberOutsideRange === true" trigger-click-on-enter>Program number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.<br/></a>
         <a ng-click="uxForm.goToBookmarkByText('040 Authorization')" ng-show="!gsavm.program.authorizations || gsavm.program.authorizations.length==0" trigger-click-on-enter>040 Authorization is required<br/></a>
         <a ng-click="uxForm.goToBookmarkByText('050 Objectives')" ng-show="!gsavm.program.objective" trigger-click-on-enter>050 Objective is required<br/></a>
+        <a ng-click="uxForm.goToBookmarkByText('060 Types of Assistance')" ng-show="!gsavm.program.assistanceTypes || gsavm.program.assistanceTypes.length==0" trigger-click-on-enter>060 Types of Assistance is required<br/></a>
         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.restrictions.flag" trigger-click-on-enter>070 Uses and Use Restrictions - specific restrictions is required<br/></a>
         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content" trigger-click-on-enter>070 Uses and Use Restrictions - a description for specific restrictions is required<br/></a>
         <a ng-click="uxForm.goToBookmarkByText('070 Uses and Use Restrictions')" ng-show="!gsavm.program.usage.discretionaryFund.flag" trigger-click-on-enter>070 Uses and Use Restrictions - discretionary funds available is required<br/></a>

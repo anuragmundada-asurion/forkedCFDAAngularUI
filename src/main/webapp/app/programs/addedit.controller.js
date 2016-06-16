@@ -510,6 +510,7 @@
                         || !oProgram.usage.loanTerms.flag || (oProgram.usage.loanTerms.flag === vm.choices['yes_no'].yes.code && !oProgram.usage.loanTerms.content)
                         || !oProgram.relatedPrograms.flag || (oProgram.relatedPrograms.flag === 'yes' && !oProgram.relatedPrograms.relatedTo) || !oProgram.projects.flag
                         || !oProgram.functionalCodes || oProgram.functionalCodes.length == 0 || !oProgram.subjectTerms || oProgram.subjectTerms.length == 0
+                        || !oProgram.assistanceTypes || oProgram.assistanceTypes.length == 0
                         || !oProgram.eligibility.applicant.types || oProgram.eligibility.applicant.types.length == 0
                         || !oProgram.eligibility.applicant.assistanceUsageTypes || oProgram.eligibility.applicant.assistanceUsageTypes.length == 0 || !oProgram.eligibility.applicant.additionalInfo
                         || !oProgram.eligibility.beneficiary.types || oProgram.eligibility.beneficiary.types.length == 0 || !oProgram.eligibility.beneficiary.additionalInfo.content
