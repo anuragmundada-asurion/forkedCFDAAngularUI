@@ -2187,12 +2187,22 @@
   <div ng-repeat="hqContact in gsavm.program.contacts.list">
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!validateFieldByRegex('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', hqContact.email)" trigger-click-on-enter>152 Headquarters Office, Email format is invalid for HQ Contact # {{$index + 1}}<br/></a>
+
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.city" trigger-click-on-enter>152 Headquarters Office, City is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.zip" trigger-click-on-enter>152 Headquarters Office, Zip is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.state" trigger-click-on-enter>152 Headquarters Office, State is missing for HQ Contact # {{$index + 1}}<br/></a>
   </div>
+
+
+  <a ng-click="uxForm.goToBookmarkByText('153 Website')"
+     ng-show="!validateFieldByRegex('(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?', gsavm.program.website)" trigger-click-on-enter>
+    153 Website; Website format is invalid.<br/></a>
+
+
+
 </div>
 
 

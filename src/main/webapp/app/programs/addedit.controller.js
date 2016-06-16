@@ -704,9 +704,14 @@
                                 vm.program.contacts.list.forEach(function (hqContact, index, array) {
 
                                     requiredFieldsMissing = !(hqContact.fullName && hqContact.email && hqContact.phone
-                                    && hqContact.address && hqContact.city && hqContact.zip && hqContact.state);
+                                    && hqContact.address && hqContact.city && hqContact.zip && hqContact.state
+                                    && $scope.validateFieldByRegex('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$', hqContact.email));
 
                                 });
+
+                                if(!$scope.validateFieldByRegex('(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?', vm.program.website)){
+                                    requiredFieldsMissing = true;
+                                }
 
                             }
                             return requiredFieldsMissing;
