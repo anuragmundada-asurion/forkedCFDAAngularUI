@@ -869,7 +869,7 @@
 
               </multi-entry>
 
-              <label for="deadlineAdditionalInfo">{{::$ctrl.parentVm.instructionalText["03"]["094"]["deadlines"]["additionalInfo"]}}</label>
+              <label for="deadlineAdditionalInfo">{{::instructionalText["03"]["094"]["deadlines"]["additionalInfo"]["label"]}}</label>
               <textarea id="deadlineAdditionalInfo" name="deadlineAdditionalInfo" ng-model="gsavm.program.application.deadlines.submission.additionalInfo.content" ng-required="gsavm.program.application.deadlines.submission.flag"></textarea>
               <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
                 <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
