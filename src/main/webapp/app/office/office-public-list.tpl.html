@@ -1,0 +1,52 @@
+
+<primary-nav-bar></primary-nav-bar>
+TEST YO
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-whole">
+    <h1>Regional Agency Offices</h1>
+  </div>
+</div>
+
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+
+  <div class="usa-width-one-third">
+    <a  has-access="{{[PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE]}}"
+        ui-sref="addRegionalOffice"
+        class="usa-button usa-button-big usa-button-fluid usa-margin-all-0" >
+        Create a New Address
+    </a>
+  </div>
+
+  <div class="usa-width-one-third">
+    <isteven-multi-select
+        max-labels="1"
+        input-model="dictionary.aDivision"
+        output-model="filter.aDivision"
+        button-label="displayValue"
+        item-label="displayValue"
+        tick-property="ticked"
+        max-height="250px"
+        >
+    </isteven-multi-select>
+  </div>
+
+  <div class="usa-width-one-third">
+    <input  ng-model="searchKeyword"
+            type="text"
+            placeholder="Search Listings"
+            aria-controls="agency-table" >
+  </div>
+
+</div>
+
+
+ <!-- Table -->
+<table
+        id="regionalofficetable"
+  datatable=""
+  dt-options="dtOptions"
+  dt-columns="dtColumns"
+  dt-column-defs="dtColumnDefs"
+  dt-instance="dtInstance"
+  class="usa-table-primary-darkest">
+</table>

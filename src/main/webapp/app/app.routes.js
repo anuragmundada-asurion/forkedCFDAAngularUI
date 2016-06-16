@@ -134,8 +134,20 @@
                     templateUrl: "historicalIndex/historicalIndex-list.tpl.html",
                     controller: "HistoricalIndexListController",
                 })
-                .state('regionalOfficeList', {
+                .state('publicRegionalOfficeList', {
                     url: "/regionalOffice",
+                    templateUrl: "office/office-public-list.tpl.html",
+                    controller: "PublicRegionalOfficeListController as officeListCtrl",
+                    title: 'Regional Agency Offices - CFDA: Regional Agency Offices PUBLIC'
+                })
+                .state('viewPublicRegionalOffice', {
+                    url: "/regionalOffice/:id/view",
+                    templateUrl: "office/office-view.tpl.html",
+                    controller: "RegionalOfficeViewCtrl",
+                    title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices '
+                })
+                .state('regionalOfficeList', {
+                    url: "/myRegionalOffice",
                     templateUrl: "office/office-list.tpl.html",
                     controller: "RegionalOfficeListController as officeListCtrl",
                     title: 'Regional Agency Offices - CFDA: Regional Agency Offices',
@@ -148,7 +160,7 @@
                     }
                 })
                 .state('addRegionalOffice', {
-                    url: "/regionalOffice/create",
+                    url: "/myRegionalOffice/create",
                     templateUrl: "office/office-form.tpl.html",
                     controller: "RegionalOfficeFormCtrl",
                     access: {
@@ -158,7 +170,7 @@
                     }
                 })
                 .state('editRegionalOffice', {
-                    url: "/regionalOffice/:id/edit",
+                    url: "/myRegionalOffice/:id/edit",
                     templateUrl: "office/office-form.tpl.html",
                     controller: "RegionalOfficeFormCtrl",
                     access: {
@@ -168,7 +180,7 @@
                     }
                 })
                 .state('viewRegionalOffice', {
-                    url: "/regionalOffice/:id/view",
+                    url: "/myRegionalOffice/:id/view",
                     templateUrl: "office/office-view.tpl.html",
                     controller: "RegionalOfficeViewCtrl",
                     title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
