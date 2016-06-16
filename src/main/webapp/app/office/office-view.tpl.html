@@ -3,56 +3,67 @@
 <section class="usa-grid-full">
 <div ng-show="oRegionalOffice" class="usa-grid-full">
     <h2>View Regional Agency Office</h2>
-    <div class="usa-width-three-fourths vp-section" style="width: 60%;">
+    <div class="usa-width-full vp-section" style="width: 100%;">
+        <div class="usa-width-one-third">
         <div>
             <p class="vp-field-label-big">Agency: </p>
-            <p class="vp-field-value"><federal-hierarchy-label organization-id="{{ oRegionalOffice.organizationId }}"></federal-hierarchy-label></p>
+            <p class="vp-field-value"><strong><federal-hierarchy-label organization-id="{{ oRegionalOffice.organizationId }}"></strong></federal-hierarchy-label></p>
         </div>
         <div>
             <p class="vp-field-label-big">Division: </p>
-            <p class="vp-field-value">{{oDivision.displayValue}}</p>
+            <p class="vp-field-value"><strong>{{oDivision.displayValue}}</strong></p>
         </div>
         <div>
             <p class="vp-field-label-big">Branch: </p>
-            <p class="vp-field-value">{{oRegionalOffice.branch}}</p>
+            <p class="vp-field-value"><strong>{{oRegionalOffice.branch}}</strong></p>
         </div>
+        </div>
+        <div class="usa-width-one-third">
         <div>
             <p class="vp-field-label-big">State/Region: </p>
-            <p class="vp-field-value">{{oRegionalOffice.region}}</p>
+            <p class="vp-field-value"><strong>{{oRegionalOffice.region}}</strong></p>
         </div>
         <div>
             <p class="vp-field-label-big">Sub-branch: </p>
-            <p class="vp-field-value">{{oRegionalOffice.subBranch}}</p>
+            <p class="vp-field-value"><strong>{{oRegionalOffice.subBranch}}</strong></p>
         </div>
         <div>
             <p class="vp-field-label-big">Phone: </p>
-            <p class="vp-field-value">{{oRegionalOffice.phone}}</p>
+            <p class="vp-field-value"><strong>{{oRegionalOffice.phone}}</strong></p>
         </div>
+        </div>
+        <div class="usa-width-one-third">
         <div>
             <p class="vp-field-label-big">Fax: </p>
-            <p class="vp-field-value">{{oRegionalOffice.fax}}</p>
+            <p class="vp-field-value"><strong>{{oRegionalOffice.fax}}</strong></p>
         </div>
         <div>
             <p class="vp-field-label-big">Address: </p>
+            <strong>
             <p class="vp-field-value">{{oRegionalOffice.address.street}}</p>
             <p class="vp-field-value">{{oRegionalOffice.address.city + (oRegionalOffice.address.city && oRegionalOffice.address.state ? ', ' : '') + oRegionalOffice.address.state + ' ' + oRegionalOffice.address.zip}}</p>
             <p class="vp-field-value">{{oRegionalOffice.address.country}}</p>
+            </strong>
+        </div>
         </div>
     </div>
-    <div class="usa-width-one-third sub-form" id="historyDiv" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
+</section>
+
+    <section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
+        <a ui-sref="regionalOfficeList"><button type="button">Return</button></a>
+        <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}"><button type="button">Edit</button></a>
+        <button type="button" has-access="{{ [PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}" ng-click="deleteRegionalOffice()">Delete</button>
+    </section>
+
+<section class="usa-grid-full" style="padding: 10px 0px;">
+    <div class="sub-form" id="historyDiv" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
         <h4>Regional Agency Office Info</h4>
         <table style="border: none !important;">
             <tr>
-                <td style="border: none !important; text-align: right">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate  | date:'medium' }}</td>
-            </tr>
-            <tr>
-                <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.createdBy}}</td>
-            </tr>
-            <tr>
-                <td style="border: none !important; text-align: right">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate  | date:'medium' }}</td>
-            </tr>
-            <tr>
-                <td style="border: none !important; text-align: right">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>
+                <td style="border: none !important; text-align: left">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate  | date:'medium' }}</td>
+                <td style="border: none !important; text-align: left">By:</td><td style="border: none !important;">{{oRegionalOffice.createdBy}}</td>
+                <td style="border: none !important; text-align: left">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate  | date:'medium' }}</td>
+                <td style="border: none !important; text-align: left">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>
             </tr>
         </table>
     </div>
@@ -61,9 +72,4 @@
     <!-- loading icon -->
     <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
 </div>
-</section>
-<section class="usa-grid-full">
-    <a ui-sref="regionalOfficeList"><button type="button">Return</button></a>
-    <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}"><button type="button">Edit</button></a>
-    <button type="button" has-access="{{ [PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}" ng-click="deleteRegionalOffice()">Delete</button>
 </section>
