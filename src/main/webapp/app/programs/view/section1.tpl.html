@@ -7,7 +7,7 @@
 <p ng-bind="programData.objective"></p>
 
 <h3>Types of Assistance</h3>
-<p ng-repeat="obligation in programData.financial.obligations">{{traverseTree(obligation.assistanceType, 'assistance_type').displayValue}} </p>
+<p ng-repeat="item in programData.assistanceTypes">{{traverseTree(item, 'assistance_type').displayValue}} </p>
 
 <h3>Uses and Use Restrictions</h3>
 <p>
