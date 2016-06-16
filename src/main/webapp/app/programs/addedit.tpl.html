@@ -166,8 +166,10 @@
                       <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["amendments"]["label"]}}</label>
                     </multi-entry-header>
                     <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
-                      <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="sub-form">
-                        <div ng-include="'programs/authorization.tpl.html'"></div>
+                      <div class="usa-segment">
+                        <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="">
+                          <div ng-include="'programs/authorization.tpl.html'"></div>
+                        </div>
                       </div>
                     </multi-entry-sub-form>
                   </multi-entry>
