@@ -2150,17 +2150,12 @@
     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!obligation.questions.salary_or_expense" trigger-click-on-enter>122 Obligations, "Is this for Federal salaries and expenses?" field is required for Obligation # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="(obligation.questions.salary_or_expense.flag == 'na') && (!obligation.assistanceType || obligation.assistanceType == '')" trigger-click-on-enter>122 Obligations, Assistance Type Field is required for Obligation # {{$index + 1}}<br/></a>
 
-
     <!-- key: fiscalYear -->
     <div ng-repeat="(fiscalYear, valueObj) in obligation.values">
       <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!validateFieldByRegex('^[0-9\,]*$', getActualOrEstimate(valueObj).dollarValue)" trigger-click-on-enter>122
         Obligations, Provide a valid number using only digits and commas for the {{getActualOrEstimate(valueObj).label}} dollar amount for fiscal year {{fiscalYear}} in Obligation #
         {{$parent.$index +1}}<br/></a>
     </div>
-
-
-
-
 
   </div>
 
@@ -2169,6 +2164,15 @@
   <div ng-repeat="taf in gsavm.program.financial.treasury.tafs">
     <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field is required for TAF # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field is required for TAF # {{$index + 1}}<br/></a>
+
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.departmentCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field; Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.allocationTransferAgency)" trigger-click-on-enter>124 TAFS Codes, Allocation Transfer Agency field; Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.fy1)" trigger-click-on-enter>124 TAFS Codes, FY 1 field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.fy2)" trigger-click-on-enter>124 TAFS Codes, FY 2 Code field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.accountCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.subAccountCode)" trigger-click-on-enter>124 TAFS Codes, TAFS Sub-Account field; Provide a valid number using digits 000-999 for TAF # {{$index + 1}}<br/></a>
+
+
   </div>
 
   <a ng-click="uxForm.goToBookmarkByText('130 Program Accomplishments')" ng-show="!gsavm.program.postAward.accomplishments.flag" trigger-click-on-enter>130 Program Accomplishments is required<br/></a>
