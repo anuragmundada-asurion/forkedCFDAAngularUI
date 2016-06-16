@@ -3,6 +3,7 @@
 
     var myApp = angular.module('app');
 
+
     myApp.controller('MyListingsCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'AuthorizationService', 'ngDialog', 'MyListingsService', 'FederalHierarchyService', 'DTOptionsBuilder', '$compile', '$q', '$timeout',
         function ($scope, $state, $stateParams, ApiService, AuthorizationService, ngDialog, MyListingsService, FederalHierarchyService, DTOptionsBuilder, $compile, $q, $timeout) {
             var self = this;
@@ -25,6 +26,9 @@
             $scope.isProgramList = function () {
                 return $scope.isActiveList() || $scope.isArchivedList();
             };
+
+            $( 'a' ).attr("tabindex", "0");
+
 
             if ($stateParams.hasOwnProperty("list")) {
                 if (MyListingsService.hasList($stateParams.list)) {
@@ -183,6 +187,7 @@
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             };
+
 
             angular.element('#programsTable').on('draw.dt', function (event, data) {
                 // initilize semantic ui dropdowns
@@ -438,7 +443,7 @@
             this.initializeTable();
         }
     ]);
-    
+
 
     //Controller for Program Status
     myApp.controller('ProgramRequestCtrl', ['$scope', '$state', '$timeout', 'ApiService', 'ngDialog',
