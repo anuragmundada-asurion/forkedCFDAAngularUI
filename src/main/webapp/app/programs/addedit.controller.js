@@ -669,6 +669,15 @@
                                         if (obligation.questions.salary_or_expense.flag == 'na' && (!obligation.assistanceType || obligation.assistanceType == '')) {
                                             requiredFieldsMissing = true;
                                         }
+                                        //validations for correct pfy, cfy, bfy dollar amount formats, (numbers and commas only)
+                                        angular.forEach(obligation.values, function(fiscalYear){
+                                            if(fiscalYear.hasOwnProperty("actual") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.actual)){
+                                                requiredFieldsMissing = true;
+                                            }
+                                            if(fiscalYear.hasOwnProperty("estimate") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.estimate)){
+                                                requiredFieldsMissing = true;
+                                            }
+                                        });
                                     }
                                 });
 
@@ -792,6 +801,16 @@
                     }
                     return false;
                 };
+
+                $scope.getActualOrEstimate = function(obligationValueObj){
+                    if(obligationValueObj.hasOwnProperty('actual')){
+                        return {label: "actual", dollarValue: obligationValueObj.actual};
+                    }
+                    if(obligationValueObj.hasOwnProperty('estimate')){
+                        return {label: "estimate", dollarValue: obligationValueObj.estimate};
+                    }
+                    return {label: "no-estimate-or-actual", dollarValue: "000000"};
+                }
 
 
             }]);
