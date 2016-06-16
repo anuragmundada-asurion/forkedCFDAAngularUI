@@ -316,7 +316,7 @@
           <div ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
             <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
               <multi-entry-header>
-                <label>{{::instructionalText["01"]["160"]["form"]["intro"]}}<span class="required">*</span></label>
+                <label>{{::$ctrl.parentVm.instructionalText["01"]["160"]["form"]["intro"]}}<span class="required">*</span></label>
               </multi-entry-header>
 
               <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.relatedTo.$error.requiredLength">
