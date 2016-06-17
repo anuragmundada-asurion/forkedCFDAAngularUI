@@ -6,10 +6,7 @@
         <li><a ng-if="hasPermission([PERMISSIONS.CAN_CREATE_PROGRAMS, PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS, PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS, PERMISSIONS.CAN_REVIEW_PROGRAMS, PERMISSIONS.CAN_REQUEST_TITLE_CHANGE, PERMISSIONS.CAN_PERFORM_TITLE_CHANGE, PERMISSIONS.CAN_REQUEST_ARCHIVE, PERMISSIONS.CAN_PERFORM_ARCHIVE, PERMISSIONS.CAN_REQUEST_UNARCHIVE, PERMISSIONS.CAN_PERFORM_UNARCHIVE])"
           ui-sref="programList()" ui-sref-active="usa-current">Program List</a></li>
         <li><a ui-sref="searchPrograms({removeCustomSearchFields: 'true'})" ui-sref-active="usa-current">Listings</a></li>
-        <li><a ng-if="hasPermission([PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])"
-          ui-sref="regionalOfficeList" ui-sref-active="usa-current">Regional Agency Offices</a></li>
-        <li><a ng-if="!hasPermission([PERMISSIONS.CAN_CREATE_REGIONAL_OFFICE, PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE, PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])"
-               ui-sref="publicRegionalOfficeList" ui-sref-active="usa-current">Regional Agency Offices</a></li>
+        <li><a ui-sref="publicRegionalOfficeList" ui-sref-active="usa-current">Regional Agency Offices</a></li>
         <li><a class="sign" ng-controller="TestingController" ng-click="signInAsPopup()" tabindex="0">Sign In As</a></li>
       </ul>
       <ul class="usa-unstyled-list">
