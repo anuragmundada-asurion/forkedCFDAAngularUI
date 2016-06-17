@@ -52,11 +52,11 @@
         </div>
     </div>
 
-    <div ng-if="isOMBAnalyst() || isRMOSuperUser()">
+    <div ng-show="isOMBAnalyst() || isRMOSuperUser()">
         <div class="usa-grid usa-grid-fixed">
             <div class="usa-width-one-third">
                 <label>Which Organizations is this user responsible for?</label>
-                <select ng-init="userProfile.organizationType = (userProfile.organizationType ? userProfile.organizationType : 'default')" ng-model="userProfile.organizationType">
+                <select ng-init="userProfile.additionalInfo.organizationType = (userProfile.additionalInfo.organizationType ? userProfile.additionalInfo.organizationType : 'default')" ng-model="userProfile.additionalInfo.organizationType">
                     <option value="default" selected="selected">User Organization</option>
                     <option value="all">All Organizations</option>
                     <option value="custom">Custom Organizations</option>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="usa-grid usa-grid-fixed">
-            <div class="usa-width-one-whole" ng-if="isCustomOrganizationType()">
+            <div class="usa-width-one-whole" ng-show="isCustomOrganizationType()">
                 <label>Assigned Organization</label><span class="fa fa-plus-circle" style="cursor:pointer;" ng-click="addAssignedOrganization()"></span>
                 <div ng-repeat="(key, value) in assignedOrganizationList track by key">
                     <div style="width:5%;display: inline-block;">
@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <div ng-if="isAgencyUser()">
+    <div ng-show="isAgencyUser()">
         <div class="usa-grid usa-grid-fixed">
             <fieldset class="usa-fieldset-inputs usa-sans" style="margin-top:3rem;">
                 <legend style="font-size:17px;font-weight:normal;">User Rights</legend>

@@ -54,5 +54,6 @@
 
     myApp.run(['$rootScope', 'SUPPORTED_ROLES', function($rootScope, SUPPORTED_ROLES) {
         $rootScope.ROLES = SUPPORTED_ROLES;
+        $rootScope.SUPPORTED_ROLES = SUPPORTED_ROLES;
     }]);
 }();

@@ -369,16 +369,16 @@
                         "<p class='usa-alert-text'>{{ error }}</p>" +
                       "</div>" +
                     "</div>" +
-                    "<div class='no-input' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.AGENCY_USER)+", "+JSON.stringify(SUPPORTED_ROLES.OMB_ANALYST)+"])'>"+
+                    "<div class='no-input' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_USER, $root.SUPPORTED_ROLES.OMB_ANALYST])'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='usa-grid-full' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.SUPER_USER)+","+JSON.stringify(SUPPORTED_ROLES.RMO_SUPER_USER)+","+ JSON.stringify(SUPPORTED_ROLES.AGENCY_COORDINATOR)+"])'>"+
+                    "<div class='usa-grid-full' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.SUPER_USER)+","+JSON.stringify(SUPPORTED_ROLES.RMO_SUPER_USER)+"])' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
-                            "<span class='departmen-label' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.AGENCY_COORDINATOR)+"])'> {{ dictionary.aDepartment[0].name }} </span>"+
+                            "<span class='departmen-label' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqAgencyFH'>Agency</label>"+

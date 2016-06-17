@@ -16,7 +16,7 @@
                 this.role = user.role;
                 this.email = user.email;
                 this.organizationId = user.organizationId;
-                this.additionalInfo = user.additionalInfo;
+                this.additionalInfo = user.additionalInfo ? user.additionalInfo : {};
 
                 this.permissions = ROLES[this.role]['permissions'];
 
@@ -66,12 +66,14 @@
                 return this.getAdditionalInfo() ? this.getAdditionalInfo()['organizationType'] : null;
             };
 
-            User.prototype.getOrganizationTypeId = function() {
-                return this.getOrganizationType() ? this.getOrganizationType()['id'] : 'default';
-            };
-
             User.prototype.getOrganizationTypeValue = function() {
-                return this.getOrganizationType() ? this.getOrganizationType()['value'] : 'User Organization';
+                if (angular.equals(this.getOrganizationType(), "custom")) {
+                    return "Custom Organizations";
+                } else if (angular.equals(this.getOrganizationType(), "all")) {
+                    return "All Organizations";
+                } else {
+                    return "User Organization";
+                }
             };
 
             User.prototype.getCustomRoles = function() {

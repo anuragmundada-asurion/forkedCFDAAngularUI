@@ -5,6 +5,7 @@
 
     myApp.controller('UserFormCtrl', ['$stateParams', '$scope', 'User', 'ApiService', 'AuthorizationService', 'SUPPORTED_ROLES', 'ngDialog', '$state', '$timeout',
         function($stateParams, $scope, User, ApiService, AuthorizationService, SUPPORTED_ROLES, ngDialog, $state, $timeout) {
+
             if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
                 $scope.cfdaRoles = [{
                     id: SUPPORTED_ROLES.AGENCY_USER,
@@ -41,14 +42,16 @@
             }
 
             $scope.saveUser = function() {
-                if ($scope.isCustomOrganizationType()) {
-                    var orgIds = [];
+                if ($scope.isOMBAnalyst()) {
+                    if ($scope.isCustomOrganizationType()) {
+                        var orgIds = [];
 
-                    angular.forEach($scope.assignedOrganizationList, function(value) {
-                        orgIds.push(value);
-                    });
+                        angular.forEach($scope.assignedOrganizationList, function(value) {
+                            orgIds.push(value);
+                        });
 
-                    $scope.userProfile.additionalInfo['assignedOrganizationIds'] = orgIds;
+                        $scope.userProfile.additionalInfo['assignedOrganizationIds'] = orgIds;
+                    }
                 }
 
                 if ($scope.isAgencyUser()) {
