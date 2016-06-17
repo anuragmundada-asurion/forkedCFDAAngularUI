@@ -1400,7 +1400,7 @@
 
         <div class="sub-minor-section" field-finder-bookmark title="121 Account Identification">
           <div class="input-field">
-            <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="+ Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
+            <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["121"]["title"]}} <span class="required">*</span></h4>
                 <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["121"]["label"]}}</span></p>
@@ -1424,7 +1424,7 @@
         </div>
         <section class="sub-minor-section" field-finder-bookmark title="122 Obligations">
           <div class="input-field">
-            <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="+ Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm" dictionary-items="{{ gsavm.getDictionary('aAssistanceType') }}">
+            <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm" dictionary-items="{{ gsavm.getDictionary('aAssistanceType') }}">
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["122"]["title"]}}<span class="required">*</span></h4>
                 <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["label"]}}</span></p>
@@ -1558,7 +1558,7 @@
     </section>
     <section class="sub-minor-section" field-finder-bookmark title="124 TAFS Codes - Unique Treasury Appropriation Fund Symbols">
       <div class="input-field">
-        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="+ Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
+        <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
           <multi-entry-header>
             <h4>{{::$ctrl.parentVm.instructionalText["05"]["124"]["title"]}}<span class="required">*</span></h4>
             <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["124"]["label"]}}</span></p>
@@ -1682,7 +1682,7 @@
       <br/>
     </section>
     <section class="sub-minor-section" field-finder-bookmark title="152 Headquarters Office">
-      <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="+ Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
+      <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
         <multi-entry-header>
           <h4>152 Headquarters Office<span class="required">*</span></h4>
         </multi-entry-header>
