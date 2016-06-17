@@ -890,6 +890,7 @@
               </ui-select-choices>
             </ui-select>
 
+            <p><span class="usa-form-hint">{{::instructionalText["03"]["095"]["additionalInfo"]["helpText"]}}</span></p>
             <label for="approvalTime3other">{{::instructionalText["03"]["095"]["additionalInfo"]["label"]}}</label>
             <textarea id="approvalTime3other" name="approvalTime3other" ng-model="gsavm.program.application.deadlines.approval.otherInfo.content" ng-required="gsavm.program.application.deadlines.approval.otherInfo.content"></textarea>
 
@@ -912,6 +913,7 @@
               <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
             </div>
 
+            <p><span class="usa-form-hint">{{::instructionalText["03"]["096"]["additionalInfo"]["helpText"]}}</span></p>
             <label for="appealsTime3other">{{::instructionalText["03"]["096"]["additionalInfo"]["label"]}}</label>
             <textarea id="appealsTime3other" name="appealsTime3other" ng-model="gsavm.program.application.deadlines.appeal.otherInfo.content" ng-required="gsavm.program.application.deadlines.appeal.otherInfo.content"></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.appealsTime3other.$dirty">
@@ -932,6 +934,8 @@
             <div ng-show="gsavm.form.$submitted || gsavm.form.office.$dirty">
               <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
             </div>
+
+            <p><span class="usa-form-hint">{{::instructionalText["03"]["097"]["additionalInfo"]["helpText"]}}</span></p>
             <label for="renewalTime3other">{{::instructionalText["03"]["097"]["additionalInfo"]["label"]}}</label>
             <textarea id="renewalTime3other" name="renewalTime3other" ng-model="gsavm.program.application.deadlines.renewal.otherInfo.content" ng-required="gsavm.program.application.deadlines.renewal.otherInfo.content"></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.renewalTime3other.$dirty">
@@ -1498,7 +1502,6 @@
 
               </section>
               <hr>
-              <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["form"]["helpText"]}}</span></p>
               <div ng-repeat="fyTpl in $ctrl.parentVm.fyTpls track by fyTpl.year">
                 <section ng-form name="$ctrl.parentVm.form.financial.{{formPath}}.{{fyTpl.idName}}">
                   <fieldset class="usa-fieldset-inputs usa-sans">
@@ -1521,6 +1524,7 @@
                   </fieldset>
 
                   <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
+                    <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["form"]["helpText"]}}</span></p>
                     <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
                     <error-msg model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]" regex-pattern="^[0-9\,]*$" msg="Provide a valid number using only digits and commas."></error-msg>
                     <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]">
