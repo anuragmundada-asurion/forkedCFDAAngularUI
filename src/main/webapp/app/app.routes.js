@@ -134,23 +134,26 @@
                     templateUrl: "historicalIndex/historicalIndex-list.tpl.html",
                     controller: "HistoricalIndexListController",
                 })
+                //router for public view of regional agency offices list
                 .state('publicRegionalOfficeList', {
                     url: "/regionalOffice",
                     templateUrl: "office/office-public-list.tpl.html",
                     controller: "PublicRegionalOfficeListController as officeListCtrl",
-                    title: 'Regional Agency Offices - CFDA: Regional Agency Offices PUBLIC'
+                    title: 'Regional Agency Offices - CFDA: Regional Agency Offices'
                 })
+                //router for public view of individual regional agency office
                 .state('viewPublicRegionalOffice', {
                     url: "/regionalOffice/:id/view",
-                    templateUrl: "office/office-view.tpl.html",
+                    templateUrl: "office/office-public-view.tpl.html",
                     controller: "RegionalOfficeViewCtrl",
                     title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices '
                 })
+                //router for internal view of regional agency offices list
                 .state('regionalOfficeList', {
                     url: "/myRegionalOffice",
                     templateUrl: "office/office-list.tpl.html",
                     controller: "RegionalOfficeListController as officeListCtrl",
-                    title: 'Regional Agency Offices - CFDA: Regional Agency Offices',
+                    title: 'My Regional Agency Offices - CFDA: Regional Agency Offices',
                     access: {
                         requiredPermissions: [
                             PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE,
@@ -179,11 +182,12 @@
                         ]
                     }
                 })
+                //router for internal view of individual regional agency office
                 .state('viewRegionalOffice', {
                     url: "/myRegionalOffice/:id/view",
                     templateUrl: "office/office-view.tpl.html",
                     controller: "RegionalOfficeViewCtrl",
-                    title: 'View Regional Agency Offices - CFDA: View Regional Agency Offices'
+                    title: 'View My Regional Agency Offices - CFDA: View Regional Agency Offices'
                 })
                 .state('organizationList', {
                     url: "/organization",
