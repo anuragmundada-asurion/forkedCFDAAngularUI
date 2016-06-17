@@ -10,7 +10,7 @@
   "scripts": {
     "prebuild": "npm prune && npm install",
     "build": "gulp",
-    "postinstall": "bower install",
+    "postinstall": "bower prune && bower install",
     "test": "node node_modules/karma/bin/karma start src/test/javascript/karma.conf.js"
   },
   "author": [
