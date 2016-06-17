@@ -50,7 +50,7 @@
 </section>
 
     <section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
-        <a ui-sref="regionalOfficeList"><button type="button">Return</button></a>
+        <a ui-sref="regionalOfficeList"><button type="button" class="usa-button-gray">Return</button></a>
         <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])"><button type="button">Edit</button></a>
         <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
     </section>
@@ -58,14 +58,20 @@
 <section class="usa-grid-full" style="padding: 10px 0px;">
     <div class="sub-form" id="historyDiv" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])">
         <h4>Regional Agency Office Info</h4>
-        <table style="border: none !important;">
+        <!--<table style="border: none !important;">
             <tr>
                 <td style="border: none !important; text-align: left">Created:</td><td style="border: none !important;">{{oRegionalOffice.createdDate  | date:'medium' }}</td>
                 <td style="border: none !important; text-align: left">By:</td><td style="border: none !important;">{{oRegionalOffice.createdBy}}</td>
                 <td style="border: none !important; text-align: left">Modified:</td><td style="border: none !important;">{{oRegionalOffice.modifiedDate  | date:'medium' }}</td>
                 <td style="border: none !important; text-align: left">By:</td><td style="border: none !important;">{{oRegionalOffice.modifiedBy}}</td>
             </tr>
-        </table>
+        </table>-->
+        <div class="usa-grid">
+            <div class="usa-width-one-fourth"><label>Created:</label><span>{{oRegionalOffice.createdDate  | date:'medium' }}</span></div>
+            <div class="usa-width-one-fourth"><label>By:</label><span>{{oRegionalOffice.createdBy}}</span></div>
+            <div class="usa-width-one-fourth"><label>Modified:</label><span>{{oRegionalOffice.modifiedDate  | date:'medium' }}</span></div>
+            <div class="usa-width-one-fourth"><label>By:</label><span>{{oRegionalOffice.modifiedBy}}</span></div>
+        </div>
     </div>
 </div>
 <div ng-show="!oRegionalOffice" class="usa-grid-full loading">
@@ -73,3 +79,8 @@
     <img style="max-width: 10%;" src="/img/img_cfda/loading.svg"/>
 </div>
 </section>
+
+
+
+
+
