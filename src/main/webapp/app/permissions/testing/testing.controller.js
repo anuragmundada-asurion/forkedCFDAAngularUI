@@ -13,22 +13,21 @@
             });
         };
 
-        $(".sign").bind('keydown', function(event) {
-            if(event.keyCode === 13){
-                $scope.signInAsPopup();
-            }
-        });
-
         $scope.changeRole = function() {
-            var user = {
-                "id": $scope.roleChange,
-                "fullName": $scope.roleChange,
-                "role": $scope.roleChange,
-                "email": "cfda.test.users@gmail.com",
-                "organizationId": "100011942"
-            };
-            Cookies.set('Rei-Sign-In-As', $scope.roleChange);
-            UserService.setUser(user);
+            if ($scope.roleChange) {
+                var user = {
+                    "id": $scope.roleChange,
+                    "fullName": $scope.roleChange,
+                    "role": $scope.roleChange,
+                    "email": "cfda.test.users@gmail.com",
+                    "organizationId": "100011942"
+                };
+                Cookies.set('Rei-Sign-In-As', $scope.roleChange);
+                UserService.setUser(user);
+            } else {
+                Cookies.remove('Rei-Sign-In-As');
+                UserService.clearUser();
+            }
             ngDialog.close();
             $state.reload();
         };

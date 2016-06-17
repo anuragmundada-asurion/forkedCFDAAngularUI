@@ -25,13 +25,13 @@
             var html = '',
                 selectedTemplate = '' +
                     '<p>Selected</p>' +
-                    '<ul class="usa-unstyled-list action-list">' +
+                    '<ul class="usa-unstyled-list usa-input-field action-list">' +
                         '<li class="action-list-item" ng-repeat="item in {0} | selectedChoiceFilter:_ctrl.getSelected():\'{1}\'">' +
-                            '<div class="item-btn-group">' +
-                                '<button type="button" class="usa-button-compact" ng-click="_ctrl.remove(item)"><span class="fa fa-trash"></span></button>' +
-                            '</div>' +
-                            '<div class="item-title-group">' +
+                            '<div class="item-title-group usa-input-field-content">' +
                                 '<span>{{ _ctrl.choiceTitleGetter(item) }}</span>' +
+                            '</div>' +
+                            '<div class="item-btn-group usa-input-field-options">' +
+                                '<button type="button" class="usa-button-compact" ng-click="_ctrl.remove(item)"><span class="fa fa-trash"></span></button>' +
                             '</div>' +
                         '</li>' +
                     '</ul>';

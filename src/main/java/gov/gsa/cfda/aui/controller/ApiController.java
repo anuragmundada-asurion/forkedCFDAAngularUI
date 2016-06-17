@@ -396,7 +396,11 @@ public class ApiController {
     private String getsCall(String accessToken, String url, Map<String, Object> params) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Auth-Token", accessToken);
+
+        if (accessToken != null && !accessToken.isEmpty()) {
+            headers.add("X-Auth-Token", accessToken);
+        }
+
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
