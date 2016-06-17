@@ -319,7 +319,7 @@
                     .withTitle('Department/Sub-Tier Agency & Office')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        return '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/regionalOffice/' + data['officeId'] + '/view">' + data['value'] + '</a>';
+                        return '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/myRegionalOffice/' + data['officeId'] + '/view">' + data['value'] + '</a>';
                     }),
                 DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
@@ -328,8 +328,8 @@
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
                     .withOption('render', function (actionRowData) {
-                        var editIcon = '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/regionalOffice/' + actionRowData.officeId + '/edit"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
-                        var viewIcon = '<a href="/regionalOffice/' + actionRowData.officeId + '/view"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>';
+                        var editIcon = '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/myRegionalOffice/' + actionRowData.officeId + '/edit"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
+                        var viewIcon = '<a href="/myRegionalOffice/' + actionRowData.officeId + '/view"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>';
                         return editIcon + viewIcon;
                     })
                     .withOption('orderable', false)
