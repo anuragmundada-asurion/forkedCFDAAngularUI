@@ -26,6 +26,12 @@
                 return user ? user.organizationId : null;
             };
 
+            this.clearUser = function() {
+                $rootScope.user = null;
+                delete $http.defaults.headers.common['X-Auth-Token'];
+                localStorageService.remove('userOrganizationIDs');
+            };
+
             this.setUser = function(user) {
                 $rootScope.user = new User(user);
                 $http.defaults.headers.common['X-Auth-Token'] = Cookies.get('Rei-Sign-In-As') ? Cookies.get('Rei-Sign-In-As') : Cookies.get('iPlanetDirectoryPro');
