@@ -313,7 +313,7 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+    public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                      @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                      @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
