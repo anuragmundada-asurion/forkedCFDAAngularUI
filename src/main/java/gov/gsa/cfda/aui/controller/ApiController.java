@@ -313,7 +313,7 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+    public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                      @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                      @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
@@ -396,7 +396,11 @@ public class ApiController {
     private String getsCall(String accessToken, String url, Map<String, Object> params) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Auth-Token", accessToken);
+
+        if (accessToken != null && !accessToken.isEmpty()) {
+            headers.add("X-Auth-Token", accessToken);
+        }
+
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
