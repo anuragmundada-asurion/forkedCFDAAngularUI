@@ -94,7 +94,8 @@
         "helpText":"Select all that apply to help public users search for this listing."
       },
       "additionalInfo":{
-        "label":"Describe who may apply for the assistance."
+        "helpText":"Describe who may apply for the assistance.",
+        "label":"Additional Information"
       }
     },
     "082":{
@@ -104,7 +105,8 @@
         "helpText":"Select all that apply to help public users search for this listing."
       },
       "additionalInfo":{
-        "label":"Describe who may benefit from the assistance."
+        "helpText":"Describe who may benefit from the assistance.",
+        "label":"Additional Information"
       }
     },
     "083":{
@@ -139,7 +141,8 @@
       "title":"092 Application Procedures",
       "label":"Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?",
       "additionalInfo":{
-        "label":"List all steps in the application process."
+        "helpText":"List all steps in the application process.",
+        "label":"Other Application Procedures:"
       }
     },
     "093":{
@@ -241,14 +244,16 @@
         "label": "Describe the period of time when assistance is available. Also, the period of time when funding must be spent."
       },
       "assistanceAwarded":{
-        "label": "Select the value that best represents how funding is released."
+        "helpText": "Select the value that best represents how funding is released.",
+        "label":"How is the assistance awarded and/or released?"
       }
     },
     "180":{
       "title":"180 Criteria for Selecting Proposals",
       "label":"Is there criteria for selecting proposals?",
       "additionalInfo":{
-        "label":"List all factors used to select awardees. Include how these factors are prioritized or weighted."
+        "helpText":"List all factors used to select awardees. Include how these factors are prioritized or weighted.",
+        "label":"Please describe criteria for selecting proposals:"
       }
     }
   },
@@ -297,7 +302,8 @@
         "label":"Does 2 CFR 200, Subpart F - Audit Requirements apply to this program?"
       },
       "additionalInfo":{
-        "label":"Describe audit procedures for this program. Only include requirements not already covered by 2 CFR 200."
+        "helpText":"Describe audit procedures for this program. Only include requirements not already covered by 2 CFR 200.",
+        "label":"What audit procedures have been mandated for the program?"
       }
     },
     "113":{
@@ -390,7 +396,8 @@
     "151":{
       "title":"151 Regional or Local Office",
       "additionalInfo":{
-        "label":"Identify Federal regional or local offices that may be contacted about this listing."
+        "helpText":"Identify Federal regional or local offices that may be contacted about this listing.",
+        "label":"Additional Information:"
       }
     },
     "152":{

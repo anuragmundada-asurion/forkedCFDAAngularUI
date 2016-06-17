@@ -48,12 +48,10 @@
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["010"]["title"]}}</legend>
           <div ng-class=" gsavm.validationFlag.info || (gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error' : '' ">
-            <span class="usa-form-hint">
-              {{::instructionalText["01"]["010"]["helpText"]}}
-            </span>
             <label for="title" ng-class="gsavm.validationFlag.info || (gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error-label' : '' ">
               {{::instructionalText["01"]["010"]["label"]}}<span class="required">*</span>
             </label>
+            <span class="usa-form-hint">{{::instructionalText["01"]["010"]["helpText"]}}</span>
             <span class="usa-input-error-message" ng-show="gsavm.validationFlag.info || gsavm.form.title.$error.required && gsavm.form.title.$dirty">
               You must provide a title.
             </span>
@@ -132,8 +130,9 @@
               <legend>{{::$ctrl.parentVm.instructionalText["01"]["040"]["title"]}}</legend>
             </multi-entry-header>
 
-            <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
+
             <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
+            <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
               None
             </p>
@@ -184,8 +183,8 @@
           <legend>{{::instructionalText["01"]["050"]["title"]}}</legend>
 
           <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
-            <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
             <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">{{::instructionalText["01"]["020"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
             <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
               <span class="usa-input-error-message" ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
             </div>
@@ -198,8 +197,8 @@
       <section class="usa-grid" field-finder-bookmark title="060 Types of Assistance">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["060"]["title"]}}</legend>
-          <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
           <label>{{::instructionalText["01"]["060"]["label"]}}<span class="required">*</span></label>
+          <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
           <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.assistanceTypes">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -230,11 +229,11 @@
 
         <div class="usa-width-one-whole usa-padding-top-3">
           <legend>{{::instructionalText["01"]["070"]["title"]}}</legend>
+
+          <label for="usageRulesContent">{{::instructionalText["01"]["070"]["label"]}}<span class="required">*</span></label>
           <span class="usa-form-hint">
             {{::instructionalText["01"]["070"]["helpText"]}}
           </span>
-
-          <label for="usageRulesContent">{{::instructionalText["01"]["070"]["label"]}}<span class="required">*</span></label>
           <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" required></textarea>
         </div>
 
@@ -410,8 +409,8 @@
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
 
           <legend>{{::instructionalText["01"]["190"]["title"]}}</legend>
-          <span class="usa-form-hint">{{::instructionalText["01"]["190"]["helpText"]}}</span>
           <label>{{::instructionalText["01"]["190"]["label"]}}<span class="required">*</span></label>
+          <span class="usa-form-hint">{{::instructionalText["01"]["190"]["helpText"]}}</span>
 
           <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
             <li ng-repeat="item in gsavm.program.functionalCodes">
@@ -446,8 +445,8 @@
             <multi-entry-header>
               <legend>{{::$ctrl.parentVm.instructionalText["01"]["300"]["title"]}}</legend>
             </multi-entry-header>
-            <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["300"]["helpText"]}}</span>
             <label>{{::$ctrl.parentVm.instructionalText["01"]["300"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["300"]["helpText"]}}</span>
 
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
               None
@@ -544,8 +543,8 @@
             helper-elements="all none filter"
             ></isteven-multi-select>
 
-
             <label for="assistanceAdditionalInfo">{{::instructionalText["02"]["081"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["02"]["081"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="assistanceAdditionalInfo" name="assistanceAdditionalInfo" ng-model="gsavm.program.eligibility.applicant.additionalInfo.content" required>
             </textarea>
             <div ng-show="gsavm.form.$submit || gsavm.form.assistanceAdditionalInfo.$dirty">
@@ -762,6 +761,7 @@
             </fieldset>
 
             <label for="applProc3other">{{::instructionalText["03"]["092"]["additionalInfo"]["label"]}}</label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["092"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="applProc3other" name="applProc3other" ng-model="gsavm.program.application.procedures.additionalInfo.content" ng-required="gsavm.program.application.procedures.questions.flag"></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.discretionaryFund.$dirty">
               <span ng-show="gsavm.form.discretionaryFund.$error.required">You must provide the discretionary funds.</span>
@@ -890,8 +890,8 @@
               </ui-select-choices>
             </ui-select>
 
-            <p><span class="usa-form-hint">{{::instructionalText["03"]["095"]["additionalInfo"]["helpText"]}}</span></p>
             <label for="approvalTime3other">{{::instructionalText["03"]["095"]["additionalInfo"]["label"]}}</label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["095"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="approvalTime3other" name="approvalTime3other" ng-model="gsavm.program.application.deadlines.approval.otherInfo.content" ng-required="gsavm.program.application.deadlines.approval.otherInfo.content"></textarea>
 
             <div ng-show="gsavm.form.$submitted || gsavm.form.restrictions.$dirty">
@@ -913,8 +913,9 @@
               <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
             </div>
 
-            <p><span class="usa-form-hint">{{::instructionalText["03"]["096"]["additionalInfo"]["helpText"]}}</span></p>
+
             <label for="appealsTime3other">{{::instructionalText["03"]["096"]["additionalInfo"]["label"]}}</label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["096"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="appealsTime3other" name="appealsTime3other" ng-model="gsavm.program.application.deadlines.appeal.otherInfo.content" ng-required="gsavm.program.application.deadlines.appeal.otherInfo.content"></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.appealsTime3other.$dirty">
               <span ng-show="gsavm.form.appealsTime3other.$error.required">You must provide input.</span>
@@ -935,8 +936,8 @@
               <span ng-show="gsavm.form.office.$error.required">You must select an office.</span>
             </div>
 
-            <p><span class="usa-form-hint">{{::instructionalText["03"]["097"]["additionalInfo"]["helpText"]}}</span></p>
             <label for="renewalTime3other">{{::instructionalText["03"]["097"]["additionalInfo"]["label"]}}</label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["097"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="renewalTime3other" name="renewalTime3other" ng-model="gsavm.program.application.deadlines.renewal.otherInfo.content" ng-required="gsavm.program.application.deadlines.renewal.otherInfo.content"></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.renewalTime3other.$dirty">
               <span ng-show="gsavm.form.renewalTime3other.$error.required">You must provide input.</span>
@@ -954,7 +955,7 @@
           </legend>
           <section field-finder-bookmark title="101 Formula and Matching Requirements">
             <h4>{{::instructionalText["03"]["101"]["title"]}}</h4>
-            <p><span class="usa-form-hint">{{::instructionalText["03"]["101"]["helpText"]}}</span></p>
+            <span class="usa-form-hint">{{::instructionalText["03"]["101"]["helpText"]}}</span>
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="statuatoryFormula3">{{::instructionalText["03"]["101"]["statuatoryFormula"]["label"]}}<span class="required">*</span></label>
 
@@ -1070,6 +1071,7 @@
               <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
             </div>
             <label for="assistanceAwarded3">{{::instructionalText["03"]["102"]["assistanceAwarded"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["102"]["assistanceAwarded"]["helpText"]}}</span>
             <select id="assistanceAwarded3" name="assistanceAwarded3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.awarded">
               <option value=''></option>
               <option value='Lump Sum'>Lump Sum</option>
@@ -1343,6 +1345,7 @@
                 </ul>
               </fieldset>
               <label for="auditRequirementsInfo">{{::instructionalText["04"]["112"]["additionalInfo"]["label"]}}<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'">*</span></label>
+              <span class="usa-form-hint">{{::instructionalText["04"]["112"]["additionalInfo"]["helpText"]}}</span>
               <textarea id="auditRequirementsInfo" name="auditRequirementsInfo" ng-model="gsavm.program.postAward.audit.content" ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
 
               <div ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no' && (gsavm.form.$submitted || gsavm.form.auditRequirementsInfo.$dirty)">
@@ -1678,6 +1681,7 @@
         <span ng-show="gsavm.form.office6.$error.required">You must provide an answer.</span>
       </div>
       <label for="office6info">{{::instructionalText["06"]["151"]["additionalInfo"]["label"]}}</label>
+      <span class="usa-form-hint">{{::instructionalText["06"]["151"]["additionalInfo"]["helpText"]}}</span>
       <textarea id="office6info" name="office6info" class="usa-input-large" ng-model="gsavm.program.contacts['local'].additionalInfo.content" cl required></textarea>
       <br/>
     </section>
