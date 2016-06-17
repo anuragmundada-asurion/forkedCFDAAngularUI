@@ -104,9 +104,6 @@ gulp.task('iae', ['index'], function() {
     gulp.src('src/main/webapp/plugins/iae-widgets/fonts/**/*')
         .pipe(gulp.dest('target/classes/static/fonts'));
 
-    gulp.src('src/main/webapp/plugins/iae-widgets/data/*.*')
-        .pipe(gulp.dest('target/classes/static/data'));
-
     gulp.src('src/main/webapp/plugins/iae-widgets/img/*.*')
         .pipe(gulp.dest('target/classes/static/img'));
 
@@ -115,12 +112,7 @@ gulp.task('iae', ['index'], function() {
         .pipe(cssPrefix({parentClass: 'theme-iae'}))
         .pipe(gulp.dest('target/classes/static/css'));
 
-    var ieCss = gulp.src('src/main/webapp/plugins/iae-widgets/css/iae-all-ie-only.css')
-        .pipe(cssPrefix({parentClass: 'theme-iae'}))
-        .pipe(gulp.dest('target/classes/static/css'));
-
-    index.pipe(inject(ieCss, { addRootSlash: true, relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
-        .pipe(inject(allCss, { addRootSlash: true, name: 'iae', relative: true }))
+    index.pipe(inject(allCss, { addRootSlash: true, name: 'iae', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 

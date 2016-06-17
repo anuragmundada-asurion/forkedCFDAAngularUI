@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'ROLES', '$timeout',
-            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, ROLES, $timeout) {
+        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'SUPPORTED_ROLES', '$timeout',
+            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, SUPPORTED_ROLES, $timeout) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -258,7 +258,7 @@
 
 
                 //Dashboard feature
-                if ($scope.user && AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])) {
+                if ($scope.user && AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.AGENCY_COORDINATOR, SUPPORTED_ROLES.AGENCY_USER, SUPPORTED_ROLES.OMB_ANALYST, SUPPORTED_ROLES.GSA_ANALYST, SUPPORTED_ROLES.RMO_SUPER_USER, SUPPORTED_ROLES.LIMITED_SUPER_USER])) {
                     var oApiParam = {
                         apiName: 'programCount',
                         apiSuffix: '',

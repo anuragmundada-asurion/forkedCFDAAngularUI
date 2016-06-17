@@ -17,7 +17,7 @@ describe('Unit Tests for Program Request Controller:', function () {
             UserService = _UserService_;
         });
 
-        UserService.changeUser({"roles": ["GSA_CFDA_R_cfdasuperuser"]});
+        UserService.setUser({"role": "GSA_CFDA_R_cfdasuperuser"});
     });
 
     describe('Controller Program Request:', function () {

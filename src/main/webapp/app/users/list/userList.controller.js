@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'ROLES',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, ROLES) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
 
@@ -17,11 +17,11 @@
             $scope.canEditUser = function(data) {
                 var hasPermission = false;
 
-                if (AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
-                    hasPermission = (data['role'] == ROLES.AGENCY_USER.iamRoleId) || (data['role'] == ROLES.AGENCY_COORDINATOR.iamRoleId);
-                } else if (AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
-                    hasPermission = data['role'] == ROLES.OMB_ANALYST.iamRoleId;
-                } else if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER])) {
+                if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
+                    hasPermission = (data['role'] == SUPPORTED_ROLES.AGENCY_USER) || (data['role'] == SUPPORTED_ROLES.AGENCY_COORDINATOR);
+                } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
+                    hasPermission = data['role'] == SUPPORTED_ROLES.OMB_ANALYST;
+                } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER])) {
                     hasPermission = true;
                 }
 

@@ -51,12 +51,12 @@
 
     <section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
         <a ui-sref="regionalOfficeList"><button type="button">Return</button></a>
-        <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" has-access="{{ [PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE] }}"><button type="button">Edit</button></a>
-        <button type="button" has-access="{{ [PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}" ng-click="deleteRegionalOffice()">Delete</button>
+        <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])"><button type="button">Edit</button></a>
+        <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
     </section>
 
 <section class="usa-grid-full" style="padding: 10px 0px;">
-    <div class="sub-form" id="historyDiv" has-role="{{ [ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER] }}">
+    <div class="sub-form" id="historyDiv" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])">
         <h4>Regional Agency Office Info</h4>
         <table style="border: none !important;">
             <tr>

@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http','PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService,ROLES) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http','PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
 
                 $scope.$log = $log;
 
@@ -566,13 +566,13 @@
                     var template = '<div class="usa-alert usa-alert-warning usa-margin-bottom-2" role="alert">' +
                         '<div class="usa-alert-body">' +
                         '<p class="usa-alert-text">' +
-                        '<span has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}">' + msg1 + '</span>' +
-                        '<span has-role="{{ [ROLES.AGENCY_USER] }}">' + msg2 + '</span>' +
+                        '<span ng-if="hasPermission([PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE])">' + msg1 + '</span>' +
+                        '<span ng-if="hasRole([SUPPORTED_ROLES.AGENCY_USER])">' + msg2 + '</span>' +
                         '</p>' +
                         '</div>' +
                         '</div>' +
                         '<button class="usa-button-gray-light" ui-sref="programList" ng-click="closeModal();">Cancel</button>' +
-                        '<button has-access="{{ [PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE] }}" ng-click="openSubmitModal();">Continue</button>';
+                        '<button ng-if="hasPermission([PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE])" ng-click="openSubmitModal();">Continue</button>';
 
 
                     ngDialog.open({
@@ -785,7 +785,7 @@
 
 
                 function shouldSeeCoordinatorMessage() {
-                    if (AuthorizationService.authorizeByRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR])){
+                    if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.AGENCY_COORDINATOR])){
                         return false;
                     }
                     return true;

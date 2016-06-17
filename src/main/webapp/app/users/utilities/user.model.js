@@ -3,13 +3,13 @@
 
     var myApp = angular.module('app');
 
-    myApp.factory('UserProfile', [
-        function() {
+    myApp.factory('User', ['ROLES', 'SUPPORTED_ROLES', 'PERMISSIONS',
+        function(ROLES, SUPPORTED_ROLES, PERMISSIONS) {
             /**
              * Translate incoming user object from CFDA User API
              * @constructor
              */
-            function UserProfile(user) {
+            function User(user) {
                 this.id = user.id;
                 this.fullName = user.fullName;
                 this.workPhone = user.workPhone;
@@ -17,49 +17,68 @@
                 this.email = user.email;
                 this.organizationId = user.organizationId;
                 this.additionalInfo = user.additionalInfo;
+
+                this.permissions = ROLES[this.role]['permissions'];
+
+                if (angular.equals(this.role, SUPPORTED_ROLES.AGENCY_USER)) {
+                    var self = this;
+                    angular.forEach(this.getCustomRoles(), function(v, k) {
+                        if (PERMISSIONS[k]) {
+                            self.permissions.push(PERMISSIONS[k]);
+                        }
+                    });
+                }
             }
 
-            UserProfile.prototype.getId = function() {
+            User.prototype.getId = function() {
                 return this.id;
             };
 
-            UserProfile.prototype.getFullName = function() {
+            User.prototype.getFullName = function() {
                 return this.fullName;
             };
 
-            UserProfile.prototype.getEmail = function() {
+            User.prototype.getEmail = function() {
                 return this.email;
             };
 
-            UserProfile.prototype.getWorkPhone = function() {
+            User.prototype.getWorkPhone = function() {
                 return this.workPhone;
             };
 
-            UserProfile.prototype.getRole = function() {
+            User.prototype.getRole = function() {
                 return this.role;
             };
 
-            UserProfile.prototype.getOrganizationId = function() {
+            User.prototype.getOrganizationId = function() {
                 return this.organizationId;
             };
 
-            UserProfile.prototype.getAssignedOrganizationIds = function() {
-                return this.additionalInfo ? (this.additionalInfo['assignedOrganizationIds'] ? this.additionalInfo['assignedOrganizationIds'] : []) : [];
+            User.prototype.getAdditionalInfo = function() {
+                return this.additionalInfo ? this.additionalInfo : null;
             };
 
-            UserProfile.prototype.getOrganizationType = function() {
-                return this.additionalInfo ? (this.additionalInfo['organizationType'] ? this.additionalInfo['organizationType']['id'] : 'default') : 'default';
+            User.prototype.getAssignedOrganizationIds = function() {
+                return this.getAdditionalInfo() ? this.getAdditionalInfo()['assignedOrganizationIds'] : [];
             };
 
-            UserProfile.prototype.getOrganizationTypeValue = function() {
-                return this.additionalInfo ? (this.additionalInfo['organizationType'] ? this.additionalInfo['organizationType']['value'] : 'User Organization') : 'User Organization';
+            User.prototype.getOrganizationType = function() {
+                return this.getAdditionalInfo() ? this.getAdditionalInfo()['organizationType'] : null;
             };
 
-            UserProfile.prototype.getCustomRoles = function() {
-                return this.additionalInfo ? (this.additionalInfo['customRoles'] ? this.additionalInfo['customRoles'] : {}) : {};
+            User.prototype.getOrganizationTypeId = function() {
+                return this.getOrganizationType() ? this.getOrganizationType()['id'] : 'default';
             };
 
-            UserProfile.prototype.getCustomRolesValue = function() {
+            User.prototype.getOrganizationTypeValue = function() {
+                return this.getOrganizationType() ? this.getOrganizationType()['value'] : 'User Organization';
+            };
+
+            User.prototype.getCustomRoles = function() {
+                return this.getAdditionalInfo() ? this.getAdditionalInfo()['customRoles'] : {};
+            };
+
+            User.prototype.getCustomRolesValue = function() {
                 var customRoles = this.getCustomRoles();
                 var r = [];
 
@@ -73,7 +92,7 @@
             /**
              * Return the constructor function
              */
-            return UserProfile;
+            return User;
         }
     ]);
 }();

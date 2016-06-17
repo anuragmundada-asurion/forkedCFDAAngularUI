@@ -21,15 +21,14 @@
 
         $scope.changeRole = function() {
             var user = {
-                "roles": [
-                    $scope.roleChange
-                ],
-                'fullName': $scope.roleChange,
-                'username': $scope.roleChange,
-                'orgId': '100011942'
+                "id": $scope.roleChange,
+                "fullName": $scope.roleChange,
+                "role": $scope.roleChange,
+                "email": "cfda.test.users@gmail.com",
+                "organizationId": "100011942"
             };
             Cookies.set('Rei-Sign-In-As', $scope.roleChange);
-            UserService.changeUser(user);
+            UserService.setUser(user);
             ngDialog.close();
             $state.reload();
         };

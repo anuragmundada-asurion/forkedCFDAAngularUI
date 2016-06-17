@@ -112,7 +112,7 @@
     <section class="usa-grid-full">
         <a ui-sref="regionalOfficeList"><button type="button">Cancel</button></a>
         <button type="button" ng-click="saveRegionalOffice()">Save</button>
-        <button type="button" ng-if="action === 'edit'" has-access="{{ [PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE] }}" ng-click="deleteRegionalOffice()">Delete</button>
+        <button type="button" ng-if="action === 'edit'" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
     </section>
 </div>
 </section>

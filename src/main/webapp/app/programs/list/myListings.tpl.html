@@ -9,7 +9,7 @@
       <a ng-class="isArchivedList() ? 'usa-current' : '';" ui-sref='programList({list: "archivePrograms"})' ng-click="changeList('archivedPrograms')">Archived Listings</a>
     </li>
     <li>
-      <a ng-class="isRequestList() ? 'usa-current' : '';" ui-sref='programList({list: "requests"})' has-access="{{[PERMISSIONS.CAN_VIEW_REQUESTS]}}" ng-click="changeList('requests')">Requests</a>
+      <a ng-class="isRequestList() ? 'usa-current' : '';" ui-sref='programList({list: "requests"})' ng-if="hasPermission([PERMISSIONS.CAN_VIEW_REQUESTS])" ng-click="changeList('requests')">Requests</a>
     </li>
   </ul>
 </div>
@@ -39,7 +39,7 @@
       <div class="usa-width-one-half" ng-if="isActiveList()">
         <a  class="usa-button usa-button-big usa-button-fluid usa-margin-input"
             ui-sref="addProgram"
-            has-access="{{ [PERMISSIONS.CAN_CREATE_PROGRAMS] }}">
+            ng-if="hasPermission([PERMISSIONS.CAN_CREATE_PROGRAMS])">
             <span class="fa fa-plus-square-o"></span>
             Create a new listing
         </a>

@@ -31,7 +31,7 @@
 
         };
     }])
-    .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'ROLES', function(FederalHierarchyService, UserService, AuthorizationService, ROLES){
+    .directive('federalHierarchyInputs', ['FederalHierarchyService', 'UserService', 'AuthorizationService', 'SUPPORTED_ROLES', function(FederalHierarchyService, UserService, AuthorizationService, SUPPORTED_ROLES){
         return {
             scope: {
                 "noDefault": "=?",
@@ -42,7 +42,7 @@
                 "showDepartment": "=?",
                 "setSelectedOption": "=?"
             },
-            controller: ['$scope', '$filter', 'ROLES', 'ApiService', function($scope, $filter, ROLES, ApiService) {
+            controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
 
                 /**
@@ -102,7 +102,7 @@
                                 $scope.organizationId = $scope.selectedAgencyId;
                             } else { //if agency is not selected then set department
                                 //if user is a root then set department from dropdown
-                                if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
+                                if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                                     $scope.organizationId = $scope.selectedDeptId;
                                 } else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
                                     $scope.organizationId = $scope.programOrganizationId;
@@ -228,12 +228,12 @@
                         }
 
                         //if role is agency coordinator, assign the department
-                        if(userRole === ROLES.AGENCY_COORDINATOR.iamRoleId) {
+                        if(userRole === SUPPORTED_ROLES.AGENCY_COORDINATOR) {
                             $scope.dictionary.aDepartment = [oData];
                         }
 
                         //if user is super admin -> set selected Department dropdown option
-                        if(userRole === ROLES.SUPER_USER.iamRoleId && oData.type === 'DEPARTMENT') {
+                        if(userRole === SUPPORTED_ROLES.SUPER_USER && oData.type === 'DEPARTMENT') {
                             $scope.selectedDeptId = oData.elementId;
                         }
 
@@ -321,7 +321,7 @@
                         scope.getFederalHierarchyConfiguration(scope.programOrganizationId);
 
                         //Case if user is an AGENCY USER
-                        if(AuthorizationService.authorizeByRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST])) {
+                        if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_USER, SUPPORTED_ROLES.OMB_ANALYST])) {
                             FederalHierarchyService.getFederalHierarchyById(scope.programOrganizationId, true, false, function (oData) {
                                 scope.departmentLabel = FederalHierarchyService.getFullNameFederalHierarchy(oData);
                                 scope.organizationId = scope.programOrganizationId;
@@ -332,9 +332,9 @@
                                 scope.error = "An error has occurred, Please try again !";
                             });
                         } //Case if user is an AGENCY COORDINATOR
-                        else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
                             //initialize Department/Agency/Office dropdowns (selected values)
-                            scope.initFederalHierarchyDropdowns(ROLES.AGENCY_COORDINATOR.iamRoleId);
+                            scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.AGENCY_COORDINATOR);
 
                             //show department input as exception only for agency coordinator
                             if(typeof scope.showDepartment !== 'undefined' && scope.showDepartment === true) {
@@ -348,14 +348,14 @@
                                 $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
-                        else if(AuthorizationService.authorizeByRole([ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([ROLES.RMO_SUPER_USER])) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                             //get Department level of user's organizationId
                             scope.initDictionaries('', true, false, function (oData) {
                                 //initialize Department
                                 scope.dictionary.aDepartment = oData._embedded.hierarchy;
 
                                 //initialize Department/Agency/Office dropdowns (selected values)
-                                scope.initFederalHierarchyDropdowns(ROLES.SUPER_USER.iamRoleId);
+                                scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.SUPER_USER);
                             });
                         }
                     }
@@ -369,16 +369,16 @@
                         "<p class='usa-alert-text'>{{ error }}</p>" +
                       "</div>" +
                     "</div>" +
-                    "<div class='no-input' has-role='["+JSON.stringify(ROLES.AGENCY_USER)+", "+JSON.stringify(ROLES.OMB_ANALYST)+"]'>"+
+                    "<div class='no-input' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.AGENCY_USER)+", "+JSON.stringify(SUPPORTED_ROLES.OMB_ANALYST)+"])'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='usa-grid-full' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+","+ JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'>"+
+                    "<div class='usa-grid-full' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.SUPER_USER)+","+JSON.stringify(SUPPORTED_ROLES.RMO_SUPER_USER)+","+ JSON.stringify(SUPPORTED_ROLES.AGENCY_COORDINATOR)+"])'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' has-role='["+JSON.stringify(ROLES.SUPER_USER)+","+JSON.stringify(ROLES.RMO_SUPER_USER)+"]' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.SUPER_USER)+","+JSON.stringify(SUPPORTED_ROLES.RMO_SUPER_USER)+"])' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
-                            "<span class='departmen-label' has-role='["+JSON.stringify(ROLES.AGENCY_COORDINATOR)+"]'> {{ dictionary.aDepartment[0].name }} </span>"+
+                            "<span class='departmen-label' ng-if='hasRole(["+JSON.stringify(SUPPORTED_ROLES.AGENCY_COORDINATOR)+"])'> {{ dictionary.aDepartment[0].name }} </span>"+
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqAgencyFH'>Agency</label>"+
