@@ -58,7 +58,7 @@
       "title":"160 Related Programs",
       "label":"Are there any related programs?",
       "form":{
-        "intro":"Select at least one program from list"
+        "intro":"Select at least one program from list."
       }
     },
     "170":{
@@ -132,7 +132,7 @@
         "label":"Does Executive Order 12372, \"Intergovernmental Review of Federal Program\", apply to this program?"
       },
       "additionalInfo":{
-        "label":"Describe other coordination requirements if applicable"
+        "label":"Describe other coordination requirements if applicable."
       }
     },
     "092":{
@@ -163,10 +163,11 @@
     "095":{
       "title":"095 Range of Approval/Disapproval Time",
       "dateRange":{
-        "label":"Select the range that best represents how much time the approval process takes"
+        "label":"Select the range that best represents how much time the approval process takes."
       },
       "additionalInfo":{
-        "label":"Provide an additional information if appropriate."
+        "helpText":"Provide an additional information if appropriate.",
+        "label":"Other Approval Information:"
       }
     },
     "096":{
@@ -175,7 +176,8 @@
         "label":"Select the range that best represents how long an applicant has to appeal a decision."
       },
       "additionalInfo":{
-        "label":"Describe appeal, rework, or other options for applications that are not approved."
+        "helpText":"Describe appeal, rework, or other options for applications that are not approved.",
+        "label":"Other Appeals Information:"
       }
     },
     "097":{
@@ -184,7 +186,8 @@
         "label":"Select the range that best represents when an awardee may apply for a renewal or extension."
       },
       "additionalInfo":{
-        "label":"Describe renewal or extension procedures."
+        "helpText":"Describe renewal or extension procedures.",
+        "label":"Other Renewals Information:"
       }
     },
     "100":{
@@ -219,7 +222,7 @@
       "matchingRequirements":{
         "label":"Does this program have matching requirements?",
         "dateRange":{
-          "label":"Select the Percentage Below"
+          "label":"Select the Percentage Below:"
         },
         "additionalInfo":{
           "label":"Other Matching Requirements Information:"
@@ -263,7 +266,7 @@
         }
       },
       "cashReports":{
-        "label":"Are cash reports required",
+        "label":"Are cash reports required?",
         "additionalInfo":{
           "label":"Describe required cash reports."
         }
@@ -283,7 +286,7 @@
       "performanceMonitoring":{
         "label":"Is performance monitoring required?",
         "additionalInfo":{
-          "label":"Describe required progress reports."
+          "label":"Describe required performance reports."
         }
       }
     },
@@ -305,7 +308,7 @@
       "title":"140 Regulations, Guidelines, and Literature",
       "label":"Are there any regulations, guidelines or literature?",
       "additionalInfo":{
-        "label":"List references to all official published information related to this listing. Omit references to 2 CFR 200"
+        "label":"List references to all official published information related to this listing. Omit references to 2 CFR 200."
       }
     }
   },
@@ -392,7 +395,7 @@
     },
     "152":{
       "title":"152 Headquarters Office",
-      "label":"Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added",
+      "label":"Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added.",
       "form":{
         "contacts":{
           "label":"Contacts:"
