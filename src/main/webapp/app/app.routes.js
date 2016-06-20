@@ -132,7 +132,19 @@
                     url: "/historicalIndex?status&currentCalendarYear",
                     title: 'Historical Index of Programs',
                     templateUrl: "historicalIndex/historicalIndex-list.tpl.html",
-                    controller: "HistoricalIndexListController",
+                    controller: "HistoricalIndexListController"
+                })
+                .state('viewHistoricalIndex', {
+                    url: "/historicalIndex/:id/view",
+                    templateUrl: "historicalIndex/historicalIndex-view.tpl.html",
+                    controller: "HistoricalIndexViewCtrl",
+                    title: 'View Historical Index- CFDA: View Historical Index'
+                })
+                .state('editHistoricalIndex', {
+                    url: "/historicalIndex/:id/edit",
+                    templateUrl: "historicalIndex/historicalIndex-form.tpl.html",
+                    controller: "HistoricalIndexFormCtrl",
+                    title: 'Edit Historical Index- CFDA: Edit Historical Index'
                 })
                 //router for public view of regional agency offices list
                 .state('publicRegionalOfficeList', {

@@ -328,7 +328,8 @@
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
-                            '<td>' + ((row.actionType !== 'archived') ? row.body : '') + '</td>' +
+                            '<td>' + ((row.actionType !== 'archived') ? ('<a href="/historicalIndex/' + row.historicalIndexId + '/view">' +  row.body +'</a>') : '') + '</td>' +
+                            '<td>' + '<a class="usa-button usa-button-compact" href="/historicalIndex/' + row.historicalIndexId + '/edit">' + '<span class="fa fa-pencil"></span></a>' +
                             '</tr>';
                     });
                 }
