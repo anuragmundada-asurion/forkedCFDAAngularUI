@@ -1412,7 +1412,7 @@
                 <div ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
                   <div class="input-field">
                     <label for="{{ 'ac-code-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["121"]["form"]["code"]["label"]}}<span class="required">*</span></label>
-                    <error-msg model="$subForm.current.code" regex-pattern="^[0-9\-\_]*$" msg="Provide a valid number using only numerical values."></error-msg>
+                    <error-msg model="$subForm.current.code" regex-pattern="^[0-9\-]*$" msg="Provide a valid number using only numerical values."></error-msg>
                     <masked-input id="{{ 'ac-code-' + idPath }}" name="code" ng-model="$subForm.current.code" mask="xx-xxxx-x-x-xxx"></masked-input>
                   </div>
                   <div class="input-field ">
@@ -1529,7 +1529,7 @@
                   <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag === $ctrl.parentVm.choices['yes_no_na'].yes.code">
                     <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["form"]["helpText"]}}</span></p>
                     <label for="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}">{{fyTpl.obligType || fyTpl.type}}</label>
-                    <error-msg model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]" regex-pattern="^[0-9\,]*$" msg="Provide a valid number using only digits and commas."></error-msg>
+                    <error-msg model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]" regex-pattern="^[0-9\,\.]*$" msg="Provide a valid number using only digits and commas."></error-msg>
                     <input id="{{fyTpl.idName}}{{fyTpl.year}}-input-{{idPath}}" type="text" class="usa-input-small" name="value" ng-model="$subForm.current.values[fyTpl.year][fyTpl.obligVarName]">
                   </div>
                   <div class="input-field" ng-show="$subForm.current.values[fyTpl.year].flag !== $ctrl.parentVm.choices['yes_no_na'].yes.code">
