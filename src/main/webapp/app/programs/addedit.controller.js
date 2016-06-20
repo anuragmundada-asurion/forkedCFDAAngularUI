@@ -261,8 +261,12 @@
                     if (copy.financial && copy.financial.hasOwnProperty('obligations')) {
                         angular.forEach(copy.financial.obligations, function (row, i) {
                             if (row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
+                                //console.log(row);
                                 if (typeof row.assistanceType === 'object') {
-                                    copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
+                                    var arr = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']);
+                                    if(arr.length>0){
+                                        copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
+                                    }
                                 }
                             }
                         });
