@@ -314,6 +314,7 @@ public class ApiController {
 
     @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
+                                     @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
                                      @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                      @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
                                      @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
@@ -321,6 +322,7 @@ public class ApiController {
                                      @RequestParam(value = "sortBy", required = false, defaultValue = "-organizationId") String sortBy,
                                      @RequestParam(value = "oFilterParam", required = false, defaultValue = "{}") String oFilterParams) {
         Map<String, Object> params = new HashMap<>();
+        params.put("all", all);
         params.put("keyword", keyword);
         params.put("limit", limit);
         params.put("offset", offset);
