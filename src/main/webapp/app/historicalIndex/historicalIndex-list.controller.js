@@ -35,7 +35,7 @@
                 $scope.dictionary = {
                     aChangeEvent: [
                         {
-                            name: "program_number",
+                            name: "agency",
                             label: "Agency Changed"
                         },
                         {
@@ -326,7 +326,7 @@
                         var actionLabel = $scope.getActionLabel(row.actionType);
                         html +=
                             '<tr>' +
-                            '<td>' + row.fiscalYear + ((row.statusCode !== null) ? ' (' + row.statusCode + ')' : '') + '</td>' +
+                            '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
                             '<td>' + ((row.actionType !== 'archived') ? row.body : '') + '</td>' +
                             '</tr>';
