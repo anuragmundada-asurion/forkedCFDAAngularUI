@@ -176,7 +176,8 @@
                     oParams: {
                         limit: data['length'] || 10,
                         offset: data['start'],
-                        includeCount: true
+                        includeCount: true,
+                        all: true
                     },
                     oData: {},
                     method: 'GET'
