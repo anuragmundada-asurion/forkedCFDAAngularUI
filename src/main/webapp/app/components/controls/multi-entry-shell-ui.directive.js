@@ -79,6 +79,9 @@
                 if(!angular.isArray(aSelectedItems)) {
                     aSelectedItems = [aSelectedItems];
                 } else {
+                    if(aSelectedItems.length==0){
+                        return [];
+                    }
                     aSelectedItems = [aSelectedItems[0].element_id];
                 }
 
