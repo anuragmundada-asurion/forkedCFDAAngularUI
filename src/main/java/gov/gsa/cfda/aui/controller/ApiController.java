@@ -412,7 +412,6 @@ public class ApiController {
         }
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
-        System.out.println("about to go to this url: " + builder.build().encode().toUri());
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
         return response.getBody();
     }
@@ -552,10 +551,7 @@ public class ApiController {
     @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.GET)
     public String getSingleHistoricalIndexChange(@PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
-        System.out.println("relative url: " + getHistoricalChangeApiUrl() + "/" + id);
-        String s = getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
-        System.out.println("about to give this to fe: " + s);
-        return s;
+        return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
     }
 
     @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.GET)

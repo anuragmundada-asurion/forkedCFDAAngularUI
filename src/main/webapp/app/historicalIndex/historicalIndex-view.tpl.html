@@ -51,13 +51,13 @@
 </section>
 
 <section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
-    <a ui-sref="regionalOfficeList">
+    <a ui-sref="historicalIndex">
         <button type="button" class="usa-button-gray">Return</button>
     </a>
-    <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])">
+    <a ui-sref="editHistoricalIndex({id: oHistoricalIndex.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_HISTORICAL_INDEX])">
         <button type="button">Edit</button>
     </a>
-    <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
+    <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_HISTORICAL_INDEX])" ng-click="deleteHistoricalIndex()">Delete</button>
 </section>
 
 
