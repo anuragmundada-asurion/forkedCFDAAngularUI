@@ -584,6 +584,7 @@
             ></isteven-multi-select>
 
             <label for="beneficiaryAdditionalInfo">{{::instructionalText["02"]["082"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["02"]["082"]["additionalInfo"]["helpText"]}}</span>
             <textarea id="beneficiaryAdditionalInfo" name="beneficiaryAdditionalInfo" ng-model="gsavm.program.eligibility.beneficiary.additionalInfo.content" required>
             </textarea>
             <div ng-show="gsavm.form.$submit || gsavm.form.beneficiaryAdditionalInfo.$dirty">
@@ -820,7 +821,7 @@
 
                 <multi-entry-sub-form>
                   <div ng-init="formPath='deadlines'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.{{formPath}}">
-                    <p>{{::$ctrl.parentVm.instructionalText["03"]["094"]["deadlines"]["form"]["intro"]}}</p>
+                     <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["03"]["094"]["deadlines"]["form"]["intro"]}}</span>
 
                     <div class="usa-grid-full">
                       <div class="usa-width-one-half">
@@ -861,7 +862,7 @@
                     </div>
                     <div class="usa-grid-full">
                       <label for="deadline-desc">Description</label>
-                      <p>Optionally provide a description for this deadline</p>
+                       <span class="usa-form-hint">Optionally provide a description for this deadline</span>
                       <input type="text" id="deadline-desc" name="deadlineDesc" ng-model="$subForm.current.description">
                     </div>
                   </div>
@@ -1111,6 +1112,7 @@
         </div>
         <div ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
           <label for="criteriaProposals3Info">{{::instructionalText["03"]["180"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+          <span class="usa-form-hint">{{::instructionalText["03"]["180"]["additionalInfo"]["helpText"]}}</span>
           <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content" ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
 
           <div ng-show="gsavm.program.application.selectionCriteria.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.criteriaProposals3Info.$dirty)">
@@ -1621,6 +1623,7 @@
   </section>
   <section class="sub-section" field-finder-bookmark title="130 Program Accomplishments">
     <h3>{{::instructionalText["05"]["130"]["title"]}}<span class="required">*</span></h3>
+     <span class="usa-form-hint">{{::instructionalText["05"]["130"]["helpText"]}}</span>
 
     <div class="input-field">
       <fieldset class="usa-fieldset-inputs usa-sans">

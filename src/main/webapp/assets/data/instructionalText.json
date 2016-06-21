@@ -384,6 +384,7 @@
     "130": {
       "title": "130 Program Accomplishments",
       "label": "Are there program accomplishments?",
+      "helpText": "Showcase for public users the achievements associated with this listing.  Use clear, plain language and provide compelling examples.",
       "programAccomplishments": {
         "label": "Please select all that apply:"
       }
