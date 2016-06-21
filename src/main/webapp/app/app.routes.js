@@ -141,7 +141,7 @@
                     title: 'View Historical Index- CFDA: View Historical Index'
                 })
                 .state('editHistoricalIndex', {
-                    url: "/historicalIndex/:id/edit",
+                    url: "/historicalIndex/:hid/edit/:pid",
                     templateUrl: "historicalIndex/historicalIndex-form.tpl.html",
                     controller: "HistoricalIndexFormCtrl",
                     title: 'Edit Historical Index- CFDA: Edit Historical Index'

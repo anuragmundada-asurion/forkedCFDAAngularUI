@@ -324,12 +324,13 @@
                 if (d.hasOwnProperty('historicalChanges')) {
                     angular.forEach(d.historicalChanges, function (row) {
                         var actionLabel = $scope.getActionLabel(row.actionType);
-                        html +=
+                        var editLink = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
+                        html += 
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
                             '<td>' + ((row.actionType !== 'archived') ? ('<a href="/historicalIndex/' + row.historicalIndexId + '/view">' +  row.body +'</a>') : '') + '</td>' +
-                            '<td>' + '<a class="usa-button usa-button-compact" href="/historicalIndex/' + row.historicalIndexId + '/edit">' + '<span class="fa fa-pencil"></span></a>' +
+                            '<td>' + editLink[0].outerHTML +
                             '</tr>';
                     });
                 }
