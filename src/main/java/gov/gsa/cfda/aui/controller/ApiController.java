@@ -556,16 +556,14 @@ public class ApiController {
 
     @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                       @PathVariable("id") String id,
-                                       @RequestBody String jsonData) {
-        System.out.println("bout to make the update call");
+                                              @PathVariable("id") String id,
+                                              @RequestBody String jsonData) {
         return this.updateCall(accessToken, getHistoricalChangeApiUrl() + "/" + id, jsonData);
     }
 
     @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.DELETE)
     public void deleteHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                                     @PathVariable("id") String id) throws SQLException, RuntimeException {
-        System.out.println("bout to make the delete call");
+                                            @PathVariable("id") String id) throws SQLException, RuntimeException {
         this.deleteCall(accessToken, getHistoricalChangeApiUrl() + "/" + id);
     }
 

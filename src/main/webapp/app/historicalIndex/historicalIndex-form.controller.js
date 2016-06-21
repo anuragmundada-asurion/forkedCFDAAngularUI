@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', 'ApiService', 'HistoricalIndexFactory', 'Dictionary', 'FederalHierarchyService', 'UserService', 'ngDialog', 'FhConfigurationService',
-        function ($scope, $state, $stateParams, ApiService, HistoricalIndexFactory, Dictionary, FederalHierarchyService, UserService, ngDialog, FhConfigurationService) {
+    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', 'HistoricalIndexFactory', 'ngDialog',
+        function ($scope, $state, $stateParams, HistoricalIndexFactory, ngDialog) {
 
             //hard coded dictionary for now, may change later
             $scope.labels = {
