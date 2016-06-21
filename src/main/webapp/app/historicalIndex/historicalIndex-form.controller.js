@@ -6,7 +6,7 @@
         function ($scope, $state, $stateParams, ApiService, HistoricalIndexFactory, Dictionary, FederalHierarchyService, UserService, ngDialog, FhConfigurationService) {
 
             //hard coded dictionary for now, may change later
-            var labels = {
+            $scope.labels = {
                 agency: "Agency Changed",
                 unarchive: "Reinstated",
                 title: "Title Changed",
@@ -15,33 +15,12 @@
                 publish: "Published"
             };
 
-
-            ////use api service to get data
-            //var oApiParam = {
-            //    apiName: 'historicalChangeEntity',
-            //    apiSuffix: '/' + $stateParams.id,
-            //    method: 'GET'
-            //};
-            //ApiService.call(oApiParam).then(
-            //    function (data) {
-            //        console.log("got this data from api service: ", data);
-            //        $scope.oHistoricalIndex = data;
-            //        $scope.oHistoricalIndex.programTitle = "mock title... ";
-            //        $scope.oHistoricalIndex.reason = "mock reason... ";
-            //        $scope.oHistoricalIndex.actionType = labels[$scope.oHistoricalIndex.actionType];
-            //    },
-            //    function (error) {
-            //        console.log("error happened from api service: ", error);
-            //    }
-            //);
-
             HistoricalIndexFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                 console.log("data: " , data);
                 debugger;
                 $scope.oHistoricalIndex = data;
                 $scope.oHistoricalIndex.programTitle = "mock title... ";
                 $scope.oHistoricalIndex.reason = "mock reason... ";
-                $scope.oHistoricalIndex.actionType = labels[$scope.oHistoricalIndex.actionType];
             });
 
 

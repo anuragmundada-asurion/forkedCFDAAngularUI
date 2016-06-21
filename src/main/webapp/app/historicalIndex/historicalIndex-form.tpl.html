@@ -55,7 +55,7 @@
 
     <div class="usa-width-one-fourth">
         <label for="actionType">Type</label>
-        <input type="text" id="actionType" ng-model="oHistoricalIndex.actionType">
+        <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
     </div>
 
     <div class="usa-width-one-fourth">

@@ -554,6 +554,21 @@ public class ApiController {
         return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
     }
 
+    @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String updateHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                       @PathVariable("id") String id,
+                                       @RequestBody String jsonData) {
+        System.out.println("bout to make the update call");
+        return this.updateCall(accessToken, getHistoricalChangeApiUrl() + "/" + id, jsonData);
+    }
+
+    @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.DELETE)
+    public void deleteHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                     @PathVariable("id") String id) throws SQLException, RuntimeException {
+        System.out.println("bout to make the delete call");
+        this.deleteCall(accessToken, getHistoricalChangeApiUrl() + "/" + id);
+    }
+
     @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.GET)
     public String getFederalHierarchyConfigurationsList(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                         @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
