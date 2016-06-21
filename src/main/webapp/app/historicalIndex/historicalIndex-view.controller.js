@@ -36,6 +36,14 @@
                     console.log("error happened from api service: ", error);
                 }
             );
+
+
+            $scope.deleteHistoricalIndex = function(){
+                console.log("deleteHistoricalIndex called from view page");
+            }
+
+
+
         }
     ]);
 }();

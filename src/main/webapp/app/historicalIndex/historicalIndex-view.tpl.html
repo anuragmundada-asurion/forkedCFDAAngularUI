@@ -54,10 +54,10 @@
     <a ui-sref="historicalIndex">
         <button type="button" class="usa-button-gray">Return</button>
     </a>
-    <a ui-sref="editHistoricalIndex({id: oHistoricalIndex.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_HISTORICAL_INDEX])">
+    <a ui-sref="editHistoricalIndex({id: oHistoricalIndex.id})">
         <button type="button">Edit</button>
     </a>
-    <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_HISTORICAL_INDEX])" ng-click="deleteHistoricalIndex()">Delete</button>
+    <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
 </section>
 
 

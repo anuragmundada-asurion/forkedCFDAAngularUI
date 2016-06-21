@@ -31,47 +31,48 @@
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-third">
-        <label for="name">Name</label>
-        <input type="text" id="name" ng-model="oOrganization.name" disabled="">
+        <label for="programTitle">Fal Name</label>
+        <input type="text" id="programTitle" ng-model="oHistoricalIndex.programTitle" disabled="">
     </div>
 
     <div class="usa-width-one-third">
-        <label for="agencycode">Agency Code</label>
-        <input type="text" id="agencycode" ng-model="oOrganization.agencyCode" disabled="">
+        <label for="programNumber">Fal Number</label>
+        <input type="text" id="programNumber" ng-model="oHistoricalIndex.programNumber" disabled="">
     </div>
 
     <div class="usa-width-one-third">
-        <label for="acronym">Acronym/Shortname</label>
-        <input type="text" id="acronym" ng-model="oOrganization.acronym" disabled="">
+        <label for="fiscalYear">Year</label>
+        <input type="text" id="fiscalYear" ng-model="oHistoricalIndex.fiscalYear" disabled="">
     </div>
 </div>
 
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-fourth">
-        <label for="agencyProgramCode">Agency Program Code</label>
-        <input type="text" id="agencyProgramCode" ng-model="oOrganization.agencyProgramCode" disabled="">
+        <label for="statusCode">Status Code</label>
+        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" disabled="">
     </div>
 
     <div class="usa-width-one-fourth">
-        <label for="programNumberLow">Program Low Number</label>
-        <input type="text" id="programNumberLow" ng-model="oOrganization.programNumberLow">
+        <label for="changeDescription">Description</label>
+        <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
     </div>
 
     <div class="usa-width-one-fourth">
-        <label for="programNumberHigh">Program High Number</label>
-        <input type="text" id="programNumberHigh" ng-model="oOrganization.programNumberHigh">
+        <label for="actionType">Type</label>
+        <input type="text" id="actionType" ng-model="oHistoricalIndex.actionType">
     </div>
 
     <div class="usa-width-one-fourth">
-        <label for="programNumberAuto">Use Manual FAL Number</label>
-        <select id="programNumberAuto" ng-options="item as item.label for item in items track by item.value" ng-model="selected"></select>
+        <label for="reason">Reason</label>
+        <textarea type="text" id="reason" ng-model="oHistoricalIndex.reason"></textarea>
     </div>
 </div>
 
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
     <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
-        <a class="usa-button usa-button-gray-light" ui-sref="organizationList">Cancel</a>
-        <button class="usa-button" ng-click="saveFhConfiguration()">Save</button>
+        <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
+        <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
+        <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
     </div>
 </div>
