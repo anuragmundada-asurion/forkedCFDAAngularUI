@@ -3,7 +3,7 @@
 
     var myApp = angular.module('app');
 
-    myApp.service('MyListingsService', ['DTColumnBuilder', 'AuthorizationService', 'PERMISSIONS', '$filter', function(DTColumnBuilder, AuthorizationService, PERMISSIONS, $filter) {
+    myApp.service('MyListingsService', ['DTColumnBuilder', 'AuthorizationService', 'PERMISSIONS', '$filter', 'SUPPORTED_ROLES', function(DTColumnBuilder, AuthorizationService, PERMISSIONS, $filter, SUPPORTED_ROLES) {
         this.getTitleAnchor = function(data) {
             var status = data['status']['code'];
             var archived = data['archived'];
@@ -48,7 +48,7 @@
                     buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 } else if (status === 'pending' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
                     buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
-                } else if (status === 'published' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS)) {
+                } else if (status === 'published' && (AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS) || (AuthorizationService.authorizeByRole(SUPPORTED_ROLES.AGENCY_USER && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS))))) {
                     buttons.push('<button class="usa-button-compact" type="button" title="Revise FAL" ng-click="reviseProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 }
 
