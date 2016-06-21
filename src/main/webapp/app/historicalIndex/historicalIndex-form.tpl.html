@@ -1,25 +1,20 @@
-
 <primary-nav-bar></primary-nav-bar>
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-whole">
         <h1>Edit Historical Index</h1>
 
-        <div ng-show="flash && flash.type && flash.message" class="usa-alert" ng-class="'usa-alert-'+flash.type">
-            <div class="usa-alert-body">
-                <p class="usa-alert-text">{{ flash.message }}</p>
-            </div>
-        </div>
-
         <ul class="usa-horizontal-list usa-text-small">
             <li>
                 <h5>Created</h5>
+
                 <p>
                     April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
                 </p>
             </li>
             <li>
                 <h5>Modified</h5>
+
                 <p>
                     April 18, 2016 8:00 am by <em>Michael Stephenson</em>
                 </p>
@@ -42,7 +37,7 @@
 
     <div class="usa-width-one-third">
         <label for="fiscalYear">Year</label>
-        <input type="text" id="fiscalYear" ng-model="oHistoricalIndex.fiscalYear" disabled="">
+        <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
     </div>
 </div>
 
