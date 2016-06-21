@@ -23,6 +23,7 @@
             "federalHierarchyList": "/api/federalHierarchies",
             "nextAvailableProgramNumber": "/api/programs/nextAvailableProgramNumber",
             "historicalIndex": "/api/historicalIndex", //:programNumber
+            "historicalChangeEntity": "/api/historicalChange/:id", //:historical change id
             "userAPI": "/api/users/",
             "historicalIndexList": "/api/searchHistoricalIndex"
         };

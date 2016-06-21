@@ -1,0 +1,73 @@
+<primary-nav-bar></primary-nav-bar>
+
+<div class="usa-grid usa-grid-fixed">
+    <div class="usa-width-one-whole">
+        <h1>Edit Historical Index</h1>
+
+        <ul class="usa-horizontal-list usa-text-small">
+            <li>
+                <h5>Created</h5>
+
+                <p>
+                    April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
+                </p>
+            </li>
+            <li>
+                <h5>Modified</h5>
+
+                <p>
+                    April 18, 2016 8:00 am by <em>Michael Stephenson</em>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="usa-grid usa-grid-fixed">
+    <div class="usa-width-one-third">
+        <label for="programTitle">Fal Name</label>
+        <input type="text" id="programTitle" ng-model="oHistoricalIndex.programTitle" disabled="">
+    </div>
+
+    <div class="usa-width-one-third">
+        <label for="programNumber">Fal Number</label>
+        <input type="text" id="programNumber" ng-model="oHistoricalIndex.programNumber" disabled="">
+    </div>
+
+    <div class="usa-width-one-third">
+        <label for="fiscalYear">Year</label>
+        <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
+    </div>
+</div>
+
+
+<div class="usa-grid usa-grid-fixed">
+    <div class="usa-width-one-fourth">
+        <label for="statusCode">Status Code</label>
+        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" >
+    </div>
+
+    <div class="usa-width-one-fourth">
+        <label for="changeDescription">Description</label>
+        <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
+    </div>
+
+    <div class="usa-width-one-fourth">
+        <label for="actionType">Type</label>
+        <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
+    </div>
+
+    <div class="usa-width-one-fourth">
+        <label for="reason">Reason</label>
+        <textarea type="text" id="reason" ng-model="oHistoricalIndex.reason"></textarea>
+    </div>
+</div>
+
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+    <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
+        <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
+        <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
+        <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
+    </div>
+</div>

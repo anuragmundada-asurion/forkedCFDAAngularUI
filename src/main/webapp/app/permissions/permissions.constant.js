@@ -13,6 +13,10 @@
         'CAN_EDIT_REGIONAL_OFFICE': 'CanEditRegionalOffice',
         'CAN_DELETE_REGIONAL_OFFICE': 'CanDeleteRegionalOffice',
 
+        //  Historical Index
+        'CAN_EDIT_HISTORICAL_INDEX': 'CanEditHistoricalIndex',
+        'CAN_DELETE_HISTORICAL_INDEX': 'CanDeleteHistoricalIndex',
+
         //  Create Draft Program
         'CAN_CREATE_PROGRAMS': 'CanCreatePrograms',
 

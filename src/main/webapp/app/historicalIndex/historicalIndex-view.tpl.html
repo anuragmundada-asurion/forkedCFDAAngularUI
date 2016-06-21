@@ -1,0 +1,68 @@
+<primary-nav-bar></primary-nav-bar>
+
+<section class="usa-grid-full">
+    <div ng-show="oHistoricalIndex" class="usa-grid-full">
+        <h2>View Historical Index</h2>
+
+        <div class="usa-width-full vp-section" style="width: 100%;">
+            <div class="usa-width-one-third">
+                <div>
+                    <p class="vp-field-label-big">Fal Name: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.programTitle}}</strong></p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Fal Number: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.programNumber}}</strong></p>
+                </div>
+            </div>
+            <div class="usa-width-one-third">
+                <div>
+                    <p class="vp-field-label-big">Year: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.fiscalYear}}</strong></p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Status Code: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.statusCode}}</strong></p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Description: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.changeDescription}}</strong></p>
+                </div>
+            </div>
+            <div class="usa-width-one-third">
+                <div>
+                    <p class="vp-field-label-big">Type: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.actionType}}</strong></p>
+                </div>
+                <div>
+                    <p class="vp-field-label-big">Reason: </p>
+
+                    <p class="vp-field-value"><strong>{{oHistoricalIndex.reason}}</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
+    <a ui-sref="historicalIndex">
+        <button type="button" class="usa-button-gray">Return</button>
+    </a>
+    <a ui-sref="editHistoricalIndex({id: oHistoricalIndex.id})">
+        <button type="button">Edit</button>
+    </a>
+    <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
+</section>
+
+
+
+
+
+
+

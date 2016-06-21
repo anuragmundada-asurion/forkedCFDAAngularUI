@@ -93,7 +93,10 @@
                         $scope.loadDictionaries(vm.program);
 
                         //reload contacts when object is available
-                        vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});
+                        if(typeof vm.choices == "undefined") vm.choices = {};
+                        if(vm.program.organizationId){
+                            vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});
+                        }
 
                         if (vm.program.status === 'Pending') {
                             var oApiParam = {
@@ -126,6 +129,7 @@
                     });
                 }
 
+                var user = UserService.getUser();
                 angular.extend(vm, {
                     isEdit: $state.is('editProgram'),
                     IsVisible: true,
@@ -160,7 +164,7 @@
                     },
                     choices: angular.extend({
                         programs: ProgramFactory.query({limit: 2500, status: 'published'}),
-                        contacts: vm.program.organizationId ? Contacts.query({agencyId: vm.program.organizationId}) : Contacts.query({agencyId: UserService.getUser().orgId}),
+                        contacts: vm.program.organizationId ? Contacts.query({agencyId: vm.program.organizationId}) : ( user && user.orgId ? Contacts.query({agencyId: user.orgId}) : null ),
                         offices: [
                             {
                                 id: 1,
