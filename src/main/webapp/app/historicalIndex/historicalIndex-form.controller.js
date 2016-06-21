@@ -16,22 +16,47 @@
             };
 
             HistoricalIndexFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                console.log("data: " , data);
-                debugger;
                 $scope.oHistoricalIndex = data;
                 $scope.oHistoricalIndex.programTitle = "mock title... ";
                 $scope.oHistoricalIndex.reason = "mock reason... ";
             });
 
 
-
-
             $scope.years = _.range(1965, new Date().getFullYear());
 
 
             $scope.updateHistoricalIndex = function () {
+                $scope.oHistoricalIndex.$update({id: $scope.oHistoricalIndex.id}).then(function (data) {
+                        ngDialog.open({
+                            template: '<div class="usa-alert usa-alert-success" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<p class="usa-alert-text">The Historical Index Change has been saved successfully !</p>' +
+                            '</div>' +
+                            '</div>',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
+                        });
 
-                console.log("updateHistoricalIndex function called");
+                        //go to list page after 2 seconds
+                        $timeout(function () {
+                            ngDialog.closeAll();
+                            $state.go('historicalIndex');
+                        }, 3000);
+                    },
+                    function (error) {
+                        ngDialog.open({
+                            template: '<div class="usa-alert usa-alert-error" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<h3 class="usa-alert-heading">Error Status</h3>' +
+                            '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
+                            '</div>' +
+                            '</div>',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
+                        });
+                    });
             };
 
             $scope.deleteHistoricalIndex = function () {
