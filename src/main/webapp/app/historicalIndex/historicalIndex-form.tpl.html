@@ -2,7 +2,7 @@
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-whole">
-        <h1>Edit Historical Index</h1>
+        <h2>Edit Historical Index</h2>
     </div>
 </div>
 
@@ -22,7 +22,6 @@
         <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
     </div>
 </div>
-
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-half">
@@ -47,36 +46,22 @@
     </div>
 </div>
 
+<!--This section has the three buttons-->
 <div class="usa-grid usa-grid-fixed usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
        <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
         <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
         <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
 </div>
 
-<!--<div class="usa-grid usa-grid-fixed sub-form"></div>-->
+<!--This section is only visible to super user and not the public(internal use)-->
 <div class="usa-grid">
-<div class="sub-form usa-grid">
+    <div class="sub-form usa-grid">
         <div class="usa-width-one-fourth"><label>Created:</label><span>April 20, 2009 12:48 pm</span></div>
-        <div class="usa-width-one-fourth"><label>By:</label><span>Michael Stephenson</span></div>
+        <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
         <div class="usa-width-one-fourth"><label>Modified:</label><span>April 18, 2016 8:00 am</span></div>
-        <div class="usa-width-one-fourth"><label>By:</label><span>Michael Stephenson</span></div>
+        <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
+    </div>
 </div>
-</div>
-    <!--<ul class="usa-horizontal-list usa-text-small">
-        <li>
-            <h5>Created</h5>
 
-            <p>
-                April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
-            </p>
-        </li>
-        <li>
-            <h5>Modified</h5>
-
-            <p>
-                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
-            </p>
-        </li>
-    </ul>-->
 
 
