@@ -57,3 +57,8 @@
 		font-weight: 200;
 	}
 }
+//wraping of text
+.text-flow{
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
