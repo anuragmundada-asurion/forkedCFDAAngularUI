@@ -45,7 +45,7 @@
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-fourth">
         <label for="statusCode">Status Code</label>
-        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" >
+        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
     </div>
 
     <div class="usa-width-one-fourth">
@@ -67,7 +67,7 @@
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
     <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
         <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
-        <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
-        <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
+        <button class="usa-button" ng-click="updateHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Save</button>
+        <button type="button" ng-click="deleteHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Delete</button>
     </div>
 </div>

@@ -14,6 +14,7 @@
         'CAN_DELETE_REGIONAL_OFFICE': 'CanDeleteRegionalOffice',
 
         //  Historical Index
+        'CAN_VIEW_HISTORICAL_INDEX': 'CanViewHistoricalIndex',
         'CAN_EDIT_HISTORICAL_INDEX': 'CanEditHistoricalIndex',
         'CAN_DELETE_HISTORICAL_INDEX': 'CanDeleteHistoricalIndex',
 
