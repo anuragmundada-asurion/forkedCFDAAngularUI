@@ -22,7 +22,7 @@
              * initialize form
              * @returns void
              */
-            $scope.initSearchForm = function(reloadSearchResult) {
+            $scope.initSearchForm = function (reloadSearchResult) {
                 $scope.historicalIndexSearch = {
                     aChangeEvent: [],
                     aStatus: ($stateParams.hasOwnProperty('status') && typeof $stateParams.status !== 'undefined') ? [$stateParams.status] : [],
@@ -65,11 +65,15 @@
                             label: "Archived"
                         }
                     ],
-                    aYearFrom: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) { return { "elementId":i, "displayValue":i }; }),
-                    aYearTo: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) { return { "elementId":i, "displayValue":i }; })
+                    aYearFrom: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) {
+                        return {"elementId": i, "displayValue": i};
+                    }),
+                    aYearTo: _.range(1960, parseInt(moment().format('YYYY')) + 1, 1).map(function (i) {
+                        return {"elementId": i, "displayValue": i};
+                    })
                 };
 
-                if(reloadSearchResult === true){
+                if (reloadSearchResult === true) {
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             };
@@ -109,8 +113,8 @@
 
             $scope.searchHistoricalIndex = function () {
                 //force a click on collapsible-0 to hide advanced search if its open
-                if($( "#advancedsearchbutton").attr("aria-expanded") === "true"){
-                    $( "#advancedsearchbutton" ).trigger( "click" );
+                if ($("#advancedsearchbutton").attr("aria-expanded") === "true") {
+                    $("#advancedsearchbutton").trigger("click");
                 }
                 $scope.dtInstance.DataTable.ajax.reload();
             };
@@ -164,7 +168,7 @@
 
                 //apply date of change from custom search
                 if ($scope.historicalIndexSearch.currentCalendarYear) {
-                    oApiParam.oParams['oFilterParam'].dateChange =  moment().format('YYYY'); //current calendar year
+                    oApiParam.oParams['oFilterParam'].dateChange = moment().format('YYYY'); //current calendar year
                 }
 
                 //apply organization from custom search
@@ -202,7 +206,7 @@
                                 },
                                 'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': (r['archive']) ? 'Archived' : 'Active',
+                                'status': (r['archive'] && r['latest']) ? 'Archived' :((!r['archive'] && r['latest']) ? 'Active' : 'Past Version'),
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
@@ -238,9 +242,9 @@
             });
 
             // Adding table loading state
-            angular.element('table.usa-table-primary-darkest').on( 'processing.dt', function ( e, settings, processing ) {
-              $('table.usa-table-primary-darkest, .datatable-bottom').addClass( processing ? 'datatable-loading' : '' );
-              $('table.usa-table-primary-darkest, .datatable-bottom').removeClass( processing ? '' : 'datatable-loading' );
+            angular.element('table.usa-table-primary-darkest').on('processing.dt', function (e, settings, processing) {
+                $('table.usa-table-primary-darkest, .datatable-bottom').addClass(processing ? 'datatable-loading' : '');
+                $('table.usa-table-primary-darkest, .datatable-bottom').removeClass(processing ? '' : 'datatable-loading');
             });
 
 
@@ -324,12 +328,14 @@
                 if (d.hasOwnProperty('historicalChanges')) {
                     angular.forEach(d.historicalChanges, function (row) {
                         var actionLabel = $scope.getActionLabel(row.actionType);
+                        var editLink = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
+                        var dscpLink = $compile('<a ui-sref="viewHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + row.body + '</a>')($scope);
                         html +=
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
-                            '<td>' + ((row.actionType !== 'archived') ? ('<a href="/historicalIndex/' + row.historicalIndexId + '/view">' +  row.body +'</a>') : '') + '</td>' +
-                            '<td>' + '<a class="usa-button usa-button-compact" href="/historicalIndex/' + row.historicalIndexId + '/edit">' + '<span class="fa fa-pencil"></span></a>' +
+                            '<td>' + ((row.actionType !== 'archived') ? (dscpLink[0].outerHTML) : '') + '</td>' +
+                            '<td>' + editLink[0].outerHTML +
                             '</tr>';
                     });
                 }

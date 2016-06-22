@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', 'HistoricalIndexFactory', 'ngDialog',
-        function ($scope, $state, $stateParams, HistoricalIndexFactory, ngDialog) {
+    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', 'HistoricalIndexFactory', 'ProgramFactory', 'ngDialog',
+        function ($scope, $state, $stateParams, $timeout, $q, HistoricalIndexFactory, ProgramFactory,  ngDialog) {
 
             //hard coded dictionary for now, may change later
             $scope.labels = {
@@ -15,14 +15,17 @@
                 publish: "Published"
             };
 
-            HistoricalIndexFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                $scope.oHistoricalIndex = data;
-                $scope.oHistoricalIndex.programTitle = "mock title... ";
+            var promises = [];
+            promises.push(HistoricalIndexFactory.get({id: $stateParams.hid}).$promise);
+            promises.push(ProgramFactory.get({id: $stateParams.pid}).$promise);
+            $q.all(promises).then(function(promisesData){
+                $scope.oHistoricalIndex = promisesData[0];
+                $scope.oHistoricalIndex.programTitle = promisesData[1].title;
                 $scope.oHistoricalIndex.reason = "mock reason... ";
             });
 
 
-            $scope.years = _.range(1965, new Date().getFullYear());
+            $scope.years = _.range(1965, new Date().getFullYear() + 1);
 
 
             $scope.updateHistoricalIndex = function () {

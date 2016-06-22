@@ -3,9 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$stateParams', 'HistoricalIndexFactory',
-        function ($scope, $stateParams, HistoricalIndexFactory) {
-
+    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$stateParams', '$timeout', '$q', 'HistoricalIndexFactory', 'ProgramFactory',
+        function ($scope, $stateParams, $timeout, $q, HistoricalIndexFactory, ProgramFactory) {
 
             //hard coded dictionary for now, may change later
             var labels = {
@@ -17,11 +16,18 @@
                 publish: "Published"
             };
 
-            HistoricalIndexFactory.get({id: $stateParams.id}).$promise.then(function (data) {
-                $scope.oHistoricalIndex = data;
-                $scope.oHistoricalIndex.programTitle = "mock title... ";
+            var promises = [];
+            //make sure to pass promise objects,
+            promises.push(HistoricalIndexFactory.get({id: $stateParams.hid}).$promise);
+            promises.push(ProgramFactory.get({id: $stateParams.pid}).$promise);
+            //finish all the promises and then run this function
+            $q.all(promises).then(function (promisesData) {
+                $scope.oHistoricalIndex = promisesData[0];
+                $scope.oHistoricalIndex.programTitle = promisesData[1].title;
+
                 $scope.oHistoricalIndex.reason = "mock reason... ";
                 $scope.oHistoricalIndex.actionType = labels[$scope.oHistoricalIndex.actionType];
+                $scope.oHistoricalIndex.pid = $stateParams.pid;
             });
 
 
@@ -60,7 +66,6 @@
                         });
                 }
             };
-
 
         }
     ]);

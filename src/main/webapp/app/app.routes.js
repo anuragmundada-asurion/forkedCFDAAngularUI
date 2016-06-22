@@ -135,16 +135,26 @@
                     controller: "HistoricalIndexListController"
                 })
                 .state('viewHistoricalIndex', {
-                    url: "/historicalIndex/:id/view",
+                    url: "/historicalIndex/:hid/view/:pid",
                     templateUrl: "historicalIndex/historicalIndex-view.tpl.html",
                     controller: "HistoricalIndexViewCtrl",
-                    title: 'View Historical Index- CFDA: View Historical Index'
+                    title: 'View Historical Index- CFDA: View Historical Index',
+                    //access: {
+                    //    requiredPermissions: [
+                    //        PERMISSIONS.CAN_VIEW_HISTORICAL_INDEX
+                    //    ]
+                    //}
                 })
                 .state('editHistoricalIndex', {
-                    url: "/historicalIndex/:id/edit",
+                    url: "/historicalIndex/:hid/edit/:pid",
                     templateUrl: "historicalIndex/historicalIndex-form.tpl.html",
                     controller: "HistoricalIndexFormCtrl",
-                    title: 'Edit Historical Index- CFDA: Edit Historical Index'
+                    title: 'Edit Historical Index- CFDA: Edit Historical Index',
+                    //access: {
+                    //    requiredPermissions: [
+                    //        PERMISSIONS.CAN_EDIT_HISTORICAL_INDEX
+                    //    ]
+                    //}
                 })
                 //router for public view of regional agency offices list
                 .state('publicRegionalOfficeList', {

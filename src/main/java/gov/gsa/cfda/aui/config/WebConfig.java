@@ -33,6 +33,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 
                 "/historicalIndex",
                 "/historicalIndex/{list:\\w+}/{filter:\\w+}",
+                "/historicalIndex/{hid:\\w+}/view/{pid:\\w+}",
+                "/historicalIndex/{hid:\\w+}/edit/{pid:\\w+}",
 
 
                 "/agency/main",
