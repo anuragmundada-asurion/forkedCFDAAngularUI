@@ -24,20 +24,20 @@
 </div>
 
 <div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-half">
+    <div class="usa-width-one-third">
         <label for="statusCode">Status Code</label>
         <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" >
     </div>
 
-    <div class="usa-width-one-half">
-        <label for="changeDescription">Description</label>
-        <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
+    <div class="usa-width-one-third">
+        <label for="actionType">Type</label>
+        <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
     </div>
 </div>
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-half">
-        <label for="actionType">Type</label>
-        <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
+        <label for="changeDescription">Description</label>
+        <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
     </div>
 
     <div class="usa-width-one-half">
