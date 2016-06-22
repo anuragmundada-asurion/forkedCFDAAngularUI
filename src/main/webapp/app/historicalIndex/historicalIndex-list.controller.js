@@ -202,7 +202,7 @@
                                 },
                                 'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': (r['archive']) ? 'Archived' : 'Active',
+                                'status': (r['archive'] && r['latest']) ? 'Archived' :((!r['archive'] && r['latest']) ? 'Active' : 'Past Version'),
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
