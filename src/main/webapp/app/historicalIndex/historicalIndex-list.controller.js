@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment', 'AuthorizationService',
-        function ($scope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment, AuthorizationService) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$rootScope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment', 'AuthorizationService', 'ROLES',
+        function ($scope, $rootScope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment, AuthorizationService, ROLES) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -206,7 +206,7 @@
                                 },
                                 'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
-                                'status': (r['archive'] && r['latest']) ? 'Archived' :((!r['archive'] && r['latest']) ? 'Active' : 'Past Version'),
+                                'status': (r['archive'] && r['latest']) ? 'Archived' : ((!r['archive'] && r['latest']) ? 'Active' : 'Past Version'),
                                 'historicalChanges': r['historicalChanges']
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
@@ -327,15 +327,25 @@
 
                 if (d.hasOwnProperty('historicalChanges')) {
                     angular.forEach(d.historicalChanges, function (row) {
+
+                        var editIcon, description;
                         var actionLabel = $scope.getActionLabel(row.actionType);
-                        var editLink = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
-                        var dscpLink = $compile('<a ui-sref="viewHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + row.body + '</a>')($scope);
+
+                        //only show links if signed in as super user
+                        if ($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])) {
+                            editIcon = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
+                            description = $compile('<a ui-sref="viewHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + row.body + '</a>')($scope);
+                        } else {
+                            editIcon = $compile('<span></span>')($scope);
+                            description = $compile('<span>' + row.body + '</span>')($scope);
+                        }
+
                         html +=
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
-                            '<td>' + ((row.actionType !== 'archived') ? (dscpLink[0].outerHTML) : '') + '</td>' +
-                            '<td>' + editLink[0].outerHTML +
+                            '<td>' + ((row.actionType !== 'archived') ? (description[0].outerHTML) : '') + '</td>' +
+                            '<td>' + editIcon[0].outerHTML + '</td>' +
                             '</tr>';
                     });
                 }
