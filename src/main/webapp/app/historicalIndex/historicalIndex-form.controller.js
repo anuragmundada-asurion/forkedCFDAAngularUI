@@ -25,7 +25,7 @@
             });
 
 
-            $scope.years = _.range(1965, new Date().getFullYear());
+            $scope.years = _.range(1965, new Date().getFullYear() + 1);
 
 
             $scope.updateHistoricalIndex = function () {
