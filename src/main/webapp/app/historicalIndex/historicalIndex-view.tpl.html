@@ -54,7 +54,7 @@
     <a ui-sref="historicalIndex">
         <button type="button" class="usa-button-gray">Return</button>
     </a>
-    <a ui-sref="editHistoricalIndex({id: oHistoricalIndex.id})" ng-if="hasRole([ROLES.SUPER_USER])">
+    <a ui-sref="editHistoricalIndex({hid: oHistoricalIndex.id, pid: oHistoricalIndex.pid})" ng-if="hasRole([ROLES.SUPER_USER])">
         <button type="button">Edit</button>
     </a>
     <button type="button" ng-click="deleteHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Delete</button>

@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', 'HistoricalIndexFactory', 'ProgramFactory', 'ngDialog',
-        function ($scope, $state, $stateParams, HistoricalIndexFactory, ProgramFactory,  ngDialog) {
+    myApp.controller('HistoricalIndexFormCtrl', ['$scope', '$state', '$stateParams', '$timeout', 'HistoricalIndexFactory', 'ProgramFactory', 'ngDialog',
+        function ($scope, $state, $stateParams, $timeout, HistoricalIndexFactory, ProgramFactory,  ngDialog) {
 
             //hard coded dictionary for now, may change later
             $scope.labels = {
@@ -18,7 +18,6 @@
             HistoricalIndexFactory.get({id: $stateParams.hid}).$promise.then(function (historicalIndexChange) {
                 $scope.oHistoricalIndex = historicalIndexChange;
                 ProgramFactory.get({id: $stateParams.pid}).$promise.then(function(program){
-                    console.log("got this program: ", program);
                     $scope.oHistoricalIndex.programTitle = program.title;
                 });
                 $scope.oHistoricalIndex.reason = "mock reason... ";

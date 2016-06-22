@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$stateParams', 'HistoricalIndexFactory', 'ProgramFactory',
-        function ($scope, $stateParams, HistoricalIndexFactory, ProgramFactory) {
+    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$stateParams', '$timeout', 'HistoricalIndexFactory', 'ProgramFactory',
+        function ($scope, $stateParams, $timeout, HistoricalIndexFactory, ProgramFactory) {
 
 
             //hard coded dictionary for now, may change later
@@ -19,9 +19,9 @@
 
             HistoricalIndexFactory.get({id: $stateParams.hid}).$promise.then(function (data) {
                 $scope.oHistoricalIndex = data;
-                ProgramFactory.get({id: $stateParams.pid}).$promise.then(function(program){
-                    console.log("got this program: ", program);
+                ProgramFactory.get({id: $stateParams.pid}).$promise.then(function (program) {
                     $scope.oHistoricalIndex.programTitle = program.title;
+                    $scope.oHistoricalIndex.pid = $stateParams.pid;
                 });
                 $scope.oHistoricalIndex.reason = "mock reason... ";
                 $scope.oHistoricalIndex.actionType = labels[$scope.oHistoricalIndex.actionType];
