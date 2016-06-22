@@ -6,7 +6,7 @@
       <a ng-class="isActiveList() ? 'usa-current' : '';" ui-sref='programList({list: "activePrograms"})' ng-click="changeList('activePrograms')">Active Listings</a>
     </li>
     <li>
-      <a ng-class="isArchivedList() ? 'usa-current' : '';" ui-sref='programList({list: "archivePrograms"})' ng-click="changeList('archivedPrograms')">Archived Listings</a>
+      <a ng-class="isArchivedList() ? 'usa-current' : '';" ui-sref='programList({list: "archivedPrograms"})' ng-click="changeList('archivedPrograms')">Archived Listings</a>
     </li>
     <li>
       <a ng-class="isRequestList() ? 'usa-current' : '';" ui-sref='programList({list: "requests"})' ng-if="hasPermission([PERMISSIONS.CAN_VIEW_REQUESTS])" ng-click="changeList('requests')">Requests</a>
