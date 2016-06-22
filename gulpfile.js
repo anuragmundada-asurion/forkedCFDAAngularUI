@@ -196,10 +196,10 @@ gulp.task('test-dependencies', function() {
 });
 
 gulp.task('test', ['test-dependencies'], function(done) {
-    //new karmaServer({
-    //    configFile: __dirname + '/src/test/javascript/karma.conf.js',
-    //    singleRun: true
-    //}, done).start();
+    new karmaServer({
+        configFile: __dirname + '/src/test/javascript/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 gulp.task('watch', function(){
