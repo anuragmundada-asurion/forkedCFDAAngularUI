@@ -135,7 +135,7 @@
                     controller: "HistoricalIndexListController"
                 })
                 .state('viewHistoricalIndex', {
-                    url: "/historicalIndex/:id/view",
+                    url: "/historicalIndex/:hid/view/:pid",
                     templateUrl: "historicalIndex/historicalIndex-view.tpl.html",
                     controller: "HistoricalIndexViewCtrl",
                     title: 'View Historical Index- CFDA: View Historical Index',

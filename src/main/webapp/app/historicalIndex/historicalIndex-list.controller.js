@@ -325,11 +325,12 @@
                     angular.forEach(d.historicalChanges, function (row) {
                         var actionLabel = $scope.getActionLabel(row.actionType);
                         var editLink = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
+                        var dscpLink = $compile('<a ui-sref="viewHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' +  row.body +'</a>')($scope);
                         html += 
                             '<tr>' +
                             '<td>' + row.fiscalYear + ((row.statusCode !== null && row.statusCode !== '') ? ' (' + row.statusCode + ')' : '') + '</td>' +
                             '<td>' + actionLabel + '</td>' +
-                            '<td>' + ((row.actionType !== 'archived') ? ('<a href="/historicalIndex/' + row.historicalIndexId + '/view">' +  row.body +'</a>') : '') + '</td>' +
+                            '<td>' + ((row.actionType !== 'archived') ? (dscpLink[0].outerHTML) : '') + '</td>' +
                             '<td>' + editLink[0].outerHTML +
                             '</tr>';
                     });
