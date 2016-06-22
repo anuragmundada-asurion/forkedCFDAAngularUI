@@ -1,68 +1,53 @@
 <primary-nav-bar></primary-nav-bar>
 
 <section class="usa-grid-full">
-    <div ng-show="oHistoricalIndex" class="usa-grid-full">
+    <div ng-show="oHistoricalIndex" class="usa-grid">
         <h2>View Historical Index</h2>
-
         <div class="usa-width-full vp-section" style="width: 100%;">
-            <div class="usa-width-one-third">
-                <div>
-                    <p class="vp-field-label-big">Fal Name: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.programTitle}}</strong></p>
+            <div class="usa-grid-full">
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Fal Name: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.programTitle}}</strong></span>
                 </div>
-                <div>
-                    <p class="vp-field-label-big">Fal Number: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.programNumber}}</strong></p>
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Year: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.fiscalYear}}</strong></span>
                 </div>
-            </div>
-            <div class="usa-width-one-third">
-                <div>
-                    <p class="vp-field-label-big">Year: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.fiscalYear}}</strong></p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Status Code: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.statusCode}}</strong></p>
-                </div>
-                <div>
-                    <p class="vp-field-label-big">Description: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.changeDescription}}</strong></p>
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Type: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.actionType}}</strong></span>
                 </div>
             </div>
-            <div class="usa-width-one-third">
-                <div>
-                    <p class="vp-field-label-big">Type: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.actionType}}</strong></p>
+            <div class="usa-grid-full">
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Fal Number: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.programNumber}}</strong></span>
                 </div>
-                <div>
-                    <p class="vp-field-label-big">Reason: </p>
-
-                    <p class="vp-field-value"><strong>{{oHistoricalIndex.reason}}</strong></p>
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Status Code: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.statusCode}}</strong></span>
                 </div>
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Reason: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.reason}}</strong></span>
+                </div>
+            </div>
+            <div class="usa-grid-full">
+                <div class="usa-width-one-third">
+                    <label class="vp-field-label-big usa-margin-bottom-1">Description: </label>
+                    <span class="vp-field-value"><strong>{{oHistoricalIndex.changeDescription}}</strong></span>
+                </div>
+                <div class="usa-width-one-third"></div>
+                <div class="usa-width-one-third"></div>
             </div>
         </div>
     </div>
 </section>
-
-<section class="usa-grid-full" style="margin-top: 10px; margin-right: -565px; margin-bottom: 10px;">
-    <a ui-sref="historicalIndex">
-        <button type="button" class="usa-button-gray">Return</button>
-    </a>
-    <a ui-sref="editHistoricalIndex({hid: oHistoricalIndex.id, pid: oHistoricalIndex.pid})" ng-if="hasRole([ROLES.SUPER_USER])">
-        <button type="button">Edit</button>
-    </a>
+<!--This section has the three buttons-->
+<section class="usa-grid usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
+    <a ui-sref="historicalIndex"><button type="button" class="usa-button-gray">Return</button></a>
+    <a ui-sref="editHistoricalIndex({hid: oHistoricalIndex.id, pid: oHistoricalIndex.pid})" ng-if="hasRole([ROLES.SUPER_USER])"><button type="button">Edit</button></a>
     <button type="button" ng-click="deleteHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Delete</button>
 </section>
-
-
-
-
-
 
 
