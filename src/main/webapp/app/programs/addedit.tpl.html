@@ -2167,7 +2167,7 @@
 
   <div ng-repeat="account in gsavm.program.financial.accounts">
     <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!account.code" trigger-click-on-enter>121 Account Identification, Code is required for Account # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="!validateFieldByRegex('^[0-9\-\_]*$', account.code)" trigger-click-on-enter>121 Account Identification, Code is not valid for Account # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('121 Account Identification')" ng-show="account.code.length < 15 || !validateFieldByRegex('^[0-9\-]*$', account.code)" trigger-click-on-enter>121 Account Identification, Provide a valid number using only numerical values. Code is not valid for Account # {{$index + 1}}<br/></a>
   </div>
   <a ng-click="uxForm.goToBookmarkByText('122 Obligations')" ng-show="!gsavm.program.financial.obligations || gsavm.program.financial.obligations.length==0 " trigger-click-on-enter>122 Obligations is required<br/></a>
 
@@ -2191,12 +2191,12 @@
     <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.departmentCode" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field is required for TAF # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!taf.accountCode" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field is required for TAF # {{$index + 1}}<br/></a>
 
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.departmentCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field; Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.allocationTransferAgency && !validateFieldByRegex('^[0-9]*$', taf.allocationTransferAgency)" trigger-click-on-enter>124 TAFS Codes, Allocation Transfer Agency field; Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.fy1 && !validateFieldByRegex('^[0-9]*$', taf.fy1)" trigger-click-on-enter>124 TAFS Codes, FY 1 field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.fy2 && !validateFieldByRegex('^[0-9]*$', taf.fy2)" trigger-click-on-enter>124 TAFS Codes, FY 2 Code field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.accountCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field; Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.subAccountCode && !validateFieldByRegex('^[0-9]*$', taf.subAccountCode)" trigger-click-on-enter>124 TAFS Codes, TAFS Sub-Account field; Provide a valid number using digits 000-999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.departmentCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Dept Code field, Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.allocationTransferAgency && !validateFieldByRegex('^[0-9]*$', taf.allocationTransferAgency)" trigger-click-on-enter>124 TAFS Codes, Allocation Transfer Agency field, Provide a valid number using digits 00-99 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.fy1 && !validateFieldByRegex('^[0-9]*$', taf.fy1)" trigger-click-on-enter>124 TAFS Codes, FY 1 field, Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.fy2 && !validateFieldByRegex('^[0-9]*$', taf.fy2)" trigger-click-on-enter>124 TAFS Codes, FY 2 Code field, Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="!validateFieldByRegex('^[0-9]*$', taf.accountCode)" trigger-click-on-enter>124 TAFS Codes, Treasury Account Main Code field, Provide a valid number using digits 0000-9999 for TAF # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('124 TAFS Codes - Unique Treasury Appropriation Fund Symbols')" ng-show="taf.subAccountCode && !validateFieldByRegex('^[0-9]*$', taf.subAccountCode)" trigger-click-on-enter>124 TAFS Codes, TAFS Sub-Account field, Provide a valid number using digits 000-999 for TAF # {{$index + 1}}<br/></a>
 
 
   </div>
@@ -2213,7 +2213,7 @@
   <div ng-repeat="hqContact in gsavm.program.contacts.list">
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.fullName" trigger-click-on-enter>152 Headquarters Office, Full Name is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.email" trigger-click-on-enter>152 Headquarters Office, Email is missing for HQ Contact # {{$index + 1}}<br/></a>
-    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)" trigger-click-on-enter>152 Headquarters Office, Email format is invalid for HQ Contact # {{$index + 1}}<br/></a>
+    <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)" trigger-click-on-enter>152 Headquarters Office, Please enter a valid Internet email address for # {{$index + 1}}. Format: username@host.domain.<br/></a>
 
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.phone" trigger-click-on-enter>152 Headquarters Office, Phone is missing for HQ Contact # {{$index + 1}}<br/></a>
     <a ng-click="uxForm.goToBookmarkByText('152 Headquarters Office')" ng-show="!hqContact.address" trigger-click-on-enter>152 Headquarters Office, Address is missing for HQ Contact # {{$index + 1}}<br/></a>
@@ -2224,8 +2224,8 @@
 
 
   <a ng-click="uxForm.goToBookmarkByText('153 Website')"
-     ng-show="!validateFieldByRegex('website_url', gsavm.program.website)" trigger-click-on-enter>
-    153 Website; Website format is invalid.<br/></a>
+     ng-show="gsavm.program.website.length > 0 && !validateFieldByRegex('website-url', gsavm.program.website)" trigger-click-on-enter>
+    153 Website, Please enter a valid url. [protocol]://hostname.domain. Protocol can be ftp, http, or https. Spaces are not allowed.<br/></a>
 
 
 

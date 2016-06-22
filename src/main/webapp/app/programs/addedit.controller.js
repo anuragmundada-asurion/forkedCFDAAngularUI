@@ -657,7 +657,7 @@
 
                                 //check things in accounts array
                                 vm.program.financial.accounts.forEach(function (account, index, array) {
-                                    if (!account.code || !$scope.validateFieldByRegex('^[0-9\-\_]*$', account.code)) {
+                                    if (!account.code || !$scope.validateFieldByRegex('^[0-9\-]*$', account.code) || account.code.length < 15) {
                                         requiredFieldsMissing = true;
                                     }
                                 });
