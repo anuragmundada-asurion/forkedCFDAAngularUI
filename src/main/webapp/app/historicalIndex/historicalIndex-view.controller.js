@@ -25,7 +25,6 @@
                 $scope.oHistoricalIndex = promisesData[0];
                 $scope.oHistoricalIndex.programTitle = promisesData[1].title;
 
-                $scope.oHistoricalIndex.reason = "mock reason... ";
                 $scope.oHistoricalIndex.actionType = labels[$scope.oHistoricalIndex.actionType];
                 $scope.oHistoricalIndex.pid = $stateParams.pid;
             });

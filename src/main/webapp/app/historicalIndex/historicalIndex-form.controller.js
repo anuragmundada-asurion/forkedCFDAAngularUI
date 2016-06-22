@@ -21,7 +21,6 @@
             $q.all(promises).then(function(promisesData){
                 $scope.oHistoricalIndex = promisesData[0];
                 $scope.oHistoricalIndex.programTitle = promisesData[1].title;
-                $scope.oHistoricalIndex.reason = "mock reason... ";
             });
 
 
