@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'IAE-custom_icons';
+    src:    url('fonts/IAE-custom_icons.eot?v7js5f');
+    src:    url('fonts/IAE-custom_icons.eot?v7js5f#iefix') format('embedded-opentype'),
+        url('fonts/IAE-custom_icons.ttf?v7js5f') format('truetype'),
+        url('fonts/IAE-custom_icons.woff?v7js5f') format('woff'),
+        url('fonts/IAE-custom_icons.svg?v7js5f#IAE-custom_icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.iae-icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'IAE-custom_icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.iae-card:before {
+    content: "\e911";
+}
+.iae-checkid:before {
+    content: "\e912";
+}
+.iae-email:before {
+    content: "\e913";
+}
+.iae-gear:before {
+    content: "\e914";
+}
+.iae-business:before {
+    content: "\e900";
+}
+.iae-catalog .path1:before {
+    content: "\e901";
+    color: rgb(77, 130, 8);
+}
+.iae-catalog .path2:before {
+    content: "\e902";
+    margin-left: -1.0205078125em;
+    color: rgb(141, 198, 63);
+}
+.iae-catalog .path3:before {
+    content: "\e903";
+    margin-left: -1.0205078125em;
+    color: rgb(255, 255, 255);
+}
+.iae-hierarchy:before {
+    content: "\e904";
+}
+.iae-performance .path1:before {
+    content: "\e905";
+    color: rgb(141, 198, 63);
+}
+.iae-performance .path2:before {
+    content: "\e906";
+    margin-left: -1.68359375em;
+    color: rgb(77, 130, 8);
+}
+.iae-performance .path3:before {
+    content: "\e907";
+    margin-left: -1.68359375em;
+    color: rgb(255, 255, 255);
+}
+.iae-procurement:before {
+    content: "\e908";
+}
+.iae-registration .path1:before {
+    content: "\e909";
+    color: rgb(77, 130, 8);
+}
+.iae-registration .path2:before {
+    content: "\e90a";
+    margin-left: -0.6494140625em;
+    color: rgb(141, 198, 63);
+}
+.iae-registration .path3:before {
+    content: "\e90b";
+    margin-left: -0.6494140625em;
+    color: rgb(77, 130, 8);
+}
+.iae-subaward .path1:before {
+    content: "\e90c";
+    color: rgb(141, 198, 63);
+}
+.iae-subaward .path2:before {
+    content: "\e90d";
+    margin-left: -0.935546875em;
+    color: rgb(77, 130, 8);
+}
+.iae-wage .path1:before {
+    content: "\e90e";
+    color: rgb(77, 130, 8);
+}
+.iae-wage .path2:before {
+    content: "\e90f";
+    margin-left: -1.4208984375em;
+    color: rgb(255, 255, 255);
+}
+.iae-wage .path3:before {
+    content: "\e910";
+    margin-left: -1.4208984375em;
+    color: rgb(77, 130, 8);
+}
+

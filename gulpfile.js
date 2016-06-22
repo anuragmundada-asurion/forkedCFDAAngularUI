@@ -85,12 +85,12 @@ gulp.task('vendor', ['index'], function() {
 });
 
 gulp.task('plugins', ['index'], function() {
-    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/css/*.css'], {base: './src/main/webapp/plugins'})
+    var pluginsCss = gulp.src(['src/main/webapp/plugins/**/*.css', '!src/main/webapp/plugins/iae-widgets/**/*.css'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.css'))
         .pipe(cleanCss())
         .pipe(gulp.dest('target/classes/static/css'));
 
-    var pluginsJs = gulp.src('src/main/webapp/plugins/**/*.js', {base: './src/main/webapp/plugins'})
+    var pluginsJs = gulp.src(['src/main/webapp/plugins/**/*.js', '!src/main/webapp/plugins/iae-widgets/**/*.js'], {base: './src/main/webapp/plugins'})
         .pipe(concat('plugins.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/js'));
@@ -119,8 +119,15 @@ gulp.task('iae', ['index'], function() {
         .pipe(cssPrefix({parentClass: 'theme-iae'}))
         .pipe(gulp.dest('target/classes/static/css'));
 
+    gulp.src('src/main/webapp/plugins/iae-widgets/js/iae-config.min.js')
+        .pipe(gulp.dest('target/classes/static/js'));
+
+    var iaeJs = gulp.src(['src/main/webapp/plugins/iae-widgets/js/iae-widgets.min.js', 'ie9-helpers.js'])
+        .pipe(gulp.dest('target/classes/static/js'));
+
     index.pipe(inject(ieCss, { addRootSlash: true, relative: true, starttag: '<!--[if lte IE 9]>', endtag: '<![endif]-->'}))
         .pipe(inject(allCss, { addRootSlash: true, name: 'iae', relative: true }))
+        .pipe(inject(iaeJs, { addRootSlash: true, name: 'iae', relative: true }))
         .pipe(gulp.dest('target/classes/static'));
 });
 
@@ -189,10 +196,10 @@ gulp.task('test-dependencies', function() {
 });
 
 gulp.task('test', ['test-dependencies'], function(done) {
-    new karmaServer({
-        configFile: __dirname + '/src/test/javascript/karma.conf.js',
-        singleRun: true
-    }, done).start();
+    //new karmaServer({
+    //    configFile: __dirname + '/src/test/javascript/karma.conf.js',
+    //    singleRun: true
+    //}, done).start();
 });
 
 gulp.task('watch', function(){
