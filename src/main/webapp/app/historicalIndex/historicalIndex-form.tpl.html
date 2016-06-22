@@ -3,26 +3,8 @@
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-whole">
         <h1>Edit Historical Index</h1>
-
-        <ul class="usa-horizontal-list usa-text-small">
-            <li>
-                <h5>Created</h5>
-
-                <p>
-                    April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
-                </p>
-            </li>
-            <li>
-                <h5>Modified</h5>
-
-                <p>
-                    April 18, 2016 8:00 am by <em>Michael Stephenson</em>
-                </p>
-            </li>
-        </ul>
     </div>
 </div>
-
 
 <div class="usa-grid usa-grid-fixed">
     <div class="usa-width-one-third">
@@ -43,22 +25,23 @@
 
 
 <div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-fourth">
+    <div class="usa-width-one-half">
         <label for="statusCode">Status Code</label>
-        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
+        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" >
     </div>
 
-    <div class="usa-width-one-fourth">
+    <div class="usa-width-one-half">
         <label for="changeDescription">Description</label>
         <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
     </div>
-
-    <div class="usa-width-one-fourth">
+</div>
+<div class="usa-grid usa-grid-fixed">
+    <div class="usa-width-one-half">
         <label for="actionType">Type</label>
         <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
     </div>
 
-    <div class="usa-width-one-fourth">
+    <div class="usa-width-one-half">
         <label for="reason">Reason</label>
         <textarea type="text" id="reason" ng-model="oHistoricalIndex.reason"></textarea>
     </div>
@@ -67,7 +50,27 @@
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
     <div class="usa-width-one-half usa-margin-top-3 usa-margin-bottom-3">
         <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
-        <button class="usa-button" ng-click="updateHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Save</button>
-        <button type="button" ng-click="deleteHistoricalIndex()" ng-if="hasRole([ROLES.SUPER_USER])">Delete</button>
+        <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
+        <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
     </div>
 </div>
+
+<div class="usa-grid">
+    <ul class="usa-horizontal-list usa-text-small">
+        <li>
+            <h5>Created</h5>
+
+            <p>
+                April 20, 2009 12:48 pm by <em>Michael Stephenson</em>
+            </p>
+        </li>
+        <li>
+            <h5>Modified</h5>
+
+            <p>
+                April 18, 2016 8:00 am by <em>Michael Stephenson</em>
+            </p>
+        </li>
+    </ul>
+</div>
+
