@@ -17,6 +17,9 @@
             };
             $scope.searchKeyword = '';
             $scope.previousState = null;
+            $scope.defaultText = {
+                nothingSelected : "Select Divison"
+            };
             var aDictionay = ['regional_office_division', 'states'];
 
             var userOrgId = UserService.getUserOrgId();
