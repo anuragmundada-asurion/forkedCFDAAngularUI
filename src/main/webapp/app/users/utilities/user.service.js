@@ -94,6 +94,8 @@
             };
 
             this.fetchUserOrganizationIDs = function(){
+                localStorageService.set('hasUserAllOrganizationIDs', false);
+
                 if (this.getUserOrgId() !== null) {
                     //init  userOrganizationIDs storage with assigned orgID
                     localStorageService.set('userOrganizationIDs', [this.getUserOrgId()]);
@@ -123,9 +125,17 @@
 
                     //OMB_ANALYST and RMO_SUPER_USER: FECTH CUSTOM ORGANIZATION
                     if (angular.equals(this.getUserRole(), SUPPORTED_ROLES.OMB_ANALYST) || angular.equals(this.getUserRole(), SUPPORTED_ROLES.RMO_SUPER_USER)) {
-                        //TODO API CALL BACK AND PUSH TO aOrgID
-                        //aOrgID.push();
-                        //localStorageService.set('userOrganizationIDs', aOrgID);
+                        console.log('.getUser().getOrganizationType()', this.getUser().getOrganizationType());
+                        
+                        if(this.getUser().getOrganizationType() === 'custom') {
+                            if(angular.isArray(this.getUser().getAssignedOrganizationIds()) && this.getUser().getAssignedOrganizationIds().length > 0) {
+                                console.log('Custom arrays: ', [this.getUserOrgId()].concat(this.getUser().getAssignedOrganizationIds()))
+                                
+                                localStorageService.set('userOrganizationIDs', [this.getUserOrgId()].concat(this.getUser().getAssignedOrganizationIds()));
+                            }
+                        } else if(this.getUser().getOrganizationType() === 'all') {
+                            localStorageService.set('hasUserAllOrganizationIDs', true);
+                        }
                     }
                 } else {
                     localStorageService.set('userOrganizationIDs', []);
@@ -134,6 +144,10 @@
 
             this.getUserAllOrgIDs = function() {
                 return localStorageService.get('userOrganizationIDs');
+            };
+
+            this.hasUserAllOrgIDs = function() {
+                return localStorageService.get('hasUserAllOrganizationIDs');
             };
 
             var self = this;

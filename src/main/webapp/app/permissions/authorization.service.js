@@ -57,8 +57,8 @@
          * @returns Boolean
          */
         this.authorizeByOrganization = function(orgID) {
-            //super users has access to organization
-            if(this.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.LIMITED_SUPER_USER])) {
+            //authorized users has access to all organizations
+            if(UserService.hasUserAllOrgIDs() || this.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.LIMITED_SUPER_USER])) {
                 return true;
             } else {
                 return (_.includes(UserService.getUserAllOrgIDs(), orgID));
