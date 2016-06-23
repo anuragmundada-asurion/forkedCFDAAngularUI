@@ -125,12 +125,8 @@
 
                     //OMB_ANALYST and RMO_SUPER_USER: FECTH CUSTOM ORGANIZATION
                     if (angular.equals(this.getUserRole(), SUPPORTED_ROLES.OMB_ANALYST) || angular.equals(this.getUserRole(), SUPPORTED_ROLES.RMO_SUPER_USER)) {
-                        console.log('.getUser().getOrganizationType()', this.getUser().getOrganizationType());
-                        
                         if(this.getUser().getOrganizationType() === 'custom') {
                             if(angular.isArray(this.getUser().getAssignedOrganizationIds()) && this.getUser().getAssignedOrganizationIds().length > 0) {
-                                console.log('Custom arrays: ', [this.getUserOrgId()].concat(this.getUser().getAssignedOrganizationIds()))
-                                
                                 localStorageService.set('userOrganizationIDs', [this.getUserOrgId()].concat(this.getUser().getAssignedOrganizationIds()));
                             }
                         } else if(this.getUser().getOrganizationType() === 'all') {
