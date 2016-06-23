@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$stateParams', '$timeout', '$q', 'HistoricalIndexFactory', 'ProgramFactory', 'ngDialog',
-        function ($scope, $stateParams, $timeout, $q, HistoricalIndexFactory, ProgramFactory, ngDialog) {
+    myApp.controller('HistoricalIndexViewCtrl', ['$scope', '$state', '$stateParams', '$timeout', '$q', 'HistoricalIndexFactory', 'ProgramFactory', 'ngDialog',
+        function ($scope, $state, $stateParams, $timeout, $q, HistoricalIndexFactory, ProgramFactory, ngDialog) {
 
             //hard coded dictionary for now, may change later
             var labels = {

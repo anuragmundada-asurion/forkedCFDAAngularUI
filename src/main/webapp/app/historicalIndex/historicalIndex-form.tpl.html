@@ -1,67 +1,67 @@
 <primary-nav-bar></primary-nav-bar>
-
-<div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-whole">
-        <h2>Edit Historical Index</h2>
-    </div>
-</div>
-
-<div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-third">
-        <label for="programTitle">Fal Name</label>
-        <input type="text" id="programTitle" ng-model="oHistoricalIndex.programTitle" disabled="">
+<div ng-show="oHistoricalIndex">
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-whole">
+            <h2>Edit Historical Index</h2>
+        </div>
     </div>
 
-    <div class="usa-width-one-third">
-        <label for="programNumber">Fal Number</label>
-        <input type="text" id="programNumber" ng-model="oHistoricalIndex.programNumber" disabled="">
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-third">
+            <label for="programTitle">Fal Name</label>
+            <input type="text" id="programTitle" ng-model="oHistoricalIndex.programTitle" disabled="">
+        </div>
+
+        <div class="usa-width-one-third">
+            <label for="programNumber">Fal Number</label>
+            <input type="text" id="programNumber" ng-model="oHistoricalIndex.programNumber" disabled="">
+        </div>
+
+        <div class="usa-width-one-third">
+            <label for="fiscalYear">Year</label>
+            <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
+        </div>
     </div>
 
-    <div class="usa-width-one-third">
-        <label for="fiscalYear">Year</label>
-        <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
-    </div>
-</div>
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-third">
+            <label for="statusCode">Status Code</label>
+            <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
+        </div>
 
-<div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-third">
-        <label for="statusCode">Status Code</label>
-        <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode" >
+        <div class="usa-width-one-third">
+            <label for="actionType">Type</label>
+            <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
+        </div>
+    </div>
+    <div class="usa-grid usa-grid-fixed">
+        <div class="usa-width-one-half">
+            <label for="changeDescription">Description</label>
+            <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
+        </div>
+
+        <div class="usa-width-one-half">
+            <label for="reason">Reason</label>
+            <textarea type="text" id="reason" ng-model="oHistoricalIndex.reason"></textarea>
+        </div>
     </div>
 
-    <div class="usa-width-one-third">
-        <label for="actionType">Type</label>
-        <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
-    </div>
-</div>
-<div class="usa-grid usa-grid-fixed">
-    <div class="usa-width-one-half">
-        <label for="changeDescription">Description</label>
-        <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
-    </div>
-
-    <div class="usa-width-one-half">
-        <label for="reason">Reason</label>
-        <textarea type="text" id="reason" ng-model="oHistoricalIndex.reason"></textarea>
-    </div>
-</div>
-
-<!--This section has the three buttons-->
-<div class="usa-grid usa-grid-fixed usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
-       <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
+    <!--This section has the three buttons-->
+    <div class="usa-grid usa-grid-fixed usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
+        <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
         <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
         <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
-</div>
-
-<!--This section is only visible to super user and not the public(internal use)-->
-<div class="usa-grid">
-    <div class="sub-form usa-grid">
-        <div class="usa-width-one-fourth"><label>Created:</label><span>April 20, 2009 12:48 pm</span></div>
-        <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
-        <div class="usa-width-one-fourth"><label>Modified:</label><span>April 18, 2016 8:00 am</span></div>
-        <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
     </div>
+
+    <!--This section is only visible to super user and not the public(internal use)-->
+    <div class="usa-grid">
+        <div class="sub-form usa-grid">
+            <div class="usa-width-one-fourth"><label>Created:</label><span>April 20, 2009 12:48 pm</span></div>
+            <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
+            <div class="usa-width-one-fourth"><label>Modified:</label><span>April 18, 2016 8:00 am</span></div>
+            <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>
+        </div>
+    </div>
+
+
 </div>
-
-
-
