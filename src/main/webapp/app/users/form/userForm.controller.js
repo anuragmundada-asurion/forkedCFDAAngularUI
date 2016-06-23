@@ -42,7 +42,7 @@
             }
 
             $scope.saveUser = function() {
-                if ($scope.isOMBAnalyst()) {
+                if ($scope.isOMBAnalyst() || $scope.isRMOSuperUser()) {
                     if ($scope.isCustomOrganizationType()) {
                         var orgIds = [];
 
