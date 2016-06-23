@@ -77,6 +77,7 @@ gulp.task('vendor', ['index'], function() {
     });
     var vendorJs = gulp.src(mainBowerFiles(bowerSrc), {base: 'src/main/webapp/bower_components'})
         .pipe(concat('lib.min.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('target/classes/static/js'));
 
     index.pipe(inject(vendorCss, { addRootSlash: true, name: 'vendor', relative: true }))
@@ -136,10 +137,14 @@ gulp.task('semantic', ['index'], function(){
   gulp.src(['src/main/semantic/dist/**/*','!src/main/semantic/dist/semantic.css','!src/main/semantic/dist/semantic.js' ])
       .pipe(gulp.dest('target/classes/static/semantic'));
 
-  var sources = gulp.src(['src/main/semantic/dist/semantic.css', 'src/main/semantic/dist/semantic.js'])
+  var css = gulp.src('src/main/semantic/dist/semantic.css')
       .pipe(gulp.dest('target/classes/static/semantic'));
 
-  index.pipe(inject(sources, { addRootSlash: true, name: 'semantic', relative: true }))
+    var js = gulp.src('src/main/semantic/dist/semantic.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('target/classes/static/semantic'));
+
+  index.pipe(inject(js, { addRootSlash: true, name: 'semantic', relative: true }))
     .pipe(gulp.dest('target/classes/static'));
 
 });
