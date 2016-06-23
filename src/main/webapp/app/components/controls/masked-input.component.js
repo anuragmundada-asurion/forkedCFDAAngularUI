@@ -54,6 +54,15 @@
                 return ctrl.$modelValue;
             }, function(newValue) {
                 translateValue(newValue);
+                if(element.parent().hasClass("usa-input-error")){
+                    angular.forEach(inputElements, function(inp){
+                        inp.addClass("masked-input-length-" + (inp.$part.length+1));
+                    });
+                }else{
+                    angular.forEach(inputElements, function(inp){
+                        inp.removeClass("masked-input-length-" + (inp.$part.length+1));
+                    });
+                }
             });
             ////////////
 
