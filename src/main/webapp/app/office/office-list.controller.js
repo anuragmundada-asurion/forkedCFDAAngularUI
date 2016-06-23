@@ -18,6 +18,10 @@
             $scope.searchKeyword = '';
             $scope.previousState = null;
             $scope.defaultText = {
+                selectAll       : '&nbsp;&nbsp;Select All',
+                selectNone      : '&nbsp;&nbsp;Select None',
+                reset           : '&nbsp;&nbsp;Reset',
+                search          : 'Search...',
                 nothingSelected : "Select Divison"
             };
             var aDictionay = ['regional_office_division', 'states'];
