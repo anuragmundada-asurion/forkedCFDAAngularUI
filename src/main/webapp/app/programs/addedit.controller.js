@@ -818,6 +818,15 @@
                         return new RegExp(regexPattern).test(field);
                     }
                 };
+                
+                $scope.hideDirective = function() {
+                    if ($scope.gsavm.program.website == '') {
+                        $("#website6").closest(".input-field").removeClass("usa-input-error");
+                        return true;
+                    }else {
+                        return false;
+                    }
+                };
 
                 $scope.getActualOrEstimate = function(obligationValueObj){
                     if(obligationValueObj.hasOwnProperty('actual')){

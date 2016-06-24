@@ -2004,7 +2004,7 @@
   <section class="sub-minor-section" field-finder-bookmark title="153 Website">
     <div class="input-field">
       <h4><label for="website6">{{::instructionalText["06"]["153"]["title"]}}</label></h4>
-      <error-msg model="gsavm.program.website" regex-pattern="website_url" msg="Please enter a valid url. [protocol]://hostname.domain. Protocal can be ftp, http, or https. Spaces are not allowed."></error-msg>
+      <error-msg ng-hide="hideDirective()" model="gsavm.program.website" regex-pattern="website_url" msg="Please enter a valid url. [protocol]://hostname.domain. Protocal can be ftp, http, or https. Spaces are not allowed."></error-msg>
       <span class="usa-form-hint">{{::instructionalText["06"]["153"]["label"]}}</span>
       <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
     </div>
