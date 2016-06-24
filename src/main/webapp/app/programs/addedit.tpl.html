@@ -1707,7 +1707,7 @@
           <span ng-show="item.phone">Phone: {{item.phone}}<br/></span>
         </multi-entry-list>
         <multi-entry-contacts-sub-form class="input-field" create-function="$ctrl.parentVm.createContact" on-test="$ctrl.parentVm" on-open="$ctrl.parentVm.getEmailList">
-          <div class="usa-grid" ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
+          <div class="usa-grid dropdown-value" ng-init="formPath='contact'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.contacts.{{formPath}}">
             Contacts:<br/>
             <ui-select ng-model="$subForm.current.contactId" id="selectContact" name="selectContact"
             on-select="selectItem($item)" class="usa-input-large" theme="select2">
