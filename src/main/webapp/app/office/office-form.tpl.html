@@ -14,13 +14,14 @@
 
     <div class="usa-grid">
         <div class="usa-width-one-whole">
-            <label>Agency<span class="required" >*</span></label>
+            <label>Agency<span class="required">*</span></label>
             <federal-hierarchy-inputs organization-id="oRegionalOffice.organizationId"></federal-hierarchy-inputs>
         </div>
     </div>
     <div class="usa-grid">
         <div class="usa-width-one-third">
             <label for="division">Division</label>
+
             <div class="fix-select" style="max-width: 450px;">
                 <isteven-multi-select
                         max-labels="1"
@@ -31,44 +32,47 @@
                         tick-property="ticked"
                         max-height="250px"
                         selection-mode="single"
-                >
+                        >
                 </isteven-multi-select>
             </div>
         </div>
         <div class="usa-width-one-third">
             <label for="branch">Branch</label>
-            <input type="text" id="branch" ng-model="oRegionalOffice.branch" />
+            <input type="text" id="branch" ng-model="oRegionalOffice.branch"/>
         </div>
         <div class="usa-width-one-third">
             <label for="region">State/Region</label>
-            <input type="text" id="region" ng-model="oRegionalOffice.region" />
+            <input type="text" id="region" ng-model="oRegionalOffice.region"/>
         </div>
     </div>
     <div class="usa-grid">
         <div class="usa-width-one-third">
             <label for="subbranch">Sub-branch</label>
-            <input type="text" id="subbranch" ng-model="oRegionalOffice.subBranch" />
+            <input type="text" id="subbranch" ng-model="oRegionalOffice.subBranch"/>
         </div>
         <div class="usa-width-one-third">
-            <label for="phone" required>Phone<span class="required" >*</span></label>
-            <input type="text" id="phone" ng-model="oRegionalOffice.phone" />
+            <label for="phone" required>Phone<span class="required">*</span></label>
+            <input type="text" id="phone" ng-model="oRegionalOffice.phone"/>
+
             <div ng-show="form.error || agencyForm.phone.$dirty">
                 <span ng-show="agencyForm.phone.$error.required">You must provide phone number.</span>
             </div>
         </div>
-        <div class="usa-width-one-third">
-            <label for="fax">Fax</label>
-            <input type="text" id="fax" ng-model="oRegionalOffice.fax" />
-        </div>
+
+        <!-- removing fax-->
+        <!--<div class="usa-width-one-third">-->
+        <!--<label for="fax">Fax</label>-->
+        <!--<input type="text" id="fax" ng-model="oRegionalOffice.fax" />-->
+        <!--</div>-->
     </div>
     <div class="usa-grid">
         <div class="usa-width-one-third">
             <label for="address">Street</label>
-            <textarea id="address" ng-model="oRegionalOffice.address.street" ></textarea>
+            <textarea id="address" ng-model="oRegionalOffice.address.street"></textarea>
         </div>
         <div class="usa-width-one-third">
             <label for="city">City</label>
-            <input type="text" id="city" ng-model="oRegionalOffice.address.city" />
+            <input type="text" id="city" ng-model="oRegionalOffice.address.city"/>
         </div>
         <div class="usa-width-one-third">
             <label for="state">State</label>
@@ -81,14 +85,14 @@
                     tick-property="ticked"
                     max-height="250px"
                     selection-mode="single"
-            >
+                    >
             </isteven-multi-select>
         </div>
     </div>
     <div class="usa-grid">
         <div class="usa-width-one-third">
             <label for="zip">Zip</label>
-            <input type="text" id="zip" ng-model="oRegionalOffice.address.zip" />
+            <input type="text" id="zip" ng-model="oRegionalOffice.address.zip"/>
         </div>
         <div class="usa-width-one-third">
             <label for="country">Country</label>
@@ -101,7 +105,7 @@
                     tick-property="ticked"
                     max-height="250px"
                     selection-mode="single"
-            >
+                    >
             </isteven-multi-select>
         </div>
         <div class="usa-width-one-third"></div>
@@ -110,7 +114,9 @@
 
 <!--This section has the three buttons-->
 <section class="usa-grid usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
-    <a ui-sref="regionalOfficeList"><button type="button">Cancel</button></a>
+    <a ui-sref="regionalOfficeList">
+        <button type="button">Cancel</button>
+    </a>
     <button type="button" ng-click="saveRegionalOffice()">Save</button>
     <button type="button" ng-if="action === 'edit'" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
 </section>
@@ -119,6 +125,7 @@
 <div class="usa-grid" ng-show='action === "edit"' id="historyDiv">
     <div class="usa-grid usa-card-green usa-padding-top-2 usa-padding-bottom-2">
         <h4>Regional Agency Office Info</h4>
+
         <div class="usa-grid-full">
             <div class="usa-width-one-fourth"><label>Created:</label><span>{{oRegionalOffice.createdDate  | date:'medium' }}</span></div>
             <div class="usa-width-one-fourth text-flow"><label>By:</label><span>{{oRegionalOffice.createdBy}}</span></div>

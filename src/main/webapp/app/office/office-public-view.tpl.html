@@ -3,25 +3,37 @@
 <section class="usa-grid-full">
     <div ng-show="oRegionalOffice" class="usa-grid">
         <h2>View Regional Agency Office</h2>
+
         <div class="usa-width-full vp-section" style="width: 100%;">
             <div class="usa-grid-full">
                 <div class="usa-width-one-third">
                     <label class="vp-field-label-big">Agency: </label>
-                    <span class="vp-field-value"><strong><federal-hierarchy-label organization-id="{{ oRegionalOffice.organizationId }}"></strong></federal-hierarchy-label></span>
+                    <span class="vp-field-value">
+                        <strong>
+                            <federal-hierarchy-label organization-id="{{ oRegionalOffice.organizationId }}"></federal-hierarchy-label>
+                        </strong>
+                    </span>
                 </div>
                 <div class="usa-width-one-third">
-                    <label class="vp-field-label-big">State/Region: </label>
-                    <span class="vp-field-value"><strong>{{oRegionalOffice.region}}</strong></span>
+                    <label class="vp-field-label-big">Branch: </label>
+                    <span class="vp-field-value"><strong>{{oRegionalOffice.branch}}</strong></span>
                 </div>
                 <div class="usa-width-one-third">
-                    <label class="vp-field-label-big">Fax: </label>
-                    <span class="vp-field-value"><strong>{{oRegionalOffice.fax}}</strong></span>
+                    <label class="vp-field-label-big">Phone: </label>
+                    <span class="vp-field-value"><strong>{{oRegionalOffice.phone}}</strong></span>
                 </div>
+
+
+                <!-- removing fax from public view-->
+                <!--<div class="usa-width-one-third">-->
+                <!--<label class="vp-field-label-big">Fax: </label>-->
+                <!--<span class="vp-field-value"><strong>{{oRegionalOffice.fax}}</strong></span>-->
+                <!--</div>-->
             </div>
             <div class="usa-grid-full">
                 <div class="usa-width-one-third">
-                    <label class="vp-field-label-big">Division: </label>
-                    <span class="vp-field-value"><strong>{{oDivision.displayValue}}</strong></span>
+                    <label class="vp-field-label-big">State/Region: </label>
+                    <span class="vp-field-value"><strong>{{oRegionalOffice.region}}</strong></span>
                 </div>
                 <div class="usa-width-one-third">
                     <label class="vp-field-label-big">Sub-branch: </label>
@@ -38,13 +50,10 @@
             </div>
             <div class="usa-grid-full">
                 <div class="usa-width-one-third">
-                    <label class="vp-field-label-big">Branch: </label>
-                    <span class="vp-field-value"><strong>{{oRegionalOffice.branch}}</strong></span>
+                    <label class="vp-field-label-big">Division: </label>
+                    <span class="vp-field-value"><strong>{{oDivision.displayValue}}</strong></span>
                 </div>
-                <div class="usa-width-one-third">
-                    <label class="vp-field-label-big">Phone: </label>
-                    <span class="vp-field-value"><strong>{{oRegionalOffice.phone}}</strong></span>
-                </div>
+                <div class="usa-width-one-third"></div>
                 <div class="usa-width-one-third"></div>
             </div>
         </div>
@@ -52,7 +61,9 @@
 </section>
 
 <section class="usa-grid usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
-    <a ui-sref="publicRegionalOfficeList"><button type="button" class="usa-button-gray">Return</button></a>
+    <a ui-sref="publicRegionalOfficeList">
+        <button type="button" class="usa-button-gray">Return</button>
+    </a>
 </section>
 
 
