@@ -38,6 +38,10 @@
                         }
 
                     }
+                    if(newValue == ''){
+                            scope.showErrorMsg = false;
+                            element.closest(".input-field").removeClass("usa-input-error");
+                        }
                 });
 
 
