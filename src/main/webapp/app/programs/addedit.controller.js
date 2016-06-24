@@ -4,7 +4,7 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http','PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
             function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
 
                 $scope.$log = $log;
@@ -93,8 +93,8 @@
                         $scope.loadDictionaries(vm.program);
 
                         //reload contacts when object is available
-                        if(typeof vm.choices == "undefined") vm.choices = {};
-                        if(vm.program.organizationId){
+                        if (typeof vm.choices == "undefined") vm.choices = {};
+                        if (vm.program.organizationId) {
                             vm.choices.contacts = Contacts.query({agencyId: vm.program.organizationId});
                         }
 
@@ -268,7 +268,7 @@
                                 //console.log(row);
                                 if (typeof row.assistanceType === 'object') {
                                     var arr = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']);
-                                    if(arr.length>0){
+                                    if (arr.length > 0) {
                                         copy.financial.obligations[i].assistanceType = DictionaryService.istevenDropdownGetIds(row, ['assistanceType']).assistanceType[0];
                                     }
                                 }
@@ -678,11 +678,11 @@
                                             requiredFieldsMissing = true;
                                         }
                                         //validations for correct pfy, cfy, bfy dollar amount formats, (numbers and commas only)
-                                        angular.forEach(obligation.values, function(fiscalYear){
-                                            if(fiscalYear.hasOwnProperty("actual") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.actual)){
+                                        angular.forEach(obligation.values, function (fiscalYear) {
+                                            if (fiscalYear.hasOwnProperty("actual") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.actual)) {
                                                 requiredFieldsMissing = true;
                                             }
-                                            if(fiscalYear.hasOwnProperty("estimate") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.estimate)){
+                                            if (fiscalYear.hasOwnProperty("estimate") && !$scope.validateFieldByRegex('^[0-9\,]*$', fiscalYear.estimate)) {
                                                 requiredFieldsMissing = true;
                                             }
                                         });
@@ -714,13 +714,13 @@
                                     requiredFieldsMissing = !(hqContact.fullName && hqContact.email && hqContact.phone
                                     && hqContact.address && hqContact.city && hqContact.zip && hqContact.state);
 
-                                    if(!$scope.validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)){
+                                    if (!$scope.validateFieldByRegex('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$', hqContact.email)) {
                                         requiredFieldsMissing = true;
                                     }
 
                                 });
 
-                                if(!$scope.validateFieldByRegex('website-url', vm.program.website)){
+                                if (!$scope.validateFieldByRegex('website-url', vm.program.website)) {
                                     requiredFieldsMissing = true;
                                 }
 
@@ -793,37 +793,42 @@
 
 
                 function shouldSeeCoordinatorMessage() {
-                    if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.AGENCY_COORDINATOR])){
+                    if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
                         return false;
                     }
                     return true;
                 }
 
 
-                function loadInstructionalText(){
-                    $http.get('/data/instructionalText.json').success(function(data) {
-                       $scope.instructionalText = data;
-                       vm.instructionalText = data;
-                       //console.log(data);
+                function loadInstructionalText() {
+                    $http.get('/data/instructionalText.json').success(function (data) {
+                        $scope.instructionalText = data;
+                        vm.instructionalText = data;
+                        //console.log(data);
                     });
                 }
 
 
                 //returns false if error, true if no error. may clean up the code later, and put this in validation service
-                $scope.validateFieldByRegex = function(regexPattern, field) {
-                    if(regexPattern == "website-url"){
-                        return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(field);
+                $scope.validateFieldByRegex = function (regexPattern, field) {
+                    if (regexPattern == "website-url") {
+                        if (field) {
+                            return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(field);
+                        }
+                        else {
+                            return true; //return true if website is not provided as that is not a reuqired field.
+                        }
                     }
-                    else{
+                    else {
                         return new RegExp(regexPattern).test(field);
                     }
                 };
 
-                $scope.getActualOrEstimate = function(obligationValueObj){
-                    if(obligationValueObj.hasOwnProperty('actual')){
+                $scope.getActualOrEstimate = function (obligationValueObj) {
+                    if (obligationValueObj.hasOwnProperty('actual')) {
                         return {label: "actual", dollarValue: obligationValueObj.actual};
                     }
-                    if(obligationValueObj.hasOwnProperty('estimate')){
+                    if (obligationValueObj.hasOwnProperty('estimate')) {
                         return {label: "estimate", dollarValue: obligationValueObj.estimate};
                     }
                     return {label: "no-estimate-or-actual", dollarValue: "000000"};
