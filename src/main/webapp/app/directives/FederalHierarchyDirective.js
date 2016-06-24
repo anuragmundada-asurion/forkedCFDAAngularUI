@@ -342,10 +342,6 @@
                                     //initialize Department
                                     scope.dictionary.aDepartment = oData._embedded.hierarchy;
                                 });
-
-                                var $element = $(element[0]);
-                                $element.find('select#jqDepartmentFH').removeClass('hidden');
-                                $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
                         else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
@@ -375,7 +371,7 @@
                     "<div class='usa-grid-full' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'> {{ dictionary.aDepartment[0].name }} </span>"+

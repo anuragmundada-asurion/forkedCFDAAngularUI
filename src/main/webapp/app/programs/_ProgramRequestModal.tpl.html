@@ -83,7 +83,7 @@
 
             <div class="field" ng-if="ngDialogData.action === 'agency'">
                 <!-- Load configuration & program code for the requested organization-->
-                <federal-hierarchy-inputs class="hidden" organization-id="stringToJson(oEntity.data).organizationId" organization-configuration="$parent.organizationConfiguration" program-code="$parent.programCode"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs class="ng-hide" organization-id="stringToJson(oEntity.data).organizationId" organization-configuration="$parent.organizationConfiguration" program-code="$parent.programCode"></federal-hierarchy-inputs>
 
                 <!-- If the requested organization is manual then show the input -->
                 <div ng-show="(organizationConfiguration && organizationConfiguration.programNumberAuto === false && programCode)">
