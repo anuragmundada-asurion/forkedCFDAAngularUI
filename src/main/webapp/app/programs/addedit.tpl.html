@@ -1134,7 +1134,7 @@
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="reports">{{::instructionalText["04"]["111"]["label"]}}<span class="required">*</span></label>
 
-              <ul class="usa-unstyled-list">
+              <ul class="usa-horizontal-list">
                 <li>
                   <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-yes" type="radio" value="yes" required>
                   <label for="reports-yes">Yes</label>
@@ -1156,7 +1156,7 @@
               <div class="input-field">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                   <label for="programReports">{{::instructionalText["04"]["111"]["programReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-unstyled-list">
+                  <ul class="usa-horizontal-list">
                     <li>
                       <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                       <label for="programReports-yes">Yes</label>
@@ -1186,7 +1186,7 @@
               <div class="input-field">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                   <label for="cashReports">{{::instructionalText["04"]["111"]["cashReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-unstyled-list">
+                  <ul class="usa-horizontal-list">
                     <li>
                       <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                       <label for="cashReports-yes">Yes</label>
@@ -1216,7 +1216,7 @@
               <div class="input-field">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                   <label for="progressReports">{{::instructionalText["04"]["111"]["progressReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-unstyled-list">
+                  <ul class="usa-horizontal-list">
                     <li>
                       <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                       <label for="progressReports-yes">Yes</label>
@@ -1246,7 +1246,7 @@
               <div class="input-field">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                   <label for="expenditureReports">{{::instructionalText["04"]["111"]["expenditureReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-unstyled-list">
+                  <ul class="usa-horizontal-list">
                     <li>
                       <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                       <label for="expenditureReports-yes">Yes</label>
@@ -1276,7 +1276,7 @@
               <div class="input-field">
                 <fieldset class="usa-fieldset-inputs usa-sans">
                   <label for="performanceMonitoring">{{::instructionalText["04"]["111"]["performanceMonitoring"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-unstyled-list">
+                  <ul class="usa-horizontal-list">
                     <li>
                       <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
                       <label for="performanceMonitoring-yes">Yes</label>
@@ -1313,7 +1313,7 @@
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="audits">{{::instructionalText["04"]["112"]["label"]}}<span class="required">*</span></label>
 
-              <ul class="usa-unstyled-list">
+              <ul class="usa-horizontal-list">
                 <li>
                   <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-yes" type="radio" value="yes" required>
                   <label for="audits-yes">Yes</label>
@@ -1335,7 +1335,7 @@
             <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
               <label for="auditRequirements">{{::instructionalText["04"]["112"]["auditRequirements"]["label"]}}<span class="required">*</span></label>
               <fieldset class="usa-fieldset-inputs usa-sans">
-                <ul class="usa-unstyled-list">
+                <ul class="usa-horizontal-list">
                   <li>
                     <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-yes" type="radio" value="yes" required>
                     <label for="auditRequirements-yes">Yes</label>
@@ -1374,7 +1374,7 @@
           <fieldset class="usa-fieldset-inputs usa-sans">
             <label for="documents">{{::instructionalText["04"]["140"]["label"]}}<span class="required">*</span></label>
 
-            <ul class="usa-unstyled-list">
+            <ul class="usa-horizontal-list">
               <li>
                 <input name="documents" ng-model="gsavm.program.postAward.documents.flag" id="documents-yes" type="radio" value="yes" required>
                 <label for="documents-yes">Yes</label>
@@ -1440,7 +1440,7 @@
                     <div class="input-field">
                       <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="{{ 'recovery-flag-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["122"]["form"]["recovery"]["label"]}}<span class="required">*</span></label>
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                           <li>
                             <input name="{{ 'recovery-flag-' + idPath }}" ng-model="$subForm.current.questions.recovery.flag" id="{{ 'recovery-flag-' + idPath }}-yes" type="radio" value="yes" required>
                             <label for="{{ 'recovery-flag-' + idPath }}-yes">Yes</label>
@@ -1456,7 +1456,7 @@
                       <fieldset class="usa-fieldset-inputs usa-sans">
                         <label for="{{ 'salary-or-expense-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["122"]["form"]["salaryOrExpense"]["label"]}}<span class="required">*</span></label>
 
-                        <ul class="usa-unstyled-list">
+                        <ul class="usa-horizontal-list">
                           <li>
                             <input name="{{ 'salary-or-expense-' + idPath }}" ng-model="$subForm.current.questions.salary_or_expense.flag" id="{{ 'salary-or-expense-' + idPath }}-yes" type="radio" value="yes" required>
                             <label for="{{ 'salary-or-expense-' + idPath }}-yes">Yes</label>
@@ -1512,7 +1512,7 @@
                   <fieldset class="usa-fieldset-inputs usa-sans">
                     <label>{{fyTpl.name}}: {{fyTpl.year}}</label>
                     <legend class="usa-sr-only">{{fyTpl.name}}: {{fyTpl.year}} - {{fyTpl.obligType}} Type Options</legend>
-                    <ul class="usa-unstyled-list" ng-init="$subForm.current.values[fyTpl.year].flag = $subForm.current.values[fyTpl.year].flag || $ctrl.parentVm.choices['yes_no_na'].yes.code">
+                    <ul class="usa-horizontal-list" ng-init="$subForm.current.values[fyTpl.year].flag = $subForm.current.values[fyTpl.year].flag || $ctrl.parentVm.choices['yes_no_na'].yes.code">
                       <li>
                         <input id="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}" type="radio" ng-value="$ctrl.parentVm.choices['yes_no_na'].yes.code" ng-model="$subForm.current.values[fyTpl.year].flag">
                         <label for="{{fyTpl.obligType}}{{fyTpl.year}}-yes-{{idPath}}">{{fyTpl.obligType || fyTpl.type}} Available</label>
@@ -1628,7 +1628,7 @@
     <div class="input-field">
       <fieldset class="usa-fieldset-inputs usa-sans">
         <label>{{::instructionalText["05"]["130"]["label"]}}</label>
-        <ul class="usa-unstyled-list">
+        <ul class="usa-horizontal-list">
           <li>
             <input name="programAccomplishment" ng-model="gsavm.program.postAward.accomplishments.flag" id="programAccomplishment-yes" type="radio" value="yes" required>
             <label for="programAccomplishment-yes">Yes</label>
@@ -1642,7 +1642,7 @@
       <div ng-show="gsavm.program.postAward.accomplishments.flag === gsavm.choices['yes_na'].yes.code">
         <fieldset class="usa-fieldset-inputs usa-sans">
           <label for="programAccomplishmentYear">{{::instructionalText["05"]["130"]["programAccomplishments"]["label"]}}</label>
-          <ul class="usa-unstyled-list">
+          <ul class="usa-horizontal-list">
             <div ng-repeat="fyTpl in gsavm.fyTpls track by fyTpl.year">
               <li>
                 <input name="programAccomplishmentYear-{{fyTpl.year}}" id="programAccomplishmentYear-{{fyTpl.year}}" type="checkbox" value="{{fyTpl.year}}"
@@ -1669,7 +1669,7 @@
     <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
       <fieldset class="usa-fieldset-inputs usa-sans">
         <h4>{{::instructionalText["06"]["151"]["title"]}}<span class="required">*</span></h4>
-        <ul class="usa-unstyled-list">
+        <ul class="usa-horizontal-list">
           <li>
             <input type="radio" name="office6" ng-model="gsavm.program.contacts['local'].flag" id="office6regional" value="regional"/>
             <label for="office6regional">See Regional Agency Offices</label>
