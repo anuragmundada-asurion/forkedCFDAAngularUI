@@ -22,7 +22,7 @@
                 selectNone      : '&nbsp;&nbsp;Select None',
                 reset           : '&nbsp;&nbsp;Reset',
                 search          : 'Search...',
-                nothingSelected : "Select Divison"        
+                nothingSelected : "Select Division"
             };
             var aDictionay = ['regional_office_division', 'states'];
 
