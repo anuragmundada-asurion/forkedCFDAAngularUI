@@ -62,7 +62,7 @@
         }
 
         function compile(element, attrs) {
-            var wrapper = angular.element("<div ng-show='uxForm.current.stateKey === uxSectionForm.stateKey'></div>");
+            var wrapper = angular.element("<div class='usa-grid' ng-show='uxForm.current.stateKey === uxSectionForm.stateKey'></div>");
             wrapper.append(element.children());
             element.append(wrapper);
             return postLink;
