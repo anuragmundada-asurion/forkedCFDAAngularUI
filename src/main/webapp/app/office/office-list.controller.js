@@ -29,11 +29,13 @@
             var userOrgId = UserService.getUserOrgId();
             if (userOrgId) {
                 FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function (oData) {
+                    debugger;
                     $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
 
                 });
 
                 FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
+                    debugger;
                     //format expects an array. thats why we converted the obj to an array
                     var formattedData = formatAgencyData([oData]);
                     $scope.treeData = formattedData;
@@ -101,6 +103,7 @@
 
                     //get children if they exist
                     FederalHierarchyService.getChildren(elementId, 1, function (oData) {
+                        debugger;
                         if (oData.hierarchy && oData.hierarchy.length > 0) {
                             //grab the children, already an array. so dont need to convert ot an array
                             var formattedData = formatAgencyData(oData.hierarchy);
