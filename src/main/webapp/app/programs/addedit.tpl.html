@@ -56,7 +56,7 @@
               You must provide a title.
             </span>
              <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)">
-              You should not use the word "{{gsavm.program.title}}"
+              The word "{{gsavm.program.title}}" should not be included in the Program title.
             </span>
             <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
           </div>
