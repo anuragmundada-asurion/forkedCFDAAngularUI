@@ -113,7 +113,7 @@
           <div ng-class=" gsavm.form.alternativeName.$error.uniqueFrom && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
             <label for="alternativeName" ng-class=" gsavm.form.alternativeName.$error.uniqueFrom && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
             <div ng-show="gsavm.validationFlag.info || gsavm.form.alternativeName.$dirty">
-              <span class="usa-input-error-message" ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name must be different than the Program Title.</span>
+              <span class="usa-input-error-message" ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name should be different than the Program Title.</span>
             </div>
             <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
           </div>
