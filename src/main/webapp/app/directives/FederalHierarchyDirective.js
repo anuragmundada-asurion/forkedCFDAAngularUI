@@ -40,6 +40,7 @@
                 "programCode": "=?", // ngModel var passed by reference (two-way) optional
                 "hasDepartmentChanged": "=?",
                 "showDepartment": "=?",
+                "hideDepartment": "=?",
                 "setSelectedOption": "=?"
             },
             controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
@@ -357,6 +358,16 @@
                                 scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.SUPER_USER);
                             });
                         }
+
+                        //hide department label
+                        if(typeof scope.hideDepartment !== 'undefined' && scope.hideDepartment === true) {
+                            FederalHierarchyService.getFederalHierarchyById(scope.programOrganizationId, true, false, function (oData) {
+                                scope.departmentLabel = FederalHierarchyService.getFullNameFederalHierarchy(oData);
+                                scope.organizationId = scope.programOrganizationId;
+                            }, function (error) {
+                                scope.error = "An error has occurred, Please try again !";
+                            });
+                        }
                     }
                 });
             },
@@ -374,10 +385,11 @@
                     "<div class='usa-grid-full' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='((($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment) && !hideDepartment)' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'> {{ dictionary.aDepartment[0].name }} </span>"+
+                            "<span class='department-label2' ng-show='hideDepartment === true'> {{ departmentLabel }} </span>"+
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqAgencyFH'>Agency</label>"+
