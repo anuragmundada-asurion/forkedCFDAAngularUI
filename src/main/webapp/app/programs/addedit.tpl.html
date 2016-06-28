@@ -47,13 +47,16 @@
       <section class="usa-grid" field-finder-bookmark title="010 Program Title">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["010"]["title"]}}</legend>
-          <div ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error' : '' ">
+          <div ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required || (gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program' || '') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)))  ? 'usa-input-error' : '' ">
             <label for="title" ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error-label' : '' ">
               {{::instructionalText["01"]["010"]["label"]}}<span class="required">*</span>
             </label>
             <span class="usa-form-hint">{{::instructionalText["01"]["010"]["helpText"]}}</span>
             <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
               You must provide a title.
+            </span>
+             <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)">
+              You should not use the word "{{gsavm.program.title}}"
             </span>
             <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
           </div>
