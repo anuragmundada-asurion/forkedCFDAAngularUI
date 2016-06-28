@@ -342,6 +342,9 @@
                                     //initialize Department
                                     scope.dictionary.aDepartment = oData._embedded.hierarchy;
                                 });
+                                //hide label Organization
+                                var $element = $(element[0]);
+                                $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
                         else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
