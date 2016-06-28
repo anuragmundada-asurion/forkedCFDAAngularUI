@@ -55,8 +55,11 @@
             <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
               You must provide a title.
             </span>
-             <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)">
-              The word "{{gsavm.program.title}}" should not be included in the Program title.
+             <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('the') != -1)">
+              The word "The" should not be included in the Program title.
+            </span>
+            <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('program') != -1)">
+              The word "Program" should not be included in the Program title.
             </span>
             <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
           </div>
@@ -113,12 +116,10 @@
       <section class="usa-grid" field-finder-bookmark title="020 Popular Name">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["020"]["title"]}}</legend>
-          <div ng-class=" gsavm.form.alternativeName.$error.uniqueFrom && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
-            <label for="alternativeName" ng-class=" gsavm.form.alternativeName.$error.uniqueFrom && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
-            <div ng-show="gsavm.validationFlag.info || gsavm.form.alternativeName.$dirty">
-              <span class="usa-input-error-message" ng-show="gsavm.form.alternativeName.$error.uniqueFrom">The Popular Name should be different than the Program Title.</span>
-            </div>
-            <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list unique-from="gsavm.program.title">
+          <div ng-class="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
+            <label for="alternativeName" ng-class=" gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
+              <span class="usa-input-error-message" ng-show="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title">The Popular Name should be different than the Program Title.</span>
+            <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list>
           </div>
         </div>
       </section>
