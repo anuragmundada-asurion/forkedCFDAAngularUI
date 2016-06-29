@@ -67,7 +67,7 @@
       </section>
 
       <!-- Program Number -->
-      <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
+      <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.parentProgramNumber)">
 
         <div class="usa-width-two-thirds usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
@@ -107,9 +107,11 @@
         </div>
       </section>
 
-      <section field-finder-bookmark title="Program Number" ng-if="(gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft')">
-        <h3><label for="programNumber">{{::instructionalText["01"]["programNumber"]["title"]}}<span class="required">*</span></label></h3>
-        <span ng-bind="gsavm.program.programNumber"></span>
+      <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
+        <div class="usa-width-two-thirds usa-padding-top-3 usa-padding-bottom-3">
+          <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
+          <span ng-bind="gsavm.program.programNumber"></span>
+        </div>
       </section>
 
       <!-- 020 Popular Name -->

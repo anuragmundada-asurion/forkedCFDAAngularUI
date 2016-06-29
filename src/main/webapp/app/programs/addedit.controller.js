@@ -89,6 +89,18 @@
                         vm.program = data;
                         vm.originalTitle = vm.program.title;
 
+                        //get parent program id in order to verify if this program is a revision or just simple edit draft
+                        var oApiParamProgram = {
+                            apiName: 'programList',
+                            apiSuffix: '/'+$stateParams.id,
+                            oParams: {},
+                            oData: {},
+                            method: 'GET'
+                        };
+                        ApiService.call(oApiParamProgram).then(function (data) {
+                            vm.parentProgramNumber = data.parentProgramId;
+                        });
+
                         //load dictionaries
                         $scope.loadDictionaries(vm.program);
 
