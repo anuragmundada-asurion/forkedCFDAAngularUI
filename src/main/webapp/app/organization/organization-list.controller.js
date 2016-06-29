@@ -72,7 +72,7 @@
             }, true);
 
             $scope.$watch('dtData', function () {
-                if(typeof $scope.dtData !== 'undefined') {
+                if (typeof $scope.dtData !== 'undefined') {
                     $scope.totalCount = $scope.dtData.length;
                 }
 
@@ -99,6 +99,7 @@
             };
 
             $scope.rowClicked = function (uniqueRowId) {
+                console.log("in rowClicked function: uniqueRowId: ", uniqueRowId);
                 //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
                 var a = String(uniqueRowId).split("-");
                 var rowId = a[a.length - 1];
@@ -136,11 +137,15 @@
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
                 .withOption('bSortClasses', false)
-                .withOption('rowCallback', function (row) {
-                    $(row).unbind('click').click(function (e) {
-                        $scope.rowClicked(this.id);
+                .withOption('rowCallback', function (row, data, index, indexFull) {
+                    // Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
+                    $('td', row).unbind('click');
+                    $('td', row).bind('click', function () {
+                        $scope.$apply(function () {
+                            $scope.rowClicked(data.DT_RowId);
+                        });
                     });
-                    $compile(row)($scope);
+                    return row;
                 })
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
