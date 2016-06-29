@@ -29,18 +29,27 @@
             var userOrgId = UserService.getUserOrgId();
             if (userOrgId) {
                 FederalHierarchyService.getFederalHierarchyById(UserService.getUserOrgId(), true, true, function (oData) {
-                    debugger;
                     $scope.dictionary.aAgency = [FederalHierarchyService.dropdownDataStructure(oData, [])];
 
                 });
 
-                FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
-                    debugger;
-                    //format expects an array. thats why we converted the obj to an array
-                    var formattedData = formatAgencyData([oData]);
+                //passing in NULL for id becasue that will return all the data.
+                FederalHierarchyService.getFederalHierarchyById(null, false, false, function (d) {
+                    var data;
+                    if (d._embedded) {
+                        data = d._embedded.hierarchy;//if id = null, data returned in embedded property, an array already
+                    } else {
+                        data = [d];//need it as an array
+                    }
+
+
+                    //cut down data to only 100 entries for now..
+                    //data=data.slice(0,10);
+
+                    var formattedData = formatAgencyData(data);
                     $scope.treeData = formattedData;
                     instantiateTree();
-                    console.log("instantiate Tree finished! treeData: ", $scope.treeData);
+                    //console.log("instantiate Tree finished! treeData: ", $scope.treeData);
                 });
 
 
@@ -103,7 +112,6 @@
 
                     //get children if they exist
                     FederalHierarchyService.getChildren(elementId, 1, function (oData) {
-                        debugger;
                         if (oData.hierarchy && oData.hierarchy.length > 0) {
                             //grab the children, already an array. so dont need to convert ot an array
                             var formattedData = formatAgencyData(oData.hierarchy);
@@ -124,7 +132,7 @@
 
 
             function instantiateTree() {
-                console.log('inside instantiateTree, treeData:', $scope.treeData);
+                //console.log('inside instantiateTree, treeData:', $scope.treeData);
                 $scope.treeConfig = {
                     core: {
                         multiple: true,
@@ -137,16 +145,16 @@
                     },
                     types: {
                         default: {
-                            icon: 'building icon'
+                            icon: 'fa fa-pencil'
                         },
                         DEPARTMENT: {
-                            icon: 'university icon'
+                            icon: 'fa fa-university'
                         },
                         AGENCY: {
-                            icon: 'home icon'
+                            icon: 'fa fa-building-o'
                         },
                         OFFICE: {
-                            icon: 'tree icon'
+                            icon: 'fa fa-tree'
                         }
                     },
                     version: 1,
