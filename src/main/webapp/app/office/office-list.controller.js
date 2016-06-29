@@ -33,8 +33,8 @@
 
                 });
 
-                //passing in NULL for id becasue that will return all the data.
-                FederalHierarchyService.getFederalHierarchyById(null, false, false, function (d) {
+                //using 100001616 id, department of education, has 3 level children
+                FederalHierarchyService.getFederalHierarchyById("100001616", false, false, function (d) {
                     var data;
                     if (d._embedded) {
                         data = d._embedded.hierarchy;//if id = null, data returned in embedded property, an array already
@@ -108,7 +108,7 @@
                 //THIS MIGHT BE NOT CORRECT TO DO.. REVISIT THIS LATER..
                 if (!node.children || node.children.length == 0) {
                     var elementId = node.original.elementId;
-                    var parentId = node.original.id;
+                    var parentId = node.id; //parentId that will be set for the children
 
                     //get children if they exist
                     FederalHierarchyService.getChildren(elementId, 1, function (oData) {
