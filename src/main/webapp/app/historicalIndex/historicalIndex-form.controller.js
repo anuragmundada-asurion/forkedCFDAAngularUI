@@ -40,39 +40,48 @@
             }
 
             $scope.years = _.range(1965, new Date().getFullYear() + 1);
-
+            $scope.form = {
+                error : false
+            };
             $scope.createHistoricalIndex = function () {
-                $scope.oHistoricalIndex.$save().then(function(data){
-                    ngDialog.open({
-                        template: '<div class="usa-alert usa-alert-success" role="alert">' +
-                        '<div class="usa-alert-body">' +
-                        '<p class="usa-alert-text">The Historical Index Change has been created successfully !</p>' +
-                        '</div>' +
-                        '</div>',
-                        plain: true,
-                        closeByEscape: true,
-                        showClose: true
-                    });
+                var validSubmission = validateForm($scope.oHistoricalIndex);
+                if(validSubmission){
+                    $scope.form.error = false;
+                    $scope.oHistoricalIndex.$save().then(function(data){
+                        ngDialog.open({
+                            template: '<div class="usa-alert usa-alert-success" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<p class="usa-alert-text">The Historical Index Change has been created successfully !</p>' +
+                            '</div>' +
+                            '</div>',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
+                        });
 
-                    //go to list page after 2 seconds
-                    $timeout(function () {
-                        ngDialog.closeAll();
-                        $state.go('historicalIndex');
-                    }, 3000);
-                },
-                function(error){
-                    ngDialog.open({
-                        template: '<div class="usa-alert usa-alert-error" role="alert">' +
-                        '<div class="usa-alert-body">' +
-                        '<h3 class="usa-alert-heading">Error Status</h3>' +
-                        '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
-                        '</div>' +
-                        '</div>',
-                        plain: true,
-                        closeByEscape: true,
-                        showClose: true
+                        //go to list page after 2 seconds
+                        $timeout(function () {
+                            ngDialog.closeAll();
+                            $state.go('historicalIndex');
+                        }, 3000);
+                    },
+                    function(error){
+                        ngDialog.open({
+                            template: '<div class="usa-alert usa-alert-error" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<h3 class="usa-alert-heading">Error Status</h3>' +
+                            '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
+                            '</div>' +
+                            '</div>',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true
+                        });
                     });
-                });
+                }
+                else {
+                    $scope.form.error = true;
+                }
             };
 
             $scope.updateHistoricalIndex = function () {
@@ -144,6 +153,12 @@
                         });
                 }
             };
+
+            function validateForm(historicalIndexObj){
+                return historicalIndexObj.fiscalYear && historicalIndexObj.fiscalYear != 0
+                && historicalIndexObj.actionType && historicalIndexObj.actionType.length > 0
+                && historicalIndexObj.changeDescription && historicalIndexObj.changeDescription.length > 0;
+            }
 
         }]);
 })();

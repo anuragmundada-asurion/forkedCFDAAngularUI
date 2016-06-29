@@ -19,7 +19,10 @@
         </div>
 
         <div class="usa-width-one-third">
-            <label for="fiscalYear">Year</label>
+            <label for="fiscalYear">Year<span ng-if="!isEdit" class="required">*</span></label>
+            <div ng-show="!isEdit && form.error && (!oHistoricalIndex.fiscalYear || oHistoricalIndex.fiscalYear==0)">
+                <span class="usa-input-error-message">A year must be provided</span>
+            </div>
             <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
         </div>
     </div>
@@ -31,13 +34,19 @@
         </div>
 
         <div class="usa-width-one-third">
-            <label for="actionType">Type</label>
+            <label for="actionType">Type<span ng-if="!isEdit" class="required">*</span></label>
+            <div ng-show="!isEdit && form.error && (!oHistoricalIndex.actionType || oHistoricalIndex.actionType.length==0)">
+                <span class="usa-input-error-message">A type must be provided</span>
+            </div>
             <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
         </div>
     </div>
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-half">
-            <label for="changeDescription">Description</label>
+            <label for="changeDescription">Description<span ng-if="!isEdit" class="required">*</span></label>
+            <div ng-show="!isEdit && form.error && (!oHistoricalIndex.changeDescription || oHistoricalIndex.changeDescription.length==0)">
+                <span class="usa-input-error-message">A Change Description must be provided</span>
+            </div>
             <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
         </div>
 
