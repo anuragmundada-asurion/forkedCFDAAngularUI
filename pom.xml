@@ -135,7 +135,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <arguments>default --version ${project.version} --clp ${my.variable}</arguments>
+                            <arguments>default --version ${project.version} --clp</arguments>
                         </configuration>
                     </execution>
                     <execution>

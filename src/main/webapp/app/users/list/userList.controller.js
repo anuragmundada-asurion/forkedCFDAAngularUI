@@ -3,14 +3,58 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
+            $scope.defaultRoleText = {
+                selectAll       : '&nbsp;&nbsp;Select All',
+                selectNone      : '&nbsp;&nbsp;Select None',
+                reset           : '&nbsp;&nbsp;Reset',
+                search          : 'Search...',
+                nothingSelected : "Select Roles"
+            };
+            $scope.filter = {
+                roleFilter: [],
+                organizationFilter: ''
+            };
+
+            if (ROLES.isPopulated) {
+                $scope.availableRoles = [{
+                    'element_id': SUPPORTED_ROLES.AGENCY_USER,
+                    'displayValue': ROLES[SUPPORTED_ROLES.AGENCY_USER]['name']
+                },{
+                    'element_id': SUPPORTED_ROLES.AGENCY_COORDINATOR,
+                    'displayValue': ROLES[SUPPORTED_ROLES.AGENCY_COORDINATOR]['name']
+                },{
+                    'element_id': SUPPORTED_ROLES.OMB_ANALYST,
+                    'displayValue': ROLES[SUPPORTED_ROLES.OMB_ANALYST]['name']
+                },{
+                    'element_id': SUPPORTED_ROLES.RMO_SUPER_USER,
+                    'displayValue': ROLES[SUPPORTED_ROLES.RMO_SUPER_USER]['name']
+                }];
+
+                if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.LIMITED_SUPER_USER])) {
+                    $scope.availableRoles.push({
+                        'element_id': SUPPORTED_ROLES.LIMITED_SUPER_USER,
+                        'displayValue': ROLES[SUPPORTED_ROLES.LIMITED_SUPER_USER]['name']
+                    });$scope.availableRoles.push({
+                        'element_id': SUPPORTED_ROLES.SUPER_USER,
+                        'displayValue': ROLES[SUPPORTED_ROLES.SUPER_USER]['name']
+                    });
+                }
+            }
 
             $scope.$watch('searchKeyword', function() {
                 if ($scope.dtInstance.DataTable) {
                     $scope.dtInstance.DataTable.search($scope.searchKeyword).draw();
+                }
+            }, true);
+
+            //  Refresh user table if filter gets changed
+            $scope.$watch('filter', function () {
+                if ($scope.dtInstance.DataTable) {
+                    $scope.dtInstance.DataTable.ajax.reload();
                 }
             }, true);
 
@@ -53,6 +97,18 @@
                         method: 'GET'
                     };
 
+                    if ($scope.filter.roleFilter.length > 0) {
+                        var roles = [];
+                        angular.forEach($scope.filter.roleFilter, function(r) {
+                            roles.push(r['element_id']);
+                        });
+                        oApiParam.oParams['roles'] = roles;
+                    }
+
+                    if ($scope.filter.organizationFilter) {
+                        //  TODO Populate params with organization filter
+                    }
+
                     ApiService.call(oApiParam).then(
                         function (results) {
                             var promises = [];
@@ -64,6 +120,7 @@
                                     'id': r['id'],
                                     'phone': r['workPhone']
                                 };
+                                r['role'] = ROLES[r['role']]['name'];
                                 if (r['organizationId']) {
                                     promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
                                         r['organization'] = FederalHierarchyService.getFullNameFederalHierarchy(data);

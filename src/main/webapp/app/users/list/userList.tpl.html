@@ -8,12 +8,26 @@
       ( {{totalCount}} Results )
     </span>
   </div>
-  <div class="usa-width-one-half usa-margin-top-3">
+</div>
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+  <div class="usa-width-one-third">
+    <isteven-multi-select
+          max-labels="1"
+          input-model="availableRoles"
+          output-model="filter.roleFilter"
+          button-label="displayValue"
+          item-label="displayValue"
+          tick-property="ticked"
+          max-height="250px"
+          translation="defaultRoleText"
+    >
+    </isteven-multi-select>
+  </div>
+  <div class="usa-width-one-third">
     <input  ng-model="searchKeyword"
             type="search"
             placeholder="Search Users"
-            aria-controls="usersTable"
-            class="usa-margin-top-3">
+            aria-controls="usersTable">
   </div>
 </div>
 

@@ -14,6 +14,8 @@
 
     myApp.service('ROLES', ['$http', 'SUPPORTED_ROLES', 'PERMISSIONS',
         function($http, SUPPORTED_ROLES, PERMISSIONS) {
+            this.isPopulated = false;
+
             function buildPermissionList(p, list) {
                 if (p['systemRole']) {
                     list.push(PERMISSIONS[p['roleId']]);
@@ -49,6 +51,7 @@
                     };
                 });
                 angular.extend(self, roleList);
+                self.isPopulated = true;
             }, function() {
                 //  Error retrieving role information
             });
