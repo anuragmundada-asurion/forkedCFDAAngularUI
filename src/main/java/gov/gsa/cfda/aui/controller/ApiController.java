@@ -2,12 +2,14 @@ package gov.gsa.cfda.aui.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.apache.commons.lang.ArrayUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -254,8 +256,19 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+    public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                           @RequestParam(value="roles", required=false, defaultValue="") String[] roleIds,
+                           @RequestParam(value="organizations", required=false, defaultValue="") String[] orgIds) {
         Map<String, Object> params = new HashMap<>();
+
+        if (roleIds != null && !ArrayUtils.isEmpty(roleIds)) {
+            params.put("roles", StringUtils.arrayToCommaDelimitedString(roleIds));
+        }
+
+        if (orgIds!= null && !ArrayUtils.isEmpty(orgIds)) {
+            params.put("organizations", StringUtils.arrayToCommaDelimitedString(orgIds));
+        }
+
         return getsCall(accessToken, getUsersApiUrl(), params);
     }
 
