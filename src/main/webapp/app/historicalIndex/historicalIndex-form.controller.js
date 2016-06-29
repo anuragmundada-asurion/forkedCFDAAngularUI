@@ -15,17 +15,65 @@
                 publish: "Published"
             };
 
+            $scope.isEdit = $state.current.name == "addHistoricalIndex" ? false : true;
             var promises = [];
-            promises.push(HistoricalIndexFactory.get({id: $stateParams.hid}).$promise);
-            promises.push(ProgramFactory.get({id: $stateParams.pid}).$promise);
-            $q.all(promises).then(function (promisesData) {
-                $scope.oHistoricalIndex = promisesData[0];
-                $scope.oHistoricalIndex.programTitle = promisesData[1].title;
-            });
-
+            if($scope.isEdit){
+                promises.push(HistoricalIndexFactory.get({id: $stateParams.hid}).$promise);
+                promises.push(ProgramFactory.get({id: $stateParams.pid}).$promise);
+                $q.all(promises).then(function (promisesData) {
+                    $scope.oHistoricalIndex = promisesData[0];
+                    $scope.oHistoricalIndex.programTitle = promisesData[1].title;
+                    //manual editing an automated index,
+                    if($scope.oHistoricalIndex.isManual=="0"){
+                        $scope.oHistoricalIndex.isManual="2";
+                    }
+                });
+            }
+            else{
+                promises.push(ProgramFactory.get({id: $stateParams.pid}).$promise);
+                $q.all(promises).then(function (promisesData) {
+                    $scope.oHistoricalIndex = new HistoricalIndexFactory();
+                    $scope.oHistoricalIndex.organizationId = promisesData[0].organizationId;
+                    $scope.oHistoricalIndex.programTitle = promisesData[0].title;
+                    $scope.oHistoricalIndex.programNumber = promisesData[0].programNumber;
+                });
+            }
 
             $scope.years = _.range(1965, new Date().getFullYear() + 1);
 
+            $scope.createHistoricalIndex = function () {
+                $scope.oHistoricalIndex.$save().then(function(data){
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-success" role="alert">' +
+                        '<div class="usa-alert-body">' +
+                        '<p class="usa-alert-text">The Historical Index Change has been created successfully !</p>' +
+                        '</div>' +
+                        '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+
+                    //go to list page after 2 seconds
+                    $timeout(function () {
+                        ngDialog.closeAll();
+                        $state.go('historicalIndex');
+                    }, 3000);
+                },
+                function(error){
+                    ngDialog.open({
+                        template: '<div class="usa-alert usa-alert-error" role="alert">' +
+                        '<div class="usa-alert-body">' +
+                        '<h3 class="usa-alert-heading">Error Status</h3>' +
+                        '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
+                        '</div>' +
+                        '</div>',
+                        plain: true,
+                        closeByEscape: true,
+                        showClose: true
+                    });
+                });
+            };
 
             $scope.updateHistoricalIndex = function () {
                 $scope.oHistoricalIndex.$update({id: $scope.oHistoricalIndex.id}).then(function (data) {

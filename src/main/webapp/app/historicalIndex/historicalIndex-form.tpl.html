@@ -2,7 +2,8 @@
 <div ng-show="oHistoricalIndex">
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-whole">
-            <h2>Edit Historical Index</h2>
+            <h2 ng-if="isEdit">Edit Historical Index</h2>
+            <h2 ng-if="!isEdit">Add Historical Index</h2>
         </div>
     </div>
 
@@ -49,12 +50,13 @@
     <!--This section has the three buttons-->
     <div class="usa-grid usa-grid-fixed usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
         <a class="usa-button usa-button-gray-light" ui-sref="historicalIndex">Cancel</a>
-        <button class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
-        <button type="button" ng-click="deleteHistoricalIndex()">Delete</button>
+        <button ng-if="!isEdit" class="usa-button" ng-click="createHistoricalIndex()">Create</button>
+        <button ng-if="isEdit" class="usa-button" ng-click="updateHistoricalIndex()">Save</button>
+        <button ng-if="isEdit" type="button" ng-click="deleteHistoricalIndex()">Delete</button>
     </div>
 
     <!--This section is only visible to super user and not the public(internal use)-->
-    <div class="usa-grid">
+    <div class="usa-grid" ng-if="isEdit">
         <div class="usa-card-green usa-padding-top-2 usa-padding-bottom-2 usa-grid">
             <div class="usa-width-one-fourth"><label>Created:</label><span>April 20, 2009 12:48 pm</span></div>
             <div class="usa-width-one-fourth text-flow"><label>By:</label><span>Michael Stephenson</span></div>

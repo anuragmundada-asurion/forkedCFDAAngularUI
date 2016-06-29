@@ -13,6 +13,9 @@
                     id: '@_id'
                 }
             },
+            save: {
+                method: 'POST'
+            },
             update: {
                 method: 'PATCH',
                 params: {

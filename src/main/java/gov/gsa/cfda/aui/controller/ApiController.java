@@ -556,6 +556,13 @@ public class ApiController {
         return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
     }
 
+    //manual add historical index
+    @RequestMapping(value = "/api/historicalChange", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                              @RequestBody String jsonData) {
+        return this.createCall(accessToken, getHistoricalChangeApiUrl(), jsonData);
+    }
+
     @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                               @PathVariable("id") String id,
