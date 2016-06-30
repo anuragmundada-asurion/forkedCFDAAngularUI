@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES', 'UserService',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES, UserService) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES', 'UserService', '$state',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES, UserService, $state) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
             $scope.defaultRoleText = {
@@ -65,6 +65,10 @@
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             }, true);
+
+            $scope.clearSearchForm = function() {
+                $state.go($state.current, {}, {reload: true});
+            };
 
             $scope.canEditUser = function(data) {
                 var hasPermission = false;
