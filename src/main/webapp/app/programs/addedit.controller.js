@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
 
                 $scope.$log = $log;
 
@@ -92,7 +92,7 @@
                         //get parent program id in order to verify if this program is a revision or just simple edit draft
                         var oApiParamProgram = {
                             apiName: 'programList',
-                            apiSuffix: '/'+$stateParams.id,
+                            apiSuffix: '/' + $stateParams.id,
                             oParams: {},
                             oData: {},
                             method: 'GET'
@@ -844,8 +844,15 @@
                         return {label: "estimate", dollarValue: obligationValueObj.estimate};
                     }
                     return {label: "no-estimate-or-actual", dollarValue: "000000"};
-                }
+                };
 
+
+                //make sure the focus is top when content has finished loading.
+                $scope.$on('$viewContentLoaded', function () {
+                    $timeout(function () {
+                        $('#iae-header header a.sr-only').focus();
+                    }, 0);
+                });
 
             }]);
 })();
