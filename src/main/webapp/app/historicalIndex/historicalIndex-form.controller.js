@@ -23,7 +23,7 @@
                 $q.all(promises).then(function (promisesData) {
                     $scope.oHistoricalIndex = promisesData[0];
                     $scope.oHistoricalIndex.programTitle = promisesData[1].title;
-                    //manual editing an automated index,
+                    //manual editing an automated index
                     if($scope.oHistoricalIndex.isManual=="0"){
                         $scope.oHistoricalIndex.isManual="2";
                     }
@@ -85,37 +85,44 @@
             };
 
             $scope.updateHistoricalIndex = function () {
-                $scope.oHistoricalIndex.$update({id: $scope.oHistoricalIndex.id}).then(function (data) {
-                        ngDialog.open({
-                            template: '<div class="usa-alert usa-alert-success" role="alert">' +
-                            '<div class="usa-alert-body">' +
-                            '<p class="usa-alert-text">The Historical Index Change has been saved successfully !</p>' +
-                            '</div>' +
-                            '</div>',
-                            plain: true,
-                            closeByEscape: true,
-                            showClose: true
-                        });
+                var validSubmission = validateForm($scope.oHistoricalIndex);
+                if(validSubmission){
+                    $scope.form.error = false;
+                    $scope.oHistoricalIndex.$update({id: $scope.oHistoricalIndex.id}).then(function (data) {
+                            ngDialog.open({
+                                template: '<div class="usa-alert usa-alert-success" role="alert">' +
+                                '<div class="usa-alert-body">' +
+                                '<p class="usa-alert-text">The Historical Index Change has been saved successfully !</p>' +
+                                '</div>' +
+                                '</div>',
+                                plain: true,
+                                closeByEscape: true,
+                                showClose: true
+                            });
 
-                        //go to list page after 2 seconds
-                        $timeout(function () {
-                            ngDialog.closeAll();
-                            $state.go('historicalIndex');
-                        }, 3000);
-                    },
-                    function (error) {
-                        ngDialog.open({
-                            template: '<div class="usa-alert usa-alert-error" role="alert">' +
-                            '<div class="usa-alert-body">' +
-                            '<h3 class="usa-alert-heading">Error Status</h3>' +
-                            '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
-                            '</div>' +
-                            '</div>',
-                            plain: true,
-                            closeByEscape: true,
-                            showClose: true
+                            //go to list page after 2 seconds
+                            $timeout(function () {
+                                ngDialog.closeAll();
+                                $state.go('historicalIndex');
+                            }, 3000);
+                        },
+                        function (error) {
+                            ngDialog.open({
+                                template: '<div class="usa-alert usa-alert-error" role="alert">' +
+                                '<div class="usa-alert-body">' +
+                                '<h3 class="usa-alert-heading">Error Status</h3>' +
+                                '<p class="usa-alert-text">An error has occurred, please try again!</p>' +
+                                '</div>' +
+                                '</div>',
+                                plain: true,
+                                closeByEscape: true,
+                                showClose: true
+                            });
                         });
-                    });
+                }
+                else {
+                    $scope.form.error = true;
+                }
             };
 
             $scope.deleteHistoricalIndex = function () {
