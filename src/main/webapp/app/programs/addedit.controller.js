@@ -17,69 +17,69 @@
                 function instantiateTree() {
                     $scope.treeConfig = {
                         core: {
-                            dblclick_toggle : false,
-                            themes:{
-                              dots: false,
-                              icons: false
+                            dblclick_toggle: false,
+                            themes: {
+                                dots: false,
+                                icons: false
                             }
                         },
                         search: {
-                          show_only_matches: true
+                            show_only_matches: true
                         },
                         checkbox: {
                             three_state: false
                         },
-                        version : 1,
+                        version: 1,
                         plugins: ['checkbox', 'changed', 'search']
                     };
                 }
 
                 // treejs callbacks
                 $scope.treeEventsObj = {
-                  'changed': changedNodeCB,
-                  'ready': readyCB
-                }
-
-                function readyCB() {
-                  console.log("ready for search");
-
-                }
-
-                $scope.testKeyUp = function(seartext){
-                  vm.treeInstance.jstree(true).search(seartext);
+                    'changed': changedNodeCB,
+                    'ready': readyCB
                 };
 
-                function changedNodeCB(e, data){
-                  var i, j, r = [];
-                  for(i = 0, j = data.selected.length; i<j; i++){
-                    var tmpObj = {};
-                    var selectedItem = data.instance.get_node(data.selected[i]);
-                    tmpObj.id = selectedItem.id;
-                    tmpObj.code = selectedItem.original.code;
-                    tmpObj.value = selectedItem.original.value;
-                    r.push(tmpObj);
-                  }
+                function readyCB() {
+                    //console.log("ready for search");
 
-                  $timeout(function(){
-                    $scope.jstreeSelected = r;
-                    //vm.program.assistanceTypes = $scope.jstreeSelected;
-                  });
+                }
 
-                  //console.log(vm.program.assistanceTypes);
+                $scope.testKeyUp = function (seartext) {
+                    vm.treeInstance.jstree(true).search(seartext);
+                };
+
+                function changedNodeCB(e, data) {
+                    var i, j, r = [];
+                    for (i = 0, j = data.selected.length; i < j; i++) {
+                        var tmpObj = {};
+                        var selectedItem = data.instance.get_node(data.selected[i]);
+                        tmpObj.id = selectedItem.id;
+                        tmpObj.code = selectedItem.original.code;
+                        tmpObj.value = selectedItem.original.value;
+                        r.push(tmpObj);
+                    }
+
+                    $timeout(function () {
+                        $scope.jstreeSelected = r;
+                        //vm.program.assistanceTypes = $scope.jstreeSelected;
+                    });
+
+                    //console.log(vm.program.assistanceTypes);
 
                 }
 
                 $scope.unselectJstreeItem = function (item) {
-                  vm.treeInstance.jstree(true).deselect_node(item.id);
+                    vm.treeInstance.jstree(true).deselect_node(item.id);
                 };
 
-                $scope.resetJstree = function() {
-                  $timeout(function(){
-                    $scope.jstreeSelected = [];
-                  });
-                  angular.copy($scope.treeOriginalData, $scope.treeData);
-                  // https://github.com/ezraroi/ngJsTree#recreating-the-tree
-                  $scope.treeConfig.version++;
+                $scope.resetJstree = function () {
+                    $timeout(function () {
+                        $scope.jstreeSelected = [];
+                    });
+                    angular.copy($scope.treeOriginalData, $scope.treeData);
+                    // https://github.com/ezraroi/ngJsTree#recreating-the-tree
+                    $scope.treeConfig.version++;
                 };
 
                 //------------------------------------------------------------------------------------
@@ -104,10 +104,10 @@
                     originalTitle; //original title is stored because Published programs cannot have title changed.
 
                 //Onscreen assistance Dialog box pop-up
-                vm.clickToOpen = $scope.clickToOpen = function(str) {
+                vm.clickToOpen = $scope.clickToOpen = function (str) {
                     $scope.showReadModal(str);
                 };
-                $scope.showReadModal = function(oEntity, typeEntity, action, callback) {
+                $scope.showReadModal = function (oEntity, typeEntity, action, callback) {
                     ngDialog.open({
                         template: 'programs/_ReadModal.tpl.html',
                         className: 'ngdialog-theme-cfda-read',
@@ -954,6 +954,64 @@
                         $('#iae-header header a.sr-only').focus();
                     }, 0);
                 });
+
+
+                //alert agency coordinators about the submit program
+                $scope.alertAC = function () {
+                    var oApiParamACList = {
+                        apiName: 'programList',
+                        apiSuffix: '/' + $stateParams.id + '/submissionNotification',
+                        oParams: {},
+                        oData: {},
+                        method: 'GET'
+                    };
+
+                    ApiService.call(oApiParamACList).then(function (data) {
+                        $scope.acNames = data;
+                        var template = '<div class="usa-alert usa-alert-success usa-margin-bottom-2" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<p class="usa-alert-text">' + 'Notified the following agency coordinators: ' + '</p>' +
+
+                            '<ul>' +
+                            '<li ng-repeat="name in acNames">' +
+                            '<p class="usa-alert-text">' + '{{name}}' + '</p>' +
+                            '</li>' +
+                            '</ul>' +
+
+                            '</div>' +
+                            '</div>' +
+                            '<button class="usa-button-gray-light" ng-click="closeModal();">Ok</button>';
+
+                        ngDialog.open({
+                            template: template,
+                            className: 'ngdialog-theme-cfda',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true,
+                            scope: $scope, //give the dialog access to current scope
+                            width: '80%'
+                        });
+
+                    }, function (data) {
+                        console.log("error function, data: ", data);
+                        var template = '<div class="usa-alert usa-alert-error usa-margin-bottom-2" role="alert">' +
+                            '<div class="usa-alert-body">' +
+                            '<p class="usa-alert-text">' + 'Error happened while notifying agency coordinators: ' + data + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<button class="usa-button-gray-light" ng-click="closeModal();">Ok</button>';
+
+                        ngDialog.open({
+                            template: template,
+                            className: 'ngdialog-theme-cfda',
+                            plain: true,
+                            closeByEscape: true,
+                            showClose: true,
+                            scope: $scope, //give the dialog access to current scope
+                            width: '80%'
+                        });
+                    });
+                };
 
             }]);
 })();

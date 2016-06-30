@@ -6,6 +6,13 @@
 </section>
 <div id="status-indicator-bar-anchor"></div>
 <section class="usa-grid-full">
+    <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION)">
+        <div class="usa-alert-body">
+            <h3 class="usa-alert-heading">Submit Program</h3>
+            <p class="usa-alert-text">Note: Please review your FAL information below. Your account does not have rights to submit FALs. If the FAL is ready for review/submission, please click the following button to save and send an alert to the agency coordinator.</p>
+            <button class="usa-button-big" type="button" ng-click="alertAC()">Save and Alert Agency Coordinator</button>
+        </div>
+    </div>
     <div>
         <div ng-include="'programs/view-section1.tpl.html'"></div>
         <hr/>

@@ -101,7 +101,7 @@
             };
 
             $scope.rowClicked = function (uniqueRowId) {
-                console.log("in rowClicked function: uniqueRowId: ", uniqueRowId);
+                //console.log("in rowClicked function: uniqueRowId: ", uniqueRowId);
                 //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
                 var a = String(uniqueRowId).split("-");
                 var rowId = a[a.length - 1];

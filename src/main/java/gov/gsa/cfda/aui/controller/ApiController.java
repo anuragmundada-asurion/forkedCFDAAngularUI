@@ -100,6 +100,14 @@ public class ApiController {
         return response.getBody();
     }
 
+
+    @RequestMapping(value = "/api/programs/{id}/submissionNotification", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String notifyAgencyCoordinators(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                                      @PathVariable("id") String id) {
+        Map<String, Object> params = new HashMap<>();
+        return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params);
+    }
+
     @RequestMapping(value = "/api/contacts/{agencyId}", method = RequestMethod.GET)
     public String getContactListApiCall(@PathVariable("agencyId") String agencyId) {
         RestTemplate restTemplate = new RestTemplate();
@@ -257,15 +265,15 @@ public class ApiController {
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
-                           @RequestParam(value="roles", required=false, defaultValue="") String[] roleIds,
-                           @RequestParam(value="organizations", required=false, defaultValue="") String[] orgIds) {
+                           @RequestParam(value = "roles", required = false, defaultValue = "") String[] roleIds,
+                           @RequestParam(value = "organizations", required = false, defaultValue = "") String[] orgIds) {
         Map<String, Object> params = new HashMap<>();
 
         if (roleIds != null && !ArrayUtils.isEmpty(roleIds)) {
             params.put("roles", StringUtils.arrayToCommaDelimitedString(roleIds));
         }
 
-        if (orgIds!= null && !ArrayUtils.isEmpty(orgIds)) {
+        if (orgIds != null && !ArrayUtils.isEmpty(orgIds)) {
             params.put("organizations", StringUtils.arrayToCommaDelimitedString(orgIds));
         }
 
