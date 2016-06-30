@@ -49,6 +49,50 @@
         };
 
         /**
+         * @returns Void
+         * @param id array
+         * @param includeParentLevels
+         * @param includeChildrenLevels
+         * @param callbackFnSuccess
+         * @param callbackFnError
+         */
+        var getFederalHierarchyByIds = function (aIDs, includeParentLevels, includeChildrenLevels, callbackFnSuccess, callbackFnError) {
+            var oApiParam = {
+                apiName: 'federalHierarchyList',
+                apiSuffix: '',
+                oParams: {
+                    'sort': 'name',
+                    'ids': aIDs.join(',')
+                },
+                oData: {},
+                method: 'GET'
+            };
+
+            if (includeParentLevels) {
+                oApiParam.oParams['parentLevels'] = 'all';
+            }
+
+            if (includeChildrenLevels) {
+                oApiParam.oParams['childrenLevels'] = 'all';
+            }
+
+            //make api call to get federalHierarchy by id
+            return ApiService.call(oApiParam).then(
+                function (data) {
+                    if (typeof callbackFnSuccess === 'function') {
+                        callbackFnSuccess(data);
+                    }
+                },
+                function (error) {
+                    if (typeof callbackFnError === 'function') {
+                        callbackFnError(error);
+                    }
+                    return false;
+                }
+            );
+        };
+
+        /**
          *
          * @returns Void
          * @param id
@@ -284,6 +328,7 @@
         return {
             getFullLabelPathFederalHierarchyById: getFullLabelPathFederalHierarchyById,
             getFederalHierarchyById: getFederalHierarchyById,
+            getFederalHierarchyByIds: getFederalHierarchyByIds,
             dropdownDataStructure: dropdownDataStructure,
             getParentPath: getParentPath,
             getFullNameFederalHierarchy: getFullNameFederalHierarchy,

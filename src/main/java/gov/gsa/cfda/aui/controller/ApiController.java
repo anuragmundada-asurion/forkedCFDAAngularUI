@@ -489,7 +489,7 @@ public class ApiController {
         restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
     }
 
-    private String federalHierarchyCall(String id, String sort, String childrenLevels, String parentLevels) {
+    private String federalHierarchyCall(String id, String ids, String sort, String childrenLevels, String parentLevels) {
         String url = getFederalHierarchiesApiUrl();
         if (id != null && !id.isEmpty()) {
             url += '/' + id;
@@ -516,6 +516,10 @@ public class ApiController {
             builder.queryParam("sort", sort);
         }
 
+        if (ids != null && !ids.isEmpty()) {
+            builder.queryParam("ids", ids);
+        }
+
 //        builder.queryParam("_options.hal.link", false);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -525,10 +529,11 @@ public class ApiController {
 
     @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchy(@RequestParam(value = "sort", required = false, defaultValue = "name") String sort,
+                                          @RequestParam(value = "ids", required = false, defaultValue = "") String ids,
                                           @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
                                           @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, sort, childrenLevels, parentLevels));
+            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, ids, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
@@ -544,7 +549,7 @@ public class ApiController {
                                               @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
                                               @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, sort, childrenLevels, parentLevels));
+            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, null, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());

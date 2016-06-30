@@ -41,6 +41,7 @@
                 "hasDepartmentChanged": "=?",
                 "showDepartment": "=?",
                 "hideDepartment": "=?",
+                "showAll": "=?", // e.g: for limited super user -> show all inputs
                 "setSelectedOption": "=?"
             },
             controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
@@ -348,7 +349,8 @@
                                 $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
-                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER]) ||
+                                (typeof scope.showAll !== 'undefined' && scope.showAll === true)) {
                             //get Department level of user's organizationId
                             scope.initDictionaries('', true, false, function (oData) {
                                 //initialize Department
@@ -382,7 +384,7 @@
                     "<div class='no-input' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_USER, $root.SUPPORTED_ROLES.OMB_ANALYST])'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='usa-grid-full' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'>"+
+                    "<div class='usa-grid-full' ng-show='($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR]) || showAll === true)'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
                             "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='((($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment) && !hideDepartment)' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
