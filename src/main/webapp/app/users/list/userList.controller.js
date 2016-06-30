@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES', 'UserService',
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES, UserService) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
             $scope.defaultRoleText = {
@@ -18,6 +18,14 @@
                 roleFilter: [],
                 organizationFilter: ''
             };
+            $scope.showOMBAllOrganization = UserService.hasUserAllOrgIDs();
+
+            //OMB load his custom organizations
+            if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.OMB_ANALYST]) && !$scope.showOMBAllOrganization){
+                FederalHierarchyService.getFederalHierarchyByIds(UserService.getUserAllOrgIDs(), false, false, function(data){
+                    $scope.aOrganization = data;
+                }, function(error){});
+            }
 
             if (ROLES.isPopulated) {
                 $scope.availableRoles = [{
@@ -106,7 +114,7 @@
                     }
 
                     if ($scope.filter.organizationFilter) {
-                        //  TODO Populate params with organization filter
+                        oApiParam.oParams['organizations'] = [$scope.filter.organizationFilter];
                     }
 
                     ApiService.call(oApiParam).then(
