@@ -298,7 +298,7 @@
             if($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])){
                 $scope.dtColumns.push(DTColumnBuilder.newColumn('manualEntry').withTitle('').withOption('defaultContent', '')
                     .withOption('render', function (data){
-                        return '<a class="usa-button usa-button-compact" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-pencil"></span></a>';
+                        return '<a class="usa-button usa-button-compact" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-plus"></span></a>';
                     }));
             }
 
