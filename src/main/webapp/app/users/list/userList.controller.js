@@ -3,8 +3,8 @@
 
     var myApp = angular.module('app');
 
-    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES', 'UserService', '$state',
-        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES, UserService, $state) {
+    myApp.controller('UserListCtrl', ['$scope', 'ApiService', 'FederalHierarchyService', 'DTColumnBuilder', 'DTOptionsBuilder', '$q', '$compile', 'AuthorizationService', 'SUPPORTED_ROLES', 'ROLES', 'UserService', '$state', '$stateParams', 
+        function($scope, ApiService, FederalHierarchyService, DTColumnBuilder, DTOptionsBuilder, $q, $compile, AuthorizationService, SUPPORTED_ROLES, ROLES, UserService, $state, $stateParams) {
             $scope.searchKeyword = '';
             $scope.dtInstance = {};
             $scope.defaultRoleText = {
@@ -16,7 +16,7 @@
             };
             $scope.filter = {
                 roleFilter: [],
-                organizationFilter: ''
+                organizationFilter: (typeof $stateParams.organization !== 'undefined') ? $stateParams.organization : ''
             };
             $scope.showOMBAllOrganization = UserService.hasUserAllOrgIDs();
 
@@ -67,7 +67,7 @@
             }, true);
 
             $scope.clearSearchForm = function() {
-                $state.go($state.current, {}, {reload: true});
+                $state.go('userList', {organization: null}, {reload: true});
             };
 
             $scope.canEditUser = function(data) {
