@@ -63,6 +63,32 @@
 	padding-top: 30px;
 }
 
+.ngdialog.ngdialog-theme-cfda.ngdialog-custom .ngdialog-content {
+	-webkit-animation: ngdialog-flyin .5s;
+	animation: ngdialog-flyin .5s;
+	background: $color-white;
+	border-radius: 3px;
+	margin: 0 auto;
+	width: 80%;
+	text-align: justify;
+	padding: 5em;
+	position: relative;
+	overflow-y: scroll;
+}
+
+.ngdialog.ngdialog-theme-cfda.ngdialog-custom .ngdialog-content h4 {
+	text-decoration: underline;
+}
+
+.ngdialog.ngdialog-theme-cfda.ngdialog-custom .ngdialog-content .underline {
+	text-decoration: underline;
+}
+
+.ngdialog.ngdialog-theme-cfda.ngdialog-custom .ngdialog-content .readBody {
+	height: 400px;
+	overflow-y: scroll;
+}
+
 .ngdialog.ngdialog-theme-cfda.ngdialog-closing .ngdialog-content {
 	-webkit-animation: ngdialog-flyout .5s;
 	animation: ngdialog-flyout .5s;

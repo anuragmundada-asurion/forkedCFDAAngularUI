@@ -52,6 +52,9 @@
               {{::instructionalText["01"]["010"]["label"]}}<span class="required">*</span>
             </label>
             <span class="usa-form-hint">{{::instructionalText["01"]["010"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d010')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
               You must provide a title.
             </span>
@@ -118,6 +121,9 @@
       <section class="usa-grid" field-finder-bookmark title="020 Popular Name">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["020"]["title"]}}</legend>
+
+          <a ng-click="clickToOpen('d020')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
           <div ng-class="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
             <label for="alternativeName" ng-class=" gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
               <span class="usa-input-error-message" ng-show="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title">The Popular Name should be different than the Program Title.</span>
@@ -139,6 +145,9 @@
 
             <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
             <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
+
+            <a ng-click="::$ctrl.parentVm.clickToOpen('d040')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
               None
             </p>
@@ -191,6 +200,9 @@
           <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
             <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">{{::instructionalText["01"]["050"]["label"]}}<span class="required">*</span></label>
             <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d050')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
               <span class="usa-input-error-message" ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
             </div>
@@ -205,6 +217,9 @@
           <legend>{{::instructionalText["01"]["060"]["title"]}}</legend>
           <label>{{::instructionalText["01"]["060"]["label"]}}<span class="required">*</span></label>
           <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
+
+          <a ng-click="clickToOpen('d060')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
           <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.assistanceTypes">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -240,6 +255,9 @@
           <span class="usa-form-hint">
             {{::instructionalText["01"]["070"]["helpText"]}}
           </span>
+
+          <a ng-click="clickToOpen('d070')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
           <textarea id="usageRulesContent" name="usageRulesContent" ng-model="gsavm.program.usage.rules.content" required></textarea>
         </div>
 
@@ -321,6 +339,8 @@
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["160"]["title"]}}</legend>
 
+          <a ng-click="clickToOpen('d160')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
           <fieldset class="usa-fieldset-inputs usa-sans usa-input-large">
             <label for="relatedProgramsFlag">{{::instructionalText["01"]["160"]["label"]}}<span class="required">*</span></label>
             <ul class="usa-horizontal-list">
@@ -368,6 +388,8 @@
       <section class="usa-grid" field-finder-bookmark title="170 Examples of Funded Projects">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["170"]["title"]}}</legend>
+
+          <a ng-click="clickToOpen('d170')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
           <fieldset class="usa-fieldset-inputs usa-sans">
             <label>{{::instructionalText["01"]["170"]["label"]}}<span class="required">*</span></label>
@@ -418,6 +440,8 @@
           <label>{{::instructionalText["01"]["190"]["label"]}}<span class="required">*</span></label>
           <span class="usa-form-hint">{{::instructionalText["01"]["190"]["helpText"]}}</span>
 
+          <!--<a ng-click="clickToOpen('d190')" tabindex="0" trigger-click-on-enter>Read More..</a>-->
+
           <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
             <li ng-repeat="item in gsavm.program.functionalCodes">
               <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -453,6 +477,8 @@
             </multi-entry-header>
             <label>{{::$ctrl.parentVm.instructionalText["01"]["300"]["label"]}}<span class="required">*</span></label>
             <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["300"]["helpText"]}}</span>
+
+            <!--<a ng-click="clickToOpen('d300')" tabindex="0" trigger-click-on-enter>Read More..</a>-->
 
             <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
               None
@@ -504,6 +530,9 @@
             <h4>{{::instructionalText["02"]["081"]["title"]}}</h4>
             <label>{{::instructionalText["02"]["081"]["eligibleApplicants"]["label"]}}<span class="required">*</span></label>
             <span class="usa-form-hint">{{::instructionalText["02"]["081"]["eligibleApplicants"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d081')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <ul ng-show="gsavm.program.eligibility.applicant.types.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.eligibility.applicant.types">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -527,6 +556,9 @@
 
             <label>{{::instructionalText["02"]["081"]["useOfAssistance"]["label"]}}<span class="required">*</span></label>
             <span class="usa-form-hint">{{::instructionalText["02"]["081"]["useOfAssistance"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d081u')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <ul ng-show="gsavm.program.eligibility.applicant.assistanceUsageTypes.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.eligibility.applicant.assistanceUsageTypes">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -567,6 +599,9 @@
 
             <label>{{::instructionalText["02"]["082"]["beneficiaryEligibility"]["label"]}}<span class="required">*</span></label>
             <span class="usa-form-hint">{{::instructionalText["02"]["082"]["beneficiaryEligibility"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d082')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <ul ng-show="gsavm.program.eligibility.beneficiary.types.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.eligibility.beneficiary.types">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
@@ -603,6 +638,8 @@
           <section field-finder-bookmark title="083 Credentials/Documentation">
 
             <h4>{{::instructionalText["02"]["083"]["title"]}}</h4>
+
+            <a ng-click="clickToOpen('d083')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="credentialsOrDocumentation">{{::instructionalText["02"]["083"]["label"]}}<span class="required">*</span></label>
@@ -674,6 +711,9 @@
           <section field-finder-bookmark title="091 Pre-application Coordination">
 
             <h4>091 Pre-application Coordination<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d091')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label>
                 {{::instructionalText["03"]["091"]["label"]}}<span class="required">*</span>
@@ -753,6 +793,9 @@
           <section field-finder-bookmark title="092 Application Procedures">
 
             <h4>{{::instructionalText["03"]["092"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d092')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="applProc3">{{::instructionalText["03"]["092"]["label"]}}</label>
               <ul class="usa-horizontal-list">
@@ -779,6 +822,9 @@
           <!-- 093 Award Procedure -->
           <section field-finder-bookmark title="093 Award Procedure">
             <h4>{{::instructionalText["03"]["093"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d093')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <label for="awardProc3">{{::instructionalText["03"]["093"]["label"]}}</label>
             <textarea id="awardProc3" name="awardProc3" ng-model="gsavm.program.award.procedures.content" required></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
@@ -790,6 +836,9 @@
           <section field-finder-bookmark title="094 Deadlines">
 
             <h4>{{::instructionalText["03"]["094"]["title"]}}</h4>
+
+            <a ng-click="clickToOpen('d094')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="deadline3">{{::instructionalText["03"]["094"]["label"]}}<span class="required">*</span></label>
               <ul class="usa-horizontal-list">
@@ -889,6 +938,9 @@
           <!-- 095 Range of Approval/Disapproval Time -->
           <section field-finder-bookmark title="095 Range of Approval/Disapproval Time">
             <h4>{{::instructionalText["03"]["095"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d095')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <label for="approvalTime3">{{::instructionalText["03"]["095"]["dateRange"]["label"]}}</label>
             <ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
@@ -909,6 +961,9 @@
           <!-- 096 Appeals -->
           <section field-finder-bookmark title="096 Appeals">
             <h4>{{::instructionalText["03"]["096"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d096')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <label for="appeals3">{{::instructionalText["03"]["096"]["dateRange"]["label"]}}</label>
             <ui-select id="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" name="appeals3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
@@ -932,6 +987,9 @@
           <!-- 097 Renewals -->
           <section class="sub-minor-section" field-finder-bookmark title="097 Renewals">
             <h4>{{::instructionalText["03"]["097"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="clickToOpen('d097')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <label for="renewals3">{{::instructionalText["03"]["097"]["dateRange"]["label"]}}</label>
             <ui-select id="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" name="renewals3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
@@ -960,9 +1018,15 @@
           <legend field-finder-bookmark title="100 Assistance Consideration" data-bookmark-parent="true">
             {{::instructionalText["03"]["100"]["title"]}}
           </legend>
+
+          <a ng-click="clickToOpen('d100')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
           <section field-finder-bookmark title="101 Formula and Matching Requirements">
             <h4>{{::instructionalText["03"]["101"]["title"]}}</h4>
             <span class="usa-form-hint">{{::instructionalText["03"]["101"]["helpText"]}}</span>
+
+            <a ng-click="clickToOpen('d101')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <fieldset class="usa-fieldset-inputs usa-sans">
               <label for="statuatoryFormula3">{{::instructionalText["03"]["101"]["statuatoryFormula"]["label"]}}<span class="required">*</span></label>
 
@@ -1071,6 +1135,9 @@
 
           <section field-finder-bookmark title="102 Length and Time Phasing of Assistance">
             <h4>{{::instructionalText["03"]["102"]["title"]}}</h4>
+
+            <a ng-click="clickToOpen('d102')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <label for="assistLimit3">{{::instructionalText["03"]["102"]["assistLimit"]["label"]}}<span class="required">*</span></label>
             <textarea id="assistLimit3" name="assistLimit3" class="usa-input-large" ng-model="gsavm.program.assistance.limitation.content" required></textarea>
 
@@ -1093,6 +1160,8 @@
       <!-- 180 Criteria for Selecting Proposals -->
       <section class="usa-grid" field-finder-bookmark title="180 Criteria for Selecting Proposals">
         <legend>{{::instructionalText["03"]["180"]["title"]}}<span class="required">*</span></legend>
+
+        <a ng-click="clickToOpen('d180')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
         <fieldset class="usa-fieldset-inputs usa-sans">
           <label for="criteriaProposals3">{{::instructionalText["03"]["180"]["label"]}}</label>
@@ -1133,6 +1202,9 @@
       <h2><span class="section-circle">4</span> Post Award Requirements</h2>
       <section class="sub-section">
         <h3 field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">{{::instructionalText["04"]["110"]["title"]}}</h3>
+
+        <a ng-click="clickToOpen('d110')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
         <section class="sub-minor-section" field-finder-bookmark title="111 Reports">
           <h4>{{::instructionalText["04"]["111"]["title"]}}</h4>
 
@@ -1376,6 +1448,8 @@
       <section class="sub-section" field-finder-bookmark title="140 Regulations, Guidelines, and Literature">
         <h3>{{::instructionalText["04"]["140"]["title"]}}</h3>
 
+        <a ng-click="clickToOpen('d140')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
         <div class="input-field">
           <fieldset class="usa-fieldset-inputs usa-sans">
             <label for="documents">{{::instructionalText["04"]["140"]["label"]}}<span class="required">*</span></label>
@@ -1414,6 +1488,9 @@
             <multi-entry ng-model="gsavm.program.financial.accounts" item-title="gsavm.getAccountTitle" editable-items="true" new-entry-btn-name="Add Account" delete-btn-label="Delete Account" parent-vm="gsavm">
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["121"]["title"]}} <span class="required">*</span></h4>
+
+                <a ng-click="::$ctrl.parentVm.clickToOpen('d121')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
                 <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["121"]["label"]}}</span></p>
               </multi-entry-header>
               <multi-entry-sub-form class="input-field">
@@ -1438,6 +1515,9 @@
             <multi-entry ng-model="gsavm.program.financial.obligations" item-title="gsavm.getObligationTitle" editable-items="true" new-entry-btn-name="Add Obligation" delete-btn-label="Delete Obligation" parent-vm="gsavm" dictionary-items="{{ gsavm.getDictionary('aAssistanceType') }}">
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["122"]["title"]}}<span class="required">*</span></h4>
+
+                <a ng-click="::$ctrl.parentVm.clickToOpen('d122')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
                 <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["label"]}}</span></p>
               </multi-entry-header>
               <multi-entry-sub-form class="input-field">
@@ -1563,6 +1643,9 @@
     <section class="sub-minor-section" field-finder-bookmark title="123 Range and Average of Financial Assistance">
       <div class="input-field">
         <h4><label for="financialAdditionalInfo">{{::instructionalText["05"]["123"]["title"]}}</label></h4>
+
+        <a ng-click="clickToOpen('d123')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
         <p class="usa-form-hint">{{::instructionalText["05"]["123"]["label"]}}</p>
         <textarea id="financialAdditionalInfo" name="financialAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.financial.additionalInfo.content"></textarea>
       </div>
@@ -1572,6 +1655,9 @@
         <multi-entry ng-model="gsavm.program.financial.treasury.tafs" item-title="gsavm.getTafsTitle" editable-items="true" new-entry-btn-name="Add TAF" delete-btn-label="Delete TAF" parent-vm="gsavm">
           <multi-entry-header>
             <h4>{{::$ctrl.parentVm.instructionalText["05"]["124"]["title"]}}<span class="required">*</span></h4>
+
+            <a ng-click="::$ctrl.parentVm.clickToOpen('d124')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
             <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["124"]["label"]}}</span></p>
           </multi-entry-header>
           <multi-entry-sub-form class="input-field">
@@ -1631,6 +1717,8 @@
     <h3>{{::instructionalText["05"]["130"]["title"]}}<span class="required">*</span></h3>
      <span class="usa-form-hint">{{::instructionalText["05"]["130"]["helpText"]}}</span>
 
+    <a ng-click="clickToOpen('d130')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
     <div class="input-field">
       <fieldset class="usa-fieldset-inputs usa-sans">
         <label>{{::instructionalText["05"]["130"]["label"]}}</label>
@@ -1675,6 +1763,9 @@
     <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
       <fieldset class="usa-fieldset-inputs usa-sans">
         <h4>{{::instructionalText["06"]["151"]["title"]}}<span class="required">*</span></h4>
+
+        <a ng-click="clickToOpen('d151')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
         <ul class="usa-horizontal-list">
           <li>
             <input type="radio" name="office6" ng-model="gsavm.program.contacts['local'].flag" id="office6regional" value="regional"/>
@@ -1698,6 +1789,9 @@
       <multi-entry ng-model="gsavm.program.contacts.list" new-entry-btn-name="Add Contact" delete-btn-label="Delete Contact" parent-vm="gsavm">
         <multi-entry-header>
           <h4>152 Headquarters Office<span class="required">*</span></h4>
+
+          <a ng-click="::$ctrl.parentVm.clickToOpen('d152')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
         </multi-entry-header>
         <p><span class="usa-form-hint">Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added</span></p>
         <div ng-hide="$ctrl.parentVm.program.contacts.list">At least one POC is required.</div>
@@ -2010,8 +2104,12 @@
   <section class="sub-minor-section" field-finder-bookmark title="153 Website">
     <div class="input-field">
       <h4><label for="website6">{{::instructionalText["06"]["153"]["title"]}}</label></h4>
+
       <error-msg model="gsavm.program.website" regex-pattern="website_url" msg="Please enter a valid url. [protocol]://hostname.domain. Protocal can be ftp, http, or https. Spaces are not allowed."></error-msg>
       <span class="usa-form-hint">{{::instructionalText["06"]["153"]["label"]}}</span>
+
+      <a ng-click="clickToOpen('d153')" tabindex="0" trigger-click-on-enter>Read More..</a>
+
       <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
     </div>
   </section>

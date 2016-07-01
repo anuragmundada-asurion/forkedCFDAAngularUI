@@ -4,9 +4,9 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
-
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$sce', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $sce, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
+                
                 $scope.$log = $log;
 
                 var vm = this,
@@ -25,6 +25,25 @@
                         'functional_codes'
                     ],
                     originalTitle; //original title is stored because Published programs cannot have title changed.
+
+                //Onscreen assistance Dialog box pop-up
+                vm.clickToOpen = $scope.clickToOpen = function(str) {
+                    $scope.showReadModal(str);
+                };
+                $scope.showReadModal = function(oEntity, typeEntity, action, callback) {
+                    ngDialog.open({
+                        template: 'programs/_ReadModal.tpl.html',
+                        className: 'ngdialog-theme-cfda',
+                        appendClassName: 'ngdialog-custom',
+                        scope: $scope,
+                        data: {
+                            oEntity: oEntity,
+                            typeEntity: typeEntity,
+                            action: action,
+                            callback: callback
+                        }
+                    });
+                };
 
                 $scope.instructionalText = {};
                 //initialize dictionary container
