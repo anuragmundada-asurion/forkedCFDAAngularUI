@@ -45,10 +45,10 @@
 
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3" ng-if="(hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true)">
     
-    <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter === '')" organization-id="filter.organizationFilter" show-department="true" show-all='true' no-default="true"></federal-hierarchy-inputs>
-    <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter !== '')" organization-id="filter.organizationFilter" show-department="true" show-all='true'></federal-hierarchy-inputs>
+    <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter === '')" organization-id="filter.organizationFilter" show-department="true" show-all='true' no-default="true" set-dept-null-on-change="true"></federal-hierarchy-inputs>
+    <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter !== '')" organization-id="filter.organizationFilter" show-department="true" show-all='true' set-dept-null-on-change="true"></federal-hierarchy-inputs>
     
-    <federal-hierarchy-inputs ng-if="hasRole([ROLES.AGENCY_COORDINATOR])" organization-id="filter.organizationFilter"></federal-hierarchy-inputs>
+    <federal-hierarchy-inputs ng-if="hasRole([ROLES.AGENCY_COORDINATOR])" organization-id="filter.organizationFilter" set-dept-null-on-change="true"></federal-hierarchy-inputs>
 </div>
 
 <table  id="usersTable"

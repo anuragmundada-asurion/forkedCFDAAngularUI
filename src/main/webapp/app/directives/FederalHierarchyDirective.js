@@ -42,6 +42,7 @@
                 "showDepartment": "=?",
                 "hideDepartment": "=?",
                 "showAll": "=?", // e.g: for limited super user -> show all inputs
+                "setDeptNullOnChange": "=?", //e.g for setting organizationId to null on setOrganizationId callback fn
                 "setSelectedOption": "=?"
             },
             controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
@@ -97,6 +98,12 @@
                                     }
                                 });
                             }
+
+                            //in case we need to set organizationId to null if department has not been selected
+                            if(typeof $scope.setDeptNullOnChange !== 'undefined' && $scope.setDeptNullOnChange === true
+                                    && ($scope.selectedDeptId === '' || typeof $scope.selectedDeptId === 'undefined')) {
+                                $scope.organizationId = '';
+                            }
                             break;
                         case 'agency':
                             if(typeof $scope.selectedAgencyId !== 'undefined' && $scope.selectedAgencyId !== ''
@@ -106,7 +113,7 @@
                                 //if user is a root then set department from dropdown
                                 if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                                     $scope.organizationId = $scope.selectedDeptId;
-                                } else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
+                                } else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
                                     $scope.organizationId = $scope.programOrganizationId;
                                 }
                             }
