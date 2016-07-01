@@ -261,7 +261,7 @@
                     title: 'View Request - CFDA: View Request'
                 })
                 .state('userList', {
-                    url: "/users",
+                    url: "/users?organization",
                     templateUrl: "users/list/userList.tpl.html",
                     controller: "UserListCtrl",
                     title: 'Users - CFDA: User List',
