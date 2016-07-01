@@ -28,8 +28,8 @@
     </div>
 
     <div class="usa-grid usa-grid-fixed">
-        <div class="usa-width-one-third">
-            <label for="statusCode">Status Code</label>
+        <div class="usa-width-one-third" ng-show="isEdit && isLegacyRecord">
+            <label maxlength="8" for="statusCode">Status Code</label>
             <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
         </div>
 

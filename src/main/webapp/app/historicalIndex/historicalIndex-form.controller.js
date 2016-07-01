@@ -16,6 +16,8 @@
             };
 
             $scope.isEdit = $state.current.name == "addHistoricalIndex" ? false : true;
+            $scope.isLegacyRecord = false;
+
             var promises = [];
             if($scope.isEdit){
                 promises.push(HistoricalIndexFactory.get({id: $stateParams.hid}).$promise);
@@ -26,6 +28,9 @@
                     //manual editing an automated index
                     if($scope.oHistoricalIndex.isManual=="0"){
                         $scope.oHistoricalIndex.isManual="2";
+                    }
+                    if($scope.oHistoricalIndex.statusCode && $scope.oHistoricalIndex.statusCode.length > 0){
+                        $scope.isLegacyRecord = true;
                     }
                 });
             }
