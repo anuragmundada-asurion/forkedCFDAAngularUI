@@ -99,7 +99,7 @@ module.exports = function(config) {
             reporters: [
                 { type: 'html', subdir: 'html' },
                 { type: 'cobertura', subdir: 'cobertura', file: 'cobertura.xml' },
-                { type: 'lcovonly', subdir: 'lcov', file: 'lcov.txt' }
+                { type: 'lcov', subdir: 'lcov' }
             ]
         },
 
