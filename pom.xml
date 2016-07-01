@@ -19,8 +19,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
+        <sonar.modules>java,javascript</sonar.modules>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <java.sonar.projectBaseDir>src/main/java</java.sonar.projectBaseDir>
+        <javascript.sonar.projectBaseDir>src/main/webapp/app</javascript.sonar.projectBaseDir>
         <sonar.javascript.lcov.reportPath>target/site/coverage/lcov/lcov.info</sonar.javascript.lcov.reportPath>
-
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.jacoco.reportPath>target/site/coverage/jacoco/jacoco.xml</sonar.jacoco.reportPath>
     </properties>
 
     <dependencies>
