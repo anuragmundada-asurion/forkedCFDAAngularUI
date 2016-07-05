@@ -45,12 +45,14 @@ h1, h2 {
 }
 // Background (Inside Typography file)
 .usa-background-primary-darkest{
-	display: inline-block;
+	// display: inline-block;
+  float: left;
 	width: 100%;
 	background-color: $color-primary-darkest;
 }
 .usa-background-gray-lightest{
-	display: inline-block;
+	// display: inline-block;
+  float: left;
 	width: 100%;
 	background-color: #eeeeee;
 }
