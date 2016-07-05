@@ -28,12 +28,11 @@
           item-label="displayValue"
           tick-property="ticked"
           max-height="250px"
-          translation="defaultRoleText"
-    >
+          translation="defaultRoleText">
     </isteven-multi-select>
   </div>
 
-  <div class="usa-width-one-third">
+  <div class="" ng-class="(hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization && aOrganization) ? 'usa-width-one-third':'usa-width-two-thirds' ">
     <input  ng-model="searchKeyword"
             type="search"
             placeholder="Search Users"
@@ -41,9 +40,9 @@
   </div>
 
   <div class="usa-width-one-third" ng-if="(hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization && aOrganization)">
-      <select id="organization" ng-options="item.elementId as item.name for item in aOrganization._embedded.hierarchy" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
-          <option value="">Chose an Organization</option>
-      </select>
+    <select id="organization" ng-options="item.elementId as item.name for item in aOrganization._embedded.hierarchy" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
+      <option value="">Chose an Organization</option>
+    </select>
   </div>
 
 </div>
