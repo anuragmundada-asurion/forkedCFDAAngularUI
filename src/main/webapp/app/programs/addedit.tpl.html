@@ -24,7 +24,7 @@
     <ux-form-section state-key="info" section-title="General Information" field-finder-section>
 
       <!-- Header -->
-      <div class="usa-grid">
+      <div class="usa-grid-full">
         <div class="usa-width-one-whole">
           <h2>
             <span class="section-circle">
@@ -36,98 +36,108 @@
       </div>
 
       <!-- Intro -->
-      <section class="usa-grid" field-finder-bookmark title="000 Intro">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-          <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode"></federal-hierarchy-inputs>
-          <federal-hierarchy-label ng-if="((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="000 Intro">
+        <div class="usa-grid">
+          <div class="usa-width-one-whole">
+              <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode"></federal-hierarchy-inputs>
+              <federal-hierarchy-label ng-if="((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
+          </div>
         </div>
       </section>
 
+
       <!-- 010 Program Title -->
-      <section class="usa-grid" field-finder-bookmark title="010 Program Title">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-          <legend>{{::instructionalText["01"]["010"]["title"]}}</legend>
-          <div ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required || (gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program' || '') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)))  ? 'usa-input-error' : '' ">
-            <label for="title" ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error-label' : '' ">
-              {{::instructionalText["01"]["010"]["label"]}}<span class="required">*</span>
-            </label>
-            <span class="usa-form-hint">{{::instructionalText["01"]["010"]["helpText"]}}</span>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="010 Program Title">
+        <div class="usa-grid">
+          <div class="usa-width-one-whole">
+            <legend>{{::instructionalText["01"]["010"]["title"]}}</legend>
+            <div ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required || (gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('Program' || '') != -1 || gsavm.program.title.indexOf('the') != -1 || gsavm.program.title.indexOf('program') != -1)))  ? 'usa-input-error' : '' ">
+              <label for="title" ng-class="(gsavm.form.title.$dirty && gsavm.form.title.$error.required) ? 'usa-input-error-label' : '' ">
+                {{::instructionalText["01"]["010"]["label"]}}<span class="required">*</span>
+              </label>
+              <span class="usa-form-hint">{{::instructionalText["01"]["010"]["helpText"]}}</span>
 
-            <a ng-click="clickToOpen('d010')" tabindex="0" trigger-click-on-enter>Read More..</a>
+              <a ng-click="clickToOpen('d010')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
-            <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
-              You must provide a title.
-            </span>
-             <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('the') != -1)">
-              The word "The" should not be included in the Program title.
-            </span>
-            <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('program') != -1)">
-              The word "Program" should not be included in the Program title.
-            </span>
-            <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+              <span class="usa-input-error-message" ng-show="gsavm.form.title.$error.required && gsavm.form.title.$dirty">
+                You must provide a title.
+              </span>
+               <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('The') != -1 || gsavm.program.title.indexOf('the') != -1)">
+                The word "The" should not be included in the Program title.
+              </span>
+              <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('program') != -1)">
+                The word "Program" should not be included in the Program title.
+              </span>
+              <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Program Number -->
-      <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.parentProgramNumber)">
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="(gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false && !gsavm.parentProgramNumber)">
+        <div class="usa-grid">
+          <div class="usa-width-two-thirds">
+            <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
+            <span class="usa-form-hint">
+              {{::instructionalText["01"]["programNumber"]["helpText"]}}
+            </span>
+          </div>
 
-        <div class="usa-width-two-thirds usa-padding-top-3 usa-padding-bottom-3">
-          <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
-          <span class="usa-form-hint">
-            {{::instructionalText["01"]["programNumber"]["helpText"]}}
-          </span>
-        </div>
+          <div class="usa-width-one-third">
+            <div ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
 
-        <div class="usa-width-one-third usa-padding-top-3">
-          <div ng-init="gsavm.verifyProgramNumber()" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error' : ''">
+              <label for="programNumber" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error-label' : ''">
+                {{::instructionalText["01"]["programNumber"]["label"]}}<span class="required">*</span>
+              </label>
 
-            <label for="programNumber" ng-class="(((gsavm.validationFlag.info || gsavm.form.programNumber.$dirty) && gsavm.form.programNumber.$error.required) || gsavm.isProgramNumberUnique === false || gsavm.isProgramNumberOutsideRange === true) ? 'usa-input-error-label' : ''">
-              {{::instructionalText["01"]["programNumber"]["label"]}}<span class="required">*</span>
-            </label>
+              <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
+                <span class="usa-input-error-message" role="alert" ng-show="gsavm.form.programNumber.$error.required">
+                  You must provide a program number.
+                </span>
+              </div>
 
-            <div ng-show="gsavm.validationFlag.info || gsavm.form.programNumber.$dirty">
-              <span class="usa-input-error-message" role="alert" ng-show="gsavm.form.programNumber.$error.required">
-                You must provide a program number.
+              <span class="usa-input-error-message" role="alert" ng-show="gsavm.isProgramNumberUnique === false">
+                The FAL number has already been used. Please enter a different FAL number.
               </span>
+
+              <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR])" ng-show="gsavm.isProgramNumberOutsideRange === true">
+                This number falls outside the range defined for this organization.
+              </span>
+
+              <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])" ng-show="gsavm.isProgramNumberOutsideRange === true">
+                This number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.
+              </span>
+
+              <input type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+
             </div>
-
-            <span class="usa-input-error-message" role="alert" ng-show="gsavm.isProgramNumberUnique === false">
-              The FAL number has already been used. Please enter a different FAL number.
-            </span>
-
-            <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR])" ng-show="gsavm.isProgramNumberOutsideRange === true">
-              This number falls outside the range defined for this organization.
-            </span>
-
-            <span class="usa-input-error-message" role="alert" ng-if="hasRole([ROLES.AGENCY_USER, ROLES.OMB_ANALYST, ROLES.GSA_ANALYST, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER])" ng-show="gsavm.isProgramNumberOutsideRange === true">
-              This number falls outside the range defined for this organization. Please contact your agency coordinator to have the range adjusted.
-            </span>
-
-            <input type="text" id="programNumber" name="programNumber" maxlength="3" ng-model="gsavm.program.programNumber"  ng-change="gsavm.verifyProgramNumber()" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
-
           </div>
         </div>
       </section>
 
-      <section class="usa-grid" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
-        <div class="usa-width-two-thirds usa-padding-top-3 usa-padding-bottom-3">
-          <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
-          <span ng-bind="gsavm.program.programNumber"></span>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
+        <div class="usa-grid">
+          <div class="usa-width-two-thirds">
+            <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
+            <span ng-bind="gsavm.program.programNumber"></span>
+          </div>
         </div>
       </section>
 
       <!-- 020 Popular Name -->
-      <section class="usa-grid" field-finder-bookmark title="020 Popular Name">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-          <legend>{{::instructionalText["01"]["020"]["title"]}}</legend>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="020 Popular Name">
+        <div class="usa-grid">
+          <div class="usa-width-one-whole">
+            <legend>{{::instructionalText["01"]["020"]["title"]}}</legend>
 
-          <a ng-click="clickToOpen('d020')" tabindex="0" trigger-click-on-enter>Read More..</a>
+            <a ng-click="clickToOpen('d020')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
-          <div ng-class="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
-            <label for="alternativeName" ng-class=" gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
-              <span class="usa-input-error-message" ng-show="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title">The Popular Name should be different than the Program Title.</span>
-            <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list>
+            <div ng-class="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error' : '' ">
+              <label for="alternativeName" ng-class=" gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title && gsavm.form.alternativeName.$dirty ? 'usa-input-error-label' : '' ">{{::instructionalText["01"]["020"]["label"]}}</label>
+                <span class="usa-input-error-message" ng-show="gsavm.program.alternativeNames.length && gsavm.program.alternativeNames == gsavm.program.title">The Popular Name should be different than the Program Title.</span>
+              <input type="text" id="alternativeName" name="alternativeName" class="usa-input-large" ng-model="gsavm.program.alternativeNames" ng-list>
+            </div>
           </div>
         </div>
       </section>

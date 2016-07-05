@@ -1,6 +1,27 @@
 
 /* Inputs
 ---------------------------------------------------------- */
+input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+input[type="file"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+textarea,
+select  {
+  border: 1px solid #a9a9a9;
+	-webkit-box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.15);
+	-moz-box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.15);
+	box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.15);
+}
 
 legend{
 	letter-spacing: -0.02em;
@@ -8,7 +29,7 @@ legend{
 
 input,
 select{
-	font-weight: $font-bold;
+	// font-weight: $font-bold;
 	&.usa-input-borderless{
 		border: none;
 	}
