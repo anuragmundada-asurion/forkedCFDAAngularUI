@@ -9,6 +9,8 @@
 
     <name>CFDA Angular UI</name>
     <description>GSA CFDA Angular UI</description>
+    <url>https://github.com/REI-Systems/REISystems-GSA-CFDA-Angular-UI</url>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
