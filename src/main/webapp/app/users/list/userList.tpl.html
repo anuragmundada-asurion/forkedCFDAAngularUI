@@ -1,7 +1,7 @@
 
 <primary-nav-bar></primary-nav-bar>
 
-<div class="usa-grid usa-grid-fixed usa-margin-bottom-3">
+<div class="usa-grid usa-grid-fixed usa-margin-bottom-1">
   <div class="usa-width-one-half">
     <h1 class="usa-margin-bottom-0">Users Directory</h1>
     <span ng-show="totalCount" class="usa-font-lead">
@@ -9,14 +9,16 @@
     </span>
   </div>
     <div class="usa-width-one-half usa-margin-top-3">
-        <div class="usa-text-align-right">
-            <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearSearchForm();">
-              Clear All
-            </button>
-          </div>
+      <div class="usa-text-align-right usa-margin-top-3">
+        <button class="usa-button-gray-light usa-button-big" type="submit" ng-click="clearSearchForm();">
+          Clear All
+        </button>
+      </div>
     </div>
 </div>
-<div class="usa-grid usa-grid-fixed" ng-class="(hasRole([ROLES.AGENCY_USER]) || (hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization))  ? 'usa-margin-bottom-3' : 'usa-margin-bottom-1'">
+
+<div class="usa-grid usa-grid-fixed" ng-class="(hasRole([ROLES.AGENCY_USER]) || (hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization))  ? 'usa-margin-bottom-3' : ''">
+
   <div class="usa-width-one-third">
     <isteven-multi-select
           max-labels="1"
@@ -30,24 +32,25 @@
     >
     </isteven-multi-select>
   </div>
+
   <div class="usa-width-one-third">
     <input  ng-model="searchKeyword"
-        type="search"
-        placeholder="Search Users"
-        aria-controls="usersTable">
+            type="search"
+            placeholder="Search Users"
+            aria-controls="usersTable">
   </div>
-    <div class="usa-width-one-third" ng-if="(hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization && aOrganization)">
-        <select id="organization" ng-options="item.elementId as item.name for item in aOrganization._embedded.hierarchy" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
-            <option value="">Chose an Organization</option>
-        </select>
-    </div>
+
+  <div class="usa-width-one-third" ng-if="(hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization && aOrganization)">
+      <select id="organization" ng-options="item.elementId as item.name for item in aOrganization._embedded.hierarchy" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
+          <option value="">Chose an Organization</option>
+      </select>
+  </div>
+
 </div>
 
 <div class="usa-grid usa-grid-fixed usa-margin-bottom-3" ng-if="(hasRole([ROLES.SUPER_USER, ROLES.AGENCY_COORDINATOR, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true)">
-    
     <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter === '')" organization-id="filter.organizationFilter" show-department="true" show-all='true' no-default="true" set-dept-null-on-change="true"></federal-hierarchy-inputs>
     <federal-hierarchy-inputs ng-if="((hasRole([ROLES.SUPER_USER, ROLES.RMO_SUPER_USER, ROLES.LIMITED_SUPER_USER]) || showOMBAllOrganization === true) && filter.organizationFilter !== '')" organization-id="filter.organizationFilter" show-department="true" show-all='true' set-dept-null-on-change="true"></federal-hierarchy-inputs>
-    
     <federal-hierarchy-inputs ng-if="hasRole([ROLES.AGENCY_COORDINATOR])" organization-id="filter.organizationFilter" set-dept-null-on-change="true"></federal-hierarchy-inputs>
 </div>
 
