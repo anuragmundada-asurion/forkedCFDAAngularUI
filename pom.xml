@@ -22,8 +22,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <sonar.modules>java,javascript</sonar.modules>
+        <java.sonar.projectBaseDir>src</java.sonar.projectBaseDir>
         <java.sonar.sources>src/main/java</java.sonar.sources>
         <java.sonar.tests>src/test/java</java.sonar.tests>
+        <javascript.sonar.projectBaseDir>src</javascript.sonar.projectBaseDir>
         <javascript.sonar.sources>src/main/webapp/app</javascript.sonar.sources>
         <javascript.sonar.tests>src/test/javascript</javascript.sonar.tests>
     </properties>
