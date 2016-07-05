@@ -143,80 +143,84 @@
       </section>
 
       <!-- 40 Authorization -->
-      <section class="usa-grid" field-finder-bookmark title="040 Authorization">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="040 Authorization">
+        <div class="usa-grid">
+          <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
 
-          <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
+            <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
 
-            <multi-entry-header>
-              <legend>{{::$ctrl.parentVm.instructionalText["01"]["040"]["title"]}}</legend>
-            </multi-entry-header>
+              <multi-entry-header>
+                <legend>{{::$ctrl.parentVm.instructionalText["01"]["040"]["title"]}}</legend>
+              </multi-entry-header>
 
 
-            <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
-            <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
+              <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
+              <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
 
-            <a ng-click="::$ctrl.parentVm.clickToOpen('d040')" tabindex="0" trigger-click-on-enter>Read More..</a>
+              <a ng-click="::$ctrl.parentVm.clickToOpen('d040')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
-            <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
-              None
-            </p>
+              <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
+                None
+              </p>
 
-            <multi-entry-list editable="true" ng-hide="$ctrl.parentVm.form.authorizations.$error.requiredLength">
-              <span>{{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
-            </multi-entry-list>
+              <multi-entry-list editable="true" ng-hide="$ctrl.parentVm.form.authorizations.$error.requiredLength">
+                <span>{{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
+              </multi-entry-list>
 
-            <multi-entry-sub-form create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
-              <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
+              <multi-entry-sub-form create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
+                <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
 
-                <section class="usa-grid">
-                  <fieldset class="usa-fieldset-inputs usa-sans">
-                    <legend class="usa-sr-only">{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["authorizationTypes"]["label"]}}</legend>
-                    <ul class="usa-horizontal-list">
-                      <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
-                        <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType" ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
-                        <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
-                      </li>
-                    </ul>
-                  </fieldset>
-                </section>
+                  <section class="usa-grid">
+                    <fieldset class="usa-fieldset-inputs usa-sans">
+                      <legend class="usa-sr-only">{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["authorizationTypes"]["label"]}}</legend>
+                      <ul class="usa-horizontal-list">
+                        <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
+                          <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType" ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
+                          <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
+                        </li>
+                      </ul>
+                    </fieldset>
+                  </section>
 
-                <div ng-include="'programs/authorization.tpl.html'"></div>
+                  <div ng-include="'programs/authorization.tpl.html'"></div>
 
-                <div ng-if="$subForm.current.authorizationType">
-                  <hr>
-                  <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
-                    <multi-entry-header>
-                      <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["amendments"]["label"]}}</label>
-                    </multi-entry-header>
-                    <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
-                      <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="">
-                        <div ng-include="'programs/authorization.tpl.html'"></div>
-                      </div>
-                    </multi-entry-sub-form>
-                  </multi-entry>
+                  <div ng-if="$subForm.current.authorizationType">
+                    <hr>
+                    <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
+                      <multi-entry-header>
+                        <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["amendments"]["label"]}}</label>
+                      </multi-entry-header>
+                      <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
+                        <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="">
+                          <div ng-include="'programs/authorization.tpl.html'"></div>
+                        </div>
+                      </multi-entry-sub-form>
+                    </multi-entry>
+                  </div>
                 </div>
-              </div>
-            </multi-entry-sub-form>
-          </multi-entry>
+              </multi-entry-sub-form>
+            </multi-entry>
+          </div>
         </div>
       </section>
 
       <!-- 050 Objectives -->
-      <section class="usa-grid" field-finder-bookmark title="050 Objectives">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
-          <legend>{{::instructionalText["01"]["050"]["title"]}}</legend>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="050 Objectives">
+        <div class="usa-grid">
+          <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+            <legend>{{::instructionalText["01"]["050"]["title"]}}</legend>
 
-          <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
-            <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">{{::instructionalText["01"]["050"]["label"]}}<span class="required">*</span></label>
-            <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
+            <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
+              <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">{{::instructionalText["01"]["050"]["label"]}}<span class="required">*</span></label>
+              <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
 
-            <a ng-click="clickToOpen('d050')" tabindex="0" trigger-click-on-enter>Read More..</a>
+              <a ng-click="clickToOpen('d050')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
-            <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
-              <span class="usa-input-error-message" ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
+              <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
+                <span class="usa-input-error-message" ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
+              </div>
+              <textarea id="objective" name="objective" ng-model="gsavm.program.objective" required></textarea>
             </div>
-            <textarea id="objective" name="objective" ng-model="gsavm.program.objective" required></textarea>
           </div>
         </div>
       </section>
