@@ -83,6 +83,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- TODO: Remove and add dependencies manually -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.5.201505241946</version>
+        </dependency>
         <!--Needed to do PATCH REST calls-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
