@@ -145,7 +145,7 @@
       <!-- 40 Authorization -->
       <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="040 Authorization">
         <div class="usa-grid">
-          <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+          <div class="usa-width-one-whole">
 
             <multi-entry ng-model="gsavm.program.authorizations" name="authorizations" item-title="gsavm.getAuthorizationTitle" editable-items="true" new-entry-btn-name="Add Authorization" delete-btn-label="Delete Authorization" on-entry-delete="gsavm.onAuthorizationRemoved(removed)" parent-vm="gsavm" on-after-dialog-open="gsavm.onAuthDialogOpen" list-filter="'filter:$ctrl.parentVm.exps.isAuthorization'" required-Length='{ "min": 1 }'>
 
@@ -207,7 +207,7 @@
       <!-- 050 Objectives -->
       <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="050 Objectives">
         <div class="usa-grid">
-          <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+          <div class="usa-width-one-whole">
             <legend>{{::instructionalText["01"]["050"]["title"]}}</legend>
 
             <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
