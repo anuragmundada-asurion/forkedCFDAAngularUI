@@ -4,10 +4,87 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
+        ['$stateParams', '$scope', '$timeout', '$location', '$state', '$filter', '$parse', '$http', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+            function ($stateParams, $scope, $timeout, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
 
                 $scope.$log = $log;
+
+                // START --- js tree stuff
+                //------------------------------------------------------------------------------------
+
+                $scope.treeData = [];
+
+                function instantiateTree() {
+                    $scope.treeConfig = {
+                        core: {
+                            dblclick_toggle : false,
+                            themes:{
+                              dots: false,
+                              icons: false
+                            }
+                        },
+                        search: {
+                          show_only_matches: true
+                        },
+                        checkbox: {
+                            three_state: false
+                        },
+                        version : 1,
+                        plugins: ['checkbox', 'changed', 'search']
+                    };
+                }
+
+                // treejs callbacks
+                $scope.treeEventsObj = {
+                  'changed': changedNodeCB,
+                  'ready': readyCB
+                }
+
+                function readyCB() {
+                  console.log("ready for search");
+
+                }
+
+                $scope.testKeyUp = function(seartext){
+                  vm.treeInstance.jstree(true).search(seartext);
+                };
+
+                function changedNodeCB(e, data){
+                  var i, j, r = [];
+                  for(i = 0, j = data.selected.length; i<j; i++){
+                    var tmpObj = {};
+                    var selectedItem = data.instance.get_node(data.selected[i]);
+                    tmpObj.id = selectedItem.id;
+                    tmpObj.code = selectedItem.original.code;
+                    tmpObj.value = selectedItem.original.value;
+                    r.push(tmpObj);
+                  }
+
+                  $timeout(function(){
+                    $scope.jstreeSelected = r;
+                    //vm.program.assistanceTypes = $scope.jstreeSelected;
+                  });
+
+                  //console.log(vm.program.assistanceTypes);
+
+                }
+
+                $scope.unselectJstreeItem = function (item) {
+                  vm.treeInstance.jstree(true).deselect_node(item.id);
+                };
+
+                $scope.resetJstree = function() {
+                  $timeout(function(){
+                    $scope.jstreeSelected = [];
+                  });
+                  angular.copy($scope.treeOriginalData, $scope.treeData);
+                  // https://github.com/ezraroi/ngJsTree#recreating-the-tree
+                  $scope.treeConfig.version++;
+                };
+
+                //------------------------------------------------------------------------------------
+                //END --- js tree stuff
+
 
                 var vm = this,
                     CURRENT_FISCAL_YEAR = util.getFiscalYear(),
@@ -49,8 +126,14 @@
                         //Use of Assistance
                         $scope.dictionary.aAssistanceUsageType = DictionaryService.istevenDropdownDataStructure(data.assistance_usage_types, (oProgram) ? oProgram.eligibility.applicant.assistanceUsageTypes : [], false);
 
+                        //Assistance type jsTree
+                        $scope.treeOriginalData = DictionaryService.jstreeDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : []);
+                        angular.copy($scope.treeOriginalData, $scope.treeData);
+                        instantiateTree();
+
                         //Assistance type
                         $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
+
                     });
                 };
 

@@ -197,18 +197,111 @@
       <section class="usa-grid" field-finder-bookmark title="060 Types of Assistance">
         <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
           <legend>{{::instructionalText["01"]["060"]["title"]}}</legend>
-          <label>{{::instructionalText["01"]["060"]["label"]}}<span class="required">*</span></label>
-          <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
-          <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
-              <li ng-repeat="item in gsavm.program.assistanceTypes">
-                <div class="usa-input-field-content">{{ item.displayValue }}</div>
-                <div class="usa-input-field-options">
-                  <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aAssistanceType')">
+
+          <!-- Prototype -->
+
+          <!-- example: office list controller  -->
+
+          <style>
+            /* Unstyled list */
+            .jstree-container-ul{
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+            }
+            /*.jstree-container-ul li{
+              display: list-item;
+              margin: 0;
+            }*/
+            .jstree-container-ul li::before,
+            .jstree-container-ul li::after{
+              display: none;
+            }
+
+            /* jstree container */
+            .jstree-container{
+              border: 1px solid #adadad;
+              display: block;
+              -webkit-box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
+              -moz-box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
+              box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
+            }
+
+            .jstree-container input{
+              border-color: #adadad;
+              border-top: none;
+              border-left: none;
+              border-right: none;
+              margin: 0;
+            }
+
+            .jstree-container .jstree{
+              padding: 20px 0px;
+              overflow: auto;
+              overflow-x: hidden;
+              height: 360px;
+            }
+
+
+          </style>
+
+          <div class="usa-grid-full">
+            <div class="usa-width-two-thirds">
+              <label>{{::instructionalText["01"]["060"]["label"]}}<span class="required">*</span></label>
+              <span class="usa-form-hint">{{::instructionalText["01"]["060"]["helpText"]}}</span>
+            </div>
+            <div class="usa-width-one-third usa-text-align-right">
+              <button class="usa-margin-right-0" ng-click="resetJstree()">Reset</button>
+            </div>
+          </div>
+
+          <div class="usa-grid-full">
+            <div class="usa-width-one-half">
+
+              <div class="jstree-container">
+
+                <label class="usa-sr-only">Search options</label>
+                <input ng-model="jstreeSearchText" ng-keyup="testKeyUp(jstreeSearchText)">
+                <div js-tree="treeConfig" ng-model="treeData" tree="gsavm.treeInstance" tree-events-obj="treeEventsObj"></div>
+
+              </div>
+
+            </div>
+            <div class="usa-width-one-half">
+
+              <div class="jstree-container">
+                <strong>Selected types</strong>
+                <p class="usa-form-hint">
+                  Please add a type of Assistance from the left column
+                </p>
+
+                <div ng-repeat="item in jstreeSelected">
+                  <button type="button" class="usa-button-compact" ng-click="unselectJstreeItem(item)">
                     <span class="fa fa-trash"></span>
                   </button>
+                  <strong>{{ item.code }} - </strong>{{ item.value }}
                 </div>
-              </li>
-            </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <br><br><br>
+          <!-- /Prototype -->
+
+          <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
+            <li ng-repeat="item in gsavm.program.assistanceTypes">
+              <div class="usa-input-field-content">{{ item.displayValue }}</div>
+              <div class="usa-input-field-options">
+                <button type="button" class="usa-button-compact" ng-click="unselectDictionary(item, 'aAssistanceType')">
+                  <span class="fa fa-trash"></span>
+                </button>
+              </div>
+            </li>
+          </ul>
+
           <isteven-multi-select
           max-labels="1"
           input-model="dictionary.aAssistanceType"
@@ -221,6 +314,7 @@
           output-properties="element_id displayValue"
           helper-elements="all none filter">
           </isteven-multi-select>
+
         </div>
       </section>
 

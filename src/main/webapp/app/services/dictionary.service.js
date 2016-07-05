@@ -94,7 +94,7 @@
         this.aDictionary = [];
 
         /**
-         * 
+         *
          * @param Array aData
          * @returns void
          */
@@ -111,7 +111,7 @@
         };
 
         /**
-         * 
+         *
          * @param {Array} aSelectedIDs
          * @param {Boolean} isGrouped
          * @returns {Array}
@@ -129,10 +129,69 @@
         };
         // END FIXME
 
+
         /**
-        * isteven plugin multi-select data structure 
+        * jstree data structure
+        * https://github.com/ezraroi/ngJsTree
+        *
+        * @param Array aData Source Data (Dictionary table)
+        * @param Array aSelectedData selected data
+        * @returns Array
+        */
+        this.jstreeDataStructure = function(aData, aSelectedData){
+
+          var self = this;
+          var results = [];
+          var selectedIDs = [];
+
+          //get all selected item ids
+          if( aSelectedData && aSelectedData.length > 0){
+            angular.forEach(aSelectedData, function (item) {
+               if(item && item.hasOwnProperty('element_id')) {
+                   selectedIDs.push(item.element_id);
+                } else {
+                   selectedIDs.push(item);
+               }
+            });
+          }
+
+          angular.forEach(aData, function(oRow){
+
+            // Build jstree item object
+            var tmpObj = {}
+            tmpObj.code = oRow.code;
+            tmpObj.value = oRow.value;
+
+            if(oRow.parent){
+              tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
+            }else{
+              tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + tmpObj.value;
+              tmpObj.li_attr = { "style": "position: relative;" };
+            }
+
+            // Check if selected
+            if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
+              // Remove item from array
+              selectedIDs.splice( selectedIDs.indexOf(oRow.element_id), 1);
+              // add selected state to item
+              tmpObj.state = { selected: true };
+            }
+
+            // If it has children do recursion
+            if(oRow.elements){
+              tmpObj.children = self.jstreeDataStructure(oRow.elements, selectedIDs);
+            }
+
+            results.push(tmpObj);
+          });
+
+          return results;
+        }
+
+        /**
+        * isteven plugin multi-select data structure
         * https://github.com/isteven/angular-multi-select.git
-        * 
+        *
         * @param Array aData Source Data (Dictionary table)
         * @param Array aSelectedData selected data
         * @param Boolean isGrouped create nested categories

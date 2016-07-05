@@ -2,6 +2,10 @@
 /* Typography
 ---------------------------------------------------------- */
 
+h1, h2 {
+  letter-spacing: -0.05em;
+}
+
 // Text Color
 .usa-text-inverse{
 	color: $color-white;
