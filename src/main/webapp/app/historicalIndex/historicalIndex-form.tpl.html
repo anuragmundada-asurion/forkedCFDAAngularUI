@@ -19,35 +19,41 @@
         </div>
 
         <div class="usa-width-one-third">
-            <label for="fiscalYear">Year<span class="required">*</span></label>
-            <div ng-show="form.error && (!oHistoricalIndex.fiscalYear || oHistoricalIndex.fiscalYear==0)">
-                <span class="usa-input-error-message">A year must be provided</span>
+            <div ng-class="form.error && (!oHistoricalIndex.fiscalYear || oHistoricalIndex.fiscalYear==0) ? 'usa-input-error' : ''">
+                <label for="fiscalYear" ng-class="form.error && (!oHistoricalIndex.fiscalYear || oHistoricalIndex.fiscalYear==0) ? 'usa-input-error-label' : ''">Year<span class="required">*</span></label>
+                <div ng-show="form.error && (!oHistoricalIndex.fiscalYear || oHistoricalIndex.fiscalYear==0)">
+                    <span class="usa-input-error-message">A year must be provided</span>
+                </div>
+                <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
             </div>
-            <select type="text" id="fiscalYear" ng-options="y as y for y in years" ng-model="oHistoricalIndex.fiscalYear"></select>
         </div>
     </div>
 
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-third" ng-show="isEdit && isLegacyRecord">
-            <label maxlength="8" for="statusCode">Status Code</label>
-            <input type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
+            <label for="statusCode">Status Code</label>
+            <input maxlength="8" type="text" id="statusCode" ng-model="oHistoricalIndex.statusCode">
         </div>
 
         <div class="usa-width-one-third">
-            <label for="actionType">Type<span class="required">*</span></label>
-            <div ng-show="form.error && (!oHistoricalIndex.actionType || oHistoricalIndex.actionType.length==0)">
-                <span class="usa-input-error-message">A type must be provided</span>
+            <div ng-class="form.error && (!oHistoricalIndex.actionType || oHistoricalIndex.actionType.length==0) ? 'usa-input-error' : ''">
+                <label for="actionType" ng-class="form.error && (!oHistoricalIndex.actionType || oHistoricalIndex.actionType.length==0) ? 'usa-input-error-label' : ''">Type<span class="required">*</span></label>
+                <div ng-show="form.error && (!oHistoricalIndex.actionType || oHistoricalIndex.actionType.length==0)">
+                    <span class="usa-input-error-message">A type must be provided</span>
+                </div>
+                <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
             </div>
-            <select type="text" id="actionType" ng-options="k as v for (k, v) in labels" ng-model="oHistoricalIndex.actionType"></select>
         </div>
     </div>
     <div class="usa-grid usa-grid-fixed">
         <div class="usa-width-one-half">
-            <label for="changeDescription">Description<span class="required">*</span></label>
-            <div ng-show="form.error && (!oHistoricalIndex.changeDescription || oHistoricalIndex.changeDescription.length==0)">
-                <span class="usa-input-error-message">A Change Description must be provided</span>
+            <div ng-class="form.error && (!oHistoricalIndex.changeDescription || oHistoricalIndex.changeDescription.length==0) ? 'usa-input-error' : ''">
+                <label for="changeDescription" ng-class="form.error && (!oHistoricalIndex.changeDescription || oHistoricalIndex.changeDescription.length==0) ? 'usa-input-error-label' : ''">Description<span class="required">*</span></label>
+                <div ng-show="form.error && (!oHistoricalIndex.changeDescription || oHistoricalIndex.changeDescription.length==0)">
+                    <span class="usa-input-error-message">A Change Description must be provided</span>
+                </div>
+                <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
             </div>
-            <textarea type="text" id="changeDescription" ng-model="oHistoricalIndex.changeDescription"></textarea>
         </div>
 
         <div class="usa-width-one-half">
