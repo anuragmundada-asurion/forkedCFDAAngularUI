@@ -33,12 +33,23 @@
 
                 });
 
-                FederalHierarchyService.getChildren(UserService.getUserOrgId(), 1, function (oData) {
-                    //format expects an array. thats why we converted the obj to an array
-                    var formattedData = formatAgencyData([oData]);
+                //using 100001616 id, department of education, has 3 level children
+                FederalHierarchyService.getFederalHierarchyById("100001616", false, false, function (d) {
+                    var data;
+                    if (d._embedded) {
+                        data = d._embedded.hierarchy;//if id = null, data returned in embedded property, an array already
+                    } else {
+                        data = [d];//need it as an array
+                    }
+
+
+                    //cut down data to only 100 entries for now..
+                    //data=data.slice(0,10);
+
+                    var formattedData = formatAgencyData(data);
                     $scope.treeData = formattedData;
                     instantiateTree();
-                    console.log("instantiate Tree finished! treeData: ", $scope.treeData);
+                    //console.log("instantiate Tree finished! treeData: ", $scope.treeData);
                 });
 
 
@@ -97,7 +108,7 @@
                 //THIS MIGHT BE NOT CORRECT TO DO.. REVISIT THIS LATER..
                 if (!node.children || node.children.length == 0) {
                     var elementId = node.original.elementId;
-                    var parentId = node.original.id;
+                    var parentId = node.id; //parentId that will be set for the children
 
                     //get children if they exist
                     FederalHierarchyService.getChildren(elementId, 1, function (oData) {
@@ -121,7 +132,7 @@
 
 
             function instantiateTree() {
-                console.log('inside instantiateTree, treeData:', $scope.treeData);
+                //console.log('inside instantiateTree, treeData:', $scope.treeData);
                 $scope.treeConfig = {
                     core: {
                         multiple: true,
@@ -134,16 +145,16 @@
                     },
                     types: {
                         default: {
-                            icon: 'building icon'
+                            icon: 'fa fa-pencil'
                         },
                         DEPARTMENT: {
-                            icon: 'university icon'
+                            icon: 'fa fa-university'
                         },
                         AGENCY: {
-                            icon: 'home icon'
+                            icon: 'fa fa-building-o'
                         },
                         OFFICE: {
-                            icon: 'tree icon'
+                            icon: 'fa fa-tree'
                         }
                     },
                     version: 1,

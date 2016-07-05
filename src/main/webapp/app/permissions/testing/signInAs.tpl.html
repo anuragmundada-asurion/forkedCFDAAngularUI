@@ -1,6 +1,6 @@
 <div ng-controller="TestingController">
     <select ng-model="roleChange">
-        <option ng-repeat="(key, obj) in ROLES" value="{{ obj }}">{{ key }}</option>
+        <option ng-repeat="roleKey in SUPPORTED_ROLES" value="{{ roleKey }}">{{ ROLE_DEFINITIONS[roleKey].name }}</option>
     </select>
     <button type="submit" ng-click="changeRole()">Submit</button>
 </div>

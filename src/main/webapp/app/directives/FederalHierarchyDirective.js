@@ -40,6 +40,9 @@
                 "programCode": "=?", // ngModel var passed by reference (two-way) optional
                 "hasDepartmentChanged": "=?",
                 "showDepartment": "=?",
+                "hideDepartment": "=?",
+                "showAll": "=?", // e.g: for limited super user -> show all inputs
+                "setDeptNullOnChange": "=?", //e.g for setting organizationId to null on setOrganizationId callback fn
                 "setSelectedOption": "=?"
             },
             controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
@@ -95,6 +98,12 @@
                                     }
                                 });
                             }
+
+                            //in case we need to set organizationId to null if department has not been selected
+                            if(typeof $scope.setDeptNullOnChange !== 'undefined' && $scope.setDeptNullOnChange === true
+                                    && ($scope.selectedDeptId === '' || typeof $scope.selectedDeptId === 'undefined')) {
+                                $scope.organizationId = '';
+                            }
                             break;
                         case 'agency':
                             if(typeof $scope.selectedAgencyId !== 'undefined' && $scope.selectedAgencyId !== ''
@@ -104,7 +113,7 @@
                                 //if user is a root then set department from dropdown
                                 if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                                     $scope.organizationId = $scope.selectedDeptId;
-                                } else if(AuthorizationService.authorizeByRole([ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
+                                } else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
                                     $scope.organizationId = $scope.programOrganizationId;
                                 }
                             }
@@ -342,9 +351,13 @@
                                     //initialize Department
                                     scope.dictionary.aDepartment = oData._embedded.hierarchy;
                                 });
+                                //hide label Organization
+                                var $element = $(element[0]);
+                                $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
-                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER]) ||
+                                (typeof scope.showAll !== 'undefined' && scope.showAll === true)) {
                             //get Department level of user's organizationId
                             scope.initDictionaries('', true, false, function (oData) {
                                 //initialize Department
@@ -352,6 +365,16 @@
 
                                 //initialize Department/Agency/Office dropdowns (selected values)
                                 scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.SUPER_USER);
+                            });
+                        }
+
+                        //hide department label
+                        if(typeof scope.hideDepartment !== 'undefined' && scope.hideDepartment === true) {
+                            FederalHierarchyService.getFederalHierarchyById(scope.programOrganizationId, true, false, function (oData) {
+                                scope.departmentLabel = FederalHierarchyService.getFullNameFederalHierarchy(oData);
+                                scope.organizationId = scope.programOrganizationId;
+                            }, function (error) {
+                                scope.error = "An error has occurred, Please try again !";
                             });
                         }
                     }
@@ -368,13 +391,14 @@
                     "<div class='no-input' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_USER, $root.SUPPORTED_ROLES.OMB_ANALYST])'>"+
                         "{{ departmentLabel }}"+
                     "</div>"+
-                    "<div class='usa-grid-full' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'>"+
+                    "<div class='usa-grid-full' ng-show='($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER,$root.SUPPORTED_ROLES.AGENCY_COORDINATOR]) || showAll === true)'>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqDepartmentFH'>Department</label>"+
-                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
+                            "<select id='jqDepartmentFH' ng-disabled='dictionary.aDepartment.length == 0 || dictionary.aDepartment == null' name='department' ng-show='((($root.hasRole([$root.SUPPORTED_ROLES.SUPER_USER,$root.SUPPORTED_ROLES.RMO_SUPER_USER])) || showDepartment) && !hideDepartment)' ng-change='setOrganizationId(\"department\")' ng-model='selectedDeptId' ng-options='item.elementId as item.name for item in dictionary.aDepartment' required>"+
                                 "<option value=''>Please select a Department</option>"+
                             "</select>"+
                             "<span class='departmen-label' ng-show='$root.hasRole([$root.SUPPORTED_ROLES.AGENCY_COORDINATOR])'> {{ dictionary.aDepartment[0].name }} </span>"+
+                            "<span class='department-label2' ng-show='hideDepartment === true'> {{ departmentLabel }} </span>"+
                         "</div>"+
                         "<div class='usa-width-one-third'>"+
                             "<label for='jqAgencyFH'>Agency</label>"+

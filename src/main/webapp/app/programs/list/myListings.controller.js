@@ -27,7 +27,7 @@
                 return $scope.isActiveList() || $scope.isArchivedList();
             };
 
-            $( 'a' ).attr("tabindex", "0");
+            $('a').attr("tabindex", "0");
 
 
             if ($stateParams.hasOwnProperty("list")) {
@@ -191,7 +191,7 @@
 
             angular.element('#programsTable').on('draw.dt', function (event, data) {
                 // initilize semantic ui dropdowns
--               $(".jqChangeRequest.dropdown").dropdown();
+                -$(".jqChangeRequest.dropdown").dropdown();
                 // adding status classes to add status icons
                 $('td:contains("Published")').addClass("published");
 
@@ -200,9 +200,9 @@
             });
 
             // Adding table loading state
-            angular.element('table.usa-table-primary-darkest').on( 'processing.dt', function ( e, settings, processing ) {
-              $('table.usa-table-primary-darkest, .datatable-bottom').addClass( processing ? 'datatable-loading' : '' );
-              $('table.usa-table-primary-darkest, .datatable-bottom').removeClass( processing ? '' : 'datatable-loading' );
+            angular.element('table.usa-table-primary-darkest').on('processing.dt', function (e, settings, processing) {
+                $('table.usa-table-primary-darkest, .datatable-bottom').addClass(processing ? 'datatable-loading' : '');
+                $('table.usa-table-primary-darkest, .datatable-bottom').removeClass(processing ? '' : 'datatable-loading');
             });
 
             this.initializeTable = function () {
@@ -481,13 +481,6 @@
                         if (data && data.results.length !== 0) {
                             $scope.modal.show = false;
                             $scope.modal.message = 'You cannot make another request on this program.';
-                            $(".ngdialog-close").attr("tabindex", "0");
-                           $(".ngdialog-close").bind('keydown', function(event) {
-                               if(event.keyCode === 13){
-                                   $scope.closeModal();
-                               }
-
-                           });
                         } else if (data && data.results.length === 0) {
                             $scope.modal.show = true;
                         }

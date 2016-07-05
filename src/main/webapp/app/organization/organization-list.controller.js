@@ -41,6 +41,8 @@
                     var level = child.hierarchyLevel;
                     var downArrow = '';
                     var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
+                    action += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" href="/users?organization=' + child.organization.organizationId + '"><span class="fa fa-book"></span></a>';
+
                     if (child.action.hasChildren) {
                         downArrow = '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
                         action = action + downArrow + '</td>';
@@ -72,7 +74,7 @@
             }, true);
 
             $scope.$watch('dtData', function () {
-                if(typeof $scope.dtData !== 'undefined') {
+                if (typeof $scope.dtData !== 'undefined') {
                     $scope.totalCount = $scope.dtData.length;
                 }
 
@@ -99,6 +101,7 @@
             };
 
             $scope.rowClicked = function (uniqueRowId) {
+                console.log("in rowClicked function: uniqueRowId: ", uniqueRowId);
                 //uniqueRowId contains strings like "search-39202332" "search-child-193013013"
                 var a = String(uniqueRowId).split("-");
                 var rowId = a[a.length - 1];
@@ -136,11 +139,15 @@
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
                 .withOption('ajax', $scope.loadOrganizations)
                 .withOption('bSortClasses', false)
-                .withOption('rowCallback', function (row) {
-                    $(row).unbind('click').click(function (e) {
-                        $scope.rowClicked(this.id);
+                .withOption('rowCallback', function (row, data, index, indexFull) {
+                    // Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
+                    $('td', row).unbind('click');
+                    $('td', row).bind('click', function () {
+                        $scope.$apply(function () {
+                            $scope.rowClicked(data.DT_RowId);
+                        });
                     });
-                    $compile(row)($scope);
+                    return row;
                 })
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
@@ -160,6 +167,7 @@
                         if (data.hasChildren) {
                             htmlStr = htmlStr + '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
                         }
+                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
                         return htmlStr;
                     })
 

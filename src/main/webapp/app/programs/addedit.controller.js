@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$timeout', '$location', '$state', '$filter', '$parse', '$http', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
-            function ($stateParams, $scope, $timeout, $location, $state, $filter, $parse, $http, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$sce', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $sce, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
 
                 $scope.$log = $log;
 
@@ -103,6 +103,24 @@
                     ],
                     originalTitle; //original title is stored because Published programs cannot have title changed.
 
+                //Onscreen assistance Dialog box pop-up
+                vm.clickToOpen = $scope.clickToOpen = function(str) {
+                    $scope.showReadModal(str);
+                };
+                $scope.showReadModal = function(oEntity, typeEntity, action, callback) {
+                    ngDialog.open({
+                        template: 'programs/_ReadModal.tpl.html',
+                        className: 'ngdialog-theme-cfda-read',
+                        scope: $scope,
+                        data: {
+                            oEntity: oEntity,
+                            typeEntity: typeEntity,
+                            action: action,
+                            callback: callback
+                        }
+                    });
+                };
+
                 $scope.instructionalText = {};
                 //initialize dictionary container
                 $scope.dictionary = {};
@@ -171,6 +189,18 @@
                     ProgramFactory.get({id: $stateParams.id}).$promise.then(function (data) {
                         vm.program = data;
                         vm.originalTitle = vm.program.title;
+
+                        //get parent program id in order to verify if this program is a revision or just simple edit draft
+                        var oApiParamProgram = {
+                            apiName: 'programList',
+                            apiSuffix: '/' + $stateParams.id,
+                            oParams: {},
+                            oData: {},
+                            method: 'GET'
+                        };
+                        ApiService.call(oApiParamProgram).then(function (data) {
+                            vm.parentProgramNumber = data.parentProgramId;
+                        });
 
                         //load dictionaries
                         $scope.loadDictionaries(vm.program);
@@ -915,8 +945,15 @@
                         return {label: "estimate", dollarValue: obligationValueObj.estimate};
                     }
                     return {label: "no-estimate-or-actual", dollarValue: "000000"};
-                }
+                };
 
+
+                //make sure the focus is top when content has finished loading.
+                $scope.$on('$viewContentLoaded', function () {
+                    $timeout(function () {
+                        $('#iae-header header a.sr-only').focus();
+                    }, 0);
+                });
 
             }]);
 })();

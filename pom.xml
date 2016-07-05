@@ -7,7 +7,7 @@
     <artifactId>cfda-angular-ui</artifactId>
     <version>0.1.0.${env.BUILD_NUMBER}</version>
 
-    <name>cfda-angular-ui</name>
+    <name>CFDA Angular UI</name>
     <description>GSA CFDA Angular UI</description>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +19,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
+        <sonar.modules>java,javascript</sonar.modules>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <java.sonar.projectBaseDir>src/main/java</java.sonar.projectBaseDir>
+        <javascript.sonar.projectBaseDir>src/main/webapp/app</javascript.sonar.projectBaseDir>
+        <sonar.javascript.lcov.reportPath>${basedir}/target/site/coverage/lcov/lcov.info</sonar.javascript.lcov.reportPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.jacoco.reportPath>${basedir}/target/site/coverage/jacoco/jacoco.xml</sonar.jacoco.reportPath>
     </properties>
 
     <dependencies>
@@ -135,7 +144,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <arguments>default --version ${project.version} --clp ${my.variable}</arguments>
+                            <arguments>default --version ${project.version} --clp</arguments>
                         </configuration>
                     </execution>
                     <execution>

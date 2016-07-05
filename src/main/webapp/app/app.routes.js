@@ -145,6 +145,17 @@
                         ]
                     }
                 })
+                .state('addHistoricalIndex', {
+                    url: "/historicalIndex/:pid/create",
+                    templateUrl: "historicalIndex/historicalIndex-form.tpl.html",
+                    controller: "HistoricalIndexFormCtrl",
+                    title: 'Add Historical Index- CFDA: Add Historical Index',
+                    access: {
+                        requiredPermissions: [
+                            PERMISSIONS.CAN_CREATE_HISTORICAL_INDEX
+                        ]
+                    }
+                })
                 .state('editHistoricalIndex', {
                     url: "/historicalIndex/:hid/edit/:pid",
                     templateUrl: "historicalIndex/historicalIndex-form.tpl.html",
@@ -250,7 +261,7 @@
                     title: 'View Request - CFDA: View Request'
                 })
                 .state('userList', {
-                    url: "/users",
+                    url: "/users?organization",
                     templateUrl: "users/list/userList.tpl.html",
                     controller: "UserListCtrl",
                     title: 'Users - CFDA: User List',

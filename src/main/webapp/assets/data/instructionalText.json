@@ -3,7 +3,8 @@
     "010":{
       "title":"010 Title",
       "helpText":"Spell out any acronyms and limit to 144 characters.",
-      "label":"Title"
+      "label":"Title",
+      "readMore":"<h4>PROGRAM NUMBER AND TITLE (010)<\/h4><div class=\"readBody\"><p>The number for a particular program remains constant from one Catalog submission to another. The program-title should be a concise description of the program. The use of the principal subject area followed by a dash and the particular application is encouraged. For example, use “Adult Education Teacher Training” as opposed to simply “Teacher Training.” Generally, the words “Program” and “Project” are superfluous and should not be used. The length of program titles should be kept reasonably short (two 72 character lines).<\/p><\/div>"
     },
     "programNumber":{
       "title":"Program Number",
@@ -12,12 +13,15 @@
     },
     "020":{
       "title":"020 Popular Name",
-      "label":"Name"
+      "label":"Name",
+      "readMore":"<h4>POPULAR NAME (020)<\/h4><div class=\"readBody\"><p>Many programs do not have a popular name, but if one exists, it may be a name less descriptive than the program title, an acronym, or a reference to legislation by name or number. The program title should not be repeated as the popular name.<\/p><\/div>"
     },
     "040":{
       "title":"040 Authorization",
       "helpText":"You must add at least one authorization.",
       "label":"Authorization",
+      "readMore":"<h4>AUTHORIZATION (040)<\/h4><div class=\"readBody\"><p>This section should include the legal authority upon which a program is based. When new legislation is passed that has a significant bearing on a program, the reference should be included in this section. <\/p><p>Do not include appropriation legislation unless it authorizes the program or a significant element of the program.<\/p><p>Cite the name of the act, title, part, section, public law number, statute, U.S.C. (if one exists), and Presidential Reorganization Memorandum. If an Executive Order applies, cite the number, title, and date. The formatted sequence for a typical authorization citation is: Name of Act, Title, Part, Section Number, Public Law Number, Statute Reference (if any), and U.S. Code Reference (if any). Separate the references within a citation using commas. Separate multiple citations using a semicolon. The rules governing how to properly submit your citations follow:<\/p><ul><li>... Each item (Act, Title, Part, etc.) should be separated by a comma. The Title, Part, and Section must follow the Act name.<\/li><li>... Acts and Executive Orders should have capital letters in the first letter of all main words.<\/li><li>... Multiple public laws should be separated by commas. Example: Public Laws 89-177, 89-898, 90- 001, and 100-101. ... The semicolon should only be used to set the limit of a citation among multiple citations.<\/li><li>... The phrase &quot;as amended by&quot; should not be used. Instead, use &quot;as amended,&quot; showing the amending law as a separate citation.<\/li><\/ul><p>The Authorization Appendix (Appendix II) of the Catalog consists of acts, public law numbers and the programs they authorize. The appendix is compiled from the information supplied in this section.<\/p><\/div>",
+      "toggle":"true",
       "form":{
         "authorizationTypes":{
           "label":"Authorization types"
@@ -30,17 +34,21 @@
     "050":{
       "title":"050 Objectives",
       "helpText":"Provide a plain text description highlighting program goals. Use specific terms that will help public users find this listing.",
-      "label":"Objectives"
+      "label":"Objectives",
+      "readMore":"<h4>OBJECTIVES (050)<\/h4><div class=\"readBody\"><p>This section should be a brief, accurate statement of what the program is intended to accomplish or the goals toward which the program is directed. This should be a statement of purpose and not merely a description of the program. Goals as set forth in the authorizing legislation must be included.<\/p><\/div>"
     },
     "060":{
       "title":"060 Types of Assistance",
       "helpText":"Select all that clearly reflect the services provided.",
-      "label":"Types of Assistance"
+      "label":"Types of Assistance",
+      "readMore":"<h4>TYPES OF ASSISTANCE (060)<\/h4><div class=\"readBody\"><p>Each program in the Catalog will be identified in terms of one or more of the 15 types of assistance provided in this section. The type of assistance should clearly reflect the services provided.<\/p><div>Financial Assistance Programs: <p>Formula Grants (A) - Allocations of money to States or their subdivisions in accordance with distribution formulas prescribed by law or administrative regulation, for activities of a continuing nature not confined to a specific project. Be certain to specify the formula under the Assistance Considerations section, and Formula and Matching Requirements section.<\/p><p>Project Grants (B) - The funding, for fixed or known periods, of specific projects. Project grants can include fellowships, scholarships, research grants, training grants, traineeships, experimental and demonstration grants, evaluation grants, planning grants, technical assistance grants, survey grants, and construction grants.<\/p><p>Direct Payments for Specified Use (C) - Financial assistance from the Federal government provided directly to individuals, private firms, and other private institutions do encourage or subsidize a particular activity by conditioning the receipt of the assistance on a particular performance by the recipient. This does not include solicited contracts for the procurement of goods and services for the Federal government.<\/p><p>Direct Payments with Unrestricted Use (D) - Financial assistance from the Federal government provided directly to beneficiaries who satisfy Federal eligibility requirements with no restrictions being imposed on the recipient as to how the money is spent. Included are payments under retirement, pension, and compensatory programs.<\/p><p>Direct Loans (E) - Financial assistance provided through the lending of Federal monies for a specific period of time, with a reasonable expectation of repayment. Such loans may or may not require the payment of interest.<\/p><p>Guaranteed\/Insured Loans (F) - Programs in which the Federal government makes an arrangement to identify a lender against part or all of any defaults by those responsible for repayment of loans.<\/p><p>Insurance (G) - Financial assistance provided to assure reimbursement for losses sustained under specified conditions. Coverage may be provided directly by the Federal government or through private carriers and may or may not involve the payment of premiums.<\/p><\/div><div>Nonfinancial Assistance Programs:<p>Sale, Exchange, or Donation of Property and Goods (H) - The sale, exchange, or donation of Federal real property, personal property, commodities, and other goods including land, buildings, equipment, food and drugs. This does not include the loan of, use of, or access to Federal facilities or property<\/p><p>Use of Property, Facilities, and Equipment (I) - The loan of, use of, or access to Federal facilities or property wherein the federally owned facilities or property do not remain in the possession of the recipient of the assistance.<\/p><p>Provision of Specialized Services (J) – The provision of Federal personnel directly to perform certain tasks for the benefit of communities or individuals. These services may be performed in conjunction with nonfederal personnel, but they involve more than consultation, advice, or counseling.<\/p><p>Advisory Services and Counseling (K) – The provision of Federal specialists to consult, advise, or counsel communities or individuals including conferences, workshops, or personal contacts. This may involve the use of published information, but only in a secondary capacity.<\/p><p>Dissemination of Technical Information (L) - The publication and distribution of information or data of a specialized or technical nature frequently through clearinghouses or libraries. This does not include conventional public information services designed for general public consumption.<\/p><p>Training (M) - Instructional activities conducted directly by a Federal agency for individuals not employed by the Federal government.<\/p><p>Investigation of Complaints (N) - Federal administrative agency activities that are initiated in response to requests, either formal or informal, to examine or investigate claims of violations of Federal statutes, policies, or procedure. The origination of such claims must come from outside the Federal government.<\/p><p>Federal Employment (O) - Programs which reflect the Government-wide responsibilities of the Office of Personnel Management in the recruitment and hiring of Federal civilian agency personnel. The type of assistance must also reflect the form in which the assistance is transmitted from the Federal government and initially received for use or distribution by the applicant or the Federal government. Based on the following criteria, most programs will normally provide only one type of assistance.<\/p><p>Single Type of Assistance\/Single Delivery System - If possible, each program in the Catalog should be limited to a single type of assistance (e.g., a formula grant) that is available through a single administrative process or delivery system.<\/p><p>Multiple Types of Assistance\/Single Delivery System - If more than one type of assistance (e.g., a project grant and a loan; advisory services and counseling and dissemination of technical information) is normally provided concurrently through a single and inseparable administrative process or delivery system, the program should be listed as a single program.<\/p><p>Single Type of Assistance\/Multiple Delivery Systems - If a single type of assistance is available through distinguishable administrative processes or delivery systems, each should be listed as a separate program. For example, an administering office may award project grants (a single type of assistance), but the grants may fall in major categories such as research, training, demonstration, evaluation, etc., and each of these may have differing uses and use restrictions, eligibility requirements, assistance considerations, application processes, or program management responsibilities, i.e., delivery systems. In this situation, each should be listed as a separate program.<\/p><p>There may be programs that are not adequately represented by the 15 standard types of assistance listed here. Agencies are encouraged to submit information on types of assistance that are different from those in the Catalog. The definition of the type of assistance should be submitted and include: (1) whether the assistance is financial or nonfinancial; (2) what is provided in the assistance; and (3) the specific applicant or target group. Before a specific type of assistance is acceptable for inclusion in the Catalog, it must be approved by GSA.<\/p><\/div><\/div>"
     },
     "070":{
       "title":"070 Uses and Use Restrictions",
       "helpText":"Describe how assistance may be used. Use specific terms that will help public users find this listing.",
       "label":"Uses and Use Restrictions",
+      "readMore":"<h4>USES AND USE RESTRICTIONS (070)<\/h4><div class=\"readBody\"><p>First, describe how the assistance can potentially be used. Include specific subgrant projects and activities funded under formula or project grant programs. This may include one or more needs that can be satisfied through the program.<\/p><p>Second, list any specific restrictions placed upon the use of the assistance. Agencies Should consider recent and anticipated actions in order to indicate clearly the scope and emphasis of each program.<\/p><p>Third, where applicable, indicate whether there are discretionary funds available, along with the percentage of funds set aside for discretionary activities.<\/p><p>Fourth, in those programs having loans as the type of assistance, include the term of the loans. At a minimum, the following questions if they apply should be answered. What is the maximum loan amount? What is the time of maturity of the loan? What is the rate of interest being charged? Do the loans bear interest at a formula rate based on the cost of money to the agency?<\/p><\/div>"
+      },
       "restrictions":{
         "label":"Are there specific restrictions place upon the use of the assistance?",
         "helpText":"List any restrictions on how assistance may be used. Only provide restrictions specific to your organization or this listing."
@@ -52,11 +60,11 @@
       "loanTerms":{
         "label":"Are loans a type of assistance in this program?",
         "helpText":"Describe the loan terms:"
-      }
-    },
+      },
     "160":{
       "title":"160 Related Programs",
       "label":"Are there any related programs?",
+      "readMore":"<h4>RELATED PROGRAMS (160)<\/h4><div class=\"readBody\"><p>In this section of the program description, agencies should determine whether the programs listed are closely related based first on program objectives, and second on program uses. Programs listed in the Catalog that are administered by other agencies should also be considered for inclusion in this section. Programs being deleted from the Catalog should be taken out of this section. Programs being placed in this section should first be checked against the latest Agency Program Index, or more recent internal information. Programs should be listed in consecutive program number sequence.<\/p><\/div>",
       "form":{
         "intro":"Select at least one program from list."
       }
@@ -64,6 +72,7 @@
     "170":{
       "title":"170 Examples of Funded Projects",
       "label":"Are there examples of funded projects?",
+      "readMore":"<h4>EXAMPLES OF FUNDED PROJECTS (170)<\/h4><div class=\"readBody\"><p>What were the different types of projects funded by the program in the past? Give at least five clear examples. These examples should give potential applicants an idea of the projects that may be accepted for funding. Do not give the name and location of a project, but rather a phrase denoting the subject area undertaken. Projects that are scheduled to be funded are also acceptable.<\/p><\/div>",
       "projects":{
         "label":"Provide five or more examples that show how funding might be used.  Describe the subject area without identifying program details."
       }
@@ -71,12 +80,14 @@
     "190":{
       "title":"190 Functional Codes",
       "helpText":"Select one or more Functional Codes to help public users search for this listing.",
-      "label":"Functional Codes"
+      "label":"Functional Codes",
+      "readMore":""
     },
     "300":{
       "title":"300 Subject Terms",
       "helpText":"Select one or more Subject Terms to help public users search for this listing.",
-      "label":"Subject Terms"
+      "label":"Subject Terms",
+      "readMore":""
     }
   },
   "02":{
@@ -87,10 +98,12 @@
       "title":"081 Applicant Eligibility",
       "eligibleApplicants":{
         "label":"Eligible Applicants",
+        "readMore":"<h4>Applicant Eligibility (081)<\/h4><div class=\"readBody\"><p>Who can apply to the Government and what criteria must the applicants) satisfy? Include also eligibility criteria required of subgrantees. The main purpose of this section is to inform potential applicants (particularly State and local governments, U.S. Territories, and federally recognized Indian tribal governments) that they can apply for a program. Some of the terms being used in this section are “public agency,” “public organizations,” and “public bodies” if these words mean the same as city, county, and State governments, use the latter more specific words.<\/p><p>Specifically, are State and local governments, private, public, profit, nonprofit organizations and institutions or individuals eligible? Since State designate Indian tribal governments are considered units of local government, indicate those programs that include or exclude these entities as units of local government because of the nature of the program. If institutions of higher education are eligible, indicate whether they must be public, private, State colleges and universities, junior or community colleges, etc. Indicate who specifically is not eligible. Certain programs involve intermediate level of application processing, i.e., applications transmitted through governmental or nongovernmental units that are neither the direct applicants to the Federal government nor the ultimate beneficiary. If this is the case, what Federal criteria or general criteria must this intermediate level applicant satisfy? Who specifically at this intermediate level is not eligible?<\/p><p>The information in the Applicant Eligibility Index is based on the information recorded in this section.<\/p><p>In order to make the entries in the Applicant Eligibility section of the program descriptions consistent, identify the Eligible applicants and Use of assistance from the following terms and incorporate them into the narrative of the program description:<\/p><h4>Eligible Applicants<\/h4><p><span class=\"underline\">Federal<\/span> - Department and establishment of the Federal government which are responsible for enforcement and the fulfillment of public policy. These departments and establishments directly administer and exercise jurisdiction over matters assigned to them, and are the administering agencies of Federal domestic assistance programs.<\/p><p><span class=\"underline\">Interstate<\/span> - An organizational unit established by two or more States to coordinate certain regional programs relating usually to boundaries for the control and improvement of rivers for irrigation or water power, conservation of natural resources, public utility regulation, development of ports, regional educational development, and regional planning.<\/p><p><span class=\"underline\">Intrastate<\/span> - An organizational entity within the boundaries of a State established for such purposes as trade, transportation, and communication, performing economic, cultural, and historical functions conducted wholly within the boundaries of a State and which is subject to State regulatory authority. Includes water and sewer districts, and may include a region wholly in a State, such as a Council of Governments. State - Any agency or instrumentality of the fifty States and the District of Columbia excluding the political subdivisions of State, but including public institutions of higher education and hospitals. (This term does not include U.S. possessions or territories.)<\/p><p><span class=\"underline\">Local<\/span> - Political subdivisions of a State created under general law or State charter that regulate and administer matters chiefly of local concern. These subdivisions include cities, parishes, counties, municipalities, towns, townships, villages, school districts, special districts, or agencies or instrumentalities of local government, exclusive of institutions of higher education and hospitals. Included are Indian tribes on State reservations, Indian school boards, and State-designated Indian tribes.<\/p><p><span class=\"underline\">Sponsored organizations<\/span> - A public purpose group other than a unit of government that is a beneficiary under a plan or program administered by a State, or political subdivision of a State or local government, and which is subject to approval by a Federal agency. Usually organized to work for a specific purpose. Examples: Community development agencies, model cities, community action agencies.<\/p><p><span class=\"underline\">Public nonprofit institution organizations<\/span> - A publicly owned agency or organization established to perform specialized functions or services for the benefit of all or part of the general public either without charge or at cost, making no profits and having no shareholders to receive dividends. Includes institutions of higher education and hospitals.<\/p><p><span class=\"underline\">Other public institution organization<\/span> - A public purpose agency performing functions such as taxation and police regulation for the convenience, safety, or welfare of the entire community, not of a specific individual or class of persons. Examples: Public broadcasting entities, public corporations, public radio-stations.<\/p><p><span class=\"underline\">Federally Recognized Indian Tribal Government<\/span> - The governing body or a governmental agency of an Indian tribe, Nation, pueblo, or other organized group or community (including any Native village as defined in the Alaska Native Claims Settlement Act) certified by the special programs and services provided through the Bureau of Indian Affairs.<\/p><p><span class=\"underline\">U.S. territory or possession<\/span>- Any agency or instrumentality of the Commonwealth of Puerto Rico, Virgin Islands, Guam, American Samoa, the Trust Territories of the Pacific Islands, and the Mariana Islands, including the political subdivisions of a territory, institutions of higher education, and hospitals. If territories are eligible to apply, the most accurate designation would be to state exactly which territory(ies) is eligible since all territories may not fall under the same set of eligibility criteria.<\/p><p><span class=\"underline\">Individual\/Family<\/span> - A person or group of persons who meet specified eligibility criteria. An example of a program where this applicant is eligible is the Food Stamps Program (10.551). Minority group - A group regarded as a subgroup of the majority to include African Americans, Americans of Spanish descent, Asians, and other nonwhite persons. It may include disadvantaged or under represented groups, such as women, Vietnam-era veterans, and the physically challenged\/disabled.<\/p><p><span class=\"underline\">Specialized group<\/span> - A group of people with a specific mutual interest. Examples: American Medical Association, students, veterans.<\/p><p><span class=\"underline\">Small business<\/span> - A business of less than 500 employees, independently owned and not dominant in its field. (Detailed criteria are established by the Small Business Administration.)<\/p><p><span class=\"underline\">Profit organization<\/span> - A public or private organization designed to produce product or deliver services to the public through a business enterprise which is structured and managed for profit.<\/p><p><span class=\"underline\">Private nonprofit institution\/organization<\/span> – A privately owned organization or institution that represents community special interests through community service networks, public information, technical assistance, and public education. Operated exclusively for charitable, scientific, literary or educational purposes such that no part of its earnings is for the benefit of any private shareholder or individual. Includes private institutions of higher education and hospitals. Examples: Girl Scouts, American Civil Liberties Union.<\/p><p><span class=\"underline\">Quasi-public nonprofit institution\/organization<\/span> - A private organization or institution engaged in rendering essential services to the public and therefore given special privileges such as those given to public institutions\/organizations. Examples: American Red Cross, United Givers Fund. Other private institution\/organization - A privately owned agency that operates for profit and disburses dividends to shareholders.<\/p><p><span class=\"underline\">Anyone\/general public<\/span> - Any person(s), without regard to specified eligibility criteria.<\/p><p><span class=\"underline\">Native American Organization<\/span> - Groups of Indians to include urban Indian groups, cooperatives, corporations, partnerships, and associations. Also, include Indians as a minority group.<\/p><\/div>",
         "helpText":"Select all that apply to help public users search for this listing."
       },
       "useOfAssistance":{
         "label":"Use Of Assistance",
+        "readMore":"<h4>Use Of Assistance<\/h4><div class=\"readBody\"><table style=\"border:1px solid black\"><tr><td>00 - No Functional Application\/Unlimited Application<\/td><td>42 - Higher Education (includes Research)<\/td><\/tr><tr><td>12 - Agriculture\/Forestry\/Fish and Game<\/td><td>44 - Housing<\/td><\/tr><tr><td>14 - Business\/Commerce<\/td><td>46 - Income Security\/Social Service\/Welfare<\/td><\/tr><tr><td>16 - Civil Defense\/Disaster Prevention and Relief\/Emergency Preparedness <\/td><td>48 - International (includes Export\/lmport)<\/td><\/tr><tr><td>18 - Communications<\/td><td>52 - Libraries\/lnformation\/Statistics<\/td><\/tr><tr><td>20 - Community Development (includes Federal surplusproperty)<\/td><td>54 - Maritime<\/td><\/tr><tr><td>22 - Construction\/Renew al\/Rehabilitation<\/td><td>58 - Planning<\/td><\/tr><tr><td>24 - Consumer Protection<\/td><td>60 - Public Works<\/td><\/tr><tr><td>26 - Culture\/Arts\/Humanities<\/td><td>62 - Recreation (includes Historic Preservation)<\/td><\/tr><tr><td>28 - Economic Development<\/td><td>64 - Regional Development<\/td><\/tr><tr><td>30 - Elementary\/Secondary Education<\/td><td>66 - Science and Technology<\/td><\/tr><tr><td>32 - Employment\/Labor\/Management<\/td><td>70 - Training<\/td><\/tr><tr><td>34 - Energy<\/td><td>68 - Transportation<\/td><\/tr><tr><td>36 - Environment (w ater, air, solid w aste, pesticides, radiation)<\/td><td>74 - Vocational Education<\/td><\/tr><tr><td>38 - Food and Nutrition<\/td><td>76 - Vocational Rehabilitation<\/td><\/tr><tr><td>40 - Health\/Medical<\/td><td>72 - Youth Development<\/td><\/tr><\/table><\/div>",
         "helpText":"Select all that apply to help public users search for this listing."
       },
       "additionalInfo":{
@@ -102,6 +115,7 @@
       "title":"082 Beneficiary Eligibility",
       "beneficiaryEligibility":{
         "label":"Beneficiary Eligibility",
+        "readMore":"<h4>Beneficiary Eligibility (082)<\/h4><div class=\"readBody\"><p>Specify who will receive the ultimate benefits from the program. Programs that provide direct assistance from a Federal agency will generally have the same applicant and beneficiary. Do not use the statement \"Same as Applicant Eligibility.\" In cases where assistance is provided through State and local governments, the applicants and beneficiaries may be different since the assistance is transmitted to private sector beneficiaries who do not have to request or apply for the benefits.<\/p><p>In order to make the entries in the Beneficiary Eligibility section of the program descriptions consistent, select the beneficiary type from the terms below and also incorporate them into the narrative of the program description:<\/p><ul><li>Federal<\/li><li>Interstate<\/li><li>Intrastate<\/li><li>State<\/li><li>Local<\/li><li>Sponsored Organization<\/li><li>Public Nonprofit Institution\/Organization<\/li><li>Other Public Institution\/organization<\/li><li>Federally Recognized Indian Tribal Government<\/li><li>U.S. Territory\/Possession<\/li><li>Individual\/Family<\/li><li>Minority Group<\/li><li>Specialized Group<\/li><li>Small Business<\/li><li>Profit Organization<\/li><li>Private Organization<\/li><li>Quasi-Public Nonprofit Organization<\/li><li>Other Private Institution\/organization<\/li><li>Anyone\/General Public<\/li><li>Native American Organization<\/li><li>Health Professional<\/li><li>Education Professional<\/li><li>Student\/Trainee <\/li><li>Graduate Student<\/li><li>Scientists\/Researcher<\/li><li>Artist\/Humanist<\/li><li>Engineer\/Architect<\/li><li>Builder\/Contractor\/Developer<\/li><li>Farmer\/Rancher\/Agriculture Producer<\/li><li>Industrialist\/Business Person<\/li><li>Small Business Person<\/li><li>Consumer<\/li><li>Homeowner<\/li><li>Land\/Property Owner<\/li><li>Black American<\/li><li>American Indian <\/li><li>Spanish Origin<\/li><li>Oriental<\/li><li>Other Nonwhite<\/li><li>Migrant<\/li><li>U.S. Citizen<\/li><li>Refugee\/Alien - veteran\/service person\/Reservist (including dependents)<\/li><li>Women<\/li><li>Handicapped (Deaf, Blind, Crippled)<\/li><li>Physically Afflicted (TB, Arthritis, Heart Disease)<\/li><li>Mentally Disabled <\/li><li>Drug Addict<\/li><li>Alcoholic <\/li><li>Juvenile Delinquen<\/li><li>Preschool<\/li><li>School<\/li><li>Infant (0-5)<\/li><li>Child (6-15)<\/li><li>Youth (16-21)<\/li><li>Senior Citizen (60+)<\/li><li>Unemployed<\/li><li>Welfare Recipient<\/li><li>Pension Recipient<\/li><li>Moderate Income<\/li><li>Low Income<\/li><li>Major Metropolis (over 250,000)<\/li><li>Other urban<\/li><li>Suburban<\/li><li>Rural<\/li><li>Education (0-8)<\/li><li>Education (9-12)<\/li><li>Education (13+)<\/li><\/ul><\/div>",
         "helpText":"Select all that apply to help public users search for this listing."
       },
       "additionalInfo":{
@@ -112,6 +126,7 @@
     "083":{
       "title":"083 Credentials/Documentation",
       "label":"Are there credentials or documentation?",
+      "readMore":"<h4>Credentials/Documentation (083)<\/h4><div class=\"readBody\"><p>What credentials or documentation is required prior to, or along with, a request or application for-assistance? In other words, what must be proved, certified, or established? This does not refer to Government-wide requirements such as compliance with Title VI of the Civil Rights Act of 1964 or information in the Preapplication Coordination (091) section. If no credentials or documentation are required, select none.\"<\/p><\/div>",
       "additionalInfo": {
         "label": "What qualifications must be demonstrated? Only consider credentials or documentation specific to your organization or this listing."
       },
@@ -127,6 +142,7 @@
     "091":{
       "title":"091 Pre-application Coordination",
       "label":"Is any prior coordination or approval required with governmental or nongovernmental units prior to the submission of a formal application to the Federal funding agency?",
+      "readMore":"<h4>Preapplication Coordination (091)<\/h4><div class=\"readBody\"><p>The following information should be provided concerning the preapplication process:<\/p><p>If a preapplication form is required, what are the name and number of the form?<\/p><p>Is consultation or assistance available from the agency or elsewhere to aid in preparing the form? Is an informal preapplication conference needed or recommended?<\/p><p>Are there any other requirements for coordination with governmental or nongovernmental units prior to the formal submission of the preapplication to a Federal agency? If there are no entries for this section select \"None.\"<\/p><h4 class=\"underline\">Indicating Environmental Impact Statement<\/h4><p>Section 102 (2) (C) of the National Environmental Policy Act of 1969 (Public Law 91-190), 42<\/p><p>S.C. 4332 (2) (C), Executive Order 11514 (34 FR 4247) of March 4, 1970, requires environmental impact statements to be prepared for certain projects funded under various Federal programs as a prerequisite to a grant award.<\/p><p>All programs should be reviewed for applicability: 1) the appropriate parenthesis should be checked on the Program Coordination Requirements Form (Existing\/New Programs); and 2) the statement below should be placed in the Preapplication coordination section of the program by selecting the proper radio button.<\/p><p>For most programs, this requirement does not apply. However, if an agency has a program that should be in compliance, the Preapplication Coordination section should contain the environmental impact statement. The statement is:<\/p><p>An environmental impact statement is required for this program.<\/p><p>If a program requires an environmental impact assessment, this should also be noted with a statement in the same section using the same wording for the environmental impact statement, but substituting the word \"assessment\" for the \"statement.\"<\/p><h4 class=\"underline\">Identifying Programs Pertaining to Executive Order 12372, \"Intergovernmental UReview of Federal Programs”<\/h4><p>This Executive Order structures the Federal government's system of consultation with State and local governments on its decisions involving grants, other forms of financial assistance, and direct development. States in consultation with their local governments design their own review processes and select those Federal financial assistance and direct development activities they wish to review.<\/p><p>In Appendix I of the Catalog, programs are listed that are covered by this Executive Order and a State Single Point of Contact List is included. All programs should be reviewed for applicability.<\/p><p>The Executive Order 12372 statement is: (This statement is automatically inserted into the program by your radio button selection)<\/p><p>This program is eligible for coverage under E.O. 12372, \"Intergovernmental Review of Federal Programs.\" An applicant should consult the office or official designated as the single point of contact in his or her State for more information on the process the State requires to be followed in applying for assistance, if the State has selected the program for review. If Executive Order 12372 does not apply, this statement should be inserted: This program is excluded from coverage under E.O. 12372<\/p><\/div>",
       "environmentalImpact":{
         "label":"Does this program require submission of environmental impact information?"
       },
@@ -140,6 +156,7 @@
     "092":{
       "title":"092 Application Procedures",
       "label":"Does 2 CFR 200, Uniform Administrative Requirements, Cost Principles, and Audit Requirements for Federal Awards apply to this program?",
+      "readMore":"<h4>Application Procedure (092)<\/h4><div class=\"readBody\"><p>For eligible applicants (including intermediate levels), identified under the Applicant Eligibility section, what are the basic procedural steps required by the Federal agency in the application process, beginning with the lowest level and ending eventually with the Federal government? Do OMB Circular No. A-102 or A-100 Apply? Are there any Other Application Procedures?<\/p><\/div>",
       "additionalInfo":{
         "helpText":"List all steps in the application process.",
         "label":"Other Application Procedures:"
@@ -147,11 +164,13 @@
     },
     "093":{
       "title":"093 Award Procedure",
-      "label":"Describe how assistance is awarded.  Include who approves the award and how assistance is distributed."
+      "label":"Describe how assistance is awarded.  Include who approves the award and how assistance is distributed.",
+      "readMore":"<h4>Award Procedure (093)<\/h4><div class=\"readBody\"><p>Give the basic procedural steps for awarding assistance beginning with the organizational components of the Federal agency that has final approval authority for the application and end with the lowest level at which Federal resources are expended. State if the assistance passes through the initial applicant for further distribution to other groups in the private sector. These steps should be consistent with the steps identified in the Application Procedure subsection above.<\/p><\/div>"
     },
     "094":{
       "title":"094 Deadlines",
       "label":"Is a deadline for submission of application available?",
+      "readMore":"<h4>Deadlines (094)<\/h4><div class=\"readBody\"><p>By what date(s) or between what dates must an application be received by the Federal agency? If the deadline for submission of application is not available, a statement such as the following should be entered: Contact the headquarters (or regional office, as appropriate) for application deadlines. Where this information is not available, agencies should inform GSA as soon as possible after it becomes available. The phrase \"See the Federal Register for deadline dates\" is not sufficient. Specific dates must be given. If there are no deadlines, select \"None.\"<\/p><\/div>",
       "deadlines":{
         "title":"Current Deadlines",
         "helpText":"List all deadlines in the application process.  Enter each deadline separately.",
@@ -165,6 +184,7 @@
     },
     "095":{
       "title":"095 Range of Approval/Disapproval Time",
+      "readMore":"<h4>Range of Approval/Disapproval Time (095)<\/h4><div class=\"readBody\"><p>In terms of days, what is a representative range of the time required for the application or request to be approved or disapproved. If, in the case of certain nonfinancial assistance programs this is not relevant, select \"Not applicable.\"<\/p><\/div>",
       "dateRange":{
         "label":"Select the range that best represents how much time the approval process takes."
       },
@@ -175,6 +195,7 @@
     },
     "096":{
       "title":"096 Appeals",
+      "readMore":"<h4>Appeals (096)<\/h4><div class=\"readBody\"><p>For applications not approved, what appeal procedure and\/or allowable rework time is available? If there is no appeal or rework time, select \"None.\" If this does not apply to the particular program, select \"Not applicable.\" Describe any additional information necessary.<\/p><\/div>",
       "dateRange":{
         "label":"Select the range that best represents how long an applicant has to appeal a decision."
       },
@@ -185,6 +206,7 @@
     },
     "097":{
       "title":"097 Renewals",
+      "readMore":"<h4>Renewals (097)<\/h4><div class=\"readBody\"><p>Are renewals or extensions available? What are the procedures for such? If there are no renewals, enter \"None.\" If this does not apply to a particular program, select \"Not applicable.\" Describe any additional information necessary.<\/p><\/div>",
       "dateRange":{
         "label":"Select the range that best represents when an awardee may apply for a renewal or extension."
       },
@@ -194,10 +216,12 @@
       }
     },
     "100":{
-      "title":"100 Assistance Consideration"
+      "title":"100 Assistance Consideration",
+      "readMore":"<h4>ASSISTANCE CONSIDERATIONS (100)<\/h4><div class=\"readBody\"><p>Questions in the following subsections should be answered concisely by one or more phrases. If the subsections do not apply to a particular program, select \"Not applicable.\"<\/p><\/div>"
     },
     "101":{
       "title":"101 Formula and Matching Requirements",
+      "readMore":"<h4>Formula and Matching Requirements (101)<\/h4><div class=\"readBody\"><p>Cite the statutory and\/or administrative rule reference in the Code of Federal Regulations (CFR) to include the title, chapter, part and subpart or the public law citation. If the program has no statutory formula, indicate: \"This program has no statutory formula.\"<\/p><p>Specify by name each formula factor and its weight (percentage). Briefly describe the mathematical calculation performed. Provide the statistical source, agency and the date of that source used in computation of the formula identified above. If the source is unpublished, this should be indicated along with the identification of the office maintaining the data. Specify the current cost-sharing arrangement for the program. Include the minimum and\/or maximum constraints by percentage.<\/p><p>Specify the range of financial or other matching required from nonfederal sources, e.g., State and local governments or other organizations and individuals. Identify the available bonuses or incentives. Identify the amount of the nonfederal share as it increases\/decreases from the past fiscal year to the budget fiscal year. If the program has no matching requirements, indicate: \"This program has no matching requirements.\"<\/p><p>Maintenance of Effort (MOE) requirements are provisions intended to ensure that Federal funds are used to supplement, not supplant, existing State and local resources. In most cases, these requirements are intended to prevent State and local governments from reducing their spending in federally funded areas as a condition for receiving Federal grants.<\/p><p>If MOE programs have total allocations of $100 million or over in the current fiscal year, the following statement should be placed in the Formula and Matching Requirements section: \"This program has MOE requirements; see funding agency for further details.\"<\/p><\/div>",
       "helpText":"See the reference guide or online help for instructions when Yes is selected.",
       "statuatoryFormula":{
         "label":"Does this program have a statutory formula and/or administrative rule reference in the CFR?",
@@ -240,6 +264,7 @@
     },
     "102":{
       "title":"102 Length and Time Phasing of Assistance",
+      "readMore":"<h4>Length and Time Phasing of Assistance (102)<\/h4><div class=\"readBody\"><p>First, for what period of time is the assistance normally available? Is there a restriction placed on the time permitted to spend the money awarded? Second, how is the assistance (particularly for grant programs) awarded and/or released; as a lump sum, quarterly, by letter of credit, etc?<\/p><\/div>",
       "assistLimit": {
         "label": "Describe the period of time when assistance is available. Also, the period of time when funding must be spent."
       },
@@ -251,6 +276,7 @@
     "180":{
       "title":"180 Criteria for Selecting Proposals",
       "label":"Is there criteria for selecting proposals?",
+      "readMore":"<h4>CRITERIA FOR SELECTING PROPOSALS (180)<\/h4><div class=\"readBody\"><p>What are the criteria used to judge proposals? In order to let potential applicants know more about the application review process and the criteria used to award funds to projects, the following questions may be answered: Are the criteria based on the cost of the project, qualification of principal investigator and institution, relevance to program's objectives and uses, or merit? Is there an order of priority? If the Code of Federal Regulations is used for this section extract the salient points of interest to an applicant. Do not cite the Code verbatim.<\/p><\/div>",
       "additionalInfo":{
         "helpText":"List all factors used to select awardees. Include how these factors are prioritized or weighted.",
         "label":"Please describe criteria for selecting proposals:"
@@ -259,7 +285,8 @@
   },
   "04":{
     "110":{
-      "title":"110 Post Assistance Requirements"
+      "title":"110 Post Assistance Requirements",
+      "readMore":"<h4>POST ASSISTANCE REQUIREMENTS (110)<\/h4><div class=\"readBody\"><p>Questions in the following subsections should be answered concisely by using a phrase or phrases. In the event the subsections are not relevant to the program, select \"None\" or \"Not applicable,\" whichever is appropriate.<\/p><h4>Reports (111)<\/h4><p>What progress, expenditure, cash reports and performance monitoring by the recipient are required by the Federal agency and during what intervals?<\/p><h4>Audits (112)<\/h4><p>Will audits be made to ensure that funds have been applied efficiently, economically, and effectively? If so, what audit procedures have been mandated for the program? Use the following statement wherever appropriate: In accordance with the provisions of OMB Circular No. A-133 (Revised, June 24, 2003), \"Audits of States, Local Governments, and Non-Profit Organizations,” nonfederal entities that receive financial assistance of $500,000 or more in Federal awards will have a single or a program-specific audit conducted for that year. Nonfederal entities that expend less than $500,000 a year in Federal awards are exempt from Federal audit requirements for that year, except as noted in Circular No. A-133.<\/p><h4>Records (113)<\/h4><p>Describe what records the Federal agency requires the recipient to maintain and the time periods.<\/p><\/div>"
     },
     "111":{
       "title":"111 Reports",
@@ -313,6 +340,7 @@
     "140":{
       "title":"140 Regulations, Guidelines, and Literature",
       "label":"Are there any regulations, guidelines or literature?",
+      "readMore":"<h4>REGULATIONS, GUIDELINES, AND LITERATURE (140)<\/h4><div class=\"readBody\"><p>List the reference to all official published information pertinent to the program in the order indicated below. If there are no materials of this nature available, enter \"None.\" … A citation to the Code of Federal Regulations (CFR) including the title, part, and sections where appropriate. … The title, number, and price of guidelines, handbooks, or manuals. Specify where these documents may be obtained if different from the Federal level offices described in the Information Contacts section of the program description. … The title, number and price of additional literature such as reports and brochures that are available. Specify where these materials may be obtained if different from the Federal level offices described in the Information Contacts section of the program description.<\/p><\/div>",
       "additionalInfo":{
         "label":"List references to all official published information related to this listing. Omit references to 2 CFR 200."
       }
@@ -325,6 +353,7 @@
     "121": {
       "title": "121 Account Identification",
       "label": "List the 11-digit budget account identification code(s) that funds the program. This code must match the President’s budget.",
+      "readMore":"<h4>Account Identification (121)<\/h4><div class=\"readBody\"><p>List the 11 digit budget account identification code(s) that funds the program. The meaning of the 11-digit code is specified in OMB Circular No. A-11, and in Appendix III of the Catalog. All program coding used will be consistent with that submitted for inclusion in the President's Budget.<\/p><\/div>",
       "form": {
         "code": {
           "label": "Code"
@@ -337,6 +366,7 @@
     "122": {
       "title": "122 Obligations",
       "label": "Financial information must be consistent with the President’s budget. Enter obligations for each type of assistance separately.",
+      "readMore":"<h4>Obligations (122)<\/h4><div class=\"readBody\"><p>The specific items of financial information required for each program are for three fiscal years (actual, budget, and fiscal). Financial information required for each program should be consistent with that presented in the President's Budget. Clearly indicate what the obligation figures represent, i.e., grants, loans (the face value of direct loans and guaranteed loans should be listed separately), or salaries and expenses. Obligations for grants and contracts must be listed separately. Obligations for financial assistance programs should not include Federal salaries and expenses for operation of the program. Some agencies conduct intramural as well as extramural activities; however, only extramural funds available under Federal assistance programs should be reported. The dollar amounts that should be reported to the Catalog are those that are available to the general public as assistance or benefits. List the dollar assistance provided by a program. If no money has been requested in a particular fiscal year, this should be stated. A number of programs contain the statement as it pertains to dollars, “Not separately identifiable.” In some instances this is a valid statement. However, the statement should not be applied automatically without investigation to see if the situation remains true. Agencies must determine whether the dollars may in fact be broken out separately. For the two nonfinancial assistance categories, \"Sale, Exchange, or Donation of Property and Goods,\" and \"Use of Property, Facilities, and Equipment,\" show the item(s) involved in the obligation in parentheses, for example (Sales). For all other nonfinancial assistance programs, the obligation figures should indicate an approximation of the Federal salaries and expenses involved in operating the program as an indication of the magnitude of the services being provided. UObligations are defined as the amounts of orders placed, contracts awarded, or services received, and similar transaction during a given period that commit the Federal government to budget outlays.<\/p><\/div>",
       "form": {
         "recovery": {
           "label": "Is this a Recovery and Reinvestment Act Obligation?"
@@ -355,11 +385,13 @@
     },
     "123": {
       "title": "123 Range and Average of Financial Assistance",
-      "label": "Provide a range that best represents the smallest and largest awards available. Provide an approximate average award size."
+      "label": "Provide a range that best represents the smallest and largest awards available. Provide an approximate average award size.",
+      "readMore":"<h4>Range and Average of Financial Assistance (123)<\/h4><div class=\"readBody\"><p>First, list a representative range (smallest to largest) of the amounts of financial assistance available. The figures for the smallest and the largest awards should be based on what have been awarded in the past fiscal year and the current fiscal year to date. Second, indicate an approximate average amount of the financial assistance awards (dollars) that were made in the past and current fiscal years.<\/p><\/div>"
     },
     "124": {
       "title": "124 TAFS Codes - Unique Treasury Appropriation Fund Symbols",
       "label": "Enter as many components as possible. Treasury Dept Code, Allocation Transfer Agency, and Treasury Account Main Code are required.",
+      "readMore":"<h4>TAFS Codes - Unique Treasury Appropriation Fund Symbols(124)<\/h4><div class=\"readBody\"><p>In order to provide more complete information, Treasury Appropriation Fund Symbol (TAFS) for each CFDA entry must be provided in Paragraph 124 of the CFDA program description. The TAFS is an administrative identifier that represents an act of congress that permits Federal agencies to incur obligations and make payments out of the Treasury for specified purposes. Each TAFS provides the framework for establishing a set of balanced accounts on the books of the agency concerned. The TAFS describes key components of financial information, such as the department or agency, and the specific account within the department or agency providing funding for the relevant CFDA program, as well as the year(s) the funding is available for obligation. The TAFS is a type of Treasury Account Symbol. These codes are important to help put programs in the context of other related funding information. In cases where more than one program is linked to one TAFS, each program should have its own entry with the TAFS number as appropriate. In cases where one program is linked to more than one TAFS, please enter all relevant TAFS into the space provided. All TAFS codes provided must include the following components: Treasury Department Code, Allocation Transfer Agency and Treasury Account Main Code. All other components are optional; however, agencies are encouraged to include as many components as available. If questions arise regarding correct entry of the above listed components, please coordinate the population of these data fields with your agency's budget office and\/or CFO office as appropriate.<\/p><\/div>",
       "form": {
         "deptCode": {
           "label": "Treasury Dept Code"
@@ -384,6 +416,7 @@
     "130": {
       "title": "130 Program Accomplishments",
       "label": "Are there program accomplishments?",
+      "readMore":"<h4>PROGRAM ACCOMPLISHMENTS (130)<\/h4><div class=\"readBody\"><p>Describe the program's accomplishments, outputs, results achieved and services rendered. This information must be provided for the actual fiscal year. Estimates must be provided for the current fiscal year and the budget fiscal year. Quantitative data should be used as much as possible. Data on the number and ratio of applications should be provided. Indicate how many applications were received and how many awards were made for all three relevant fiscal years. When a new program is involved, anticipated accomplishments should be stated. For example, \"It is anticipated that 109 applications will be received and 25 awards will be granted in fiscal year 20__.\"<\/p><\/div>",
       "helpText": "Showcase for public users the achievements associated with this listing.  Use clear, plain language and provide compelling examples.",
       "programAccomplishments": {
         "label": "Please select all that apply:"
@@ -399,11 +432,13 @@
       "additionalInfo":{
         "helpText":"Identify Federal regional or local offices that may be contacted about this listing.",
         "label":"Additional Information:"
-      }
+      },
+      "readMore":"<h4>Regional or Local Office (151)<\/h4><div class=\"readBody\"><p>Identify the Federal regional or local office(s) that may be contacted for detailed information concerning a program, such as the availability of funds, the likelihood of receiving assistance and State Plan\/application deadlines. Only the names of program managers and\/or contact persons closest to the program should be listed. The commercial, FTS, FAX, and TTY\/TTD telephone numbers, and e-mail addresses should also be included for the regional and local contact persons. Where appropriate, reference to Appendix IV of the Catalog for addresses and telephone numbers of Federal regional or field offices should be made in this section. As in the current Catalog, certain programs should list this information within the program description because of the small number of offices and\/or the small number of programs for which those offices are relevant. The statement \"See Appendix IV for list of addresses\" alone is insufficient. The statement should be more specific, for example, \"Complaints may be filed with the Department of Agriculture, Packers and Stockyards Regional Office, as listed in Appendix IV of the Catalog.\" The subagency designations, and Appendix IV should be mentioned along with whatever directions the applicant might need. If potential applicants are not encouraged to contact the regional or local offices or if the program is administered entirely at the headquarters level, select Not applicable.<\/p><\/div>"
     },
     "152":{
       "title":"152 Headquarters Office",
       "label":"Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added.",
+      "readMore":"<h4>Headquarters Office (152)<\/h4><div class=\"readBody\"><p>List the names, addresses, commercial, FTS, FAX, and TTY/TDD telephone numbers, and e-mail addresses of the administering office at the headquarters level. The administering office will consist of the lowest agency subdivision that has direct operational responsibility for managing a program. If regional or local offices are not able to answer inquiries, list the telephone number for the headquarters administering office. If possible, provide a control number at the agency in case there might be difficulty contacting a resource person.<\/p><\/div>",
       "form":{
         "contacts":{
           "label":"Contacts:"
@@ -442,7 +477,8 @@
     },
     "153":{
       "title":"153 Website",
-      "label":"Provide the primary web page URL for this listing. When possible, the web page should be specific to this listing."
+      "label":"Provide the primary web page URL for this listing. When possible, the web page should be specific to this listing.",
+      "readMore":"<h4>Website Address (153)<\/h4><div class=\"readBody\"><p>List the Website address of the administering office at the headquarters level.<\/p><\/div>"
     }
   }
 }

@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', '$state', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'SUPPORTED_ROLES', '$timeout',
-            function ($scope, $state, appConstants, ApiService, moment, SearchFactory, AuthorizationService, SUPPORTED_ROLES, $timeout) {
+        .controller('HomeController', ['$scope', '$state', '$timeout', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'SUPPORTED_ROLES',
+            function ($scope, $state, $timeout, appConstants, ApiService, moment, SearchFactory, AuthorizationService, SUPPORTED_ROLES) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -279,5 +279,15 @@
                         };
                     });
                 }
+
+
+
+                //make sure the focus is top when content has finished loading.
+                $scope.$on('$viewContentLoaded', function () {
+                    $timeout(function () {
+                        $('#iae-header header a.sr-only').focus();
+                    }, 0);
+                });
+
             }]);
 })();

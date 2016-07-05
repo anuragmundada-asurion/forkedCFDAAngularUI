@@ -2,12 +2,14 @@ package gov.gsa.cfda.aui.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.apache.commons.lang.ArrayUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -254,8 +256,19 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+    public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                           @RequestParam(value="roles", required=false, defaultValue="") String[] roleIds,
+                           @RequestParam(value="organizations", required=false, defaultValue="") String[] orgIds) {
         Map<String, Object> params = new HashMap<>();
+
+        if (roleIds != null && !ArrayUtils.isEmpty(roleIds)) {
+            params.put("roles", StringUtils.arrayToCommaDelimitedString(roleIds));
+        }
+
+        if (orgIds!= null && !ArrayUtils.isEmpty(orgIds)) {
+            params.put("organizations", StringUtils.arrayToCommaDelimitedString(orgIds));
+        }
+
         return getsCall(accessToken, getUsersApiUrl(), params);
     }
 
@@ -476,7 +489,7 @@ public class ApiController {
         restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.DELETE, entity, String.class);
     }
 
-    private String federalHierarchyCall(String id, String sort, String childrenLevels, String parentLevels) {
+    private String federalHierarchyCall(String id, String ids, String sort, String childrenLevels, String parentLevels) {
         String url = getFederalHierarchiesApiUrl();
         if (id != null && !id.isEmpty()) {
             url += '/' + id;
@@ -503,6 +516,10 @@ public class ApiController {
             builder.queryParam("sort", sort);
         }
 
+        if (ids != null && !ids.isEmpty()) {
+            builder.queryParam("ids", ids);
+        }
+
 //        builder.queryParam("_options.hal.link", false);
 
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -512,10 +529,11 @@ public class ApiController {
 
     @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchy(@RequestParam(value = "sort", required = false, defaultValue = "name") String sort,
+                                          @RequestParam(value = "ids", required = false, defaultValue = "") String ids,
                                           @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
                                           @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, sort, childrenLevels, parentLevels));
+            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, ids, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
@@ -531,7 +549,7 @@ public class ApiController {
                                               @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
                                               @RequestParam(value = "parentLevels", required = false, defaultValue = "") String parentLevels) throws SQLException, RuntimeException {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, sort, childrenLevels, parentLevels));
+            return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, null, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
@@ -554,6 +572,13 @@ public class ApiController {
     public String getSingleHistoricalIndexChange(@PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
         return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
+    }
+
+    //manual add historical index
+    @RequestMapping(value = "/api/historicalChange", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
+                                              @RequestBody String jsonData) {
+        return this.createCall(accessToken, getHistoricalChangeApiUrl(), jsonData);
     }
 
     @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)

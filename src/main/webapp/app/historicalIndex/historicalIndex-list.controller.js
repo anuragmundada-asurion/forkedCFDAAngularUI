@@ -207,7 +207,10 @@
                                 'organizationId': {'id': r['organizationId'], 'value': ''},
                                 'programNumber': r['programNumber'],
                                 'status': (r['archive'] && r['latest']) ? 'Archived' : ((!r['archive'] && r['latest']) ? 'Active' : 'Past Version'),
-                                'historicalChanges': r['historicalChanges']
+                                'historicalChanges': r['historicalChanges'],
+                                'manualEntry': {
+                                    manualLink: r['programId']
+                                }
                             };
                             promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
                                 row['organizationId']['value'] = FederalHierarchyService.getFullNameFederalHierarchy(data);
@@ -292,6 +295,13 @@
                 DTColumnBuilder.newColumn('status').withTitle('Status').withOption('defaultContent', ''),
             ];
 
+            if($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])){
+                $scope.dtColumns.push(DTColumnBuilder.newColumn('manualEntry').withTitle('').withOption('defaultContent', '')
+                    .withOption('render', function (data){
+                        return '<a class="usa-button usa-button-compact" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-plus"></span></a>';
+                    }));
+            }
+
             //expand historical indexes by defaults
             angular.element('#historicalIndexTable').on('draw.dt', function (event, data) {
                 $('#historicalIndexTable tbody tr').each(function () {
@@ -321,6 +331,7 @@
                 spacingColumn.setAttribute("style", "border-right: 1px solid #ddd;");
                 var dataColumn = document.createElement("td");
                 dataColumn.colSpan = "3";
+                if ($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])) dataColumn.colSpan = "4";
 
                 var childDataTable = document.createElement("table");
                 childDataTable.className = "usa-table-child";
