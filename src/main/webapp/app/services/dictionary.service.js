@@ -159,6 +159,7 @@
 
             // Build jstree item object
             var tmpObj = {}
+            tmpObj.element_id = oRow.element_id;
             tmpObj.code = oRow.code;
             tmpObj.value = oRow.value;
 
@@ -169,7 +170,7 @@
               tmpObj.value = tmpObj.value.replace(/\w\S*/g, function(txt){
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
               });
-              
+
               tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + tmpObj.value;
               tmpObj.li_attr = { "style": "position: relative;" };
               tmpObj.state = { opened: true };
