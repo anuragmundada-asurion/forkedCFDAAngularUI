@@ -65,12 +65,14 @@ public class SeleniumTests {
 
         //go to programs page
         driver.get(url+"/programs");
+        waitForJSandJQueryToLoad();
         wait.until(angularHasFinishedProcessing());
         System.out.println(driver.getTitle());
         assertEquals("My Listings - CFDA: My Listings",driver.getTitle());
 
         //go to search
         driver.get(url+"/search?keyword=10.000");
+        waitForJSandJQueryToLoad();
         wait.until(angularHasFinishedProcessing());
         System.out.println(driver.getTitle());
         assertEquals("Search Programs - CFDA: Search Programs",driver.getTitle());
