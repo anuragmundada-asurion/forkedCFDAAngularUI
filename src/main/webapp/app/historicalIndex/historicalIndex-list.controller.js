@@ -292,7 +292,7 @@
                     .withOption('render', function (data) {
                         return data['value'];
                     }),
-                DTColumnBuilder.newColumn('status').withTitle('Status').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('status').withTitle('Status').withOption('defaultContent', '')
             ];
 
             if($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])){
