@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.*;
 @WebIntegrationTest
 public class SeleniumTests {
     private WebDriver driver;
-    final private String phantomjsbin = "node_modules/.bin/phantomjs";
+    final private String phantomjsbin = "node_modules/phantomjs-prebuilt/bin/phantomjs";
     final private String base_url = "http://localhost";
 
     @Value("${local.server.port}")
