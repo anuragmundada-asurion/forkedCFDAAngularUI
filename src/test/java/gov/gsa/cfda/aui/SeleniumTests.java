@@ -22,6 +22,7 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.beans.factory.annotation.*;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest
@@ -46,21 +47,43 @@ public class SeleniumTests {
     @Test
     public void simpleTest() throws Exception{
         //load homepage and run tasks
-        driver.get(base_url+":"+port);
+        String url = base_url+":"+port;
+        driver.get(url);
         waitForJSandJQueryToLoad();
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(angularHasFinishedProcessing());
-        String title = driver.getTitle();
-        System.out.println(title);
+
+        //switch to super user
         driver.findElement(By.linkText("Sign In As")).click();
         WebElement modal = driver.findElement(By.id("ngdialog1"));
         Select userSelect = new Select (modal.findElement(By.tagName("select")));
         userSelect.selectByVisibleText("Super User");
         modal.findElement(By.tagName("button")).click();
         wait.until(angularHasFinishedProcessing());
+        System.out.println(driver.getTitle());
+        assertEquals("Home - CFDA: Home",driver.getTitle());
 
-        //make assertions
-        assertEquals(title, "Home - CFDA: Home");
+        //go to programs page
+        driver.get(url+"/programs");
+        wait.until(angularHasFinishedProcessing());
+        System.out.println(driver.getTitle());
+        assertEquals("My Listings - CFDA: My Listings",driver.getTitle());
+
+        //go to search
+        driver.get(url+"/search?keyword=10.000");
+        wait.until(angularHasFinishedProcessing());
+        System.out.println(driver.getTitle());
+        assertEquals("Search Programs - CFDA: Search Programs",driver.getTitle());
+
+
+        wait.until(angularHasFinishedProcessing());
+        wait.until(dataTablesHasLoaded("DataTables_Table_1"));
+
+        WebElement table = driver.findElement(By.id("DataTables_Table_1"));
+        //table.findElement(By.linkText("Direct and Counter-cyclical Payments Program")).click();
+        //wait.until(angularHasFinishedProcessing());
+        driver.quit();
+
     }
 
 
@@ -119,7 +142,25 @@ public class SeleniumTests {
 
                 JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
                 String isProcessingFinished = javascriptExecutor.executeAsyncScript(hasAngularFinishedScript).toString();
-                System.out.println(isProcessingFinished);
+                //System.out.println(isProcessingFinished);
+                return Boolean.valueOf(isProcessingFinished);
+            }
+        };
+    }
+
+    public static ExpectedCondition dataTablesHasLoaded(String id){
+        final String targetId = id;
+        return new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                String hasAngularFinishedScript = "var callback = arguments[arguments.length - 1];\n" +
+                        "if( $.fn.dataTable.isDataTable('#"+targetId+"') && $('#"+targetId+"').DataTable().context.length) {\n " +
+                        "    callback('true');\n" +
+                        "} else { callback('false'); }";
+
+                JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+                String isProcessingFinished = javascriptExecutor.executeAsyncScript(hasAngularFinishedScript).toString();
+                //System.out.println(isProcessingFinished + " - " + targetId);
                 return Boolean.valueOf(isProcessingFinished);
             }
         };
