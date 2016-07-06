@@ -22,15 +22,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <sonar.modules>java,javascript</sonar.modules>
-        <java.sonar.projectBaseDir>src</java.sonar.projectBaseDir>
-        <java.sonar.sources>main/java</java.sonar.sources>
-        <java.sonar.tests>test/java</java.sonar.tests>
-        <javascript.sonar.projectBaseDir>src</javascript.sonar.projectBaseDir>
-        <javascript.sonar.sources>main/webapp/app</javascript.sonar.sources>
-        <javascript.sonar.tests>test/javascript</javascript.sonar.tests>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <java.sonar.projectBaseDir>src/main/java</java.sonar.projectBaseDir>
+        <javascript.sonar.projectBaseDir>src/main/webapp/app</javascript.sonar.projectBaseDir>
+        <sonar.javascript.lcov.reportPath>${basedir}/target/site/coverage/lcov/lcov.info</sonar.javascript.lcov.reportPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.jacoco.reportPath>${basedir}/target/site/coverage/jacoco/jacoco.xml</sonar.jacoco.reportPath>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.5.201505241946</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -85,12 +92,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- TODO: Remove and add dependencies manually -->
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.5.201505241946</version>
-        </dependency>
         <!--Needed to do PATCH REST calls-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -98,10 +99,10 @@
             <version>4.4.1</version>
         </dependency>
         <dependency>
-           <groupId>org.springframework.hateoas</groupId>
-           <artifactId>spring-hateoas</artifactId>
-           <version>0.19.0.RELEASE</version>
-       </dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>0.19.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -157,6 +158,32 @@
                         <configuration>
                             <arguments>test</arguments>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.5.201505241946</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Application*</exclude>
+                        <exclude>**/*ApiController*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
