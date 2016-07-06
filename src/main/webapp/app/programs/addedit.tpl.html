@@ -317,6 +317,10 @@
               .jstree-default .jstree-anchor .jstree-checkbox{
                 margin-left: -20px;
               }
+              .jstree-default .jstree-search{
+                font-style: normal;
+                font-weight: normal;
+              }
             </style>
 
             <div class="usa-grid-full">
@@ -331,15 +335,21 @@
             </div>
 
             <div class="usa-grid-full">
-              <div class="usa-width-one-half">
+
+              <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
                 <div class="jstree-container">
                   <label class="usa-sr-only">Search options</label>
+                  <i class="fa fa-search"></i>
                   <input ng-model="jstreeSearchText" ng-keyup="testKeyUp(jstreeSearchText)" placeholder="Search...">
                   <div js-tree="treeConfig" ng-model="treeData" tree="gsavm.treeInstance" tree-events-obj="treeEventsObj"></div>
                 </div>
               </div>
 
-              <div class="usa-width-one-half">
+              <div class="usa-width-one-third usa-text-align-center" style="width: 6%; margin-right:0;">
+                <i class="fa fa-arrow-circle-right fa-2x" style="color: #e4e4e4; margin-top:160px;"></i>
+              </div>
+
+              <div class="usa-width-one-third" style="width: 47%;">
                 <div class="jstree-container" style="padding: 20px;">
                   <strong>Selected types</strong>
                   <p class="usa-form-hint">
@@ -357,6 +367,7 @@
                   </ul>
                 </div>
               </div>
+
             </div>
 
             <br><br><br>
