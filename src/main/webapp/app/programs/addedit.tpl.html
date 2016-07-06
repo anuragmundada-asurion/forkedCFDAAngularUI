@@ -308,6 +308,15 @@
               .jstree-default .jstree-clicked{
                 background-color: #e7f4f9;
               }
+              .jstree-default .jstree-anchor{
+                height: auto;
+                white-space: normal;
+                width: 80%;
+                margin-left: 20px;
+              }
+              .jstree-default .jstree-anchor .jstree-checkbox{
+                margin-left: -20px;
+              }
             </style>
 
             <div class="usa-grid-full">
@@ -337,7 +346,7 @@
                     Please add a type of Assistance from the left column
                   </p>
                   <ul class="usa-unstyled-list">
-                    <li ng-repeat="item in jstreeSelected">
+                    <li ng-repeat="item in jstreeSelected" style="margin-bottom: 7px;">
                       <button type="button" class="usa-button-icon" ng-click="unselectJstreeItem(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>
