@@ -1,16 +1,12 @@
-<ng-form ng-if='$subForm.current' class="sub-form">
+<ng-form ng-if='$subForm.current'>
 
-  <div class="usa-segment">
+  <div transclude-append></div>
 
-    <div transclude-append></div>
-    
-    <div class="usa-grid">
-      <div class="usa-width-one-whole usa-text-align-right">
-        <button type='button' ng-click='save()' ng-hide='{{readOnly}}'>Save</button>
-        <button type='button' ng-click='cancel()'>Cancel</button>
-      </div>
+  <div class="usa-grid">
+    <div class="usa-width-one-whole usa-text-align-right">
+      <button class="usa-button-gray" type='button' ng-click='cancel()'>Cancel</button>
+      <button type='button' ng-click='save()' ng-hide='{{readOnly}}'>Save</button>
     </div>
-
   </div>
 
 </ng-form>

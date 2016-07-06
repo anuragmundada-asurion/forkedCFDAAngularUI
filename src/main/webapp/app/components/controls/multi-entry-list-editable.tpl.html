@@ -1,31 +1,28 @@
-<ul class="usa-unstyled-list usa-input-field">
+<ul class="usa-unstyled-list">
   <li>
 
+    <!-- Delete -->
+    <button type='button'
+            class="usa-button-icon"
+            ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
+            ng-click='$ctrl.deleteEntry(item)'
+            ng-show="newEntryBtnName"
+            ng-disabled='!$ctrl.allowModifications'>
+      <i class="fa fa-times-circle"></i>
+    </button>
+
+    <!-- Edit -->
+    <button type="button"
+            class="usa-button-icon"
+            ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
+            ng-click='$ctrl.openEntryDialog(item)'
+            ng-show="newEntryBtnName"
+            ng-disabled='!$ctrl.allowModifications'>
+      <i class="fa fa-pencil"></i>
+    </button>
+
     <!-- Content -->
-    <div class="usa-input-field-content" transclude-append></div>
-
-    <!-- Options -->
-    <div class="usa-input-field-options">
-
-      <!-- Edit -->
-      <button type="button"
-      class="usa-button-compact"
-      ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
-      ng-click='$ctrl.openEntryDialog(item)'
-      ng-show="newEntryBtnName"
-      ng-disabled='!$ctrl.allowModifications'>
-      <span class="fa fa-pencil"></span></button>
-
-      <!-- Delete -->
-      <button type='button'
-      class="usa-button-compact"
-      ng-class=" !$ctrl.allowModifications ? 'usa-button-disabled' : '' "
-      ng-click='$ctrl.deleteEntry(item)'
-      ng-show="newEntryBtnName"
-      ng-disabled='!$ctrl.allowModifications'>
-      <span class="fa fa-trash"></span></button>
-
-    </div>
+    <span transclude-append></span>
 
   </li>
 </ul>
