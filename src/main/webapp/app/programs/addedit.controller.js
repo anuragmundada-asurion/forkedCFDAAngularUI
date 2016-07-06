@@ -841,7 +841,7 @@
                             return requiredFieldsMissing;
 
                         case 'ProgramNumber':
-                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && vm.program.programNumber.length === 3));
+                            return (vm.organizationConfiguration && vm.organizationConfiguration.programNumberAuto === false && !(((vm.program.programNumber >= vm.organizationConfiguration.programNumberLow && vm.program.programNumber <= vm.organizationConfiguration.programNumberHigh) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_SUBMISSION_OUTSIDE_RANGE) ) && typeof vm.program.programNumber !== 'undefined' && vm.program.programNumber.length === 3));
                     }
 
 
