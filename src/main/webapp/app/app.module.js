@@ -79,8 +79,7 @@
     angular.forEach({
         findAll: function (element, selector) {
             var queried = element.querySelectorAll(selector);
-            if(queried.length === 1)
-                queried = queried[0];
+            if(queried.length === 1) queried = queried[0];
             return angular.element(queried);
         },
         focus: function(element) {

@@ -13,7 +13,7 @@
 
     myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory', 'Page',
         function ($rootScope, $document, $state, ngDialog, SearchFactory, Page) {
-            $rootScope.$on('$stateChangeSuccess', function (event, to, toParams, from, fromParams) {
+            $rootScope.$on('$stateChangeSuccess', function (event, to, toParams, from) {
                 //  Only scroll to the top if state changes
                 if (to['name'] !== from['name']) {
                     $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
