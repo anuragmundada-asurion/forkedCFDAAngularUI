@@ -337,9 +337,9 @@
             <div class="usa-grid-full">
 
               <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
-                <div class="jstree-container">
+                <div class="jstree-container" style="position: relative;">
                   <label class="usa-sr-only">Search options</label>
-                  <i class="fa fa-search"></i>
+                  <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #0071bc;"></i>
                   <input ng-model="jstreeSearchText" ng-keyup="testKeyUp(jstreeSearchText)" placeholder="Search...">
                   <div js-tree="treeConfig" ng-model="treeData" tree="gsavm.treeInstance" tree-events-obj="treeEventsObj"></div>
                 </div>
