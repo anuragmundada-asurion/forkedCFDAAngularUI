@@ -40,7 +40,7 @@ public class SeleniumTests {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setJavascriptEnabled(true);
         caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomjsbin);
-        driver = new PhantomJSDriver();
+        driver = new PhantomJSDriver(caps);
     }
 
     @Test
