@@ -117,9 +117,9 @@
 
       <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
         <div class="usa-grid">
-          <div class="usa-width-two-thirds">
+          <div class="usa-width-one-third">
             <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
-            <span ng-bind="gsavm.program.programNumber"></span>
+            <input type="text" disabled ng-model="gsavm.program.programNumber">
           </div>
         </div>
       </section>
