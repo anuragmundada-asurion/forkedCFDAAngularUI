@@ -119,14 +119,14 @@
                                 value.parent = parentId;
                                 $scope.treeData.push(value);
                             });
-                            console.log("got children, pushed them to the scope, $scope.treeData: ", $scope.treeData);
+                            //console.log("got children, pushed them to the scope, $scope.treeData: ", $scope.treeData);
                         } else {
-                            console.log("no children!!!! --");
+                            //console.log("no children!!!! --");
                         }
                     });
                 }
                 else {
-                    console.log("already have children loaded!!");
+                    //console.log("already have children loaded!!");
                 }
             }
 

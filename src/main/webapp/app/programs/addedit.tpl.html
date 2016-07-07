@@ -152,52 +152,61 @@
                 <legend>{{::$ctrl.parentVm.instructionalText["01"]["040"]["title"]}}</legend>
               </multi-entry-header>
 
-
               <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["label"]}} <span class="required">*</span></label>
               <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["040"]["helpText"]}}</span>
-
               <a ng-click="::$ctrl.parentVm.clickToOpen('d040')" tabindex="0" trigger-click-on-enter>Read More..</a>
 
-              <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.authorizations.$error.requiredLength">
-                None
-              </p>
-
               <multi-entry-list editable="true" ng-hide="$ctrl.parentVm.form.authorizations.$error.requiredLength">
-                <span>{{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})</span>
+                {{$ctrl.formatTitle(item)}} ({{$ctrl.parentVm.getAuthAmendments(item).length}})
               </multi-entry-list>
 
-              <multi-entry-sub-form create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
-                <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
+              <div ng-class=" !$ctrl.allowModifications ? 'usa-segment usa-segment-bordered' : '' ">
 
-                  <section class="usa-grid">
-                    <fieldset class="usa-fieldset-inputs usa-sans">
-                      <legend class="usa-sr-only">{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["authorizationTypes"]["label"]}}</legend>
-                      <ul class="usa-horizontal-list">
-                        <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
-                          <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType" ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
-                          <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
-                        </li>
-                      </ul>
-                    </fieldset>
-                  </section>
+                <multi-entry-sub-form create-function="$ctrl.parentVm.createAuthorization" on-save="$ctrl.parentVm.onAuthorizationSave" on-cancel="$ctrl.parentVm.onAuthorizationCancel">
+                  <div ng-init="formPath='authorization'+$ctrl.parentVm.nextId();idPath=formPath;parentAuth=authorization">
 
-                  <div ng-include="'programs/authorization.tpl.html'"></div>
+                    <section class="usa-grid">
+                      <fieldset class="usa-fieldset-inputs usa-sans">
+                        <legend class="usa-sr-only">{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["authorizationTypes"]["label"]}}</legend>
+                        <ul class="usa-horizontal-list">
+                          <li ng-repeat="btn in $ctrl.parentVm.choices['authorization_type'] track by btn.element_id">
+                            <input type="radio" name="{{formPath}}_type" ng-model="$subForm.current.authorizationType" ng-value="btn.element_id" id="{{ idPath + '-' + btn.element_id }}"/>
+                            <label for="{{ idPath + '-' + btn.element_id }}">{{btn.value}}</label>
+                          </li>
+                        </ul>
+                      </fieldset>
+                    </section>
 
-                  <div ng-if="$subForm.current.authorizationType">
-                    <hr>
-                    <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
-                      <multi-entry-header>
-                        <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["amendments"]["label"]}}</label>
-                      </multi-entry-header>
-                      <multi-entry-sub-form class="input-field" create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
-                        <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="">
-                          <div ng-include="'programs/authorization.tpl.html'"></div>
+                    <div ng-if="$subForm.current.authorizationType">
+
+                      <div class="usa-grid">
+                        <div class="usa-segment usa-segment-bordered usa-margin-bottom-0" ng-include="'programs/authorization.tpl.html'">
+                      </div>
+
+                      <multi-entry ng-model="$ctrl.parentVm.program.authorizations" item-title="$ctrl.parentVm.getAmendmentTitle" editable-items="true" new-entry-btn-name="Add Amendment" delete-btn-label="Delete Amendment" on-entry-delete="$ctrl.parentVm.removeAmendment(removed)" parent-vm="$ctrl.parentVm" list-track-by="$ctrl.parentVm.exps.generateAuthKey(item)" list-filter="$ctrl.locals.amendmentFilter">
+
+                        <div style="border-top-width: 0;" class="usa-segment usa-margin-top-0"  ng-class=" !$ctrl.allowModifications ? 'usa-segment-subform' : 'usa-segment-bordered' ">
+                          <div class="usa-grid">
+                            <multi-entry-header>
+                              <label>{{::$ctrl.parentVm.instructionalText["01"]["040"]["form"]["amendments"]["label"]}}</label>
+                            </multi-entry-header>
+                          </div>
+
+                          <multi-entry-sub-form create-function="$ctrl.parentVm.createAmendment" before-save="$ctrl.parentVm.onAmendmentBeforeSave" on-parent-update="$ctrl.parentVm.onAuthorizationTypeUpdate">
+                            <div ng-init="formPath=formPath +'.amendment'+$index;idPath=formPath.replace('.','-');" name="$ctrl.parentVm.form.{{formPath}}" class="">
+                              <div ng-include="'programs/authorization.tpl.html'"></div>
+                            </div>
+                          </multi-entry-sub-form>
                         </div>
-                      </multi-entry-sub-form>
-                    </multi-entry>
+
+                      </multi-entry>
+
+                    </div>
                   </div>
-                </div>
-              </multi-entry-sub-form>
+                </multi-entry-sub-form>
+
+              </div>
+
             </multi-entry>
           </div>
         </div>
@@ -248,11 +257,18 @@
 
               /* jstree container */
               .jstree-container{
-                border: 1px solid #adadad;
+                border: 1px solid #cacaca;
                 display: block;
-                -webkit-box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
+                /*-webkit-box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
                 -moz-box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
-                box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);
+                box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.15);*/
+              }
+
+              .jstree-container .usa-unstyled-list{
+                height: 300px;
+                overflow: auto;
+                overflow-x: hidden;
+                display: block;
               }
 
               .jstree-container input{
@@ -269,6 +285,42 @@
                 overflow-x: hidden;
                 height: 360px;
               }
+
+              .jstree-default .jstree-node{
+                margin-left: 0;
+              }
+              .jstree-anchor span{
+                background-color: #e1e1e1;
+                padding: 5px 15px;
+                width: 40px;
+                text-align: center;
+                top: -6px;
+              }
+              .jstree-ocl {
+                margin-left: 20px !important;
+              }
+              .jstree-default > .jstree-container-ul > .jstree-node {
+                margin-bottom: 20px;
+              }
+              .jstree-default > .jstree-container-ul > .jstree-node > a{
+                font-weight: 700;
+              }
+              .jstree-default .jstree-clicked{
+                background-color: #e7f4f9;
+              }
+              .jstree-default .jstree-anchor{
+                height: auto;
+                white-space: normal;
+                width: 80%;
+                margin-left: 20px;
+              }
+              .jstree-default .jstree-anchor .jstree-checkbox{
+                margin-left: -20px;
+              }
+              .jstree-default .jstree-search{
+                font-style: normal;
+                font-weight: normal;
+              }
             </style>
 
             <div class="usa-grid-full">
@@ -283,34 +335,45 @@
             </div>
 
             <div class="usa-grid-full">
-              <div class="usa-width-one-half">
-                <div class="jstree-container">
+
+              <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
+                <div class="jstree-container" style="position: relative;">
                   <label class="usa-sr-only">Search options</label>
-                  <input ng-model="jstreeSearchText" ng-keyup="testKeyUp(jstreeSearchText)">
+                  <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #0071bc;"></i>
+                  <input ng-model="jstreeSearchText" ng-keyup="testKeyUp(jstreeSearchText)" placeholder="Search...">
                   <div js-tree="treeConfig" ng-model="treeData" tree="gsavm.treeInstance" tree-events-obj="treeEventsObj"></div>
                 </div>
               </div>
 
-              <div class="usa-width-one-half">
-                <div class="jstree-container">
+              <div class="usa-width-one-third usa-text-align-center" style="width: 6%; margin-right:0;">
+                <i class="fa fa-arrow-circle-right fa-2x" style="color: #e4e4e4; margin-top:160px;"></i>
+              </div>
+
+              <div class="usa-width-one-third" style="width: 47%;">
+                <div class="jstree-container" style="padding: 20px;">
                   <strong>Selected types</strong>
                   <p class="usa-form-hint">
                     Please add a type of Assistance from the left column
                   </p>
-                  <div ng-repeat="item in jstreeSelected">
-                    <button type="button" class="usa-button-compact" ng-click="unselectJstreeItem(item)">
-                      <span class="fa fa-trash"></span>
-                    </button>
-                    <strong>{{ item.code }} - </strong>{{ item.value }}
-                  </div>
+                  <ul class="usa-unstyled-list">
+                    <li ng-repeat="item in jstreeSelected" style="margin-bottom: 7px;">
+                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItem(item)">
+                        <i class="fa fa-times-circle"></i>
+                      </button>
+                      <span style="background-color: #e7f4f9; padding: 5px;">
+                        <strong>{{ item.code }} - </strong>{{ item.value }}
+                      </span>
+                    </li>
+                  </ul>
                 </div>
               </div>
+
             </div>
 
-            <br><br><br>
+
             <!-- /Prototype -->
 
-            <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
+            <!-- <ul ng-show="gsavm.program.assistanceTypes.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.assistanceTypes">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
                 <div class="usa-input-field-options">
@@ -332,7 +395,7 @@
             group-property="msGroup"
             output-properties="element_id displayValue"
             helper-elements="all none filter">
-            </isteven-multi-select>
+            </isteven-multi-select> -->
 
           </div>
         </div>

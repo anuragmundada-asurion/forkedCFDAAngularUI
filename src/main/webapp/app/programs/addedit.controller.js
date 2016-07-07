@@ -36,14 +36,8 @@
 
                 // treejs callbacks
                 $scope.treeEventsObj = {
-                    'changed': changedNodeCB,
-                    'ready': readyCB
+                    'changed': changedNodeCB
                 };
-
-                function readyCB() {
-                    //console.log("ready for search");
-
-                }
 
                 $scope.testKeyUp = function (seartext) {
                     vm.treeInstance.jstree(true).search(seartext);
@@ -51,21 +45,22 @@
 
                 function changedNodeCB(e, data) {
                     var i, j, r = [];
+                    vm.program.assistanceTypesJSTree = [];
+
                     for (i = 0, j = data.selected.length; i < j; i++) {
                         var tmpObj = {};
                         var selectedItem = data.instance.get_node(data.selected[i]);
                         tmpObj.id = selectedItem.id;
+                        tmpObj.element_id = selectedItem.original.element_id;
                         tmpObj.code = selectedItem.original.code;
                         tmpObj.value = selectedItem.original.value;
                         r.push(tmpObj);
+                        vm.program.assistanceTypesJSTree.push(tmpObj.element_id);
                     }
 
                     $timeout(function () {
                         $scope.jstreeSelected = r;
-                        //vm.program.assistanceTypes = $scope.jstreeSelected;
                     });
-
-                    //console.log(vm.program.assistanceTypes);
 
                 }
 
@@ -374,7 +369,10 @@
                     copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
                     copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
                     copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
-                    copy.assistanceTypes = DictionaryService.istevenDropdownGetIds(vm.program, ['assistanceTypes']).assistanceTypes;
+
+                    //copy.assistanceTypes = DictionaryService.istevenDropdownGetIds(vm.program, ['assistanceTypes']).assistanceTypes;
+                    copy.assistanceTypes = vm.program.assistanceTypesJSTree;
+
                     if (copy.financial && copy.financial.hasOwnProperty('obligations')) {
                         angular.forEach(copy.financial.obligations, function (row, i) {
                             if (row && row.hasOwnProperty('assistanceType') && !angular.isUndefinedOrNull(row.assistanceType)) {
