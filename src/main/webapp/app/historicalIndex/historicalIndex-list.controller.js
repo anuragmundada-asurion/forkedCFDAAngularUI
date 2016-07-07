@@ -298,7 +298,7 @@
             if($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])){
                 $scope.dtColumns.push(DTColumnBuilder.newColumn('manualEntry').withTitle('').withOption('defaultContent', '')
                     .withOption('render', function (data){
-                        return '<a class="usa-button usa-button-compact" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-plus"></span></a>';
+                        return '<a class="usa-button usa-button-compact" title="Add" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-plus"></span></a>';
                     }));
             }
 
@@ -344,7 +344,7 @@
 
                         //only show links if signed in as super user
                         if ($rootScope.hasRole([$rootScope.ROLES.SUPER_USER])) {
-                            editIcon = $compile('<a class="usa-button usa-button-compact" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
+                            editIcon = $compile('<a class="usa-button usa-button-compact" title="Edit" ui-sref="editHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + '<span class="fa fa-pencil"></span></a>')($scope);
                             description = $compile('<a ui-sref="viewHistoricalIndex({hid: \'' + row.historicalIndexId + '\', pid: \'' + d.programId + '\'})">' + row.body + '</a>')($scope);
                         } else {
                             editIcon = $compile('<span></span>')($scope);
