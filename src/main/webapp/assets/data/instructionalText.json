@@ -47,8 +47,7 @@
       "title":"070 Uses and Use Restrictions",
       "helpText":"Describe how assistance may be used. Use specific terms that will help public users find this listing.",
       "label":"Uses and Use Restrictions",
-      "readMore":"<h4>USES AND USE RESTRICTIONS (070)<\/h4><div class=\"readBody\"><p>First, describe how the assistance can potentially be used. Include specific subgrant projects and activities funded under formula or project grant programs. This may include one or more needs that can be satisfied through the program.<\/p><p>Second, list any specific restrictions placed upon the use of the assistance. Agencies Should consider recent and anticipated actions in order to indicate clearly the scope and emphasis of each program.<\/p><p>Third, where applicable, indicate whether there are discretionary funds available, along with the percentage of funds set aside for discretionary activities.<\/p><p>Fourth, in those programs having loans as the type of assistance, include the term of the loans. At a minimum, the following questions if they apply should be answered. What is the maximum loan amount? What is the time of maturity of the loan? What is the rate of interest being charged? Do the loans bear interest at a formula rate based on the cost of money to the agency?<\/p><\/div>"
-      },
+      "readMore":"<h4>USES AND USE RESTRICTIONS (070)<\/h4><div class=\"readBody\"><p>First, describe how the assistance can potentially be used. Include specific subgrant projects and activities funded under formula or project grant programs. This may include one or more needs that can be satisfied through the program.<\/p><p>Second, list any specific restrictions placed upon the use of the assistance. Agencies Should consider recent and anticipated actions in order to indicate clearly the scope and emphasis of each program.<\/p><p>Third, where applicable, indicate whether there are discretionary funds available, along with the percentage of funds set aside for discretionary activities.<\/p><p>Fourth, in those programs having loans as the type of assistance, include the term of the loans. At a minimum, the following questions if they apply should be answered. What is the maximum loan amount? What is the time of maturity of the loan? What is the rate of interest being charged? Do the loans bear interest at a formula rate based on the cost of money to the agency?<\/p><\/div>",
       "restrictions":{
         "label":"Are there specific restrictions place upon the use of the assistance?",
         "helpText":"List any restrictions on how assistance may be used. Only provide restrictions specific to your organization or this listing."
@@ -57,9 +56,10 @@
         "label":"Are there discretionary funds available?",
         "helpText":"Describe the discretionary funds:"
       },
-      "loanTerms":{
-        "label":"Are loans a type of assistance in this program?",
-        "helpText":"Describe the loan terms:"
+      "loanTerms": {
+        "label": "Are loans a type of assistance in this program?",
+        "helpText": "Describe the loan terms:"
+      }
       },
     "160":{
       "title":"160 Related Programs",
