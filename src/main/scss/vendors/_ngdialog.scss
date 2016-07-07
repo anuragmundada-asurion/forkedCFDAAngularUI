@@ -71,13 +71,13 @@
 	margin: 0 auto;
 	width: 80%;
 	text-align: justify;
-	padding: 5em;
+	padding: 2em;
 	position: relative;
 	overflow-y: scroll;
 }
 
 .ngdialog.ngdialog-theme-cfda-read .ngdialog-content h4 {
-	text-decoration: underline;
+	//text-decoration: underline;
 }
 
 .ngdialog.ngdialog-theme-cfda-read .ngdialog-content .underline {
@@ -86,7 +86,7 @@
 
 .ngdialog.ngdialog-theme-cfda-read .ngdialog-content .readBody {
 	height: 400px;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .ngdialog.ngdialog-theme-cfda.ngdialog-closing .ngdialog-content, .ngdialog.ngdialog-theme-cfda-read.ngdialog-closing .ngdialog-content {
