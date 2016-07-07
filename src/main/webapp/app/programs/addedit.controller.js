@@ -145,7 +145,7 @@
                         instantiateTree();
 
                         //Assistance type
-                        //$scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
+                        $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
 
                     });
                 };
@@ -354,6 +354,7 @@
                             return item.data._id;
                         });
                         vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
+
                     }
                 });
 
@@ -853,7 +854,6 @@
                     } else if ($scope.dictionary.hasOwnProperty(name)) {
                         aDictionary = $scope.dictionary[name];
                     }
-
                     return aDictionary;
                 }
 
