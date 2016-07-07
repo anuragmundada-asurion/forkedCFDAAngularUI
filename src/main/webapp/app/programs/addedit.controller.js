@@ -347,6 +347,9 @@
                 });
 
                 vm.choices.programs.$promise.then(function (data) {
+
+                  console.log(data);
+
                     var relatedPrograms = $parse('relatedPrograms')(vm.program);
                     var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
                     if (relatedTo && relatedTo.length > 0) {
@@ -354,7 +357,6 @@
                             return item.data._id;
                         });
                         vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
-
                     }
                 });
 
