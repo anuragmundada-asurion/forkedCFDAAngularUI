@@ -533,6 +533,9 @@
 
                 vm.choices.programs.$promise.then(function (data) {
 
+                    if(!vm.program.relatedPrograms){
+                        vm.program.relatedPrograms = {};
+                    }
                     var relatedPrograms = $parse('relatedPrograms')(vm.program);
                     var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
 
