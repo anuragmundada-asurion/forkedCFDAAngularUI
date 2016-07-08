@@ -1166,7 +1166,7 @@
                         $scope.acNames = data;
                         var template = '<div class="usa-alert usa-alert-success usa-margin-bottom-2" role="alert">' +
                             '<div class="usa-alert-body">' +
-                            '<p class="usa-alert-text">' + 'Notified the following agency coordinators: ' + '</p>' +
+                            '<p class="usa-alert-text">' + 'Your request has been submitted. A notification has been sent to the following Agency Coordinators: ' + '</p>' +
 
                             '<ul>' +
                             '<li ng-repeat="name in acNames">' +
@@ -1192,7 +1192,7 @@
                         console.log("error function, data: ", data);
                         var template = '<div class="usa-alert usa-alert-error usa-margin-bottom-2" role="alert">' +
                             '<div class="usa-alert-body">' +
-                            '<p class="usa-alert-text">' + 'Error happened while notifying agency coordinators: ' + data + '</p>' +
+                            '<p class="usa-alert-text">Error happened while notifying agency coordinators.</p>' +
                             '</div>' +
                             '</div>' +
                             '<button class="usa-button-gray-light" ng-click="closeModal();">Ok</button>';
