@@ -133,6 +133,10 @@
 
                     if ($scope.filter.organizationFilter) {
                         oApiParam.oParams['organizations'] = [$scope.filter.organizationFilter];
+
+                        if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR]) && $scope.filter.organizationFilter === UserService.getUserOrgId()) {
+                            oApiParam.oParams['organizations'] = null;
+                        }
                     }
 
                     ApiService.call(oApiParam).then(
