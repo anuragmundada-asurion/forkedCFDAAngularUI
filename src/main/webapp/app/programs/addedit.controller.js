@@ -9,9 +9,10 @@
 
                 $scope.$log = $log;
 
+                //------------------------------------------------------------------------------------
                 // START --- js tree stuff
                 //------------------------------------------------------------------------------------
-                // TODO Turn this in to a directive
+                // TODO Refactor, turn this in to a directive
 
 
                 // 060 Types of Assistance - start
@@ -81,8 +82,6 @@
                     $scope.treeConfig.version++;
                 };
 
-                // 060 Types of Assistance - end
-
                 // 160 Related Programs - start
 
                 $scope.treeDataRelatedPrograms = [];
@@ -107,7 +106,6 @@
                     };
                 }
 
-                // treejs callbacks
                 $scope.treeEventsObjRelatedPrograms = {
                     'changed': changedNodeRelatedProgramsCB
                 };
@@ -139,11 +137,119 @@
                 };
 
 
-                // 160 Related Programs - end
+                // 190 Functional Codes
+
+                $scope.treeDataFunctionalCodes= [];
+
+                function instantiateFunctionalCodesTree() {
+                    $scope.treeConfigFunctionalCodes = {
+                        core: {
+                            dblclick_toggle: false,
+                            themes: {
+                                dots: false,
+                                icons: false
+                            }
+                        },
+                        search: {
+                            show_only_matches: true
+                        },
+                        checkbox: {
+                            three_state: false
+                        },
+                        version: 1,
+                        plugins: ['checkbox', 'changed', 'search']
+                    };
+                }
+                $scope.treeEventsObjFunctionalCodes = {
+                    'changed': changedNodeFunctionalCodesCB
+                };
+
+                function changedNodeFunctionalCodesCB(e, data) {
+                    var i, j, r = [];
+                    vm.program.functionalCodesJSTreeIDs = [];
+
+                    for (i = 0, j = data.selected.length; i < j; i++) {
+                        var tmpObj = {};
+                        var selectedItem = data.instance.get_node(data.selected[i]);
+                        tmpObj.id = selectedItem.id;
+                        tmpObj.element_id = selectedItem.original.element_id;
+                        tmpObj.code = selectedItem.original.code;
+                        tmpObj.value = selectedItem.original.value;
+                        r.push(tmpObj);
+                        vm.program.functionalCodesJSTreeIDs.push(tmpObj.element_id);
+                    }
+
+                    $timeout(function () {
+                      vm.program.functionalCodes = r;
+                    });
+
+                }
+
+                $scope.unselectJstreeItemFunctionalCodes = function (item) {
+                    vm.treeInstanceFunctionalCodes.jstree(true).deselect_node(item.id);
+                };
+
+                // 300 Subject Terms
+
+                $scope.treeDataSubjectTerms = [];
+
+                function instantiateTreeSubjectTerms() {
+                    $scope.treeConfigSubjectTerms = {
+                        core: {
+                            dblclick_toggle: false,
+                            themes: {
+                                dots: false,
+                                icons: false
+                            }
+                        },
+                        search: {
+                            show_only_matches: true
+                        },
+                        checkbox: {
+                            three_state: false
+                        },
+                        version: 1,
+                        plugins: ['checkbox', 'changed', 'search']
+                    };
+                }
+
+                $scope.treeEventsObjSubjectTerms = {
+                    'changed': changedNodeSubjectTermsCB
+                };
+
+                function changedNodeSubjectTermsCB(e, data) {
+                  var i, j, r = [];
+                  vm.program.subjectTerms = [];
+
+                  for (i = 0, j = data.selected.length; i < j; i++) {
+                      var tmpObj = {};
+                      var selectedItem = data.instance.get_node(data.selected[i]);
+                      tmpObj.id = selectedItem.id;
+                      tmpObj.element_id = selectedItem.original.element_id;
+                      tmpObj.code = selectedItem.original.code;
+                      tmpObj.value = selectedItem.original.value;
+                      r.push(tmpObj);
+
+                      vm.program.subjectTerms.push(tmpObj.element_id);
+
+                  }
+
+                  console.log(vm.program.subjectTerms);
+
+                  $timeout(function () {
+                      $scope.subjectTerms = r;
+                  });
+                }
+
+                $scope.unselectJstreeItemSubjectTerms = function (item) {
+                    vm.treeInstanceSubjectTerms.jstree(true).deselect_node(item.id);
+                };
+
 
 
                 //------------------------------------------------------------------------------------
                 //END --- js tree stuff
+                //------------------------------------------------------------------------------------
 
 
                 var vm = this,
@@ -192,6 +298,12 @@
                  */
                 $scope.loadDictionaries = function (oProgram) {
                     Dictionary.query({ids: TREES.join(',')}, function (data) {
+
+                        //Functional Code jsTree
+                        $scope.treeFunctionalCodesOriginalData = DictionaryService.jstreeDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : []);
+                        angular.copy($scope.treeFunctionalCodesOriginalData, $scope.treeDataFunctionalCodes);
+                        instantiateFunctionalCodesTree();
+
                         //Functional Code (async -> for edit mode set pre-selected one)
                         $scope.dictionary.aFunctionalCode = DictionaryService.istevenDropdownDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : [], true);
 
@@ -402,6 +514,14 @@
 
                 Dictionary.toDropdown({ids: DICTIONARIES.join(',')}).$promise.then(function (data) {
                     angular.extend(vm.choices, data);
+                    // console.log(vm.program.subjectTerms);
+                    // console.log(data.program_subject_terms);
+
+                    // Subject Terms jsTree
+                    $scope.treeOriginalDataSubjectTerms = DictionaryService.jstreeDataStructure(data.program_subject_terms, vm.program.subjectTerms);
+                    angular.copy($scope.treeOriginalDataSubjectTerms, $scope.treeDataSubjectTerms);
+                    instantiateTreeSubjectTerms();
+
                 });
 
                 angular.forEach(vm.fyTpls, function (tpl) {
@@ -439,7 +559,9 @@
                     //apply cleaning data for isteven dropdown selected data structure
                     var oDictionaryApplicantEligibilityIDs = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.applicant, ['types', 'assistanceUsageTypes']);
 
-                    copy.functionalCodes = DictionaryService.istevenDropdownGetIds(vm.program, ['functionalCodes']).functionalCodes;
+                    //copy.functionalCodes = DictionaryService.istevenDropdownGetIds(vm.program, ['functionalCodes']).functionalCodes;
+                    copy.functionalCodes = vm.program.functionalCodesJSTreeIDs;
+
                     copy.eligibility.applicant.types = oDictionaryApplicantEligibilityIDs.types;
                     copy.eligibility.applicant.assistanceUsageTypes = oDictionaryApplicantEligibilityIDs.assistanceUsageTypes;
                     copy.eligibility.beneficiary.types = DictionaryService.istevenDropdownGetIds(vm.program.eligibility.beneficiary, ['types']).types;
