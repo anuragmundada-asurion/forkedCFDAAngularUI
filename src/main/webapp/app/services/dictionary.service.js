@@ -159,11 +159,15 @@
 
             // Build jstree item object
             var tmpObj = {}
-            tmpObj.element_id = oRow.element_id;
-            tmpObj.code = oRow.code;
-            tmpObj.value = oRow.value;
+            // tmpObj.element_id = oRow.element_id;
+            // tmpObj.code = oRow.code;
+            // tmpObj.value = oRow.value;
 
-            if(oRow.parent){
+            tmpObj.element_id = oRow.hasOwnProperty('data') ?  oRow.data._id : oRow.element_id;
+            tmpObj.code = oRow.hasOwnProperty('data') ?  oRow.data.programNumber : oRow.code;
+            tmpObj.value = oRow.hasOwnProperty('data') ?  oRow.data.title : oRow.value;
+
+            if(oRow.parent || oRow.hasOwnProperty('data') ){
               tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
             }else{
 
@@ -171,15 +175,15 @@
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
               });
 
-              tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + tmpObj.value;
+              tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + "<strong>" + tmpObj.value + "</strong>";
               tmpObj.li_attr = { "style": "position: relative;" };
               tmpObj.state = { opened: true };
             }
 
             // Check if selected
-            if ($.inArray(oRow.element_id, selectedIDs) !== -1) {
+            if ($.inArray(tmpObj.element_id, selectedIDs) !== -1) {
               // Remove item from array
-              selectedIDs.splice( selectedIDs.indexOf(oRow.element_id), 1);
+              selectedIDs.splice( selectedIDs.indexOf(tmpObj.element_id), 1);
               // add selected state to item
               tmpObj.state = { selected: true };
             }

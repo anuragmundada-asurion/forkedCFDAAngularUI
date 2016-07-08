@@ -11,6 +11,10 @@
 
                 // START --- js tree stuff
                 //------------------------------------------------------------------------------------
+                // TODO Turn this in to a directive
+
+
+                // 060 Types of Assistance - start
 
                 $scope.treeData = [];
 
@@ -76,6 +80,67 @@
                     // https://github.com/ezraroi/ngJsTree#recreating-the-tree
                     $scope.treeConfig.version++;
                 };
+
+                // 060 Types of Assistance - end
+
+                // 160 Related Programs - start
+
+                $scope.treeDataRelatedPrograms = [];
+
+                function instantiateTreeRelatedPrograms() {
+                    $scope.treeConfigRelatedPrograms = {
+                        core: {
+                            dblclick_toggle: false,
+                            themes: {
+                                dots: false,
+                                icons: false
+                            }
+                        },
+                        search: {
+                            show_only_matches: true
+                        },
+                        checkbox: {
+                            three_state: false
+                        },
+                        version: 1,
+                        plugins: ['checkbox', 'changed', 'search']
+                    };
+                }
+
+                // treejs callbacks
+                $scope.treeEventsObjRelatedPrograms = {
+                    'changed': changedNodeRelatedProgramsCB
+                };
+
+                function changedNodeRelatedProgramsCB(e, data) {
+                  var i, j, r = [];
+                  vm.program.relatedPrograms.relatedTo = [];
+
+                  for (i = 0, j = data.selected.length; i < j; i++) {
+                      var tmpObj = {};
+                      var selectedItem = data.instance.get_node(data.selected[i]);
+                      tmpObj.id = selectedItem.id;
+                      tmpObj.element_id = selectedItem.original.element_id;
+                      tmpObj.code = selectedItem.original.code;
+                      tmpObj.value = selectedItem.original.value;
+                      r.push(tmpObj);
+
+                      vm.program.relatedPrograms.relatedTo.push(tmpObj.element_id);
+
+                  }
+
+                  $timeout(function () {
+                      $scope.relatedPrograms = r;
+                  });
+                }
+
+                $scope.unselectJstreeItemRelatedPrograms = function (item) {
+                    vm.treeInstanceRelatedPrograms.jstree(true).deselect_node(item.id);
+                };
+
+
+                // 160 Related Programs - end
+
 
                 //------------------------------------------------------------------------------------
                 //END --- js tree stuff
@@ -347,15 +412,23 @@
                 });
 
                 vm.choices.programs.$promise.then(function (data) {
+
                     var relatedPrograms = $parse('relatedPrograms')(vm.program);
                     var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
+
                     if (relatedTo && relatedTo.length > 0) {
                         var idArr = data.map(function (item) {
                             return item.data._id;
                         });
                         vm.program.relatedTo = $filter('intersect')(relatedTo, idArr);
-
                     }
+
+                    //Related Programs jsTree
+                    var selectedPrograms = vm.program.relatedPrograms.relatedTo;
+                    $scope.treeOriginalDataRelatedPrograms = DictionaryService.jstreeDataStructure(data, selectedPrograms);
+                    angular.copy($scope.treeOriginalDataRelatedPrograms, $scope.treeDataRelatedPrograms);
+                    instantiateTreeRelatedPrograms();
+
                 });
 
                 ////////////////////
