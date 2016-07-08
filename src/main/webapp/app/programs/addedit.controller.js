@@ -185,7 +185,65 @@
 
                 }
 
+                $scope.unselectJstreeItemFunctionalCodes = function (item) {
+                    vm.treeInstanceFunctionalCodes.jstree(true).deselect_node(item.id);
+                };
 
+                // 300 Subject Terms
+
+                $scope.treeDataSubjectTerms = [];
+
+                function instantiateTreeSubjectTerms() {
+                    $scope.treeConfigSubjectTerms = {
+                        core: {
+                            dblclick_toggle: false,
+                            themes: {
+                                dots: false,
+                                icons: false
+                            }
+                        },
+                        search: {
+                            show_only_matches: true
+                        },
+                        checkbox: {
+                            three_state: false
+                        },
+                        version: 1,
+                        plugins: ['checkbox', 'changed', 'search']
+                    };
+                }
+
+                $scope.treeEventsObjSubjectTerms = {
+                    'changed': changedNodeSubjectTermsCB
+                };
+
+                function changedNodeSubjectTermsCB(e, data) {
+                  var i, j, r = [];
+                  vm.program.subjectTerms = [];
+
+                  for (i = 0, j = data.selected.length; i < j; i++) {
+                      var tmpObj = {};
+                      var selectedItem = data.instance.get_node(data.selected[i]);
+                      tmpObj.id = selectedItem.id;
+                      tmpObj.element_id = selectedItem.original.element_id;
+                      tmpObj.code = selectedItem.original.code;
+                      tmpObj.value = selectedItem.original.value;
+                      r.push(tmpObj);
+
+                      vm.program.subjectTerms.push(tmpObj.element_id);
+
+                  }
+
+                  console.log(vm.program.subjectTerms);
+
+                  $timeout(function () {
+                      $scope.subjectTerms = r;
+                  });
+                }
+
+                $scope.unselectJstreeItemSubjectTerms = function (item) {
+                    vm.treeInstanceSubjectTerms.jstree(true).deselect_node(item.id);
+                };
 
 
 
@@ -456,6 +514,14 @@
 
                 Dictionary.toDropdown({ids: DICTIONARIES.join(',')}).$promise.then(function (data) {
                     angular.extend(vm.choices, data);
+                    // console.log(vm.program.subjectTerms);
+                    // console.log(data.program_subject_terms);
+
+                    // Subject Terms jsTree
+                    $scope.treeOriginalDataSubjectTerms = DictionaryService.jstreeDataStructure(data.program_subject_terms, vm.program.subjectTerms);
+                    angular.copy($scope.treeOriginalDataSubjectTerms, $scope.treeDataSubjectTerms);
+                    instantiateTreeSubjectTerms();
+
                 });
 
                 angular.forEach(vm.fyTpls, function (tpl) {

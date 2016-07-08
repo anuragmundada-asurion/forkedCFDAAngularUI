@@ -527,7 +527,7 @@
                   <div class="jstree-container" style="padding: 20px;">
                     <strong>Selected programs</strong>
                     <p class="usa-form-hint">
-                      Please add a program the left column
+                      Please add a program from the left column
                     </p>
                     <ul class="usa-unstyled-list">
                       <li ng-repeat="item in relatedPrograms" style="margin-bottom: 7px;">
@@ -660,7 +660,7 @@
                   </p>
                   <ul class="usa-unstyled-list">
                     <li ng-repeat="item in gsavm.program.functionalCodes" style="margin-bottom: 7px;">
-                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItem(item)">
+                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemFunctionalCodes(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>
                       <span style="background-color: #e7f4f9; padding: 5px;">
@@ -706,18 +706,59 @@
       <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="300 Subject Terms">
         <div class="usa-grid">
           <div class="usa-width-one-whole">
-            <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+
+            <legend>{{::instructionalText["01"]["300"]["title"]}}</legend>
+            <label>{{::instructionalText["01"]["300"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["01"]["300"]["helpText"]}}</span>
+
+            <!-- Prototype: TODO Refactor to directive -->
+            <div class="usa-grid-full">
+
+              <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
+                <div class="jstree-container" style="position: relative;">
+                  <label class="usa-sr-only">Search</label>
+                  <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
+                  <input ng-model="jstreeSearchTexSubjectTerms" placeholder="Search Temporary Disabled" disabled="disabled">
+                  <div js-tree="treeConfigSubjectTerms" ng-model="treeDataSubjectTerms" tree="gsavm.treeInstanceSubjectTerms" tree-events-obj="treeEventsObjSubjectTerms"></div>
+                </div>
+              </div>
+
+              <div class="usa-width-one-third usa-text-align-center" style="width: 6%; margin-right:0;">
+                <i class="fa fa-arrow-circle-right fa-2x" style="color: #e4e4e4; margin-top:160px;"></i>
+              </div>
+
+              <div class="usa-width-one-third" style="width: 47%;">
+                <div class="jstree-container" style="padding: 20px;">
+                  <strong>Selected subject terms</strong>
+                  <p class="usa-form-hint">
+                    Please add a subject term from the left column
+                  </p>
+                  <ul class="usa-unstyled-list">
+                    <li ng-repeat="item in subjectTerms" style="margin-bottom: 7px;">
+                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemSubjectTerms(item)">
+                        <i class="fa fa-times-circle"></i>
+                      </button>
+                      <span style="background-color: #e7f4f9; padding: 5px;">
+                        <strong>{{ item.code }} - </strong>{{ item.value }}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <!-- /Prototype -->
+
+            <!-- <multi-entry ng-model="gsavm.program.subjectTerms" name="subjectTerms" item-title="gsavm.getAuthorizationTitle" editable-items="false" new-entry-btn-name="Add Subject Terms" delete-btn-label="Remove Subject Term" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+
               <multi-entry-header>
                 <legend>{{::$ctrl.parentVm.instructionalText["01"]["300"]["title"]}}</legend>
               </multi-entry-header>
+
               <label>{{::$ctrl.parentVm.instructionalText["01"]["300"]["label"]}}<span class="required">*</span></label>
               <span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["01"]["300"]["helpText"]}}</span>
 
-              <!--<a ng-click="clickToOpen('d300')" tabindex="0" trigger-click-on-enter>Read More</a>-->
-
-              <p class="usa-input-readonly" ng-show="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
-                None
-              </p>
+              <a ng-click="clickToOpen('d300')" tabindex="0" trigger-click-on-enter>Read More</a>
 
               <multi-entry-list editable="false" ng-hide="$ctrl.parentVm.form.subjectTerms.$error.requiredLength">
                 <span>{{$ctrl.parentVm.getChoiceModel(item, 'element_id', 'program_subject_terms').displayValue}}</span>
@@ -733,7 +774,7 @@
                 ux-displayed-pages="5"
                 ux-search-filter="filter: {displayValue: srchText }"></ux-adv-multi-select>
               </multi-entry-select>
-            </multi-entry>
+            </multi-entry> -->
 
           </div>
         </div>
