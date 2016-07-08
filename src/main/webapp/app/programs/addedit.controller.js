@@ -114,7 +114,6 @@
 
                 function changedNodeRelatedProgramsCB(e, data) {
                   var i, j, r = [];
-                  console.log(data);
                   vm.program.relatedPrograms.relatedTo = [];
 
                   for (i = 0, j = data.selected.length; i < j; i++) {
@@ -129,8 +128,6 @@
                       vm.program.relatedPrograms.relatedTo.push(tmpObj.element_id);
 
                   }
-
-                  console.log(vm.program.relatedPrograms.relatedTo);
 
                   $timeout(function () {
                       $scope.relatedPrograms = r;
@@ -416,8 +413,6 @@
 
                 vm.choices.programs.$promise.then(function (data) {
 
-                    console.log(data);
-
                     var relatedPrograms = $parse('relatedPrograms')(vm.program);
                     var relatedTo = relatedPrograms ? $parse('relatedTo')(relatedPrograms, []) : [];
 
@@ -429,7 +424,6 @@
                     }
 
                     //Related Programs jsTree
-                    console.log(vm.program.relatedPrograms.relatedTo);
                     var selectedPrograms = vm.program.relatedPrograms.relatedTo;
                     $scope.treeOriginalDataRelatedPrograms = DictionaryService.jstreeDataStructure(data, selectedPrograms);
                     angular.copy($scope.treeOriginalDataRelatedPrograms, $scope.treeDataRelatedPrograms);
