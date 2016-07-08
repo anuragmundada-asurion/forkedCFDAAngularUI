@@ -44,12 +44,18 @@ describe('Unit Tests for Historical Index View Controller:', function () {
 
         });
 
-        it('historical index View api call', function () {
+        it('authorized historical index View api call', function () {
             //console.log($rootScope.user);
             changeState('viewHistoricalIndex', {hid: testHistoricalIndexId, pid: testProgramId});
             //console.log($state.current);
             expect($state.is('viewHistoricalIndex')).toBe(true);
             expect($stateParams.hid).toEqual(testHistoricalIndexId);
+        });
+
+        it('unauthorized historical index View api call', function () {
+            UserService.setUser({"role": "GSA_CFDA_R_agency_submitter"});//user should not be able to access view
+            changeState('viewHistoricalIndex', {hid: testHistoricalIndexId, pid: testProgramId});
+            expect($state.is('viewHistoricalIndex')).toBe(false);
         });
 
     });
