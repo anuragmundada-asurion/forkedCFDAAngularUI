@@ -140,6 +140,8 @@
         */
         this.jstreeDataStructure = function(aData, aSelectedData){
 
+          //console.log(aData);
+
           var self = this;
           var results = [];
           var selectedIDs = [];
@@ -168,15 +170,24 @@
             tmpObj.value = oRow.hasOwnProperty('data') ?  oRow.data.title : oRow.value;
 
             if(oRow.parent || oRow.hasOwnProperty('data') ){
-              tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
+              if( oRow.hasOwnProperty('data') || oRow.parent.code ){
+                tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
+              }else{
+                tmpObj.text = tmpObj.value;
+              }
             }else{
 
               tmpObj.value = tmpObj.value.replace(/\w\S*/g, function(txt){
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
               });
 
-              tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + "<strong>" + tmpObj.value + "</strong>";
-              tmpObj.li_attr = { "style": "position: relative;" };
+              if(tmpObj.code){
+                tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + "<strong>" + tmpObj.value + "</strong>";
+                tmpObj.li_attr = { "style": "position: relative;" };
+              }else{
+                tmpObj.text = '<strong>' + tmpObj.value + '</strong>';
+              }
+
               tmpObj.state = { opened: true };
             }
 

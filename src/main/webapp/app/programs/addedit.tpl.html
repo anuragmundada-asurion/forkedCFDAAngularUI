@@ -239,7 +239,7 @@
           <div class="usa-width-one-whole">
             <legend>{{::instructionalText["01"]["060"]["title"]}}</legend>
 
-            <!-- Prototype -->
+            <!-- Prototype: TODO Refactor to directive -->
 
             <style>
 
@@ -506,6 +506,7 @@
 
             <div ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
 
+              <!-- Prototype: TODO Refactor to directive -->
               <br>
               <div class="usa-grid-full">
 
@@ -542,6 +543,7 @@
                 </div>
 
               </div>
+              <!-- /Prototype -->
 
               <!-- <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
 
@@ -634,7 +636,46 @@
 
             <!--<a ng-click="clickToOpen('d190')" tabindex="0" trigger-click-on-enter>Read More</a>-->
 
-            <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
+            <!-- Prototype: TODO Refactor to directive -->
+            <div class="usa-grid-full">
+
+              <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
+                <div class="jstree-container" style="position: relative;">
+                  <label class="usa-sr-only">Search</label>
+                  <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
+                  <input ng-model="jstreeSearchTextFunctionalCodes" placeholder="Search Temporary Disabled" disabled="disabled">
+                  <div js-tree="treeConfigFunctionalCodes" ng-model="treeDataFunctionalCodes" tree="gsavm.treeInstanceFunctionalCodes" tree-events-obj="treeEventsObjFunctionalCodes"></div>
+                </div>
+              </div>
+
+              <div class="usa-width-one-third usa-text-align-center" style="width: 6%; margin-right:0;">
+                <i class="fa fa-arrow-circle-right fa-2x" style="color: #e4e4e4; margin-top:160px;"></i>
+              </div>
+
+              <div class="usa-width-one-third" style="width: 47%;">
+                <div class="jstree-container" style="padding: 20px;">
+                  <strong>Selected functional codes</strong>
+                  <p class="usa-form-hint">
+                    Please add a funcional code from the left column
+                  </p>
+                  <ul class="usa-unstyled-list">
+                    <li ng-repeat="item in gsavm.program.functionalCodes" style="margin-bottom: 7px;">
+                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItem(item)">
+                        <i class="fa fa-times-circle"></i>
+                      </button>
+                      <span style="background-color: #e7f4f9; padding: 5px;">
+                        {{ item.value }}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- /Prototype -->
+
+            <!-- <ul ng-show="gsavm.program.functionalCodes.length" class="usa-unstyled-list usa-input-field">
               <li ng-repeat="item in gsavm.program.functionalCodes">
                 <div class="usa-input-field-content">{{ item.displayValue }}</div>
                 <div class="usa-input-field-options">
@@ -655,7 +696,7 @@
             max-height="250px"
             group-property="msGroup"
             output-properties="element_id displayValue"
-            helper-elements="all none filter"></isteven-multi-select>
+            helper-elements="all none filter"></isteven-multi-select> -->
 
           </div>
         </div>
