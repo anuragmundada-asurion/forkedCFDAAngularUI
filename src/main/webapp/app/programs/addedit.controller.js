@@ -1011,5 +1011,11 @@
                     });
                 };
 
+
+                //check if no validation errors are being shown
+                $scope.noValidationErrors = function () {
+                    return $("#formErrorMessages").hasClass("ng-hide");
+                };
+
             }]);
 })();
