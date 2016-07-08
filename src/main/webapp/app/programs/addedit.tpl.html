@@ -297,9 +297,6 @@
               .jstree-default > .jstree-container-ul > .jstree-node {
                 margin-bottom: 20px;
               }
-              .jstree-default > .jstree-container-ul > .jstree-node > a{
-                font-weight: 700;
-              }
               .jstree-default .jstree-clicked{
                 background-color: #e7f4f9;
               }
@@ -509,7 +506,44 @@
 
             <div ng-show="gsavm.program.relatedPrograms.flag === 'yes'">
 
-              <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
+              <br>
+              <div class="usa-grid-full">
+
+                <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
+                  <div class="jstree-container" style="position: relative;">
+                    <label class="usa-sr-only">Search</label>
+                    <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
+                    <input ng-model="jstreeSearchTextRelatedPrograms" placeholder="Search Temporary Disabled" disabled="disabled">
+                    <div js-tree="treeConfigRelatedPrograms" ng-model="treeDataRelatedPrograms" tree="gsavm.treeInstanceRelatedPrograms" tree-events-obj="treeEventsObjRelatedPrograms"></div>
+                  </div>
+                </div>
+
+                <div class="usa-width-one-third usa-text-align-center" style="width: 6%; margin-right:0;">
+                  <i class="fa fa-arrow-circle-right fa-2x" style="color: #e4e4e4; margin-top:160px;"></i>
+                </div>
+
+                <div class="usa-width-one-third" style="width: 47%;">
+                  <div class="jstree-container" style="padding: 20px;">
+                    <strong>Selected programs</strong>
+                    <p class="usa-form-hint">
+                      Please add a program the left column
+                    </p>
+                    <ul class="usa-unstyled-list">
+                      <li ng-repeat="item in relatedPrograms" style="margin-bottom: 7px;">
+                        <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemRelatedPrograms(item)">
+                          <i class="fa fa-times-circle"></i>
+                        </button>
+                        <span style="background-color: #e7f4f9; padding: 5px;">
+                          <strong>{{ item.code }} - </strong>{{ item.value }}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- <multi-entry ng-model="gsavm.program.relatedPrograms.relatedTo" name="relatedTo" new-entry-btn-name="Add Related Programs" delete-btn-label="Remove Related Program" parent-vm="gsavm" required-Length='{ "min": 1 }'>
 
                 <multi-entry-header>
                   <label>{{::$ctrl.parentVm.instructionalText["01"]["160"]["form"]["intro"]}}<span class="required">*</span></label>
@@ -532,7 +566,7 @@
                   </ux-adv-multi-select>
                 </multi-entry-select>
 
-              </multi-entry>
+              </multi-entry> -->
 
             </div>
           </div>
