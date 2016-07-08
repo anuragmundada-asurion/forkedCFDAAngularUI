@@ -356,8 +356,7 @@
                                 $element.find('.departmen-label').hide();
                             }
                         } //Case if user is ROOT or ROOT_RMO
-                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER]) ||
-                                (typeof scope.showAll !== 'undefined' && scope.showAll === true)) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
                             //get Department level of user's organizationId
                             scope.initDictionaries('', true, false, function (oData) {
                                 //initialize Department
@@ -368,6 +367,10 @@
                             });
                         }
 
+                        /**
+                         * CUSTOM FEATURES THAT OVERRIDE DEFAULT BEHAVIOR WRITTEN ABOVE
+                         */
+
                         //hide department label
                         if(typeof scope.hideDepartment !== 'undefined' && scope.hideDepartment === true) {
                             FederalHierarchyService.getFederalHierarchyById(scope.programOrganizationId, true, false, function (oData) {
@@ -375,6 +378,18 @@
                                 scope.organizationId = scope.programOrganizationId;
                             }, function (error) {
                                 scope.error = "An error has occurred, Please try again !";
+                            });
+                        }
+
+                        //Case if we need to show full inputs regardless roles
+                        if(typeof scope.showAll !== 'undefined' && scope.showAll === true) {
+                            //get Department level of user's organizationId
+                            scope.initDictionaries('', true, false, function (oData) {
+                                //initialize Department
+                                scope.dictionary.aDepartment = oData._embedded.hierarchy;
+
+                                //initialize Department/Agency/Office dropdowns (selected values)
+                                scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.SUPER_USER);
                             });
                         }
                     }

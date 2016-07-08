@@ -32,6 +32,8 @@ describe('Unit Tests for Historical Index List Controller:', function () {
 
             expect(scope.itemsByPage).toBeDefined();
             expect(scope.itemsByPageNumbers).toBeDefined();
+            expect(scope.historicalIndexSearch).toBeDefined();
+            expect(scope.dictionary).toBeDefined();
         });
 
     });
