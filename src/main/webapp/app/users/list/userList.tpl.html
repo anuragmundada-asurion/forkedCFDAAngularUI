@@ -40,7 +40,7 @@
   </div>
 
   <div class="usa-width-one-third" ng-if="(hasRole([ROLES.OMB_ANALYST]) && !showOMBAllOrganization && aOrganization)">
-    <select id="organization" ng-options="item.elementId as item.name for item in aOrganization._embedded.hierarchy" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
+    <select id="organization" ng-options="item.elementId as item.name for item in aOrganization" ng-model="filter.organizationFilter" ng-selected="filter.organizationFilter">
       <option value="">Chose an Organization</option>
     </select>
   </div>

@@ -23,9 +23,23 @@
             //OMB load his custom organizations
             if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.OMB_ANALYST]) && !$scope.showOMBAllOrganization){
                 FederalHierarchyService.getFederalHierarchyByIds(UserService.getUserAllOrgIDs(), false, false, function(data){
-                    $scope.aOrganization = data;
+                    $scope.aOrganization = $scope.getFhIDs(data._embedded.hierarchy);
                 }, function(error){});
             }
+
+            $scope.getFhIDs = function(aData){
+                var aIDs = [];
+
+                angular.forEach(aData, function(item){
+                    aIDs.push({elementId: item.elementId, name: item.name});
+
+                    if(item.hasOwnProperty('hierarchy')){
+                        aIDs = aIDs.concat($scope.getFhIDs(item.hierarchy));
+                    }
+                });
+
+                return aIDs;
+            };
 
             if (ROLES.isPopulated) {
                 $scope.availableRoles = [{
