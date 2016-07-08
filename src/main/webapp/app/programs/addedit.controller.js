@@ -1176,7 +1176,7 @@
 
                             '</div>' +
                             '</div>' +
-                            '<button class="usa-button-gray-light" ng-click="closeModal();">Ok</button>';
+                            '<button class="usa-button-gray-light" ui-sref="programList" ng-click="closeModal();">Ok</button>';
 
                         ngDialog.open({
                             template: template,
@@ -1195,7 +1195,7 @@
                             '<p class="usa-alert-text">Error happened while notifying agency coordinators.</p>' +
                             '</div>' +
                             '</div>' +
-                            '<button class="usa-button-gray-light" ng-click="closeModal();">Ok</button>';
+                            '<button class="usa-button-gray-light" ui-sref="programList" ng-click="closeModal();">Ok</button>';
 
                         ngDialog.open({
                             template: template,
