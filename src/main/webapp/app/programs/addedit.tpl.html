@@ -67,7 +67,7 @@
               <span class="usa-input-error-message" ng-show="gsavm.program.title.length && (gsavm.program.title.indexOf('Program') != -1 || gsavm.program.title.indexOf('program') != -1)">
                 The word "Program" should not be included in the Program title.
               </span>
-              <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft')">
+              <input type="text" id="title" name="title" class="" ng-model="gsavm.program.title" required ng-disabled="(gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.parentProgramNumber && gsavm.parentProgramNumber.length>0)">
             </div>
           </div>
         </div>
