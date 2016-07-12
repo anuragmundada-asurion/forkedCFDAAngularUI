@@ -234,7 +234,7 @@
 
                   }
 
-                  console.log(vm.program.subjectTerms);
+                  // console.log(vm.program.subjectTerms);
 
                   $timeout(function () {
                       $scope.subjectTerms = r;
@@ -300,7 +300,7 @@
                     Dictionary.query({ids: TREES.join(',')}, function (data) {
 
                         //Functional Code jsTree
-                        $scope.treeFunctionalCodesOriginalData = DictionaryService.jstreeDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : []);
+                        $scope.treeFunctionalCodesOriginalData = DictionaryService.jstreeDataStructure(data.functional_codes, (oProgram) ? oProgram.functionalCodes : [], true);
                         angular.copy($scope.treeFunctionalCodesOriginalData, $scope.treeDataFunctionalCodes);
                         instantiateFunctionalCodesTree();
 
@@ -317,7 +317,7 @@
                         $scope.dictionary.aAssistanceUsageType = DictionaryService.istevenDropdownDataStructure(data.assistance_usage_types, (oProgram) ? oProgram.eligibility.applicant.assistanceUsageTypes : [], false);
 
                         //Assistance type jsTree
-                        $scope.treeOriginalData = DictionaryService.jstreeDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : []);
+                        $scope.treeOriginalData = DictionaryService.jstreeDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
                         angular.copy($scope.treeOriginalData, $scope.treeData);
                         instantiateTree();
 
@@ -518,7 +518,7 @@
                     // console.log(data.program_subject_terms);
 
                     // Subject Terms jsTree
-                    $scope.treeOriginalDataSubjectTerms = DictionaryService.jstreeDataStructure(data.program_subject_terms, vm.program.subjectTerms);
+                    $scope.treeOriginalDataSubjectTerms = DictionaryService.jstreeDataStructure(data.program_subject_terms, vm.program.subjectTerms, false);
                     angular.copy($scope.treeOriginalDataSubjectTerms, $scope.treeDataSubjectTerms);
                     instantiateTreeSubjectTerms();
 
@@ -548,7 +548,7 @@
 
                     //Related Programs jsTree
                     var selectedPrograms = vm.program.relatedPrograms.relatedTo;
-                    $scope.treeOriginalDataRelatedPrograms = DictionaryService.jstreeDataStructure(data, selectedPrograms);
+                    $scope.treeOriginalDataRelatedPrograms = DictionaryService.jstreeDataStructure(data, selectedPrograms, true);
                     angular.copy($scope.treeOriginalDataRelatedPrograms, $scope.treeDataRelatedPrograms);
                     instantiateTreeRelatedPrograms();
 

@@ -138,7 +138,7 @@
         * @param Array aSelectedData selected data
         * @returns Array
         */
-        this.jstreeDataStructure = function(aData, aSelectedData){
+        this.jstreeDataStructure = function(aData, aSelectedData, bookmark){
 
           //console.log(aData);
 
@@ -161,9 +161,6 @@
 
             // Build jstree item object
             var tmpObj = {}
-            // tmpObj.element_id = oRow.element_id;
-            // tmpObj.code = oRow.code;
-            // tmpObj.value = oRow.value;
 
             tmpObj.element_id = oRow.hasOwnProperty('data') ?  oRow.data._id : oRow.element_id;
             tmpObj.code = oRow.hasOwnProperty('data') ?  oRow.data.programNumber : oRow.code;
@@ -181,9 +178,11 @@
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
               });
 
-              if(tmpObj.code){
+              if(tmpObj.code && bookmark){
                 tmpObj.text = "<span style='position: absolute; left: 0;'><strong>"+ tmpObj.code +"</strong></span>" + "<strong>" + tmpObj.value + "</strong>";
                 tmpObj.li_attr = { "style": "position: relative;" };
+              }else if(!bookmark){
+                tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
               }else{
                 tmpObj.text = '<strong>' + tmpObj.value + '</strong>';
               }
@@ -201,7 +200,7 @@
 
             // If it has children do recursion
             if(oRow.elements){
-              tmpObj.children = self.jstreeDataStructure(oRow.elements, selectedIDs);
+              tmpObj.children = self.jstreeDataStructure(oRow.elements, selectedIDs, bookmark);
             }
 
             results.push(tmpObj);
