@@ -292,7 +292,11 @@
                 top: -6px;
               }
               .jstree-ocl {
+                background-image: none !important;
                 margin-left: 20px !important;
+              }
+              .jstree-container.removeleftmargin .jstree-ocl{
+                margin-left: 0px !important;
               }
               .jstree-default > .jstree-container-ul > .jstree-node {
                 margin-bottom: 20px;
@@ -348,8 +352,8 @@
                     Please add a type of Assistance from the left column
                   </p>
                   <ul class="usa-unstyled-list">
-                    <li ng-repeat="item in gsavm.program.assistanceTypes" style="margin-bottom: 7px;">
-                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItem(item)">
+                    <li ng-repeat="item in gsavm.program.assistanceTypes" style="margin-bottom: 7px; margin-left: 30px;">
+                      <button type="button" class="usa-button-icon" style="margin-left: -27px;" ng-click="unselectJstreeItem(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>
                       <span style="background-color: #e7f4f9; padding: 5px;">
@@ -511,7 +515,7 @@
               <div class="usa-grid-full">
 
                 <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
-                  <div class="jstree-container" style="position: relative;">
+                  <div class="jstree-container removeleftmargin" style="position: relative;">
                     <label class="usa-sr-only">Search</label>
                     <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
                     <input ng-model="jstreeSearchTextRelatedPrograms" placeholder="Search Temporary Disabled" disabled="disabled">
@@ -530,8 +534,8 @@
                       Please add a program from the left column
                     </p>
                     <ul class="usa-unstyled-list">
-                      <li ng-repeat="item in relatedPrograms" style="margin-bottom: 7px;">
-                        <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemRelatedPrograms(item)">
+                      <li ng-repeat="item in relatedPrograms" style="margin-bottom: 7px; margin-left: 30px;">
+                        <button type="button" class="usa-button-icon" style="margin-left: -27px;" ng-click="unselectJstreeItemRelatedPrograms(item)">
                           <i class="fa fa-times-circle"></i>
                         </button>
                         <span style="background-color: #e7f4f9; padding: 5px;">
@@ -640,7 +644,7 @@
             <div class="usa-grid-full">
 
               <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
-                <div class="jstree-container" style="position: relative;">
+                <div class="jstree-container removeleftmargin" style="position: relative;">
                   <label class="usa-sr-only">Search</label>
                   <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
                   <input ng-model="jstreeSearchTextFunctionalCodes" placeholder="Search Temporary Disabled" disabled="disabled">
@@ -659,8 +663,8 @@
                     Please add a funcional code from the left column
                   </p>
                   <ul class="usa-unstyled-list">
-                    <li ng-repeat="item in gsavm.program.functionalCodes" style="margin-bottom: 7px;">
-                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemFunctionalCodes(item)">
+                    <li ng-repeat="item in gsavm.program.functionalCodes" style="margin-bottom: 7px; margin-left: 30px;">
+                      <button type="button" class="usa-button-icon" style="margin-left: -27px;" ng-click="unselectJstreeItemFunctionalCodes(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>
                       <span style="background-color: #e7f4f9; padding: 5px;">
@@ -715,7 +719,7 @@
             <div class="usa-grid-full">
 
               <div class="usa-width-one-third" style="width: 47%; margin-right:0;">
-                <div class="jstree-container" style="position: relative;">
+                <div class="jstree-container removeleftmargin" style="position: relative;">
                   <label class="usa-sr-only">Search</label>
                   <i class="fa fa-search fa-lg" style="position: absolute; right: 20px; top: 12px; color: #ccc;"></i>
                   <input ng-model="jstreeSearchTexSubjectTerms" placeholder="Search Temporary Disabled" disabled="disabled">
@@ -734,8 +738,8 @@
                     Please add a subject term from the left column
                   </p>
                   <ul class="usa-unstyled-list">
-                    <li ng-repeat="item in subjectTerms" style="margin-bottom: 7px;">
-                      <button type="button" class="usa-button-icon" ng-click="unselectJstreeItemSubjectTerms(item)">
+                    <li ng-repeat="item in subjectTerms" style="margin-bottom: 7px; margin-left: 30px;">
+                      <button type="button" class="usa-button-icon" style="margin-left: -27px;" ng-click="unselectJstreeItemSubjectTerms(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>
                       <span style="background-color: #e7f4f9; padding: 5px;">
