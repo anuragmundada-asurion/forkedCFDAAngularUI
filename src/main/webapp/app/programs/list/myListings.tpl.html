@@ -1,91 +1,92 @@
 <primary-nav-bar></primary-nav-bar>
 
 <div class="usa-grid m-t-3">
-  <ul class="usa-tab usa-tab-lightblue usa-unstyled-list">
-    <li>
-      <a ng-class="isActiveList() ? 'usa-current' : '';" ui-sref='programList({list: "activePrograms"})' ng-click="changeList('activePrograms')">Active Listings</a>
-    </li>
-    <li>
-      <a ng-class="isArchivedList() ? 'usa-current' : '';" ui-sref='programList({list: "archivedPrograms"})' ng-click="changeList('archivedPrograms')">Archived Listings</a>
-    </li>
-    <li>
-      <a ng-class="isRequestList() ? 'usa-current' : '';" ui-sref='programList({list: "requests"})' ng-if="hasPermission([PERMISSIONS.CAN_VIEW_REQUESTS])" ng-click="changeList('requests')">Requests</a>
-    </li>
-  </ul>
+    <ul class="usa-tab usa-tab-lightblue usa-unstyled-list">
+        <li>
+            <a ng-class="isActiveList() ? 'usa-current' : '';" ui-sref='programList({list: "activePrograms"})' ng-click="changeList('activePrograms')">Active Listings</a>
+        </li>
+        <li>
+            <a ng-class="isArchivedList() ? 'usa-current' : '';" ui-sref='programList({list: "archivedPrograms"})' ng-click="changeList('archivedPrograms')">Archived Listings</a>
+        </li>
+        <li>
+            <a ng-class="isRequestList() ? 'usa-current' : '';" ui-sref='programList({list: "requests"})' ng-if="hasPermission([PERMISSIONS.CAN_VIEW_REQUESTS])"
+               ng-click="changeList('requests')">Requests</a>
+        </li>
+    </ul>
 </div>
 
 <div class="usa-grid usa-margin-top-3 usa-margin-bottom-2">
 
-  <div class="usa-width-one-third">
-    <h1 class="usa-margin-all-0">
-      My  <span ng-show="isProgramList()">Listings</span>
-          <span ng-show="!isProgramList()">Requests</span>
-    </h1>
+    <div class="usa-width-one-third">
+        <h1 class="usa-margin-all-0">
+            My <span ng-show="isProgramList()">Listings</span>
+            <span ng-show="!isProgramList()">Requests</span>
+        </h1>
     <span ng-show="!angular.isUndefinedOrNull(totalCount)" class="usa-font-lead">
       {{totalCount}} Results
     </span>
-  </div>
-
-  <div class="usa-width-two-thirds">
-    <div class="usa-grid-full">
-
-      <div ng-class="isActiveList() ? 'usa-width-one-half' : 'usa-width-one-whole';">
-        <input  ng-model="searchKeyword"
-                type="search"
-                placeholder="Search Listings"
-                aria-controls="listings-table">
-      </div>
-
-      <div class="usa-width-one-half" ng-if="isActiveList()">
-        <a  class="usa-button usa-button-big usa-button-fluid usa-margin-input"
-            ui-sref="addProgram"
-            ng-if="hasPermission([PERMISSIONS.CAN_CREATE_PROGRAMS])">
-            <span class="fa fa-plus-square-o"></span>
-            Create a new listing
-        </a>
-      </div>
-
     </div>
 
-    <!-- Filters -->
-    <div class="usa-grid-full" ng-if="isActiveList()">
-      <div class="usa-width-one-whole">
-        <fieldset class="usa-fieldset-inputs usa-sans">
+    <div class="usa-width-two-thirds">
+        <div class="usa-grid-full">
 
-          <legend class="usa-sr-only">Filters</legend>
+            <div ng-class="isActiveList() ? 'usa-width-one-half' : 'usa-width-one-whole';">
+                <input ng-model="searchKeyword"
+                       type="search"
+                       placeholder="Search Listings"
+                       aria-controls="listings-table">
+            </div>
 
-          <ul class="usa-horizontal-list usa-move-right" style="margin-top: 5px;">
-            <li>
-              <input id="draftFilter" type="checkbox" ng-model="filters.draft">
-              <label for="draftFilter">Draft</label>
-            </li>
-            <li>
-              <input id="pendingFilter" type="checkbox" ng-model="filters.pending">
-              <label for="pendingFilter">Pending</label>
-            </li>
-            <li>
-              <input id="publishedFilter" type="checkbox" ng-model="filters.published">
-              <label for="publishedFilter">Published</label>
-            </li>
-            <li>
-              <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected">
-              <label for="rejectedFilter">Rejected</label>
-            </li>
-          </ul>
+            <div class="usa-width-one-half" ng-if="isActiveList()">
+                <a class="usa-button usa-button-big usa-button-fluid usa-margin-input"
+                   ui-sref="addProgram"
+                   ng-if="hasPermission([PERMISSIONS.CAN_CREATE_PROGRAMS])">
+                    <span class="fa fa-plus-square-o"></span>
+                    Create a new listing
+                </a>
+            </div>
 
-        </fieldset>
-      </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="usa-grid-full" ng-if="isActiveList()">
+            <div class="usa-width-one-whole">
+                <fieldset class="usa-fieldset-inputs usa-sans">
+
+                    <legend class="usa-sr-only">Filters</legend>
+
+                    <ul class="usa-horizontal-list usa-move-right" style="margin-top: 5px;">
+                        <li>
+                            <input id="draftFilter" type="checkbox" ng-model="filters.draft">
+                            <label for="draftFilter">Draft</label>
+                        </li>
+                        <li>
+                            <input id="pendingFilter" type="checkbox" ng-model="filters.pending">
+                            <label for="pendingFilter">Pending</label>
+                        </li>
+                        <li>
+                            <input id="publishedFilter" type="checkbox" ng-model="filters.published">
+                            <label for="publishedFilter">Published</label>
+                        </li>
+                        <li>
+                            <input id="rejectedFilter" type="checkbox" ng-model="filters.rejected">
+                            <label for="rejectedFilter">Rejected</label>
+                        </li>
+                    </ul>
+
+                </fieldset>
+            </div>
+        </div>
+
     </div>
-
-  </div>
 
 </div>
 
 <!-- Table -->
-<table  id="programsTable"
-        datatable=""
-        dt-options="dtOptions"
-        dt-columns="dtColumns"
-        dt-instance="dtInstance"
-        class="usa-table-primary-darkest">
+<table id="programsTable"
+       datatable=""
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       class="usa-table-primary-darkest">
 </table>

@@ -159,6 +159,7 @@
             'requests': {
                 columns: [
                     //  TODO Select FAL
+                    DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
                     DTColumnBuilder.newColumn('title')
                         .withTitle('Title')
                         .withOption('defaultContent', '')

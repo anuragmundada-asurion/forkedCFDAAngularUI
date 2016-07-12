@@ -150,7 +150,9 @@
                 var results = d.results;
                 var tableData = [];
                 angular.forEach(results, function (r) {
+                    var resultData = r['program'];
                     var row = {
+                        'programNumber': resultData['programNumber'] || '-',
                         'id': r['id'],
                         'title': {
                             id: r['id'],
