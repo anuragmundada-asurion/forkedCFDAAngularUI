@@ -1119,7 +1119,7 @@
 
 
                 //returns false if error, true if no error. may clean up the code later, and put this in validation service
-                $scope.validateFieldByRegex = function (regexPattern, field) {
+                vm.validateFieldByRegex = $scope.validateFieldByRegex = function (regexPattern, field) {
                     if (regexPattern == "website-url") {
                         if (field) {
                             return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/.test(field);
