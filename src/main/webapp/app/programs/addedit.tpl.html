@@ -221,7 +221,7 @@
             <div ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error' : '' ">
               <label ng-class=" gsavm.form.objective.$dirty && gsavm.form.objective.$error.required ? 'usa-input-error-label' : '' " for="objective">{{::instructionalText["01"]["050"]["label"]}}<span class="required">*</span></label>
               <span class="usa-form-hint">{{::instructionalText["01"]["050"]["helpText"]}}</span>
-
+              <br>
               <a href="#" ng-click="clickToOpen('d050')" tabindex="0" trigger-click-on-enter>Read More</a>
 
               <div ng-show="gsavm.validationFlag.info || gsavm.form.objective.$dirty">
@@ -1102,9 +1102,8 @@
           <section field-finder-bookmark title="093 Award Procedure">
             <h4>{{::instructionalText["03"]["093"]["title"]}}<span class="required">*</span></h4>
 
-            <a href="#" ng-click="clickToOpen('d093')" tabindex="0" trigger-click-on-enter>Read More</a>
+            <label for="awardProc3">{{::instructionalText["03"]["093"]["label"]}}<span><a href="#" ng-click="clickToOpen('d093')" tabindex="0" trigger-click-on-enter>Read More</a></span></label>
 
-            <label for="awardProc3">{{::instructionalText["03"]["093"]["label"]}}</label>
             <textarea id="awardProc3" name="awardProc3" ng-model="gsavm.program.award.procedures.content" required></textarea>
             <div ng-show="gsavm.form.$submitted || gsavm.form.objective.$dirty">
               <span ng-show="gsavm.form.objective.$error.required">You must provide Objectives.</span>
@@ -1218,9 +1217,8 @@
           <section field-finder-bookmark title="095 Range of Approval/Disapproval Time">
             <h4>{{::instructionalText["03"]["095"]["title"]}}<span class="required">*</span></h4>
 
-            <a href="#" ng-click="clickToOpen('d095')" tabindex="0" trigger-click-on-enter>Read More</a>
+            <label for="approvalTime3">{{::instructionalText["03"]["095"]["dateRange"]["label"]}}<span><a href="#" ng-click="clickToOpen('d095')" tabindex="0" trigger-click-on-enter>Read More</a></span></label>
 
-            <label for="approvalTime3">{{::instructionalText["03"]["095"]["dateRange"]["label"]}}</label>
             <ui-select id="approvalTime3" ng-model="gsavm.program.application.deadlines.approval.interval" name="approvalTime3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
               <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -1241,9 +1239,8 @@
           <section field-finder-bookmark title="096 Appeals">
             <h4>{{::instructionalText["03"]["096"]["title"]}}<span class="required">*</span></h4>
 
-            <a href="#" ng-click="clickToOpen('d096')" tabindex="0" trigger-click-on-enter>Read More</a>
+            <label for="appeals3">{{::instructionalText["03"]["096"]["dateRange"]["label"]}}<span><a href="#" ng-click="clickToOpen('d096')" tabindex="0" trigger-click-on-enter>Read More</a></span></label>
 
-            <label for="appeals3">{{::instructionalText["03"]["096"]["dateRange"]["label"]}}</label>
             <ui-select id="appeals3" ng-model="gsavm.program.application.deadlines.appeal.interval" name="appeals3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
               <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -1267,9 +1264,8 @@
           <section class="sub-minor-section" field-finder-bookmark title="097 Renewals">
             <h4>{{::instructionalText["03"]["097"]["title"]}}<span class="required">*</span></h4>
 
-            <a href="#" ng-click="clickToOpen('d097')" tabindex="0" trigger-click-on-enter>Read More</a>
+            <label for="renewals3">{{::instructionalText["03"]["097"]["dateRange"]["label"]}}<span><a href="#" ng-click="clickToOpen('d097')" tabindex="0" trigger-click-on-enter>Read More</a></label>
 
-            <label for="renewals3">{{::instructionalText["03"]["097"]["dateRange"]["label"]}}</label>
             <ui-select id="renewals3" ng-model="gsavm.program.application.deadlines.renewal.interval" name="renewals3" theme="select2" style="width:250px" required>
               <ui-select-match placeholder="Please select a time period">{{$select.selected.value}}</ui-select-match>
               <ui-select-choices repeat="item.element_id as item in gsavm.choices['date_range'] | propsFilter: {value: $select.search}">
@@ -1297,8 +1293,6 @@
           <legend field-finder-bookmark title="100 Assistance Consideration" data-bookmark-parent="true">
             {{::instructionalText["03"]["100"]["title"]}}
           </legend>
-
-          <a href="#" ng-click="clickToOpen('d100')" tabindex="0" trigger-click-on-enter>Read More</a>
 
           <section field-finder-bookmark title="101 Formula and Matching Requirements">
             <h4>{{::instructionalText["03"]["101"]["title"]}}</h4>
@@ -1768,9 +1762,8 @@
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["121"]["title"]}} <span class="required">*</span></h4>
 
+                <p class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["121"]["label"]}}</p>
                 <a href="#" ng-click="::$ctrl.parentVm.clickToOpen('d121')" tabindex="0" trigger-click-on-enter>Read More</a>
-
-                <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["121"]["label"]}}</span></p>
               </multi-entry-header>
               <multi-entry-sub-form class="input-field">
                 <div class="usa-grid" ng-init="formPath='account'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1795,9 +1788,8 @@
               <multi-entry-header>
                 <h4>{{::$ctrl.parentVm.instructionalText["05"]["122"]["title"]}}<span class="required">*</span></h4>
 
+                <p class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["label"]}}</p>
                 <a href="#" ng-click="::$ctrl.parentVm.clickToOpen('d122')" tabindex="0" trigger-click-on-enter>Read More</a>
-
-                <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["122"]["label"]}}</span></p>
               </multi-entry-header>
               <multi-entry-sub-form class="input-field">
                 <div class="usa-grid" ng-init="formPath='obligations'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.{{formPath}}">
@@ -1923,9 +1915,8 @@
       <div class="input-field">
         <h4><label for="financialAdditionalInfo">{{::instructionalText["05"]["123"]["title"]}}</label></h4>
 
-        <a href="#" ng-click="clickToOpen('d123')" tabindex="0" trigger-click-on-enter>Read More</a>
-
         <p class="usa-form-hint">{{::instructionalText["05"]["123"]["label"]}}</p>
+        <a href="#" ng-click="clickToOpen('d123')" tabindex="0" trigger-click-on-enter>Read More</a>
         <textarea id="financialAdditionalInfo" name="financialAdditionalInfo" class="usa-input-large" ng-model="gsavm.program.financial.additionalInfo.content"></textarea>
       </div>
     </section>
@@ -1935,17 +1926,19 @@
           <multi-entry-header>
             <h4>{{::$ctrl.parentVm.instructionalText["05"]["124"]["title"]}}<span class="required">*</span></h4>
 
+            <p class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["124"]["label"]}}</p>
             <a href="#" ng-click="::$ctrl.parentVm.clickToOpen('d124')" tabindex="0" trigger-click-on-enter>Read More</a>
-
-            <p><span class="usa-form-hint">{{::$ctrl.parentVm.instructionalText["05"]["124"]["label"]}}</span></p>
           </multi-entry-header>
           <multi-entry-sub-form class="input-field">
             <div ng-init="formPath='tafscode'+$ctrl.parentVm.nextId();idPath=formPath;" name="$ctrl.parentVm.form.financial.treasury.{{formPath}}">
               <div class="input-field ">
                 <section class="usa-grid">
-                  <div class="input-field usa-width-one-fourth">
+                  <div class="input-field usa-width-one-fourth" model="$subForm.current.departmentCode" ng-class="($subForm.current.departmentCode.length && ($subForm.current.departmentCode.length < 2 || !($ctrl.parentVm.validateFieldByRegex('^[0-9\-]*$', $subForm.current.departmentCode)))) ? 'usa-input-error' : ''">
                     <label for="{{ 'dept-code-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["deptCode"]["label"]}}<span class="required">*</span></label>
-                    <error-msg model="$subForm.current.departmentCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 00-99."></error-msg>
+                    <!--<error-msg model="$subForm.current.departmentCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 00-99."></error-msg>-->
+                    <span class="usa-input-error-message" model="$subForm.current.departmentCode" ng-show="$subForm.current.departmentCode.length && ($subForm.current.departmentCode.length < 2 || !($ctrl.parentVm.validateFieldByRegex('^[0-9\-]*$', $subForm.current.departmentCode)))">
+                      Provide a valid number using digits 00-99.
+                    </span>
                     <input type="text" id="{{ 'dept-code-' + idPath }}" maxlength="2" name="deptCode" ng-model="$subForm.current.departmentCode" required>
 
                     <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.deptCode.$dirty">
@@ -1970,9 +1963,12 @@
                   </div>
                 </section>
                 <section class="usa-grid">
-                  <div class="input-field usa-width-one-fourth">
+                  <div class="input-field usa-width-one-fourth" model="$subForm.current.accountCode" ng-class="($subForm.current.accountCode.length && ($subForm.current.accountCode.length < 4 || !($ctrl.parentVm.validateFieldByRegex('^[0-9\-]*$', $subForm.current.accountCode)))) ? 'usa-input-error' : ''">
                     <label for="{{ 'account-code-' + idPath }}">{{::$ctrl.parentVm.instructionalText["05"]["124"]["form"]["accountCode"]["label"]}}<span class="required">*</span></label>
-                    <error-msg model="$subForm.current.accountCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 0000-9999."></error-msg>
+                    <!--<error-msg model="$subForm.current.accountCode" regex-pattern="^[0-9]*$" msg="Provide a valid number using digits 0000-9999."></error-msg>-->
+                    <span class="usa-input-error-message" model="$subForm.current.accountCode" ng-show="$subForm.current.accountCode.length && ($subForm.current.accountCode.length < 4 || !($ctrl.parentVm.validateFieldByRegex('^[0-9\-]*$', $subForm.current.accountCode)))">
+                      Provide a valid number using digits 0000-9999.
+                    </span>
                     <input type="text" id="{{ 'account-code-' + idPath }}" maxlength="4" name="accountCode" ng-model="$subForm.current.accountCode" required>
 
                     <div ng-show="$ctrl.parentVm.validationFlag['Financial Information and Accomplishments'] || $ctrl.parentVm.form.financial.treasury.{{formPath}}.accountCode.$dirty">
@@ -1995,7 +1991,7 @@
   <section class="sub-section" field-finder-bookmark title="130 Program Accomplishments">
     <h3>{{::instructionalText["05"]["130"]["title"]}}<span class="required">*</span></h3>
      <span class="usa-form-hint">{{::instructionalText["05"]["130"]["helpText"]}}</span>
-
+     <br>
     <a href="#" ng-click="clickToOpen('d130')" tabindex="0" trigger-click-on-enter>Read More</a>
 
     <div class="input-field">
@@ -2043,8 +2039,6 @@
       <fieldset class="usa-fieldset-inputs">
         <h4>{{::instructionalText["06"]["151"]["title"]}}<span class="required">*</span></h4>
 
-        <a href="#" ng-click="clickToOpen('d151')" tabindex="0" trigger-click-on-enter>Read More</a>
-
         <ul class="usa-horizontal-list">
           <li>
             <input type="radio" name="office6" ng-model="gsavm.program.contacts['local'].flag" id="office6regional" value="regional"/>
@@ -2061,6 +2055,7 @@
       </div>
       <label for="office6info">{{::instructionalText["06"]["151"]["additionalInfo"]["label"]}}</label>
       <span class="usa-form-hint">{{::instructionalText["06"]["151"]["additionalInfo"]["helpText"]}}</span>
+      <a href="#" ng-click="clickToOpen('d151')" tabindex="0" trigger-click-on-enter>Read More</a>
       <textarea id="office6info" name="office6info" class="usa-input-large" ng-model="gsavm.program.contacts['local'].additionalInfo.content" cl required></textarea>
       <br/>
     </section>
@@ -2069,10 +2064,9 @@
         <multi-entry-header>
           <h4>152 Headquarters Office<span class="required">*</span></h4>
 
-          <a href="#" ng-click="::$ctrl.parentVm.clickToOpen('d152')" tabindex="0" trigger-click-on-enter>Read More</a>
-
         </multi-entry-header>
-        <p><span class="usa-form-hint">Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added</span></p>
+        <p class="usa-form-hint">Identify at least one point of contact who has operational responsibility for this listing. Additional contacts may be added</p>
+        <a href="#" ng-click="::$ctrl.parentVm.clickToOpen('d152')" tabindex="0" trigger-click-on-enter>Read More</a>
         <div ng-hide="$ctrl.parentVm.program.contacts.list">At least one POC is required.</div>
         <div ng-show="$ctrl.parentVm.program.contacts.list.length==0">At least one POC is required.</div>
         <multi-entry-list editable="true">
