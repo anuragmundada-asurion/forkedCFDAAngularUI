@@ -23,6 +23,11 @@ Wizard Steps
 .usa-steps{
   background-color:$color-gray-lightest;
   padding: 2rem 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   & > ul {
     margin: 0 auto;
     width: 1024px;
@@ -87,6 +92,9 @@ Wizard Steps
 }
 
 .hidetitles{
+  .usa-steps{
+    padding: 1rem 0 0 0;
+  }
   .usa-steps-item-text{
     @include transform(translateY(-5px) !important);
     opacity: 0 !important;
