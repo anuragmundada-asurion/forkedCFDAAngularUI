@@ -28,16 +28,18 @@
 
   <div class="field-finder-navigator">
     <div class="usa-grid">
-      <ul class="navigator-list usa-width-one-half">
-        <li ng-repeat="bookmark in uxForm.bookmarks track by bookmark.id" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
-          <span>{{bookmark.text}}</span>
-        </li>
-      </ul>
+      <div class="usa-width-one-half">
+        <ul class="navigator-list">
+          <li ng-repeat="bookmark in uxForm.bookmarks track by bookmark.id" class="navigator-item" offset="{{offset}}" du-scrollspy="{{bookmark.id}}">
+            <span>{{bookmark.text}}</span>
+          </li>
+        </ul>
+      </div>
       <div class="usa-width-one-half">
         <div class="navigator-button-group">
           <a target="_blank" ui-sref="previewProgram({id: gsavm.program._id})"><span class="usa-button">Preview</span></a>
           <button type="button" class="usa-button-unstyled button-circle action-button" ng-disabled="uxForm.isOnFirstSection" ng-click="uxForm.goToPreviousSection()" trigger-click-on-enter><span class="fa fa-arrow-left"></span></button>
-          <button type="button" class="usa-button-unstyled button-circle action-button" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
+          <button type="button" class="usa-button-unstyled button-circle action-button usa-margin-right-0" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
         </div>
       </div>
     </div>
