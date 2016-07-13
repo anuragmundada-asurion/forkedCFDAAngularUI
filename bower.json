@@ -47,7 +47,9 @@
     "trmix": "^1.1.0",
     "ng-js-tree": "^0.0.8",
     "semantic-ui": "^2.1.8",
-    "angular-local-storage": "^0.2.7"
+    "angular-local-storage": "^0.2.7",
+    "angular-backtop": "*"
+
   },
   "resolutions": {
     "angular": "~1.5.0",
