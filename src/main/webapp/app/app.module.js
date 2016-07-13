@@ -20,8 +20,8 @@
         'angular-multi-select',
         'ngJsTree',
         'datatables',
-        'LocalStorageModule'
-
+        'LocalStorageModule',
+        'angular.backtop'
     ];
 
     /**
