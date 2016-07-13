@@ -88,9 +88,9 @@
                 var hasPermission = false;
 
                 if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
-                    hasPermission = (data['role'] == SUPPORTED_ROLES.AGENCY_USER) || (data['role'] == SUPPORTED_ROLES.AGENCY_COORDINATOR);
+                    hasPermission = (data['roleId'] == SUPPORTED_ROLES.AGENCY_USER) || (data['roleId'] == SUPPORTED_ROLES.AGENCY_COORDINATOR);
                 } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
-                    hasPermission = data['role'] == SUPPORTED_ROLES.OMB_ANALYST;
+                    hasPermission = data['roleId'] == SUPPORTED_ROLES.OMB_ANALYST;
                 } else if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER])) {
                     hasPermission = true;
                 }
@@ -150,6 +150,7 @@
                                     'id': r['id'],
                                     'phone': r['workPhone']
                                 };
+                                var roleId = r['role'];
                                 r['role'] = ROLES[r['role']]['name'];
                                 if (r['organizationId']) {
                                     promises.push(FederalHierarchyService.getFederalHierarchyById(r['organizationId'], true, false, function (data) {
@@ -162,6 +163,7 @@
                                 }
                                 r['action'] = {
                                     'id': r['id'],
+                                    'roleId': roleId,
                                     'role': r['role']
                                 };
                                 tableData.push(r);
