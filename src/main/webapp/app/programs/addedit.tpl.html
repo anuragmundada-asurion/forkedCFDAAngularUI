@@ -27,7 +27,7 @@
       <div class="usa-grid-full">
         <div class="usa-width-one-whole">
           <h2>
-            <span class="section-circle">
+            <span id="some-random-id" class="section-circle">
               1
             </span>
             General Information
@@ -2399,6 +2399,7 @@
 </section>
 </ux-form-section>
 <ux-form-section state-key="review" section-title="Review">
+  <back-top scroll-speed=600 button-theme="cfdabacktop"></back-top>
     <div ng-show="noValidationErrors()">
         <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION)">
             <div class="usa-alert-body">
