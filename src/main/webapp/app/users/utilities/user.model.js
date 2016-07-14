@@ -88,7 +88,7 @@
                     r.push(value);
                 });
 
-                return r;
+                return r.join(', ');
             };
 
             /**
