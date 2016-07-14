@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('HistoricalIndexListController', ['$scope', '$rootScope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment', 'AuthorizationService', 'ROLES',
-        function ($scope, $rootScope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment, AuthorizationService, ROLES) {
+    myApp.controller('HistoricalIndexListController', ['$scope', '$rootScope', '$compile', '$stateParams', 'appConstants', 'ApiService', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$q', 'moment', 'AuthorizationService', 'ROLES', '$timeout',
+        function ($scope, $rootScope, $compile, $stateParams, appConstants, ApiService, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $q, moment, AuthorizationService, ROLES, $timeout) {
 
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
@@ -27,7 +27,7 @@
                     aChangeEvent: [],
                     aStatus: ($stateParams.hasOwnProperty('status') && typeof $stateParams.status !== 'undefined') ? [$stateParams.status] : [],
                     currentCalendarYear: ($stateParams.hasOwnProperty('currentCalendarYear') && typeof $stateParams.currentCalendarYear !== 'undefined') ? true : false,
-                    organizationId: '-',
+                    organizationId: null,
                     betweenFrom: [],
                     betweenTo: []
                 };
@@ -74,6 +74,7 @@
                 };
 
                 if (reloadSearchResult === true) {
+                    $timeout(function() { angular.element('#jqDepartmentFH').prop('selectedIndex', 0).change(); }, 1000);
                     $scope.dtInstance.DataTable.ajax.reload();
                 }
             };
@@ -172,7 +173,7 @@
                 }
 
                 //apply organization from custom search
-                if ($scope.historicalIndexSearch.organizationId !== '-') {
+                if ($scope.historicalIndexSearch.organizationId !== null) {
                     oApiParam.oParams['oFilterParam'].organizationId = $scope.historicalIndexSearch.organizationId;
                 }
 
