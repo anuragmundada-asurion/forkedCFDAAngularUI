@@ -83,37 +83,24 @@
             var originalEmail = "";
 
             function selectItem(item) {
-                //console.log("selectItem = " + $subForm.current.contactId);
-                //console.log("item = " + JSON.stringify(item));
-                //console.log("item info = " + item.info);
-
-                //var contactResult = $subForm.current.contactId.split(",x,");
-                var contactResult = item.info.split(",x,");
-                //console.log("selectItem - originalEmail = " + originalEmail);
-                //if (originalEmail != "") {
-                //    originalEmail = contactResult[2];
-                //}
-                $subForm.current.title = contactResult[0];
-                $subForm.current.fullName = contactResult[1];
-                $subForm.current.email = contactResult[2];
-                $subForm.current.phone = contactResult[3];
-                $subForm.current.fax = contactResult[4];
-                $subForm.current.address = contactResult[5];
-                $subForm.current.city = contactResult[6];
-                $subForm.current.state = contactResult[7];
-                $subForm.current.zip = contactResult[8];
+                var contactResult = item.info;
+                $subForm.current.title = contactResult.title;
+                $subForm.current.fullName = contactResult.fullName;
+                $subForm.current.email = contactResult.email;
+                $subForm.current.phone = contactResult.phone;
+                $subForm.current.fax = contactResult.fax;
+                $subForm.current.address = contactResult.address;
+                $subForm.current.city = contactResult.city;
+                $subForm.current.state = contactResult.state;
+                $subForm.current.zip = contactResult.zip;
             }
 
             function add() {
-                //emailList = scope.onOpen ? scope.onOpen() : {};
-
                 var parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 $subForm.current = scope.createFunction ? scope.createFunction(parentItem) : {};
             }
 
             function edit(item) {
-                //emailList = scope.onOpen ? scope.onOpen() : {};
-
                 var copy = angular.copy(item);
                 copy.$original = item;
                 $subForm.current = copy;
@@ -127,11 +114,6 @@
                     parentItem = $parentSubForm ? $parentSubForm.current : undefined;
                 (scope.beforeSave || angular.noop)($subForm.current, parentItem);
 
-                //console.log("save - originalEmail = " + originalEmail);
-                /*if (!validateDuplicateEmail()) {
-                    this.emailDuplicateError = "true";
-                    return;
-                }*/
                 // Validation for duplicate email within agency
                 if ($subForm.current.email != originalEmail) {
                     for (var i = 0; i < list.length; i++) {
@@ -151,29 +133,9 @@
                     //console.log("save - if(original)");
                     var index = list.indexOf(original);
                     list[index] = $subForm.current;
-                    // Update contacts drop down list
-                    for (var i=0; i<contacts.length; i++) {
-                        if (originalEmail == contacts[i]._id) {
-                            if(typeof contacts[i] === 'string') {
-                                contacts[i] = JSON.parse(contacts[i]);
-                            }
-
-                            contacts[i]._id = $subForm.current.email;
-                            contacts[i].title = "" + $subForm.current.title + " " + $subForm.current.fullName + " " + $subForm.current.email;
-                            contacts[i].info = $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
-                                $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
-                                $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip;
-                        }
-                    }
                 } else {
                     //console.log("save - else - push to list");
                     list.push($subForm.current);
-                    // Update contacts drop down list
-                    var newContact = '{"' + $subForm.current.email + '":{"_id":"' + $subForm.current.email + '","title":"' + $subForm.current.title
-                        + '","info":"' + $subForm.current.title + ",x," + $subForm.current.fullName + ",x," + $subForm.current.email + ",x," +
-                        $subForm.current.phone + ",x," + $subForm.current.fax + ",x," + $subForm.current.address + ",x," +
-                        $subForm.current.city + ",x," + $subForm.current.state + ",x," + $subForm.current.zip + '"}}';
-                    contacts.push(newContact);
                 }
                 originalEmail = "";
 
