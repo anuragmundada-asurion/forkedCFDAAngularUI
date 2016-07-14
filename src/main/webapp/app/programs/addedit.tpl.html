@@ -39,7 +39,7 @@
       <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="000 Intro">
         <div class="usa-grid">
           <div class="usa-width-one-whole">
-              <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode"></federal-hierarchy-inputs>
+              <federal-hierarchy-inputs ng-if="!((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="gsavm.program.organizationId" organization-configuration="gsavm.organizationConfiguration" program-code="gsavm.programCode" render-on-org-null="false"></federal-hierarchy-inputs>
               <federal-hierarchy-label ng-if="((gsavm.program.status && gsavm.program.status != 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status != 'Draft'))" organization-id="{{ gsavm.program.organizationId }}"></federal-hierarchy-label>
           </div>
         </div>

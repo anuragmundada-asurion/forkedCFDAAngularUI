@@ -77,7 +77,7 @@
             <div ng-show="ngDialogData.action === 'agency_request'">
                 <h4>New Agency <span class="required" >*</span></h4>
                 <!--<p>Field Details: Enter the stated Objectives for the Program in this textfield.</p>-->
-                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-department="true" set-selected-option="false"></federal-hierarchy-inputs>
+                <federal-hierarchy-inputs organization-id="organizationId" organization-configuration="organizationConfiguration" program-code="programCode" has-department-changed="hasDepartmentChanged" show-all="true" set-selected-option="false"></federal-hierarchy-inputs>
                 <span ng-show="organizationError && organizationError === true">You must provide a new agency.</span>
             </div>
 
