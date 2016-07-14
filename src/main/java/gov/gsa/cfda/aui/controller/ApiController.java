@@ -3,6 +3,8 @@ package gov.gsa.cfda.aui.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +36,7 @@ public class ApiController {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
     public static final String API_FEDERAL_HIERARCHY_ENV = "pub.api.fh";
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ApiController.class);
 
     @Resource
     private Environment environment;
@@ -242,6 +245,7 @@ public class ApiController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(this.getsCall(accessToken, getProgramsApiUrl() + "/nextAvailableProgramNumber", params));
         } catch (HttpServerErrorException e) {
+            log.debug("Exception while getting next available program number", e);
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             JsonObject response = new Gson().fromJson(e.getResponseBodyAsString(), JsonObject.class);
@@ -543,6 +547,7 @@ public class ApiController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(null, ids, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
+            log.debug("Exception while getting Federal Hierarchy", e);
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             obj.put("error", e.getMessage());
@@ -559,6 +564,7 @@ public class ApiController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(federalHierarchyCall(id, null, sort, childrenLevels, parentLevels));
         } catch (HttpClientErrorException e) {
+            log.debug("Exception while getting Federal Hierarchy By Id", e);
             JSONObject obj = new JSONObject();
             obj.put("code", e.getStatusCode().value());
             obj.put("error", e.getMessage());

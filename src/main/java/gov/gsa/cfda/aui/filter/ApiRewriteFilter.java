@@ -15,15 +15,13 @@ import java.util.Map;
 public class ApiRewriteFilter implements Filter {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
-    public static Map<String, String> MAPPING;
+    public static final  Map<String, String> MAPPING = new HashMap<>();;
 
     @Resource
     private Environment environment;
 
     @Override
     public void init(FilterConfig config) throws ServletException {
-        if (MAPPING == null) {
-            MAPPING = new HashMap<>();
             MAPPING.put("/api/eligibilitylistings", this.getEligibilitylistingsApiUrl());
             MAPPING.put("/api/listingcount", this.getListingCountApiUrl());
             MAPPING.put("/api/programs", this.getProgramsApiUrl());
@@ -33,7 +31,6 @@ public class ApiRewriteFilter implements Filter {
             MAPPING.put("/api/contacts", this.getContactsApiUrl());
             MAPPING.put("/api/dictionaries", this.getDictionaryApiUrl());
             MAPPING.put("/api/search", this.getSearchApiUrl());
-        }
     }
 
     @Override

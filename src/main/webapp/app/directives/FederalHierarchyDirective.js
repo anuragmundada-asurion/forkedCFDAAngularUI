@@ -27,7 +27,7 @@
                     }
                 });
             },
-            template: '<img ng-show="!organizationName" style="max-width: 10%;" src="/img/img_cfda/loading.svg" /><div class="usa-alert usa-alert-error" role="alert" ng-if="organizationNameError"><div class="usa-alert-body"><h3 class="usa-alert-heading">Existing Agency Error</h3><p class="usa-alert-text">{{ organizationName | capitalize}}</p></div></div><span class="" ng-if="!organizationNameError">{{ organizationName | capitalize}}</span>'
+            template: '<img ng-show="!organizationName" style="max-width: 10%;" src="/img/img_cfda/loading.svg" alt="Loading" /><div class="usa-alert usa-alert-error" role="alert" ng-if="organizationNameError"><div class="usa-alert-body"><h3 class="usa-alert-heading">Existing Agency Error</h3><p class="usa-alert-text">{{ organizationName | capitalize}}</p></div></div><span class="" ng-if="!organizationNameError">{{ organizationName | capitalize}}</span>'
 
         };
     }])

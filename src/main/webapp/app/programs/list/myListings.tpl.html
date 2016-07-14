@@ -30,12 +30,14 @@
     <div class="usa-width-two-thirds">
         <div class="usa-grid-full">
 
-            <div ng-class="isActiveList() ? 'usa-width-one-half' : 'usa-width-one-whole';">
-                <input ng-model="searchKeyword"
-                       type="search"
-                       placeholder="Search Listings"
-                       aria-controls="listings-table">
-            </div>
+      <div ng-class="isActiveList() ? 'usa-width-one-half' : 'usa-width-one-whole';">
+        <label class="hidden" for="s1">Search Listings</label>
+        <input  ng-model="searchKeyword"
+                type="search"
+                id="s1"
+                placeholder="Search Listings"
+                aria-controls="listings-table">
+      </div>
 
             <div class="usa-width-one-half" ng-if="isActiveList()">
                 <a class="usa-button usa-button-big usa-button-fluid usa-margin-input"

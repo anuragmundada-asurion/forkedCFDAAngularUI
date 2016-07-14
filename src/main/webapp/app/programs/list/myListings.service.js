@@ -45,31 +45,31 @@
             var buttons = [];
             if (!archived) {
                 if ((status === 'draft' || status === 'rejected') && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS)) {
-                    buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" aria-label="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 } else if (status === 'pending' && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PENDING_PROGRAMS)) {
-                    buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="usa-button-compact" type="button" title="Edit FAL" aria-label="Edit FAL" ng-click="editProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 } else if (status === 'published' && (AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_PUBLISHED_PROGRAMS) || (AuthorizationService.authorizeByRole(SUPPORTED_ROLES.AGENCY_USER && AuthorizationService.authorize(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS))))) {
-                    buttons.push('<button class="usa-button-compact" type="button" title="Revise FAL" ng-click="reviseProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
+                    buttons.push('<button class="usa-button-compact" type="button" title="Revise FAL" aria-label="Revise FAL" ng-click="reviseProgram(\'' + data['id'] + '\')"><span class="fa fa-pencil"></span></button>');
                 }
 
                 if (status === 'draft' && AuthorizationService.authorize(PERMISSIONS.CAN_DELETE_DRAFT_PROGRAMS)) {
-                    buttons.push('<button class="usa-button-compact" type="button" title="Delete FAL" ng-click="deleteProgram(\'' + data['id'] + '\')"><span class="fa fa-trash-o"></span></button>');
+                    buttons.push('<button class="usa-button-compact" type="button" title="Delete FAL" aria-label="Delete FAL" ng-click="deleteProgram(\'' + data['id'] + '\')"><span class="fa fa-trash-o"></span></button>');
                 }
 
                 if (status === 'published' && (AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_ARCHIVE) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_TITLE_CHANGE) || AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_AGENCY_CHANGE))) {
                     var actions = '<div class="ui icon top left pointing jqChangeRequest dropdown button primary">'+
                         '<i class="fa fa-caret-square-o-down"></i>'+
                         '<div class="menu" style="font-size: 1.7rem;">'+
-                          '<div class="header">Make a request</div>';
+                          '<div class="header" aria-label="Make a request">Make a request</div>';
 
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_ARCHIVE)){
-                        actions += '<div class="item" ng-click="requestArchive(\'' + data['id'] + '\')">Archive</div>';
+                        actions += '<div class="item" aria-label="Request archive" ng-click="requestArchive(\'' + data['id'] + '\')">Archive</div>';
                     }
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_TITLE_CHANGE)){
-                        actions += '<div class="item" ng-click="requestTitleChange(\'' + data['id'] + '\')">Title Change</div>';
+                        actions += '<div class="item" aria-label="Request title change" ng-click="requestTitleChange(\'' + data['id'] + '\')">Title Change</div>';
                     }
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_AGENCY_CHANGE)){
-                        actions += '<div class="item" ng-click="requestAgencyChange(\'' + data['id'] + '\')">Agency Change</div>';
+                        actions += '<div class="item" aria-label="Request agency change" ng-click="requestAgencyChange(\'' + data['id'] + '\')">Agency Change</div>';
                     }
 
                     actions += '</div>'+
@@ -78,7 +78,7 @@
                 }
             } else {
                 if (AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_UNARCHIVE)) {
-                    buttons.push('<button class="usa-button-compact" type="button" title="Request Unarchive" ng-click="requestUnarchive(\'' + data['id'] + '\')"><span class="fa fa-folder-open"></span></button>');
+                    buttons.push('<button class="usa-button-compact" type="button" title="Request Unarchive" aria-label="Request Unarchive" ng-click="requestUnarchive(\'' + data['id'] + '\')"><span class="fa fa-folder-open"></span></button>');
                 }
             }
 
@@ -86,7 +86,7 @@
         };
 
         this.getRequestActionContent = function(data) {
-            return '<a ui-sref="viewRequest({ id: \'' + data + '\' })" class="usa-button usa-button-compact" title="Review Program"><span class="fa fa-eye"></span></a>';
+            return '<a ui-sref="viewRequest({ id: \'' + data + '\' })" class="usa-button usa-button-compact" title="Review Program" aria-label="Review program"><span class="fa fa-eye"></span></a>';
         };
 
         this.getDateContent = function(data) {

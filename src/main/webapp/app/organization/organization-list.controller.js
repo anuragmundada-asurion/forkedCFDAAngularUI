@@ -40,11 +40,11 @@
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
                     var downArrow = '';
-                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" title="Edit Organization" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" title="View Organization" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
-                    action += '<a class="usa-button usa-button-compact" title="Users Directory" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" href="/users?organization=' + child.organization.organizationId + '"><span class="fa fa-book"></span></a>';
+                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" title="Edit Organization" aria-label="Edit Organization" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" title="View Organization" aria-label="View Organization" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
+                    action += '<a class="usa-button usa-button-compact" title="Users Directory" aria-label="Users Directory" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" href="/users?organization=' + child.organization.organizationId + '"><span class="fa fa-book"></span></a>';
 
                     if (child.action.hasChildren) {
-                        downArrow = '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
+                        downArrow = '<a class="usa-button usa-button-compact" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
                         action = action + downArrow + '</td>';
                     } else {
                         action = action + '</td>';
@@ -160,14 +160,14 @@
                     .withTitle('Action')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
-                        var htmlStr = '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" title="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
+                        var htmlStr = '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" title="Edit Organization" aria-label="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
                             '<span class="fa fa-pencil"></span></a>' +
-                            '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
+                            '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" aria-label="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
                             '<span class="fa fa-file-text-o"></span></a>';
                         if (data.hasChildren) {
-                            htmlStr = htmlStr + '<a class="usa-button usa-button-compact"><span class="fa fa-chevron-circle-down"></span></a>';
+                            htmlStr = htmlStr + '<a class="usa-button usa-button-compact" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
                         }
-                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
+                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" aria-label="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
                         return htmlStr;
                     })
 
