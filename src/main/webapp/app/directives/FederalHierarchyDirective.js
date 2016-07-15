@@ -369,7 +369,8 @@
                                 scope.error = "An error has occurred, Please try again !";
                             });
                         } //Case if user is an AGENCY COORDINATOR
-                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) {
+                        else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR]) && 
+                                (typeof scope.showAll === 'undefined' || (typeof scope.showAll !== 'undefined' && scope.showAll === false))) {
                             //initialize Department/Agency/Office dropdowns (selected values)
                             scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.AGENCY_COORDINATOR);
 
