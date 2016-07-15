@@ -84,6 +84,14 @@
 
 </div>
 
+<div class="usa-grid usa-grid-fixed">
+    <div class="usa-width-one-full">
+        <span class="usa-sr-only" ng-show="isActiveList()">This table displays Active Listings</span>
+        <span class="usa-sr-only" ng-show="isArchivedList()">This table displays Archived Listings</span>
+        <span class="usa-sr-only" ng-show="isRequestList()">This table displays Change Requests</span>
+    </div>
+</div>
+
 <!-- Table -->
 <table id="programsTable"
        datatable=""

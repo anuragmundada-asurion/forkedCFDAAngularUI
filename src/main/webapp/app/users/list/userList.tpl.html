@@ -53,6 +53,12 @@
     <federal-hierarchy-inputs ng-if="hasRole([ROLES.AGENCY_COORDINATOR])" organization-id="filter.organizationFilter" set-dept-null-on-change="true"></federal-hierarchy-inputs>
 </div>
 
+<div class="usa-grid usa-grid-fixed">
+  <div class="usa-width-one-full">
+    <span class="usa-sr-only">This table displays Users for your agency</span>
+  </div>
+</div>
+
 <table id="usersTable"
     datatable=""
     dt-options="dtOptions"
