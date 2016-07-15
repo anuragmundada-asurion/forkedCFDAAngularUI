@@ -22,7 +22,7 @@
 
     <!-- General Information -->
     <ux-form-section state-key="info" section-title="General Information" field-finder-section>
-
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <!-- Header -->
       <div class="usa-grid-full">
         <div class="usa-width-one-whole">
@@ -791,7 +791,7 @@
 
     <!-- Eligibility / Qualifications -->
     <ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
-
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <!-- Header -->
       <div class="usa-grid">
         <div class="usa-width-one-whole">
@@ -971,7 +971,7 @@
 
     <!-- How to Apply -->
     <ux-form-section state-key="apply" section-title="How to Apply" field-finder-section>
-
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <!-- Header -->
       <div class="usa-grid">
         <div class="usa-width-one-whole">
@@ -1476,8 +1476,9 @@
       </section>
     </ux-form-section>
 
-
+    <!-- Post Award Requirements -->
     <ux-form-section state-key="awards" section-title="Post Award Requirements" field-finder-section>
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <h2><span class="section-circle">4</span> Post Award Requirements</h2>
       <section class="sub-section">
         <h3 field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">{{::instructionalText["04"]["110"]["title"]}}</h3>
@@ -1757,7 +1758,10 @@
         </div>
       </section>
     </ux-form-section>
+
+    <!--Financial Information and Accomplishments-->
     <ux-form-section state-key="financial" section-title="Financial Information and Accomplishments" field-finder-section>
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
       <section class="sub-section">
         <h3 field-finder-bookmark title="120 Financial Information" data-bookmark-parent="true">{{::instructionalText["05"]["120"]["title"]}}</h3>
@@ -2043,11 +2047,14 @@
     </div>
   </section>
 </ux-form-section>
-<ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
-  <h2><span class="section-circle">6</span> Contact Information</h2>
-  <section class="sub-section">
-    <h3 field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">{{::instructionalText["06"]["150"]["title"]}}<span class="required">*</span></h3>
-    <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
+
+    <!--Contact Information-->
+    <ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
+      <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
+      <h2><span class="section-circle">6</span> Contact Information</h2>
+      <section class="sub-section">
+      <h3 field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">{{::instructionalText["06"]["150"]["title"]}}<span class="required">*</span></h3>
+      <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
       <fieldset class="usa-fieldset-inputs">
         <h4>{{::instructionalText["06"]["151"]["title"]}}<span class="required">*</span></h4>
 
@@ -2400,8 +2407,10 @@
   </section>
 </section>
 </ux-form-section>
+
+    <!--Review-->
 <ux-form-section state-key="review" section-title="Review">
-  <back-top scroll-speed=600 button-theme="cfdabacktop"></back-top>
+  <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
     <div ng-show="noValidationErrors()">
         <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION)">
             <div class="usa-alert-body">
@@ -2655,7 +2664,7 @@
 </ux-form-section>
 </section>
 
-<section class="usa-grid usa-margin-top-3">
+<section class="usa-grid usa-margin-top-3 usa-text-align-right">
   <button class="usa-button-big" type="button" ng-click="gsavm.saveAndFinishLater()">Save & Finish Later</button>
   <button class="usa-button-big" type="button" ng-if="hasPermission([PERMISSIONS.CAN_PERFORM_SUBMISSION])" ng-show="submissionRequest" title="Approve Program Publish" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'publish')">Approve Program</button>
   <button class="usa-button-big" type="button" ng-if="hasPermission([PERMISSIONS.CAN_PERFORM_SUBMISSION])" ng-show="submissionRequest" title="Reject Program" ng-click="showProgramRequestModal(submissionRequest, 'program_request_action', 'reject_program')">Reject Program</button>

@@ -9,15 +9,38 @@
             //------------------------------------------------------------------
 
             var userOrgId = UserService.getUserOrgId();
-            //no filter if rmo or super user
-            if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.RMO_SUPER_USER])) {
-                userOrgId = null;
-            }
+            //debug, don't keep this
+            FederalHierarchyService.getFederalHierarchyById(userOrgId,false,false,function(oData){
+                console.log(FederalHierarchyService.getFullNameFederalHierarchy(oData),oData);
+            });
+            //end debug
 
+            //by default, user's org can't see parent/children levels unless they have a special role
+            var includeParentLevels = false;
+            var includeChildrenLevels= false;
+
+            //show all orgs if super/rmo/limit super user OR omb user with 'all orgs' flag
+            if (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER, SUPPORTED_ROLES.RMO_SUPER_USER, SUPPORTED_ROLES.LIMITED_SUPER_USER]) || (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.OMB_ANALYST]) && UserService.hasUserAllOrgIDs()===true)) {
+                userOrgId = null;
+                var includeChildrenLevels= true;
+            }
+            //agency coordinators can see their org and all children
+            if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])){
+                includeChildrenLevels = true;
+            }
+            //omb user - can belong to multiple orgs, get all org ids
+            if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.OMB_ANALYST])){
+                userOrgId = UserService.getUserAllOrgIDs();
+                //debug, don't keep this
+                FederalHierarchyService.getFederalHierarchyByIds(userOrgId,false,false,function(oData){
+                    console.log(FederalHierarchyService.getFullNameFederalHierarchy(oData),oData);
+                });
+                //end debug
+            }
             getDataFromFh();
             function getDataFromFh() {
                 //call on fh to get list of obj, formatted properly and in an array
-                FederalHierarchyService.dtFormattedData(userOrgId, function (results) {
+                FederalHierarchyService.dtFormattedData(userOrgId, includeParentLevels, includeChildrenLevels, function (results) {
                     $scope.dtData_topLevel = results.topLevelData;
                     $scope.dtData_total = results.totalData;
                     $scope.childrenMap = results.childrenMappingData;
