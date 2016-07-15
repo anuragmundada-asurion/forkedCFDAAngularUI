@@ -247,24 +247,50 @@
          * @param id
          * @returns array of rows for datatable
          */
-        var dtFormattedData = function (userOrgId, successCallback) {
+        var dtFormattedData = function (userOrgId,includeParentLevels,includeChildrenLevels, successCallback) {
             var totalRecords = []; //for search
             var dtTopLevelData = []; //for default data in dt
             var childrenMap = {}; //for expanding down to the children
 
             var level = 0; // to see depth of hierarchy
 
-            //call fh
-            getFederalHierarchyById(userOrgId, false, true, function (d) {
+            //call FH, method differs if multiple userOrgIds are passed in
+            if(angular.isArray(userOrgId)){
+                getFederalHierarchyByIds(userOrgId, includeParentLevels, includeChildrenLevels, function(d){
+                    callHandler(d);
+                });
+            }
+            else{
+                getFederalHierarchyById(userOrgId, includeParentLevels, includeChildrenLevels, function (d) {
+                    callHandler(d);
+                });
+            }
+
+            //helper function; getFederalHierarchyById(s) handler
+            var callHandler = function(d){
                 var data;
+                var highestOrgTypeLevel;
                 if (d._embedded) {
                     data = d._embedded.hierarchy;//if id = null, data returned in embedded property, an array already
+                    for(var item in data){
+                        if(item.type=="DEPARTMENT"){
+                            highestOrgTypeLevel = "DEPARTMENT";
+                        } else if (item.type=="AGENCY" && orgType != "DEPARTMENT"){
+                            highestOrgTypeLevel = "AGENCY";
+                        } else if (item.type=="OFFICE" && !["DEPARTMENT","AGENCY"].indexOf(highestOrgTypeLevel)) {
+                            highestOrgTypeLevel = "OFFICE";
+                        }
+                    }
+                    if(highestOrgTypeLevel == null){
+                        highestOrgTypeLevel = "DEPARTMENT";
+                    }
                 } else {
                     data = [d];//need it as an array
+                    highestOrgTypeLevel = d.type;
                 }
 
                 //last param is to check if currently processing children
-                formatData(data, userOrgId);
+                formatData(data, userOrgId, highestOrgTypeLevel);
 
                 var results = {
                     totalData: totalRecords,
@@ -272,10 +298,10 @@
                     childrenMappingData: childrenMap
                 };
                 successCallback(results);
-            });
+            }
 
             //helper function; expects data as an array
-            var formatData = function (data, id) {
+            var formatData = function (data, id, highestOrgTypeLevel) {
                 if (data) {
                     angular.forEach(data, function (currentObj, index, array) {
                         //build one row for datatable
@@ -285,7 +311,7 @@
                             organization: {
                                 organizationId: currentObj.elementId,
                                 name: currentObj.name,
-                                hasParent: (currentObj._links.parent) ? true : false
+                                hasParent: (currentObj._links.parent && currentObj.type != highestOrgTypeLevel) ? true : false
                             },
                             action: {
                                 organizationId: currentObj.elementId,
