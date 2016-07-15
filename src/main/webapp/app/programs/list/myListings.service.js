@@ -63,13 +63,13 @@
                           '<div class="header" aria-label="Make a request">Make a request</div>';
 
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_ARCHIVE)){
-                        actions += '<div class="item" aria-label="Request archive" ng-click="requestArchive(\'' + data['id'] + '\')">Archive</div>';
+                        actions += '<div class="item" aria-label="Request archive" ng-click="requestArchive(\'' + data['id'] + '\')" tabindex="0" trigger-click-on-enter>Archive</div>';
                     }
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_TITLE_CHANGE)){
-                        actions += '<div class="item" aria-label="Request title change" ng-click="requestTitleChange(\'' + data['id'] + '\')">Title Change</div>';
+                        actions += '<div class="item" aria-label="Request title change" ng-click="requestTitleChange(\'' + data['id'] + '\')" tabindex="0" trigger-click-on-enter>Title Change</div>';
                     }
                     if(AuthorizationService.authorize(PERMISSIONS.CAN_REQUEST_AGENCY_CHANGE)){
-                        actions += '<div class="item" aria-label="Request agency change" ng-click="requestAgencyChange(\'' + data['id'] + '\')">Agency Change</div>';
+                        actions += '<div class="item" aria-label="Request agency change" ng-click="requestAgencyChange(\'' + data['id'] + '\')" tabindex="0" trigger-click-on-enter>Agency Change</div>';
                     }
 
                     actions += '</div>'+
