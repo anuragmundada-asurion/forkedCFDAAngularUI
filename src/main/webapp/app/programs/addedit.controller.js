@@ -1215,5 +1215,16 @@
                     return $("#formErrorMessages").hasClass("ng-hide");
                 };
 
+//                    //code for back to top button to change its focus
+//                     $(".back-to-top").on( "click", function() {
+//                        $(".usa-steps ul li:first > a").focus();
+//                      });
+
+                $scope.focus = function(selector){
+                    console.log("about to focus on : " +  selector);
+                    $(selector).focus();
+                };
+
+
             }]);
 })();
