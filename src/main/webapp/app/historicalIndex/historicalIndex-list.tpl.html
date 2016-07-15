@@ -8,7 +8,7 @@
         <div class="usa-alert-body">
 
           <h3 class="usa-alert-heading">Note</h3>
-          <p class="usa-alert-text">
+          <span class="usa-alert-text">
             The following list shows all programs printed in the Catalog of
             Federal Domestic Assistance beginning with the 1965 edition and the
             subsequent action taken related to that program.
@@ -30,11 +30,11 @@
               published that year.
             </span>
 
-            <button class="usa-button-compact" style="display: block;" onclick="$(this).text(function(i,v){ $(this).prev().toggle(); return v === 'Read Less' ? 'Read More' : 'Read Less'});">
+            <a class="cursor-hand" style="display: block;" onclick="$(this).html(function(i,v){ $(this).prev().toggle(); return v === 'Read Less' ? 'Read More' : 'Read Less' });">
               Read More
-            </button>
+            </a>
 
-          </p>
+          </span>
         </div>
       </div>
     </div>
