@@ -36,16 +36,15 @@
         </ul>
       </div>
       <div class="usa-width-one-half">
-
         <div class="usa-grid-full">
           <div class="usa-width-one-half">
             <field-finder-searchbox compact="true"></field-finder-searchbox>
           </div>
           <div class="usa-width-one-half">
             <div class="navigator-button-group">
-              <a target="_blank" ui-sref="previewProgram({id: gsavm.program._id})"><span class="usa-button">Preview</span></a>
-              <button type="button" class="usa-button-unstyled button-circle action-button" ng-disabled="uxForm.isOnFirstSection" ng-click="uxForm.goToPreviousSection()" trigger-click-on-enter><span class="fa fa-arrow-left"></span></button>
-              <button type="button" class="usa-button-unstyled button-circle action-button usa-margin-right-0" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
+              <a target="_blank" class="usa-button"  ui-sref="previewProgram({id: gsavm.program._id})"><span>Preview</span></a>
+              <button type="button" class="button-circle action-button" ng-disabled="uxForm.isOnFirstSection" ng-click="uxForm.goToPreviousSection()" trigger-click-on-enter><span class="fa fa-arrow-left"></span></button>
+              <button type="button" class="button-circle action-button usa-margin-right-0" ng-disabled="uxForm.isOnLastSection" ng-click="uxForm.goToNextSection()" trigger-click-on-enter><span class="fa fa-arrow-right"></span></button>
             </div>
           </div>
         </div>
