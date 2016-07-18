@@ -11,7 +11,7 @@
                 method: 'POST'
             },
             update: {
-                method: 'PATCH',
+                method: 'PUT',
                 params: {
                     id: '@_id'
                 }

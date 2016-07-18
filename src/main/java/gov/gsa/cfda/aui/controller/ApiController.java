@@ -88,7 +88,7 @@ public class ApiController {
     public String updateProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String id,
                                        @RequestBody String jsonData) throws Exception {
-        return this.updateCall(accessToken, getProgramsApiUrl() + "/" + id, jsonData);
+        return this.updateCall(accessToken, getProgramsApiUrl() + "/" + id, jsonData, HttpMethod.PATCH);
     }
 
     @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.DELETE)
@@ -264,7 +264,7 @@ public class ApiController {
     public String updateUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @PathVariable("id") String userId,
                              @RequestBody String jsonBody) {
-        return updateCall(accessToken, getUsersApiUrl().concat("/").concat(userId), jsonBody);
+        return updateCall(accessToken, getUsersApiUrl().concat("/").concat(userId), jsonBody, HttpMethod.PATCH);
     }
 
     @RequestMapping(value = "/v1/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -328,7 +328,7 @@ public class ApiController {
     public String updateRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String requestId,
                                 @RequestBody String jsonBody) {
-        return updateCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId, jsonBody);
+        return updateCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId, jsonBody, HttpMethod.PATCH);
     }
 
     @RequestMapping(value = "/v1/programRequest/{id}", method = RequestMethod.DELETE)
@@ -368,11 +368,11 @@ public class ApiController {
         return this.createCall(accessToken, getRegionalOfficeApiUrl(), jsonBody);
     }
 
-    @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String officeId,
                                        @RequestBody String jsonData) {
-        return this.updateCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId, jsonData);
+        return this.updateCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId, jsonData, HttpMethod.PUT);
     }
 
     @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.DELETE)
@@ -411,7 +411,7 @@ public class ApiController {
     public String updateAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                @PathVariable("id") String requestId,
                                @RequestBody String jsonBody) {
-        return updateCall(accessToken, getProgramRequestActionsApiUrl() + "/" + requestId, jsonBody);
+        return updateCall(accessToken, getProgramRequestActionsApiUrl() + "/" + requestId, jsonBody, HttpMethod.PATCH);
     }
 
     @RequestMapping(value = "/v1/programRequestAction/{id}", method = RequestMethod.DELETE)
@@ -476,7 +476,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    private String updateCall(String accessToken, String url, String jsonBody) {
+    private String updateCall(String accessToken, String url, String jsonBody, HttpMethod method) {
         RestTemplate restTemplate = new RestTemplate();
         //  Needed for PATCH calls
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
@@ -488,7 +488,7 @@ public class ApiController {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(jsonBody, headers);
 
-        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.PATCH, entity, String.class);
+        HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), method, entity, String.class);
         return response.getBody();
     }
 
@@ -599,7 +599,7 @@ public class ApiController {
     public String updateHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                               @PathVariable("id") String id,
                                               @RequestBody String jsonData) {
-        return this.updateCall(accessToken, getHistoricalChangeApiUrl() + "/" + id, jsonData);
+        return this.updateCall(accessToken, getHistoricalChangeApiUrl() + "/" + id, jsonData, HttpMethod.PATCH);
     }
 
     @RequestMapping(value = "/v1/historicalChange/{id}", method = RequestMethod.DELETE)
@@ -638,7 +638,7 @@ public class ApiController {
                                                           @RequestBody String jsonBody) {
 
 
-        return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody));
+        return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody, HttpMethod.PATCH));
     }
 
     @RequestMapping(value = "/v1/federalHierarchyConfiguration", method = RequestMethod.POST)
