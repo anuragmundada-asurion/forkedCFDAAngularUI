@@ -43,7 +43,8 @@
                 "renderOnOrgNull": "=?",
                 "showAll": "=?", // e.g: for limited super user -> show all inputs
                 "setDeptNullOnChange": "=?", //e.g for setting organizationId to null on setOrganizationId callback fn
-                "setSelectedOption": "=?"
+                "setSelectedOption": "=?",
+                "checkProgramCode": "&checkProgramCode"
             },
             controller: ['$scope', '$filter', 'SUPPORTED_ROLES', 'ApiService', function($scope, $filter, SUPPORTED_ROLES, ApiService) {
                 $scope.isControllerLoaded = false;
@@ -421,6 +422,10 @@
                                 scope.initFederalHierarchyDropdowns(SUPPORTED_ROLES.SUPER_USER);
                             });
                         }
+                    }
+                    //if exists and function
+                    if(scope.programCode && scope.programCode.length>0 && typeof scope.checkProgramCode=="function"){
+                        scope.checkProgramCode();
                     }
                 });
             },
