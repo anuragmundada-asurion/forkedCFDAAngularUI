@@ -4,7 +4,7 @@
     var myApp = angular.module('app');
 
     myApp.factory('Dictionary', ['$resource', '$filter', 'appConstants', function ($resource, $filter, appConstants) {
-        return $resource('/api/dictionaries', {}, {
+        return $resource('/v1/dictionary', {}, {
             query: {
                 transformResponse: function(data) {
                     data = JSON.parse(data);

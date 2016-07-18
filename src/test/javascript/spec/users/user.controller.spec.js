@@ -46,7 +46,7 @@ describe('Unit Tests for User Controller:', function () {
 
             beforeEach(function(){
                 //expecting api/federalHierarchy to load organizations
-                $httpBackend.whenGET(/\/api\/federalHierarchies\?ids=[\w\,]+/i).respond([{elementId: 1, hierarchy:[], name: "test"}]);
+                $httpBackend.whenGET(/\/v1\/federalHierarchy\?ids=[\w\,]+/i).respond([{elementId: 1, hierarchy:[], name: "test"}]);
 
                 inject(function(_$state_, _$timeout_){
                     $state = _$state_;

@@ -33,7 +33,7 @@ describe('Unit Tests for Historical Index View Controller:', function () {
         });
         UserService.setUser({"role": "GSA_CFDA_R_cfdasuperuser"});//user must be able to access view
         var responseJSON = "{\"id\":\"cd88fc26cb9221996df5b29833f87a7a\",\"organizationId\":\"100006809\",\"fiscalYear\":1981,\"statusCode\":\"U\",\"changeDescription\":\"Animal Health and Disease Research\",\"reason\":null,\"actionType\":\"publish\",\"programNumber\":\"10.207\",\"index\":1,\"createdDate\":null,\"isManual\":\"1\"}";
-        $httpBackend.whenGET('/api/historicalChange/'+testHistoricalIndexId).respond(responseJSON);
+        $httpBackend.whenGET('/v1/historicalChange/'+testHistoricalIndexId).respond(responseJSON);
     });
 
     describe('Controller Historical Index List:', function () {

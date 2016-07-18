@@ -63,17 +63,17 @@ describe('Unit Tests for Program Request Controller:', function () {
                 scope.reason = 'need approval!';
 
                 //program doesn't have any request
-                $httpBackend.whenGET(/\/api\/programRequests\?completed=[\w]+\&program=bde3daabaf5f41ea986e6b421f78\&type=[\w\,]+/i).respond({
+                $httpBackend.whenGET(/\/v1\/programRequest\?completed=[\w]+\&program=bde3daabaf5f41ea986e6b421f78\&type=[\w\,]+/i).respond({
                     results: []
                 });
 
                 //program has request
-                $httpBackend.whenGET(/\/api\/programRequests\?completed=[\w]+\&program=1233daabaf5f41ea986e6b421eee\&type=[\w\,]+/i).respond({
+                $httpBackend.whenGET(/\/v1\/programRequest\?completed=[\w]+\&program=1233daabaf5f41ea986e6b421eee\&type=[\w\,]+/i).respond({
                     results: [{}]
                 });
 
                 //submit program request
-                $httpBackend.whenPOST(/\/api\/programRequests/i).respond({});
+                $httpBackend.whenPOST(/\/v1\/programRequest/i).respond({});
 
                 inject(function(_$state_, _$timeout_){
                     $state = _$state_;
@@ -207,16 +207,16 @@ describe('Unit Tests for Program Request Controller:', function () {
                     };
 
                     //submit program request
-                    $httpBackend.whenPOST(/\/api\/programRequestActions/i).respond({});
+                    $httpBackend.whenPOST(/\/v1\/programRequestAction/i).respond({});
 
                     //get next available program number
-                    $httpBackend.whenGET(/\/api\/programs\/nextAvailableProgramNumber\?organizationId=[\w]+/i).respond({
+                    $httpBackend.whenGET(/\/v1\/program\/nextAvailableProgramNumber\?organizationId=[\w]+/i).respond({
                         nextAvailableCode: 123,
                         isProgramNumberOutsideRange: true
                     });
 
                     //is program number unique
-                    $httpBackend.whenGET(/\/api\/programs\/isProgramNumberUnique\?programNumber=[\w]+/i).respond({
+                    $httpBackend.whenGET(/\/v1\/program\/isProgramNumberUnique\?programNumber=[\w]+/i).respond({
                         isProgramNumberUnique: true
                     });
                 });

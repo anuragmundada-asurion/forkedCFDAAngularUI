@@ -41,7 +41,7 @@ public class ApiController {
     @Resource
     private Environment environment;
 
-    @RequestMapping(value = "/api/programs", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/program", method = RequestMethod.GET, produces = "application/json")
     public String getProgramListApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                         @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                         @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
@@ -65,7 +65,7 @@ public class ApiController {
         return getsCall(accessToken, getProgramsApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.GET, produces = "application/json")
     public String getProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                     @PathVariable("id") String id) {
         RestTemplate restTemplate = new RestTemplate();
@@ -78,20 +78,20 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs", method = RequestMethod.POST)
+    @RequestMapping(value = "/v1/program", method = RequestMethod.POST)
     public String createProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @RequestBody String jsonData) throws Exception {
         return this.createCall(accessToken, getProgramsApiUrl(), jsonData);
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String id,
                                        @RequestBody String jsonData) throws Exception {
         return this.updateCall(accessToken, getProgramsApiUrl() + "/" + id, jsonData);
     }
 
-    @RequestMapping(value = "/api/programs/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.DELETE)
     public String deleteProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String id) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -104,14 +104,14 @@ public class ApiController {
     }
 
 
-    @RequestMapping(value = "/api/programs/{id}/submissionNotification", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/program/{id}/submissionNotification", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String notifyAgencyCoordinators(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                       @PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
         return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params);
     }
 
-    @RequestMapping(value = "/api/contacts/{agencyId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/contact/{agencyId}", method = RequestMethod.GET)
     public String getContactListApiCall(@PathVariable("agencyId") String agencyId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -122,7 +122,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/listingCount/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/listingCount/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getListingCountApiCall(@PathVariable("year") String year) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -133,7 +133,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programCount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/programCount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getProgramCount(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -145,7 +145,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/eligibilitylistings", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/eligibilitylistings", method = RequestMethod.GET)
     public String getEligibilitylistingsApiCall() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -156,7 +156,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/dictionaries", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/dictionary", method = RequestMethod.GET)
     public String getDictionaries(@RequestParam(required = false) String[] ids) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -170,7 +170,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/search", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/search", method = RequestMethod.GET, produces = "application/json")
     public String searchApiCall(@RequestParam(value = "keyword", required = false) String keyword,
                                 @RequestParam(value = "sortBy", required = false, defaultValue = "score") String sortBy,
                                 @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -192,7 +192,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/searchHistoricalIndex", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/searchHistoricalIndex", method = RequestMethod.GET, produces = "application/json")
     public String searchHistoricalIndexApiCall(@RequestParam(value = "keyword", required = false) String keyword,
                                                @RequestParam(value = "sortBy", required = false, defaultValue = "score") String sortBy,
                                                @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -214,20 +214,20 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/programs/{id}/submit", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/v1/program/{id}/submit", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String submitProgram(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String programId,
                                 @RequestBody(required = false) String jsonData) throws Exception {
         return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/submit", jsonData);
     }
 
-    @RequestMapping(value = "/api/programs/{id}/revise", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/v1/program/{id}/revise", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String reviseProgram(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String programId) throws Exception {
         return this.actionCall(accessToken, getProgramsApiUrl() + "/" + programId + "/revise", null);
     }
 
-    @RequestMapping(value = "/api/programs/isProgramNumberUnique", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/v1/program/isProgramNumberUnique", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public String isProgramNumberUnique(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                         @RequestParam(value = "id", required = true, defaultValue = "") String programId,
                                         @RequestParam(value = "programNumber", required = true, defaultValue = "") String programNumber) throws Exception {
@@ -237,7 +237,7 @@ public class ApiController {
         return this.getsCall(accessToken, getProgramsApiUrl() + "/isProgramNumberUnique", params);
     }
 
-    @RequestMapping(value = "/api/programs/nextAvailableProgramNumber", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/v1/program/nextAvailableProgramNumber", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public HttpEntity nextAvailableProgramNumber(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                  @RequestParam(value = "organizationId", required = true, defaultValue = "") String organizationId) throws Exception {
         Map<String, Object> params = new HashMap<>();
@@ -254,20 +254,20 @@ public class ApiController {
         }
     }
 
-    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                           @PathVariable("id") String userId) {
         return getCall(accessToken, getUsersApiUrl().concat("/").concat(userId));
     }
 
-    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/user/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateUser(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @PathVariable("id") String userId,
                              @RequestBody String jsonBody) {
         return updateCall(accessToken, getUsersApiUrl().concat("/").concat(userId), jsonBody);
     }
 
-    @RequestMapping(value = "/api/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getUsers(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                            @RequestParam(value = "roles", required = false, defaultValue = "") String[] roleIds,
                            @RequestParam(value = "organizations", required = false, defaultValue = "") String[] orgIds) {
@@ -284,13 +284,13 @@ public class ApiController {
         return getsCall(accessToken, getUsersApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/roles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/role", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRoles() {
         Map<String, Object> params = new HashMap<>();
         return getsCall(null, getRolesApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/programRequests", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/programRequest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequests(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                               @RequestParam(value = "type", required = false, defaultValue = "") String types,
@@ -312,32 +312,32 @@ public class ApiController {
         return getsCall(accessToken, getProgramRequestsApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/programRequests", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/programRequest", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @RequestBody String jsonBody) {
         return createCall(accessToken, getProgramRequestsApiUrl(), jsonBody);
     }
 
-    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/programRequest/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @PathVariable("id") String requestId) throws SQLException, RuntimeException {
         return getCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/programRequest/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                 @PathVariable("id") String requestId,
                                 @RequestBody String jsonBody) {
         return updateCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId, jsonBody);
     }
 
-    @RequestMapping(value = "/api/programRequests/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/programRequest/{id}", method = RequestMethod.DELETE)
     public void deleteRequest(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                               @PathVariable("id") String requestId) {
         deleteCall(accessToken, getProgramRequestsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/regionalOffice", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRegionalOffices(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                      @RequestParam(value = "all", required = false, defaultValue = "false") boolean all,
                                      @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
@@ -357,31 +357,31 @@ public class ApiController {
         return getsCall(accessToken, getRegionalOfficeApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRegionalOffice(@PathVariable("id") String officeId) {
         return getCall(null, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
-    @RequestMapping(value = "/api/regionalOffices", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/regionalOffice", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @RequestBody String jsonBody) throws SQLException, RuntimeException {
         return this.createCall(accessToken, getRegionalOfficeApiUrl(), jsonBody);
     }
 
-    @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                        @PathVariable("id") String officeId,
                                        @RequestBody String jsonData) {
         return this.updateCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId, jsonData);
     }
 
-    @RequestMapping(value = "/api/regionalOffices/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.DELETE)
     public void deleteRegionalOffice(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                      @PathVariable("id") String officeId) throws SQLException, RuntimeException {
         this.deleteCall(accessToken, getRegionalOfficeApiUrl() + "/" + officeId);
     }
 
-    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/programRequestAction", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getActions(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @RequestParam(value = "limit", required = false, defaultValue = "100") int limit,
                              @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
@@ -395,26 +395,26 @@ public class ApiController {
         return getsCall(accessToken, getProgramRequestActionsApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/programRequestActions", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/programRequestAction", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                @RequestBody String jsonBody) throws SQLException, RuntimeException {
         return createCall(accessToken, getProgramRequestActionsApiUrl(), jsonBody);
     }
 
-    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/programRequestAction/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                             @PathVariable("id") String requestId) throws SQLException, RuntimeException {
         return getCall(accessToken, getProgramRequestActionsApiUrl() + "/" + requestId);
     }
 
-    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/programRequestAction/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                @PathVariable("id") String requestId,
                                @RequestBody String jsonBody) {
         return updateCall(accessToken, getProgramRequestActionsApiUrl() + "/" + requestId, jsonBody);
     }
 
-    @RequestMapping(value = "/api/programRequestActions/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/programRequestAction/{id}", method = RequestMethod.DELETE)
     public void deleteAction(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                              @PathVariable("id") String actionId) {
         deleteCall(accessToken, getProgramRequestActionsApiUrl() + "/" + actionId);
@@ -539,7 +539,7 @@ public class ApiController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/api/federalHierarchies", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
+    @RequestMapping(value = "/v1/federalHierarchy", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchy(@RequestParam(value = "sort", required = false, defaultValue = "name") String sort,
                                           @RequestParam(value = "ids", required = false, defaultValue = "") String ids,
                                           @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
@@ -556,7 +556,7 @@ public class ApiController {
 
     }
 
-    @RequestMapping(value = "/api/federalHierarchies/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
+    @RequestMapping(value = "/v1/federalHierarchy/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity getFederalHierarchyById(@PathVariable("id") String id,
                                               @RequestParam(value = "sort", required = false, defaultValue = "name") String sort,
                                               @RequestParam(value = "childrenLevels", required = false, defaultValue = "") String childrenLevels,
@@ -573,7 +573,7 @@ public class ApiController {
     }
 
     //getting list of historical index changes for a certain program number
-    @RequestMapping(value = "/api/historicalIndex/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/historicalIndex/{id}", method = RequestMethod.GET)
     public String getHistoricalIndex(@PathVariable("id") String id,
                                      @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
         Map<String, Object> params = new HashMap<>();
@@ -582,33 +582,33 @@ public class ApiController {
     }
 
     //for a single historical index change
-    @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/historicalChange/{id}", method = RequestMethod.GET)
     public String getSingleHistoricalIndexChange(@PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
         return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
     }
 
     //manual add historical index
-    @RequestMapping(value = "/api/historicalChange", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/historicalChange", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     public String createHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                               @RequestBody String jsonData) {
         return this.createCall(accessToken, getHistoricalChangeApiUrl(), jsonData);
     }
 
-    @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/v1/historicalChange/{id}", method = RequestMethod.PATCH, produces = MediaType.TEXT_PLAIN_VALUE)
     public String updateHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                               @PathVariable("id") String id,
                                               @RequestBody String jsonData) {
         return this.updateCall(accessToken, getHistoricalChangeApiUrl() + "/" + id, jsonData);
     }
 
-    @RequestMapping(value = "/api/historicalChange/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/historicalChange/{id}", method = RequestMethod.DELETE)
     public void deleteHistoricalIndexChange(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                             @PathVariable("id") String id) throws SQLException, RuntimeException {
         this.deleteCall(accessToken, getHistoricalChangeApiUrl() + "/" + id);
     }
 
-    @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration", method = RequestMethod.GET)
     public String getFederalHierarchyConfigurationsList(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                         @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                                         @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
@@ -626,13 +626,13 @@ public class ApiController {
         return getsCall(accessToken, getFederalHierarchyConfigurationApiUrl(), params);
     }
 
-    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.GET)
     public HttpEntity getFederalHierarchyConfiguration(@PathVariable("id") String id,
                                                        @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
         return ResponseEntity.status(HttpStatus.OK).body(getCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id));
     }
 
-    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.PATCH)
     public HttpEntity updateFederalHierarchyConfiguration(@PathVariable("id") String id,
                                                           @RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                           @RequestBody String jsonBody) {
@@ -641,13 +641,13 @@ public class ApiController {
         return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody));
     }
 
-    @RequestMapping(value = "/api/federalHierarchyConfigurations", method = RequestMethod.POST)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration", method = RequestMethod.POST)
     public HttpEntity createFederalHierarchyConfiguration(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                           @RequestBody String jsonBody) {
         return ResponseEntity.status(HttpStatus.OK).body(createCall(accessToken, getFederalHierarchyConfigurationApiUrl(), jsonBody));
     }
 
-    @RequestMapping(value = "/api/federalHierarchyConfigurations/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.DELETE)
     public HttpEntity deleteFederalHierarchyConfiguration(@PathVariable("id") String id,
                                                           @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
         this.deleteCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id);
@@ -655,31 +655,31 @@ public class ApiController {
     }
 
     private String getRolesApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/roles";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/role";
     }
 
     private String getUsersApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/users";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/user";
     }
 
     private String getProgramRequestsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequest";
     }
 
     private String getProgramRequestActionsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestActions";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestAction";
     }
 
     private String getProgramsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/program";
     }
 
     private String getRegionalOfficeApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/regionalOffices";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/regionalOffice";
     }
 
     private String getContactsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/contacts";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/contact";
     }
 
     private String getFederalHierarchiesApiUrl() {
@@ -695,19 +695,19 @@ public class ApiController {
     }
 
     private String getEligibilitylistingsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programEligibilityDistribution";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/report/programEligibilityDistribution";
     }
 
     private String getListingCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCountByYear";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/report/programCountByYear";
     }
 
     private String getProgramCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/reports/programCounts";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/report/programCounts";
     }
 
     private String getDictionaryApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/dictionaries";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/dictionary";
     }
 
     private String getSearchApiUrl() {
@@ -719,6 +719,6 @@ public class ApiController {
     }
 
     private String getFederalHierarchyConfigurationApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/federalHierarchyConfigurations";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/federalHierarchyConfiguration";
     }
 }

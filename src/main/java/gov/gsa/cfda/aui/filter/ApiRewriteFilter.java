@@ -22,15 +22,15 @@ public class ApiRewriteFilter implements Filter {
 
     @Override
     public void init(FilterConfig config) throws ServletException {
-            MAPPING.put("/api/eligibilitylistings", this.getEligibilitylistingsApiUrl());
-            MAPPING.put("/api/listingcount", this.getListingCountApiUrl());
-            MAPPING.put("/api/programs", this.getProgramsApiUrl());
-            MAPPING.put("/api/programRequests", this.getProgramRequestsApiUrl());
-            MAPPING.put("/api/programRequestActions", this.getProgramRequestActionsApiUrl());
-            MAPPING.put("/api/regionalAgencies", this.getRegionalAgencyApiUrl());
-            MAPPING.put("/api/contacts", this.getContactsApiUrl());
-            MAPPING.put("/api/dictionaries", this.getDictionaryApiUrl());
-            MAPPING.put("/api/search", this.getSearchApiUrl());
+            MAPPING.put("/v1/eligibilitylistings", this.getEligibilitylistingsApiUrl());
+            MAPPING.put("/v1/listingcount", this.getListingCountApiUrl());
+            MAPPING.put("/v1/program", this.getProgramsApiUrl());
+            MAPPING.put("/v1/programRequest", this.getProgramRequestsApiUrl());
+            MAPPING.put("/v1/programRequestAction", this.getProgramRequestActionsApiUrl());
+            MAPPING.put("/v1/regionalAgency", this.getRegionalAgencyApiUrl());
+            MAPPING.put("/v1/contact", this.getContactsApiUrl());
+            MAPPING.put("/v1/dictionary", this.getDictionaryApiUrl());
+            MAPPING.put("/v1/search", this.getSearchApiUrl());
     }
 
     @Override
@@ -58,15 +58,15 @@ public class ApiRewriteFilter implements Filter {
     }
 
     private String getProgramRequestsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequests";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequest";
     }
 
     private String getProgramRequestActionsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestActions";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/programRequestAction";
     }
 
     private String getProgramsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/program";
     }
 
     private String getRegionalAgencyApiUrl() {
@@ -74,19 +74,19 @@ public class ApiRewriteFilter implements Filter {
     }
 
     private String getContactsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/contacts";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/contact";
     }
 
     private String getEligibilitylistingsApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings/eligibility";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/program/listings/eligibility";
     }
 
     private String getListingCountApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/programs/listings";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/program/listings";
     }
 
     private String getDictionaryApiUrl() {
-        return environment.getProperty(API_PROGRAMS_ENV) + "/dictionaries";
+        return environment.getProperty(API_PROGRAMS_ENV) + "/dictionary";
     }
 
     private String getSearchApiUrl() {

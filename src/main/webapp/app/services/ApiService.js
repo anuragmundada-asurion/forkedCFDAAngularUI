@@ -5,27 +5,27 @@
 
     myApp.service('ApiService',['$http', '$q', '$log', function ($http, $q, $log){
         var APIs = {
-            "dictionaryList": "/api/dictionaries",
-            "programEntity": "/api/programs/:id",
-            "programList": "/api/programs",
-            "programNumberUnique": "/api/programs/isProgramNumberUnique",
-            "programRequest": "/api/programRequests",
-            "programRequestEntity": "/api/programRequests/:id",
-            "programRequestAction": "/api/programRequestActions",
-            "programAction": "/api/programs", // /:program_id
-            "programCountByYear": "/api/listingCount", //  /:year
-            "programEligibCount": "/api/eligibilitylistings",
-            "regionalOfficeEntity": "/api/regionalOffices/:id",
-            "regionalOfficeList": "/api/regionalOffices",
-            "federalHierarchyConfiguration": "/api/federalHierarchyConfigurations",
-            "federalHierarchyConfigurationEntity": "/api/federalHierarchyConfigurations/:id",
-            "programCount": "/api/programCount",
-            "federalHierarchyList": "/api/federalHierarchies",
-            "nextAvailableProgramNumber": "/api/programs/nextAvailableProgramNumber",
-            "historicalIndex": "/api/historicalIndex", //:programNumber
-            "historicalChangeEntity": "/api/historicalChange/:id", //:historical change id
-            "userAPI": "/api/users/",
-            "historicalIndexList": "/api/searchHistoricalIndex"
+            "dictionaryList": "/v1/dictionary",
+            "programEntity": "/v1/program/:id",
+            "programList": "/v1/program",
+            "programNumberUnique": "/v1/program/isProgramNumberUnique",
+            "programRequest": "/v1/programRequest",
+            "programRequestEntity": "/v1/programRequest/:id",
+            "programRequestAction": "/v1/programRequestAction",
+            "programAction": "/v1/program", // /:program_id
+            "programCountByYear": "/v1/listingCount", //  /:year
+            "programEligibCount": "/v1/eligibilitylistings",
+            "regionalOfficeEntity": "/v1/regionalOffice/:id",
+            "regionalOfficeList": "/v1/regionalOffice",
+            "federalHierarchyConfiguration": "/v1/federalHierarchyConfiguration",
+            "federalHierarchyConfigurationEntity": "/v1/federalHierarchyConfiguration/:id",
+            "programCount": "/v1/programCount",
+            "federalHierarchyList": "/v1/federalHierarchy",
+            "nextAvailableProgramNumber": "/v1/program/nextAvailableProgramNumber",
+            "historicalIndex": "/v1/historicalIndex", //:programNumber
+            "historicalChangeEntity": "/v1/historicalChange/:id", //:historical change id
+            "userAPI": "/v1/user/",
+            "historicalIndexList": "/v1/searchHistoricalIndex"
         };
 
         this.APIs = APIs;

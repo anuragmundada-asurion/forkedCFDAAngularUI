@@ -10,7 +10,7 @@
     /////////////
 
     function Contact($resource) {
-        return $resource('/api/contacts/:agencyId', {
+        return $resource('/v1/contact/:agencyId', {
             id: '@_id',
             agencyId: '@agencyId'
         }, {

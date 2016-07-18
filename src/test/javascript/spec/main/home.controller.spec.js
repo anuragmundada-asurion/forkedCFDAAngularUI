@@ -21,11 +21,11 @@ describe("Unit Tests for Home Controller", function () {
         });
 
         $httpBackend
-            .whenGET(/\/api\/listingcount(\?[\d=&]+)*/i)
+            .whenGET(/\/v1\/listingcount(\?[\d=&]+)*/i)
             .respond(angular.toJson({ 'new': 100, 'updated': 10, 'archived': 100 }));
 
         $httpBackend
-            .whenGET(/\/api\/eligibilitylistings/i)
+            .whenGET(/\/v1\/eligibilitylistings/i)
             .respond(angular.toJson([{"label":"Local","count":830,"ids":["0011"]},{"label":"State","count":1496,"ids":["0009","0040"]}]));
     });
 

@@ -15,7 +15,7 @@ describe('Unit Tests for Global Search Box Directive', function() {
         });
 
         $httpBackend
-            .whenGET(/\/api\/dictionaries(\?ids=[a-z_]+)*/i)
+            .whenGET(/\/v1\/dictionary(\?ids=[a-z_]+)*/i)
             .respond({});
     });
 

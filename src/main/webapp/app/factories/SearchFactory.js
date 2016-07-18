@@ -16,7 +16,7 @@
                 return searchCriteriaHolder;
             },
             search: function() {
-                return $resource('/api/search', {}, {
+                return $resource('/v1/search', {}, {
                     get: { method:'GET', params: { keyword: '@keyword' }}
                 });
             }

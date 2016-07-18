@@ -31,7 +31,7 @@
             var self = this;
             $http({
                 method: 'GET',
-                url: '/api/roles'
+                url: '/v1/role'
             }).then(function(response) {
                 var data = response.data;
                 var roleList = {};
