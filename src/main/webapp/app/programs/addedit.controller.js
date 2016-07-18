@@ -1002,10 +1002,10 @@
 
                                 //check things in tafs array
                                 vm.program.financial.treasury.tafs.forEach(function (taf, index, array) {
-                                    if (!taf.departmentCode) {
+                                    if (!taf.departmentCode || taf.departmentCode.length < 2 || !$scope.validateFieldByRegex('^[0-9]*$', taf.departmentCode)) {
                                         requiredFieldsMissing = true;
                                     }
-                                    if (!taf.accountCode) {
+                                    if (!taf.accountCode || taf.accountCode.length < 4 || !$scope.validateFieldByRegex('^[0-9]*$', taf.accountCode)) {
                                         requiredFieldsMissing = true;
                                     }
                                 });

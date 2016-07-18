@@ -30,8 +30,8 @@
               published that year.
             </span>
 
-            <a class="cursor-hand" style="display: block;" onclick="$(this).html(function(i,v){ $(this).prev().toggle(); return v === 'Read Less' ? 'Read More' : 'Read Less' });">
-              Read More
+            <a class="cursor-hand closed readmore-banner" style="display: block;" ng-click="toggleReadMoreLess()">
+              Read More <i class='fa fa-chevron-down'></i>
             </a>
 
           </span>

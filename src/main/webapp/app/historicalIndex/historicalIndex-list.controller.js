@@ -370,5 +370,21 @@
 
                 return childData;
             };
+
+        //read more less toggle function
+        $scope.toggleReadMoreLess = function(){
+            $(".readmore-banner").prev().toggle();
+            console.log("clicked..");
+            if($(".readmore-banner").hasClass("closed")){
+                console.log("a");
+                $(".readmore-banner").html("<span>Read Less <i class=\'fa fa-chevron-up\'></i><\span>");
+                $(".readmore-banner").toggleClass('closed');
+            }else{
+                console.log("b");
+                $(".readmore-banner").html("<span> Read More <i class=\'fa fa-chevron-down\'></i></span>");
+                $(".readmore-banner").toggleClass('closed');
+            }
+        }
+
         }]);
 })();
