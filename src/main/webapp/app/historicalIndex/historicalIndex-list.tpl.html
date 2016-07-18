@@ -30,7 +30,7 @@
               published that year.
             </span>
 
-            <a class="cursor-hand closed" style="display: block;" onclick="$(this).html(function(i,v){ $(this).prev().toggle(); if($(this).hasClass('closed')){ console.log('<span> Read More <i class=\'fa fa-chevron-down\'></i></span>');  $(this).toggleClass('closed'); return '<span> Read More <i class=\'fa fa-chevron-down\'></i></span>';}else{console.log('<span>Read Less <i class=\'fa fa-chevron-up\'></i><\span> '); $(this).toggleClass('closed'); return '<span>Read Less <i class=\'fa fa-chevron-up\'></i><\span>';} });">
+            <a class="cursor-hand closed readmore-banner" style="display: block;" ng-click="toggleReadMoreLess()">
               Read More <i class='fa fa-chevron-down'></i>
             </a>
 
