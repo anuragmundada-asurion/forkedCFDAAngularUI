@@ -323,6 +323,10 @@
 
                         //Assistance type
                         $scope.dictionary.aAssistanceType = DictionaryService.istevenDropdownDataStructure(data.assistance_type, (oProgram) ? oProgram.assistanceTypes : [], true);
+                        //todo: include this process into jstree refactor for reviewProgram state
+                        if($state.current['name']=="reviewProgram"){
+                            populateAssistanceTypes();//other states use js tree processes to fully populate these values
+                        }
 
                     });
                 };
@@ -1114,6 +1118,18 @@
                         $scope.instructionalText = data;
                         vm.instructionalText = data;
                         //console.log(data);
+                    });
+                }
+
+                function populateAssistanceTypes(){
+                    vm.program.assistanceTypes = $scope.dictionary.aAssistanceType.filter(function(obj){
+                        for(var i = 0; i < vm.program.assistanceTypes.length; i++){
+                            var type = vm.program.assistanceTypes[i];
+                            if(obj.element_id==type){
+                                return true;
+                            }
+                        };
+                        return false;
                     });
                 }
 
