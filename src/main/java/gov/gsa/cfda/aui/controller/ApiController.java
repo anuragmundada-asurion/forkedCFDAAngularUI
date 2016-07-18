@@ -632,13 +632,13 @@ public class ApiController {
         return ResponseEntity.status(HttpStatus.OK).body(getCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id));
     }
 
-    @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.PUT)
     public HttpEntity updateFederalHierarchyConfiguration(@PathVariable("id") String id,
                                                           @RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                           @RequestBody String jsonBody) {
 
 
-        return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody, HttpMethod.PATCH));
+        return ResponseEntity.status(HttpStatus.OK).body(updateCall(accessToken, getFederalHierarchyConfigurationApiUrl() + "/" + id, jsonBody, HttpMethod.PUT));
     }
 
     @RequestMapping(value = "/v1/federalHierarchyConfiguration", method = RequestMethod.POST)
