@@ -60,12 +60,8 @@
 
 <!--This section has the three buttons-->
 <section class="usa-grid usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
-    <a ui-sref="regionalOfficeList">
-        <button type="button" class="usa-button-gray">Return</button>
-    </a>
-    <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])">
-        <button type="button">Edit</button>
-    </a>
+    <a ui-sref="regionalOfficeList" class="usa-button usa-button-gray">Return</a>
+    <a ui-sref="editRegionalOffice({id: oRegionalOffice.id})" class="usa-button" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])">Edit</a>
     <button type="button" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
 </section>
 

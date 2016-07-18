@@ -114,9 +114,7 @@
 
 <!--This section has the three buttons-->
 <section class="usa-grid usa-text-align-right usa-margin-top-3 usa-margin-bottom-3">
-    <a ui-sref="regionalOfficeList">
-        <button type="button">Cancel</button>
-    </a>
+    <a ui-sref="regionalOfficeList" class="usa-button">Cancel</a>
     <button type="button" ng-click="saveRegionalOffice()">Save</button>
     <button type="button" ng-if="action === 'edit'" ng-if="hasPermission([PERMISSIONS.CAN_DELETE_REGIONAL_OFFICE])" ng-click="deleteRegionalOffice()">Delete</button>
 </section>
