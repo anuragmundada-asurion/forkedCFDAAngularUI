@@ -1159,15 +1159,6 @@
                     return {label: "no-estimate-or-actual", dollarValue: "000000"};
                 };
 
-
-                //make sure the focus is top when content has finished loading.
-                $scope.$on('$viewContentLoaded', function () {
-                    $timeout(function () {
-                        $('#iae-header header a.sr-only').focus();
-                    }, 0);
-                });
-
-
                 //alert agency coordinators about the submit program
                 $scope.alertAC = function () {
                     var oApiParamACList = {
@@ -1231,13 +1222,8 @@
                     return $("#formErrorMessages").hasClass("ng-hide");
                 };
 
-//                    //code for back to top button to change its focus
-//                     $(".back-to-top").on( "click", function() {
-//                        $(".usa-steps ul li:first > a").focus();
-//                      });
-
                 $scope.focus = function(selector){
-                    console.log("about to focus on : " +  selector);
+                    //console.log("about to focus on : " +  selector);
                     $(selector).focus();
                 };
 

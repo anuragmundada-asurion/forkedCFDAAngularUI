@@ -11,8 +11,8 @@
         $templateCache.put('angular-multi-select.tpl', tpl);
     }]);
 
-    myApp.run(['$rootScope', '$document', '$state', 'ngDialog', 'SearchFactory', 'Page',
-        function ($rootScope, $document, $state, ngDialog, SearchFactory, Page) {
+    myApp.run(['$rootScope', '$document', '$state', '$timeout', 'ngDialog', 'SearchFactory', 'Page',
+        function ($rootScope, $document, $state, $timeout, ngDialog, SearchFactory, Page) {
             $rootScope.$on('$stateChangeSuccess', function (event, to, toParams, from) {
                 //  Only scroll to the top if state changes
                 if (to['name'] !== from['name']) {
@@ -21,7 +21,7 @@
 
             });
 
-            /**
+             /**
              * global function for change status modal
              *
              * @param Object oEntity  Program | Program Request
@@ -52,7 +52,7 @@
 
 
             /**
-             * Whenever ngDialog is opened, make tabindex 0 for 'x'
+             * Whenever ngDialog is opened, make tabindex 0 for 'x' (close icon)
              */
             $rootScope.$on('ngDialog.opened', function (e, $dialog) {
                 var $closeButton = $($dialog.find("div.ngdialog-close")[0]);//wrap it in $() to make it into a jquery obj
@@ -68,6 +68,13 @@
                 });
             });
 
+
+            //make sure the focus is top when content has finished loading.
+            $rootScope.$on('$viewContentLoaded', function () {
+                $timeout(function () {
+                    $('#iae-header header a.sr-only').focus();
+                }, 0);
+            });
 
             /**
              * Default event trigger after state changes from one to another
