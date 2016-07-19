@@ -339,10 +339,10 @@
                     .withOption('render', function (data) {
                         return '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/myRegionalOffice/' + data['officeId'] + '/view">' + data['value'] + '</a>';
                     }),
-                DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('street').withTitle('Street').withOption('defaultContent', '').withOption('sWidth', '40vh'),
                 DTColumnBuilder.newColumn('city').withTitle('City').withOption('defaultContent', ''),
                 DTColumnBuilder.newColumn('state').withTitle('State').withOption('defaultContent', ''),
-                DTColumnBuilder.newColumn('phone').withTitle('Phone').withOption('defaultContent', ''),
+                DTColumnBuilder.newColumn('phone').withTitle('Phone').withOption('defaultContent', '').withOption('sWidth', '26vh'),
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
                     .withOption('render', function (actionRowData) {
