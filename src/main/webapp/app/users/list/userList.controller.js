@@ -113,6 +113,21 @@
                     $(".dataTables_info").appendTo(".dataTables_length label");
                     $(".dataTables_info").contents().unwrap();
                 })
+                .withOption('headerCallback', function(thead, data, start, end, display){
+                    $(thead).find('th').attr('scope','col');
+                })
+                .withOption('columnDefs',[{
+                    "targets":0,
+                    "createdCell":function(cell){
+                        cell.scope = "row";
+                        cell.tabIndex = "0";
+                    }
+                },{
+                    "targets":"_all",
+                    "createdCell":function(cell){
+                        cell.tabIndex = "0";
+                    }
+                }])
                 .withOption('processing', true)
                 .withOption('ajax', function(data, callback, settings) {
                     var oApiParam = {

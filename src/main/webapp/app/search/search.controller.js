@@ -169,6 +169,21 @@
                 .withOption('processing', true)
                 .withOption('serverSide', true)
                 .withOption('searching', false)
+                .withOption('headerCallback', function(thead, data, start, end, display){
+                    $(thead).find('th').attr('scope','col');
+                })
+                .withOption('columnDefs',[{
+                    "targets":0,
+                    "createdCell":function(cell){
+                        cell.scope = "row";
+                        cell.tabIndex = "0";
+                    }
+                },{
+                    "targets":"_all",
+                    "createdCell":function(cell){
+                        cell.tabIndex = "0";
+                    }
+                }])
                 .withOption('order', [])
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')

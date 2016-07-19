@@ -117,7 +117,7 @@
         </div>
       </section>
 
-      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber)) && (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
         <div class="usa-grid">
           <div class="usa-width-one-third">
             <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
@@ -354,7 +354,7 @@
                     Please add a type of Assistance from the left column
                   </p>
                   <ul class="usa-unstyled-list">
-                    <li ng-repeat="item in gsavm.program.assistanceTypes" style="margin-bottom: 7px; margin-left: 30px;">
+                    <li ng-repeat="item in gsavm.program.assistanceTypes | filter:{children: 'false'}" style="margin-bottom: 7px; margin-left: 30px;">
                       <button type="button" class="usa-button-icon" style="margin-left: -27px;" ng-click="unselectJstreeItem(item)">
                         <i class="fa fa-times-circle"></i>
                       </button>

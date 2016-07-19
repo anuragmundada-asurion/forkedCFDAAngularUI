@@ -157,6 +157,21 @@
                 .withOption('order', [[1, 'asc']])
                 .withOption('searching', false)
                 .withOption('info', false)
+                .withOption('headerCallback', function(thead, data, start, end, display){
+                    $(thead).find('th').attr('scope','col');
+                })
+                .withOption('columnDefs',[{
+                    "targets":0,
+                    "createdCell":function(cell){
+                        cell.scope = "row";
+                        cell.tabIndex = "0";
+                    }
+                },{
+                    "targets":"_all",
+                    "createdCell":function(cell){
+                        cell.tabIndex = "0";
+                    }
+                }])
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
