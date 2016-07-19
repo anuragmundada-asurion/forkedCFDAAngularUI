@@ -194,29 +194,29 @@
                 });
             $scope.dtColumns = [
 
-                DTColumnBuilder.newColumn('action')
-                    .withTitle('Action')
-                    .withOption('defaultContent', '')
-                    .withOption('render', function (data) {
-                        var htmlStr = '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" title="Edit Organization" aria-label="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
-                            '<span class="fa fa-pencil"></span></a>' +
-                            '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" aria-label="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
-                            '<span class="fa fa-file-text-o"></span></a>';
-                        if (data.hasChildren) {
-                            htmlStr = htmlStr + '<a class="usa-button usa-button-compact" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
-                        }
-                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" aria-label="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
-                        return htmlStr;
-                    })
-
-                    .withOption('orderable', false),
-
-                DTColumnBuilder.newColumn('organization')
+            DTColumnBuilder.newColumn('organization')
                     .withTitle('Name')
+                    .withOption('sWidth', '50vw')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
                         return '<a ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
-                    })
+                    }),
+             DTColumnBuilder.newColumn('action')
+                      .withTitle('Action')
+                      .withOption('defaultContent', '')
+                      .withOption('render', function (data) {
+                          var htmlStr = '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" title="Edit Organization" aria-label="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
+                              '<span class="fa fa-pencil"></span></a>' +
+                              '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" aria-label="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
+                              '<span class="fa fa-file-text-o"></span></a>';
+                                  if (data.hasChildren) {
+                                     htmlStr = htmlStr + '<a class="usa-button usa-button-compact" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
+                                   }
+                                   htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" aria-label="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
+                                      return htmlStr;
+                              })
+
+                      .withOption('orderable', false)
             ];
         }]);
 
