@@ -347,7 +347,7 @@
                         }
                         else{
                             ngDialog.open({
-                                template: '<div class="ui ignored message positive">' +
+                                template: '<div class="ui ignored message error">' +
                                 data.message +
                                 '</div>',
                                 plain: true,
