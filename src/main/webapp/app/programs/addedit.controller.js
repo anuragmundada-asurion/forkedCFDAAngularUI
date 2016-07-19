@@ -31,9 +31,9 @@
                         search: {
                             show_only_matches: true
                         },
-                        checkbox: {
-                            three_state: false
-                        },
+                        // checkbox: {
+                        //     three_state: false
+                        // },
                         version: 1,
                         plugins: ['checkbox', 'changed', 'search']
                     };
@@ -52,15 +52,21 @@
                     var i, j, r = [];
                     vm.program.assistanceTypesJSTreeIDs = [];
 
+                    if(data.node && data.node.children.length > 0){
+                      //vm.treeInstance.jstree(true).deselect_node(data.node);
+                    }
+
                     for (i = 0, j = data.selected.length; i < j; i++) {
-                        var tmpObj = {};
-                        var selectedItem = data.instance.get_node(data.selected[i]);
-                        tmpObj.id = selectedItem.id;
-                        tmpObj.element_id = selectedItem.original.element_id;
-                        tmpObj.code = selectedItem.original.code;
-                        tmpObj.value = selectedItem.original.value;
-                        r.push(tmpObj);
-                        vm.program.assistanceTypesJSTreeIDs.push(tmpObj.element_id);
+                      var tmpObj = {};
+                      var selectedItem = data.instance.get_node(data.selected[i]);
+                      console.log(selectedItem);
+                      tmpObj.id = selectedItem.id;
+                      tmpObj.children = selectedItem.children.length > 0 ? true : false;
+                      tmpObj.element_id = selectedItem.original.element_id;
+                      tmpObj.code = selectedItem.original.code;
+                      tmpObj.value = selectedItem.original.value;
+                      r.push(tmpObj);
+                      vm.program.assistanceTypesJSTreeIDs.push(tmpObj.element_id);
                     }
 
                     $timeout(function () {
