@@ -283,7 +283,13 @@
             $scope.dtInstance = {};
 
             $scope.dtColumnDefs = [
-                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%')
+                DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%').withOption('createdCell',function(cell){
+                    cell.scope = "row";
+                    cell.tabIndex="0";
+                }),
+                DTColumnDefBuilder.newColumnDef("_all").withOption('createdCell',function(cell){
+                    cell.tabIndex="0";
+                })
             ];
 
 
@@ -312,6 +318,9 @@
                 .withOption('serverSide', true)
                 .withOption('searching', false)
                 .withOption('info', false)
+                .withOption('headerCallback', function(thead, data, start, end, display){
+                    $(thead).find('th').attr('scope','col');
+                })
                 .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                 .withDataProp('data')
                 .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest datatable-bottom" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')
