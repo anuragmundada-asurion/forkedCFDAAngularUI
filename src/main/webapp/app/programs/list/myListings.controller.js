@@ -334,16 +334,27 @@
 
                 ApiService.call(oApiParam).then(
                     function (data) {
-                        var msg = 'A draft version for this listing already exists. Please click ok to proceed to this draft version.';
-                        if (data['created']) {
-                            msg = 'A draft version for this listing was successfully created. Please click ok to proceed to this draft version.';
-                        }
+                        if(!data.error){
+                            var msg = 'A draft version for this listing already exists. Please click ok to proceed to this draft version.';
+                            if (data['created']) {
+                                msg = 'A draft version for this listing was successfully created. Please click ok to proceed to this draft version.';
+                            }
 
-                        var result = confirm(msg);
-                        if (result) {
-                            $state.go('editProgram', {id: data['id'], section: 'review'});
+                            var result = confirm(msg);
+                            if (result) {
+                                $state.go('editProgram', {id: data['id'], section: 'review'});
+                            }
                         }
-
+                        else{
+                            ngDialog.open({
+                                template: '<div class="ui ignored message positive">' +
+                                data.message +
+                                '</div>',
+                                plain: true,
+                                closeByEscape: true,
+                                showClose: true
+                            });
+                        }
                     }
                 );
             };
