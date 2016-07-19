@@ -75,6 +75,7 @@ public class SeleniumTests {
         wait.until(angularHasFinishedProcessing());
         System.out.println(driver.getTitle());
         assertEquals("Search Programs - CFDA: Search Programs",driver.getTitle());
+        /*
         String loading_xpath = "//div[contains(@class,'loadingModal')]";
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(loading_xpath)));
         WebElement tableClass = driver.findElement(By.cssSelector(".dataTable"));
@@ -84,7 +85,7 @@ public class SeleniumTests {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(link_xpath)));
         driver.findElement(By.xpath(link_xpath)).click();
         wait.until(angularHasFinishedProcessing());
-
+        */
         System.out.println("Tests finished successfully");
 
 
