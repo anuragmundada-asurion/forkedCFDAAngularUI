@@ -478,10 +478,11 @@ public class ApiController {
 
     private String updateCall(String accessToken, String url, String jsonBody, HttpMethod method) {
         RestTemplate restTemplate = new RestTemplate();
-        //  Needed for PATCH calls
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-        restTemplate.setRequestFactory(requestFactory);
-
+        if(method.equals(HttpMethod.PATCH)) {
+            //  Needed for PATCH calls only, PUT calls skips this
+            HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+            restTemplate.setRequestFactory(requestFactory);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Auth-Token", accessToken);
         headers.set("Accept", MediaType.TEXT_PLAIN_VALUE);

@@ -114,6 +114,12 @@ Needs to be clean up
     margin-right: auto;
     height: $field-finder-navigator-height;
     padding: $field-finder-navigator-padding 0;
+    li{
+      width: 500px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .navigator-button-group {
     float: right;
