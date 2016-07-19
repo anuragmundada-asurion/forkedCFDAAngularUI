@@ -117,7 +117,7 @@
         </div>
       </section>
 
-      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber))">
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="Program Number" ng-if="((gsavm.program.programNumber && gsavm.program.status && gsavm.program.status !== 'Draft') || (gsavm.program.programNumber && gsavm.program.status && gsavm.program.status === 'Draft' && gsavm.parentProgramNumber)) && (gsavm.organizationConfiguration && gsavm.organizationConfiguration.programNumberAuto === false)">
         <div class="usa-grid">
           <div class="usa-width-one-third">
             <legend>{{::instructionalText["01"]["programNumber"]["title"]}}</legend>
