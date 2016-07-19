@@ -112,7 +112,8 @@
                                 $scope.organizationId = $scope.selectedAgencyId;
                             } else { //if agency is not selected then set department
                                 //if user is a root then set department from dropdown
-                                if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER])) {
+                                if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.SUPER_USER]) || AuthorizationService.authorizeByRole([SUPPORTED_ROLES.RMO_SUPER_USER]) ||
+                                    (AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR]) && typeof $scope.showAll !== 'undefined' && $scope.showAll === true)) {
                                     $scope.organizationId = $scope.selectedDeptId;
                                 } else if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.AGENCY_COORDINATOR])) { //if user is a agency coord then set department from user's
                                     $scope.organizationId = $scope.programOrganizationId;
