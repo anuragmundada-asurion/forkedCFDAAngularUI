@@ -224,7 +224,7 @@
                     .withOption('orderable', false)
                     .withOption('render', function(data) {
                         if ($scope.canEditUser(data)) {
-                            return '<a ui-sref="editUser({id: \'' + data['id'] + '\'})" class="usa-button usa-button-compact"><span class="fa fa-pencil"></span></a>';
+                            return '<a ui-sref="editUser({id: \'' + data['id'] + '\'})" class="usa-button usa-button-compact" aria-label="Edit User"><span class="fa fa-pencil"></span></a>';
                         } else {
                             return '';
                         }

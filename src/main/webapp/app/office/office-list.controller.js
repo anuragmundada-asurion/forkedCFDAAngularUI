@@ -354,8 +354,8 @@
                 DTColumnBuilder.newColumn('action').withTitle('Action')
                     .withOption('data', null)
                     .withOption('render', function (actionRowData) {
-                        var editIcon = '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/myRegionalOffice/' + actionRowData.officeId + '/edit"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
-                        var viewIcon = '<a href="/myRegionalOffice/' + actionRowData.officeId + '/view"><button class="usa-button-compact" type="button"><span class="fa fa-file-text-o"></span></button></a>';
+                        var editIcon = '<a ng-if="hasPermission([PERMISSIONS.CAN_EDIT_REGIONAL_OFFICE])" href="/myRegionalOffice/' + actionRowData.officeId + '/edit" aria-label="Edit"><button class="usa-button-compact" type="button"><span class="fa fa-pencil"></span></button></a>';
+                        var viewIcon = '<a href="/myRegionalOffice/' + actionRowData.officeId + '/view"><button class="usa-button-compact" type="button" aria-label="View"><span class="fa fa-file-text-o"></span></button></a>';
                         return editIcon + viewIcon;
                     })
                     .withOption('orderable', false)
