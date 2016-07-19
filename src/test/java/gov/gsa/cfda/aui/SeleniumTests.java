@@ -5,22 +5,18 @@ import org.junit.Ignore;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import static junit.framework.Assert.assertEquals;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Select;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.beans.factory.annotation.*;
+
+import java.util.concurrent.TimeUnit;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -50,7 +46,10 @@ public class SeleniumTests {
         String url = base_url+":"+port;
         driver.get(url);
         waitForJSandJQueryToLoad();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        FluentWait wait = new FluentWait(driver)
+                .withTimeout(30, TimeUnit.SECONDS)
+                .pollingEvery(200, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
         wait.until(angularHasFinishedProcessing());
 
         //switch to super user
@@ -70,20 +69,25 @@ public class SeleniumTests {
         System.out.println(driver.getTitle());
         assertEquals("My Listings - CFDA: My Listings",driver.getTitle());
 
-        //go to search
-        driver.get(url+"/search?keyword=10.000");
+        //go to search and click on first row's link
+        driver.get(url+"/search?keyword=10.055");
         waitForJSandJQueryToLoad();
         wait.until(angularHasFinishedProcessing());
         System.out.println(driver.getTitle());
         assertEquals("Search Programs - CFDA: Search Programs",driver.getTitle());
-
-
+        String loading_xpath = "//div[contains(@class,'loadingModal')]";
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(loading_xpath)));
+        WebElement tableClass = driver.findElement(By.cssSelector(".dataTable"));
+        String divId = tableClass.getAttribute("id");
+        String link_xpath = "//table[@id='"+divId+"']/tbody/tr/td[2]/a";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(link_xpath)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(link_xpath)));
+        driver.findElement(By.xpath(link_xpath)).click();
         wait.until(angularHasFinishedProcessing());
-        wait.until(dataTablesHasLoaded("DataTables_Table_1"));
 
-        WebElement table = driver.findElement(By.id("DataTables_Table_1"));
-        //table.findElement(By.linkText("Direct and Counter-cyclical Payments Program")).click();
-        //wait.until(angularHasFinishedProcessing());
+        System.out.println("Tests finished successfully");
+
+
         driver.quit();
 
     }
