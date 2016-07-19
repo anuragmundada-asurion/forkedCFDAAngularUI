@@ -315,7 +315,8 @@
                 $scope.dtColumns.push(DTColumnBuilder.newColumn('manualEntry').withTitle('').withOption('defaultContent', '')
                     .withOption('render', function (data){
                         return '<a class="usa-button usa-button-compact" title="Add" ui-sref="addHistoricalIndex({pid: \'' + data.manualLink + '\'})"><span class="fa fa-plus"></span></a>';
-                    }));
+                    })
+                    .withOption('orderable', false));
             }
 
             //expand historical indexes by defaults
