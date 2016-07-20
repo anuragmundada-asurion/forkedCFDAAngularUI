@@ -311,7 +311,7 @@
                         if ($scope.isArchivedList() || $scope.isActiveList()) {
                             self.parsePrograms(data, callback, d.queryList);
                         } else {
-                            self.parseRequests(data, callback, d.queryList);
+                            self.parseRequests(data, callback, d);
                         }
                     },
                     function (error) {
