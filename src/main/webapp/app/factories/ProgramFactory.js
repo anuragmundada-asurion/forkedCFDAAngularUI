@@ -29,7 +29,7 @@
             },
             get: {
                 transformResponse: function (data) {
-                    data = JSON.parse(data);
+                    data = JSON.parse(data).program;
                     return data.data;
                 }
             },
@@ -37,7 +37,7 @@
                 method: 'GET',
                 isArray: true,
                 transformResponse: function (data) {
-                    data = JSON.parse(data);
+                    data = JSON.parse(data).queryList;
                     var res = data.results,
                         list = [];
                     angular.forEach(res, function (item) {
