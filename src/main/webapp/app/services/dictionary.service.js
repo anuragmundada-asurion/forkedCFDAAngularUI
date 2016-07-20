@@ -167,7 +167,7 @@
             tmpObj.value = oRow.hasOwnProperty('data') ?  oRow.data.title : oRow.value;
 
             if(oRow.parent || oRow.hasOwnProperty('data') ){
-              if( oRow.hasOwnProperty('data') || oRow.parent.code ){
+              if( oRow.hasOwnProperty('data') || oRow.parent.code || oRow.code){
                 tmpObj.text = "<strong>" + tmpObj.code + " - </strong>" + tmpObj.value;
               }else{
                 tmpObj.text = tmpObj.value;
@@ -196,6 +196,18 @@
               selectedIDs.splice( selectedIDs.indexOf(tmpObj.element_id), 1);
               // add selected state to item
               tmpObj.state = { selected: true };
+            }
+
+            if(!oRow.parent){
+                if(tmpObj.li_attr){
+                    //don't overwrite existing properties
+                    tmpObj.li_attr.class = "nodeParent";
+                }
+                else{
+                    tmpObj.li_attr = {
+                        "class":"nodeParent"
+                    };
+                }
             }
 
             // If it has children do recursion

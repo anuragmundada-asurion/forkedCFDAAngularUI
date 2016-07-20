@@ -153,13 +153,20 @@
                             show_only_matches: true
                         },
                         checkbox: {
-                            three_state: false
+                            three_state: false,
+                            hide_checkboxes: true
                         },
                         version: 1,
                         plugins: ['checkbox', 'changed', 'search']
                     };
                 }
                 $scope.treeEventsObjFunctionalCodes = {
+                    'ready': function(){
+                        var targets = $(this).find(".nodeParent");
+                        targets.children(".jstree-anchor").children(".jstree-checkbox").remove();
+                        targets.children(".jstree-anchor").children().unwrap();
+                        $(this).jstree().show_checkboxes();//initially hidden to do DOM changes
+                    },
                     'changed': changedNodeFunctionalCodesCB
                 };
 
