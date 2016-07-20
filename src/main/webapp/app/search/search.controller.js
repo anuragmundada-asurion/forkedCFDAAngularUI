@@ -196,7 +196,7 @@
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Results Found',
                     'lengthMenu': 'Showing _MENU_ entries',
-                    'info': ' of _TOTAL_ entries'
+                    'info': ' of <span class="dt-table-count">_TOTAL_</span> entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('programNumber').withTitle('FAL #').withOption('defaultContent', ''),
