@@ -288,7 +288,7 @@
                 .withLanguage({
                     'processing': '<div class="ui active small inline loader"></div> Loading',
                     'emptyTable': 'No Results Found',
-                    'lengthMenu': 'Showing _MENU_ entries of {{totalCount}} entries'
+                    'lengthMenu': 'Showing _MENU_ entries of <span class="dt-table-count">{{totalCount}}</span> entries'
                 });
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn('empty').withTitle('').withOption('defaultContent', '').withOption('sWidth', '50px').withOption('orderable', false),
