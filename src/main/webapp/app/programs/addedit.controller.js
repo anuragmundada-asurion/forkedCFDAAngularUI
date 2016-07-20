@@ -1176,7 +1176,7 @@
                     };
 
                     ApiService.call(oApiParamACList).then(function (data) {
-                        $scope.acNames = data;
+                        $scope.acNames = data.collection;
                         var template = '<div class="usa-alert usa-alert-success usa-margin-bottom-2" role="alert">' +
                             '<div class="usa-alert-body">' +
                             '<p class="usa-alert-text">' + 'Your request has been submitted. A notification has been sent to the following Agency Coordinators: ' + '</p>' +

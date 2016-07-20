@@ -104,11 +104,11 @@ public class ApiController {
     }
 
 
-    @RequestMapping(value = "/v1/program/{id}/submissionNotification", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/v1/program/{id}/submissionNotification", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public String notifyAgencyCoordinators(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                       @PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
-        return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params, MediaType.APPLICATION_JSON_VALUE);
+        return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params, MediaTypes.HAL_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/contact/{agencyId}", method = RequestMethod.GET)
