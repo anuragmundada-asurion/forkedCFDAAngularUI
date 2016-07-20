@@ -68,7 +68,7 @@ describe('Unit Tests for Public View FAL:', function () {
     });
 
     describe('Controller Tests:', function () {
-        xit('should receive a program, which is not null, from ProgramFactory', function () {
+        it('should receive a program, which is not null, from ProgramFactory', function () {
             var program = ProgramFactory.get({id: testId});
             $httpBackend.flush();
             expect(program).toBeDefined();
@@ -84,7 +84,7 @@ describe('Unit Tests for Public View FAL:', function () {
             expect($stateParams.id).toEqual(testId);
         });
 
-        xit('should populate $scope.onPreviewPage inside the controller', function () {
+        it('should populate $scope.onPreviewPage inside the controller', function () {
             //set up the controller
             $scope = {};//$rootScope.$new();
             //change state; the controller relies on state obj.

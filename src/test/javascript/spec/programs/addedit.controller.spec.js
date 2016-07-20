@@ -74,7 +74,7 @@ describe("Unit Tests for Add Edit Controller", function () {
             });
         });
 
-        xit('should have global methods', function(done) {
+        it('should have global methods', function(done) {
             $scope.vm.choices.programs.$promise.finally(done);
 
             $httpBackend.flush();
