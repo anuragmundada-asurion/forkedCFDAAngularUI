@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app')
-        .controller('HomeController', ['$scope', '$state', '$timeout', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'SUPPORTED_ROLES',
-            function ($scope, $state, $timeout, appConstants, ApiService, moment, SearchFactory, AuthorizationService, SUPPORTED_ROLES) {
+        .controller('HomeController', ['$scope', '$state', '$timeout', '$compile', 'appConstants', 'ApiService', 'moment', 'SearchFactory', 'AuthorizationService', 'SUPPORTED_ROLES',
+            function ($scope, $state, $timeout, $compile, appConstants, ApiService, moment, SearchFactory, AuthorizationService, SUPPORTED_ROLES) {
 
                 angular.extend($scope, {
                     itemsByPage: appConstants.DEFAULT_PAGE_ITEM_NUMBER,
@@ -65,7 +65,7 @@
 
                     // Enable popups
                     $('.usa-popup').popup({
-                      inline: true
+                        inline: true
                     });
 
                 });
@@ -114,6 +114,28 @@
 
                 });
 
+                $scope.gotoSearchResults = function (d) {
+                    //event obj was passed in
+                    if (d.index === undefined) {
+                        d.index = d.target.__data__.index;
+                        //only do something if enter was clicked. otherwise should return
+                        if (d.which !== 13) {
+                            return
+                        }
+                    }
+
+                    //Set advanced search criteria
+                    SearchFactory.setSearchCriteria('', {
+                        aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
+                            return {element_id: i};
+                        })
+                    });
+
+                    $state.go('searchPrograms', {}, {
+                        reload: true,
+                        inherit: false
+                    });
+                };
 
                 /**
                  * Generate chart
@@ -137,17 +159,7 @@
                                 //url: '/api/eligibilitylistings',
                                 json: $scope.chartData,
                                 onclick: function (d) {
-                                    //Set advanced search criteria
-                                    SearchFactory.setSearchCriteria('', {
-                                        aApplicantEligibility: $scope.chartData[d.index].ids.map(function (i) {
-                                            return {element_id: i};
-                                        })
-                                    });
-
-                                    $state.go('searchPrograms', {}, {
-                                        reload: true,
-                                        inherit: false
-                                    });
+                                    $scope.gotoSearchResults(d);
                                 },
                                 keys: {
                                     x: 'label',
@@ -200,6 +212,13 @@
                                 $(".c3-event-rect").each(function () {
                                     $(this).attr("x", Number($(this).attr("x")) + chartRectLeftPadding);
                                     $(this).attr("width", chartRectWidth);
+                                    $(this).attr("tabindex", "0");
+
+                                    //make th rects clickable via enter
+                                    var bar = $(this);
+                                    //bar.attr("trigger-click-on-enter", ""); //didn't work
+                                    bar.attr("ng-keypress", "gotoSearchResults($event)");
+                                    $compile(bar)($scope);
                                 });
                             },
                             tooltip: {
@@ -279,7 +298,6 @@
                         };
                     });
                 }
-
 
 
                 //make sure the focus is top when content has finished loading.
