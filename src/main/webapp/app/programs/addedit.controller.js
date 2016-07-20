@@ -374,7 +374,7 @@
                             method: 'GET'
                         };
                         ApiService.call(oApiParamProgram).then(function (data) {
-                            vm.parentProgramNumber = data.parentProgramId;
+                            vm.parentProgramNumber = data.program.parentProgramId;
                         });
 
                         //load dictionaries

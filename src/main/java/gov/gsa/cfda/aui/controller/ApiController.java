@@ -41,7 +41,7 @@ public class ApiController {
     @Resource
     private Environment environment;
 
-    @RequestMapping(value = "/v1/program", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/program", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public String getProgramListApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                         @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
                                         @RequestParam(value = "includeCount", required = false, defaultValue = "false") Boolean includeCount,
@@ -62,16 +62,16 @@ public class ApiController {
         params.put("latest", latest);
         params.put("organizationId", organizationId);
         params.put("programNumber", programNumber);
-        return getsCall(accessToken, getProgramsApiUrl(), params);
+        return getsCall(accessToken, getProgramsApiUrl(), params, MediaTypes.HAL_JSON_VALUE);
     }
 
-    @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/v1/program/{id}", method = RequestMethod.GET, produces = MediaTypes.HAL_JSON_VALUE)
     public String getProgramApiCall(@RequestHeader(value = "X-Auth-Token", required = false) String accessToken,
                                     @PathVariable("id") String id) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Auth-Token", accessToken);
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.set("Accept", MediaTypes.HAL_JSON_VALUE);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(getProgramsApiUrl() + "/" + id);
         HttpEntity<?> entity = new HttpEntity<>(headers);
         HttpEntity<String> response = restTemplate.exchange(builder.build().encode().toUri(), HttpMethod.GET, entity, String.class);
@@ -108,7 +108,7 @@ public class ApiController {
     public String notifyAgencyCoordinators(@RequestHeader(value = "X-Auth-Token", required = true) String accessToken,
                                                       @PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
-        return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params);
+        return getsCall(accessToken, getProgramsApiUrl() + "/" + id + "/submissionNotification", params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/contact/{agencyId}", method = RequestMethod.GET)
@@ -234,7 +234,7 @@ public class ApiController {
         Map<String, Object> params = new HashMap<>();
         params.put("id", programId);
         params.put("programNumber", programNumber);
-        return this.getsCall(accessToken, getProgramsApiUrl() + "/isProgramNumberUnique", params);
+        return this.getsCall(accessToken, getProgramsApiUrl() + "/isProgramNumberUnique", params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/program/nextAvailableProgramNumber", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -243,7 +243,7 @@ public class ApiController {
         Map<String, Object> params = new HashMap<>();
         params.put("organizationId", organizationId);
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(this.getsCall(accessToken, getProgramsApiUrl() + "/nextAvailableProgramNumber", params));
+            return ResponseEntity.status(HttpStatus.OK).body(this.getsCall(accessToken, getProgramsApiUrl() + "/nextAvailableProgramNumber", params, MediaType.APPLICATION_JSON_VALUE));
         } catch (HttpServerErrorException e) {
             log.debug("Exception while getting next available program number", e);
             JSONObject obj = new JSONObject();
@@ -281,13 +281,13 @@ public class ApiController {
             params.put("organizations", StringUtils.arrayToCommaDelimitedString(orgIds));
         }
 
-        return getsCall(accessToken, getUsersApiUrl(), params);
+        return getsCall(accessToken, getUsersApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/role", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getRoles() {
         Map<String, Object> params = new HashMap<>();
-        return getsCall(null, getRolesApiUrl(), params);
+        return getsCall(null, getRolesApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/programRequest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -309,7 +309,7 @@ public class ApiController {
         params.put("offset", offset);
         params.put("sortBy", sortBy);
         params.put("includeCount", includeCount);
-        return getsCall(accessToken, getProgramRequestsApiUrl(), params);
+        return getsCall(accessToken, getProgramRequestsApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/programRequest", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -354,7 +354,7 @@ public class ApiController {
         params.put("sortBy", sortBy);
         params.put("includeCount", includeCount);
         params.put("oFilterParam", oFilterParams);
-        return getsCall(accessToken, getRegionalOfficeApiUrl(), params);
+        return getsCall(accessToken, getRegionalOfficeApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/regionalOffice/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -392,7 +392,7 @@ public class ApiController {
         params.put("offset", offset);
         params.put("sortBy", sortBy);
         params.put("includeCount", includeCount);
-        return getsCall(accessToken, getProgramRequestActionsApiUrl(), params);
+        return getsCall(accessToken, getProgramRequestActionsApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/programRequestAction", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -420,7 +420,7 @@ public class ApiController {
         deleteCall(accessToken, getProgramRequestActionsApiUrl() + "/" + actionId);
     }
 
-    private String getsCall(String accessToken, String url, Map<String, Object> params) {
+    private String getsCall(String accessToken, String url, Map<String, Object> params, String mediaType) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
@@ -428,7 +428,7 @@ public class ApiController {
             headers.add("X-Auth-Token", accessToken);
         }
 
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.set("Accept", mediaType);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
 
@@ -579,14 +579,14 @@ public class ApiController {
                                      @RequestParam(value = "programNumber", required = false, defaultValue = "") String programNumber) {
         Map<String, Object> params = new HashMap<>();
         params.put("programNumber", programNumber);
-        return getsCall(null, getHistoricalIndexApiUrl() + "/" + id, params);
+        return getsCall(null, getHistoricalIndexApiUrl() + "/" + id, params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     //for a single historical index change
     @RequestMapping(value = "/v1/historicalChange/{id}", method = RequestMethod.GET)
     public String getSingleHistoricalIndexChange(@PathVariable("id") String id) {
         Map<String, Object> params = new HashMap<>();
-        return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params);
+        return getsCall(null, getHistoricalChangeApiUrl() + "/" + id, params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     //manual add historical index
@@ -624,7 +624,7 @@ public class ApiController {
         params.put("sortBy", sortBy);
         params.put("includeCount", includeCount);
         params.put("oFilterParam", oFilterParams);
-        return getsCall(accessToken, getFederalHierarchyConfigurationApiUrl(), params);
+        return getsCall(accessToken, getFederalHierarchyConfigurationApiUrl(), params, MediaType.APPLICATION_JSON_VALUE);
     }
 
     @RequestMapping(value = "/v1/federalHierarchyConfiguration/{id}", method = RequestMethod.GET)

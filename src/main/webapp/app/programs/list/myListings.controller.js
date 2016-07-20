@@ -309,9 +309,9 @@
                 ApiService.call(oApiParam).then(
                     function (d) {
                         if ($scope.isArchivedList() || $scope.isActiveList()) {
-                            self.parsePrograms(data, callback, d);
+                            self.parsePrograms(data, callback, d.queryList);
                         } else {
-                            self.parseRequests(data, callback, d);
+                            self.parseRequests(data, callback, d.queryList);
                         }
                     },
                     function (error) {
@@ -429,7 +429,7 @@
                 };
 
                 ApiService.call(oApiParam).then(function (oData) {
-                    $scope.showProgramRequestModal(oData.data, 'program_request', 'title_request', function () {
+                    $scope.showProgramRequestModal(oData.program.data, 'program_request', 'title_request', function () {
                         self.reloadTable();
                     });
                 });
@@ -443,7 +443,7 @@
                 };
 
                 ApiService.call(oApiParam).then(function (oData) {
-                    $scope.showProgramRequestModal(oData.data, 'program_request', 'agency_request', function () {
+                    $scope.showProgramRequestModal(oData.program.data, 'program_request', 'agency_request', function () {
                         self.reloadTable();
                     });
                 });
