@@ -73,7 +73,7 @@
 <section class="sub-section" >
     <div class="input-field">
         <h3>{{::instructionalText["01"]["060"]["title"]}}</h3>
-        <div ng-repeat="item in gsavm.program.assistanceTypes">
+        <div ng-repeat="item in gsavm.program.assistanceTypes | filter:{children: 'false'}">
           <strong>{{ item.code }} - </strong>{{ item.value }}
             <!-- <p class='text-nowrap'>{{gsavm.getTreeNodeModel(item, 'element_id', 'elements', 'aAssistanceType').displayValue}}</p> -->
         </div>
