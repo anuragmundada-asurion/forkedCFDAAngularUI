@@ -7,7 +7,6 @@
             //needed for ng-jstree plugin
             var vm = this;
 
-
             $scope.itemsByPage = appConstants.DEFAULT_PAGE_ITEM_NUMBER;
             $scope.itemsByPageNumbers = appConstants.PAGE_ITEM_NUMBERS;
             $scope.dictionary = {};
@@ -38,10 +37,7 @@
                     var formattedData = formatAgencyData([oData]);
                     $scope.treeData = formattedData;
                     instantiateTree();
-                    console.log("instantiate Tree finished! treeData: ", $scope.treeData);
                 });
-
-
             }
 
             // START --- js tree stuff
@@ -70,7 +66,6 @@
                     }
                     return tmpObj;
                 });
-
 
                 return formattedData;
             }
@@ -108,20 +103,13 @@
                                 value.parent = parentId;
                                 $scope.treeData.push(value);
                             });
-                            console.log("got children, pushed them to the scope, $scope.treeData: ", $scope.treeData);
-                        } else {
-                            console.log("no children!!!! --");
                         }
                     });
-                }
-                else {
-                    console.log("already have children loaded!!");
                 }
             }
 
 
             function instantiateTree() {
-                console.log('inside instantiateTree, treeData:', $scope.treeData);
                 $scope.treeConfig = {
                     core: {
                         multiple: true,
