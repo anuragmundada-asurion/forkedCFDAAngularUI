@@ -9,11 +9,6 @@
             //------------------------------------------------------------------
 
             var userOrgId = UserService.getUserOrgId();
-            //debug, don't keep this
-            FederalHierarchyService.getFederalHierarchyById(userOrgId,false,false,function(oData){
-                console.log(FederalHierarchyService.getFullNameFederalHierarchy(oData),oData);
-            });
-            //end debug
 
             //by default, user's org can't see parent/children levels unless they have a special role
             var includeParentLevels = false;
@@ -31,11 +26,6 @@
             //omb user - can belong to multiple orgs, get all org ids
             if(AuthorizationService.authorizeByRole([SUPPORTED_ROLES.OMB_ANALYST])){
                 userOrgId = UserService.getUserAllOrgIDs();
-                //debug, don't keep this
-                FederalHierarchyService.getFederalHierarchyByIds(userOrgId,false,false,function(oData){
-                    console.log(FederalHierarchyService.getFullNameFederalHierarchy(oData),oData);
-                });
-                //end debug
             }
             getDataFromFh();
             function getDataFromFh() {
