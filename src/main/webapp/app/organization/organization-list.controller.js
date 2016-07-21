@@ -53,7 +53,7 @@
                     var childName = child.organization.name;
                     var level = child.hierarchyLevel;
                     var downArrow = '';
-                    var action = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a class="usa-button usa-button-compact" title="Edit Organization" aria-label="Edit Organization" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" title="View Organization" aria-label="View Organization" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
+                    var action = '<td style="border-top-width: 0; padding-top: 0.2rem; padding-bottom: 0.2rem; background-color: ' + colors[level - 1] + ';"><a class="usa-button usa-button-compact" title="Edit Organization" aria-label="Edit Organization" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/edit"><span class="fa fa-pencil"></span></a><a class="usa-button usa-button-compact" title="View Organization" aria-label="View Organization" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view"><span class="fa fa-file-text-o"></span></a>';
                     action += '<a class="usa-button usa-button-compact" title="Users Directory" aria-label="Users Directory" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" href="/users?organization=' + child.organization.organizationId + '"><span class="fa fa-book"></span></a>';
 
                     if (child.action.hasChildren) {
@@ -62,7 +62,7 @@
                     } else {
                         action = action + '</td>';
                     }
-                    var title = '<td style="background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view">' + childName + '</a></td>';
+                    var title = '<td style="border-top-width: 0; padding-top: 0.2rem; padding-bottom: 0.2rem; background-color: ' + colors[level - 1] + '; padding-left:' + padding[level - 1] + ';"><a ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + child.organization.organizationId + '/view">' + childName + '</a></td>';
                     var row = '<tr ng-click="rowClicked(\'' + childId + '\')" class="' + uniqueParentRowId + '-child" id="' + childId + '" role="row" class="odd">' + title + action + '</tr>';
 
                     childrenMarkup = childrenMarkup + row;
