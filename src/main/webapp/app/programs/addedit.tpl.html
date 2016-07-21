@@ -4,12 +4,12 @@
 <form name="gsavm.form" ux-form use-ui-router="section" on-section-change="gsavm.onSectionChange(prevSectionKey)" scroll-anchor="#status-indicator-bar-anchor" novalidate>
 
   <section class="usa-grid">
-    <div class="usa-width-one-half">
+    <div class="usa-width-one-whole">
       <h1 class="usa-margin-top-3">{{ gsavm.isEdit ? 'Edit' : 'New' }} Listing</h1>
     </div>
-    <div class="usa-width-one-half usa-margin-top-3">
+    <!-- <div class="usa-width-one-half usa-margin-top-3">
       <field-finder-searchbox></field-finder-searchbox>
-    </div>
+    </div> -->
   </section>
 
   <section sticky sticky-class="hidetitles">
@@ -793,7 +793,7 @@
     <ux-form-section state-key="eligibility" section-title="Eligibility / Qualifications" field-finder-section>
       <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <!-- Header -->
-      <div class="usa-grid">
+      <div class="usa-grid-full">
         <div class="usa-width-one-whole">
           <h2>
             <span class="section-circle">
@@ -805,8 +805,8 @@
       </div>
 
       <!-- 080 Eligibility Requirements -->
-      <section class="usa-grid" field-finder-bookmark title="080 Eligibility Requirements">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="080 Eligibility Requirements">
+        <div class="usa-grid">
           <legend>{{::instructionalText["02"]["080"]["title"]}}</legend>
 
           <!-- 081 Applicant Eligibility -->
@@ -973,7 +973,7 @@
     <ux-form-section state-key="apply" section-title="How to Apply" field-finder-section>
       <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
       <!-- Header -->
-      <div class="usa-grid">
+      <div class="usa-grid-full">
         <div class="usa-width-one-whole">
           <h2>
             <span class="section-circle">
@@ -985,8 +985,8 @@
       </div>
 
       <!-- 090 Application and Award Process -->
-      <section class="usa-grid">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+      <section class="usa-segment usa-segment-shadow">
+        <div class="usa-grid">
 
           <legend field-finder-bookmark data-bookmark-parent="true" title="090 Application and Award Process">
             {{::instructionalText["03"]["090"]["title"]}}
@@ -1294,8 +1294,8 @@
       </section>
 
       <!-- 100 Assistance Consideration -->
-      <section class="usa-grid">
-        <div class="usa-width-one-whole usa-padding-top-3 usa-padding-bottom-3">
+      <section class="usa-segment usa-segment-shadow">
+        <div class="usa-grid">
           <legend field-finder-bookmark title="100 Assistance Consideration" data-bookmark-parent="true">
             {{::instructionalText["03"]["100"]["title"]}}
           </legend>
@@ -1437,40 +1437,42 @@
       </section>
 
       <!-- 180 Criteria for Selecting Proposals -->
-      <section class="usa-grid" field-finder-bookmark title="180 Criteria for Selecting Proposals">
-        <legend>{{::instructionalText["03"]["180"]["title"]}}<span class="required">*</span></legend>
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="180 Criteria for Selecting Proposals">
+        <div class="usa-grid">
+          <legend>{{::instructionalText["03"]["180"]["title"]}}<span class="required">*</span></legend>
 
-        <a href="#" ng-click="clickToOpen('d180')" tabindex="0" trigger-click-on-enter>Read More</a>
+          <a href="#" ng-click="clickToOpen('d180')" tabindex="0" trigger-click-on-enter>Read More</a>
 
-        <fieldset class="usa-fieldset-inputs usa-sans">
-          <label for="criteriaProposals3">{{::instructionalText["03"]["180"]["label"]}}</label>
+          <fieldset class="usa-fieldset-inputs usa-sans">
+            <label for="criteriaProposals3">{{::instructionalText["03"]["180"]["label"]}}</label>
 
-          <ul class="usa-horizontal-list">
-            <li>
-              <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3yes" value="yes" required/>
-              <label for="criteriaProposals3yes">Yes</label>
-            </li>
-            <li>
-              <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3no" value="no" required/>
-              <label for="criteriaProposals3no">No</label>
-            </li>
-            <li>
-              <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3NA" value="na" required/>
-              <label for="criteriaProposals3NA">Not Applicable</label>
-            </li>
-          </ul>
-        </fieldset>
+            <ul class="usa-horizontal-list">
+              <li>
+                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3yes" value="yes" required/>
+                <label for="criteriaProposals3yes">Yes</label>
+              </li>
+              <li>
+                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3no" value="no" required/>
+                <label for="criteriaProposals3no">No</label>
+              </li>
+              <li>
+                <input type="radio" name="criteriaProposals3" ng-model="gsavm.program.application.selectionCriteria.flag" id="criteriaProposals3NA" value="na" required/>
+                <label for="criteriaProposals3NA">Not Applicable</label>
+              </li>
+            </ul>
+          </fieldset>
 
-        <div ng-show="gsavm.form.$submitted || gsavm.form.criteriaProposals3.$dirty">
-          <span ng-show="gsavm.form.criteriaProposals3.$error.required">You must provide an answer.</span>
-        </div>
-        <div ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
-          <label for="criteriaProposals3Info">{{::instructionalText["03"]["180"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-          <span class="usa-form-hint">{{::instructionalText["03"]["180"]["additionalInfo"]["helpText"]}}</span>
-          <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content" ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
+          <div ng-show="gsavm.form.$submitted || gsavm.form.criteriaProposals3.$dirty">
+            <span ng-show="gsavm.form.criteriaProposals3.$error.required">You must provide an answer.</span>
+          </div>
+          <div ng-show="gsavm.program.application.selectionCriteria.flag=='yes'">
+            <label for="criteriaProposals3Info">{{::instructionalText["03"]["180"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+            <span class="usa-form-hint">{{::instructionalText["03"]["180"]["additionalInfo"]["helpText"]}}</span>
+            <textarea id="criteriaProposals3Info" name="criteriaProposals3Info" ng-model="gsavm.program.application.selectionCriteria.content" ng-required="gsavm.program.application.selectionCriteria.flag === 'yes'"></textarea>
 
-          <div ng-show="gsavm.program.application.selectionCriteria.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.criteriaProposals3Info.$dirty)">
-            <span ng-show="gsavm.form.criteriaProposals3Info.$error.required">You must provide restrictions.</span>
+            <div ng-show="gsavm.program.application.selectionCriteria.flag === 'yes' && (gsavm.form.$submitted || gsavm.form.criteriaProposals3Info.$dirty)">
+              <span ng-show="gsavm.form.criteriaProposals3Info.$error.required">You must provide restrictions.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1479,292 +1481,323 @@
     <!-- Post Award Requirements -->
     <ux-form-section state-key="awards" section-title="Post Award Requirements" field-finder-section>
       <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
-      <h2><span class="section-circle">4</span> Post Award Requirements</h2>
-      <section class="sub-section">
-        <h3 field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">{{::instructionalText["04"]["110"]["title"]}}</h3>
 
-        <a href="#" ng-click="clickToOpen('d110')" tabindex="0" trigger-click-on-enter>Read More</a>
+      <div class="usa-grid-full">
+        <div class="usa-width-one-whole">
+          <h2>
+            <span class="section-circle">
+              4
+            </span>
+            Post Award Requirements
+          </h2>
+        </div>
+      </div>
 
-        <section class="sub-minor-section" field-finder-bookmark title="111 Reports">
-          <h4>{{::instructionalText["04"]["111"]["title"]}}</h4>
+      <section class="usa-segment usa-segment-shadow">
+        <div class="usa-grid">
+          <legend field-finder-bookmark title="110 Post Assistance Requirements" data-bookmark-parent="true">{{::instructionalText["04"]["110"]["title"]}}</legend>
 
-          <div class="input-field">
-            <fieldset class="usa-fieldset-inputs usa-sans">
-              <label for="reports">{{::instructionalText["04"]["111"]["label"]}}<span class="required">*</span></label>
+          <a href="#" ng-click="clickToOpen('d110')" tabindex="0" trigger-click-on-enter>Read More</a>
 
-              <ul class="usa-horizontal-list">
-                <li>
-                  <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-yes" type="radio" value="yes" required>
-                  <label for="reports-yes">Yes</label>
-                </li>
-                <li>
-                  <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-no" type="radio" value="no" required>
-                  <label for="reports-no">No</label>
-                </li>
-                <li>
-                  <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-na" type="radio" value="na" required>
-                  <label for="reports-na">Not Applicable</label>
-                </li>
-              </ul>
-              <div ng-show="gsavm.form.$submitted || gsavm.form.reports.$dirty">
-                <span ng-show="gsavm.form.reports.$error.required">You must provide an answer.</span>
-              </div>
-            </fieldset>
-            <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
-              <div class="input-field">
-                <fieldset class="usa-fieldset-inputs usa-sans">
-                  <label for="programReports">{{::instructionalText["04"]["111"]["programReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-horizontal-list">
-                    <li>
-                      <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="programReports-yes">Yes</label>
-                    </li>
-                    <li>
-                      <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="programReports-no">No</label>
-                    </li>
-                    <li>
-                      <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="programReports-na">Not Applicable</label>
-                    </li>
-                  </ul>
-                  <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.programReports.$dirty)'>
-                    <span ng-show="gsavm.form.programReports.$error.required">You must provide an answer.</span>
-                  </div>
-                </fieldset>
-                <div ng-show="gsavm.program.postAward.reports.list.program.flag === 'yes'">
-                  <label for="programReportsInfo">{{::instructionalText["04"]["111"]["programReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-                  <textarea id="programReportsInfo" name="programReportsInfo" ng-model="gsavm.program.postAward.reports.list.program.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.program.flag==='yes'"></textarea>
+          <section class="sub-minor-section" field-finder-bookmark title="111 Reports">
+            <h4>{{::instructionalText["04"]["111"]["title"]}}</h4>
 
-                  <div ng-show="gsavm.program.postAward.reports.list.program.flag==='yes' && (gsavm.form.$submitted || gsavm.form.programReportsInfo.$dirty)">
-                    <span ng-show="gsavm.form.programReportsInfo.$error.required">You must provide an answer.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <fieldset class="usa-fieldset-inputs usa-sans">
-                  <label for="cashReports">{{::instructionalText["04"]["111"]["cashReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-horizontal-list">
-                    <li>
-                      <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="cashReports-yes">Yes</label>
-                    </li>
-                    <li>
-                      <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="cashReports-no">No</label>
-                    </li>
-                    <li>
-                      <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="cashReports-na">Not Applicable</label>
-                    </li>
-                  </ul>
-                  <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.cashReports.$dirty)'>
-                    <span ng-show="gsavm.form.cashReports.$error.required">You must provide an answer.</span>
-                  </div>
-                </fieldset>
-                <div ng-show="gsavm.program.postAward.reports.list.cash.flag === 'yes'">
-                  <label for="cashReportsInfo">{{::instructionalText["04"]["111"]["cashReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-                  <textarea id="cashReportsInfo" name="cashReportsInfo" ng-model="gsavm.program.postAward.reports.list.cash.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.cash.flag==='yes'"></textarea>
-
-                  <div ng-show="gsavm.program.postAward.reports.list.cash.flag==='yes' && (gsavm.form.$submitted || gsavm.form.cashReportsInfo.$dirty)">
-                    <span ng-show="gsavm.form.cashReportsInfo.$error.required">You must provide an answer.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <fieldset class="usa-fieldset-inputs usa-sans">
-                  <label for="progressReports">{{::instructionalText["04"]["111"]["progressReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-horizontal-list">
-                    <li>
-                      <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="progressReports-yes">Yes</label>
-                    </li>
-                    <li>
-                      <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="progressReports-no">No</label>
-                    </li>
-                    <li>
-                      <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="progressReports-na">Not Applicable</label>
-                    </li>
-                  </ul>
-                  <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.progressReports.$dirty)'>
-                    <span ng-show="gsavm.form.progressReports.$error.required">You must provide an answer.</span>
-                  </div>
-                </fieldset>
-                <div ng-show="gsavm.program.postAward.reports.list.progress.flag === 'yes'">
-                  <label for="progressReportsInfo">{{::instructionalText["04"]["111"]["progressReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-                  <textarea id="progressReportsInfo" name="progressReportsInfo" ng-model="gsavm.program.postAward.reports.list.progress.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.progress.flag==='yes'"></textarea>
-
-                  <div ng-show="gsavm.program.postAward.reports.list.progress.flag==='yes' && (gsavm.form.$submitted || gsavm.form.progressReportsInfo.$dirty)">
-                    <span ng-show="gsavm.form.progressReportsInfo.$error.required">You must provide an answer.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <fieldset class="usa-fieldset-inputs usa-sans">
-                  <label for="expenditureReports">{{::instructionalText["04"]["111"]["expenditureReports"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-horizontal-list">
-                    <li>
-                      <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="expenditureReports-yes">Yes</label>
-                    </li>
-                    <li>
-                      <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="expenditureReports-no">No</label>
-                    </li>
-                    <li>
-                      <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="expenditureReports-na">Not Applicable</label>
-                    </li>
-                  </ul>
-                  <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.expenditureReports.$dirty)'>
-                    <span ng-show="gsavm.form.expenditureReports.$error.required">You must provide an answer.</span>
-                  </div>
-                </fieldset>
-                <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag === 'yes'">
-                  <label for="expenditureReportsInfo">{{::instructionalText["04"]["111"]["expenditureReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-                  <textarea id="expenditureReportsInfo" name="expenditureReportsInfo" ng-model="gsavm.program.postAward.reports.list.expenditure.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes'"></textarea>
-
-                  <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag==='yes' && (gsavm.form.$submitted || gsavm.form.expenditureReportsInfo.$dirty)">
-                    <span ng-show="gsavm.form.expenditureReportsInfo.$error.required">You must provide an answer.</span>
-                  </div>
-                </div>
-              </div>
-              <div class="input-field">
-                <fieldset class="usa-fieldset-inputs usa-sans">
-                  <label for="performanceMonitoring">{{::instructionalText["04"]["111"]["performanceMonitoring"]["label"]}}<span class="required">*</span></label>
-                  <ul class="usa-horizontal-list">
-                    <li>
-                      <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="performanceMonitoring-yes">Yes</label>
-                    </li>
-                    <li>
-                      <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="performanceMonitoring-no">No</label>
-                    </li>
-                    <li>
-                      <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
-                      <label for="performanceMonitoring-na">Not Applicable</label>
-                    </li>
-                  </ul>
-                  <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.performanceMonitoring.$dirty)'>
-                    <span ng-show="gsavm.form.performanceMonitoring.$error.required">You must provide an answer.</span>
-                  </div>
-                </fieldset>
-                <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag === 'yes'">
-                  <label for="performanceMonitoringInfo">{{::instructionalText["04"]["111"]["performanceMonitoring"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-                  <textarea id="performanceMonitoringInfo" name="performanceMonitoringInfo" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes'"></textarea>
-
-                  <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes' && (gsavm.form.$submitted || gsavm.form.performanceMonitoringInfo.$dirty)">
-                    <span ng-show="gsavm.form.performanceMonitoringInfo.$error.required">You must provide an answer.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="sub-minor-section" field-finder-bookmark title="112 Audits">
-          <h4>{{::instructionalText["04"]["112"]["title"]}}</h4>
-
-          <div class="input-field">
-            <fieldset class="usa-fieldset-inputs usa-sans">
-              <label for="audits">{{::instructionalText["04"]["112"]["label"]}}<span class="required">*</span></label>
-
-              <ul class="usa-horizontal-list">
-                <li>
-                  <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-yes" type="radio" value="yes" required>
-                  <label for="audits-yes">Yes</label>
-                </li>
-                <li>
-                  <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-no" type="radio" value="no" required>
-                  <label for="audits-no">No</label>
-                </li>
-                <li>
-                  <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-na" type="radio" value="na" required>
-                  <label for="audits-na">Not Applicable</label>
-                </li>
-              </ul>
-
-            </fieldset>
-            <div ng-show='gsavm.form.$submitted || gsavm.form.audits.$dirty'>
-              <span ng-show="gsavm.form.audits.$error.required">You must provide an answer.</span>
-            </div>
-            <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
-              <label for="auditRequirements">{{::instructionalText["04"]["112"]["auditRequirements"]["label"]}}<span class="required">*</span></label>
+            <div class="input-field">
               <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="reports">{{::instructionalText["04"]["111"]["label"]}}<span class="required">*</span></label>
+
                 <ul class="usa-horizontal-list">
                   <li>
-                    <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-yes" type="radio" value="yes" required>
-                    <label for="auditRequirements-yes">Yes</label>
+                    <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-yes" type="radio" value="yes" required>
+                    <label for="reports-yes">Yes</label>
                   </li>
                   <li>
-                    <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-no" type="radio" value="no" required>
-                    <label for="auditRequirements-no">No</label>
+                    <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-no" type="radio" value="no" required>
+                    <label for="reports-no">No</label>
+                  </li>
+                  <li>
+                    <input name="reports" ng-model="gsavm.program.postAward.reports.flag" id="reports-na" type="radio" value="na" required>
+                    <label for="reports-na">Not Applicable</label>
                   </li>
                 </ul>
+                <div ng-show="gsavm.form.$submitted || gsavm.form.reports.$dirty">
+                  <span ng-show="gsavm.form.reports.$error.required">You must provide an answer.</span>
+                </div>
               </fieldset>
-              <label for="auditRequirementsInfo">{{::instructionalText["04"]["112"]["additionalInfo"]["label"]}}<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'">*</span></label>
-              <span class="usa-form-hint">{{::instructionalText["04"]["112"]["additionalInfo"]["helpText"]}}</span>
-              <textarea id="auditRequirementsInfo" name="auditRequirementsInfo" ng-model="gsavm.program.postAward.audit.content" ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
+              <div ng-show='gsavm.program.postAward.reports.flag === "yes"'>
+                <div class="input-field">
+                  <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="programReports">{{::instructionalText["04"]["111"]["programReports"]["label"]}}<span class="required">*</span></label>
+                    <ul class="usa-horizontal-list">
+                      <li>
+                        <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="programReports-yes">Yes</label>
+                      </li>
+                      <li>
+                        <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="programReports-no">No</label>
+                      </li>
+                      <li>
+                        <input name="programReports" ng-model="gsavm.program.postAward.reports.list.program.flag" id="programReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="programReports-na">Not Applicable</label>
+                      </li>
+                    </ul>
+                    <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.programReports.$dirty)'>
+                      <span ng-show="gsavm.form.programReports.$error.required">You must provide an answer.</span>
+                    </div>
+                  </fieldset>
+                  <div ng-show="gsavm.program.postAward.reports.list.program.flag === 'yes'">
+                    <label for="programReportsInfo">{{::instructionalText["04"]["111"]["programReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+                    <textarea id="programReportsInfo" name="programReportsInfo" ng-model="gsavm.program.postAward.reports.list.program.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.program.flag==='yes'"></textarea>
 
-              <div ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no' && (gsavm.form.$submitted || gsavm.form.auditRequirementsInfo.$dirty)">
-                <span ng-show="gsavm.form.auditRequirementsInfo.$error.required">You must describe audit procedures.</span>
+                    <div ng-show="gsavm.program.postAward.reports.list.program.flag==='yes' && (gsavm.form.$submitted || gsavm.form.programReportsInfo.$dirty)">
+                      <span ng-show="gsavm.form.programReportsInfo.$error.required">You must provide an answer.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="cashReports">{{::instructionalText["04"]["111"]["cashReports"]["label"]}}<span class="required">*</span></label>
+                    <ul class="usa-horizontal-list">
+                      <li>
+                        <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="cashReports-yes">Yes</label>
+                      </li>
+                      <li>
+                        <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="cashReports-no">No</label>
+                      </li>
+                      <li>
+                        <input name="cashReports" ng-model="gsavm.program.postAward.reports.list.cash.flag" id="cashReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="cashReports-na">Not Applicable</label>
+                      </li>
+                    </ul>
+                    <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.cashReports.$dirty)'>
+                      <span ng-show="gsavm.form.cashReports.$error.required">You must provide an answer.</span>
+                    </div>
+                  </fieldset>
+                  <div ng-show="gsavm.program.postAward.reports.list.cash.flag === 'yes'">
+                    <label for="cashReportsInfo">{{::instructionalText["04"]["111"]["cashReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+                    <textarea id="cashReportsInfo" name="cashReportsInfo" ng-model="gsavm.program.postAward.reports.list.cash.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.cash.flag==='yes'"></textarea>
+
+                    <div ng-show="gsavm.program.postAward.reports.list.cash.flag==='yes' && (gsavm.form.$submitted || gsavm.form.cashReportsInfo.$dirty)">
+                      <span ng-show="gsavm.form.cashReportsInfo.$error.required">You must provide an answer.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="progressReports">{{::instructionalText["04"]["111"]["progressReports"]["label"]}}<span class="required">*</span></label>
+                    <ul class="usa-horizontal-list">
+                      <li>
+                        <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="progressReports-yes">Yes</label>
+                      </li>
+                      <li>
+                        <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="progressReports-no">No</label>
+                      </li>
+                      <li>
+                        <input name="progressReports" ng-model="gsavm.program.postAward.reports.list.progress.flag" id="progressReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="progressReports-na">Not Applicable</label>
+                      </li>
+                    </ul>
+                    <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.progressReports.$dirty)'>
+                      <span ng-show="gsavm.form.progressReports.$error.required">You must provide an answer.</span>
+                    </div>
+                  </fieldset>
+                  <div ng-show="gsavm.program.postAward.reports.list.progress.flag === 'yes'">
+                    <label for="progressReportsInfo">{{::instructionalText["04"]["111"]["progressReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+                    <textarea id="progressReportsInfo" name="progressReportsInfo" ng-model="gsavm.program.postAward.reports.list.progress.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.progress.flag==='yes'"></textarea>
+
+                    <div ng-show="gsavm.program.postAward.reports.list.progress.flag==='yes' && (gsavm.form.$submitted || gsavm.form.progressReportsInfo.$dirty)">
+                      <span ng-show="gsavm.form.progressReportsInfo.$error.required">You must provide an answer.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="expenditureReports">{{::instructionalText["04"]["111"]["expenditureReports"]["label"]}}<span class="required">*</span></label>
+                    <ul class="usa-horizontal-list">
+                      <li>
+                        <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="expenditureReports-yes">Yes</label>
+                      </li>
+                      <li>
+                        <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="expenditureReports-no">No</label>
+                      </li>
+                      <li>
+                        <input name="expenditureReports" ng-model="gsavm.program.postAward.reports.list.expenditure.flag" id="expenditureReports-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="expenditureReports-na">Not Applicable</label>
+                      </li>
+                    </ul>
+                    <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.expenditureReports.$dirty)'>
+                      <span ng-show="gsavm.form.expenditureReports.$error.required">You must provide an answer.</span>
+                    </div>
+                  </fieldset>
+                  <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag === 'yes'">
+                    <label for="expenditureReportsInfo">{{::instructionalText["04"]["111"]["expenditureReports"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+                    <textarea id="expenditureReportsInfo" name="expenditureReportsInfo" ng-model="gsavm.program.postAward.reports.list.expenditure.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.expenditure.flag==='yes'"></textarea>
+
+                    <div ng-show="gsavm.program.postAward.reports.list.expenditure.flag==='yes' && (gsavm.form.$submitted || gsavm.form.expenditureReportsInfo.$dirty)">
+                      <span ng-show="gsavm.form.expenditureReportsInfo.$error.required">You must provide an answer.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <fieldset class="usa-fieldset-inputs usa-sans">
+                    <label for="performanceMonitoring">{{::instructionalText["04"]["111"]["performanceMonitoring"]["label"]}}<span class="required">*</span></label>
+                    <ul class="usa-horizontal-list">
+                      <li>
+                        <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-yes" type="radio" value="yes" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="performanceMonitoring-yes">Yes</label>
+                      </li>
+                      <li>
+                        <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-no" type="radio" value="no" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="performanceMonitoring-no">No</label>
+                      </li>
+                      <li>
+                        <input name="performanceMonitoring" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.flag" id="performanceMonitoring-na" type="radio" value="na" ng-required="gsavm.program.postAward.reports.flag === 'yes'">
+                        <label for="performanceMonitoring-na">Not Applicable</label>
+                      </li>
+                    </ul>
+                    <div ng-show='gsavm.program.postAward.reports.flag === "yes" && (gsavm.form.$submitted || gsavm.form.performanceMonitoring.$dirty)'>
+                      <span ng-show="gsavm.form.performanceMonitoring.$error.required">You must provide an answer.</span>
+                    </div>
+                  </fieldset>
+                  <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag === 'yes'">
+                    <label for="performanceMonitoringInfo">{{::instructionalText["04"]["111"]["performanceMonitoring"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+                    <textarea id="performanceMonitoringInfo" name="performanceMonitoringInfo" ng-model="gsavm.program.postAward.reports.list.performanceMonitoring.content" ng-required="gsavm.program.postAward.reports.flag === 'yes' && gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes'"></textarea>
+
+                    <div ng-show="gsavm.program.postAward.reports.list.performanceMonitoring.flag==='yes' && (gsavm.form.$submitted || gsavm.form.performanceMonitoringInfo.$dirty)">
+                      <span ng-show="gsavm.form.performanceMonitoringInfo.$error.required">You must provide an answer.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="sub-minor-section" field-finder-bookmark title="112 Audits">
+            <h4>{{::instructionalText["04"]["112"]["title"]}}</h4>
+
+            <div class="input-field">
+              <fieldset class="usa-fieldset-inputs usa-sans">
+                <label for="audits">{{::instructionalText["04"]["112"]["label"]}}<span class="required">*</span></label>
+
+                <ul class="usa-horizontal-list">
+                  <li>
+                    <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-yes" type="radio" value="yes" required>
+                    <label for="audits-yes">Yes</label>
+                  </li>
+                  <li>
+                    <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-no" type="radio" value="no" required>
+                    <label for="audits-no">No</label>
+                  </li>
+                  <li>
+                    <input name="audits" ng-model="gsavm.program.postAward.audit.flag" id="audits-na" type="radio" value="na" required>
+                    <label for="audits-na">Not Applicable</label>
+                  </li>
+                </ul>
+
+              </fieldset>
+              <div ng-show='gsavm.form.$submitted || gsavm.form.audits.$dirty'>
+                <span ng-show="gsavm.form.audits.$error.required">You must provide an answer.</span>
+              </div>
+              <div ng-show='gsavm.program.postAward.audit.flag === "yes"'>
+                <label for="auditRequirements">{{::instructionalText["04"]["112"]["auditRequirements"]["label"]}}<span class="required">*</span></label>
+                <fieldset class="usa-fieldset-inputs usa-sans">
+                  <ul class="usa-horizontal-list">
+                    <li>
+                      <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-yes" type="radio" value="yes" required>
+                      <label for="auditRequirements-yes">Yes</label>
+                    </li>
+                    <li>
+                      <input name="auditRequirements" ng-model="gsavm.program.postAward.audit.questions['OMBCircularA133'].flag" id="auditRequirements-no" type="radio" value="no" required>
+                      <label for="auditRequirements-no">No</label>
+                    </li>
+                  </ul>
+                </fieldset>
+                <label for="auditRequirementsInfo">{{::instructionalText["04"]["112"]["additionalInfo"]["label"]}}<span class="required" ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no'">*</span></label>
+                <span class="usa-form-hint">{{::instructionalText["04"]["112"]["additionalInfo"]["helpText"]}}</span>
+                <textarea id="auditRequirementsInfo" name="auditRequirementsInfo" ng-model="gsavm.program.postAward.audit.content" ng-required="gsavm.program.postAward.audit.flag ==='yes'&& gsavm.program.postAward.audit.question.flag === 'no'"></textarea>
+
+                <div ng-show="gsavm.program.postAward.audit.flag ==='yes' && gsavm.program.postAward.audit.question.flag === 'no' && (gsavm.form.$submitted || gsavm.form.auditRequirementsInfo.$dirty)">
+                  <span ng-show="gsavm.form.auditRequirementsInfo.$error.required">You must describe audit procedures.</span>
+                </div>
+
               </div>
 
             </div>
+          </section>
+          <section class="sub-minor-section" field-finder-bookmark title="113 Records">
+            <h4>{{::instructionalText["04"]["113"]["title"]}}</h4>
 
-          </div>
-        </section>
-        <section class="sub-minor-section" field-finder-bookmark title="113 Records">
-          <h4>{{::instructionalText["04"]["113"]["title"]}}</h4>
+            <div class="input-field">
+              <label for="recordContent">{{::instructionalText["04"]["113"]["label"]}}</label>
+              <textarea id="recordContent" name="records" class="usa-input-large" ng-model="gsavm.program.postAward.records.content"></textarea>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="140 Regulations, Guidelines, and Literature">
+        <div class="usa-grid">
+          <legend>{{::instructionalText["04"]["140"]["title"]}}</legend>
+
+          <a href="#" ng-click="clickToOpen('d140')" tabindex="0" trigger-click-on-enter>Read More</a>
 
           <div class="input-field">
-            <label for="recordContent">{{::instructionalText["04"]["113"]["label"]}}</label>
-            <textarea id="recordContent" name="records" class="usa-input-large" ng-model="gsavm.program.postAward.records.content"></textarea>
-          </div>
-        </section>
-      </section>
-      <section class="sub-section" field-finder-bookmark title="140 Regulations, Guidelines, and Literature">
-        <h3>{{::instructionalText["04"]["140"]["title"]}}</h3>
+            <fieldset class="usa-fieldset-inputs usa-sans">
+              <label for="documents">{{::instructionalText["04"]["140"]["label"]}}<span class="required">*</span></label>
 
-        <a href="#" ng-click="clickToOpen('d140')" tabindex="0" trigger-click-on-enter>Read More</a>
+              <ul class="usa-horizontal-list">
+                <li>
+                  <input name="documents" ng-model="gsavm.program.postAward.documents.flag" id="documents-yes" type="radio" value="yes" required>
+                  <label for="documents-yes">Yes</label>
+                </li>
+                <li>
+                  <input name="documents" ng-model="gsavm.program.postAward.documents.flag" id="documents-na" type="radio" value="na" required>
+                  <label for="documents-na">Not Applicable</label>
+                </li>
+              </ul>
 
-        <div class="input-field">
-          <fieldset class="usa-fieldset-inputs usa-sans">
-            <label for="documents">{{::instructionalText["04"]["140"]["label"]}}<span class="required">*</span></label>
+            </fieldset>
 
-            <ul class="usa-horizontal-list">
-              <li>
-                <input name="documents" ng-model="gsavm.program.postAward.documents.flag" id="documents-yes" type="radio" value="yes" required>
-                <label for="documents-yes">Yes</label>
-              </li>
-              <li>
-                <input name="documents" ng-model="gsavm.program.postAward.documents.flag" id="documents-na" type="radio" value="na" required>
-                <label for="documents-na">Not Applicable</label>
-              </li>
-            </ul>
+            <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
+              <label for="documentsAdditionalInfo">{{::instructionalText["04"]["140"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
+              <textarea id="documentsAdditionalInfo" name="documentsAdditionalInfo" ng-model="gsavm.program.postAward.documents.content" ng-required="gsavm.program.postAward.documents.flag==='yes'"></textarea>
 
-          </fieldset>
-
-          <div ng-show='gsavm.program.postAward.documents.flag === "yes"'>
-            <label for="documentsAdditionalInfo">{{::instructionalText["04"]["140"]["additionalInfo"]["label"]}}<span class="required">*</span></label>
-            <textarea id="documentsAdditionalInfo" name="documentsAdditionalInfo" ng-model="gsavm.program.postAward.documents.content" ng-required="gsavm.program.postAward.documents.flag==='yes'"></textarea>
-
-            <div ng-show="gsavm.program.postAward.documents.flag ==='yes' && (gsavm.form.$submitted || gsavm.form.documentsAdditionalInfo.$dirty)">
-              <span ng-show="gsavm.form.documentsAdditionalInfo.$error.required">You must provide an answer.</span>
+              <div ng-show="gsavm.program.postAward.documents.flag ==='yes' && (gsavm.form.$submitted || gsavm.form.documentsAdditionalInfo.$dirty)">
+                <span ng-show="gsavm.form.documentsAdditionalInfo.$error.required">You must provide an answer.</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
     </ux-form-section>
+
 
     <!--Financial Information and Accomplishments-->
     <ux-form-section state-key="financial" section-title="Financial Information and Accomplishments" field-finder-section>
       <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
-      <h2><span class="section-circle">5</span> Financial Information and Accomplishments</h2>
-      <section class="sub-section">
-        <h3 field-finder-bookmark title="120 Financial Information" data-bookmark-parent="true">{{::instructionalText["05"]["120"]["title"]}}</h3>
+
+      <div class="usa-grid-full">
+        <div class="usa-width-one-whole">
+          <h2>
+            <span class="section-circle">
+              5
+            </span>
+              Financial Information and Accomplishments
+          </h2>
+        </div>
+      </div>
+
+      <section class="usa-segment usa-segment-shadow">
+        <div class="usa-grid">
+        <legend field-finder-bookmark title="120 Financial Information" data-bookmark-parent="true">{{::instructionalText["05"]["120"]["title"]}}</legend>
 
         <div class="sub-minor-section" field-finder-bookmark title="121 Account Identification">
           <div class="input-field">
@@ -2003,9 +2036,12 @@
         </multi-entry>
       </div>
     </section>
+  </div>
   </section>
-  <section class="sub-section" field-finder-bookmark title="130 Program Accomplishments">
-    <h3>{{::instructionalText["05"]["130"]["title"]}}<span class="required">*</span></h3>
+
+  <section class="usa-segment usa-segment-shadow" field-finder-bookmark title="130 Program Accomplishments">
+    <div class="usa-grid">
+    <legend>{{::instructionalText["05"]["130"]["title"]}}<span class="required">*</span></legend>
      <span class="usa-form-hint">{{::instructionalText["05"]["130"]["helpText"]}}</span>
      <br>
     <a href="#" ng-click="clickToOpen('d130')" tabindex="0" trigger-click-on-enter>Read More</a>
@@ -2045,15 +2081,27 @@
         </div>
       </div>
     </div>
+  </div>
   </section>
+
 </ux-form-section>
 
     <!--Contact Information-->
     <ux-form-section state-key="contact" section-title="Contact Information" field-finder-section>
       <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
-      <h2><span class="section-circle">6</span> Contact Information</h2>
-      <section class="sub-section">
-      <h3 field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">{{::instructionalText["06"]["150"]["title"]}}<span class="required">*</span></h3>
+
+      <div class="usa-grid-full">
+        <div class="usa-width-one-whole">
+          <h2>
+            <span class="section-circle">6</span>
+            Contact Information
+          </h2>
+        </div>
+      </div>
+
+      <section class="usa-segment usa-segment-shadow">
+        <div class="usa-grid">
+      <legend field-finder-bookmark title="150 Information Contacts" data-bookmark-parent="true">{{::instructionalText["06"]["150"]["title"]}}<span class="required">*</span></legend>
       <section class="sub-minor-section" field-finder-bookmark title="151 Regional or Local Office">
       <fieldset class="usa-fieldset-inputs">
         <h4>{{::instructionalText["06"]["151"]["title"]}}<span class="required">*</span></h4>
@@ -2405,6 +2453,7 @@
       <input type="text" id="website6" name="website6" class="usa-input-large" ng-model="gsavm.program.website">
     </div>
   </section>
+</div>
 </section>
 </ux-form-section>
 
