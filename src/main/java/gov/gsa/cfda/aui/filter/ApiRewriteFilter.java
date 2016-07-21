@@ -15,7 +15,7 @@ import java.util.Map;
 public class ApiRewriteFilter implements Filter {
     public static final String API_PROGRAMS_ENV = "pub.api.programs";
     public static final String API_SEARCH_ENV = "pub.api.search";
-    public static final  Map<String, String> MAPPING = new HashMap<>();;
+    public static final  Map<String, String> MAPPING = new HashMap<>();
 
     @Resource
     private Environment environment;
