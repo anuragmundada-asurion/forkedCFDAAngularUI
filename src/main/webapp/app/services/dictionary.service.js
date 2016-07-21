@@ -53,7 +53,7 @@
         function formatDisplayValue(dictionaryName, item) {
             switch(dictionaryName) {
                 case "functional_codes":
-                    return (item.parent ? item.parent.value : "") + " - " + item.value;
+                    return (item.parent ? item.parent.value + " - " : "")  + item.code + " " + item.value;
                 default:
                     return item.code + " - " + item.value;
                     break;
