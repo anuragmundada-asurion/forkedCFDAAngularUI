@@ -141,7 +141,6 @@
                 }
                 success(levels);
             }, function (error) {
-                console.log("Error occured: ", error);
             });
         };
 

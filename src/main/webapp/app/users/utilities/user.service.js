@@ -119,7 +119,6 @@
                                 localStorageService.set('userOrganizationIDs', aOrgID);
                             },
                             function(err){
-                                console.log(err);
                             });
                     }
 
