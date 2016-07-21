@@ -2,8 +2,8 @@
     "use strict";
 
     var myApp = angular.module('app');
-    myApp.controller('OrganizationListController', ['$scope', 'UserService', 'AuthorizationService', 'SUPPORTED_ROLES', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile',
-        function ($scope, UserService, AuthorizationService, SUPPORTED_ROLES, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile) {
+    myApp.controller('OrganizationListController', ['$rootScope', '$scope', 'UserService', 'AuthorizationService', 'SUPPORTED_ROLES', 'FederalHierarchyService', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', 'filterFilter', '$compile', 'PERMISSIONS',
+        function ($rootScope, $scope, UserService, AuthorizationService, SUPPORTED_ROLES, FederalHierarchyService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, filterFilter, $compile, PERMISSIONS) {
 
             //Load data from FH
             //------------------------------------------------------------------
@@ -11,7 +11,7 @@
             var userOrgId = UserService.getUserOrgId();
 
             //by default, user's org can't see parent/children levels unless they have a special role
-            var includeParentLevels = false;
+            var includeParentLevels = true;
             var includeChildrenLevels= false;
 
             //show all orgs if super/rmo/limit super user OR omb user with 'all orgs' flag
@@ -190,22 +190,25 @@
                     .withOption('render', function (data) {
                         return '<a ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
                     }),
-             DTColumnBuilder.newColumn('action')
-                      .withTitle('Action')
-                      .withOption('defaultContent', '')
-                      .withOption('render', function (data) {
-                          var htmlStr = '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])" title="Edit Organization" aria-label="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
-                              '<span class="fa fa-pencil"></span></a>' +
-                              '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" aria-label="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
-                              '<span class="fa fa-file-text-o"></span></a>';
-                                  if (data.hasChildren) {
-                                     htmlStr = htmlStr + '<a href="#" class="usa-button usa-button-compact" title="Expand" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
-                                   }
-                                   htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" aria-label="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
-                                      return htmlStr;
-                              })
-
-                      .withOption('orderable', false)
+            DTColumnBuilder.newColumn('action')
+                .withTitle('Action')
+                .withOption('defaultContent', '')
+                .withOption('render', function (data) {
+                        var htmlStr = '';
+                        //todo: ng-if isn't triggering, figure out why
+                        if($rootScope.hasPermission([PERMISSIONS.CAN_EDIT_ORGANIZATION_CONFIG])){
+                            htmlStr += '<a class="usa-button usa-button-compact" title="Edit Organization" aria-label="Edit Organization" href="/organization/' + data['organizationId'] + '/edit">' +
+                            '<span class="fa fa-pencil"></span></a>';
+                        }
+                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" title="View Organization" aria-label="View Organization" href="/organization/' + data['organizationId'] + '/view">' +
+                        '<span class="fa fa-file-text-o"></span></a>';
+                        if (data.hasChildren) {
+                            htmlStr = htmlStr + '<a href="#" class="usa-button usa-button-compact" title="Expand" aria-label="Expand"><span class="fa fa-chevron-circle-down"></span></a>';
+                        }
+                        htmlStr += '<a class="usa-button usa-button-compact" ng-if="hasPermission([PERMISSIONS.CAN_VIEW_USERS])" title="Users Directory" aria-label="Users Directory" href="/users?organization=' + data['organizationId'] + '"><span class="fa fa-book"></span></a>';
+                        return htmlStr;
+                    })
+                .withOption('orderable', false)
             ];
         }]);
 
