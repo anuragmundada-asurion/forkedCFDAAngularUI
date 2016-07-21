@@ -514,7 +514,6 @@
                         }
                     }, function (error) {
                         $scope.modal = {"show": false, "message": 'An error has occurred, please try again !'};
-                        console.log(error);
                     });
                 }
 
@@ -731,7 +730,6 @@
                         $scope.isProgramNumberUnique = data.isProgramNumberUnique;
                     }, function (error) {
                         $scope.isProgramNumberUnique = false;
-                        console.log(error);
                     });
                 } else {
                     $scope.isProgramNumberUnique = true;

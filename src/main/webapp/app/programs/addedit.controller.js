@@ -880,7 +880,6 @@
                             callback(data);
                         },
                         function (error) {
-                            console.log(error);
                         });
                 };
 
@@ -1099,7 +1098,6 @@
                                 vm.isProgramNumberUnique = data.isProgramNumberUnique;
                             }, function (error) {
                                 vm.isProgramNumberUnique = false;
-                                console.log(error);
                             });
                         }
                     }
@@ -1202,7 +1200,6 @@
                         });
 
                     }, function (data) {
-                        console.log("error function, data: ", data);
                         var template = '<div class="usa-alert usa-alert-error usa-margin-bottom-2" role="alert">' +
                             '<div class="usa-alert-body">' +
                             '<p class="usa-alert-text">Error happened while notifying agency coordinators.</p>' +
