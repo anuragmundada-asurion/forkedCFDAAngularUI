@@ -295,7 +295,6 @@
 
             $scope.dtColumnDefs = [
                 DTColumnDefBuilder.newColumnDef(0).withOption('sWidth', '20%').withOption('createdCell',function(cell){
-                    cell.scope = "row";
                     cell.tabIndex="0";
                 }),
                 DTColumnDefBuilder.newColumnDef("_all").withOption('createdCell',function(cell){

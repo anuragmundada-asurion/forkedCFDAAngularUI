@@ -221,17 +221,22 @@
                         $(thead).find('th').attr('scope','col');
                     })
                     .withOption('columnDefs',[{
-                        "targets":0,
-                        "createdCell":function(cell){
-                            cell.scope = "row";
-                            cell.tabIndex = "0";
-                        }
-                    },{
                         "targets":"_all",
                         "createdCell":function(cell){
                             cell.tabIndex = "0";
                         }
                     }])
+                    .withOption('drawCallback',function(settings){
+                        var summary = "This table displays ";
+                        if($scope.isRequestList()){
+                            summary += "Change Requests";
+                        } else if ($scope.isArchivedList()) {
+                            summary += "Archived Listings";
+                        } else {
+                            summary += "Active Listings";
+                        }
+                        $(this).attr('summary',summary);
+                    })
                     .withOption('lengthMenu', [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]])
                     .withDataProp('data')
                     .withDOM('<"usa-grid"r> <"usa-grid"t> <"usa-background-gray-lightest datatable-bottom" <"usa-grid" <"usa-width-one-half"li> <"usa-width-one-half"p> > > <"clear">')

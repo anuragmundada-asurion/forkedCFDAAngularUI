@@ -151,12 +151,6 @@
                     $(thead).find('th').attr('scope','col');
                 })
                 .withOption('columnDefs',[{
-                    "targets":0,
-                    "createdCell":function(cell){
-                        cell.scope = "row";
-                        cell.tabIndex = "0";
-                    }
-                },{
                     "targets":"_all",
                     "createdCell":function(cell){
                         cell.tabIndex = "0";
