@@ -179,13 +179,14 @@
             $scope.dtColumns = [
             DTColumnBuilder.newColumn('organization')
                     .withTitle('Name')
-                    .withOption('sWidth', '50vw')
+                    // .withOption('sWidth', '50vw')
                     .withOption('defaultContent', '')
                     .withOption('render', function (data) {
                         return '<a ng-if="hasPermission([PERMISSIONS.CAN_VIEW_ORGANIZATION_CONFIG])" href="/organization/' + data['organizationId'] + '/view">' + data['name'] + '</a>';
                     }),
             DTColumnBuilder.newColumn('action')
                 .withTitle('Action')
+
                 .withOption('defaultContent', '')
                 .withOption('render', function (data) {
                         var htmlStr = '';
