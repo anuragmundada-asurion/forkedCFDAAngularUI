@@ -186,7 +186,7 @@
                     }),
             DTColumnBuilder.newColumn('action')
                 .withTitle('Action')
-                .withOption('sWidth', '350')
+                .withOption('sWidth', '350px')
                 .withOption('defaultContent', '')
                 .withOption('render', function (data) {
                         var htmlStr = '';
