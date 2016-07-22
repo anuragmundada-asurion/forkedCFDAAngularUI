@@ -942,7 +942,7 @@
                                     }
                                 });
                                 // verify if program's organization is manual
-                            } else if (vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) {
+                            } else if ((vm.organizationConfiguration && !vm.organizationConfiguration.programNumberAuto) || angular.equals(oProgram['status'], 'Rejected')) {
                                 //Call save program on success then call showProgramChangeStatus
                                 $scope.showProgramRequestModal(oProgram, 'program_submit');
                             }
