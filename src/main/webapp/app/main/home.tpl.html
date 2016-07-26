@@ -230,7 +230,7 @@
 
             <!-- New Listings -->
             <a tabindex="0" ng-click="searchByListingPublication('new')"
-                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left" trigger-click-on-enter>
               <div data-content="{{ aProgramCount.newNumber }}" data-variation="tiny" data-position="top left"  class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
                 <div ng-if="!aProgramCount.new" class="ui active small inline loader"></div>
                 {{ aProgramCount.new }}<span class="font light uppercase">{{ aProgramCount.newsymbol }}</span>
@@ -249,7 +249,7 @@
 
             <!-- Updated Listings -->
             <a tabindex="0" ng-click="searchByListingPublication('updated')"
-                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left">
+                class="usa-button usa-button-fluid usa-button-light-blue usa-border-radius-all-0 usa-margin-top-0 usa-text-align-left" trigger-click-on-enter>
               <div data-content="{{ aProgramCount.updatedNumber }}" data-variation="tiny" data-position="top left" class="usa-popup usa-label-circular usa-label-circular-massive usa-label-color-white usa-label-outline-gold">
                 <div ng-if="!aProgramCount.updated" class="ui active small inline loader"></div>
                 {{ aProgramCount.updated }}<span class="font light uppercase">{{ aProgramCount.updatedsymbol }}</span>
