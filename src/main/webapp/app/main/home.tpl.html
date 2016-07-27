@@ -101,23 +101,27 @@
 
         <div class="usa-width-one-fourth">
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
-            <span class="fa fa-thumbs-down"></span>
-            <span>Rejected Listing</span>
+              <span ng-show="!oDashboardReport" class="ui active small inline loader"></span>
+              <span ng-show="oDashboardReport">{{ oDashboardReport.rejected }}</span>
+              <span class="fa fa-thumbs-down"></span>
+              <span>Rejected&nbsp;Listing</span>
           </a>
         </div>
 
         <div class="usa-width-one-fourth">
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
-            <span class="fa fa-archive"></span>
-            <span>Archived Listing</span>
+              <span ng-show="!oDashboardReport" class="ui active small inline loader"></span>
+              <span ng-show="oDashboardReport">{{ oDashboardReport.archived }}</span>
+              <span class="fa fa-archive"></span>
+              <span>Archived&nbsp;Listing</span>
           </a>
         </div>
 
         <div class="usa-width-one-fourth">
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="historicalIndex">
+            <span>&nbsp;</span>
             <span class="fa fa-server"></span>
-            <span>Historical Index</span>
-            <br><br>
+            <span>Historical&nbsp;Index</span>
           </a>
         </div>
 
