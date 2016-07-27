@@ -6,7 +6,7 @@
 </section>
 <div id="status-indicator-bar-anchor"></div>
 <section class="usa-grid">
-    <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION) && hasPermission(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS) && (gsavm.program.status === 'Draft')">
+    <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION) && hasPermission(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS) && (gsavm.program.status === undefined || gsavm.program.status === ''|| gsavm.program.status === 'Draft')">
         <div class="usa-alert-body">
             <h3 class="usa-alert-heading">Submit Program</h3>
             <p class="usa-alert-text">Note: Please review your FAL information below. Your account does not have rights to submit FALs. If the FAL is ready for review/submission, please click the following button to save and send an alert to the agency coordinator.</p>
