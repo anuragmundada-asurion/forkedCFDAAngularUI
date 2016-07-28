@@ -1,3 +1,18 @@
+
+<section class="sub-section" ng-show="(submissionRequest && gsavm.program.status && gsavm.program.status === 'Pending')">
+    <div class="usa-grid-full">
+          <div class="usa-width-one-whole">
+              <div class="usa-alert usa-alert-warning">
+                <div class="usa-alert-body">
+                  <h3 class="usa-alert-heading">Note:</h3>
+                  <p class="usa-alert-text">This program revision is pending review/approval. You may make changes by clicking the "edit" button and modifying the program.<br />
+                    <strong>OMB review period will expire in {{ submissionRequest.expireIn }} day(s)</strong>.</p>
+                  <p>Reason for Submission: {{ submissionRequest.reason }}</p>
+                </div>
+              </div>
+          </div>
+      </div>
+</section>
 <h2><span class="section-circle">1</span> General Information</h2>
 <section class="sub-section" >
     <div class="input-field" >

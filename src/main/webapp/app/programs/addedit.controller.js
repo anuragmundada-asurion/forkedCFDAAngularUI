@@ -4,8 +4,8 @@
     angular
         .module('app')
         .controller('AddEditProgram',
-        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$sce', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES',
-            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $sce, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES) {
+        ['$stateParams', '$scope', '$location', '$state', '$filter', '$parse', '$http', '$sce', '$timeout', 'PERMISSIONS', '$log', 'ngDialog', 'ApiService', 'util', 'appUtil', 'appConstants', 'Dictionary', 'ProgramFactory', 'Contact', 'UserService', 'AuthorizationService', 'DictionaryService', 'SUPPORTED_ROLES', 'moment',
+            function ($stateParams, $scope, $location, $state, $filter, $parse, $http, $sce, $timeout, PERMISSIONS, $log, ngDialog, ApiService, util, appUtil, appConstants, Dictionary, ProgramFactory, Contacts, UserService, AuthorizationService, DictionaryService, SUPPORTED_ROLES, moment) {
 
                 $scope.$log = $log;
 
@@ -409,7 +409,10 @@
                             ApiService.call(oApiParam).then(function (data) {
                                 var results = data['results'];
                                 if (results && results.length) {
-                                    $scope.submissionRequest = results[0];
+                                    //sort submit requests by most recent ones first
+                                    var aSorted = _.orderBy(results, ['entryDate'], ['desc']);
+                                    $scope.submissionRequest = aSorted[0];
+                                    $scope.submissionRequest.expireIn = 7 - (moment().diff(moment($scope.submissionRequest.entryDate), 'days'));
                                 }
                             }, function (error) {
                                 console.log(error);
