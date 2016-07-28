@@ -1235,12 +1235,24 @@
 
 
 
-                //show rejection msg methods
-                $scope.showRejectionMsg = function(){
-                    return true;
-                };
+                $timeout(function () {
+                    //show rejection msg methods
+                    $scope.showRejectionMsg = function(){
+                        return vm.program.status === "Rejected";
+                    };
 
-                $scope.rejectionMsg = "Mock rejection message.";
+                    var oRejectionMsgApiParam = {
+                        apiName: 'rejectionMessage',
+                        apiSuffix: '/'+$stateParams.id,
+                        oParams: {},
+                        oData: {},
+                        method: 'GET'
+                    };
 
+                    $scope.rejectionMsg = "loading..";
+                    ApiService.call(oRejectionMsgApiParam).then(function(actionObj){
+                        $scope.rejectionMsg = actionObj.reason;
+                    });
+                });
             }]);
 })();

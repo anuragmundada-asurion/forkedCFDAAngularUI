@@ -420,6 +420,13 @@ public class ApiController {
         deleteCall(accessToken, getProgramRequestActionsApiUrl() + "/" + actionId);
     }
 
+
+    @RequestMapping(value = "/v1/rejectionMessage/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String getRejectionMsg(@PathVariable("id") String id,
+                                      @RequestHeader(value = "X-Auth-Token", required = true) String accessToken) {
+        return getCall(accessToken, getProgramRequestActionsApiUrl() + "/program/" + id + "/rejectionMsg");
+    }
+
     private String getsCall(String accessToken, String url, Map<String, Object> params, String mediaType) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

@@ -23,9 +23,10 @@
             "federalHierarchyList": "/v1/federalHierarchy",
             "nextAvailableProgramNumber": "/v1/program/nextAvailableProgramNumber",
             "historicalIndex": "/v1/historicalIndex", //:programNumber
-            "historicalChangeEntity": "/v1/historicalChange/:id", //:historical change id
+            "historicalChangeEntity": "/v1/historicalChange/:id",
             "userAPI": "/v1/user/",
-            "historicalIndexList": "/v1/searchHistoricalIndex"
+            "historicalIndexList": "/v1/searchHistoricalIndex",
+            "rejectionMessage": "/v1/rejectionMessage" // :program_id
         };
 
         this.APIs = APIs;
