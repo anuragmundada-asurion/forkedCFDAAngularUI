@@ -2460,6 +2460,8 @@
     <!--Review-->
 <ux-form-section state-key="review" section-title="Review">
   <back-top ng-click="focus('.usa-steps ul li:first > a')" class="back-to-top" scroll-speed=600 button-theme="cfdabacktop"></back-top>
+
+  <!-- show contact ac msg-->
     <div ng-show="noValidationErrors()">
         <div class="usa-alert usa-alert-error" role="alert" ng-if="hasRole([ROLES.AGENCY_USER]) && !hasPermission(PERMISSIONS.CAN_REQUEST_SUBMISSION) && hasPermission(PERMISSIONS.CAN_EDIT_DRAFT_PROGRAMS) && (gsavm.program.status === undefined || gsavm.program.status === ''|| gsavm.program.status === 'Draft')">
             <div class="usa-alert-body">
@@ -2471,6 +2473,20 @@
             </div>
         </div>
     </div>
+
+    <!-- show rejection msg-->
+    <div ng-if="showRejectionMsg()">
+      <div class="usa-alert usa-alert-warning" role="alert">
+        <div class="usa-alert-body">
+          <h3 class="usa-alert-heading">Rejection Reason</h3>
+
+          <p class="usa-alert-text">Rejection Msg: {{rejectionMsg}}</p>
+        </div>
+      </div>
+    </div>
+
+
+
   <div id="formErrorMessages" style="background-color:#FFF1D0;padding:0px 24px 20px 24px;" ng-show="requiredFieldsMissing('financialSection') || requiredFieldsMissing('contactSection') || !gsavm.program.title || !gsavm.program.authorizations || gsavm.program.authorizations.length==0
   || !gsavm.program.objective || !gsavm.program.usage.restrictions.flag
   || (gsavm.program.usage.restrictions.flag===gsavm.choices['yes_no'].yes.code && !gsavm.program.usage.restrictions.content) || !gsavm.program.usage.discretionaryFund.flag

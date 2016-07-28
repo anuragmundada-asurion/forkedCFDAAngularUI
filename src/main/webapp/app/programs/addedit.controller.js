@@ -1231,5 +1231,13 @@
                 };
 
 
+
+                //show rejection msg methods
+                $scope.showRejectionMsg = function(){
+                    return true;
+                };
+
+                $scope.rejectionMsg = "Mock rejection message.";
+
             }]);
 })();
