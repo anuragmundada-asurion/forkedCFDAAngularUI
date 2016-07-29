@@ -103,7 +103,7 @@
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'activePrograms', filter: 'rejected'})">
             <span class="fa fa-thumbs-down">
               <span ng-show="!oDashboardReport" class="ui active small inline loader"></span>
-              <span ng-show="oDashboardReport" style="color: #0071bc;">{{ oDashboardReport.rejected }}</span>
+              <span class="numberLine" ng-show="oDashboardReport" style="color: #0071bc;">{{ oDashboardReport.rejected }}</span>
             </span>
             <span>Rejected&nbsp;Listings</span>
             <br><br>
@@ -114,7 +114,7 @@
           <a class="usa-button usa-button-big usa-button-gray-light usa-button-fluid usa-button-icon-top" ui-sref="programList({list: 'archivedPrograms', filter: 'all'})">
             <span class="fa fa-archive">
               <span ng-show="!oDashboardReport" class="ui active small inline loader"></span>
-              <span ng-show="oDashboardReport" style="color: #0071bc;">{{ oDashboardReport.archived }}</span>
+              <span class="numberLine" ng-show="oDashboardReport" style="color: #0071bc;">{{ oDashboardReport.archived }}</span>
             </span>
             <span>Archived&nbsp;Listings</span>
             <br><br>
